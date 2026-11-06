@@ -16,7 +16,6 @@
     'tplCategoryFolder' => '@INLINE <li[[+classes]]><span class="lb-nav__link">[[+menutitle]]</span>[[+wrapper]]</li>',
 ])}
 {set $isRo = $_modx->config.cultureKey == 'ro'}
-{set $phone = $_modx->config['phone-1']}
 <header class="lb-header" id="lb-header">
     <div class="lb-header__bar"></div>
     <div class="lb-header__inner">
@@ -30,7 +29,7 @@
                 [[!BabelLinks? &showCurrent=`1` &tpl=`lb.babelLink`]]
             </ul>
             <div class="lb-mnav__foot">
-                <a class="lb-mnav__phone" href="tel:{$phone | replace : ' ' : ''}">{$phone}</a>
+                <a class="lb-mnav__phone" href="tel:[[++phone-1:replace=` ==`]]">[[++phone-1]]</a>
                 <p class="lb-mnav__addr">
                     București, Dorobanti, Sector 1<br>
                     Șoseaua Ștefan cel Mare Nr 1<br>
@@ -47,9 +46,9 @@
         </div>
 
         <div class="lb-header__right">
-            <a class="lb-header__phone" href="tel:{$phone | replace : ' ' : ''}">
+            <a class="lb-header__phone" href="tel:[[++phone-1:replace=` ==`]]">
                 <span class="lb-header__phone-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16.4v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 1.1 3.7 2 2 0 0 1 3.1 1.5h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L7.1 9.3a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2.1z"/></svg></span>
-                <span>{$phone}</span>
+                <span>[[++phone-1]]</span>
             </a>
             <a class="lb-btn lb-btn--solid lb-header__cta js-lb-book" href="#bl8-form">{'lbar.buttons.banner.book' | lexicon}</a>
             <button class="lb-header__burger" type="button" aria-label="{$isRo ? 'Meniu' : 'Меню'}" aria-controls="lb-mnav" aria-expanded="false"><span></span><span></span></button>

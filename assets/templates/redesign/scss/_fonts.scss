@@ -48,3 +48,130 @@ $font-path: "/assets/templates/redesign/fonts/";
 	font-display: swap;
 	unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
+
+// Playfair Display (заголовки блоков, прямой + курсив) и Montserrat (текст) — латиница, румынские буквы, кириллица.
+@font-face {
+	font-family: "LB Display";
+	src: url("#{$font-path}playfair-display-latin-wght-normal.woff2") format("woff2");
+	font-weight: 400 900;
+	font-style: normal;
+	font-display: swap;
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+	font-family: "LB Display";
+	src: url("#{$font-path}playfair-display-latin-ext-ro-normal.woff2") format("woff2");
+	font-weight: 400 900;
+	font-style: normal;
+	font-display: swap;
+	unicode-range: U+0102-0103, U+015E-015F, U+0162-0163, U+0218-021B;
+}
+@font-face {
+	font-family: "LB Display";
+	src: url("#{$font-path}playfair-display-cyrillic-wght-normal.woff2") format("woff2");
+	font-weight: 400 900;
+	font-style: normal;
+	font-display: swap;
+	unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+	font-family: "LB Display";
+	src: url("#{$font-path}playfair-display-latin-wght-italic.woff2") format("woff2");
+	font-weight: 400 900;
+	font-style: italic;
+	font-display: swap;
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+	font-family: "LB Display";
+	src: url("#{$font-path}playfair-display-latin-ext-ro-italic.woff2") format("woff2");
+	font-weight: 400 900;
+	font-style: italic;
+	font-display: swap;
+	unicode-range: U+0102-0103, U+015E-015F, U+0162-0163, U+0218-021B;
+}
+@font-face {
+	font-family: "LB Display";
+	src: url("#{$font-path}playfair-display-cyrillic-wght-italic.woff2") format("woff2");
+	font-weight: 400 900;
+	font-style: italic;
+	font-display: swap;
+	unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+	font-family: "LB Text";
+	src: url("#{$font-path}montserrat-latin-wght-normal.woff2") format("woff2");
+	font-weight: 100 900;
+	font-style: normal;
+	font-display: swap;
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+	font-family: "LB Text";
+	src: url("#{$font-path}montserrat-latin-ext-ro-normal.woff2") format("woff2");
+	font-weight: 100 900;
+	font-style: normal;
+	font-display: swap;
+	unicode-range: U+0102-0103, U+015E-015F, U+0162-0163, U+0218-021B;
+}
+@font-face {
+	font-family: "LB Text";
+	src: url("#{$font-path}montserrat-cyrillic-wght-normal.woff2") format("woff2");
+	font-weight: 100 900;
+	font-style: normal;
+	font-display: swap;
+	unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+	font-family: "LB Text";
+	src: url("#{$font-path}montserrat-latin-wght-italic.woff2") format("woff2");
+	font-weight: 100 900;
+	font-style: italic;
+	font-display: swap;
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+	font-family: "LB Text";
+	src: url("#{$font-path}montserrat-latin-ext-ro-italic.woff2") format("woff2");
+	font-weight: 100 900;
+	font-style: italic;
+	font-display: swap;
+	unicode-range: U+0102-0103, U+015E-015F, U+0162-0163, U+0218-021B;
+}
+@font-face {
+	font-family: "LB Text";
+	src: url("#{$font-path}montserrat-cyrillic-wght-italic.woff2") format("woff2");
+	font-weight: 100 900;
+	font-style: italic;
+	font-display: swap;
+	unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+// Noto Serif Display Italic
+@font-face {
+	font-family: "LB Serif";
+	src: url("#{$font-path}noto-serif-display-latin-standard-italic.woff2") format("woff2");
+	font-weight: 100 900;
+	font-stretch: 62.5% 100%;
+	font-style: italic;
+	font-display: swap;
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+	font-family: "LB Serif";
+	src: url("#{$font-path}noto-serif-display-latin-ext-ro-italic.woff2") format("woff2");
+	font-weight: 100 900;
+	font-stretch: 62.5% 100%;
+	font-style: italic;
+	font-display: swap;
+	unicode-range: U+0102-0103, U+015E-015F, U+0162-0163, U+0218-021B;
+}
+@font-face {
+	font-family: "LB Serif";
+	src: url("#{$font-path}noto-serif-display-cyrillic-standard-italic.woff2") format("woff2");
+	font-weight: 100 900;
+	font-stretch: 62.5% 100%;
+	font-style: italic;
+	font-display: swap;
+	unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}

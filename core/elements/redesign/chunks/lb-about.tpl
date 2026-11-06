@@ -1,0 +1,65 @@
+{* Блок «О микропигментации» (редизайн, 2-й экран главной).
+   Заголовок и текст — прежние TV: title_bl1_about, text_bl1_about.
+   Часть заголовка после тире выводится курсивом. Текст свёрнут до 3 строк. *}
+{set $title = $_modx->resource['title_bl1_about'] | trim}
+{set $dash = ''}
+{if ' — ' in $title}{set $dash = '—'}{elseif ' – ' in $title}{set $dash = '–'}{/if}
+{set $tp = ($dash ? ($title | split : (' ' ~ $dash ~ ' ')) : [$title])}
+{set $text = $_modx->resource['text_bl1_about']}
+{set $img = '/assets/templates/redesign/img/'}
+<div id="bl1"></div>
+<section class="lb-about" id="lb-about">
+    <div class="lb-about__bg">
+        <picture>
+            <source media="(max-width: 1024px)" srcset="{$img}about-mobile.webp" width="840" height="1090">
+            <img src="{$img}about-bg.webp" srcset="{$img}about-bg-1440.webp 1440w, {$img}about-bg.webp 2166w" sizes="100vw" width="2166" height="1218" alt="{'lbar.rd.about.alt' | lexicon}" loading="lazy" decoding="async">
+        </picture>
+    </div>
+
+    <div class="lb-about__col">
+        <div class="lb-about__eyebrow">{'lbar.rd.about.eyebrow' | lexicon}</div>
+
+        {if $title}
+        <div class="lb-about__title">
+            {if $tp | length > 1}
+            <span class="lb-about__t1">{$tp[0]} {$dash}</span>
+            <span class="lb-about__t2">{$tp[1]}</span>
+            {else}
+            <span class="lb-about__t1">{$title}</span>
+            {/if}
+        </div>
+        {/if}
+
+        {if $text}
+        <div class="lb-about__textwrap">
+            <div class="lb-about__text" id="lb-about-text">{$text}</div>
+            <button class="lb-about__more" type="button" aria-controls="lb-about-text" aria-expanded="false">
+                <span class="lb-about__moretxt">{'lbar.rd.about.more' | lexicon}</span><span class="lb-about__less">{'lbar.rd.about.less' | lexicon}</span>
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg>
+            </button>
+        </div>
+        {/if}
+
+        <ul class="lb-about__list">
+            <li class="lb-about__item">
+                <span class="lb-about__ic" aria-hidden="true"><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><path d="M7 29 27 9"/><path d="M27.5 8.5c-5.5-1.8-13.4.8-16.6 7.8-1.6 3.4-1.7 7-1.3 9.9 3 .5 6.6.2 10-1.4 7-3.3 9.6-11 7.9-16.3z"/><path d="M12.5 21h6.5M15.5 17.5h6M19 14h4.5"/></svg></span>
+                <span class="lb-about__label">{'lbar.rd.about.f1' | lexicon}</span>
+            </li>
+            <li class="lb-about__item">
+                <span class="lb-about__ic" aria-hidden="true"><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="12.5"/><path d="M18 10.5V18l5 4"/></svg></span>
+                <span class="lb-about__label">{'lbar.rd.about.f2' | lexicon}</span>
+            </li>
+            <li class="lb-about__item">
+                <span class="lb-about__ic" aria-hidden="true"><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linejoin="round"><path d="M13 13c.5 4.6 2.9 7 7.5 7.5-4.6.5-7 2.9-7.5 7.5-.5-4.6-2.9-7-7.5-7.5 4.6-.5 7-2.9 7.5-7.5z"/><path d="M24.5 6c.3 2.9 1.8 4.4 4.7 4.7-2.9.3-4.4 1.8-4.7 4.7-.3-2.9-1.8-4.4-4.7-4.7 2.9-.3 4.4-1.8 4.7-4.7z"/></svg></span>
+                <span class="lb-about__label">{'lbar.rd.about.f3' | lexicon}</span>
+            </li>
+        </ul>
+
+        <div class="lb-about__quote">
+            <svg class="lb-about__qmark" viewBox="0 0 55 44" aria-hidden="true"><path fill="currentColor" d="M12.6 44C5.3 44 0 38.6 0 31.4 0 19.6 9.6 6.4 22.3 0l2.2 3.3C16.8 8.2 12 14.6 11.3 20.4c.7-.2 1.5-.3 2.3-.3 6.4 0 11.3 5 11.3 11.7S19.8 44 12.6 44zm30.1 0c-7.3 0-12.6-5.4-12.6-12.6C30.1 19.6 39.7 6.4 52.4 0l2.2 3.3C46.9 8.2 42.1 14.6 41.4 20.4c.7-.2 1.5-.3 2.3-.3 6.4 0 11.3 5 11.3 11.7S49.9 44 42.7 44z"/></svg>
+            <p class="lb-about__qtext">{'lbar.rd.about.quote' | lexicon}</p>
+        </div>
+
+        <a class="lb-about__cta" href="#form-bl4">{'lbar.rd.about.cta' | lexicon}<svg viewBox="0 0 24 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 8h21M15.5 1.5 22 8l-6.5 6.5"/></svg></a>
+    </div>
+</section>

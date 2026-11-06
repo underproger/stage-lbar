@@ -72,6 +72,50 @@
 		});
 	});
 
+	/* ---------- «Читать далее» (текст свёрнут до 3 строк) ---------- */
+	document.querySelectorAll('.lb-about__textwrap').forEach(function (wrap) {
+		var text = wrap.querySelector('.lb-about__text');
+		var btn = wrap.querySelector('.lb-about__more');
+		if (!text || !btn) return;
+		var check = function () {
+			if (wrap.classList.contains('is-open')) return;
+			var clamped = parseFloat(getComputedStyle(text).maxHeight) || 0;
+			wrap.classList.toggle('is-short', text.scrollHeight <= clamped + 2);
+		};
+		check();
+		window.addEventListener('resize', check);
+		if (document.fonts && document.fonts.ready) document.fonts.ready.then(check);
+		btn.addEventListener('click', function () {
+			var open = !wrap.classList.contains('is-open');
+			if (open) {
+				text.style.maxHeight = text.scrollHeight + 'px';
+				wrap.classList.add('is-open');
+			} else {
+				text.style.maxHeight = '';
+				wrap.classList.remove('is-open');
+				var top = wrap.getBoundingClientRect().top;
+				if (top < 0) window.scrollBy({ top: top - 120, behavior: reduce ? 'auto' : 'smooth' });
+			}
+			btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+		});
+	});
+
+	/* ---------- Появление блоков при прокрутке ---------- */
+	var initReveal = function () {
+		if (reduce || typeof window.gsap === 'undefined' || !window.ScrollTrigger) return;
+		var gsap = window.gsap;
+		gsap.registerPlugin(window.ScrollTrigger);
+		var about = document.querySelector('.lb-about');
+		if (about) {
+			var tl = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: about, start: 'top 72%' } });
+			tl.from(about.querySelector('.lb-about__bg'), { opacity: 0, y: 40, duration: 1.6, ease: 'power3.out', clearProps: 'transform' }, 0)
+				.from(about.querySelectorAll('.lb-about__eyebrow, .lb-about__t1, .lb-about__t2, .lb-about__textwrap'), { y: 40, opacity: 0, duration: 1.3, stagger: 0.1, clearProps: 'transform' }, 0.15)
+				.from(about.querySelectorAll('.lb-about__item'), { x: -30, opacity: 0, duration: 1.2, stagger: 0.1, clearProps: 'transform' }, 0.5)
+				.from(about.querySelectorAll('.lb-about__quote, .lb-about__cta'), { y: 30, opacity: 0, duration: 1.2, stagger: 0.1, clearProps: 'transform' }, 0.8);
+		}
+	};
+	initReveal();
+
 	/* ---------- Анимации баннера (GSAP) ---------- */
 	var hero = document.querySelector('.lb-hero');
 	if (!hero || reduce || typeof window.gsap === 'undefined') {
