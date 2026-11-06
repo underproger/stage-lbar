@@ -1,0 +1,15 @@
+<?php return array (
+  'class' => 'xPDOScriptVehicle',
+  'object' => 
+  array (
+    'source' => 'googlesheets-1.6.4-pl/xPDOScriptVehicle/c11e3e297940ec63dd632ff2304e19d9._encryption.script',
+  ),
+  'vehicle_class' => 'xPDOScriptVehicle',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'guid' => '58eb0722f38b487775675e3fba555a28',
+  'package' => '',
+  'signature' => 'c11e3e297940ec63dd632ff2304e19d9',
+  'native_key' => '58eb0722f38b487775675e3fba555a28',
+);

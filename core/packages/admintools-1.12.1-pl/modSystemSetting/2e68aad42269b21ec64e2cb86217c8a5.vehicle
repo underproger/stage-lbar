@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'admintools',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '816726b829a8066f30f2c2b794c57d21',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '2e68aad42269b21ec64e2cb86217c8a5',
+  'native_key' => 'admintools_enable_elements_log',
+  'object' => '{"key":"admintools_enable_elements_log","value":true,"xtype":"combo-boolean","namespace":"admintools","area":"admintools_main","editedon":null}',
+);

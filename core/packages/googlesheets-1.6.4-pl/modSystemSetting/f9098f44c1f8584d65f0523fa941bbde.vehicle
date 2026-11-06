@@ -1,0 +1,17 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'related_objects' => false,
+  'namespace' => 'googlesheets',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '3d018d64fd0f1713f6900179551f2e97',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => 'f9098f44c1f8584d65f0523fa941bbde',
+  'native_key' => 'googlesheets_form_fields',
+  'object' => '{"key":"googlesheets_form_fields","value":"name,email,message","xtype":"textfield","namespace":"googlesheets","area":"googlesheets_form","editedon":null,"name":"setting_googlesheets_form_fields"}',
+);

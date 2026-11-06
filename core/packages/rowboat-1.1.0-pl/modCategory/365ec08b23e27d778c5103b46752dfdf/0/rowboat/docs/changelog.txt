@@ -1,0 +1,19 @@
+Changelog for Rowboat.
+
+Rowboat 1.1.0
+==============
+- [#5002] Fix sortBy to be blank if not specified
+- [#5459] Allow multiple sort fields in &sortBy=`field1,field2:DESC,field3` format
+- Add returnFormat param for returning data in JSON format
+- [#4283] Adjust limit property to default to 10
+
+Rowboat 1.0.1
+==============
+- Refactoring to allow for other database drivers to be developed
+- Fix issue with bindParam/Value
+
+Rowboat 1.0.0
+==============
+- Added more robust debug ability, with debugging table and sql parameter support
+- Commented all methods
+- Initial release, with sort, limit, where and columns support.

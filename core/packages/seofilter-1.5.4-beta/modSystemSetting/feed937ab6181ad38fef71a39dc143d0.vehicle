@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'seofilter',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '68c3f7e748b491c600081e5fc68c4aaa',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => 'feed937ab6181ad38fef71a39dc143d0',
+  'native_key' => 'seofilter_between_urls',
+  'object' => '{"key":"seofilter_between_urls","value":"\\/","xtype":"textfield","namespace":"seofilter","area":"seofilter_main","editedon":null}',
+);

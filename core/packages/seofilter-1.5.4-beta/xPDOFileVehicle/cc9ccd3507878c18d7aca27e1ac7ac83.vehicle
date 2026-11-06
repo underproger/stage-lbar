@@ -1,0 +1,23 @@
+<?php return array (
+  'class' => 'xPDOFileVehicle',
+  'object' => 
+  array (
+    'source' => 'seofilter-1.5.4-beta/xPDOFileVehicle/cc9ccd3507878c18d7aca27e1ac7ac83/',
+    'target' => 'return MODX_CORE_PATH . \'components/\';',
+    'name' => 'seofilter',
+  ),
+  'vehicle_class' => 'xPDOFileVehicle',
+  'resolve' => 
+  array (
+    0 => 
+    array (
+      'type' => 'php',
+      'body' => '{"type":"php","source":"seofilter-1.5.4-beta\\/xPDOFileVehicle\\/cc9ccd3507878c18d7aca27e1ac7ac83.resolve.encryption.resolver","name":"resolve.encryption"}',
+    ),
+  ),
+  'vehicle_package' => 'transport',
+  'guid' => 'bf13a1ae0f2a41bad833a26936e803d1',
+  'package' => '',
+  'signature' => 'cc9ccd3507878c18d7aca27e1ac7ac83',
+  'native_key' => 'bf13a1ae0f2a41bad833a26936e803d1',
+);

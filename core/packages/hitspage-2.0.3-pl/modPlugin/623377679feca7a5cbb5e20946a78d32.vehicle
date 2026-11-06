@@ -1,0 +1,54 @@
+<?php return array (
+  'preserve_keys' => false,
+  'update_object' => true,
+  'unique_key' => 'name',
+  'related_objects' => 
+  array (
+    'PluginEvents' => 
+    array (
+      'a0a6300006699441f5d58fc6b958f42f' => 
+      array (
+        'preserve_keys' => true,
+        'update_object' => false,
+        'unique_key' => 
+        array (
+          0 => 'pluginid',
+          1 => 'event',
+        ),
+        'class' => 'modPluginEvent',
+        'object' => '{"pluginid":4,"event":"OnWebPagePrerender","priority":0,"propertyset":0}',
+        'guid' => 'e7c31e5e3612ef1f3ad92a1a038ee12a',
+        'native_key' => 
+        array (
+          0 => 4,
+          1 => 'OnWebPagePrerender',
+        ),
+        'signature' => '7b1fa3bca9f3b0d5eeaaf00bd0cf4d9e',
+      ),
+    ),
+  ),
+  'related_object_attributes' => 
+  array (
+    'PluginEvents' => 
+    array (
+      'preserve_keys' => true,
+      'update_object' => false,
+      'unique_key' => 
+      array (
+        0 => 'pluginid',
+        1 => 'event',
+      ),
+    ),
+  ),
+  'namespace' => 'hitspage',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '8c7e6819c34c825cf623162454dfd524',
+  'package' => 'modx',
+  'class' => 'modPlugin',
+  'signature' => '623377679feca7a5cbb5e20946a78d32',
+  'native_key' => 4,
+  'object' => '{"id":4,"source":1,"property_preprocess":0,"name":"HitsPage","description":"HitsPage plugin for MODx Revolution","editor_type":0,"category":0,"cache_type":0,"plugincode":"switch ($modx->event->name) {\\n    case \'OnWebPagePrerender\':\\n        if($modx->hpCount === true) {\\n            \\/\\/ get a reference to the output\\n\\t\\t\\t$output = &$modx->resource->_output;\\n    \\t\\tif (preg_match_all (\\"\\/{%hp-(.*?)%}\\/\\",$output , $hp_list)) {\\n\\t\\t\\t  \\/\\/ If the array is not empty, choose the number of comments on the resource id (column rid)\\n\\t\\t\\t  if (is_array($hp_list)) {\\n\\t\\t\\t\\t  array_walk($hp_list[1], \'intval\');\\n\\t\\t\\t\\t  $hp = $modx->newQuery(\'modResource\', array(\'id:IN\' => $hp_list[1]));\\n\\t\\t\\t\\t  $hp->select(array(\'modResource.id\',\'modResource.properties\'));\\n\\t\\t\\t\\t  if ($hp->prepare() && $hp->stmt->execute()) {\\n\\t\\t\\t\\t\\t  $resultsHp = $hp->stmt->fetchAll(PDO::FETCH_ASSOC);\\n\\t\\t\\t\\t\\t  foreach ($resultsHp as $rHp) {\\n\\t\\t\\t\\t\\t\\t  $objHP = json_decode($rHp[\'properties\']);\\n\\t\\t\\t\\t\\t\\t  if (in_array($rHp[\'id\'],$hp_list[1])) {\\n\\t\\t\\t\\t\\t\\t\\t  $hp_list[1][array_search($rHp[\'id\'],$hp_list[1])] =  intval($objHP->hitspage->hitts);\\n\\t\\t\\t\\t\\t\\t  }\\n\\t\\t\\t\\t\\t  }\\n\\t\\t\\t\\t  }\\n\\t\\t\\t  }\\n\\t\\t\\t  \\/\\/ Replace all your templates in the resource to the correct values\\n\\t\\t\\t  $output = str_replace($hp_list[0], $hp_list[1], $output);\\n\\t\\t  }\\n        }\\n    break;\\n}","locked":0,"properties":"a:0:{}","disabled":0,"moduleguid":"","static":1,"static_file":"core\\/components\\/hitspage\\/elements\\/plugins\\/hitspage.plugin.php","content":"switch ($modx->event->name) {\\n    case \'OnWebPagePrerender\':\\n        if($modx->hpCount === true) {\\n            \\/\\/ get a reference to the output\\n\\t\\t\\t$output = &$modx->resource->_output;\\n    \\t\\tif (preg_match_all (\\"\\/{%hp-(.*?)%}\\/\\",$output , $hp_list)) {\\n\\t\\t\\t  \\/\\/ If the array is not empty, choose the number of comments on the resource id (column rid)\\n\\t\\t\\t  if (is_array($hp_list)) {\\n\\t\\t\\t\\t  array_walk($hp_list[1], \'intval\');\\n\\t\\t\\t\\t  $hp = $modx->newQuery(\'modResource\', array(\'id:IN\' => $hp_list[1]));\\n\\t\\t\\t\\t  $hp->select(array(\'modResource.id\',\'modResource.properties\'));\\n\\t\\t\\t\\t  if ($hp->prepare() && $hp->stmt->execute()) {\\n\\t\\t\\t\\t\\t  $resultsHp = $hp->stmt->fetchAll(PDO::FETCH_ASSOC);\\n\\t\\t\\t\\t\\t  foreach ($resultsHp as $rHp) {\\n\\t\\t\\t\\t\\t\\t  $objHP = json_decode($rHp[\'properties\']);\\n\\t\\t\\t\\t\\t\\t  if (in_array($rHp[\'id\'],$hp_list[1])) {\\n\\t\\t\\t\\t\\t\\t\\t  $hp_list[1][array_search($rHp[\'id\'],$hp_list[1])] =  intval($objHP->hitspage->hitts);\\n\\t\\t\\t\\t\\t\\t  }\\n\\t\\t\\t\\t\\t  }\\n\\t\\t\\t\\t  }\\n\\t\\t\\t  }\\n\\t\\t\\t  \\/\\/ Replace all your templates in the resource to the correct values\\n\\t\\t\\t  $output = str_replace($hp_list[0], $hp_list[1], $output);\\n\\t\\t  }\\n        }\\n    break;\\n}"}',
+);

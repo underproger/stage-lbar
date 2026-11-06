@@ -1,0 +1,15 @@
+<?php return array (
+  'preserve_keys' => true,
+  'update_object' => 'BUILD_EVENT_UPDATE',
+  'namespace' => 'googlesheets',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'e127dc8664626b7a66dc9f39f72df828',
+  'package' => 'modx',
+  'class' => 'modEvent',
+  'signature' => '808a73817e1a386f3bade408c322fd94',
+  'native_key' => 'gsOnGetClients',
+  'object' => '{"name":"gsOnGetClients","service":6,"groupname":"GoogleSheets"}',
+);

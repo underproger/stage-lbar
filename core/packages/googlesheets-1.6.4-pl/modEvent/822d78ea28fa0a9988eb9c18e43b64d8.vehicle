@@ -1,0 +1,15 @@
+<?php return array (
+  'preserve_keys' => true,
+  'update_object' => 'BUILD_EVENT_UPDATE',
+  'namespace' => 'googlesheets',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '12eb2aaeac577c19a31774e8010e96fb',
+  'package' => 'modx',
+  'class' => 'modEvent',
+  'signature' => '822d78ea28fa0a9988eb9c18e43b64d8',
+  'native_key' => 'gsOnGetOrders',
+  'object' => '{"name":"gsOnGetOrders","service":6,"groupname":"GoogleSheets"}',
+);

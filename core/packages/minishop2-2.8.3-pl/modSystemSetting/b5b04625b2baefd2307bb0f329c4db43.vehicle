@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'minishop2',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'dd673e4d4761eebcb5c31ec7c51cdef5',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => 'b5b04625b2baefd2307bb0f329c4db43',
+  'native_key' => 'ms2_weight_format',
+  'object' => '{"key":"ms2_weight_format","value":"[3, \\".\\", \\" \\"]","xtype":"textfield","namespace":"minishop2","area":"ms2_product","editedon":"2021-04-01 16:55:59"}',
+);

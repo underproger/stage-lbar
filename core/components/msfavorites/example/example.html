@@ -1,0 +1,296 @@
+
+<!--
+[[!msFavorites.ids?
+&list=``
+]]
+
+-->
+
+[[!msFavorites.initialize]]
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/js/rainbow.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/js/language/generic.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/js/language/html.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/js/language/css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/js/language/javascript.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/themes/monokai.min.css"/>
+<script>
+	$(document).on('click', 'a.label', function (e) {
+		var name = $(this).attr('name');
+		if (typeof name != 'undefined') {
+			window.location.hash = '#'+name;
+		}
+	});
+</script>
+<style>
+	body {
+		font-size: 13px;
+		line-height: initial;
+	}
+
+	pre {
+		font-size: 12px;
+		-moz-tab-size: 1;
+		-o-tab-size: 1;
+		tab-size: 1;
+	}
+
+	pre *,
+	code * {
+		letter-spacing: initial;
+	}
+
+	pre .close {
+		float: inherit;
+		font-size: inherit;
+		font-weight: inherit;
+		line-height: inherit;
+		text-shadow: none;
+		filter: inherit;
+		opacity: inherit;
+	}
+
+	pre .close:focus,
+	pre .close:hover {
+		text-decoration: inherit;
+		cursor: inherit;
+		filter: inherit;
+		opacity: inherit;
+	}
+
+	.tm-result {
+		padding: 30px;
+		border: 1px solid #ccc;
+		border: 1px solid rgba(0, 0, 0, 0.15);
+		-webkit-border-radius: 2px;
+		-moz-border-radius: 2px;
+		border-radius: 2px;
+	}
+
+</style>
+
+<p>
+	<b>msFavorites</b> - списки избранного.
+	<br>
+</p>
+
+<p>
+	- работа с <b>любыми ресурсами</b><br>
+	- работа с <b>любыми пользователями</b>
+</p>
+
+<h3 id="ex">Примеры</h3>
+
+<div class="row">
+	<div class="col-md-6">
+		<p>
+			<a class="label label-primary" name="ex-1">пример 1</a>
+		</p>
+
+		<p>
+			<b>Постановка:</b>
+			<br>- требуется вывести список ресурсов
+			<br>- возможность добавить ресурс в список избранного <b>default</b>
+			<br>- вывести общий счетчик кол-ва в избранном
+		</p>
+		<p>
+			<b>Вызов:</b>
+		</p>
+
+		<pre><code data-language="html">&lt;div id="pdopage">
+			&lt;div class="rows">
+				&#91;[!pdoPage?
+				&parents=`0`
+				&element=`msProducts`
+				&tpl=`@INLINE
+				&lt;a class="msfavorites"
+				   data-click
+				   data-data-id="&#91;[+id]&#93;"
+				   data-data-list="default">
+					<i class="msfavorites-icon-heart"></i>
+				&lt;/a>
+				<span class="msfavorites-total" data-data-list="default">0</span>
+				&#91;[+pagetitle]&#93;
+				`
+				&ajaxMode=`default`
+				]&#93;
+			&lt;/div>
+			&#91;[!+page.nav]&#93;
+			&lt;/div></code></pre>
+	</div>
+
+	<div class="col-md-6">
+		<br><br><br><br><br>
+		<p>
+			<a href="/favorites.html" class="msfavorites-total-all visible_" data-data-list="default">В избранное <span class="msfavorites-total" data-data-list="default">0</span></a>
+		</p>
+
+		<br>
+		<p>
+			<b>Результат:</b>
+		</p>
+
+		<div id="pdopage">
+			<div class="rows">
+				[[!pdoPage?
+				&parents=`0`
+				&element=`msProducts`
+				&tpl=`@INLINE
+				<a class="msfavorites"
+				   data-click
+				   data-data-id="[[+id]]"
+				   data-data-list="default"
+				   data-dat-properties='{ "asas":2 }'
+				>
+					<i class="msfavorites-icon-heart"></i>
+				</a>
+				<span class="msfavorites-total" data-data-list="default">0</span>
+				[[+pagetitle]] - [[+id]]
+				<br><br>`
+				&ajaxMode=`default`
+				]]
+			</div>
+			[[!+page.nav]]
+		</div>
+
+	</div>
+
+</div>
+<br>
+<br>
+
+
+<div class="row">
+
+	<div class="col-md-4">
+		<h3 id="connect">Подключение msFavorites</h3>
+		<p>
+			В удобном месте шаблона сайта вам нужно вставить вызов сниппета <b>msFavorites.initialize</b>
+		</p>
+
+		<pre><code data-language="html">&#91;[!msFavorites.initialize]]
+		</code></pre>
+
+		<p>
+			<span class="label label-danger">Примечание!</span>
+		</p>
+
+	</div>
+
+	<div class="col-md-4">
+		<h3 id="setting">Настройка msFavorites</h3>
+		<p>
+			Основные настройки msFavorites находяться <b>Настройки системы</b> -> <b>msFavorites</b>
+		</p>
+
+		<p>
+			<br><b>front_css</b> - стили фронтенда
+			<br><b>front_js</b> - скрипты фронтенда
+			<br><b>clear_temporary</b> - очищать временные списки
+		</p>
+	</div>
+
+	<div class="col-md-4">
+		<h3 id="ids">Списки избранного</h3>
+		<p>
+			Вы можете использовать сниппет <b>msFavorites.ids</b> для получения списка ресурсов в избранном.
+		</p>
+
+		<pre><code data-language="html">&#91;[!msFavorites.ids?&list=`default`]]
+		</code></pre>
+
+		<p>
+			<span class="label label-danger">Примечание!</span>
+		</p>
+
+		<p>
+			<b>list</b> - название списка избранного
+
+			<br>
+			Так же сниппет задает плейсхолдеры вида
+			<pre><code data-language="html">
+		&#91;[!+msfavorite.list.default]&#93;
+		&#91;[!+msfavorite.total.default]]
+			</code></pre>
+
+			<br><b>msfavorite.list.default</b> - список ресурсов в избранном <b>default</b>
+			<br><b>msfavorite.total.default</b> - общее кол-во ресурсов в избранном <b>default</b>
+
+		</p>
+	</div>
+</div>
+
+<br><br>
+<div class="row">
+
+	<div class="col-md-6">
+		<h3 id="base">Основное</h3>
+		<p>
+			Вы можете использовать msFavorites где угодно на странице. Для этого нужно подключить сниппет
+			<b>msFavorites.initialize</b>, указать нужным элементам необходимые параметры вызова.
+		</p>
+
+		<p>
+			<span class="label label-danger">Примечание!</span>
+		</p>
+
+		<p>
+			<b>data-msfavorites-mode</b> - режим работы, <b>list</b> - список избранного, в данном режиме удаляется элемент избранного
+
+			<br>
+
+			<br><b>data-data-list</b> - список избранного, например <b>default</b>
+			<br><b>data-data-id</b> - идентификатор обрабатываемого ресурса
+
+		</p>
+	</div>
+
+	<div class="col-md-6">
+		<h3 id="extend">Особенности</h3>
+		<p>
+			Список избранного работает для все пользователей. Для авторизованных пользователей идентификатором
+			служит <b>id пользователя</b>, для неавторизованный <b>id сессии</b>. Избранному анонимных пользователей присваивается флаг
+			<b>временный</b> и проставляется метка создания, можно задать интервал (кол-во дней) жизни.
+		</p>
+	</div>
+
+	<div class="col-md-4">
+
+	</div>
+
+
+</div>
+
+
+
+{*
+{'msFavorites.initialize' | snippet}
+
+{set $ids = '!msFavorites.ids' | snippet}
+
+<div id="pdopage">
+	<div class="rows">
+		{'!pdoPage' | snippet: [
+		'parents' => 0,
+		'resources'=> $ids,
+		'element' => 'msProducts',
+		'ajaxMode' => 'default',
+		'tpl' => '@INLINE
+		<div class="msfavorites-parent">
+			<a class="msfavorites"
+			   data-click
+			   data-msfavorites-mode="list"
+			   data-data-id="{$id}"
+			   data-data-list="default"
+			   data-datar-properties=\'{ "sddsd":444 }\'>
+			<i class="msfavorites-icon-heart"></i>
+			</a>
+			{$pagetitle}
+			<br><br>
+		</div>
+		',
+		]}
+	</div>
+	{$_modx->getPlaceholder('page.nav')}
+</div>
+*}

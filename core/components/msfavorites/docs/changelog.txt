@@ -1,0 +1,122 @@
+Changelog for msFavorites
+
+2.1.13 beta (13.04.2018)
+==============
+- Add "visible" cls [js]
+
+2.1.12 beta (22.03.2018)
+==============
+- Improved "updateFavorites" [js]
+
+2.1.10 beta - 2.1.11 beta (21.03.2018)
+==============
+- Fix "updateFavorites" [js]
+
+2.1.9 beta (06.03.2018)
+==============
+- Add "star" icon [css]
+
+2.1.8 beta (19.02.2018)
+==============
+- Change "updateFavorites" [js]
+
+2.1.7 beta (16.02.2018)
+==============
+- Add "stat" [msFavorites]
+
+2.1.6 beta (12.02.2018)
+==============
+- Fix "updateFavorites" [js]
+
+2.1.5 beta (27.01.2018)
+==============
+- Fixed possible E_NOTICE [msFavorites]
+
+2.1.4 beta (18.12.2017)
+==============
+- Change "getFavoritesList" [js]
+- Change "getFavoritesOutput" [msFavorites]
+- Fix "frontCss" key
+
+2.1.3 beta (17.11.2017)
+==============
+- Add "getFavoritesOutput" [msFavorites]
+- Add "totalUser" selector [js]
+
+2.1.2 beta (24.10.2017)
+==============
+- Change "msFavoritesMultipleProcessor" processor
+
+2.1.1 beta (19.10.2017)
+==============
+- Change "methodActions" [js]
+
+2.1.0 beta (19.10.2017)
+==============
+- Add "msFavoritesOnBeforeProcessFavorites",
+ "msFavoritesOnProcessFavorites" event
+
+2.0.15-beta (04.10.2017)
+==============
+- Improved "methodActions" [js]
+
+2.0.14-beta (14.09.2017)
+==============
+- Change "prepareResponse" [msFavorites]
+
+2.0.13-beta (14.09.2017)
+==============
+- Change "initialize,runProcessor" [msFavorites]
+
+2.0.12-beta (10.09.2017)
+==============
+- Fix "processAction" [js]
+
+2.0.11-beta (07.09.2017)
+==============
+- Add "actionFormSubmit, actionFormChange" [js]
+
+2.0.10-beta (07.09.2017)
+==============
+- Add "clear" [js]
+
+2.0.9-beta (21.08.2017)
+==============
+- Add "sortby" [getFavorites]
+
+2.0.8-beta (31.07.2017)
+==============
+- Add "totalAll" selector [js]
+
+2.0.7-beta (17.07.2017)
+==============
+- Fix "updateFavorites" [js]
+- Add "PROCESS_ACTION" event [js]
+
+2.0.6-beta (21.06.2017)
+==============
+- Fix "description" snippet
+
+2.0.5-beta (21.06.2017)
+==============
+- Fix "window load" [js]
+
+2.0.4-beta (07.06.2017)
+==============
+- Add style for "load, add, remove" [css]
+
+2.0.3-beta (04.06.2017)
+==============
+- Remove "OnWebLogin" event
+
+2.0.2-beta (31.05.2017)
+==============
+- Fix "getFavorites" [msFavorites]
+
+2.0.1-beta (26.05.2017)
+==============
+- Add "reload page" to list
+
+2.0.0-beta (23.05.2017)
+==============
+- Initial

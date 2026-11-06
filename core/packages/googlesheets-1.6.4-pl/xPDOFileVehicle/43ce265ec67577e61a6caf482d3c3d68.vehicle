@@ -1,0 +1,16 @@
+<?php return array (
+  'class' => 'xPDOFileVehicle',
+  'object' => 
+  array (
+    'source' => 'googlesheets-1.6.4-pl/xPDOFileVehicle/43ce265ec67577e61a6caf482d3c3d68/',
+    'target' => 'return MODX_CORE_PATH . \'components/googlesheets/model/\';',
+    'name' => 'encryptedvehicle.class.php',
+  ),
+  'vehicle_class' => 'xPDOFileVehicle',
+  'uninstall_files' => false,
+  'vehicle_package' => 'transport',
+  'guid' => 'c75c449d3768aaac3b02f3f1de5bd13b',
+  'package' => '',
+  'signature' => '43ce265ec67577e61a6caf482d3c3d68',
+  'native_key' => 'c75c449d3768aaac3b02f3f1de5bd13b',
+);

@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'mobiledetect',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '156846167dc80edcf13c7a6e58b491a1',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '23061055641b6228fb22a9533ec38bb5',
+  'native_key' => 'md_disable_plugin',
+  'object' => '{"key":"md_disable_plugin","value":false,"xtype":"combo-boolean","namespace":"mobiledetect","area":"md_main","editedon":null}',
+);

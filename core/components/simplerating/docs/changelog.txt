@@ -1,0 +1,17 @@
+Changelog for FiveStarRating.
+
+1.0.2-beta
+==============
+- Fix stars.png
+- COOKIE is replaced by LocalStorage
+- Added parameter id (to get the rating of any of the specified resource)
+- Fixed default.js for dynamically loaded resources
+
+1.0.1-beta
+==============
+- Not counted by IP when you turn off COOKIE
+- Correct set COOKIE for main page
+
+1.0.0-beta
+==============
+- Initial release

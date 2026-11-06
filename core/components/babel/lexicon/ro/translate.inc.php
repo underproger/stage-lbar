@@ -1,0 +1,62 @@
+<?php
+$_lang['lbar.buttons.banner.book'] = "FĂ O PROGRAMARE";
+$_lang['lbar.buttons.banner.consultation'] = "PRIMEȘTE O CONSULTAȚIE";
+$_lang['lbar.buttons.category.more'] = "AFLĂ MAI MULTE";
+$_lang['lbar.form.input.name'] = "Care este numele dvs.*?";
+$_lang['lbar.form.input.phone'] = "Numărul dvs. de telefon*";
+$_lang['lbar.form.policy'] = "Datele personale nu vor <br/>transmise niciodată unor terțe părți";
+$_lang['lbar.aboutme.button.more'] = "Смотреть всю команду";
+$_lang['lbar.portfolio.button.more'] = "VEZI TOATE LUCRĂRILE";
+$_lang['lbar.prices.button.book'] = "FĂ O PROGRAMARE";
+$_lang['lbar.reviews.count.label'] = "Recenzii";
+$_lang['lbar.reviews.form.title'] = "Lăsați o recenzie";
+$_lang['lbar.reviews.rating.label'] = "Evaluarea dvs.";
+$_lang['lbar.blog.button.more'] = "AFLĂ MAI MULTE";
+$_lang['lbar.contacts.title'] = "Contact";
+$_lang['lbar.footer.copyright'] = "Studiou micropigmentare  <br/>by Ksenia Kobilianskaia <br/>Toate drepturile rezervate.";
+$_lang['lbar.footer.button.callback'] = "SOLICITĂ UN APEL";
+$_lang['lbar.footer.popup.title'] = "SOLICITĂ UN APEL";
+$_lang['lbar.popup.form.button.submit'] = "Trimite";
+$_lang['lbar.footer.sitedev'] = "Crearea si promovarea site-urilor";
+$_lang['lbar.trainer.button.consultation'] = "Obțineți o consultație personală";
+$_lang['lbar.popup.trainer.title'] = "Obțineți o consultație personală";
+$_lang['lbar.popup.trainer.subtitle'] = "Aflați toate detaliile despre cursuri și primiți răspunsuri la alte întrebări de la trainerul dvs.";
+$_lang['lbar.form.trainer.input.name'] = "Numele dumneavoastră";
+$_lang['lbar.form.trainer.button.submit'] = "Primește o consultație";
+$_lang['lbar.form.trainer.policy'] = "Datele dumneavoastră nu vor fi transmise terților";
+$_lang['lbar.price.table.title1'] = "Procedura";
+$_lang['lbar.price.table.title2'] = "Durata";
+$_lang['lbar.price.table.title3'] = "TOP Master <br/>Preț";
+$_lang['lbar.price.table.title4'] = "TOP Trainer <br/>Preț";
+$_lang['lbar.price.table.title5'] = "Preț";
+$_lang['lbar.price.table.title6'] = "Pret Sedinta";
+$_lang['lbar.price.table.title7'] = "Pret 8 Sedinte";
+
+$_lang['lbar.calculator.title1'] = "Câte zile pe săptămână";
+$_lang['lbar.calculator.title2'] = "Câte proceduri pe zi";
+$_lang['lbar.calculator.title3'] = "Prețul serviciului";
+$_lang['lbar.calculator.title4'] = "Veți câștiga într-o lună";
+$_lang['lbar.calculator.form.btn'] = "Fă o programare la curs";
+
+$_lang['lbar-study-masterclass-btn'] = "PRIMEȘTE INVITAȚIE";
+$_lang['lbar-study-masterclass-form-title'] = "PRIMEȘTE INVITAȚIE";
+$_lang['lbar-study-masterclass-form-subtitle'] = "Webinar pentru cei care doresc să se familiarizeze cu profesia";
+$_lang['lbar-study-masterclass-form-btn'] = "PRIMEȘTE INVITAȚIE";
+$_lang['lbar-study-consultation-form-title'] = "Obțineți consultație de la trainer";
+$_lang['lbar-study-consultation-form-subtitle'] = "Veți primi răspunsuri la toate întrebările privind instruirea în domeniul machiajului semipermanent oferită de școala noastră";
+$_lang['lbar-study-installment-form-title'] = "Obțineți consultație despre opțiunile de plată";
+$_lang['lbar-study-installment-form-subtitle'] = "Vă vom prezenta în detaliu modul în care puteți beneficia de instruire la preț avantajos";
+$_lang['lbar-study-success-form-btn'] = "Fă o programare la curs";
+$_lang['lbar-study-success-form-title'] = "Fă o programare la curs";
+$_lang['lbar-study-success-form-subtitle'] = "Vă vom prezenta în detaliu modul în care puteți beneficia de instruire la preț avantajos";
+
+$_lang['lbar-study-prices-btn'] = "Fă o programare";
+$_lang['lbar-study-prices-price-label'] = "Pret";
+$_lang['lbar-study-prices-form-title'] = "Curs";
+$_lang['lbar-study-prices-form-subtitle'] = "Vă vom prezenta în detaliu modul în care puteți beneficia de instruire la preț avantajos";
+
+$_lang['lbar-study-banner-trainer-name'] = "Ksenia Kobilianskaia";
+$_lang['lbar-study-banner-trainer-position'] = "Trainerul cursului";
+$_lang['lbar-study-banner-form-title'] = "PRIMEȘTE O CONSULTAȚIE";
+$_lang['lbar-study-banner-form-subtitle'] = "Vă vom prezenta în detaliu modul în care puteți beneficia de instruire la preț avantajos";
+$_lang['lbar-study-banner-form-btn'] = "PRIMEȘTE O CONSULTAȚIE";

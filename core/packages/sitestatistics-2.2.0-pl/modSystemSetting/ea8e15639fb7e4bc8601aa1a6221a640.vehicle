@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'sitestatistics',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '67bd33f6f1b3febe982c678b88e9c78b',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => 'ea8e15639fb7e4bc8601aa1a6221a640',
+  'native_key' => 'stat.not_allowed_user_agents',
+  'object' => '{"key":"stat.not_allowed_user_agents","value":"","xtype":"textfield","namespace":"sitestatistics","area":"sitestatistics_main","editedon":null}',
+);

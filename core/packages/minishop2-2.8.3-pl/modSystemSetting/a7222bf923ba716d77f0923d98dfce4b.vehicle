@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'minishop2',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'b41236967a9f4356ff44cc6122f21999',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => 'a7222bf923ba716d77f0923d98dfce4b',
+  'native_key' => 'ms2_add_icon_category',
+  'object' => '{"key":"ms2_add_icon_category","value":"icon icon-folder-open","xtype":"textfield","namespace":"minishop2","area":"ms2_category","editedon":"2021-04-01 16:55:59"}',
+);

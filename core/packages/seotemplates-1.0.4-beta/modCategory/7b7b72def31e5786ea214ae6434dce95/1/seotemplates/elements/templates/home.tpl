@@ -1,0 +1,1 @@
+<div id="seotemplates-panel-home-div"></div>

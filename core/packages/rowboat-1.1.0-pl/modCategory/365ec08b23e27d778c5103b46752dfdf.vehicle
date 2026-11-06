@@ -1,0 +1,77 @@
+<?php return array (
+  'unique_key' => 'category',
+  'preserve_keys' => false,
+  'update_object' => true,
+  'related_objects' => 
+  array (
+    'Snippets' => 
+    array (
+      'b4d8cdc90d83d2dae511a7308afad64b' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 'name',
+        'class' => 'modSnippet',
+        'object' => '{"id":0,"name":"Rowboat","description":"Displays a list of rows from any custom table.","editor_type":0,"category":0,"cache_type":0,"snippet":"\\/**\\n * Rowboat\\n *\\n * Copyright 2011 by Shaun McCormick <shaun+rowboat@modx.com>\\n *\\n * Rowboat is free software; you can redistribute it and\\/or modify it under the\\n * terms of the GNU General Public License as published by the Free Software\\n * Foundation; either version 2 of the License, or (at your option) any later\\n * version.\\n *\\n * Rowboat is distributed in the hope that it will be useful, but WITHOUT ANY\\n * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR\\n * A PARTICULAR PURPOSE. See the GNU General Public License for more details.\\n *\\n * You should have received a copy of the GNU General Public License along with\\n * Rowboat; if not, write to the Free Software Foundation, Inc., 59 Temple\\n * Place, Suite 330, Boston, MA 02111-1307 USA\\n *\\n * @package rowboat\\n *\\/\\n\\/**\\n * The base Rowboat snippet.\\n *\\n * @var modX $modx\\n * @var Rowboat $rowboat\\n * @var array $scriptProperties\\n * \\n * @package rowboat\\n *\\/\\n$rowboat = $modx->getService(\'rowboat\',\'Rowboat\',$modx->getOption(\'rowboat.core_path\',null,$modx->getOption(\'core_path\').\'components\\/rowboat\\/\').\'model\\/rowboat\\/\',$scriptProperties);\\nif (!($rowboat instanceof Rowboat)) return \'\';\\n\\n\\/* setup default properties *\\/\\n$tpl = $modx->getOption(\'tpl\',$scriptProperties,\'\');\\n$table = $modx->sanitizeString($modx->getOption(\'table\',$scriptProperties,\'\'));\\nif (empty($table)) return \'\';\\n$columns = $modx->getOption(\'columns\',$scriptProperties,\'\');\\n$where = $modx->getOption(\'where\',$scriptProperties,\'\');\\n$sortBy = $modx->getOption(\'sortBy\',$_REQUEST,$modx->getOption(\'sortBy\',$scriptProperties,\'\'));\\n$sortBy = preg_replace(\\"\\/[^A-Za-z0-9_,:\\\\-\\\\.\\\\\\/]\\/\\",\'\',str_replace(array(\'\\/\',\\"\'\\",\'\\"\',\'(\',\')\',\';\',\'>\',\'<\'),\'\',strip_tags($sortBy,\'\')));\\n$sortDir = $modx->getOption(\'sortDir\',$_REQUEST,$modx->getOption(\'sortDir\',$scriptProperties,\'ASC\'));\\n$sortDir = $modx->sanitizeString($sortDir);\\n$limit = $modx->getOption(\'limit\',$_REQUEST,$modx->getOption(\'limit\',$scriptProperties,10));\\n$offset = $modx->getOption(\'offset\',$_REQUEST,$modx->getOption(\'offset\',$scriptProperties,0));\\n$cacheResults = $modx->getOption(\'cacheResults\',$scriptProperties,1);\\n$cacheTime = $modx->getOption(\'cacheTime\',$scriptProperties,3600);\\n$outputSeparator = $modx->getOption(\'outputSeparator\',$scriptProperties,\\"\\\\n\\");\\n$placeholderPrefix = $modx->getOption(\'placeholderPrefix\',$scriptProperties,\'rowboat.\');\\n$debug = $modx->getOption(\'debug\',$scriptProperties,false);\\n$returnFormat = strtolower($modx->getOption(\'returnFormat\',$scriptProperties,\'\'));\\n\\n$total = 0;\\n$results = array();\\n\\nif (!empty($debug)) {\\n    $rowboat->loadDebugMode();\\n}\\n\\n\\/* build query *\\/\\n$c = $rowboat->newQuery($table);\\nif (empty($c)) {\\n    return $modx->lexicon(\'rowboat.no_driver\',array(\'dbtype\' => $modx->config[\'dbtype\']));\\n}\\nif ($columns != \'*\') {\\n    $columns = $modx->fromJSON($columns);\\n    if (!empty($columns)) {\\n        $c->select($columns);\\n    }\\n}\\nif (!empty($where)) {\\n    $where = $modx->fromJSON($where);\\n    if (!empty($where)) {\\n        $c->where($where);\\n    }\\n}\\n\\nif (!empty($sortBy)) {\\n    $sortBy = explode(\',\',$sortBy);\\n    foreach ($sortBy as $sortField) {\\n        $sortMix = explode(\':\',$sortField);\\n        $sortDirection = !empty($sortMix[1]) ? $sortMix[1] : $sortDir;\\n        $sortField = $sortMix[0];\\n        $c->sortby($sortField,$sortDirection);\\n    }\\n}\\n$cc = null;\\nif (intval($limit) > 0) {\\n    \\/** @var rbQuery $cc *\\/\\n    $cc = clone $c;\\n    $c->limit($limit,$offset);\\n}\\n$sql = $c->toSql();\\n\\nif (!empty($debug)) {\\n    $rowboat->debug->setQuery($c);\\n}\\n\\n\\/* check for cache *\\/\\n$cached = false;\\n$cacheKey = false;\\nif (!empty($cacheResults)) {\\n    $cacheKey = \'rowboat\\/\'.base64_encode($sql);\\n    $cacheArray = $modx->cacheManager->get($cacheKey);\\n    if (!empty($cacheArray)) {\\n        $cached = true;\\n        $results = $cacheArray[\'results\'];\\n        $total = $cacheArray[\'total\'];\\n    }\\n    if (!empty($debug)) {\\n        $rowboat->debug->addMessage($modx->lexicon(\'rowboat.debug.cached_results\'));\\n    }\\n}\\n\\nif (!empty($rowboat->debug)) {\\n    $rowboat->debug->setTotal($total);\\n}\\n\\n\\/* run query *\\/\\nif (empty($cached)) {\\n    if ($c->execute()) {\\n        $results = $c->getResults();\\n        if (!empty($cc)) {\\n            $total = $cc->count();\\n        } else {\\n            $total = count($results);\\n        }\\n        $c->close();\\n        if (!empty($cacheResults) && !empty($results) && !empty($cacheKey)) {\\n            $cacheArray = array(\\n                \'results\' => $results,\\n                \'offset\' => $offset,\\n                \'limit\' => $limit,\\n                \'total\' => $total,\\n            );\\n            $modx->cacheManager->set($cacheKey,$cacheArray,$cacheTime);\\n        }\\n    }\\n}\\n\\nif (!empty($rowboat->debug)) {\\n    $rowboat->debug->setResults($results);\\n}\\n\\n\\/* iterate across results *\\/\\n$output = array();\\nif (is_array($results)) {\\n    $ct = count($results);\\n    $idx = 0;\\n    foreach ($results as $row) {\\n        $row[\'_idx\'] = $idx;\\n        $row[\'_alt\'] = $idx % 2;\\n        if ($idx == 0) $row[\'_first\'] = true;\\n        if ($idx == $ct-1) $row[\'_last\'] = true;\\n\\n        if (empty($returnFormat)) {\\n            if (!empty($tpl)) {\\n                $output[] = $rowboat->getChunk($tpl,$row);\\n            } else {\\n                $output[] = print_r($row,true);\\n            }\\n        } else {\\n            $output[] = $row;\\n        }\\n        $idx++;\\n    }\\n}\\n\\n\\/* set placeholders *\\/\\n$placeholders = array();\\n$placeholders[\'total\'] = $total;\\n$placeholders[\'offset\'] = $offset;\\n$placeholders[\'limit\'] = $limit;\\n$modx->setPlaceholders($placeholders,$placeholderPrefix);\\n\\n\\/* output *\\/\\n\\/* if using alternate return format *\\/\\nif ($returnFormat == \'json\') {\\n    $output = $modx->toJSON($output);\\n} else {\\n    $output = implode($outputSeparator,$output);\\n    if (!empty($rowboat->debug)) {\\n        $output .= $rowboat->debug->finish();\\n    }\\n}\\n$toPlaceholder = $modx->getOption(\'toPlaceholder\',$scriptProperties,false);\\nif (!empty($toPlaceholder)) {\\n    \\/* if using a placeholder, output nothing and set output to specified placeholder *\\/\\n    $modx->setPlaceholder($toPlaceholder,$output);\\n    return \'\';\\n}\\n\\/* by default just return output *\\/\\nreturn $output;","locked":0,"properties":"a:15:{s:3:\\"tpl\\";a:6:{s:4:\\"name\\";s:3:\\"tpl\\";s:4:\\"desc\\";s:21:\\"prop_rowboat.tpl_desc\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";s:0:\\"\\";s:5:\\"value\\";s:0:\\"\\";s:7:\\"lexicon\\";s:18:\\"rowboat:properties\\";}s:5:\\"table\\";a:6:{s:4:\\"name\\";s:5:\\"table\\";s:4:\\"desc\\";s:23:\\"prop_rowboat.table_desc\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";s:0:\\"\\";s:5:\\"value\\";s:0:\\"\\";s:7:\\"lexicon\\";s:18:\\"rowboat:properties\\";}s:7:\\"columns\\";a:6:{s:4:\\"name\\";s:7:\\"columns\\";s:4:\\"desc\\";s:25:\\"prop_rowboat.columns_desc\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";s:0:\\"\\";s:5:\\"value\\";s:0:\\"\\";s:7:\\"lexicon\\";s:18:\\"rowboat:properties\\";}s:5:\\"where\\";a:6:{s:4:\\"name\\";s:5:\\"where\\";s:4:\\"desc\\";s:23:\\"prop_rowboat.where_desc\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";s:0:\\"\\";s:5:\\"value\\";s:0:\\"\\";s:7:\\"lexicon\\";s:18:\\"rowboat:properties\\";}s:6:\\"sortBy\\";a:6:{s:4:\\"name\\";s:6:\\"sortBy\\";s:4:\\"desc\\";s:24:\\"prop_rowboat.sortby_desc\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";s:0:\\"\\";s:5:\\"value\\";s:0:\\"\\";s:7:\\"lexicon\\";s:18:\\"rowboat:properties\\";}s:7:\\"sortDir\\";a:6:{s:4:\\"name\\";s:7:\\"sortDir\\";s:4:\\"desc\\";s:25:\\"prop_rowboat.sortdir_desc\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";s:0:\\"\\";s:5:\\"value\\";s:3:\\"ASC\\";s:7:\\"lexicon\\";s:18:\\"rowboat:properties\\";}s:5:\\"limit\\";a:6:{s:4:\\"name\\";s:5:\\"limit\\";s:4:\\"desc\\";s:23:\\"prop_rowboat.limit_desc\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";s:0:\\"\\";s:5:\\"value\\";i:10;s:7:\\"lexicon\\";s:18:\\"rowboat:properties\\";}s:6:\\"offset\\";a:6:{s:4:\\"name\\";s:6:\\"offset\\";s:4:\\"desc\\";s:24:\\"prop_rowboat.offset_desc\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";s:0:\\"\\";s:5:\\"value\\";i:0;s:7:\\"lexicon\\";s:18:\\"rowboat:properties\\";}s:12:\\"cacheResults\\";a:6:{s:4:\\"name\\";s:12:\\"cacheResults\\";s:4:\\"desc\\";s:30:\\"prop_rowboat.cacheresults_desc\\";s:4:\\"type\\";s:13:\\"combo-boolean\\";s:7:\\"options\\";s:0:\\"\\";s:5:\\"value\\";b:1;s:7:\\"lexicon\\";s:18:\\"rowboat:properties\\";}s:9:\\"cacheTime\\";a:6:{s:4:\\"name\\";s:9:\\"cacheTime\\";s:4:\\"desc\\";s:27:\\"prop_rowboat.cachetime_desc\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";s:0:\\"\\";s:5:\\"value\\";i:3600;s:7:\\"lexicon\\";s:18:\\"rowboat:properties\\";}s:15:\\"outputSeparator\\";a:6:{s:4:\\"name\\";s:15:\\"outputSeparator\\";s:4:\\"desc\\";s:33:\\"prop_rowboat.outputseparator_desc\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";s:0:\\"\\";s:5:\\"value\\";s:0:\\"\\";s:7:\\"lexicon\\";s:18:\\"rowboat:properties\\";}s:12:\\"returnFormat\\";a:6:{s:4:\\"name\\";s:12:\\"returnFormat\\";s:4:\\"desc\\";s:30:\\"prop_rowboat.returnformat_desc\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";a:2:{i:0;a:2:{s:4:\\"text\\";s:19:\\"prop_rowboat.normal\\";s:5:\\"value\\";s:0:\\"\\";}i:1;a:2:{s:4:\\"text\\";s:4:\\"JSON\\";s:5:\\"value\\";s:4:\\"json\\";}}s:5:\\"value\\";s:0:\\"\\";s:7:\\"lexicon\\";s:18:\\"rowboat:properties\\";}s:17:\\"placeholderPrefix\\";a:6:{s:4:\\"name\\";s:17:\\"placeholderPrefix\\";s:4:\\"desc\\";s:35:\\"prop_rowboat.placeholderprefix_desc\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";s:0:\\"\\";s:5:\\"value\\";s:8:\\"rowboat.\\";s:7:\\"lexicon\\";s:18:\\"rowboat:properties\\";}s:13:\\"toPlaceholder\\";a:6:{s:4:\\"name\\";s:13:\\"toPlaceholder\\";s:4:\\"desc\\";s:31:\\"prop_rowboat.toplaceholder_desc\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";s:0:\\"\\";s:5:\\"value\\";s:0:\\"\\";s:7:\\"lexicon\\";s:18:\\"rowboat:properties\\";}s:5:\\"debug\\";a:6:{s:4:\\"name\\";s:5:\\"debug\\";s:4:\\"desc\\";s:23:\\"prop_rowboat.debug_desc\\";s:4:\\"type\\";s:13:\\"combo-boolean\\";s:7:\\"options\\";s:0:\\"\\";s:5:\\"value\\";b:0;s:7:\\"lexicon\\";s:18:\\"rowboat:properties\\";}}","moduleguid":""}',
+        'guid' => '90afe79078ba160ced98ef8623169cdd',
+        'native_key' => 0,
+        'signature' => '5f07a72437b96998107dd8caa894a254',
+      ),
+    ),
+  ),
+  'related_object_attributes' => 
+  array (
+    'Children' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 'category',
+      'related_objects' => true,
+      'related_object_attributes' => 
+      array (
+        'Snippets' => 
+        array (
+          'preserve_keys' => false,
+          'update_object' => true,
+          'unique_key' => 'name',
+        ),
+        'Chunks' => 
+        array (
+          'preserve_keys' => false,
+          'update_object' => true,
+          'unique_key' => 'name',
+        ),
+      ),
+    ),
+    'Snippets' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 'name',
+    ),
+    'Chunks' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 'name',
+    ),
+  ),
+  'namespace' => 'rowboat',
+  'resolve' => 
+  array (
+    0 => 
+    array (
+      'type' => 'file',
+      'body' => '{"source":"rowboat-1.1.0-pl\\/modCategory\\/365ec08b23e27d778c5103b46752dfdf\\/0\\/","target":"return MODX_CORE_PATH . \'components\\/\';","name":"rowboat"}',
+    ),
+  ),
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'd0299a8eea2f648129ad51f20688c8fc',
+  'package' => 'modx',
+  'class' => 'modCategory',
+  'signature' => '365ec08b23e27d778c5103b46752dfdf',
+  'native_key' => 1,
+  'object' => '{"id":1,"parent":0,"category":"Rowboat"}',
+);

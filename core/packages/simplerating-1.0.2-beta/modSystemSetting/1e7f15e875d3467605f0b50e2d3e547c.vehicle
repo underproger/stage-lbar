@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'simplerating',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'a522469c8352125d9bf74fc2596afbb0',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '1e7f15e875d3467605f0b50e2d3e547c',
+  'native_key' => 'simplerating_ip',
+  'object' => '{"key":"simplerating_ip","value":true,"xtype":"combo-boolean","namespace":"simplerating","area":"simplerating_main","editedon":null}',
+);

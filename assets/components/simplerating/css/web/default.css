@@ -1,0 +1,65 @@
+.rating {
+    position: relative;
+    width: 130px;
+    height: 35px;
+}
+
+.rating__best {
+    background: url(/assets/components/simplerating/img/stars.png) no-repeat;
+    width: 130px;
+    height: 35px;
+    position: absolute;
+    background-size: 130px 210px;
+}
+
+.rating_active .rating__star {
+    cursor: pointer;
+}
+
+.rating__best_hover {
+    background-position: 0 -35px !important;
+}
+
+.rating__star {
+    width: 26px;
+    height: 35px;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.rating__star_1 {
+    left: 0;
+}
+
+.rating__star_2 {
+    left: 26px;
+}
+
+.rating__star_3 {
+    left: 52px;
+}
+
+.rating__star_4 {
+    left: 78px;
+}
+
+.rating__star_5 {
+    left: 104px;
+}
+
+.rating__star_opacity {
+    background: url(/assets/components/simplerating/img/rating_bg.png) repeat scroll 0 0 transparent;
+}
+
+.rating__star_hover {
+    background-image: none !important;
+}
+
+.rating__current {
+    background: url(/assets/components/simplerating/img/stars.png) 0 -35px no-repeat;
+    height: 35px;
+    position: absolute;
+    background-size: 130px 210px;
+}

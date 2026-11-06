@@ -1,0 +1,17 @@
+<?php return array (
+  'preserve_keys' => true,
+  'update_object' => true,
+  'unique_key' => 'text',
+  'related_objects' => true,
+  'namespace' => 'googlesheets',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '0e3361968c7acc872d94baef82bff2c7',
+  'package' => 'modx',
+  'class' => 'modMenu',
+  'signature' => 'd813c6524f57cb73a7fe4302900a0deb',
+  'native_key' => 'googlesheets',
+  'object' => '{"text":"googlesheets","parent":"components","action":"home","description":"googlesheets_menu_desc","icon":"","menuindex":0,"params":"","handler":"","permissions":"","namespace":"googlesheets"}',
+);

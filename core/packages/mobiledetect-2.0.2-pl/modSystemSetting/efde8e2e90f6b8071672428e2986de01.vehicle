@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'mobiledetect',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '3f6867869f73c6b236f2598d94b34a4a',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => 'efde8e2e90f6b8071672428e2986de01',
+  'native_key' => 'md_use_cookie',
+  'object' => '{"key":"md_use_cookie","value":true,"xtype":"combo-boolean","namespace":"mobiledetect","area":"md_main","editedon":null}',
+);

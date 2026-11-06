@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'minishop2',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '7eac3ae20365a5e2771a62ad997853a7',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => 'cde95882147a4b00943f5f5aa4502907',
+  'native_key' => 'ms2_services',
+  'object' => '{"key":"ms2_services","value":"{\\"cart\\":[],\\"order\\":[],\\"payment\\":[],\\"delivery\\":[]}","xtype":"textarea","namespace":"minishop2","area":"ms2_main","editedon":"2017-06-16 15:00:22"}',
+);

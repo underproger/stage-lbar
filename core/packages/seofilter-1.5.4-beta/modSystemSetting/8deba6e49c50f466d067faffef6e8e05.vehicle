@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'seofilter',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'f80f3db6818dd5e24000843d848e470a',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '8deba6e49c50f466d067faffef6e8e05',
+  'native_key' => 'seofilter_base_get',
+  'object' => '{"key":"seofilter_base_get","value":"price,page,limit,tpl,sort","xtype":"textfield","namespace":"seofilter","area":"seofilter_main","editedon":null}',
+);

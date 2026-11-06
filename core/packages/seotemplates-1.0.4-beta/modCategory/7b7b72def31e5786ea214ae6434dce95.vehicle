@@ -1,0 +1,106 @@
+<?php return array (
+  'unique_key' => 'category',
+  'preserve_keys' => false,
+  'update_object' => true,
+  'related_objects' => 
+  array (
+    'Plugins' => 
+    array (
+      'aebd5a8e12f15a7a5cb83576b16f0316' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 'name',
+        'class' => 'modPlugin',
+        'object' => '{"id":null,"source":1,"property_preprocess":0,"name":"seoTemplates","description":"","editor_type":0,"category":0,"cache_type":0,"plugincode":"$seoTemplates = $modx->getService(\'seotemplates\',\'seoTemplates\',$modx->getOption(\'seotemplates_core_path\',null,$modx->getOption(\'core_path\').\'components\\/seotemplates\\/\').\'model\\/seotemplates\\/\', array());\\nif (!($seoTemplates instanceof seoTemplates)) return \'\';\\n\\n\\/\\/$pdotools = $modx->getService(\'pdoTools\');\\n\\nif ($modx->event->name == \'OnLoadWebDocument\') {\\n\\n  if (!$template = $modx->getObject(\'modTemplate\', $modx->resource->template)) {return \'\';};\\n  $template = $template->get(\'templatename\');\\n  $templates = array();\\n\\n  $c = $modx->newQuery(\'seoTemplatesItem\');\\n  $c->sortby(\'id\', \'ASC\');\\n  $c->select(array(\'id\', \'template\', \'field\', \'value\', \'active\'));\\n  $c->where(array(\'active:=\' => 1));\\n\\n  if ($c->prepare() && $c->stmt->execute()) {\\n    $items = $c->stmt->fetchAll(PDO::FETCH_ASSOC);\\n  }\\n\\n  if (empty($items)) return \'\';\\n\\n  foreach($items as $item) {\\n    $tpls = json_decode($item[\'template\'], true);\\n\\n    if (in_array($template, $tpls)) {\\n        $templates[] = $item;\\n    }\\n  }\\n\\n  if (empty($templates)) return \'\';\\n\\n  $placeholders = array();\\n  $fields = array();\\n\\n  $tmp = $modx->getCollection(\'seoTemplatesField\');\\n\\n  if ($tmp) {\\n\\n      foreach ($tmp as $field) {\\n        $fields[$field->get(\'id\')] = $field->get(\'name\');\\n      }\\n\\n      foreach($templates as $item) {\\n        $field = $item[\'field\'];\\n\\n        if (isset($fields[$field])) {\\n          $placeholders[$fields[$field]] = $item[\'value\'];\\n        }\\n      }\\n\\n      foreach ($placeholders as $k => $v) {\\n        $chunk = $modx->newObject(\'modChunk\', array(\'name\' => \'seoTemplatesTmp_\'.$k));\\n        $chunk->setCacheable(false);\\n        $placeholders[$k] = $chunk->process(array($k => $v), $v);\\n        \\/\\/$placeholders[$k] = $pdotools->getChunk(\'@INLINE \'.$v, array($k => $v));\\n      }\\n\\n      $prefix = $modx->getOption(\'seotemplates_placeholder_prefix\', null, \'st_\');\\n\\n      $modx->setPlaceholders($placeholders, $prefix);\\n\\n  }\\n\\n}","locked":0,"properties":null,"disabled":0,"moduleguid":"","static":0,"static_file":"core\\/components\\/seotemplates\\/elements\\/plugins\\/plugin.seotemplates.php","content":"$seoTemplates = $modx->getService(\'seotemplates\',\'seoTemplates\',$modx->getOption(\'seotemplates_core_path\',null,$modx->getOption(\'core_path\').\'components\\/seotemplates\\/\').\'model\\/seotemplates\\/\', array());\\nif (!($seoTemplates instanceof seoTemplates)) return \'\';\\n\\n\\/\\/$pdotools = $modx->getService(\'pdoTools\');\\n\\nif ($modx->event->name == \'OnLoadWebDocument\') {\\n\\n  if (!$template = $modx->getObject(\'modTemplate\', $modx->resource->template)) {return \'\';};\\n  $template = $template->get(\'templatename\');\\n  $templates = array();\\n\\n  $c = $modx->newQuery(\'seoTemplatesItem\');\\n  $c->sortby(\'id\', \'ASC\');\\n  $c->select(array(\'id\', \'template\', \'field\', \'value\', \'active\'));\\n  $c->where(array(\'active:=\' => 1));\\n\\n  if ($c->prepare() && $c->stmt->execute()) {\\n    $items = $c->stmt->fetchAll(PDO::FETCH_ASSOC);\\n  }\\n\\n  if (empty($items)) return \'\';\\n\\n  foreach($items as $item) {\\n    $tpls = json_decode($item[\'template\'], true);\\n\\n    if (in_array($template, $tpls)) {\\n        $templates[] = $item;\\n    }\\n  }\\n\\n  if (empty($templates)) return \'\';\\n\\n  $placeholders = array();\\n  $fields = array();\\n\\n  $tmp = $modx->getCollection(\'seoTemplatesField\');\\n\\n  if ($tmp) {\\n\\n      foreach ($tmp as $field) {\\n        $fields[$field->get(\'id\')] = $field->get(\'name\');\\n      }\\n\\n      foreach($templates as $item) {\\n        $field = $item[\'field\'];\\n\\n        if (isset($fields[$field])) {\\n          $placeholders[$fields[$field]] = $item[\'value\'];\\n        }\\n      }\\n\\n      foreach ($placeholders as $k => $v) {\\n        $chunk = $modx->newObject(\'modChunk\', array(\'name\' => \'seoTemplatesTmp_\'.$k));\\n        $chunk->setCacheable(false);\\n        $placeholders[$k] = $chunk->process(array($k => $v), $v);\\n        \\/\\/$placeholders[$k] = $pdotools->getChunk(\'@INLINE \'.$v, array($k => $v));\\n      }\\n\\n      $prefix = $modx->getOption(\'seotemplates_placeholder_prefix\', null, \'st_\');\\n\\n      $modx->setPlaceholders($placeholders, $prefix);\\n\\n  }\\n\\n}"}',
+        'guid' => '2c1800651549dccf668f3f9416a88308',
+        'native_key' => NULL,
+        'signature' => 'bd1e7711650b933e9af9e9f964568c3b',
+        'related_objects' => 
+        array (
+          'PluginEvents' => 
+          array (
+            '147a0cb43d40df00e1c4d2b6fc907443' => 
+            array (
+              'preserve_keys' => true,
+              'update_object' => true,
+              'unique_key' => 
+              array (
+                0 => 'pluginid',
+                1 => 'event',
+              ),
+              'class' => 'modPluginEvent',
+              'object' => '{"pluginid":0,"event":"OnLoadWebDocument","priority":0,"propertyset":0}',
+              'guid' => 'ecf093a33e3719f4bc0f1f0f7a6256f0',
+              'native_key' => 
+              array (
+                0 => 0,
+                1 => 'OnLoadWebDocument',
+              ),
+              'signature' => '735bd7b7a2b8644cf7e4cfbbe7666a5b',
+            ),
+          ),
+        ),
+      ),
+    ),
+  ),
+  'related_object_attributes' => 
+  array (
+    'Snippets' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 'name',
+    ),
+    'Chunks' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => false,
+      'unique_key' => 'name',
+    ),
+    'Plugins' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 'name',
+    ),
+    'PluginEvents' => 
+    array (
+      'preserve_keys' => true,
+      'update_object' => true,
+      'unique_key' => 
+      array (
+        0 => 'pluginid',
+        1 => 'event',
+      ),
+    ),
+  ),
+  'namespace' => 'seotemplates',
+  'resolve' => 
+  array (
+    0 => 
+    array (
+      'type' => 'file',
+      'body' => '{"source":"seotemplates-1.0.4-beta\\/modCategory\\/7b7b72def31e5786ea214ae6434dce95\\/0\\/","target":"return MODX_ASSETS_PATH . \'components\\/\';","name":"seotemplates"}',
+    ),
+    1 => 
+    array (
+      'type' => 'file',
+      'body' => '{"source":"seotemplates-1.0.4-beta\\/modCategory\\/7b7b72def31e5786ea214ae6434dce95\\/1\\/","target":"return MODX_CORE_PATH . \'components\\/\';","name":"seotemplates"}',
+    ),
+    2 => 
+    array (
+      'type' => 'php',
+      'body' => '{"source":"seotemplates-1.0.4-beta\\/modCategory\\/7b7b72def31e5786ea214ae6434dce95.resolve.tables.resolver","type":"php","name":"resolve.tables"}',
+    ),
+  ),
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'b31120872777769169d7b31174bc73fe',
+  'package' => 'modx',
+  'class' => 'modCategory',
+  'signature' => '7b7b72def31e5786ea214ae6434dce95',
+  'native_key' => NULL,
+  'object' => '{"id":null,"parent":0,"category":"seoTemplates","rank":0}',
+);

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="msfavorites" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" phpdoc-package="msfavorites"
+	   version="1.1">
+
+	<object class="msFavorite" table="ms_favorites" extends="xPDOObject">
+		<field key="uid" dbtype="varchar" precision="255" phptype="string" null="false" index="pk" default="" />
+		<field key="rid" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" index="pk" />
+		<field key="list" dbtype="varchar" precision="75" phptype="string" null="false" index="pk"/>
+		<field key="temporary" dbtype="tinyint" precision="1" attributes="unsigned" phptype="boolean" null="false" default="0" index="index"/>
+		<field key="timestamp" dbtype="timestamp" phptype="timestamp" null="false" default="CURRENT_TIMESTAMP"/>
+		<field key="properties" dbtype="text" phptype="json" null="true" />
+
+		<index alias="favorite" name="favorite" primary="true" unique="true" type="BTREE">
+			<column key="uid" length="" collation="A" null="false"/>
+			<column key="rid" length="" collation="A" null="false"/>
+			<column key="list" length="" collation="A" null="false"/>
+		</index>
+
+		<!--<aggregate alias="Session" class="modSession" local="uid" foreign="id" cardinality="one" owner="foreign"/>-->
+
+	</object>
+
+</model>

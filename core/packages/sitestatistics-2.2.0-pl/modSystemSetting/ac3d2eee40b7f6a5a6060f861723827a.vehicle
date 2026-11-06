@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'sitestatistics',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'e72e6ebbcb239358517b004f74d171a4',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => 'ac3d2eee40b7f6a5a6060f861723827a',
+  'native_key' => 'stat.not_allowed_ip',
+  'object' => '{"key":"stat.not_allowed_ip","value":"","xtype":"textfield","namespace":"sitestatistics","area":"sitestatistics_main","editedon":null}',
+);

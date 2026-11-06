@@ -1,0 +1,78 @@
+<?php return array (
+  'unique_key' => 'category',
+  'preserve_keys' => false,
+  'update_object' => true,
+  'related_objects' => 
+  array (
+    'Snippets' => 
+    array (
+      '13c9410b9f6631042e876d54d9d3513a' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 'name',
+        'class' => 'modSnippet',
+        'object' => '{"id":5,"source":1,"property_preprocess":0,"name":"HitsPage","description":"Snippet HitsPage Pageviews for MODX Revolution","editor_type":0,"category":6,"cache_type":0,"snippet":"\\/**\\n * This file is extra HitsPage Pageviews for MODX Revolution.\\n *\\n * @copyright Copyright (C) 2013, Artdevue Ltd, <info@artdevue.com>\\n * @author Valentin Rasulov <info@artdevue.com>\\n * @license http:\\/\\/opensource.org\\/licenses\\/gpl-2.0.php GNU Public License v2\\n * @package hitspage\\n *\\n *\\/\\n\\n$page =  $modx->getObject(\'modResource\', $modx->resource->get(\'id\'));\\n$view = 0;\\n\\/\\/ Check the option to record in TV\\nif($saveTv == \'true\') {\\n    \\/\\/ get the required TV object by name (or id)\\n    $tv = $modx->getObject(\'modTemplateVar\',array(\'name\'=>\'HitsPage\'));\\n    if($tv) {\\n        $tvs = $modx->getObject(\'modTemplateVarResource\',array(\'tmplvarid\'=>$tv->id, \'contentid\'=>$page->get(\'id\')));\\n        if($tvs) {\\n            $viewTv = $tvs->get(\'value\');\\n            $tvs->set(\'value\',intval($viewTv) + 1);\\n            if($tvs->save()) $view = $viewTv;\\n        } else {\\n            $tvn = $modx->newObject(\'modTemplateVarResource\');\\n            $tvn->set(\'tmplvarid\',$tv->id);\\n            $tvn->set(\'contentid\',$page->get(\'id\'));\\n            $tvn->set(\'value\',1);\\n            if($tvn->save()) $view = 1;\\n        }       \\n    } \\n} else {\\n    $view = $page->getProperty(\'hitts\',\'hitspage\',$view);\\n}\\n$page->setProperty(\'hitts\',intval($view) + 1,\'hitspage\');\\n$page->save();\\nreturn $view;","locked":0,"properties":"a:1:{s:6:\\"saveTv\\";a:7:{s:4:\\"name\\";s:6:\\"saveTv\\";s:4:\\"desc\\";s:76:\\"If you want to duplicate the number of views in the TV, then select - \\"true\\"\\";s:4:\\"type\\";s:4:\\"list\\";s:7:\\"options\\";a:2:{i:0;a:2:{s:4:\\"text\\";s:4:\\"true\\";s:5:\\"value\\";s:4:\\"true\\";}i:1;a:2:{s:4:\\"text\\";s:5:\\"false\\";s:5:\\"value\\";s:5:\\"false\\";}}s:5:\\"value\\";s:5:\\"false\\";s:7:\\"lexicon\\";N;s:4:\\"area\\";s:0:\\"\\";}}","moduleguid":"","static":1,"static_file":"core\\/components\\/hitspage\\/elements\\/snippet\\/hitspage.snippet.php","content":"\\/**\\n * This file is extra HitsPage Pageviews for MODX Revolution.\\n *\\n * @copyright Copyright (C) 2013, Artdevue Ltd, <info@artdevue.com>\\n * @author Valentin Rasulov <info@artdevue.com>\\n * @license http:\\/\\/opensource.org\\/licenses\\/gpl-2.0.php GNU Public License v2\\n * @package hitspage\\n *\\n *\\/\\n\\n$page =  $modx->getObject(\'modResource\', $modx->resource->get(\'id\'));\\n$view = 0;\\n\\/\\/ Check the option to record in TV\\nif($saveTv == \'true\') {\\n    \\/\\/ get the required TV object by name (or id)\\n    $tv = $modx->getObject(\'modTemplateVar\',array(\'name\'=>\'HitsPage\'));\\n    if($tv) {\\n        $tvs = $modx->getObject(\'modTemplateVarResource\',array(\'tmplvarid\'=>$tv->id, \'contentid\'=>$page->get(\'id\')));\\n        if($tvs) {\\n            $viewTv = $tvs->get(\'value\');\\n            $tvs->set(\'value\',intval($viewTv) + 1);\\n            if($tvs->save()) $view = $viewTv;\\n        } else {\\n            $tvn = $modx->newObject(\'modTemplateVarResource\');\\n            $tvn->set(\'tmplvarid\',$tv->id);\\n            $tvn->set(\'contentid\',$page->get(\'id\'));\\n            $tvn->set(\'value\',1);\\n            if($tvn->save()) $view = 1;\\n        }       \\n    } \\n} else {\\n    $view = $page->getProperty(\'hitts\',\'hitspage\',$view);\\n}\\n$page->setProperty(\'hitts\',intval($view) + 1,\'hitspage\');\\n$page->save();\\nreturn $view;"}',
+        'guid' => 'bf7f3264e63f0229cebd82cc8710456e',
+        'native_key' => 5,
+        'signature' => '86614f0c7824c145f11c63ebdac93f4d',
+      ),
+      '4698e966edca557162ef8e04b11dbf81' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 'name',
+        'class' => 'modSnippet',
+        'object' => '{"id":8,"source":1,"property_preprocess":0,"name":"HPCount","description":"Snippet HPCount Pageviews for MODX Revolution","editor_type":0,"category":6,"cache_type":0,"snippet":"$modx->hpCount = true;\\nreturn \'\';","locked":0,"properties":"a:0:{}","moduleguid":"","static":1,"static_file":"core\\/components\\/hitspage\\/elements\\/snippet\\/hpcount.snippet.php","content":"$modx->hpCount = true;\\nreturn \'\';"}',
+        'guid' => 'b48218bd9449b96a29315532fcd3d85e',
+        'native_key' => 8,
+        'signature' => 'aa8f72c13519b601eb486c425c9a1088',
+      ),
+    ),
+  ),
+  'related_object_attributes' => 
+  array (
+    'Chunks' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 'name',
+    ),
+    'TemplateVars' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 'name',
+    ),
+    'Templates' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 'templatename',
+    ),
+    'Snippets' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 'name',
+    ),
+  ),
+  'namespace' => 'hitspage',
+  'resolve' => 
+  array (
+    0 => 
+    array (
+      'type' => 'file',
+      'body' => '{"source":"hitspage-2.0.3-pl\\/modCategory\\/36679aa611731019a0f7261b315539d6\\/0\\/","target":"return MODX_CORE_PATH . \'components\\/\';","name":"hitspage"}',
+    ),
+  ),
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '5252f626efc721a91d5de981c40c7634',
+  'package' => 'modx',
+  'class' => 'modCategory',
+  'signature' => '36679aa611731019a0f7261b315539d6',
+  'native_key' => 1,
+  'object' => '{"id":1,"parent":0,"category":"HitsPage"}',
+);

@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'minishop2',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'f574ca17265c53e53f1d5cf9778849cd',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '2e078b92a9d53cc1715aebe742170f8d',
+  'native_key' => 'mgr_tree_icon_mscategory',
+  'object' => '{"key":"mgr_tree_icon_mscategory","value":"icon icon-barcode","xtype":"textarea","namespace":"minishop2","area":"ms2_category","editedon":"2021-04-01 16:55:59"}',
+);

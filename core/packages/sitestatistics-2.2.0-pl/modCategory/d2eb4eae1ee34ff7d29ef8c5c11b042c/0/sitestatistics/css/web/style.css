@@ -1,0 +1,215 @@
+@font-face {
+	font-family: 'icomoon';
+	src:url('fonts/icomoon.eot?nvf7tj');
+	src:url('fonts/icomoon.eot?#iefixnvf7tj') format('embedded-opentype'),
+	url('fonts/icomoon.ttf?nvf7tj') format('truetype'),
+	url('fonts/icomoon.woff?nvf7tj') format('woff'),
+	url('fonts/icomoon.svg?nvf7tj#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: FontAwesome,icomoon;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.icon-eye:before {
+	content: "\f06e";
+}
+.icon-pie-chart:before {
+	content: "\f200";
+}
+.icon-users:before {
+	content: "\e972";
+}
+.site-statistics {
+	background-color: #efefef;
+	border: 1px solid #999;
+	width: 85px;
+}
+.site-statistics > div {
+	display: inline-block;
+	line-height: 1.4em;
+	font-size: 11px;
+}
+.site-statistics .stat-left-side {
+	background-color: #cecdce;
+	border-right: 1px solid #b7b7b7;
+	font-size: 20px;
+	padding: 4px 3px 0;
+}
+.site-statistics .stat-right-side {
+	padding-top: 1px;
+	text-align: right;
+	width: 50px;
+}
+.site-statistics .stat-icon{
+	display: inline-block;
+	margin-top: 1px;
+	padding-left: 5px;
+	width: 10px;
+}
+.site-online-users {
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	width: 135px;
+}
+.site-online-users p {
+	color: #333;
+	padding: 5px;
+}
+.site-online-users p:first-child {
+	background-color: #f5f5f5;
+	border-bottom: 1px solid #ddd;
+	border-radius: 5px 5px 0 0;
+}
+/**************************************************************/
+#sitestat-message-dlg {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1050;
+	display: none;
+	overflow: hidden;
+	-webkit-overflow-scrolling: touch;
+	outline: 0;
+}
+#sitestat-message-dlg .modal-dialog {
+	margin: auto auto;
+	position: fixed;
+	left: 40%;
+	top:30%;
+	width: 450px;
+	z-index: 1051;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.3s;
+}
+#sitestat-message-dlg .modal-content {
+	position: relative;
+	background-color: #fff;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	border: 1px solid #999;
+	border: 1px solid rgba(0, 0, 0, .2);
+	border-radius: 5px;
+	outline: 0;
+	-webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+	box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+}
+#sitestat-message-dlg .modal-header {
+	min-height: 15px;
+	padding: 10px 15px;
+	border-bottom: 1px solid #e5e5e5;
+	border-radius: 5px 5px 0 0;
+	background-color: #EEE;
+}
+#sitestat-message-dlg .modal-header .close {
+	margin-top: -2px;
+}
+#sitestat-message-dlg .modal-title {
+	margin: 0;
+	font-size: 16px;
+	font-family: Arial,Helvetica,sans-serif;
+	color: #555;
+	line-height: 1.5;
+}
+#sitestat-message-dlg .modal-body {
+	position: relative;
+	padding: 15px;
+}
+#sitestat-message-dlg .modal-footer {
+	background-color: #EEE;
+	border-radius: 0 0 5px 5px;
+	padding: 10px 15px;
+	text-align: right;
+	border-top: 1px solid #e5e5e5;
+}
+
+#sitestat-message-dlg .modal-footer:before,
+#sitestat-message-dlg .modal-footer:after {
+	content: " ";
+	display: table;
+}
+#sitestat-message-dlg .modal-footer:after {
+	clear: both;
+}
+/************************************************/
+#sitestat-message-dlg .btn {
+	display: inline-block;
+	margin-bottom: 0;
+	font-weight: normal;
+	text-align: center;
+	vertical-align: middle;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	cursor: pointer;
+	background-image: none;
+	border: 1px solid transparent;
+	white-space: nowrap;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	border-radius: 4px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+#sitestat-message-dlg .btn:focus,
+#sitestat-message-dlg .btn:active:focus,
+#sitestat-message-dlg .btn.active:focus,
+#sitestat-message-dlg .btn.focus,
+#sitestat-message-dlg .btn:active.focus,
+#sitestat-message-dlg .btn.active.focus {
+	outline: thin dotted;
+	outline: 5px auto -webkit-focus-ring-color;
+	outline-offset: -2px;
+}
+#sitestat-message-dlg .btn:hover,
+#sitestat-message-dlg .btn:focus,
+#sitestat-message-dlg .btn.focus {
+	color: #333333;
+	text-decoration: none;
+}
+#sitestat-message-dlg .btn:active,
+#sitestat-message-dlg .btn.active {
+	outline: 0;
+	background-image: none;
+	-webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+	box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+#sitestat-message-dlg .btn.disabled,
+#sitestat-message-dlg .btn[disabled],
+fieldset[disabled] .btn {
+	cursor: not-allowed;
+	pointer-events: none;
+	opacity: 0.65;
+	filter: alpha(opacity=65);
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+#sitestat-message-dlg .btn-default {
+	color: #333333;
+	background-color: #ffffff;
+	border-color: #cccccc;
+}
+#sitestat-message-dlg .btn-default:hover,
+#sitestat-message-dlg .btn-default:focus,
+#sitestat-message-dlg .btn-default.focus,
+#sitestat-message-dlg .btn-default:active,
+#sitestat-message-dlg .btn-default.active {
+	color: #333333;
+	background-color: #e6e6e6;
+	border-color: #adadad;
+}

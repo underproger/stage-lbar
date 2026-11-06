@@ -1,0 +1,15 @@
+<?php return array (
+  'preserve_keys' => true,
+  'update_object' => 'BUILD_EVENT_UPDATE',
+  'namespace' => 'googlesheets',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'b0251603b9aeb98b4b0ece42eaac90df',
+  'package' => 'modx',
+  'class' => 'modEvent',
+  'signature' => 'bcbf80783df16e8944386ed0ad48adca',
+  'native_key' => 'gsOnGetResource',
+  'object' => '{"name":"gsOnGetResource","service":6,"groupname":"GoogleSheets"}',
+);

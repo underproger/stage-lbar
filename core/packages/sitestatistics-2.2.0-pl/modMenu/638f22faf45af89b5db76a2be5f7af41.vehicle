@@ -1,0 +1,50 @@
+<?php return array (
+  'preserve_keys' => true,
+  'update_object' => true,
+  'unique_key' => 'text',
+  'related_objects' => 
+  array (
+    'Action' => 
+    array (
+      'cea873a1f1d81f69d107da5d22e80081' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 
+        array (
+          0 => 'namespace',
+          1 => 'controller',
+        ),
+        'class' => 'modAction',
+        'object' => '{"id":0,"namespace":"sitestatistics","controller":"index","haslayout":1,"lang_topics":"sitestatistics:default","assets":"","help_url":"","parent":0}',
+        'guid' => 'b64da8c6657a1d8adc7fb267188925bf',
+        'native_key' => 0,
+        'signature' => '200d26e4ff1738d072104c65c305d249',
+      ),
+    ),
+  ),
+  'related_object_attributes' => 
+  array (
+    'Action' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 
+      array (
+        0 => 'namespace',
+        1 => 'controller',
+      ),
+    ),
+  ),
+  'namespace' => 'sitestatistics',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'e4f67250eda55eda8dbe14609c364eb6',
+  'package' => 'modx',
+  'class' => 'modMenu',
+  'signature' => '638f22faf45af89b5db76a2be5f7af41',
+  'native_key' => 'sitestatistics',
+  'object' => '{"text":"sitestatistics","parent":"components","action":0,"description":"sitestatistics_menu_desc","icon":"images\\/icons\\/plugin.gif","menuindex":0,"params":"","handler":"","permissions":"","namespace":"core"}',
+);

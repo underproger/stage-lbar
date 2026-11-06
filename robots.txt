@@ -1,0 +1,17 @@
+User-agent: *
+Disallow: /impulsemanager/
+Disallow: /assets/components/
+Disallow: /core/
+Disallow: /connectors/
+Disallow: /index.php
+Disallow: *?
+Disallow: /rezultatyi-poiska
+Allow: /images/
+Allow: /*.js
+Allow: /*.css
+Allow: /*.jpg
+Allow: /*.gif
+Allow: /*.png
+
+Sitemap: https://lbar.ro/sitemap.xml
+Sitemap: https://lbar.ro/ru/sitemap.xml

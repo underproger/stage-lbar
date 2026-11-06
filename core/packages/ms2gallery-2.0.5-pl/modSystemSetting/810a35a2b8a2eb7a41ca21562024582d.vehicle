@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'ms2gallery',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '5cfdc2d3006108ec394633aaf3ea41e4',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '810a35a2b8a2eb7a41ca21562024582d',
+  'native_key' => 'ms2gallery_page_size',
+  'object' => '{"key":"ms2gallery_page_size","value":"50","xtype":"textfield","namespace":"ms2gallery","area":"ms2gallery_resource","editedon":null}',
+);

@@ -1,0 +1,123 @@
+<?php return array (
+  'unique_key' => 'category',
+  'preserve_keys' => false,
+  'update_object' => true,
+  'related_objects' => 
+  array (
+    'Snippets' => 
+    array (
+      '0dec1c5bc685d0697c86fa7ad7a27208' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 'name',
+        'class' => 'modSnippet',
+        'object' => '{"id":0,"source":1,"property_preprocess":0,"name":"MobileDetect","description":"","editor_type":0,"category":0,"cache_type":0,"snippet":"\\/** @var string $input *\\/\\n\\/** @var MobileDetect $MobileDetect *\\/\\n$MobileDetect = $modx->getService(\'mobiledetect\', \'MobileDetect\', MODX_CORE_PATH . \'components\\/mobiledetect\\/\');\\n\\n$key = $MobileDetect->config[\'force_browser_variable\'];\\n$device = !empty($_GET) && array_key_exists($key, $_GET)\\n    ? $modx->stripTags($_GET[$key])\\n    : \'\';\\n\\nif (empty($device)) {\\n    $device = $MobileDetect->getSettings();\\n}\\n\\nif (empty($device) || $device == \'detect\') {\\n    \\/** @var Mobile_Detect $detector *\\/\\n    $detector = $MobileDetect->getDetector();\\n    $device = ($detector->isMobile()\\n        ? ($detector->isTablet() ? \'tablet\' : \'mobile\')\\n        : \'standard\');\\n    $MobileDetect->saveSettings($device);\\n}\\n\\nreturn (int)(strtolower($input) == $device);","locked":0,"properties":"a:1:{s:5:\\"input\\";a:7:{s:4:\\"name\\";s:5:\\"input\\";s:4:\\"desc\\";s:13:\\"md_prop_input\\";s:4:\\"type\\";s:4:\\"list\\";s:7:\\"options\\";a:3:{i:0;a:2:{s:4:\\"text\\";s:8:\\"standard\\";s:5:\\"value\\";s:8:\\"standard\\";}i:1;a:2:{s:4:\\"text\\";s:6:\\"tablet\\";s:5:\\"value\\";s:6:\\"tablet\\";}i:2;a:2:{s:4:\\"text\\";s:6:\\"mobile\\";s:5:\\"value\\";s:6:\\"mobile\\";}}s:5:\\"value\\";s:6:\\"mobile\\";s:7:\\"lexicon\\";s:23:\\"mobiledetect:properties\\";s:4:\\"area\\";s:0:\\"\\";}}","moduleguid":"","static":0,"static_file":"core\\/components\\/mobiledetect\\/elements\\/snippets\\/snippet.mobiledetect.php","content":"\\/** @var string $input *\\/\\n\\/** @var MobileDetect $MobileDetect *\\/\\n$MobileDetect = $modx->getService(\'mobiledetect\', \'MobileDetect\', MODX_CORE_PATH . \'components\\/mobiledetect\\/\');\\n\\n$key = $MobileDetect->config[\'force_browser_variable\'];\\n$device = !empty($_GET) && array_key_exists($key, $_GET)\\n    ? $modx->stripTags($_GET[$key])\\n    : \'\';\\n\\nif (empty($device)) {\\n    $device = $MobileDetect->getSettings();\\n}\\n\\nif (empty($device) || $device == \'detect\') {\\n    \\/** @var Mobile_Detect $detector *\\/\\n    $detector = $MobileDetect->getDetector();\\n    $device = ($detector->isMobile()\\n        ? ($detector->isTablet() ? \'tablet\' : \'mobile\')\\n        : \'standard\');\\n    $MobileDetect->saveSettings($device);\\n}\\n\\nreturn (int)(strtolower($input) == $device);"}',
+        'guid' => 'ab82d6006c5e29f9661e71f93b6e979b',
+        'native_key' => 0,
+        'signature' => 'af83aebde7e3c9c39b77ace551b941f7',
+      ),
+    ),
+    'Plugins' => 
+    array (
+      '36e5160ccc2178794e1a0758ea463d82' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 'name',
+        'class' => 'modPlugin',
+        'object' => '{"id":null,"source":1,"property_preprocess":0,"name":"MobileDetect","description":"","editor_type":0,"category":0,"cache_type":0,"plugincode":"\\/** @var modX $modx *\\/\\n\\/** @var array $scriptProperties *\\/\\n\\/** @var MobileDetect $MobileDetect *\\/\\nswitch ($modx->event->name) {\\n    case \'OnWebPagePrerender\':\\n        $MobileDetect = $modx->getService(\'mobiledetect\', \'MobileDetect\', MODX_CORE_PATH . \'components\\/mobiledetect\\/\');\\n        if ($MobileDetect && empty($MobileDetect->config[\'disable_plugin\'])) {\\n            $key = $MobileDetect->config[\'force_browser_variable\'];\\n            $device = !empty($_GET) && array_key_exists($key, $_GET)\\n                ? $modx->stripTags($_GET[$key])\\n                : \'\';\\n\\n            $modx->resource->_output = $MobileDetect->parseDocument($modx->resource->_output, $device);\\n        }\\n        break;\\n\\n    case \'pdoToolsOnFenomInit\':\\n        $MobileDetect = $modx->getService(\'mobiledetect\', \'MobileDetect\', MODX_CORE_PATH . \'components\\/mobiledetect\\/\');\\n        if ($MobileDetect && empty($MobileDetect->config[\'disable_plugin\'])) {\\n            $key = $MobileDetect->config[\'force_browser_variable\'];\\n            $device = !empty($_GET) && array_key_exists($key, $_GET)\\n                ? $modx->stripTags($_GET[$key])\\n                : \'\';\\n\\n            if (empty($device)) {\\n                $device = $MobileDetect->getSettings();\\n            }\\n\\n            if (empty($device) || $device == \'detect\') {\\n                \\/** @var Mobile_Detect $detector *\\/\\n                $detector = $MobileDetect->getDetector();\\n                $device = ($detector->isMobile()\\n                    ? ($detector->isTablet() ? \'tablet\' : \'mobile\')\\n                    : \'standard\');\\n                $MobileDetect->saveSettings($device);\\n            }\\n        }\\n        \\n        if (!empty($device)) {\\n            $_SESSION[\'mobiledetect\'][\'device\'] = $device;\\n        }\\n        \\n        $fenom->addBlockFunction(\'mobile\', function($options, $content) {\\n\\t\\t\\tif ($_SESSION[\'mobiledetect\'][\'device\'] == \'mobile\' || $_SESSION[\'mobiledetect\'][\'device\'] == \'tablet\'){\\n\\t\\t\\t\\treturn $content;\\n\\t\\t\\t}\\n\\t\\t});\\n        $fenom->addBlockFunction(\'phone\', function($options, $content) {\\n\\t\\t\\tif ($_SESSION[\'mobiledetect\'][\'device\'] == \'mobile\'){\\n\\t\\t\\t\\treturn $content;\\n\\t\\t\\t}\\n\\t\\t});\\n        $fenom->addBlockFunction(\'tablet\', function($options, $content) {\\n\\t\\t\\tif ($_SESSION[\'mobiledetect\'][\'device\'] == \'tablet\'){\\n\\t\\t\\t\\treturn $content;\\n\\t\\t\\t}\\n\\t\\t});\\n        $fenom->addBlockFunction(\'desktop\', function($options, $content) {\\n\\t\\t\\tif (empty($_SESSION[\'mobiledetect\'][\'device\']) || $_SESSION[\'mobiledetect\'][\'device\'] == \'standard\'){\\n\\t\\t\\t\\treturn $content;\\n\\t\\t\\t}\\n\\t\\t});\\n        $fenom->addBlockFunction(\'standard\', function($options, $content) {\\n\\t\\t\\tif (empty($_SESSION[\'mobiledetect\'][\'device\']) || $_SESSION[\'mobiledetect\'][\'device\'] == \'standard\'){\\n\\t\\t\\t\\treturn $content;\\n\\t\\t\\t}\\n\\t\\t});\\n        break;\\n}","locked":0,"properties":null,"disabled":0,"moduleguid":"","static":0,"static_file":"core\\/components\\/mobiledetect\\/elements\\/plugins\\/plugin.mobiledetect.php","content":"\\/** @var modX $modx *\\/\\n\\/** @var array $scriptProperties *\\/\\n\\/** @var MobileDetect $MobileDetect *\\/\\nswitch ($modx->event->name) {\\n    case \'OnWebPagePrerender\':\\n        $MobileDetect = $modx->getService(\'mobiledetect\', \'MobileDetect\', MODX_CORE_PATH . \'components\\/mobiledetect\\/\');\\n        if ($MobileDetect && empty($MobileDetect->config[\'disable_plugin\'])) {\\n            $key = $MobileDetect->config[\'force_browser_variable\'];\\n            $device = !empty($_GET) && array_key_exists($key, $_GET)\\n                ? $modx->stripTags($_GET[$key])\\n                : \'\';\\n\\n            $modx->resource->_output = $MobileDetect->parseDocument($modx->resource->_output, $device);\\n        }\\n        break;\\n\\n    case \'pdoToolsOnFenomInit\':\\n        $MobileDetect = $modx->getService(\'mobiledetect\', \'MobileDetect\', MODX_CORE_PATH . \'components\\/mobiledetect\\/\');\\n        if ($MobileDetect && empty($MobileDetect->config[\'disable_plugin\'])) {\\n            $key = $MobileDetect->config[\'force_browser_variable\'];\\n            $device = !empty($_GET) && array_key_exists($key, $_GET)\\n                ? $modx->stripTags($_GET[$key])\\n                : \'\';\\n\\n            if (empty($device)) {\\n                $device = $MobileDetect->getSettings();\\n            }\\n\\n            if (empty($device) || $device == \'detect\') {\\n                \\/** @var Mobile_Detect $detector *\\/\\n                $detector = $MobileDetect->getDetector();\\n                $device = ($detector->isMobile()\\n                    ? ($detector->isTablet() ? \'tablet\' : \'mobile\')\\n                    : \'standard\');\\n                $MobileDetect->saveSettings($device);\\n            }\\n        }\\n        \\n        if (!empty($device)) {\\n            $_SESSION[\'mobiledetect\'][\'device\'] = $device;\\n        }\\n        \\n        $fenom->addBlockFunction(\'mobile\', function($options, $content) {\\n\\t\\t\\tif ($_SESSION[\'mobiledetect\'][\'device\'] == \'mobile\' || $_SESSION[\'mobiledetect\'][\'device\'] == \'tablet\'){\\n\\t\\t\\t\\treturn $content;\\n\\t\\t\\t}\\n\\t\\t});\\n        $fenom->addBlockFunction(\'phone\', function($options, $content) {\\n\\t\\t\\tif ($_SESSION[\'mobiledetect\'][\'device\'] == \'mobile\'){\\n\\t\\t\\t\\treturn $content;\\n\\t\\t\\t}\\n\\t\\t});\\n        $fenom->addBlockFunction(\'tablet\', function($options, $content) {\\n\\t\\t\\tif ($_SESSION[\'mobiledetect\'][\'device\'] == \'tablet\'){\\n\\t\\t\\t\\treturn $content;\\n\\t\\t\\t}\\n\\t\\t});\\n        $fenom->addBlockFunction(\'desktop\', function($options, $content) {\\n\\t\\t\\tif (empty($_SESSION[\'mobiledetect\'][\'device\']) || $_SESSION[\'mobiledetect\'][\'device\'] == \'standard\'){\\n\\t\\t\\t\\treturn $content;\\n\\t\\t\\t}\\n\\t\\t});\\n        $fenom->addBlockFunction(\'standard\', function($options, $content) {\\n\\t\\t\\tif (empty($_SESSION[\'mobiledetect\'][\'device\']) || $_SESSION[\'mobiledetect\'][\'device\'] == \'standard\'){\\n\\t\\t\\t\\treturn $content;\\n\\t\\t\\t}\\n\\t\\t});\\n        break;\\n}"}',
+        'guid' => 'f1950bf7df8ec20854c6d52f004692d5',
+        'native_key' => NULL,
+        'signature' => 'd66e4933753d24723461a74f15bf1eb8',
+        'related_objects' => 
+        array (
+          'PluginEvents' => 
+          array (
+            '9e5cc54f47ba6370f7550897a3c8d709' => 
+            array (
+              'preserve_keys' => true,
+              'update_object' => true,
+              'unique_key' => 
+              array (
+                0 => 'pluginid',
+                1 => 'event',
+              ),
+              'class' => 'modPluginEvent',
+              'object' => '{"pluginid":0,"event":"OnWebPagePrerender","priority":0,"propertyset":0}',
+              'guid' => '6de7e36da655faee3c3bbe8f7238f24d',
+              'native_key' => 
+              array (
+                0 => 0,
+                1 => 'OnWebPagePrerender',
+              ),
+              'signature' => 'b94c0f9154d7587a1f17a103f218ed52',
+            ),
+            'd8b4fc34cb2e2a380f73cd6a5dea31f1' => 
+            array (
+              'preserve_keys' => true,
+              'update_object' => true,
+              'unique_key' => 
+              array (
+                0 => 'pluginid',
+                1 => 'event',
+              ),
+              'class' => 'modPluginEvent',
+              'object' => '{"pluginid":0,"event":"pdoToolsOnFenomInit","priority":0,"propertyset":0}',
+              'guid' => '54a02abffd432a3235ed6aa3b9086c0b',
+              'native_key' => 
+              array (
+                0 => 0,
+                1 => 'pdoToolsOnFenomInit',
+              ),
+              'signature' => '60dabb110b0a51422fccff98dc45fce6',
+            ),
+          ),
+        ),
+      ),
+    ),
+  ),
+  'related_object_attributes' => 
+  array (
+    'Snippets' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 'name',
+    ),
+    'Plugins' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 'name',
+    ),
+    'PluginEvents' => 
+    array (
+      'preserve_keys' => true,
+      'update_object' => true,
+      'unique_key' => 
+      array (
+        0 => 'pluginid',
+        1 => 'event',
+      ),
+    ),
+  ),
+  'namespace' => 'mobiledetect',
+  'resolve' => 
+  array (
+    0 => 
+    array (
+      'type' => 'file',
+      'body' => '{"source":"mobiledetect-2.0.2-pl\\/modCategory\\/40db1372bbdfec96d2b028e33ab39ee9\\/0\\/","target":"return MODX_CORE_PATH . \'components\\/\';","name":"mobiledetect"}',
+    ),
+  ),
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'aac88be7c0c946f92ce9a45e4e5fbc9c',
+  'package' => 'modx',
+  'class' => 'modCategory',
+  'signature' => '40db1372bbdfec96d2b028e33ab39ee9',
+  'native_key' => NULL,
+  'object' => '{"id":null,"parent":0,"category":"MobileDetect","rank":0}',
+);

@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'mobiledetect',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'a85ec86af72145d1925fe4700a166bc0',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '1236d20ae316284308b04729b44e07d9',
+  'native_key' => 'md_force_browser_tablet',
+  'object' => '{"key":"md_force_browser_tablet","value":"tablet","xtype":"textfield","namespace":"mobiledetect","area":"md_main","editedon":null}',
+);

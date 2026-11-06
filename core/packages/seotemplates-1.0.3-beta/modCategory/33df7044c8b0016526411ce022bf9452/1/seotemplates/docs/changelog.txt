@@ -1,0 +1,20 @@
+Changelog for seoTemplates.
+
+1.0.3-beta
+==============
+- Fixed a bug with templates list
+
+1.0.2-beta
+==============
+- Fixed a bug when resource had an blank template
+
+1.0.1-beta
+==============
+- Add multiple selection for templates;
+- Add description for Fields;
+- Add thumbler for enable/disable template;
+- English version.
+
+1.0.0-beta
+==============
+- Initial release.

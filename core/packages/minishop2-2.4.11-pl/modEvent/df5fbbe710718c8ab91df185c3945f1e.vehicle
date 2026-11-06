@@ -1,0 +1,15 @@
+<?php return array (
+  'preserve_keys' => true,
+  'update_object' => true,
+  'namespace' => 'minishop2',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '1ee17bacaf1fca802ce1c3220d4b80f0',
+  'package' => 'modx',
+  'class' => 'modEvent',
+  'signature' => 'df5fbbe710718c8ab91df185c3945f1e',
+  'native_key' => 'msOnRemoveOrderProduct',
+  'object' => '{"name":"msOnRemoveOrderProduct","service":6,"groupname":"miniShop2"}',
+);

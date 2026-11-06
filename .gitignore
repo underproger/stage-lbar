@@ -1,0 +1,14 @@
+# --- Конфиги (кладутся на хостинг вручную) ---
+/config.core.php
+/connectors/config.core.php
+/impulsemanager/config.core.php
+/core/config/config.inc.php
+
+# --- Кэш MODX и сгенерированные картинки ---
+/core/cache/
+/assets/image-cache/
+/webp/
+
+# --- Системный мусор ---
+.DS_Store
+Thumbs.db

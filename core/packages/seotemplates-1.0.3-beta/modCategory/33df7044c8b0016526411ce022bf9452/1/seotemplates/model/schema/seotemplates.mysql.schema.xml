@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="seotemplates" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" phpdoc-package="seotemplates"
+       version="1.1">
+
+    <object class="seoTemplatesItem" table="seotemplates_items" extends="xPDOSimpleObject">
+        <field key="template" dbtype="text" phptype="json" null="true" default="" />
+        <field key="field" dbtype="varchar" precision="255" phptype="string" null="true" default="" />
+        <field key="value" dbtype="text" phptype="text" null="true" default="" />
+        <field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1"/>
+
+        <index alias="active" name="active" primary="false" unique="false" type="BTREE">
+            <column key="active" length="" collation="A" null="false"/>
+        </index>
+    </object>
+
+    <object class="seoTemplatesField" table="seotemplates_fields" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" default="" />
+        <field key="description" dbtype="text" phptype="text" null="true" default="" />
+        <field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1"/>
+
+        <index alias="active" name="active" primary="false" unique="false" type="BTREE">
+            <column key="active" length="" collation="A" null="false"/>
+        </index>
+    </object>
+</model>

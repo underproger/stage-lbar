@@ -1,0 +1,17 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'related_objects' => false,
+  'namespace' => 'googlesheets',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '721834cd642ccfebb0d4ad668f182df0',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '9cbd1fcd318571fd3f3ba87a26e29ea0',
+  'native_key' => 'googlesheets_auth_code',
+  'object' => '{"key":"googlesheets_auth_code","value":"","xtype":"textfield","namespace":"googlesheets","area":"googlesheets_auth","editedon":null,"name":"setting_googlesheets_auth_code"}',
+);

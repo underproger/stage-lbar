@@ -1,0 +1,17 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'related_objects' => false,
+  'namespace' => 'googlesheets',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '9798e17cb91f62d3b72be1595b45552d',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '6f8bf9fecfa62a970b3e143667c3324f',
+  'native_key' => 'googlesheets_client_id',
+  'object' => '{"key":"googlesheets_client_id","value":"","xtype":"textfield","namespace":"googlesheets","area":"googlesheets_auth","editedon":null,"name":"setting_googlesheets_client_id"}',
+);

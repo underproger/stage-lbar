@@ -1,0 +1,100 @@
+<?php return array (
+  'unique_key' => 'category',
+  'preserve_keys' => false,
+  'update_object' => true,
+  'related_objects' => 
+  array (
+    'Chunks' => 
+    array (
+      'c32b47988d70397a2b60efa3b8943902' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => false,
+        'unique_key' => 'name',
+        'class' => 'modChunk',
+        'object' => '{"id":0,"source":1,"property_preprocess":0,"name":"tplSimpleRating","description":"","editor_type":0,"category":0,"cache_type":0,"snippet":"<div class=\\"rating[[+rating_active]]\\">\\r\\n    <div class=\\"rating__best\\">\\r\\n        <div class=\\"rating__current\\" data-id=\\"[[+id]]\\" style=\\"display: block; width: [[+rating_width]]px;\\"><\\/div>\\r\\n        <div class=\\"rating__star rating__star_5\\" data-title=\\"5\\"><\\/div>\\r\\n        <div class=\\"rating__star rating__star_4\\" data-title=\\"4\\"><\\/div>\\r\\n        <div class=\\"rating__star rating__star_3\\" data-title=\\"3\\"><\\/div>\\r\\n        <div class=\\"rating__star rating__star_2\\" data-title=\\"2\\"><\\/div>\\r\\n        <div class=\\"rating__star rating__star_1\\" data-title=\\"1\\"><\\/div>\\r\\n    <\\/div>\\r\\n<\\/div>\\r\\n<div style=\\"font-size:10px; color: #999; padding-top: 3px; padding-bottom: 3px;\\">\\r\\n    \\u0420\\u0435\\u0439\\u0442\\u0438\\u043d\\u0433: <span class=\\"rating-value\\">[[+rating_value]]<\\/span>\\/5 - <span class=\\"rating-count\\">[[+rating_count]]<\\/span>\\r\\n    \\u0433\\u043e\\u043b\\u043e\\u0441\\u043e\\u0432\\r\\n<\\/div>","locked":0,"properties":null,"static":0,"static_file":"core\\/components\\/simplerating\\/elements\\/chunks\\/chunk.simplerating.tpl","content":"<div class=\\"rating[[+rating_active]]\\">\\r\\n    <div class=\\"rating__best\\">\\r\\n        <div class=\\"rating__current\\" data-id=\\"[[+id]]\\" style=\\"display: block; width: [[+rating_width]]px;\\"><\\/div>\\r\\n        <div class=\\"rating__star rating__star_5\\" data-title=\\"5\\"><\\/div>\\r\\n        <div class=\\"rating__star rating__star_4\\" data-title=\\"4\\"><\\/div>\\r\\n        <div class=\\"rating__star rating__star_3\\" data-title=\\"3\\"><\\/div>\\r\\n        <div class=\\"rating__star rating__star_2\\" data-title=\\"2\\"><\\/div>\\r\\n        <div class=\\"rating__star rating__star_1\\" data-title=\\"1\\"><\\/div>\\r\\n    <\\/div>\\r\\n<\\/div>\\r\\n<div style=\\"font-size:10px; color: #999; padding-top: 3px; padding-bottom: 3px;\\">\\r\\n    \\u0420\\u0435\\u0439\\u0442\\u0438\\u043d\\u0433: <span class=\\"rating-value\\">[[+rating_value]]<\\/span>\\/5 - <span class=\\"rating-count\\">[[+rating_count]]<\\/span>\\r\\n    \\u0433\\u043e\\u043b\\u043e\\u0441\\u043e\\u0432\\r\\n<\\/div>"}',
+        'guid' => '753e7362d7b665f8f366680597d68fc9',
+        'native_key' => 0,
+        'signature' => '9b01e577862584110f4448f823f9e85d',
+      ),
+    ),
+    'Snippets' => 
+    array (
+      'cf0ef8af9d36dd5239b4c0db09abd516' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 'name',
+        'class' => 'modSnippet',
+        'object' => '{"id":0,"source":1,"property_preprocess":0,"name":"SimpleRating","description":"","editor_type":0,"category":0,"cache_type":0,"snippet":"$modx->regClientCSS(MODX_ASSETS_URL . \'components\\/simplerating\\/css\\/web\\/default.css\');\\r\\n$modx->regClientScript(MODX_ASSETS_URL . \'components\\/simplerating\\/js\\/web\\/default.js\');\\r\\n\\r\\n\\/** @var array $scriptProperties *\\/\\r\\n$tpl_option = $modx->getOption(\'tpl\', $scriptProperties, \'tplSimpleRating\');\\r\\n$id = $modx->getOption(\'id\', $scriptProperties);\\r\\n\\r\\nif (empty($id)) {\\r\\n    $id = $modx->resource->id;\\r\\n}\\r\\n\\r\\n$rating_value = 0.0;\\r\\n$rating_count = 0;\\r\\n$rating_ips = array();\\r\\n$rating_active_class = \' rating_active\';\\r\\n\\r\\n$modx->addPackage(\'simplerating\', MODX_CORE_PATH . \'components\\/simplerating\\/model\\/\');\\r\\n\\r\\n$simple_rating = $modx->getObject(\'SimpleRating\', array(\\r\\n    \'resource\' => $id\\r\\n));\\r\\n\\r\\nif (is_object($simple_rating)) {\\r\\n    $rating_value = $simple_rating->get(\'rating_value\');\\r\\n    $rating_count = $simple_rating->get(\'rating_count\');\\r\\n    $rating_ips = $simple_rating->get(\'rating_ips\');\\r\\n}\\r\\n\\r\\n\\/\\/ \\u043f\\u0440\\u043e\\u0432\\u0435\\u0440\\u043a\\u0430 IP\\r\\nif ($modx->getOption(\'simplerating_ip\')) {\\r\\n    $modx->getRequest();\\r\\n    $ip = $modx->request->getClientIp();\\r\\n    if (in_array($ip[\'ip\'], $rating_ips)) {\\r\\n        $rating_active_class = \'\';\\r\\n    }\\r\\n}\\r\\n\\r\\n$width = 130 * $rating_value \\/ 5;\\r\\n\\r\\n$output = $modx->getChunk($tpl_option, array(\\r\\n    \'id\' => $id,\\r\\n    \'rating_best\' => 5,\\r\\n    \'rating_value\' => $rating_value,\\r\\n    \'rating_count\' => $rating_count,\\r\\n    \'rating_active\' => $rating_active_class,\\r\\n    \'rating_width\' => str_replace(\',\', \'.\', $width)\\r\\n));\\r\\n\\r\\nreturn $output;","locked":0,"properties":"a:1:{s:3:\\"tpl\\";a:7:{s:4:\\"name\\";s:3:\\"tpl\\";s:4:\\"desc\\";s:21:\\"simplerating_prop_tpl\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";a:0:{}s:5:\\"value\\";s:15:\\"tplSimpleRating\\";s:7:\\"lexicon\\";s:23:\\"simplerating:properties\\";s:4:\\"area\\";s:0:\\"\\";}}","moduleguid":"","static":0,"static_file":"core\\/components\\/simplerating\\/elements\\/snippets\\/snippet.simplerating.php","content":"$modx->regClientCSS(MODX_ASSETS_URL . \'components\\/simplerating\\/css\\/web\\/default.css\');\\r\\n$modx->regClientScript(MODX_ASSETS_URL . \'components\\/simplerating\\/js\\/web\\/default.js\');\\r\\n\\r\\n\\/** @var array $scriptProperties *\\/\\r\\n$tpl_option = $modx->getOption(\'tpl\', $scriptProperties, \'tplSimpleRating\');\\r\\n$id = $modx->getOption(\'id\', $scriptProperties);\\r\\n\\r\\nif (empty($id)) {\\r\\n    $id = $modx->resource->id;\\r\\n}\\r\\n\\r\\n$rating_value = 0.0;\\r\\n$rating_count = 0;\\r\\n$rating_ips = array();\\r\\n$rating_active_class = \' rating_active\';\\r\\n\\r\\n$modx->addPackage(\'simplerating\', MODX_CORE_PATH . \'components\\/simplerating\\/model\\/\');\\r\\n\\r\\n$simple_rating = $modx->getObject(\'SimpleRating\', array(\\r\\n    \'resource\' => $id\\r\\n));\\r\\n\\r\\nif (is_object($simple_rating)) {\\r\\n    $rating_value = $simple_rating->get(\'rating_value\');\\r\\n    $rating_count = $simple_rating->get(\'rating_count\');\\r\\n    $rating_ips = $simple_rating->get(\'rating_ips\');\\r\\n}\\r\\n\\r\\n\\/\\/ \\u043f\\u0440\\u043e\\u0432\\u0435\\u0440\\u043a\\u0430 IP\\r\\nif ($modx->getOption(\'simplerating_ip\')) {\\r\\n    $modx->getRequest();\\r\\n    $ip = $modx->request->getClientIp();\\r\\n    if (in_array($ip[\'ip\'], $rating_ips)) {\\r\\n        $rating_active_class = \'\';\\r\\n    }\\r\\n}\\r\\n\\r\\n$width = 130 * $rating_value \\/ 5;\\r\\n\\r\\n$output = $modx->getChunk($tpl_option, array(\\r\\n    \'id\' => $id,\\r\\n    \'rating_best\' => 5,\\r\\n    \'rating_value\' => $rating_value,\\r\\n    \'rating_count\' => $rating_count,\\r\\n    \'rating_active\' => $rating_active_class,\\r\\n    \'rating_width\' => str_replace(\',\', \'.\', $width)\\r\\n));\\r\\n\\r\\nreturn $output;"}',
+        'guid' => 'ed6cac436987bd5fe4662c6b56215dc9',
+        'native_key' => 0,
+        'signature' => '537f8a136972d8280fce991a90bd892c',
+      ),
+    ),
+  ),
+  'related_object_attributes' => 
+  array (
+    'Snippets' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 'name',
+    ),
+    'Chunks' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => false,
+      'unique_key' => 'name',
+    ),
+    'Plugins' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 'name',
+    ),
+    'PluginEvents' => 
+    array (
+      'preserve_keys' => true,
+      'update_object' => true,
+      'unique_key' => 
+      array (
+        0 => 'pluginid',
+        1 => 'event',
+      ),
+    ),
+  ),
+  'namespace' => 'simplerating',
+  'resolve' => 
+  array (
+    0 => 
+    array (
+      'type' => 'file',
+      'body' => '{"source":"simplerating-1.0.2-beta\\/modCategory\\/19bb217d780b414ca882629976d93296\\/0\\/","target":"return MODX_ASSETS_PATH . \'components\\/\';","name":"simplerating"}',
+    ),
+    1 => 
+    array (
+      'type' => 'file',
+      'body' => '{"source":"simplerating-1.0.2-beta\\/modCategory\\/19bb217d780b414ca882629976d93296\\/1\\/","target":"return MODX_CORE_PATH . \'components\\/\';","name":"simplerating"}',
+    ),
+    2 => 
+    array (
+      'type' => 'php',
+      'body' => '{"source":"simplerating-1.0.2-beta\\/modCategory\\/19bb217d780b414ca882629976d93296.resolve.tables.resolver","type":"php","name":"resolve.tables"}',
+    ),
+    3 => 
+    array (
+      'type' => 'php',
+      'body' => '{"source":"simplerating-1.0.2-beta\\/modCategory\\/19bb217d780b414ca882629976d93296.resolve.chunks.resolver","type":"php","name":"resolve.chunks"}',
+    ),
+  ),
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'ea09a529823aa60cd2a9fb57846e6063',
+  'package' => 'modx',
+  'class' => 'modCategory',
+  'signature' => '19bb217d780b414ca882629976d93296',
+  'native_key' => NULL,
+  'object' => '{"id":null,"parent":0,"category":"SimpleRating","rank":0}',
+);

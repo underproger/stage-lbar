@@ -1,0 +1,50 @@
+html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, menu, nav, section, time, mark, audio, video, details, summary {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font-weight: normal;
+	vertical-align: baseline;
+	background: transparent;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary { display: block;}
+html, button, input, select, textarea { font-family: sans-serif; }
+audio:not([controls]) { display: none; height: 0; }
+audio, canvas, video { display: inline-block; *display: inline; *zoom: 1; }
+a {margin: 0; padding: 0; font-size: 100%; vertical-align: baseline; background: transparent;outline:none;border: none;}
+a:link, a:visited, ins{text-decoration:none;}
+a:active, a:hover, a:focus {outline: 0; outline:none;border: none;}
+a:visited{color:#a78e85;}
+a:link img, a:visited img, object, fieldset, abbr, acronym{border:none;}
+abbr, acronym{cursor:help;border-bottom:1px dotted #999;}
+address, cite, dfn{font-style:normal;}
+img{vertical-align:bottom;}
+img, object, embed {max-width: 100%;}
+legend{color:#000;margin:0 0 -2px;padding:0;}
+optgroup option{padding-left:22px;}
+address, blockquote, h1, h2, h3, h4, h5, h6, fieldset, ol, ul{margin:0;padding:0;}
+h1, h2, h3, h4, h5, h6{font-weight:normal;}
+ol, ul {list-style: none;}
+blockquote, q {quotes: none;}
+blockquote:before, blockquote:after,
+q:before, q:after {content: '';content: none;}
+table {border-collapse: collapse;border-spacing: 0;}
+th {font-weight: bold; vertical-align: bottom;}
+td {font-weight: normal; vertical-align: top;}
+hr {display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0;}
+code, pre {
+    white-space: pre; /* CSS2 */
+    white-space: pre-wrap; /* CSS 2.1 */
+    white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
+    word-wrap: break-word; /* IE */
+}
+input, select, button{overflow:visible;}
+input[type="radio"] {vertical-align: text-bottom;}
+input[type="checkbox"] {vertical-align: bottom;}
+.ie7 input[type="checkbox"] {vertical-align: baseline;}
+.ie6 input {vertical-align: text-bottom;}
+.clickable, label, input[type=button], input[type=submit], input[type=file], button {cursor: pointer;}
+button, input, select, textarea {margin: 0;outline: 0;}
+.clearfix:after{content:"";display:table;clear:both;}
+.clearfix{ *zoom:1;}
+

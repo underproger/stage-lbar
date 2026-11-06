@@ -1,0 +1,17 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'related_objects' => false,
+  'namespace' => 'googlesheets',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'f78a262380f06ab0ad4160af069ec378',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '488fd1866988735bd3ba70fa567e058a',
+  'native_key' => 'googlesheets_form_range',
+  'object' => '{"key":"googlesheets_form_range","value":"","xtype":"textfield","namespace":"googlesheets","area":"googlesheets_form","editedon":null,"name":"setting_googlesheets_form_range"}',
+);

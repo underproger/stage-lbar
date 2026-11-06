@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'seofilter',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '2ed9c110e873931ffd4b1877e71d1545',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '32362d7ea26578e8a90d1df209246ec2',
+  'native_key' => 'seofilter_classes',
+  'object' => '{"key":"seofilter_classes","value":"msProduct","xtype":"textfield","namespace":"seofilter","area":"seofilter_main","editedon":null}',
+);

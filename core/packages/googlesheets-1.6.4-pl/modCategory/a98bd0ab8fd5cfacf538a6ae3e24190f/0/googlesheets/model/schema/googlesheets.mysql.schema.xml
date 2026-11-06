@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="googlesheets" baseClass="xPDOObject" platform="mysql" defaultEngine="InnoDB" phpdoc-package="googlesheets" version="1.1">
+
+    <object class="GoogleSheetsImport" table="googlesheets_imports" extends="xPDOSimpleObject">
+        <field key="name" dbtype="text" phptype="string" null="false" default=""/>
+        <field key="range" dbtype="text" phptype="string" null="false" default=""/>
+        <field key="type" dbtype="text" phptype="string" null="false" default=""/>
+        <field key="imethod" dbtype="text" phptype="string" null="false" default=""/>
+        <field key="import_fields" dbtype="text" phptype="string" null="false" default=""/>
+        <field key="skip_first" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="0"/>
+        <field key="unique" dbtype="text" phptype="string" null="false" default=""/>
+        <field key="create" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="0"/>
+        <field key="update" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="0"/>
+        <field key="remove" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="0"/>
+        <field key="rank" dbtype="tinyint" precision="1" phptype="integer" attributes="unsigned" null="true" default="0"/>
+    </object>
+    
+    <object class="GoogleSheetsExport" table="googlesheets_exports" extends="xPDOSimpleObject">
+        <field key="name" dbtype="text" phptype="string" null="false" default=""/>
+        <field key="range" dbtype="text" phptype="string" null="false" default=""/>
+        <field key="type" dbtype="text" phptype="string" null="false" default=""/>
+        <field key="imethod" dbtype="text" phptype="string" null="false" default=""/>
+        <field key="export_fields" dbtype="text" phptype="string" null="false" default=""/>
+        <field key="header_table" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="0"/>
+        <field key="unique" dbtype="text" phptype="string" null="false" default=""/>
+        <field key="create" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="0"/>
+        <field key="update" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="0"/>
+        <field key="remove" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="0"/>
+        <field key="rank" dbtype="tinyint" precision="1" phptype="integer" attributes="unsigned" null="true" default="0"/>
+    </object>
+    
+    <!--<object class="GoogleSheetsSeo" table="googlesheets_seo" extends="xPDOSimpleObject">-->
+    <!--    <field key="name" dbtype="text" phptype="string" null="false" default=""/>-->
+    <!--    <field key="range" dbtype="text" phptype="string" null="false" default=""/>-->
+    <!--    <field key="type" dbtype="text" phptype="string" null="false" default=""/>-->
+    <!--    <field key="imethod" dbtype="text" phptype="string" null="false" default=""/>-->
+    <!--    <field key="fields" dbtype="text" phptype="string" null="false" default=""/>-->
+    <!--    <field key="header_table" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="0"/>-->
+    <!--    <field key="rank" dbtype="tinyint" precision="1" phptype="integer" attributes="unsigned" null="true" default="0"/>-->
+    <!--</object>-->
+    
+    <object class="GoogleSheetsMigx" table="googlesheets_migx" extends="xPDOSimpleObject">
+        <field key="name" dbtype="text" phptype="string" null="false" default=""/>
+        <field key="range" dbtype="text" phptype="string" null="false" default=""/>
+        <field key="resource" dbtype="text" phptype="string" null="false" default=""/>
+        <field key="migx" dbtype="text" phptype="string" null="false" default=""/>
+        <field key="rank" dbtype="tinyint" precision="1" phptype="integer" attributes="unsigned" null="true" default="0"/>
+    </object>
+
+</model>

@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'msfavorites',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'e39a19f628e809aee4f62e5158ec6b29',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '44a6c54d688f2678c49027169dc96f81',
+  'native_key' => 'msfavorites_clear_temporary',
+  'object' => '{"key":"msfavorites_clear_temporary","value":true,"xtype":"combo-boolean","namespace":"msfavorites","area":"msfavorites_main","editedon":null}',
+);

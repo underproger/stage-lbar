@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'seotemplates',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '3404c93934ed4a51ad91cff2b54fd787',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '2ccabcb8afdc849d0316980599438a74',
+  'native_key' => 'seotemplates_placeholder_prefix',
+  'object' => '{"key":"seotemplates_placeholder_prefix","value":"st_","xtype":"textfield","namespace":"seotemplates","area":"seotemplates_main","editedon":null}',
+);

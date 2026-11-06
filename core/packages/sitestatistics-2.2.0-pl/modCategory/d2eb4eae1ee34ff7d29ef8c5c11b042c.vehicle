@@ -1,0 +1,191 @@
+<?php return array (
+  'unique_key' => 'category',
+  'preserve_keys' => false,
+  'update_object' => true,
+  'related_objects' => 
+  array (
+    'Chunks' => 
+    array (
+      'e051193a00168e4acd0a725b0eb03050' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => false,
+        'unique_key' => 'name',
+        'class' => 'modChunk',
+        'object' => '{"id":0,"source":1,"property_preprocess":0,"name":"tpl.siteStatistics","description":"","editor_type":0,"category":0,"cache_type":0,"snippet":"<div class=\\"site-statistics\\">\\n\\t<div class=\\"stat-left-side\\"><i class=\\"icon-pie-chart\\"><\\/i><\\/div>\\n\\t<div class=\\"stat-right-side\\">\\n\\t\\t[[+users]]<i class=\\"stat-icon icon-users\\"><\\/i><br>\\n\\t\\t[[+views]]<i class=\\"stat-icon icon-eye\\"><\\/i>\\n\\t<\\/div>\\n<\\/div>","locked":0,"properties":null,"static":0,"static_file":"core\\/components\\/sitestatistics\\/elements\\/chunks\\/chunk.sitestatistics.tpl","content":"<div class=\\"site-statistics\\">\\n\\t<div class=\\"stat-left-side\\"><i class=\\"icon-pie-chart\\"><\\/i><\\/div>\\n\\t<div class=\\"stat-right-side\\">\\n\\t\\t[[+users]]<i class=\\"stat-icon icon-users\\"><\\/i><br>\\n\\t\\t[[+views]]<i class=\\"stat-icon icon-eye\\"><\\/i>\\n\\t<\\/div>\\n<\\/div>"}',
+        'guid' => 'afeba6dba95a1b6c5be08063f9de5102',
+        'native_key' => 0,
+        'signature' => '66620af2ca3654c5f5dcd05c19f770a3',
+      ),
+      'fa33f4a101506ef027aa4ec3d5f1dea5' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => false,
+        'unique_key' => 'name',
+        'class' => 'modChunk',
+        'object' => '{"id":0,"source":1,"property_preprocess":0,"name":"tpl.siteOnlineUsers","description":"","editor_type":0,"category":0,"cache_type":0,"snippet":"<div class=\\"site-online-users\\">\\r\\n\\t<p>[[%stat_online_users_title]]<\\/p>\\r\\n\\t<p>[[%stat_online_users]]: [[+stat.online_users]]<\\/p>\\r\\n\\t<p>[[%stat_online_guests]]: [[+stat.online_guests]]<\\/p>\\r\\n<\\/div>","locked":0,"properties":null,"static":0,"static_file":"core\\/components\\/sitestatistics\\/elements\\/chunks\\/chunk.onlineusers.tpl","content":"<div class=\\"site-online-users\\">\\r\\n\\t<p>[[%stat_online_users_title]]<\\/p>\\r\\n\\t<p>[[%stat_online_users]]: [[+stat.online_users]]<\\/p>\\r\\n\\t<p>[[%stat_online_guests]]: [[+stat.online_guests]]<\\/p>\\r\\n<\\/div>"}',
+        'guid' => 'ba17041fa22309ce8f2e0a63b25dfc18',
+        'native_key' => 0,
+        'signature' => '4ccce41fcd5b0ffaf0c4bba2284d5692',
+      ),
+      'ad18ff4ec31e0396579a61d959a42df0' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => false,
+        'unique_key' => 'name',
+        'class' => 'modChunk',
+        'object' => '{"id":0,"source":1,"property_preprocess":0,"name":"tpl.siteStatistics.message","description":"","editor_type":0,"category":0,"cache_type":0,"snippet":"<div class=\\"modal\\" id=\\"sitestat-message-dlg\\" tabindex=\\"-1\\" role=\\"dialog\\" aria-hidden=\\"true\\">\\r\\n\\t<div class=\\"modal-dialog\\">\\r\\n\\t\\t<div class=\\"modal-content\\">\\r\\n\\t\\t\\t<div class=\\"modal-header\\">\\r\\n\\t\\t\\t\\t<h4 class=\\"modal-title\\">[[%sitestatistics_message]]<\\/h4>\\r\\n\\t\\t\\t<\\/div>\\r\\n\\t\\t\\t<div class=\\"modal-body\\">\\r\\n\\t\\t\\t\\t<div class=\\"form-group\\">[[+stat.message]]<\\/div>\\r\\n\\t\\t\\t<\\/div>\\r\\n\\t\\t\\t<div class=\\"modal-footer\\">\\r\\n\\t\\t\\t\\t<button type=\\"button\\" class=\\"btn btn-default\\" id=\\"message-dlg-close-btn\\" >[[%sitestatistics_close]]<\\/button>\\r\\n\\t\\t\\t<\\/div>\\r\\n\\t\\t<\\/div>\\r\\n\\t<\\/div>\\r\\n<\\/div>","locked":0,"properties":null,"static":0,"static_file":"core\\/components\\/sitestatistics\\/elements\\/chunks\\/chunk.messagedlg.tpl","content":"<div class=\\"modal\\" id=\\"sitestat-message-dlg\\" tabindex=\\"-1\\" role=\\"dialog\\" aria-hidden=\\"true\\">\\r\\n\\t<div class=\\"modal-dialog\\">\\r\\n\\t\\t<div class=\\"modal-content\\">\\r\\n\\t\\t\\t<div class=\\"modal-header\\">\\r\\n\\t\\t\\t\\t<h4 class=\\"modal-title\\">[[%sitestatistics_message]]<\\/h4>\\r\\n\\t\\t\\t<\\/div>\\r\\n\\t\\t\\t<div class=\\"modal-body\\">\\r\\n\\t\\t\\t\\t<div class=\\"form-group\\">[[+stat.message]]<\\/div>\\r\\n\\t\\t\\t<\\/div>\\r\\n\\t\\t\\t<div class=\\"modal-footer\\">\\r\\n\\t\\t\\t\\t<button type=\\"button\\" class=\\"btn btn-default\\" id=\\"message-dlg-close-btn\\" >[[%sitestatistics_close]]<\\/button>\\r\\n\\t\\t\\t<\\/div>\\r\\n\\t\\t<\\/div>\\r\\n\\t<\\/div>\\r\\n<\\/div>"}',
+        'guid' => '6a2978d54243f3d93df289e43e0abacf',
+        'native_key' => 0,
+        'signature' => 'ac7a3f9af2bbc415e530144e9396c4c3',
+      ),
+    ),
+    'Snippets' => 
+    array (
+      '32f37fd86274e32387b6d9f29aec22d6' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 'name',
+        'class' => 'modSnippet',
+        'object' => '{"id":0,"source":1,"property_preprocess":0,"name":"siteStatistics","description":"","editor_type":0,"category":0,"cache_type":0,"snippet":"\\/** @var array $scriptProperties *\\/\\n\\/** @var siteStatistics $siteStat *\\/\\nif (!$siteStat = $modx->getService(\'sitestatistics\', \'siteStatistics\', $modx->getOption(\'sitestatistics_core_path\', null, $modx->getOption(\'core_path\') . \'components\\/sitestatistics\\/\') . \'model\\/sitestatistics\\/\')) {\\n\\treturn \'Could not load siteStatistics class!\';\\n}\\n\\/\\/ mode: page\\/site\\nif (empty($mode)) $mode = $scriptProperties[\'mode\'] = \'page\';\\nif (empty($tpl)) $scriptProperties[\'tpl\'] = \'tpl.siteStatistics\';\\nif (empty($resource)) $resource = $modx->resource->id;\\n\\n$siteStat->initialize($scriptProperties);\\n\\nif ($mode == \'page\') {\\n\\t\\/** @var array|int $output *\\/\\n\\t$output = $siteStat->getPageStatistics($resource);\\n\\tif (!empty($toPlaceholders))\\n\\t\\t$modx->toPlaceholders($output,\'stat\');\\n\\telse\\n\\t\\treturn $output;\\n} else {\\n\\treturn $siteStat->getSiteStatistics();\\n}","locked":0,"properties":"a:7:{s:5:\\"count\\";a:7:{s:4:\\"name\\";s:5:\\"count\\";s:4:\\"desc\\";s:25:\\"sitestatistics_prop_count\\";s:4:\\"type\\";s:4:\\"list\\";s:7:\\"options\\";a:4:{i:0;a:2:{s:4:\\"text\\";s:0:\\"\\";s:5:\\"value\\";s:0:\\"\\";}i:1;a:2:{s:4:\\"text\\";s:5:\\"byday\\";s:5:\\"value\\";s:5:\\"byday\\";}i:2;a:2:{s:4:\\"text\\";s:7:\\"bymonth\\";s:5:\\"value\\";s:7:\\"bymonth\\";}i:3;a:2:{s:4:\\"text\\";s:6:\\"byyear\\";s:5:\\"value\\";s:6:\\"byyear\\";}}s:5:\\"value\\";s:0:\\"\\";s:7:\\"lexicon\\";s:25:\\"sitestatistics:properties\\";s:4:\\"area\\";s:0:\\"\\";}s:4:\\"date\\";a:7:{s:4:\\"name\\";s:4:\\"date\\";s:4:\\"desc\\";s:24:\\"sitestatistics_prop_date\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";a:0:{}s:5:\\"value\\";s:0:\\"\\";s:7:\\"lexicon\\";s:25:\\"sitestatistics:properties\\";s:4:\\"area\\";s:0:\\"\\";}s:4:\\"mode\\";a:7:{s:4:\\"name\\";s:4:\\"mode\\";s:4:\\"desc\\";s:24:\\"sitestatistics_prop_mode\\";s:4:\\"type\\";s:4:\\"list\\";s:7:\\"options\\";a:2:{i:0;a:2:{s:4:\\"text\\";s:4:\\"page\\";s:5:\\"value\\";s:4:\\"page\\";}i:1;a:2:{s:4:\\"text\\";s:4:\\"site\\";s:5:\\"value\\";s:4:\\"site\\";}}s:5:\\"value\\";s:4:\\"page\\";s:7:\\"lexicon\\";s:25:\\"sitestatistics:properties\\";s:4:\\"area\\";s:0:\\"\\";}s:8:\\"resource\\";a:7:{s:4:\\"name\\";s:8:\\"resource\\";s:4:\\"desc\\";s:28:\\"sitestatistics_prop_resource\\";s:4:\\"type\\";s:11:\\"numberfield\\";s:7:\\"options\\";a:0:{}s:5:\\"value\\";s:0:\\"\\";s:7:\\"lexicon\\";s:25:\\"sitestatistics:properties\\";s:4:\\"area\\";s:0:\\"\\";}s:4:\\"show\\";a:7:{s:4:\\"name\\";s:4:\\"show\\";s:4:\\"desc\\";s:24:\\"sitestatistics_prop_show\\";s:4:\\"type\\";s:4:\\"list\\";s:7:\\"options\\";a:2:{i:0;a:2:{s:4:\\"text\\";s:5:\\"views\\";s:5:\\"value\\";s:5:\\"views\\";}i:1;a:2:{s:4:\\"text\\";s:5:\\"users\\";s:5:\\"value\\";s:5:\\"users\\";}}s:5:\\"value\\";s:5:\\"views\\";s:7:\\"lexicon\\";s:25:\\"sitestatistics:properties\\";s:4:\\"area\\";s:0:\\"\\";}s:14:\\"toPlaceholders\\";a:7:{s:4:\\"name\\";s:14:\\"toPlaceholders\\";s:4:\\"desc\\";s:34:\\"sitestatistics_prop_toPlaceholders\\";s:4:\\"type\\";s:13:\\"combo-boolean\\";s:7:\\"options\\";a:0:{}s:5:\\"value\\";b:0;s:7:\\"lexicon\\";s:25:\\"sitestatistics:properties\\";s:4:\\"area\\";s:0:\\"\\";}s:3:\\"tpl\\";a:7:{s:4:\\"name\\";s:3:\\"tpl\\";s:4:\\"desc\\";s:23:\\"sitestatistics_prop_tpl\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";a:0:{}s:5:\\"value\\";s:18:\\"tpl.siteStatistics\\";s:7:\\"lexicon\\";s:25:\\"sitestatistics:properties\\";s:4:\\"area\\";s:0:\\"\\";}}","moduleguid":"","static":0,"static_file":"core\\/components\\/sitestatistics\\/elements\\/snippets\\/snippet.sitestatistics.php","content":"\\/** @var array $scriptProperties *\\/\\n\\/** @var siteStatistics $siteStat *\\/\\nif (!$siteStat = $modx->getService(\'sitestatistics\', \'siteStatistics\', $modx->getOption(\'sitestatistics_core_path\', null, $modx->getOption(\'core_path\') . \'components\\/sitestatistics\\/\') . \'model\\/sitestatistics\\/\')) {\\n\\treturn \'Could not load siteStatistics class!\';\\n}\\n\\/\\/ mode: page\\/site\\nif (empty($mode)) $mode = $scriptProperties[\'mode\'] = \'page\';\\nif (empty($tpl)) $scriptProperties[\'tpl\'] = \'tpl.siteStatistics\';\\nif (empty($resource)) $resource = $modx->resource->id;\\n\\n$siteStat->initialize($scriptProperties);\\n\\nif ($mode == \'page\') {\\n\\t\\/** @var array|int $output *\\/\\n\\t$output = $siteStat->getPageStatistics($resource);\\n\\tif (!empty($toPlaceholders))\\n\\t\\t$modx->toPlaceholders($output,\'stat\');\\n\\telse\\n\\t\\treturn $output;\\n} else {\\n\\treturn $siteStat->getSiteStatistics();\\n}"}',
+        'guid' => '8f62fd79cb60e617c4ecffc3d2c1bb7e',
+        'native_key' => 0,
+        'signature' => '84135acaa9e0ee49c64a56b9b9590d69',
+      ),
+      'aec2ee560100ac76652dfc4a9e04fe9e' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 'name',
+        'class' => 'modSnippet',
+        'object' => '{"id":0,"source":1,"property_preprocess":0,"name":"siteOnlineUsers","description":"","editor_type":0,"category":0,"cache_type":0,"snippet":"\\/**\\r\\n * @var array $scriptProperties\\r\\n * @var siteStatistics $siteStat\\r\\n *\\/\\r\\nif (!$siteStat = $modx->getService(\'sitestatistics\', \'siteStatistics\', $modx->getOption(\'sitestatistics_core_path\', null, $modx->getOption(\'core_path\') . \'components\\/sitestatistics\\/\') . \'model\\/sitestatistics\\/\')) {\\r\\n\\treturn \'Could not load siteStatistics class!\';\\r\\n}\\r\\nif (empty($tpl)) $scriptProperties[\'tpl\'] = \'tpl.siteOnlineUsers\';\\r\\n\\r\\n$siteStat->initialize($scriptProperties);\\r\\n\\r\\n\\/** @var array $output *\\/\\r\\n$output = $siteStat->getOnlineUsers();\\r\\nif (!empty($toPlaceholder)) {\\r\\n\\t$modx->setPlaceholder($toPlaceholder, $output);\\r\\n}\\r\\nelse {\\r\\n\\treturn $output;\\r\\n}","locked":0,"properties":"a:5:{s:3:\\"ctx\\";a:7:{s:4:\\"name\\";s:3:\\"ctx\\";s:4:\\"desc\\";s:24:\\"siteonlineusers_prop_ctx\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";a:0:{}s:5:\\"value\\";s:0:\\"\\";s:7:\\"lexicon\\";s:25:\\"sitestatistics:properties\\";s:4:\\"area\\";s:0:\\"\\";}s:13:\\"toPlaceholder\\";a:7:{s:4:\\"name\\";s:13:\\"toPlaceholder\\";s:4:\\"desc\\";s:34:\\"siteonlineusers_prop_toPlaceholder\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";a:0:{}s:5:\\"value\\";s:0:\\"\\";s:7:\\"lexicon\\";s:25:\\"sitestatistics:properties\\";s:4:\\"area\\";s:0:\\"\\";}s:3:\\"tpl\\";a:7:{s:4:\\"name\\";s:3:\\"tpl\\";s:4:\\"desc\\";s:24:\\"siteonlineusers_prop_tpl\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";a:0:{}s:5:\\"value\\";s:19:\\"tpl.siteOnlineUsers\\";s:7:\\"lexicon\\";s:25:\\"sitestatistics:properties\\";s:4:\\"area\\";s:0:\\"\\";}s:7:\\"tplItem\\";a:7:{s:4:\\"name\\";s:7:\\"tplItem\\";s:4:\\"desc\\";s:28:\\"siteonlineusers_prop_tplItem\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";a:0:{}s:5:\\"value\\";s:25:\\"<p>[[+stat.fullname]]<\\/p>\\";s:7:\\"lexicon\\";s:25:\\"sitestatistics:properties\\";s:4:\\"area\\";s:0:\\"\\";}s:8:\\"fullMode\\";a:7:{s:4:\\"name\\";s:8:\\"fullMode\\";s:4:\\"desc\\";s:29:\\"siteonlineusers_prop_fullMode\\";s:4:\\"type\\";s:13:\\"combo-boolean\\";s:7:\\"options\\";a:0:{}s:5:\\"value\\";b:0;s:7:\\"lexicon\\";s:25:\\"sitestatistics:properties\\";s:4:\\"area\\";s:0:\\"\\";}}","moduleguid":"","static":0,"static_file":"core\\/components\\/sitestatistics\\/elements\\/snippets\\/snippet.onlineusers.php","content":"\\/**\\r\\n * @var array $scriptProperties\\r\\n * @var siteStatistics $siteStat\\r\\n *\\/\\r\\nif (!$siteStat = $modx->getService(\'sitestatistics\', \'siteStatistics\', $modx->getOption(\'sitestatistics_core_path\', null, $modx->getOption(\'core_path\') . \'components\\/sitestatistics\\/\') . \'model\\/sitestatistics\\/\')) {\\r\\n\\treturn \'Could not load siteStatistics class!\';\\r\\n}\\r\\nif (empty($tpl)) $scriptProperties[\'tpl\'] = \'tpl.siteOnlineUsers\';\\r\\n\\r\\n$siteStat->initialize($scriptProperties);\\r\\n\\r\\n\\/** @var array $output *\\/\\r\\n$output = $siteStat->getOnlineUsers();\\r\\nif (!empty($toPlaceholder)) {\\r\\n\\t$modx->setPlaceholder($toPlaceholder, $output);\\r\\n}\\r\\nelse {\\r\\n\\treturn $output;\\r\\n}"}',
+        'guid' => 'c13bbf5e10d5ecaff5f747db57d9299b',
+        'native_key' => 0,
+        'signature' => '63ecf0c61858f0677e58fd1afa0e5ab0',
+      ),
+    ),
+    'Plugins' => 
+    array (
+      '04171a81e424470fb77b69ac3a20bc89' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 'name',
+        'class' => 'modPlugin',
+        'object' => '{"id":null,"source":1,"property_preprocess":0,"name":"siteStatistics","description":"","editor_type":0,"category":0,"cache_type":0,"plugincode":"$userAgents = $modx->getOption(\'stat.not_allowed_user_agents\');\\nif (!empty($userAgents)) {\\n    $userAgents = explode(\',\', $userAgents);\\n    $userAgents = array_map(\'trim\', $userAgents);\\n    $userAgents = implode(\'|\', $userAgents);\\n    $userAgent = empty($_SERVER[\'HTTP_USER_AGENT\']) ? \'empty\' : $_SERVER[\'HTTP_USER_AGENT\'];\\n    $pattern = \\"\\/($userAgents)\\/i\\";\\n    if (preg_match($pattern, $userAgent)) return;\\n}\\nswitch ($modx->event->name) {\\n    case \'OnLoadWebDocument\': {\\n\\n        if ( ($modx->getOption(\'stat.enable_statistics\', null, false) || $modx->getOption(\'stat.count_online_users\', null, false)) && $modx->getOption(\'site_status\')) {\\n            $path = $modx->getOption(\'sitestatistics_core_path\', null, $modx->getOption(\'core_path\') . \'components\\/sitestatistics\\/\').\'model\\/sitestatistics\\/\';\\n            \\/** @var siteStatistics $siteStat *\\/\\n            $siteStat = $modx->getService(\'sitestatistics\', \'siteStatistics\', $path);\\n            if (!$siteStat->checkIp()) return;\\n            \\/\\/ \\u0435\\u0441\\u043b\\u0438 \\u0442\\u0435\\u043a\\u0443\\u0449\\u0438\\u0439 ip \\u0432 \\u0437\\u0430\\u043f\\u0440\\u0435\\u0449\\u0435\\u043d\\u043d\\u044b\\u0445, \\u0442\\u043e \\u043d\\u0435 \\u0443\\u0447\\u0438\\u0442\\u044b\\u0432\\u0430\\u0442\\u044c \\u0441\\u0442\\u0430\\u0442\\u0438\\u0441\\u0442\\u0438\\u043a\\u0443.\\n            $siteStat->defineUserKey();\\n            \\/\\/ \\u0421\\u0442\\u0430\\u0442\\u0438\\u0441\\u0442\\u0438\\u043a\\u0430 \\u043f\\u0440\\u043e\\u0441\\u043c\\u043e\\u0442\\u0440\\u043e\\u0432\\n            if ($modx->getOption(\'stat.enable_statistics\', null, false)) {\\n                $siteStat->setStatistics();\\n            }\\n            \\/\\/  Online Users\\n            if ($modx->getOption(\'stat.count_online_users\', null, false)) {\\n                $siteStat->setUserStatistics();\\n            }\\n            $siteStat->need2ClearCache = $siteStat->getMessage();\\n        }\\n        break;\\n    }\\n    case \'OnWebPageComplete\': {\\n        $modx->sitestatistics->clearCache();\\n        unset($modx->sitestatistics);\\n        break;\\n    }\\n}","locked":0,"properties":null,"disabled":0,"moduleguid":"","static":0,"static_file":"core\\/components\\/sitestatistics\\/elements\\/plugins\\/plugin.sitestatistics.php","content":"$userAgents = $modx->getOption(\'stat.not_allowed_user_agents\');\\nif (!empty($userAgents)) {\\n    $userAgents = explode(\',\', $userAgents);\\n    $userAgents = array_map(\'trim\', $userAgents);\\n    $userAgents = implode(\'|\', $userAgents);\\n    $userAgent = empty($_SERVER[\'HTTP_USER_AGENT\']) ? \'empty\' : $_SERVER[\'HTTP_USER_AGENT\'];\\n    $pattern = \\"\\/($userAgents)\\/i\\";\\n    if (preg_match($pattern, $userAgent)) return;\\n}\\nswitch ($modx->event->name) {\\n    case \'OnLoadWebDocument\': {\\n\\n        if ( ($modx->getOption(\'stat.enable_statistics\', null, false) || $modx->getOption(\'stat.count_online_users\', null, false)) && $modx->getOption(\'site_status\')) {\\n            $path = $modx->getOption(\'sitestatistics_core_path\', null, $modx->getOption(\'core_path\') . \'components\\/sitestatistics\\/\').\'model\\/sitestatistics\\/\';\\n            \\/** @var siteStatistics $siteStat *\\/\\n            $siteStat = $modx->getService(\'sitestatistics\', \'siteStatistics\', $path);\\n            if (!$siteStat->checkIp()) return;\\n            \\/\\/ \\u0435\\u0441\\u043b\\u0438 \\u0442\\u0435\\u043a\\u0443\\u0449\\u0438\\u0439 ip \\u0432 \\u0437\\u0430\\u043f\\u0440\\u0435\\u0449\\u0435\\u043d\\u043d\\u044b\\u0445, \\u0442\\u043e \\u043d\\u0435 \\u0443\\u0447\\u0438\\u0442\\u044b\\u0432\\u0430\\u0442\\u044c \\u0441\\u0442\\u0430\\u0442\\u0438\\u0441\\u0442\\u0438\\u043a\\u0443.\\n            $siteStat->defineUserKey();\\n            \\/\\/ \\u0421\\u0442\\u0430\\u0442\\u0438\\u0441\\u0442\\u0438\\u043a\\u0430 \\u043f\\u0440\\u043e\\u0441\\u043c\\u043e\\u0442\\u0440\\u043e\\u0432\\n            if ($modx->getOption(\'stat.enable_statistics\', null, false)) {\\n                $siteStat->setStatistics();\\n            }\\n            \\/\\/  Online Users\\n            if ($modx->getOption(\'stat.count_online_users\', null, false)) {\\n                $siteStat->setUserStatistics();\\n            }\\n            $siteStat->need2ClearCache = $siteStat->getMessage();\\n        }\\n        break;\\n    }\\n    case \'OnWebPageComplete\': {\\n        $modx->sitestatistics->clearCache();\\n        unset($modx->sitestatistics);\\n        break;\\n    }\\n}"}',
+        'guid' => '988003750b3b14dfa07c3826770db41f',
+        'native_key' => NULL,
+        'signature' => 'ad037fedc330b3633766ddf2ca58a550',
+        'related_objects' => 
+        array (
+          'PluginEvents' => 
+          array (
+            '7685abd456b8a34da5e864b6294d6e8f' => 
+            array (
+              'preserve_keys' => true,
+              'update_object' => true,
+              'unique_key' => 
+              array (
+                0 => 'pluginid',
+                1 => 'event',
+              ),
+              'class' => 'modPluginEvent',
+              'object' => '{"pluginid":0,"event":"OnLoadWebDocument","priority":0,"propertyset":0}',
+              'guid' => '21cf0c88943fcbf9d8871a4fa9e20401',
+              'native_key' => 
+              array (
+                0 => 0,
+                1 => 'OnLoadWebDocument',
+              ),
+              'signature' => '14d21b75f19b43d919769ea0ecd2e140',
+            ),
+            '16fb7907f41d8b14c3df1833acd4dbf8' => 
+            array (
+              'preserve_keys' => true,
+              'update_object' => true,
+              'unique_key' => 
+              array (
+                0 => 'pluginid',
+                1 => 'event',
+              ),
+              'class' => 'modPluginEvent',
+              'object' => '{"pluginid":0,"event":"OnWebPageComplete","priority":0,"propertyset":0}',
+              'guid' => '5d38c32fce47128537a1f381435ca86a',
+              'native_key' => 
+              array (
+                0 => 0,
+                1 => 'OnWebPageComplete',
+              ),
+              'signature' => '7ac6d9f573f87f909276ada8bbc242e2',
+            ),
+          ),
+        ),
+      ),
+    ),
+  ),
+  'related_object_attributes' => 
+  array (
+    'Snippets' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 'name',
+    ),
+    'Chunks' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => false,
+      'unique_key' => 'name',
+    ),
+    'Plugins' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 'name',
+    ),
+    'PluginEvents' => 
+    array (
+      'preserve_keys' => true,
+      'update_object' => true,
+      'unique_key' => 
+      array (
+        0 => 'pluginid',
+        1 => 'event',
+      ),
+    ),
+  ),
+  'namespace' => 'sitestatistics',
+  'resolve' => 
+  array (
+    0 => 
+    array (
+      'type' => 'file',
+      'body' => '{"source":"sitestatistics-2.2.0-pl\\/modCategory\\/d2eb4eae1ee34ff7d29ef8c5c11b042c\\/0\\/","target":"return MODX_ASSETS_PATH . \'components\\/\';","name":"sitestatistics"}',
+    ),
+    1 => 
+    array (
+      'type' => 'file',
+      'body' => '{"source":"sitestatistics-2.2.0-pl\\/modCategory\\/d2eb4eae1ee34ff7d29ef8c5c11b042c\\/1\\/","target":"return MODX_CORE_PATH . \'components\\/\';","name":"sitestatistics"}',
+    ),
+    2 => 
+    array (
+      'type' => 'php',
+      'body' => '{"source":"sitestatistics-2.2.0-pl\\/modCategory\\/d2eb4eae1ee34ff7d29ef8c5c11b042c.resolve.tables.resolver","type":"php","name":"resolve.tables"}',
+    ),
+    3 => 
+    array (
+      'type' => 'php',
+      'body' => '{"source":"sitestatistics-2.2.0-pl\\/modCategory\\/d2eb4eae1ee34ff7d29ef8c5c11b042c.resolve.chunks.resolver","type":"php","name":"resolve.chunks"}',
+    ),
+  ),
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '20c8197c3997be4544e3b0bc34391020',
+  'package' => 'modx',
+  'class' => 'modCategory',
+  'signature' => 'd2eb4eae1ee34ff7d29ef8c5c11b042c',
+  'native_key' => NULL,
+  'object' => '{"id":null,"parent":0,"category":"siteStatistics","rank":0}',
+);

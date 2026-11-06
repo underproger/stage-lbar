@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'resizer',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '225888873ad86c02e68814f393e63c46',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '938d99701246ea225307df69a376047d',
+  'native_key' => 'resizer.graphics_library',
+  'object' => '{"key":"resizer.graphics_library","value":"2","xtype":"textfield","namespace":"resizer","area":"resizer","editedon":null}',
+);

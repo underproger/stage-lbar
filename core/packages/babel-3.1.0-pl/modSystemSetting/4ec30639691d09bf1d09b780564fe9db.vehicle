@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'babel',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '03398fd9676a8f88c0f448df700919d1',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '4ec30639691d09bf1d09b780564fe9db',
+  'native_key' => 'babel.babelTvName',
+  'object' => '{"key":"babel.babelTvName","value":"babelLanguageLinks","xtype":"textfield","namespace":"babel","area":"common","editedon":null}',
+);

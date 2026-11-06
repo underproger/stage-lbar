@@ -1,0 +1,17 @@
+<?php return array (
+  'preserve_keys' => true,
+  'update_object' => true,
+  'unique_key' => 'text',
+  'related_objects' => true,
+  'namespace' => 'seotemplates',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '02bce32f1f7f92977ac2519e1ac46010',
+  'package' => 'modx',
+  'class' => 'modMenu',
+  'signature' => 'a2afcb21e9fcf0fc39f19037717fb935',
+  'native_key' => 'seotemplates',
+  'object' => '{"text":"seotemplates","parent":"components","action":"home","description":"seotemplates_menu_desc","icon":"","menuindex":0,"params":"","handler":"","permissions":"","namespace":"seotemplates"}',
+);
