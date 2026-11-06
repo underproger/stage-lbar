@@ -83,4 +83,4 @@ $_lang['lbar.rd.about.quote'] = "В Studio Lbar каждая процедура 
 $_lang['lbar.rd.about.cta'] = "Записаться на консультацию";
 
 // --- редизайн: блок «Услуги» ---
-$_lang['lbar.rd.services.eyebrow'] = "Студия LBar";
+$_lang['lbar.rd.services.eyebrow'] = "Наши процедуры";

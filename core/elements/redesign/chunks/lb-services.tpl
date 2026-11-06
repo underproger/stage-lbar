@@ -3,7 +3,7 @@
    Карточка — чанк lb.serviceCard. *}
 <section class="lb-services" id="lb-services">
     <div class="lb-services__bg" aria-hidden="true">
-        <img src="/assets/templates/redesign/img/services-bg.webp" srcset="/assets/templates/redesign/img/services-bg-1440.webp 1440w, /assets/templates/redesign/img/services-bg.webp 2166w" sizes="100vw" width="2166" height="1218" alt="" loading="lazy" decoding="async">
+        <img src="/assets/templates/redesign/img/services-bg.webp?v=2" srcset="/assets/templates/redesign/img/services-bg-1440.webp?v=2 1440w, /assets/templates/redesign/img/services-bg.webp?v=2 2166w" sizes="100vw" width="2166" height="1218" alt="" loading="lazy" decoding="async">
     </div>
 
     <div class="lb-services__intro">

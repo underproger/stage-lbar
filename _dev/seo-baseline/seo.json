@@ -1,0 +1,4010 @@
+[
+ {
+  "id": "0",
+  "ctx": "web",
+  "uri": "NULL",
+  "url": "https://lbar.ro/",
+  "template": "-",
+  "status": 200,
+  "location": null,
+  "title": "Micropigmentare Bucuresti, tatuaj în salonul Lbar – pret și recenzii",
+  "description": [
+   "Studiou de micropigmentare (tatuaj) în Bucuresti ⚡ Masteri cu experiență de peste 3 ani. Vă creăm un look impecabil prin aplicarea tatuajelor pe toate zonele și pigmenți din SUA ⭐ Preturi accesibile cu alegere individuală a formei. Recenzii grozave ⭐ Cei mai buni masteri"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/",
+   "ru=https://lbar.ro/ru/"
+  ],
+  "og": {},
+  "h1": [
+   "Micropigmentare Bucuresti Studio Lbar"
+  ],
+  "h2": [
+   "Servicii Lbar Studio",
+   "Micropigmentarea în salonul nostru din București, implică:",
+   "Faceți cunoștință! Masterul dvs. – Ksenia Kobilianskaia",
+   "Obțineți o consultație personală",
+   "Galerie foto – machiaj permanent după procedură",
+   "Lista de prețuri: micropigmentare în București",
+   "Recenzii tatuaje cosmetice de la clientele noastre",
+   "Răspunsuri la întrebări frecvente",
+   "Micropigmentarea – cea mai bună modalitate de a vă transforma",
+   "Etapele procedurii de micropigmentare",
+   "Modul de îngrijire a tatuajului după procedură",
+   "Salonul micropigmentare LBar din București – ajutorul dvs. de specialitate în machiajul semipermanent profesional",
+   "Contact"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "7bb8c9fb4a1f6af84e0474b7adea5cbb"
+ },
+ {
+  "id": "0",
+  "ctx": "ru",
+  "uri": "NULL",
+  "url": "https://lbar.ro/ru/",
+  "template": "-",
+  "status": 200,
+  "location": null,
+  "title": "Студия перманентного макияжа Lbar. Цены на татуаж в Бухаресте",
+  "description": [
+   "Lbar - студия перманентного макияжа (татуажа) в Бухаресте ⚡ Мастера с опытом от 3-х лет. Сделаем ваш взгляд безупречным с помощью татуажа всех зон и пигментов из США ⭐ Доступные цены с индивидуальным подбором формы. Замечательные отзывы ⭐ Лучшие мастера"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ru/"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/",
+   "ru=https://lbar.ro/ru/"
+  ],
+  "og": {},
+  "h1": [
+   "Перманентный макияж в Бухаресте от LBar"
+  ],
+  "h2": [
+   "Наши услуги",
+   "Перманентный татуаж в Бухаресте от LBar — это:",
+   "Приветствую. Я — Ксения Кобылянская , мастер студии LBar",
+   "Получить личную консультацию",
+   "Фото перманентного макияжа и татуажа после процедуры",
+   "Цены перманентного макияжа в Бухаресте в LBar",
+   "Отзывы о студии перманентного макияжа от наших любимых клиентов",
+   "Ответы на часто задаваемые вопросы",
+   "Не отказывайте себе в красоте, сделайте косметический татуаж",
+   "Что вам нужно знать о перманентном макияже",
+   "Особенности каждой техники",
+   "Контакты"
+  ],
+  "jsonld": 3,
+  "lang": "ru",
+  "text_hash": "c07f04fd2af38141c4a36639542b5a7b"
+ },
+ {
+  "id": "193",
+  "ctx": "ru",
+  "uri": "permanentnyij-makiyazh-v-kieve-ot-studii-lbar",
+  "url": "https://lbar.ro/ru/permanentnyij-makiyazh-v-kieve-ot-studii-lbar",
+  "template": "1",
+  "status": 301,
+  "location": "https://lbar.ro/ru/",
+  "title": null,
+  "description": [],
+  "keywords": [],
+  "robots": [],
+  "canonical": [],
+  "alternate": [],
+  "og": {},
+  "h1": [],
+  "h2": [],
+  "jsonld": 0,
+  "lang": null,
+  "text_hash": "d41d8cd98f00b204e9800998ecf8427e"
+ },
+ {
+  "id": "194",
+  "ctx": "ru",
+  "uri": "kontakty",
+  "url": "https://lbar.ro/ru/kontakty",
+  "template": "9",
+  "status": 200,
+  "location": null,
+  "title": "Контакты студии перманентного макияжа Lbar в Бухаресте",
+  "description": [
+   "Контакты Lbar - студии перманентного макияжа и татуажа в Бухаресте. Телефон: +40 720 203 105. Strada Polonă 92 (Sector 1), Bucuresti"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ru/kontakty"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/contact",
+   "ru=https://lbar.ro/ru/kontakty"
+  ],
+  "og": {},
+  "h1": [
+   "Контакты студии Lbar в Бухаресте"
+  ],
+  "h2": [
+   "Заказать звонок Заказать звонок Отправить"
+  ],
+  "jsonld": 3,
+  "lang": "ru",
+  "text_hash": "cdddc7a717809985fed78e3f283aa59a"
+ },
+ {
+  "id": "195",
+  "ctx": "ru",
+  "uri": "sitemap.xml",
+  "url": "https://lbar.ro/ru/sitemap.xml",
+  "template": "0",
+  "status": 200,
+  "location": null,
+  "title": null,
+  "description": [],
+  "keywords": [],
+  "robots": [],
+  "canonical": [],
+  "alternate": [],
+  "og": {},
+  "h1": [],
+  "h2": [],
+  "jsonld": 0,
+  "lang": null,
+  "text_hash": "69046993f32643661444c03166ecc929"
+ },
+ {
+  "id": "196",
+  "ctx": "ru",
+  "uri": "dostup-zapreshhen",
+  "url": "https://lbar.ro/ru/dostup-zapreshhen",
+  "template": "0",
+  "status": 200,
+  "location": null,
+  "title": null,
+  "description": [],
+  "keywords": [],
+  "robots": [],
+  "canonical": [],
+  "alternate": [],
+  "og": {},
+  "h1": [],
+  "h2": [],
+  "jsonld": 0,
+  "lang": null,
+  "text_hash": "131720a132aeca7cc8ab07316b76fadc"
+ },
+ {
+  "id": "198",
+  "ctx": "ru",
+  "uri": "portfolio",
+  "url": "https://lbar.ro/ru/portfolio",
+  "template": "10",
+  "status": 200,
+  "location": null,
+  "title": "≋ ФОТОГАЛЕРЕЯ ≋ (портфолио) работ по перманентному макияжу | Студия LBar.com.ua",
+  "description": [
+   "Портфолио работ мастеров студии LBar ⭐ Посмотрите как мы делаем наших клиенток красивыми ⭐ Стойкий эффект макияжа до 2 лет ⭐ 100% естественный вид"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ru/portfolio"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/portfolio",
+   "ru=https://lbar.ro/ru/portfolio"
+  ],
+  "og": {},
+  "h1": [
+   "Фотогалерея (портфолио) работ студии Lbar"
+  ],
+  "h2": [
+   "Контакты"
+  ],
+  "jsonld": 3,
+  "lang": "ru",
+  "text_hash": "0f0e227c38d765915fee430b16514643"
+ },
+ {
+  "id": "199",
+  "ctx": "ru",
+  "uri": "kseniya-kobyilyanskaya",
+  "url": "https://lbar.ro/ru/kseniya-kobyilyanskaya",
+  "template": "13",
+  "status": 200,
+  "location": null,
+  "title": "Мастер перманентного макияжа Ксения Кобылянская - детальнее о мастере татуажа: биография, портфолио (фото) работ и отзывы",
+  "description": [
+   "Мастер перманентного макияжа в Киеве - Ксения Кобылянская. Детальная информация о мастере, фото работ и отзывов клиентов. Читайте и оставляйте отзыв - студия Lbar"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ru/kseniya-kobyilyanskaya"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/kseniya-kobyilyanskaya",
+   "ru=https://lbar.ro/ru/kseniya-kobyilyanskaya"
+  ],
+  "og": {},
+  "h1": [
+   "Мастер перманентного макияжа Ксения Кобылянская: фото работ и отзывы"
+  ],
+  "h2": [
+   "Отзывы о мастере-тренере Ксения Кобылянская",
+   "Контакты"
+  ],
+  "jsonld": 3,
+  "lang": "ru",
+  "text_hash": "def3ec4e480d9a50377b8b27b6155409"
+ },
+ {
+  "id": "200",
+  "ctx": "ru",
+  "uri": "alena-shubchinskaya",
+  "url": "https://lbar.ro/ru/alena-shubchinskaya",
+  "template": "13",
+  "status": 200,
+  "location": null,
+  "title": "Алена Шубчинская - детальнее о мастере татуажа: биография, портфолио (фото) работ и отзывы",
+  "description": [
+   "Мастер перманентного макияжа в Киеве - Алена Шубчинская. Детальная информация о мастере, фото работ и отзывов клиентов. Читайте и оставляйте отзыв - студия Lbar"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ru/alena-shubchinskaya"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/alena-shubchinskaya",
+   "ru=https://lbar.ro/ru/alena-shubchinskaya"
+  ],
+  "og": {},
+  "h1": [
+   "Мастер перманентного макияжа Алена Шубчинская: фото работ и отзывы"
+  ],
+  "h2": [
+   "Отзывы о мастере татуажа Алена Шубчинская",
+   "Контакты"
+  ],
+  "jsonld": 3,
+  "lang": "ru",
+  "text_hash": "2fb2a4ad78382ed09fce064aa2ef66cf"
+ },
+ {
+  "id": "202",
+  "ctx": "ru",
+  "uri": "portfolio-permanent-brovey-do-i-posle",
+  "url": "https://lbar.ro/ru/portfolio-permanent-brovey-do-i-posle",
+  "template": "13",
+  "status": 200,
+  "location": null,
+  "title": "Фото татуажа бровей до и после - фотогалерея работ перманентного макияжа LBar.com.ua",
+  "description": [
+   "Фотогалерея татуажа бровей мастеров студии LBar. Фото и видео работ до и после сразу после процедуры и в зажившем виде"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ru/portfolio-permanent-brovey-do-i-posle"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/portofoliu-micropigmentare-sprancene-inainte-si-dupa",
+   "ru=https://lbar.ro/ru/portfolio-permanent-brovey-do-i-posle"
+  ],
+  "og": {},
+  "h1": [
+   "Фото перманентного татуажа бровей"
+  ],
+  "h2": [
+   "Важность портфолио: фото татуажа бровей до и после",
+   "Вы выбрали мастера. Чего ждать от перманентного макияжа бровей?",
+   "Контакты"
+  ],
+  "jsonld": 3,
+  "lang": "ru",
+  "text_hash": "bea9a10cc1463dd289d8b6e8e2a95962"
+ },
+ {
+  "id": "203",
+  "ctx": "ru",
+  "uri": "foto-tatuazha-glaz",
+  "url": "https://lbar.ro/ru/foto-tatuazha-glaz",
+  "template": "13",
+  "status": 200,
+  "location": null,
+  "title": "Фото татуажа глаз (век) до и после: межресничка, классические стрелки и с растушевкой LBar.com.ua",
+  "description": [
+   "Фотогалерея татуажа глаз (век) мастеров студии LBar. Фото и видео работ до и после сразу после процедуры и в зажившем виде "
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ru/foto-tatuazha-glaz"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/portofoliu-micropigmentare-ochi-inainte-si-dupa",
+   "ru=https://lbar.ro/ru/foto-tatuazha-glaz"
+  ],
+  "og": {},
+  "h1": [
+   "Фото перманентного татуажа глаз (век)"
+  ],
+  "h2": [
+   "Взгляните на фото перманентного макияжа глаз",
+   "Решились сделать татуаж глаз?",
+   "Контакты"
+  ],
+  "jsonld": 3,
+  "lang": "ru",
+  "text_hash": "94fddb41676871757de14151e42d78e3"
+ },
+ {
+  "id": "204",
+  "ctx": "ru",
+  "uri": "foto-tatuazha-gub",
+  "url": "https://lbar.ro/ru/foto-tatuazha-gub",
+  "template": "13",
+  "status": 200,
+  "location": null,
+  "title": "Фото татуажа губ до и после: акварельная техника, 3D/6D и помадный эффект LBar.com.ua",
+  "description": [
+   "Фотогалерея перманентного татуажа губ мастеров студии LBar. Фото и видео работ до и после сразу после процедуры и в зажившем виде "
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ru/foto-tatuazha-gub"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/portofoliu-micropigmentare-buze-inainte-si-dupa",
+   "ru=https://lbar.ro/ru/foto-tatuazha-gub"
+  ],
+  "og": {},
+  "h1": [
+   "Фото перманентного татуажа губ"
+  ],
+  "h2": [
+   "Фото татуажа губ, как признак качества услуги",
+   "Как понять, что мастер татуажа - новичок?",
+   "Контакты"
+  ],
+  "jsonld": 3,
+  "lang": "ru",
+  "text_hash": "a7361aab4c8c225b481525673de2bea6"
+ },
+ {
+  "id": "205",
+  "ctx": "ru",
+  "uri": "fragmentyi-obucheniya",
+  "url": "https://lbar.ro/ru/fragmentyi-obucheniya",
+  "template": "13",
+  "status": 200,
+  "location": null,
+  "title": "фрагменты обучения на базовом курсе перманентного макияжа (татуажа)",
+  "description": [],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ru/fragmentyi-obucheniya"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/fragmente-de-antrenament",
+   "ru=https://lbar.ro/ru/fragmentyi-obucheniya"
+  ],
+  "og": {},
+  "h1": [
+   "Фрагменты обучения на базовом курсе перманентного макияжа"
+  ],
+  "h2": [
+   "Контакты"
+  ],
+  "jsonld": 3,
+  "lang": "ru",
+  "text_hash": "3ad0bd4756dc4dc0ad41abd63ffea010"
+ },
+ {
+  "id": "206",
+  "ctx": "ru",
+  "uri": "oshibka-404",
+  "url": "https://lbar.ro/ru/oshibka-404",
+  "template": "2",
+  "status": 200,
+  "location": null,
+  "title": "Ошибка 404",
+  "description": [],
+  "keywords": [],
+  "robots": [],
+  "canonical": [
+   "https://lbar.ro/ru/oshibka-404"
+  ],
+  "alternate": [],
+  "og": {},
+  "h1": [
+   "Упс! Ошибка 404"
+  ],
+  "h2": [],
+  "jsonld": 0,
+  "lang": "ru",
+  "text_hash": "820bb90c683c460b4cf8790ee7ffc417"
+ },
+ {
+  "id": "269",
+  "ctx": "ru",
+  "uri": "thanx-you",
+  "url": "https://lbar.ro/ru/thanx-you",
+  "template": "6",
+  "status": 200,
+  "location": null,
+  "title": "Успешный заказ",
+  "description": [],
+  "keywords": [],
+  "robots": [],
+  "canonical": [],
+  "alternate": [],
+  "og": {},
+  "h1": [],
+  "h2": [],
+  "jsonld": 0,
+  "lang": "ru",
+  "text_hash": "0eea37b60b043359257e983b2608c3e3"
+ },
+ {
+  "id": "270",
+  "ctx": "ru",
+  "uri": "tseni",
+  "url": "https://lbar.ro/ru/tseni",
+  "template": "14",
+  "status": 200,
+  "location": null,
+  "title": "Цена на перманентный макияж в Бухаресте 2024 - cтоимость татуажа бровей в Lbar",
+  "description": [
+   "Цены на услуги на перманентного макияжа в Бухаресте от Lbar ⭐  Брови, губы, стрелки. Доступная стоимость от 280 RON на татуаж с индивидуальным подбором формы ⚡ Стойкий эффект до 2 лет ☝ 100% естественный вид. Лучшие мастера"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ru/tseni"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/preturi",
+   "ru=https://lbar.ro/ru/tseni"
+  ],
+  "og": {},
+  "h1": [
+   "Цены на перманентный татуаж в Бухаресте"
+  ],
+  "h2": [
+   "Цены на перманентный макияж бровей",
+   "Цены на татуаж губ",
+   "Цены на татуаж глаз",
+   "Оправдана ли цена перманентного макияжа?",
+   "За что вы платите при выполнении перманентного макияжа",
+   "Контакты"
+  ],
+  "jsonld": 3,
+  "lang": "ru",
+  "text_hash": "e51ab37928d5b013308377811dabc7c1"
+ },
+ {
+  "id": "298",
+  "ctx": "ru",
+  "uri": "o-nas",
+  "url": "https://lbar.ro/ru/o-nas",
+  "template": "3",
+  "status": 200,
+  "location": null,
+  "title": "О студии татуажа Lbar Ксении Кобылянской",
+  "description": [
+   "Подробно о студии перманентного макияжа Лбар (LBar) в Румынии (Бухарест), истории и достижениях, услугах и результатах работы"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ru/o-nas"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/despre-noi",
+   "ru=https://lbar.ro/ru/o-nas"
+  ],
+  "og": {},
+  "h1": [
+   "О нашей студии перманентного макияжа Lbar"
+  ],
+  "h2": [
+   "Контакты"
+  ],
+  "jsonld": 3,
+  "lang": "ru",
+  "text_hash": "75b2415c0fa52096ee90d552814a69a8"
+ },
+ {
+  "id": "299",
+  "ctx": "ru",
+  "uri": "vakansii",
+  "url": "https://lbar.ro/ru/vakansii",
+  "template": "3",
+  "status": 200,
+  "location": null,
+  "title": "Вакансии работа в студии перманентного макияжа Lbar в Бухаресте, Румыния",
+  "description": [
+   "Открытые вакансии по работе в студии перманентного макияжа Lbar в Бухаресте, Румыния на мастера перманентного макияжа, мастера маникюра и мастера по наращиванию ресниц"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ru/vakansii"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/posturi-vacante",
+   "ru=https://lbar.ro/ru/vakansii"
+  ],
+  "og": {},
+  "h1": [
+   "Вакансии студии Lbar, работа в студии перманентного макияжа"
+  ],
+  "h2": [
+   "Контакты"
+  ],
+  "jsonld": 3,
+  "lang": "ru",
+  "text_hash": "b6a670e4209c5bedd58f69f53f08612f"
+ },
+ {
+  "id": "300",
+  "ctx": "ru",
+  "uri": "otzyvy",
+  "url": "https://lbar.ro/ru/otzyvy",
+  "template": "16",
+  "status": 200,
+  "location": null,
+  "title": "Отзывы о перманентном макияже (татуаже) бровей, губ, век в Бухаресте. Отзывы о пудровых бровях студии Lbar",
+  "description": [
+   "Отзывы о перманентном макияже (татуаже) студии Lbar ⭐ в Бухаресте. Отзывы: Пудровые брови, татуаж бровей, губ, глаз. Стойкий эффект до 2 лет. 100% естественный вид ⚡ Лучшие мастера"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ru/otzyvy"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/recenzii",
+   "ru=https://lbar.ro/ru/otzyvy"
+  ],
+  "og": {},
+  "h1": [
+   "Отзывы о перманентном макияже бровей, татуаже губ и век"
+  ],
+  "h2": [
+   "Отзывы об Lbar",
+   "Мы всегда рады вашим отзывам о перманентном макияже",
+   "Ваши отзывы о татуаже бровей помогают девушкам",
+   "Контакты"
+  ],
+  "jsonld": 3,
+  "lang": "ru",
+  "text_hash": "69841ca1212516de42d5dec83b42f375"
+ },
+ {
+  "id": "302",
+  "ctx": "ru",
+  "uri": "uslugi",
+  "url": "https://lbar.ro/ru/uslugi",
+  "template": "3",
+  "status": 200,
+  "location": null,
+  "title": "Услуги студии татуажа LBar в Бухаресте",
+  "description": [
+   "Перечень услуг студии татуажа в Бухаресте, Румыния. Услуги высшего уровня. Опытные мастера, 100% положительные отзывы. Доступные цены и бесплатная консультация"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ru/uslugi"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/servicii",
+   "ru=https://lbar.ro/ru/uslugi"
+  ],
+  "og": {},
+  "h1": [
+   "Услуги студии татуажа LBar"
+  ],
+  "h2": [
+   "Услуги студии татуажа LBar",
+   "Услуги перманентного макияжа для ценителей красоты",
+   "Контакты"
+  ],
+  "jsonld": 3,
+  "lang": "ru",
+  "text_hash": "6778c25fab0659541d3fb2f1fd208735"
+ },
+ {
+  "id": "303",
+  "ctx": "ru",
+  "uri": "tatuazh-brovey",
+  "url": "https://lbar.ro/ru/tatuazh-brovey",
+  "template": "8",
+  "status": 200,
+  "location": null,
+  "title": "Татуаж бровей в Бухаресте, цена на перманентный макияж бровей в Lbar.com.ua",
+  "description": [
+   "Сделать татуаж бровей в Бухаресте от Lbar ⚡ Мастера с опытом от 3-х лет. Актуальные цены на перманентный макияж бровей с индивидуальным подбором формы. Длительный эффект до 2 лет, 100% естественный вид ⭐ Премиум гипоаллергенные пигменты"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ru/tatuazh-brovey"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/micropigmentare-sprancene",
+   "ru=https://lbar.ro/ru/tatuazh-brovey"
+  ],
+  "og": {},
+  "h1": [
+   "Перманентный макияж бровей в Бухаресте от LBar"
+  ],
+  "h2": [
+   "Выберите свою технику татуажа бровей",
+   "Вам нужен татуаж бровей, если:",
+   "Приветствую. Я — Ксения Кобылянская , мастер студии LBar",
+   "Получить личную консультацию",
+   "Фото работ по татуажу бровей до и после",
+   "Цены на процедуру перманентного макияжа в Бухаресте",
+   "Отзывы о татуаже бровей в нашей студии от наших любимых клиентов",
+   "Ответы на часто задаваемые вопросы",
+   "Татуаж бровей, как лучшая альтернатива ежедневному макияжу",
+   "В чем преимущества микропигментации бровей?",
+   "Как проходит услуга татуажа бровей",
+   "Контакты"
+  ],
+  "jsonld": 4,
+  "lang": "ru",
+  "text_hash": "5ea4cfcb7eba84b9b6e013aaa70ae58e"
+ },
+ {
+  "id": "304",
+  "ctx": "ru",
+  "uri": "pudrovyye-brovi",
+  "url": "https://lbar.ro/ru/pudrovyye-brovi",
+  "template": "8",
+  "status": 200,
+  "location": null,
+  "title": "Пудровые брови в Бухаресте с эффектом омбре. Цена, фото и отзывы пудрового напыления в Lbar",
+  "description": [
+   "Сделать пудровые брови в Бухаресте от Lbar с эффектом омбре. ⭐ Мастера с опытом от 3-х лет ☝ Доступные цены на пудровый татуаж бровей с индивидуальным подбором формы. Напыление пигментами из США с результатом до 2 лет"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ru/pudrovyye-brovi"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/micropigmentare-pudrat",
+   "ru=https://lbar.ro/ru/pudrovyye-brovi"
+  ],
+  "og": {},
+  "h1": [
+   "Пудровые брови в Бухаресте от LBar"
+  ],
+  "h2": [
+   "Пудровое напыление лучший вариант, если",
+   "Приветствую. Я — Ксения Кобылянская , мастер студии LBar",
+   "Получить личную консультацию",
+   "Фото пудровых бровей до и после процедуры",
+   "Цены пудровых бровей в Бухаресте в LBar",
+   "Отзывы о пудровых бровях от наших любимых клиентов",
+   "Ответы на часто задаваемые вопросы",
+   "Почему техника нано напыления — самая популярная в мире?",
+   "Преимущества пудровых бровей",
+   "Как проходит процедура пудровых бровей",
+   "Об уходе за кожей после сеанса микропигментирования",
+   "Пудровые брови — техника №1 во всем мире",
+   "Контакты"
+  ],
+  "jsonld": 4,
+  "lang": "ru",
+  "text_hash": "ecfda2eb289c312afe5e238a24937435"
+ },
+ {
+  "id": "305",
+  "ctx": "ru",
+  "uri": "voloskovyy-tatuazh-brovey",
+  "url": "https://lbar.ro/ru/voloskovyy-tatuazh-brovey",
+  "template": "8",
+  "status": 200,
+  "location": null,
+  "title": "≋ ВОЛОСКОВЫЙ ТАТУАЖ БРОВЕЙ ≋ в Бухаресте‣ сделать ТАТУАЖ БРОВЕЙ В ВОЛОСКОВОЙ ТЕХНИКЕ по доступной цене | Студия LBar",
+  "description": [
+   "Сделать волосковый татуаж бровей в Бухаресте от Lbar ⭐ Сделаем ваш взгляд безупречным. Доступные цены на волосковый татуаж с индивидуальным подбором формы ⚡ Стойкий эффект до 2 лет ⚡ 100% естественный вид. Лучшие мастера"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ru/voloskovyy-tatuazh-brovey"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/micropigmentare-fir-cu-fir",
+   "ru=https://lbar.ro/ru/voloskovyy-tatuazh-brovey"
+  ],
+  "og": {},
+  "h1": [
+   "Волосковый татуаж бровей в Бухаресте от LBar"
+  ],
+  "h2": [
+   "Вам нужен волосковый татуаж бровей, если:",
+   "Приветствую. Я — Ксения Кобылянская , мастер студии LBar",
+   "Получить личную консультацию",
+   "Татуаж бровей в волосковой технике: фото до и после",
+   "Цены на волосковый татуаж бровей в Бухаресте",
+   "Отзывы о волосковой технике от наших клиентов",
+   "Ответы на вопросы о татуаже бровей в волосковой технике",
+   "Перманентный макияж волосковым методом для вашего безупречного образа",
+   "Все, что нужно знать о волосковом татуаже бровей",
+   "Решились сделать волосковый татуаж бровей?",
+   "Контакты"
+  ],
+  "jsonld": 4,
+  "lang": "ru",
+  "text_hash": "1d76852e7aa49796e5e9719bab2cf6a2"
+ },
+ {
+  "id": "306",
+  "ctx": "ru",
+  "uri": "microblading",
+  "url": "https://lbar.ro/ru/microblading",
+  "template": "8",
+  "status": 200,
+  "location": null,
+  "title": "Микроблейдинг бровей в Бухаресте | сделать по ценам 2022 | Cтудия Lbar",
+  "description": [
+   "Сделать микроблейдинг бровей в Бухаресте от Lbar ⚡ Мастера с опытом от 3-х лет. Сделаем ваш взгляд безупречным. Доступные актуальные цены 2021 на микроблейдинг с индивидуальным подбором формы. Длительный эффект до 2 лет, 100% естественный вид ⭐ Премиум гипоаллергенные пигменты"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ru/microblading"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/microblading",
+   "ru=https://lbar.ro/ru/microblading"
+  ],
+  "og": {},
+  "h1": [
+   "Микроблейдинг бровей в Бухаресте от LBar"
+  ],
+  "h2": [
+   "3 причины сделать процедуру микроблейдинга бровей",
+   "Приветствую. Я — Ксения Кобылянская , мастер студии LBar",
+   "Получить личную консультацию",
+   "Фото микроблейдинга бровей до и после",
+   "Цены на микроблейдинг в Бухаресте",
+   "Отзывы о процедуре микроблейдинга от любимых клиенток",
+   "Ответы на часто задаваемые вопросы о микроблейдинге",
+   "Зачем вам косметика для бровей, если можно сделать микроблейдинг?",
+   "Преимущества микроблейдинга",
+   "Контакты"
+  ],
+  "jsonld": 4,
+  "lang": "ru",
+  "text_hash": "3a66a1ef192a01d1eae7715d75157bbe"
+ },
+ {
+  "id": "307",
+  "ctx": "ru",
+  "uri": "3d-i-6d-tatuazh",
+  "url": "https://lbar.ro/ru/3d-i-6d-tatuazh",
+  "template": "8",
+  "status": 200,
+  "location": null,
+  "title": "≋ 3D И 6D ТАТУАЖ БРОВЕЙ ≋ в Бухаресте ‣ сделать ПЕРМАНЕНТНЫЙ МАКИЯЖ БРОВЕЙ 3Д/6Д по доступной цене | Студия LBar",
+  "description": [
+   "Сделать 3d и 6d татуаж бровей в Бухаресте⭐ Сделаем ваш взгляд безупречным. Доступные цены на татуаж с индивидуальным подбором формы ⚡ Стойкий эффект до 2 лет. 100% естественный вид ⚡ Лучшие мастера"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ru/3d-i-6d-tatuazh"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/3d-i-6d-tatuaj-sprancene ",
+   "ru=https://lbar.ro/ru/3d-i-6d-tatuazh"
+  ],
+  "og": {},
+  "h1": [
+   "3D и 6D татуаж бровей в Бухаресте от LBar"
+  ],
+  "h2": [
+   "Перманентный макияж бровей 3D/6D — идеальный вариант, если:",
+   "Приветствую. Я — Ксения Кобылянская , мастер студии LBar",
+   "Получить личную консультацию",
+   "3Д и 6Д перманентный макияж бровей: фото до и после",
+   "Цены на 3D/6D татуаж бровей в Бухаресте",
+   "Отзывы о 3Д/6Д татуаже от наших клиентов",
+   "Ответы на вопросы о 3D/6D перманентном татуаже бровей",
+   "Красивые брови — это просто и доступно. Сделайте татуаж бровей 3D/6D",
+   "Что такое татуаж бровей 3Д и почему он так называется?",
+   "Преимущества техники",
+   "Как проходит перманентный 3D макияж бровей",
+   "Контакты"
+  ],
+  "jsonld": 4,
+  "lang": "ru",
+  "text_hash": "0d5c4e258e956e3f5450b267a8ae98a9"
+ },
+ {
+  "id": "316",
+  "ctx": "ru",
+  "uri": "korrektsiya-permanentnogo-makiyazha",
+  "url": "https://lbar.ro/ru/korrektsiya-permanentnogo-makiyazha",
+  "template": "8",
+  "status": 200,
+  "location": null,
+  "title": "≋ КОРРЕКЦИЯ ТАТУАЖА ≋ бровей, губ и век в Бухаресте ‣ сделать КОРРЕКЦИЮ ПЕРМАНЕНТНОГО МАКИЯЖА по доступной цене | Студия Lbar",
+  "description": [
+   "Сделать коррекцию перманентного макияжа (брови, губы и веки) в Бухаресте от Lbar ⭐ Сделаем ваш взгляд безупречным. Доступные цены на коррекцию татуажа ☝ Стойкий эффект до 2 лет. 100% естественный вид. Лучшие мастера"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ru/korrektsiya-permanentnogo-makiyazha"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/corectie-micropigmentare",
+   "ru=https://lbar.ro/ru/korrektsiya-permanentnogo-makiyazha"
+  ],
+  "og": {},
+  "h1": [
+   "Коррекция татуажа бровей, век и губ от LBar в Бухаресте"
+  ],
+  "h2": [
+   "Приветствую. Я — Ксения Кобылянская , мастер студии LBar",
+   "Получить личную консультацию",
+   "Фото коррекции перманентного макияжа после процедуры в LBar",
+   "Цена коррекции татуажа в Бухаресте",
+   "Отзывы о коррекции татуажа от наших любимых клиенток",
+   "Ответы на вопросы о коррекции татуажа",
+   "В чем важность и особенность коррекции татуажа",
+   "Зачем нужна коррекция перманентного татуажа?",
+   "Когда делать коррекцию и как она выполняется",
+   "Что будет, если не сделать корректировку перманентного макияжа?",
+   "Контакты"
+  ],
+  "jsonld": 4,
+  "lang": "ru",
+  "text_hash": "318f9e1edea7f983a1f304d93f1d76ca"
+ },
+ {
+  "id": "317",
+  "ctx": "ru",
+  "uri": "tatuazh-strelok",
+  "url": "https://lbar.ro/ru/tatuazh-strelok",
+  "template": "8",
+  "status": 200,
+  "location": null,
+  "title": "Татуаж стрелок (глаз) в Бухаресте | цена на перманентный макияжа век | Cтудия Lbar",
+  "description": [
+   "Сделать татуаж стрелок в Бухаресте от Lbar ⭐ Мастера с опытом от 3-х лет ☝ Доступные цены на перманентный макияж стрелок (глаз, век, растушевка). Стойкий эффект до 2 лет. 100% естественный вид ⭐ Премиум гипоаллергенные пигменты"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ru/tatuazh-strelok"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/micropigmentare-ochi-eyeliner",
+   "ru=https://lbar.ro/ru/tatuazh-strelok"
+  ],
+  "og": {},
+  "h1": [
+   "Татуаж глаз и стрелок в Бухаресте от LBar"
+  ],
+  "h2": [
+   "Перманентный макияж стрелок поможет:",
+   "Приветствую. Я — Ксения Кобылянская , мастер студии LBar",
+   "Получить личную консультацию",
+   "Фото татуажа глаз и стрелок до и после",
+   "Цены на татуаж глаз в Бухаресте в LBar",
+   "Отзывы о татуаже глаз (стрелок) от наших клиентов",
+   "Ответы на популярные вопросы",
+   "Почему вам нужно сделать татуаж стрелок: 3 ключевых момента",
+   "3 причины сделать перманентный макияж глаз",
+   "Что важно знать о татуаже глаз",
+   "Контакты"
+  ],
+  "jsonld": 4,
+  "lang": "ru",
+  "text_hash": "8224d43e7ef88e3464be23348589e4f2"
+ },
+ {
+  "id": "318",
+  "ctx": "ru",
+  "uri": "mezhresnichnyy-tatuazh",
+  "url": "https://lbar.ro/ru/mezhresnichnyy-tatuazh",
+  "template": "8",
+  "status": 200,
+  "location": null,
+  "title": "≋ МЕЖРЕСНИЧНЫЙ ТАТУАЖ ≋ в Бухаресте ‣ сделать ТАТУАЖ МЕЖРЕСНИЧНОГО ПРОСТРАНСТВА по доступной цене | Студия LBar",
+  "description": [
+   "Сделать межресничный татуаж в Бухаресте от Lbar ⭐ Сделаем ваш взгляд безупречным. Доступные цены на межресничный татуаж с индивидуальным подбором формы ⭐ Стойкий эффект до 2 лет ☝ 100% естественный вид. Лучшие мастера"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ru/mezhresnichnyy-tatuazh"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/micropigmentare-pleoape",
+   "ru=https://lbar.ro/ru/mezhresnichnyy-tatuazh"
+  ],
+  "og": {},
+  "h1": [
+   "Межресничный татуаж век в Бухаресте от LBar"
+  ],
+  "h2": [
+   "Межресничный татуаж век —  отличная возможность:",
+   "Приветствую. Я — Ксения Кобылянская , мастер студии LBar",
+   "Получить личную консультацию",
+   "Фото межресничного татуажа век до и после",
+   "Цены на татуаж межресничного пространства в LBar",
+   "Отзывы о межресничном татуаже век от наших клиентов",
+   "Ответы на вопросы о межресничном татуаже глаз",
+   "Решайтесь стать еще красивее! Сделайте межресничку",
+   "Что вам нужно знать о межресничном татуаже век",
+   "Особенности техники",
+   "Контакты"
+  ],
+  "jsonld": 4,
+  "lang": "ru",
+  "text_hash": "4d499cd0bd2acd233ac96cffe1e8ae79"
+ },
+ {
+  "id": "319",
+  "ctx": "ru",
+  "uri": "akvarelnayi-gubu",
+  "url": "https://lbar.ro/ru/akvarelnayi-gubu",
+  "template": "8",
+  "status": 200,
+  "location": null,
+  "title": "Татуаж губ в Бухаресте | акварельные губы, цена и отзывы - Lbar",
+  "description": [
+   "Сделать татуаж губ в акварельной технике в Бухаресте от Lbar ⭐ Сделаем ваши губы безупречными. Доступные цены на акварельные губы с индивидуальным подбором формы ⭐Стойкий эффект до 2 лет. 100% естественный вид ⭐ Премиум гипоаллергенные пигменты"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ru/akvarelnayi-gubu"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/micropigmentare-buze",
+   "ru=https://lbar.ro/ru/akvarelnayi-gubu"
+  ],
+  "og": {},
+  "h1": [
+   "Татуаж губ в Бухаресте от LBar"
+  ],
+  "h2": [
+   "Татуаж губ в акварельной и других техниках — это:",
+   "Приветствую. Я — Ксения Кобылянская , мастер студии LBar",
+   "Получить личную консультацию",
+   "Фото перманентного макияжа губ и акварельной техники до и после",
+   "Цены на татуаж губ и акварельные губы в Бухаресте",
+   "Отзывы о перманентном макияже губ от наших клиенток",
+   "Ответы на частые вопросы",
+   "Акварельные губы: ощутите все преимущества татуажа губ",
+   "В чем преимущества перманентного татуажа губ?",
+   "Как проходит татуаж губ: основные этапы",
+   "Что необходимо знать о микропигментации губ",
+   "Контакты"
+  ],
+  "jsonld": 4,
+  "lang": "ru",
+  "text_hash": "46a202c6a36315b2d37c4e3df40b535d"
+ },
+ {
+  "id": "320",
+  "ctx": "ru",
+  "uri": "tatuazh-mushki",
+  "url": "https://lbar.ro/ru/tatuazh-mushki",
+  "template": "8",
+  "status": 200,
+  "location": null,
+  "title": "Татуаж мушки (родинки) в Бухаресте| цена 2022 на перманентный макияж | Cтудия Lbar",
+  "description": [
+   "Сделать татуаж мушки в Бухаресте от Lbar ⚡ Мастера с опытом от 3-х лет. Сделаем ваш взгляд безупречным. Доступные цены 2021 на перманентный макияж мушки с индивидуальным подбором формы. Длительный эффект до 2 лет, 100% естественный вид ⚡ Премиум гипоаллергенные пигменты"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ru/tatuazh-mushki"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/tatuaj-alunita",
+   "ru=https://lbar.ro/ru/tatuazh-mushki"
+  ],
+  "og": {},
+  "h1": [
+   "Татуаж мушки в Бухаресте от LBar"
+  ],
+  "h2": [
+   "Вы можете сделать татуаж мушки на:",
+   "Приветствую. Я — Ксения Кобылянская , мастер студии LBar",
+   "Получить личную консультацию",
+   "Фото татуажа мушки после процедуры",
+   "Цена перманентного макияжа мушки в Бухаресте",
+   "Отзывы о татуаже родинки от наших клиенток",
+   "Ответы на вопросы о татуаже мушки",
+   "Сделайте татуаж мушки и заявите окружающим о своей сексуальности",
+   "Ах, эта родинка…",
+   "Татуаж мушки, как часть вашего игривого образа",
+   "Контакты"
+  ],
+  "jsonld": 4,
+  "lang": "ru",
+  "text_hash": "10b2f1955db6d494885c0ec5cb679422"
+ },
+ {
+  "id": "321",
+  "ctx": "ru",
+  "uri": "lazernoye-udaleniye-tatuazha-i-tatu",
+  "url": "https://lbar.ro/ru/lazernoye-udaleniye-tatuazha-i-tatu",
+  "template": "19",
+  "status": 200,
+  "location": null,
+  "title": "Лазерное удаление татуажа и тату в Бухаресте, цена на выведение татуировок",
+  "description": [
+   "Удаление лазером татуажа и татуировок ✅ Первый сектор в Бухаресте ➔ корректируем татуаж ✓ удаляем татуировки любой сложности ➔  сертифицированный современный лазер"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ru/lazernoye-udaleniye-tatuazha-i-tatu"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/indepartare-tatuaj-cu-laser",
+   "ru=https://lbar.ro/ru/lazernoye-udaleniye-tatuazha-i-tatu"
+  ],
+  "og": {},
+  "h1": [
+   "Лазерное удаление татуажа и тату в Бухаресте"
+  ],
+  "h2": [
+   "Получить консультацию мастера",
+   "Мечтаете о чистой коже без рисунка? Лазерное удаление татуажа - лучший вариант",
+   "Что мы используем в работе",
+   "Получите бесплатную консультацию",
+   "Цены лазерного удаления татуировки и перманентного макияжа",
+   "Фото удаления до и после",
+   "Наши специалисты",
+   "Отзывы об услуге лазерного удаления татуажа",
+   "Часто задаваемые вопросы",
+   "Контакты"
+  ],
+  "jsonld": 4,
+  "lang": "ru",
+  "text_hash": "8f6d5d9cdff0c46d1d2888049c3f0719"
+ },
+ {
+  "id": "323",
+  "ctx": "ru",
+  "uri": "podarochny-sertifikat-na-tatuazh",
+  "url": "https://lbar.ro/ru/podarochny-sertifikat-na-tatuazh",
+  "template": "3",
+  "status": 200,
+  "location": null,
+  "title": "Подарочный сертификат на перманентный татуаж бровей / пудровые брови в Бухаресте для девушке и женщин - студия Lbar",
+  "description": [
+   "Купить подарочный сертификат на перманентный макияж (татуаж) глаз, бровей, акварельный губ в Бухаресте - подарить сертификат жене или девушке на праздник от студии Lbar"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ru/podarochny-sertifikat-na-tatuazh"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/gift-voucher-micropigmentare",
+   "ru=https://lbar.ro/ru/podarochny-sertifikat-na-tatuazh"
+  ],
+  "og": {},
+  "h1": [
+   "Подарочный сертификат на перманентный татуаж"
+  ],
+  "h2": [
+   "Контакты"
+  ],
+  "jsonld": 3,
+  "lang": "ru",
+  "text_hash": "a2d34b4a4a051389520d5e1d26b33dd4"
+ },
+ {
+  "id": "628",
+  "ctx": "ru",
+  "uri": "lazernaya-epilyatsiya",
+  "url": "https://lbar.ro/ru/lazernaya-epilyatsiya",
+  "template": "8",
+  "status": 200,
+  "location": null,
+  "title": "Лазерная эпиляция в Бухаресте в салоне LBar. Цена удаления волос диодным лазером",
+  "description": [
+   "Перманентная лазерная эпиляция в Бухаресте в салоне LBar ⚡ Мастера с опытом работы более 5 лет ✔ Современные методы  и диодного лазера последнего поколе✔ Доступные цены ✎ Качественное современное оборудование"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ru/lazernaya-epilyatsiya"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/epilare-definitiva-cu-laser",
+   "ru=https://lbar.ro/ru/lazernaya-epilyatsiya"
+  ],
+  "og": {},
+  "h1": [
+   "Лазерная эпиляция Бухарест"
+  ],
+  "h2": [
+   "3 причины сделать лазерную эпиляцию",
+   "Добро пожаловать в LBar! Я — Ксения Кобылянская, ваш косметолог по лазерной эпиляции",
+   "Получить личную консультацию",
+   "Цены на лазерную эпиляцию в Бухаресте в LBar",
+   "Отзывы о лазерной эпиляции от наших любимых клиентов",
+   "Ответы на часто задаваемые вопросы",
+   "Почему лазерная эпиляция так популярна?",
+   "Преимущества лазерной эпиляции",
+   "Как проходит лазерная эпиляция в Бухаресте в нашей студии?",
+   "Подготовка",
+   "Лазерная эпиляция — способ №1 в мире по удалению волос",
+   "Контакты"
+  ],
+  "jsonld": 4,
+  "lang": "ru",
+  "text_hash": "bfd18458ca3e839b1a855723cc21c87a"
+ },
+ {
+  "id": "630",
+  "ctx": "ru",
+  "uri": "manichiura",
+  "url": "https://lbar.ro/ru/manichiura",
+  "template": "8",
+  "status": 200,
+  "location": null,
+  "title": "Маникюр Бухарест - салон маникюра с гель-лаком, цена и фото Lbar",
+  "description": [
+   "Маникюр в Бухаресте в салоне гелевых ногтей LBar ⚡ Мастера с опытом работы более 5 лет ✔ Сектор 1, Доробанти (станция Перла) ✔ Доступные цены ✎ Гарантируем отличный результат и естественный эффект"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ru/manichiura"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/manichiura",
+   "ru=https://lbar.ro/ru/manichiura"
+  ],
+  "og": {},
+  "h1": [
+   "Бухарест маникюр в салоне Lbar"
+  ],
+  "h2": [
+   "Фото наших работ по маникюру с гель-лаком",
+   "Цена на классический маникюр, гель-лак и другие ногтевые услуги в Бухаресте",
+   "Отзывы о маникюре от наших дорогих клиентов",
+   "В Lbar вы можете сделать все виды маникюра в Бухаресте",
+   "Контакты"
+  ],
+  "jsonld": 4,
+  "lang": "ru",
+  "text_hash": "5596a5d7816acb5bef51afd232eb28df"
+ },
+ {
+  "id": "632",
+  "ctx": "ru",
+  "uri": "pedichiura",
+  "url": "https://lbar.ro/ru/pedichiura",
+  "template": "8",
+  "status": 200,
+  "location": null,
+  "title": "Педикюр Бухарест - салон педикюра с гель-лаком, цена и фото Lbar",
+  "description": [
+   "Педикюр в Бухаресте в салоне гелевых ногтей LBar ⚡ Мастера с опытом работы более 5 лет ✔ Сектор 1, Доробанти (станция Перла) ✔ Доступные цены ✎ Гарантируем отличный результат и естественный эффект"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ru/pedichiura"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/pedichiura",
+   "ru=https://lbar.ro/ru/pedichiura"
+  ],
+  "og": {},
+  "h1": [
+   "Бухарест педикюр в салоне Lbar"
+  ],
+  "h2": [
+   "Фото наших работ по педикюру с гель-лаком",
+   "Цена на педикюр, гель-лак в Бухаресте",
+   "Отзывы о педикюре от наших дорогих клиентов",
+   "6 причин записаться на педикюр в Dorobanti в студию Lbar",
+   "Контакты"
+  ],
+  "jsonld": 4,
+  "lang": "ru",
+  "text_hash": "0419b91a9f4ff7299e66a3dc6c86c85e"
+ },
+ {
+  "id": "1",
+  "ctx": "web",
+  "uri": "micropigmentare-in-bucuresti",
+  "url": "https://lbar.ro/micropigmentare-in-bucuresti",
+  "template": "1",
+  "status": 301,
+  "location": "https://lbar.ro/",
+  "title": null,
+  "description": [],
+  "keywords": [],
+  "robots": [],
+  "canonical": [],
+  "alternate": [],
+  "og": {},
+  "h1": [],
+  "h2": [],
+  "jsonld": 0,
+  "lang": null,
+  "text_hash": "d41d8cd98f00b204e9800998ecf8427e"
+ },
+ {
+  "id": "2",
+  "ctx": "web",
+  "uri": "micropigmentare-sprancene",
+  "url": "https://lbar.ro/micropigmentare-sprancene",
+  "template": "8",
+  "status": 200,
+  "location": null,
+  "title": "Micropigmentare Sprancene in Bucuresti, pret tatuaj LBar",
+  "description": [
+   "Fă-ți un micropigmentare sprâncene in Bucuresti la Studio LBar. Masteri cu experienta de peste 5 ani, metode moderne de tatuaj, Preturi accesibile, Va garantam rezultate excelente si efect natural"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/micropigmentare-sprancene"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/micropigmentare-sprancene",
+   "ru=https://lbar.ro/ru/tatuazh-brovey"
+  ],
+  "og": {},
+  "h1": [
+   "Micropigmentare sprancene"
+  ],
+  "h2": [
+   "Alegeți-vă tehnica pentru tatuajul sprancenelor",
+   "Puteți opta pentru micropigmentarea sprancenelor, dacă:",
+   "Faceți cunoștință! Masterul dvs. – Ksenia Kobilianskaia",
+   "Obțineți o consultație personală",
+   "Galerie foto – dermopigmentare sprâncene înainte și după procedură",
+   "Lista de preturi: micropigmentare sprancene in Bucuresti",
+   "Recenzii tatuaj sprâncene în studioul nostru de la clientele noastre dragi",
+   "Răspunsuri la întrebări frecvente",
+   "Tatuajul sprancenelor – o bună alternativă la machiajul zilnic",
+   "Care sunt beneficiile procedurii de micropigmentare sprâncene?",
+   "Etapele procedurii de micropigmentare sprancene",
+   "Contact"
+  ],
+  "jsonld": 4,
+  "lang": "ro",
+  "text_hash": "18cd566d018adb8f80e434f6225a0996"
+ },
+ {
+  "id": "3",
+  "ctx": "web",
+  "uri": "contact",
+  "url": "https://lbar.ro/contact",
+  "template": "9",
+  "status": 200,
+  "location": null,
+  "title": "Date de contact studioul de micropigmentare și tatuaj LBar in Bucuresti",
+  "description": [
+   "Date de contact LBar – studioul de micropigmentare in Bucuresti. Telefon: +40 720 203 105. Strada Polonă 92 (Sector 1), Bucuresti"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/contact"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/contact",
+   "ru=https://lbar.ro/ru/kontakty"
+  ],
+  "og": {},
+  "h1": [
+   "Date de contact Studio LBar in Bucuresti"
+  ],
+  "h2": [
+   "SOLICITĂ UN APEL SOLICITĂ UN APEL Trimite"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "326049a32e676eacb34e2e89a3695ccf"
+ },
+ {
+  "id": "20",
+  "ctx": "web",
+  "uri": "oshibka-404",
+  "url": "https://lbar.ro/oshibka-404",
+  "template": "2",
+  "status": 200,
+  "location": null,
+  "title": "Eroare 404",
+  "description": [],
+  "keywords": [],
+  "robots": [],
+  "canonical": [
+   "https://lbar.ro/oshibka-404"
+  ],
+  "alternate": [],
+  "og": {},
+  "h1": [
+   "Hopa! Eroare 404"
+  ],
+  "h2": [],
+  "jsonld": 0,
+  "lang": "ro",
+  "text_hash": "7016bae17a00b1ee4458a26c70ee821d"
+ },
+ {
+  "id": "22",
+  "ctx": "web",
+  "uri": "dostup-zapreshhen",
+  "url": "https://lbar.ro/dostup-zapreshhen",
+  "template": "0",
+  "status": 200,
+  "location": null,
+  "title": null,
+  "description": [],
+  "keywords": [],
+  "robots": [],
+  "canonical": [],
+  "alternate": [],
+  "og": {},
+  "h1": [],
+  "h2": [],
+  "jsonld": 0,
+  "lang": null,
+  "text_hash": "131720a132aeca7cc8ab07316b76fadc"
+ },
+ {
+  "id": "23",
+  "ctx": "web",
+  "uri": "sitemap.xml",
+  "url": "https://lbar.ro/sitemap.xml",
+  "template": "0",
+  "status": 200,
+  "location": null,
+  "title": null,
+  "description": [],
+  "keywords": [],
+  "robots": [],
+  "canonical": [],
+  "alternate": [],
+  "og": {},
+  "h1": [],
+  "h2": [],
+  "jsonld": 0,
+  "lang": null,
+  "text_hash": "0ae2bc10c417c5a40623985a055be864"
+ },
+ {
+  "id": "31",
+  "ctx": "web",
+  "uri": "blog",
+  "url": "https://lbar.ro/blog",
+  "template": "4",
+  "status": 200,
+  "location": null,
+  "title": "Blog studioul de machiaj permanent lbar.roBlog studioul de machiaj permanent lbar.ro",
+  "description": [
+   "Blog profesional studioul de machiaj permanent Lbar. Totul despre machiajul permanent și nu numai"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/blog"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/blog"
+  ],
+  "og": {},
+  "h1": [
+   "Blog studioul de machiaj permanent Lbar"
+  ],
+  "h2": [],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "a795b7250d674bec440fbae299c1a77f"
+ },
+ {
+  "id": "40",
+  "ctx": "web",
+  "uri": "thanx-you",
+  "url": "https://lbar.ro/thanx-you",
+  "template": "6",
+  "status": 200,
+  "location": null,
+  "title": "Comanda de succes",
+  "description": [],
+  "keywords": [],
+  "robots": [],
+  "canonical": [],
+  "alternate": [],
+  "og": {},
+  "h1": [],
+  "h2": [],
+  "jsonld": 0,
+  "lang": "ro",
+  "text_hash": "6c390e3c25aac9d8a1846289a8f31946"
+ },
+ {
+  "id": "44",
+  "ctx": "web",
+  "uri": "preturi",
+  "url": "https://lbar.ro/preturi",
+  "template": "14",
+  "status": 200,
+  "location": null,
+  "title": "Preturi micropigmentare in Bucuresti 2026 – pret tatuaj sprancene la Studio LBar",
+  "description": [
+   "Preturi pentru servicii de machiaj permanent in Bucuresti de la LBar ⭐ Sprancene, buze, eyeliner. Pret accesibil de la 280 RON pentru tatuaj cu alegere individuala a formei ⚡ Efect rezistent până la 2 ani ☝100% aspect natural. Masteri de Top"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/preturi"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/preturi",
+   "ru=https://lbar.ro/ru/tseni"
+  ],
+  "og": {},
+  "h1": [
+   "Preturi micropigmentare Bucuresti"
+  ],
+  "h2": [
+   "Lista de preturi: micropigmentare sprancene",
+   "Lista de preturi: micropigmentare buze",
+   "Lista de preturi: micropigmentare pleoape eyeliner",
+   "Este oare prețul machiajului permanent justificat?",
+   "Ce se include în prețul pentru procedura de micropigmentare",
+   "Contact"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "f1a5dd362024b4630d6b53eda89a7fb2"
+ },
+ {
+  "id": "51",
+  "ctx": "web",
+  "uri": "micropigmentare-pudrat",
+  "url": "https://lbar.ro/micropigmentare-pudrat",
+  "template": "8",
+  "status": 200,
+  "location": null,
+  "title": "Micropigmentare Sprancene pudrat in Bucuresti, pret tehnica powder sprancene | LBar",
+  "description": [
+   "Fă-ți un micropigmentare sprancene (Powder) Pudrat in Bucuresti la Studio LBar ⚡ Masteri cu experienta de peste 5 ani ✔ Preturi accesibile ✎ Va garantam rezultate excelente si efect natural"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/micropigmentare-pudrat"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/micropigmentare-pudrat",
+   "ru=https://lbar.ro/ru/pudrovyye-brovi"
+  ],
+  "og": {},
+  "h1": [
+   "Micropigmentare Sprancene pudrat Bucuresti"
+  ],
+  "h2": [
+   "Micropigmentare sprancene efect pudrat poate fi cea mai bună opțiune, dacă",
+   "Faceți cunoștință! Masterul dvs. – Ksenia Kobilianskaia",
+   "Obțineți o consultație personală",
+   "Galerie foto – micropigmentare sprancene powder înainte și după procedură",
+   "Lista de preturi: micropigmentare sprancene powder in Bucuresti la LBar",
+   "Recenzii micropigmentare sprancene powder de la clientele noastre dragi",
+   "Răspunsuri la întrebări frecvente",
+   "De ce tehnica powder sprancene este considerată cea mai cunoscută în lume?",
+   "Beneficii tehnica powder sprancene",
+   "Etapele procedurii de micropigmentare sprancene efect pudrat",
+   "Micropigmentare sprancene efect pudrat – tehnica Nr. 1 în întreaga lume",
+   "Contact"
+  ],
+  "jsonld": 4,
+  "lang": "ro",
+  "text_hash": "db1a1d67552e2d23fe0ed2ff9cccfcf7"
+ },
+ {
+  "id": "52",
+  "ctx": "web",
+  "uri": "microblading",
+  "url": "https://lbar.ro/microblading",
+  "template": "8",
+  "status": 200,
+  "location": null,
+  "title": "Microblading Sprancene in Bucuresti | LBar",
+  "description": [
+   "Microblading Sprancene in Bucuresti in Studioul LBar ➝ Masteri cu experienta de peste 5 ani ✔ Preturi accesibile ✎ Va garantam rezultate excelente si efect natural"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/microblading"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/microblading",
+   "ru=https://lbar.ro/ru/microblading"
+  ],
+  "og": {},
+  "h1": [
+   "Microblading sprancene in Bucuresti de la LBar"
+  ],
+  "h2": [
+   "3 motive pentru a beneficia de microblading",
+   "Faceți cunoștință! Masterul dvs. – Ksenia Kobilianskaia",
+   "Obțineți o consultație personală",
+   "Galerie foto – microblading înainte și după procedură",
+   "Microblading sprancene preturi in Bucuresti la Studio LBar",
+   "Recenzii microblading sprancene de la clientele noastre",
+   "Răspunsuri la întrebări frecvente despre microblading",
+   "De ce să vă machiați sprâncenele, de vreme ce puteți beneficia de microblading?",
+   "Beneficii microblading",
+   "Contact"
+  ],
+  "jsonld": 4,
+  "lang": "ro",
+  "text_hash": "6ac527ebc7e4245a42e58affd2684d87"
+ },
+ {
+  "id": "53",
+  "ctx": "web",
+  "uri": "micropigmentare-fir-cu-fir",
+  "url": "https://lbar.ro/micropigmentare-fir-cu-fir",
+  "template": "8",
+  "status": 200,
+  "location": null,
+  "title": "Micropigmentare sprancene Fir cu Fir in Bucuresti, pret tatuaje Fir cu Fir | LBar",
+  "description": [
+   "Fă-ți un micropigmentare sprancene Fir cu Fir in Bucuresti la Studio LBar ⚡ Masteri cu experienta de peste 5 ani ✔ Preturi accesibile ✎ Va garantam rezultate excelente si efect natural"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/micropigmentare-fir-cu-fir"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/micropigmentare-fir-cu-fir",
+   "ru=https://lbar.ro/ru/voloskovyy-tatuazh-brovey"
+  ],
+  "og": {},
+  "h1": [
+   "Micropigmentare sprancene fir cu fir in Bucuresti"
+  ],
+  "h2": [
+   "Puteți opta pentru micropigmentarea sprâncenelor fir cu fir, dacă:",
+   "Faceți cunoștință! Masterul dvs. – Ksenia Kobilianskaia",
+   "Obțineți o consultație personală",
+   "Galerie foto – micropigmentare sprancene fir cu fir înainte și după procedură",
+   "Tatuaj sprancene fir cu fir preturi in Bucuresti la Studio LBar",
+   "Recenzii micropigmentare sprancene fir cu fir de la clientele noastre",
+   "Răspunsuri la întrebări despre tatuaj sprancene fir cu fir",
+   "Machiaj permanent sprancene fir cu fir pentru un look impecabil",
+   "Ce este important să știți despre tatuajul sprâncenelor fir cu fir",
+   "Ați decis să vă faceți tatuaj sprancene fir cu fir?",
+   "Contact"
+  ],
+  "jsonld": 4,
+  "lang": "ro",
+  "text_hash": "6334b4dafb1efae9aa0bd082ea84f047"
+ },
+ {
+  "id": "54",
+  "ctx": "web",
+  "uri": "3d-i-6d-tatuaj-sprancene ",
+  "url": "https://lbar.ro/3d-i-6d-tatuaj-sprancene%20",
+  "template": "8",
+  "status": 403,
+  "location": null,
+  "title": "403 Forbidden",
+  "description": [],
+  "keywords": [],
+  "robots": [],
+  "canonical": [],
+  "alternate": [],
+  "og": {},
+  "h1": [
+   "Forbidden"
+  ],
+  "h2": [],
+  "jsonld": 0,
+  "lang": null,
+  "text_hash": "946e5bb7826d548622f0529fbeef33b4"
+ },
+ {
+  "id": "60",
+  "ctx": "web",
+  "uri": "obuchenie",
+  "url": "https://lbar.ro/obuchenie",
+  "template": "21",
+  "status": 200,
+  "location": null,
+  "title": "Academia de micropigmentare LBar din București",
+  "description": [
+   "Cea mai bună academie de micropigmentare din România, București. Școala de machiaj semipermanent LBar. TOP Master-Trainer Ksenia Kobilianskaia. A pregătit peste 400 de masteri de succes"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/obuchenie"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/obuchenie"
+  ],
+  "og": {},
+  "h1": [
+   "Academia de micropigmentare LBar"
+  ],
+  "h2": [
+   "Bine ați venit la academia de micropigmentare",
+   "Contact"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "f839454b4dabcd9451d2dc08e1d8bbb0"
+ },
+ {
+  "id": "80",
+  "ctx": "web",
+  "uri": "servicii",
+  "url": "https://lbar.ro/servicii",
+  "template": "3",
+  "status": 200,
+  "location": null,
+  "title": "Serviciile studioului de machiaj permanent LBar din București",
+  "description": [
+   "Lista serviciilor studioului de machiaj permanent din București. Masteri cu experiență de peste 3 ani ⭐ Preturi accesibile cu alegere individuală a formei. 100% recenzii pozitive"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/servicii"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/servicii",
+   "ru=https://lbar.ro/ru/uslugi"
+  ],
+  "og": {},
+  "h1": [
+   "Serviciile studioului de machiaj permanent LBar"
+  ],
+  "h2": [
+   "Serviciile studioului de tatuaje LBar",
+   "Serviciile studioului de machiaj permanent LBar",
+   "Contact"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "b69ddda60e6cc49c751210ad62c780b2"
+ },
+ {
+  "id": "100",
+  "ctx": "web",
+  "uri": "portfolio",
+  "url": "https://lbar.ro/portfolio",
+  "template": "10",
+  "status": 200,
+  "location": null,
+  "title": "≋ GALERIE FOTO ≋ (portofoliu) lucrări pe machiaj permanent | Studio LBar.com.ua",
+  "description": [
+   "Portofoliu de lucrări ale maeștrilor studioului LBar ⭐ Vezi cum ne facem frumoase clienții ⭐ Efect de machiaj de durată până la 2 ani ⭐ Aspect 100% natural"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/portfolio"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/portfolio",
+   "ru=https://lbar.ro/ru/portfolio"
+  ],
+  "og": {},
+  "h1": [
+   "Galerie foto (portofoliu) cu lucrări de studio Lbar"
+  ],
+  "h2": [
+   "Contact"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "36258179570213a6ff73926e858f9778"
+ },
+ {
+  "id": "102",
+  "ctx": "web",
+  "uri": "despre-noi",
+  "url": "https://lbar.ro/despre-noi",
+  "template": "3",
+  "status": 200,
+  "location": null,
+  "title": "Despre studioul de machiaj semipermanent Lbar by Ksenia Kobilianskaia",
+  "description": [
+   "Informații detaliate despre studioul de micropigmentare LBar by Ksenia Kobilianskaia din București (România). Istoria și parcursul nostru"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/despre-noi"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/despre-noi",
+   "ru=https://lbar.ro/ru/o-nas"
+  ],
+  "og": {},
+  "h1": [
+   "Despre studioul de micropigmentare Lbar"
+  ],
+  "h2": [
+   "Contact"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "7e5dc343fdb9ba9a07032228eda466df"
+ },
+ {
+  "id": "105",
+  "ctx": "web",
+  "uri": "posturi-vacante",
+  "url": "https://lbar.ro/posturi-vacante",
+  "template": "3",
+  "status": 200,
+  "location": null,
+  "title": "Posturi vacante la studioul de micropigmentare LBar in Bucuresti",
+  "description": [
+   "Posturi vacante disponibile la studioul de micropigmentare LBar in Bucuresti pentru master machiaj permanent, master extensii gene și manichiuristă (tehnician unghii)"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/posturi-vacante"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/posturi-vacante",
+   "ru=https://lbar.ro/ru/vakansii"
+  ],
+  "og": {},
+  "h1": [
+   "Posturi vacante Studio LBar"
+  ],
+  "h2": [
+   "Contact"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "d9f71d5448ddb36ff4d7102ab30e07b5"
+ },
+ {
+  "id": "119",
+  "ctx": "web",
+  "uri": "corectie-micropigmentare",
+  "url": "https://lbar.ro/corectie-micropigmentare",
+  "template": "8",
+  "status": 200,
+  "location": null,
+  "title": "Corectie Micropigmentare in Bucuresti ᐈ Retus Micropigmentare Sprancene, Buze si Ochi | LBar",
+  "description": [
+   "Corectie Micropigmentare Sprancene, Buze si Ochi in Bucurestii la Studio LBar ➝ Masteri cu experienta de peste 5 ani ✔ Preturi accesibile ✎ Va garantam rezultate excelente si efect natural"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/corectie-micropigmentare"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/corectie-micropigmentare",
+   "ru=https://lbar.ro/ru/korrektsiya-permanentnogo-makiyazha"
+  ],
+  "og": {},
+  "h1": [
+   "Corectie micropigmentare sprancene, ochi, buze in Bucuresti de la LBar"
+  ],
+  "h2": [
+   "Faceți cunoștință! Masterul dvs. – Ksenia Kobilianskaia",
+   "Obțineți o consultație personală",
+   "Galerie foto – retus micropigmentare sprancene, ochi, buze înainte și după procedură",
+   "Corectie micropigmentare preturi in Bucuresti la Studio LBar",
+   "Recenzii corectie de la clientele noastre",
+   "Răspunsuri la întrebări despre retus",
+   "Importanța și caracteristicile corecției tatuajului",
+   "De ce este necesar retușul tatuajului?",
+   "Când trebuie efectuat retușul și cum se realizează acesta",
+   "Ce probleme pot apărea dacă nu se efectuează corecția machiajului permanent?",
+   "Contact"
+  ],
+  "jsonld": 4,
+  "lang": "ro",
+  "text_hash": "8a17872cf297a739e137106f5459615e"
+ },
+ {
+  "id": "120",
+  "ctx": "web",
+  "uri": "kseniya-kobyilyanskaya",
+  "url": "https://lbar.ro/kseniya-kobyilyanskaya",
+  "template": "13",
+  "status": 200,
+  "location": null,
+  "title": "Ksenia Kobilianskaia - mai multe informații despre dermopigmentist: biografie, portofoliu (foto) și recenzii",
+  "description": [
+   "Maestru de machiaj permanent la Kiev - Ksenia Kobilianskaia. Informații detaliate despre maestru, fotografii cu lucrări și recenzii ale clienților. Citiți și lăsați o recenzie - Lbar studio"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/kseniya-kobyilyanskaya"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/kseniya-kobyilyanskaya",
+   "ru=https://lbar.ro/ru/kseniya-kobyilyanskaya"
+  ],
+  "og": {},
+  "h1": [
+   "Permanent make up Artist Ksenia Kobilianskaia: fotografii cu lucrări și recenzii"
+  ],
+  "h2": [
+   "Recenzii despre master trainer Ksenia Kobilianskaia",
+   "Contact"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "ed4221eb80b67c9a7e157d74df58b01b"
+ },
+ {
+  "id": "121",
+  "ctx": "web",
+  "uri": "alena-shubchinskaya",
+  "url": "https://lbar.ro/alena-shubchinskaya",
+  "template": "13",
+  "status": 200,
+  "location": null,
+  "title": "Aliona Șubcinskaia – mai multe informații despre dermopigmentist: biografie, portofoliu (foto) și recenzii",
+  "description": [
+   "Maestru de machiaj permanent la Kiev - Alena Shubchinskaia. Informații detaliate despre maestru, fotografii cu lucrări și recenzii ale clienților. Citiți și lăsați o recenzie - Lbar studio"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/alena-shubchinskaya"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/alena-shubchinskaya",
+   "ru=https://lbar.ro/ru/alena-shubchinskaya"
+  ],
+  "og": {},
+  "h1": [
+   "Permanent make up Artist Aliona Șubcinskaia: fotografii cu lucrări și recenzii"
+  ],
+  "h2": [
+   "Recenzii despre masterul Alena Shubchinskaia",
+   "Contact"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "daca45854351d62249b9011fbd412d85"
+ },
+ {
+  "id": "123",
+  "ctx": "web",
+  "uri": "portofoliu-micropigmentare-sprancene-inainte-si-dupa",
+  "url": "https://lbar.ro/portofoliu-micropigmentare-sprancene-inainte-si-dupa",
+  "template": "13",
+  "status": 200,
+  "location": null,
+  "title": "Fotografii cu tatuajul sprâncenelor înainte și după - galerie foto cu lucrări de machiaj permanent",
+  "description": [
+   "Fotogalerie de tatuaj din sprâncene de către maeștrii studioului LBar. Fotografie și video de lucru înainte și după imediat după procedură și într-o formă vindecată"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/portofoliu-micropigmentare-sprancene-inainte-si-dupa"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/portofoliu-micropigmentare-sprancene-inainte-si-dupa",
+   "ru=https://lbar.ro/ru/portfolio-permanent-brovey-do-i-posle"
+  ],
+  "og": {},
+  "h1": [
+   "Fotografie cu tatuaj permanent pentru sprâncene"
+  ],
+  "h2": [
+   "Importanța portofoliului: foto micropigmentare sprancene înainte și după procedură",
+   "V-ați ales masterul. Ce puteți obține cu ajutorul machiajului permanent sprâncene?",
+   "Contact"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "f3492768b65e005d5824a74d3c18fe84"
+ },
+ {
+  "id": "124",
+  "ctx": "web",
+  "uri": "portofoliu-micropigmentare-ochi-inainte-si-dupa",
+  "url": "https://lbar.ro/portofoliu-micropigmentare-ochi-inainte-si-dupa",
+  "template": "13",
+  "status": 200,
+  "location": null,
+  "title": "Fotografie cu tatuaj pentru ochi (pleoapă) înainte și după: gene, săgeți clasice și cu umbrire LBar.com.ua",
+  "description": [
+   "Foto-galerie de tatuare a ochilor (pleoapelor) maeștrilor studioului LBar. Fotografie și video de lucru înainte și după imediat după procedură și într-o formă vindecată"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/portofoliu-micropigmentare-ochi-inainte-si-dupa"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/portofoliu-micropigmentare-ochi-inainte-si-dupa",
+   "ru=https://lbar.ro/ru/foto-tatuazha-glaz"
+  ],
+  "og": {},
+  "h1": [
+   "Fotografie cu tatuaj permanent pentru ochi (pleoapă)"
+  ],
+  "h2": [
+   "Priviți fotografiile cu micropigmentarea ochilor",
+   "V-ați decis să vă faceți un machiaj semipermanent al ochilor?",
+   "Contact"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "2a30c97816fcef9023de8ce18b838c4f"
+ },
+ {
+  "id": "125",
+  "ctx": "web",
+  "uri": "portofoliu-micropigmentare-buze-inainte-si-dupa",
+  "url": "https://lbar.ro/portofoliu-micropigmentare-buze-inainte-si-dupa",
+  "template": "13",
+  "status": 200,
+  "location": null,
+  "title": "Fotografii cu tatuajul buzelor înainte și după: tehnica acuarelei, 3D/6D și efect de ruj LBar.com.ua",
+  "description": [
+   "Galerie foto cu un tatuaj permanent pe buze de către maeștrii studioului LBar. Fotografie și video de lucru înainte și după imediat după procedură și într-o formă vindecată"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/portofoliu-micropigmentare-buze-inainte-si-dupa"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/portofoliu-micropigmentare-buze-inainte-si-dupa",
+   "ru=https://lbar.ro/ru/foto-tatuazha-gub"
+  ],
+  "og": {},
+  "h1": [
+   "Fotografie cu tatuaj permanent pe buze"
+  ],
+  "h2": [
+   "Foto micropigmentare buze – indiciu al calității serviciului",
+   "Cum puteți ști dacă artistul tatuator este un începător?",
+   "Contact"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "1991022fc5359f2a3e30abf3e628f014"
+ },
+ {
+  "id": "126",
+  "ctx": "web",
+  "uri": "fragmente-de-antrenament",
+  "url": "https://lbar.ro/fragmente-de-antrenament",
+  "template": "13",
+  "status": 200,
+  "location": null,
+  "title": "Secvențe din cursul de bază de dermopigmentare (micropigmentare)",
+  "description": [],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/fragmente-de-antrenament"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/fragmente-de-antrenament",
+   "ru=https://lbar.ro/ru/fragmentyi-obucheniya"
+  ],
+  "og": {},
+  "h1": [
+   "Secvențe din cursul de bază de dermopigmentare"
+  ],
+  "h2": [
+   "Contact"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "6058732b0c358e149e8744415c932623"
+ },
+ {
+  "id": "162",
+  "ctx": "web",
+  "uri": "micropigmentare-ochi-eyeliner",
+  "url": "https://lbar.ro/micropigmentare-ochi-eyeliner",
+  "template": "8",
+  "status": 200,
+  "location": null,
+  "title": "Micropigmentare ochi eyeliner in Bucuresti, pret tatuaj contur ochi | LBar",
+  "description": [
+   "Fă-ți un micropigmentare ochi eyeliner in Bucurestii la Studio LBar ⚡ Masteri cu experienta de peste 5 ani ✔ Preturi accesibile ✎ Va garantam rezultate excelente si efect natural"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/micropigmentare-ochi-eyeliner"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/micropigmentare-ochi-eyeliner",
+   "ru=https://lbar.ro/ru/tatuazh-strelok"
+  ],
+  "og": {},
+  "h1": [
+   "Micropigmentare ochi eyeliner Bucuresti"
+  ],
+  "h2": [
+   "Machiajul permanent pleoape vă poate ajuta să:",
+   "Faceți cunoștință! Masterul dvs. – Ksenia Kobilianskaia",
+   "Obțineți o consultație personală",
+   "Galerie foto – micropigmentare eyeliner înainte și după procedură",
+   "Tatuaj contur ochi preturi in Bucuresti la Studio LBar",
+   "Recenzii machiaj permanent ochi (eyeliner) de la clientele noastre",
+   "Răspunsuri la întrebări frecvente",
+   "De ce ar trebui să optați pentru micropigmentare pleoape eyeliner: 3 aspecte esențiale",
+   "3 motive pentru a recurge la micropigmentare pleoape",
+   "Ce este important să știți despre micropigmentare pleoape",
+   "Contact"
+  ],
+  "jsonld": 4,
+  "lang": "ro",
+  "text_hash": "96a0342c401d3a0dd0ebff4a337229d7"
+ },
+ {
+  "id": "163",
+  "ctx": "web",
+  "uri": "micropigmentare-pleoape",
+  "url": "https://lbar.ro/micropigmentare-pleoape",
+  "template": "8",
+  "status": 200,
+  "location": null,
+  "title": "Micropigmentare pleoape in Bucuresti, pret tatuaj pleoape superioara/inferioara | Studio LBar",
+  "description": [
+   "Obține micropigmentare pleoape in Bucuresti la LBar⭐️ Vă creăm un look impecabil. Preturi accesibile micropigmentare pleoape cu alegere individuală a formei⚡️Efect rezistent până la 2 ani. ☝️100% aspect natural. Masteri de Top"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/micropigmentare-pleoape"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/micropigmentare-pleoape",
+   "ru=https://lbar.ro/ru/mezhresnichnyy-tatuazh"
+  ],
+  "og": {},
+  "h1": [
+   "Micropigmentare pleoape Bucuresti"
+  ],
+  "h2": [
+   "Machiaj permanent pleoape – cea mai bună oportunitate:",
+   "Faceți cunoștință! Masterul dvs. – Ksenia Kobilianskaia",
+   "Obțineți o consultație personală",
+   "Galerie foto – tatuaj pleoapa superioara/inferioara înainte și după procedură",
+   "Micropigmentare pleoape preturi in Bucuresti la Studio LBar",
+   "Recenzii machiaj semipermanent pleoape de la clientele noastre",
+   "Răspunsuri la întrebări despre micropigmentare pleoape",
+   "Alegeți să deveniți și mai frumoasă! Obțineți un tatuaj permanent eyeliner",
+   "Ce este important să știi despre tatuajul pleoapelor",
+   "Caracteristicile tehnicii micropigmentare pleoape",
+   "Contact"
+  ],
+  "jsonld": 4,
+  "lang": "ro",
+  "text_hash": "8bb089506097470264e6cbd7f665f889"
+ },
+ {
+  "id": "167",
+  "ctx": "web",
+  "uri": "micropigmentare-buze",
+  "url": "https://lbar.ro/micropigmentare-buze",
+  "template": "8",
+  "status": 200,
+  "location": null,
+  "title": "Micropigmentare Buze in Bucuresti, pret tatuaj Buze | LBar",
+  "description": [
+   "Fă-ți un micropigmentare buze in Bucuresti la Studio LBar ⚡ Masteri cu experienta de peste 5 ani ✔ Preturi accesibile ✎ Va garantam rezultate excelente si efect natural"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/micropigmentare-buze"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/micropigmentare-buze",
+   "ru=https://lbar.ro/ru/akvarelnayi-gubu"
+  ],
+  "og": {},
+  "h1": [
+   "Micropigmentare buze Bucuresti"
+  ],
+  "h2": [
+   "Micropigmentare buze aquarelle și alte tehnici vă oferă:",
+   "Faceți cunoștință! Masterul dvs. – Ksenia Kobilianskaia",
+   "Obțineți o consultație personală",
+   "Galerie foto – pigmentare buze și tehnica aquarelle înainte și după procedură",
+   "Lista de preturi: micropigmentare buze și tehnica aquarelle in Bucuresti",
+   "Recenzii micropigmentare buze de la clientele noastre",
+   "Răspunsuri la întrebări frecvente",
+   "Buze aquarelle: experimentați toate avantajele micropigmentării buzelor",
+   "Care sunt beneficiile tatuajului semipermanent buze?",
+   "Etapele principale: micropigmentare buze",
+   "Ce trebuie să știți despre micropigmentare buze",
+   "Contact"
+  ],
+  "jsonld": 4,
+  "lang": "ro",
+  "text_hash": "b1958eba5186c87c7bfdec2ad2db226c"
+ },
+ {
+  "id": "168",
+  "ctx": "web",
+  "uri": "tatuaj-alunita",
+  "url": "https://lbar.ro/tatuaj-alunita",
+  "template": "8",
+  "status": 200,
+  "location": null,
+  "title": "Tatuaj alunita in Bucuresti | preturi 2026 micropigmentare Studio LBar",
+  "description": [
+   "Obține tatuaj alunita in Bucuresti de la Lbar ⚡️ Masteri cu experienta de peste 3 ani. Vă creăm un look impecabil. Preturi accesibile 2026 pentru micropigmentare alunita cu alegere individuala a formei. Efect rezistent până la 2 ani, 100% aspect natural"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/tatuaj-alunita"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/tatuaj-alunita",
+   "ru=https://lbar.ro/ru/tatuazh-mushki"
+  ],
+  "og": {},
+  "h1": [
+   "Tatuaj alunita in Bucuresti de la LBar"
+  ],
+  "h2": [
+   "Vă puteți face tatuajul unei alunițe:",
+   "Faceți cunoștință! Masterul dvs. – Ksenia Kobilianskaia",
+   "Obțineți o consultație personală",
+   "Galerie foto – tatuaj alunita înainte și după procedură",
+   "Machiaj semipermanent alunita preturi in Bucuresti la Studio LBar",
+   "Recenzii micropigmentare alunita de la clientele noastre",
+   "Răspunsuri la întrebări despre micropigmentare alunita",
+   "Obțineți un tatuaj alunita și deveniți mai fermecătoare și mai seducătoare",
+   "Ah, această aluniță...",
+   "Etapele procedurii machiaj semipermanent alunita",
+   "Micropigmentare alunita, parte a aspectului dvs. jucăuș",
+   "Contact"
+  ],
+  "jsonld": 4,
+  "lang": "ro",
+  "text_hash": "eac40f697d6fb3afb7bf6372cac75ff0"
+ },
+ {
+  "id": "171",
+  "ctx": "web",
+  "uri": "recenzii",
+  "url": "https://lbar.ro/recenzii",
+  "template": "16",
+  "status": 200,
+  "location": null,
+  "title": "Recenzii micropigmentare sprancene, ochi, buze in Bucuresti. Recenzii machiaj permanent la Studio LBar",
+  "description": [
+   "Recenzii machiaj permanent (tatuaj) la Studio Lbar ⭐️ in Bucuresti. Recenzii: Micropigmentare sprancene efect pudrat, machiaj permanent sprancene, buze, ochi.⚡️Efect rezistent până la 2 ani. 100% aspect natural. ⚡️ Masteri de Top"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/recenzii"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/recenzii",
+   "ru=https://lbar.ro/ru/otzyvy"
+  ],
+  "og": {},
+  "h1": [
+   "Recenzii micropigmentare sprancene, ochi, buze"
+  ],
+  "h2": [
+   "Recenzii despre Studio LBar",
+   "Recenziile despre machiajul permanent sunt întotdeauna binevenite",
+   "Recenziile despre machiajul permanent sunt întotdeauna binevenite",
+   "Contact"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "c47944551a7f5e48be962e1b87d52e82"
+ },
+ {
+  "id": "177",
+  "ctx": "web",
+  "uri": "gift-voucher-micropigmentare",
+  "url": "https://lbar.ro/gift-voucher-micropigmentare",
+  "template": "3",
+  "status": 200,
+  "location": null,
+  "title": "Gift Voucher machiaj permanent sprancene/sprancene efect pudrat in Bucuresti pentru doamne și domnișoare – Studio LBar",
+  "description": [
+   "Cumpara certificat cadou pentru micropigmentare (tatuaj) ochi, sprancene, buze aquarelle in Bucuresti – ofera sotiei sau iubitei cu ocazia unui eveniment un voucher de la Studio LBar"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/gift-voucher-micropigmentare"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/gift-voucher-micropigmentare",
+   "ru=https://lbar.ro/ru/podarochny-sertifikat-na-tatuazh"
+  ],
+  "og": {},
+  "h1": [
+   "Gift Voucher micropigmentare"
+  ],
+  "h2": [
+   "Contact"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "da1fdeba8d7b9e17f1efc6191bbb02a2"
+ },
+ {
+  "id": "182",
+  "ctx": "web",
+  "uri": "curs-complet-micropigmentare",
+  "url": "https://lbar.ro/curs-complet-micropigmentare",
+  "template": "15",
+  "status": 200,
+  "location": null,
+  "title": "Curs Complet Micropigmentare in Bucuresti  ᐈ Curs Dermopigmentare | Studio LBar",
+  "description": [
+   "Curs Complet Micropigmentare in Bucuresti la Studio LBar ➝ 6 zile intensiv ✔ Preturi accesibile ✎ Curs complet de tatuaje pentru incepatori ☝ Studiu dupa un program adecvat"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/curs-complet-micropigmentare"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/curs-complet-micropigmentare"
+  ],
+  "og": {},
+  "h1": [
+   "Curs complet micropigmentare in Bucuresti"
+  ],
+  "h2": [
+   "PRIMEȘTE O CONSULTAȚIE",
+   "8 motive pentru a urma un curs de dermopigmentare",
+   "Faceți cunoștință! Masterul dvs. — Ksenia Kobilianskaia",
+   "Obțineți o consultație personală",
+   "Școala de machiaj semipermanent LBar reprezintă:",
+   "Galerie foto: procesul de instruire",
+   "Programul cursului de micropigmentare la școala LBar",
+   "Vizualizați ce tipuri de tatuaje veți putea efectua la finalul cursului",
+   "Preturi curs micropigmentare la școala de machiaj semipermanent LBar",
+   "Curs \"TREI ZONE\"",
+   "Curs \"INDIVIDUAL\"",
+   "Curs \"SPRANCENE POWDER\"",
+   "Oferim cadou un kit pentru machiaj semipermanent sprancene",
+   "Nu este recomandat să urmați cursul de micropigmentare în cazul în care:",
+   "Calculați cât veți putea câștiga dacă urmați trainingul la LBar",
+   "Obțineți chiar acum o consultație gratuită de la masterul trainer al școlii LBar",
+   "Răspunsuri la întrebări frecvente",
+   "Curs de bază machiaj semipermanent – posibilitate unică de a învăța o meserie creativă și profitabilă",
+   "Există multe școli de tatuaj în București. Dar LBar – cea mai bună opțiune",
+   "Sunteți la un pas de succes!",
+   "Fă o programare la curs",
+   "Contact"
+  ],
+  "jsonld": 2,
+  "lang": "ro",
+  "text_hash": "fdd007e20957d9ead83863f6d1439582"
+ },
+ {
+  "id": "592",
+  "ctx": "web",
+  "uri": "micropigmentare-sprancene-pudrat-avantajele-si-dezavantajele",
+  "url": "https://lbar.ro/micropigmentare-sprancene-pudrat-avantajele-si-dezavantajele",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Micropigmentare sprancene pudrat: avantajele și dezavantajele tehnicii moderne – blog LBar",
+  "description": [
+   "Totul despre sprancene powder de la master profesional. Aspecte pro si contra micropigmentare sprancene pudrat, ce este, etapele procedurii și vindecarii, contraindicații si alte sfaturi. Citiți articolul detaliat despre această tehnica de tatuaj de la LBar"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/micropigmentare-sprancene-pudrat-avantajele-si-dezavantajele"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/micropigmentare-sprancene-pudrat-avantajele-si-dezavantajele"
+  ],
+  "og": {},
+  "h1": [
+   "Micropigmentare sprancene pudrat: avantajele și dezavantajele tehnicii moderne"
+  ],
+  "h2": [
+   "Ce este micropigmentarea sprancene efect pudrat?",
+   "Cui îi este recomandată tehnica micropigmentare sprancene pudrat?",
+   "Aspecte pro si contra: micropigmentare sprancene pudrat",
+   "Etapele procedurii de micropigmentare sprancene efect pudrat",
+   "Contraindicații micropigmentare sprancene pudrat",
+   "Cum se vindecă sprâncenele pudrate?",
+   "Îngrijirea sprâncenelor după micropigmentarea powder",
+   "Cum să vă pregătiți pentru micropigmentare sprancene pudrat?",
+   "Cât timp se menține micropigmentarea sprancene efect pudrat?",
+   "Corecția sprâncenelor pudrate",
+   "Este posibil acoperirea tatuajul clasic prin tehnica micropigmentare powder?",
+   "Sprancene powder – elegante, moderne și cu aspect estetic",
+   "Răspunsuri la întrebări frecvente"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "7d0103ac61d9d2b811d53c5516827cb3"
+ },
+ {
+  "id": "593",
+  "ctx": "web",
+  "uri": "etapele-de-vindecare-dupa-micropigmentare-sprancene-pudrat-pe-zile",
+  "url": "https://lbar.ro/etapele-de-vindecare-dupa-micropigmentare-sprancene-pudrat-pe-zile",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Etapele de vindecare după micropigmentare sprancene pudrat pe zile, Foto procesul de vindecare de zi cu zi – blog LBar",
+  "description": [
+   "Vă îngrijorează modul cum vor arăta sprâncenele când se vor vindeca după micropigmentarea powder? Citiți articolul despre etapele de vindecare cu poze din blogul LBar și veți descoperi că frumusețea merită transformarea"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/etapele-de-vindecare-dupa-micropigmentare-sprancene-pudrat-pe-zile"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/etapele-de-vindecare-dupa-micropigmentare-sprancene-pudrat-pe-zile"
+  ],
+  "og": {},
+  "h1": [
+   "Etapele de vindecare după micropigmentare sprancene pudrat pe zile"
+  ],
+  "h2": [
+   "Etapele de vindecare după micropigmentare sprancene pudrat",
+   "Săptămâna a 2-a după ședința de micropigmentare sprancene pudrat",
+   "Prima lună după ședința de micropigmentare sprancene pudrat",
+   "Ce este cel mai important în procesul de vindecare a sprancenelor pudrate?"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "b968048d3392a17b56e0c276068ea486"
+ },
+ {
+  "id": "594",
+  "ctx": "web",
+  "uri": "micropigmentare-buze-avantaje-si-dezavantaje",
+  "url": "https://lbar.ro/micropigmentare-buze-avantaje-si-dezavantaje",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Micropigmentare buze - avantaje și dezavantaje, diferite tipuri de tehnici tatuaj  – blog LBar",
+  "description": [
+   "Aspecte pro si contra micropigmentare buze, ✅ diferite tipuri de tehnici, pregătire și îngrijire – totul despre „machiaj permanent buze”. Prezentare de master trainer de TOP Ksenia Kobilianskaia – Citiți articolul în blogul Studio LBar"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/micropigmentare-buze-avantaje-si-dezavantaje"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/micropigmentare-buze-avantaje-si-dezavantaje"
+  ],
+  "og": {},
+  "h1": [
+   "Micropigmentare buze - avantaje și dezavantaje"
+  ],
+  "h2": [
+   "Ce este tehnica modernă micropigmentare buze?",
+   "Aspecte pro si contra: micropigmentare buze",
+   "Cum se desfășoară ședința de micropigmentare buze?",
+   "Este dureroasă procedura de machiaj permanent buze?",
+   "Cum și cât timp se vindecă buzele după procedură?",
+   "Îngrijirea buzelor după micropigmentare",
+   "Ce nu se recomandă să faceți după procedură?",
+   "Cum să vă pregătiți pentru procedura de micropigmentare buze?",
+   "Cât timp se menține tatuajul buzelor?",
+   "Care pot fi unele efecte adverse ale machiajului permanent buze",
+   "Merită să vă faceți micropigmentarea buzelor?",
+   "Răspunsuri la întrebări frecvente"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "47a352a8a184e63a47c1bb1e2f24f7e4"
+ },
+ {
+  "id": "595",
+  "ctx": "web",
+  "uri": "micropigmentare-buze-aquarelle-detalii-despre-tehnica",
+  "url": "https://lbar.ro/micropigmentare-buze-aquarelle-detalii-despre-tehnica",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Micropigmentare buze aquarelle: detalii despre tehnica modernă, fotografii buze aquarelle înainte și după procedură – LBar",
+  "description": [
+   "Totul despre tehnica buze aquarelle ✅: care sunt motivele popularității tehnicii de micropigmentare buze aquarelle, avantajele și dezavantajele. Fotografii înainte și după procedură – Blog LBar"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/micropigmentare-buze-aquarelle-detalii-despre-tehnica"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/micropigmentare-buze-aquarelle-detalii-despre-tehnica"
+  ],
+  "og": {},
+  "h1": [
+   "Micropigmentare buze aquarelle: detalii despre tehnica modernă"
+  ],
+  "h2": [
+   "Ce este micropigmentarea buze aquarelle? Caracteristicile tehnicii",
+   "Cui i se potrivește tehnica micropigmentare buze aquarelle?",
+   "Contraindicațiile procedurii micropigmentare buze aquarelle",
+   "Cum să vă pregătiți pentru procedura de micropigmentare buze aquarelle?",
+   "Etapele procedurii micropigmentare buze aquarelle",
+   "Vindecarea și îngrijirea buzelor după micropigmentare",
+   "Cum să prelungiți durata efectului buze aquarelle? Recomandările masterului",
+   "Răspunsuri la întrebări frecvente"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "ae0e51b6a1cf9c7b3585e0e9174466b2"
+ },
+ {
+  "id": "596",
+  "ctx": "web",
+  "uri": "reguli-pentru-elaborarea-schemei-sprancenelor-cu-marcare-pe-puncte",
+  "url": "https://lbar.ro/reguli-pentru-elaborarea-schemei-sprancenelor-cu-marcare-pe-puncte",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Schema sprâncenelor cu marcare pe puncte – Reguli de la LBar",
+  "description": [
+   "Cum să desenați corect forma sprâncenelor cu marcare pe puncte ✅. Schițarea sprâncenelor simetrice pentru micropigmentare și modelare – blogul Kseniei Kobilianskaia lbar.com.ua"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/reguli-pentru-elaborarea-schemei-sprancenelor-cu-marcare-pe-puncte"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/reguli-pentru-elaborarea-schemei-sprancenelor-cu-marcare-pe-puncte"
+  ],
+  "og": {},
+  "h1": [
+   "Reguli pentru elaborarea schemei sprâncenelor cu marcare pe puncte"
+  ],
+  "h2": [
+   "Cum se creează schema pentru sprâncene",
+   "Cum se marchează corect sprâncenele",
+   "Crearea schemei pentru sprâncene",
+   "Să recapitulăm. Cum se desenează schema sprâncenelor?",
+   "Răspunsuri la întrebări frecvente"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "a2d4f15f3f5c7c18dff2fe465d362106"
+ },
+ {
+  "id": "597",
+  "ctx": "web",
+  "uri": "cum-sa-deveniti-master-de-machiaj-semipermanent",
+  "url": "https://lbar.ro/cum-sa-deveniti-master-de-machiaj-semipermanent",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Artist tatuator: avantajele și dezavantajele profesiei populare, cât se câștigă în domeniul machiajului permanent – Lbar",
+  "description": [
+   "Totul despre profesia „master de machiaj semipermanent”. ✅: avantaje și dezavantaje, cât se poate câștigă în domeniul tatuajului, unde să urmați un curs de micropigmentare. Cum să devii un master cu experiență și cui nu i se potrivește această meserie – Blog lbar.ro"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/cum-sa-deveniti-master-de-machiaj-semipermanent"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/cum-sa-deveniti-master-de-machiaj-semipermanent"
+  ],
+  "og": {},
+  "h1": [
+   "Cum să deveniți master de machiaj semipermanent. Avantajele și dezavantajele profesiei"
+  ],
+  "h2": [
+   "Instruire în domeniul machiajului permanent",
+   "Aspecte financiare privind instruirea în domeniul micropigmentării",
+   "Avantajele profesiei master de machiaj semipermanent",
+   "Dezavantajele profesiei",
+   "Cum să alegeți școala de machiaj semipermanent?",
+   "Merită să urmați un curs de machiaj semipermanent?",
+   "Răspunsuri la întrebări frecvente"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "027a229b196d7cd023c03e5f39094369"
+ },
+ {
+  "id": "598",
+  "ctx": "web",
+  "uri": "cat-timp-dureaza-efectul-machiajului-semipermanent",
+  "url": "https://lbar.ro/cat-timp-dureaza-efectul-machiajului-semipermanent",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Cât timp durează efectul machiajului semipermanent și cum se elimină tatuajul sprâncenelor, buzelor și pleoapelor – Lbar",
+  "description": [
+   "Informații detaliate despre cum se elimină și cât timp durează efectul machiajul semipermanent al sprâncenelor, buzelor și pleoapelor✅. Perioada reală de „purtare” a machiajului după procedură, de ce depinde rezultatul și cum se menține durata efectului – Blog lbar.ro"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/cat-timp-dureaza-efectul-machiajului-semipermanent"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/cat-timp-dureaza-efectul-machiajului-semipermanent"
+  ],
+  "og": {},
+  "h1": [
+   "Cât timp durează efectul machiajului semipermanent"
+  ],
+  "h2": [
+   "Cât timp durează efectul machiajului semipermanent?",
+   "De ce factori depinde durata rezultatului?",
+   "Cum să prelungiți efectul tatuajului?",
+   "Cum se elimină machiajul semipermanent?",
+   "Să recapitulăm",
+   "Răspunsuri la întrebări frecvente"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "f12d3699baede10d0612a564a2600036"
+ },
+ {
+  "id": "599",
+  "ctx": "web",
+  "uri": "totul-despre-corectie-dupa-micropigmentare-sprancene",
+  "url": "https://lbar.ro/totul-despre-corectie-dupa-micropigmentare-sprancene",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "De ce este necesară corecția machiajului semipermanent și micropigmentarea sprâncenelor efect pudrat – Blog LBar.ro",
+  "description": [
+   "Este obligatoriu corecția după ședința de micropigmentare sprâncene? \r\nCare sunt caracteristicile specifice și cum se vindecă pielea după procedura de corecție?Citiți mai multe informații despre retuș după micropigmentarea sprâncene efect pudrat pe blogul LBar"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/totul-despre-corectie-dupa-micropigmentare-sprancene"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/totul-despre-corectie-dupa-micropigmentare-sprancene"
+  ],
+  "og": {},
+  "h1": [
+   "Totul despre corecție după micropigmentare sprâncene"
+  ],
+  "h2": [
+   "Este necesară corecția după micropigmentarea sprâncenelor și de ce este esențială",
+   "De ce în cazul tatuajului corecția nu e necesară, dar în cazul micropigmentării e esențială",
+   "La cât timp după ședința de micropigmentare sprâncene se recomandă corecția",
+   "Caracteristicile procedurii",
+   "Cât timp se vindecă tatuajul sprâncenelor după corecție",
+   "Cum să îngrijiți zona micropigmentată după procedura de corecție",
+   "Corecția machiajului semipermanent sprâncene – parte esențială a procedurii"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "6b597425cbf133f5f7b8956930137aed"
+ },
+ {
+  "id": "602",
+  "ctx": "web",
+  "uri": "micropigmentare-pleoape-aspecte-pro-si-contra",
+  "url": "https://lbar.ro/micropigmentare-pleoape-aspecte-pro-si-contra",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Micropigmentare pleoape, aspecte pro și contra – Blog LBar.ro",
+  "description": [
+   "Totul despre micropigmentare pleoape: avantajele și dezavantajele machiajului semipermanent pleoape. ✅ Etapele procedurii și vindecării. 10+ fotografii cu modele de lucrări ✅ – Citiți articolul pe blogul Studio LBar și evaluați aspectele pro și contra"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/micropigmentare-pleoape-aspecte-pro-si-contra"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/micropigmentare-pleoape-aspecte-pro-si-contra"
+  ],
+  "og": {},
+  "h1": [
+   "Micropigmentare pleoape, aspecte pro și contra"
+  ],
+  "h2": [
+   "Ce este tehnica micropigmentare pleoape?",
+   "Cui i se potrivește?",
+   "Cum arată micropigmentarea pleoape",
+   "Caracteristicile procedurii",
+   "Cum decurge procedura",
+   "Cât durează efectul micropigmentării pleoapă superioară/inferioară",
+   "Îngrijirea pielii după procedură",
+   "Este necesară corecția după micropigmentare pleoape?",
+   "Merită să vă faceți micropigmentare pleoape sau nu?"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "cb96df9cf898fb73f68be7c6bad2e882"
+ },
+ {
+  "id": "603",
+  "ctx": "web",
+  "uri": "etapele-de-vindecare-dupa-micropigmentare-ochi-eyeliner",
+  "url": "https://lbar.ro/etapele-de-vindecare-dupa-micropigmentare-ochi-eyeliner",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Etapele de vindecare după micropigmentare ochi eyeliner (pleoape) pe zile: fotografii cu procesul de vindecare a conturului și a modelului eyeliner",
+  "description": [
+   "Vă faceți griji cu privire la modul în care vor arăta pleoapele după vindecarea tatuajului? Citiți articolul despre etapele de vindecare a machiajului semipermanent ochi eyeliner și pleoape cu fotografii pe blogul LBar și veți constata că merită să apelați la această procedură"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/etapele-de-vindecare-dupa-micropigmentare-ochi-eyeliner"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/etapele-de-vindecare-dupa-micropigmentare-ochi-eyeliner"
+  ],
+  "og": {},
+  "h1": [
+   "Etapele de vindecare după micropigmentare ochi eyeliner (pleoape) pe zile"
+  ],
+  "h2": [
+   "Pregătirea pentru micropigmentarea ochi eyeliner",
+   "Etapele de vindecare după micropigmentare ochi eyeliner",
+   "Este un proces firesc formarea crustelor aspre?",
+   "Este obligatorie corecția machiajului semipermanent ochi eyeliner?",
+   "Cum se vindecă pielea după micropigmentarea ochi eyeliner",
+   "Concluzii privind modul de vindecare a tatuajului ochi eyeliner"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "5547c83095d9af0af075146189c17f9f"
+ },
+ {
+  "id": "604",
+  "ctx": "web",
+  "uri": "micropigmentare-buze-si-marire-buze",
+  "url": "https://lbar.ro/micropigmentare-buze-si-marire-buze",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Micropigmentare buze și mărire buze: pot fi combinate aceste proceduri?",
+  "description": [
+   "Pot fi combinate procedurile micropigmentare buze și mărire buze cu acid hialuronic (Botox) sau cu alte materiale de umplere? Citiți articolul detaliat despre succesiunea corectă a procedurilor la Studio LBar și veți afla cum să obțineți rezultatul perfect"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/micropigmentare-buze-si-marire-buze"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/micropigmentare-buze-si-marire-buze"
+  ],
+  "og": {},
+  "h1": [
+   "Micropigmentare buze și mărire buze: pot fi combinate aceste proceduri?"
+  ],
+  "h2": [
+   "Ce este mai eficient: procedura micropigmentare buze sau mărire buze?",
+   "Ce se recomandă mai întâi: procedura micropigmentare buze sau mărire buze?",
+   "În ce situații este suficient doar machiajul semipermanent buze?",
+   "Tratament cu Botox și micropigmentare sprâncene: ce este și de ce?",
+   "Consultați specialiștii atunci când combinați procedurile"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "19d71e35c851a4c7bb9c09deccc1207c"
+ },
+ {
+  "id": "605",
+  "ctx": "web",
+  "uri": "micropigmentare-in-timpul-menstruatiei",
+  "url": "https://lbar.ro/micropigmentare-in-timpul-menstruatiei",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Micropigmentarea în timpul menstruației: este posibilă efectuarea acesteia și obținerea unui rezultat reușit?",
+  "description": [
+   "Se poate efectua machiajul semipermanent în timpul menstruației? De la teorie la aplicare, masterul-expert de la Studio Lbar risipește cele mai frecvente mituri despre machiajul semipermanent. Citiți articolul despre micropigmentare sprâncene în timpul menstruației pe blogul nostru."
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/micropigmentare-in-timpul-menstruatiei"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/micropigmentare-in-timpul-menstruatiei"
+  ],
+  "og": {},
+  "h1": [
+   "Se poate efectua machiajul semipermanent în timpul menstruației?"
+  ],
+  "h2": [
+   "Cele mai răspândite concepții greșite despre micropigmentare în timpul menstruației",
+   "Cum stau lucrurile în realitate?",
+   "Când nu este indicat să vă faceți machiaj semipermanent?",
+   "Vom demonstra că este posibil micropigmentarea în timpul menstruației"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "9a0bd45358a7227aeb8de177112e27e0"
+ },
+ {
+  "id": "606",
+  "ctx": "web",
+  "uri": "machiajul-semipermanent-si-herpesul",
+  "url": "https://lbar.ro/machiajul-semipermanent-si-herpesul",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Machiajul semipermanent și herpesul: informații detaliate despre ce trebuie să știți, cum să evitați și să tratați– Blog LBar.ro",
+  "description": [
+   "Doriți să aflați mai multe detalii despre cum să tratați herpesul după ședința de micropigmentare buze sau sprâncene și să evitați apariția acestuia? Citiți articolul de pe blogul LBar pentru a proceda în mod corect și să preveniți apariția herpesului"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/machiajul-semipermanent-si-herpesul"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/machiajul-semipermanent-si-herpesul"
+  ],
+  "og": {},
+  "h1": [
+   "Machiajul semipermanent și herpesul: informații detaliate despre ce trebuie să știți, cum să evitați și să tratați"
+  ],
+  "h2": [
+   "Cauzele apariției herpesului în urma procedurii de micropigmentare buze sau sprâncene",
+   "Impactul herpesului asupra tatuajului",
+   "Măsuri de prevenire a herpesului înainte de micropigmentare",
+   "Cum să tratați herpesul după micropigmentare?",
+   "Recomandări după procedură",
+   "Să recapitulăm. Ce trebuie să știți despre herpes?"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "dba599843e8432cf21581b41cb335adc"
+ },
+ {
+  "id": "607",
+  "ctx": "web",
+  "uri": "micropigmentare-ochi-si-pleoape",
+  "url": "https://lbar.ro/micropigmentare-ochi-si-pleoape",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Micropigmentare ochi și pleoape: avantajele și dezavantajele tehnicii eyeliner – blogul LBar.ro",
+  "description": [
+   "Informații detaliate despre micropigmentare ochi și pleoape în tehnica eyeliner. Exemple de lucrări – 20+ fotografii. Citiți articolul de pe blogul LBar, evaluați avantajele și dezavantajele tehnicilor și optați pentru cea care vi se potrivește cel mai bine"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/micropigmentare-ochi-si-pleoape"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/micropigmentare-ochi-si-pleoape"
+  ],
+  "og": {},
+  "h1": [
+   "Micropigmentare ochi și pleoape: avantajele și dezavantajele tehnicii eyeliner"
+  ],
+  "h2": [
+   "Ce este micropigmentarea ochi eyeliner?",
+   "Aspecte pro și contra",
+   "Tehnici de micropigmentare ochi",
+   "Ce implică pregătirea pentru procedură?",
+   "Cât timp durează ședința de machiaj semipermanent ochi?",
+   "Este dureroasă procedura de micropigmentare ochi?",
+   "Etapele de vindecare a pielii după micropigmentarea ochilor",
+   "Vindecarea pielii pe etape după micropigmentarea pleoapelor",
+   "Aspecte importante privind alegerea artistului tatuator"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "46c2b2771de9438b576d1ca2ab2060a4"
+ },
+ {
+  "id": "608",
+  "ctx": "web",
+  "uri": "cum-sa-va-pregatiti-pentru-micropigmentare",
+  "url": "https://lbar.ro/cum-sa-va-pregatiti-pentru-micropigmentare",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Cum să vă pregătiți pentru micropigmentare sprancene, buze și pleoape – Blog LBar.ro",
+  "description": [
+   "Aflați ce nu se recomandă să faceți înainte de pregătirea pentru micropigmentare sprancene, buze sau pleoape. Sfaturi privind pregătirea în mod corespunzător pentru machiajul semipermanent în tehnicile populare de efect pudrat și microblading – Citiți articolul de pe Blogul LBar"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/cum-sa-va-pregatiti-pentru-micropigmentare"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/cum-sa-va-pregatiti-pentru-micropigmentare"
+  ],
+  "og": {},
+  "h1": [
+   "Cum să vă pregătiți pentru micropigmentare"
+  ],
+  "h2": [
+   "Contraindicații privind procedura de micropigmentare",
+   "Aspecte importante privind pregătirea pentru micropigmentare",
+   "Există unele recomandări specifice privind pregătirea pentru micropigmentarea diferitor zone ale feței?",
+   "Ce probleme pot apărea dacă nu vă pregătiți pentru micrpopigmentare?"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "363bfa072ea3cecff5fa1ded847dfdd0"
+ },
+ {
+  "id": "609",
+  "ctx": "web",
+  "uri": "micropigmentare-sprancene-argumente-pro-si-contra",
+  "url": "https://lbar.ro/micropigmentare-sprancene-argumente-pro-si-contra",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Micropigmentare sprancene: argumente pro și contra | Tehnici de micropigmentare sprancene – Blog LBar.ro",
+  "description": [
+   "Argumente pro și contra ale procedurii de micropigmentare sprancene  ✅ tipuri de tehnici, pregătirea și îngrijirea – totul despre machiajul semipermanent sprancene. Prezentare de ansamblu a machiajului modern al sprâncenelor – Citiți articolul de pe Blogul LBar"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/micropigmentare-sprancene-argumente-pro-si-contra"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/micropigmentare-sprancene-argumente-pro-si-contra"
+  ],
+  "og": {},
+  "h1": [
+   "Micropigmentare sprancene: argumente pro și contra – Tehnici de micropigmentare sprancene"
+  ],
+  "h2": [
+   "Scurtă prezentare privind micropigmentarea sprancenelor. Ce este și ce tehnici sunt disponibile?",
+   "În ce situații se recomandă micropigmentarea sprâncenelor?",
+   "5 argumente „pro” obiective ale procedurii de micropigmentare sprancene",
+   "6 argumente „contra” obiective ale procedurii de micropigmentare sprancene",
+   "Cum se desfășoară ședința de micropigmentare sprancene",
+   "Cum să vă îngrijiți sprâncenele după ședința de micropigmentare",
+   "Cum se vindecă sprâncenele după micropigmentare",
+   "Cele mai răspândite 3 mituri despre micropigmentarea sprâncenelor",
+   "Evaluarea argumentelor pro și contra ale micropigmentării. Merită?"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "358115be409ee91f6a89ad03722cdcdd"
+ },
+ {
+  "id": "610",
+  "ctx": "web",
+  "uri": "microblading-micropigmentare-sau-sprancene-pudrate",
+  "url": "https://lbar.ro/microblading-micropigmentare-sau-sprancene-pudrate",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Microblading și tehnici de micropigmentare sprancene,  sprancene pudrate – care este diferența | Blog LBar",
+  "description": [
+   "Care este diferența dintre microblading și micropigmentare sprancene sau SPRANCENE POWDER. Principala diferență dintre tehnicile de micropigmentare și care este mai eficientă? Citiți articolul de pe blogul LBar și alegeți-vă propria tehnică"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/microblading-micropigmentare-sau-sprancene-pudrate"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/microblading-micropigmentare-sau-sprancene-pudrate"
+  ],
+  "og": {},
+  "h1": [
+   "Microblading, micropigmentare sau sprancene pudrate – ce este mai eficient și care este diferența"
+  ],
+  "h2": [
+   "Care este diferența dintre microblading și tatuajul clasic al sprâncenelor",
+   "Care este diferența dintre microblading și tehnica sprancene efect pudrat",
+   "Care este diferența dintre microblading și tehnica hybrid",
+   "Ce este mai eficient: microblading sau alte tehnici de micropigmentare sprancene",
+   "Ce au în comun toate tehnicile de micropigmentare sprâncene?"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "2e06de1180f126f2c332e0d1962d4d60"
+ },
+ {
+  "id": "611",
+  "ctx": "web",
+  "uri": "ingrijirea-dupa-indepartarea-tatuajelor-si-machiajului-semipermanent-cu-laser",
+  "url": "https://lbar.ro/ingrijirea-dupa-indepartarea-tatuajelor-si-machiajului-semipermanent-cu-laser",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Îngrijirea după îndepărtarea machiajului semipermanent cu laser: etapele de vindecare și îngrijirea pielii – LBar",
+  "description": [
+   "Reguli de îngrijire a pielii după îndepărtarea tatuajelor cu laser sau machiajului semipermanent cu laser, în scopul evitării crustelor și cicatricilor, etapele de vindecare a pielii ✅. Ce nu se recomandă să faceți după ședință – citiți articolul de pe blogul Studio LBar"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/ingrijirea-dupa-indepartarea-tatuajelor-si-machiajului-semipermanent-cu-laser"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/ingrijirea-dupa-indepartarea-tatuajelor-si-machiajului-semipermanent-cu-laser"
+  ],
+  "og": {},
+  "h1": [
+   "Îngrijirea după îndepărtarea tatuajelor și machiajului semipermanent cu laser"
+  ],
+  "h2": [
+   "Procesul de îndepărtare a tatuajelor și machiajului semipermanent cu laser",
+   "Posibile complicații după procedura de îndepărtare a tatuajelor",
+   "Îngrijirea după îndepărtarea machiajului semipermanent cu laser",
+   "Îngrijirea după îndepărtarea tatuajelor cu laser",
+   "Recomandări suplimentare privind îndepărtarea tatuajelor și machiajului semipermanent"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "37a7c54644aaa6343d8156e107cfb3f0"
+ },
+ {
+  "id": "612",
+  "ctx": "web",
+  "uri": "cum-sa-va-ingrijiti-corect-sprancenele-dupa-micropigmentare",
+  "url": "https://lbar.ro/cum-sa-va-ingrijiti-corect-sprancenele-dupa-micropigmentare",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Cum să vă îngrijiți corect sprâncenele după micropigmentare | microblading și sprancene powder – Blog LBar.ro",
+  "description": [
+   "Aflați cum să vă îngrijiți sprâncenele după micropigmentare /microblading sau sprancene powder ✅ pentru a obține un rezultat uimitor. Consultați recomandările oferite de LBar ✅. Respectați-le și nu veți avea probleme cu vindecarea pielii după ședință"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/cum-sa-va-ingrijiti-corect-sprancenele-dupa-micropigmentare"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/cum-sa-va-ingrijiti-corect-sprancenele-dupa-micropigmentare"
+  ],
+  "og": {},
+  "h1": [
+   "Cum să vă îngrijiți corect sprâncenele după micropigmentare: ce este important să cunoașteți"
+  ],
+  "h2": [
+   "De ce este așa de importantă îngrijirea sprâncenelor după micropigmentare?",
+   "Îngrijirea sprâncenelor înainte de micropigmentare",
+   "Cum să vă îngrijiți sprâncenele după ședință?",
+   "Ce nu se recomandă după ședința de micropigmentare sprancene",
+   "Caracteristicile îngrijirii pielii după ședința de microblading",
+   "Caracteristicile îngrijirii pielii după micropigmentarea sprâncene efect pudrat",
+   "Îngrijirea sprâncenelor după corecție",
+   "Îngrijirea sprâncenelor după micropigmentare – succesul unui rezultat excelent"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "8cfacc4396ce36bb8d8edc83b20896a6"
+ },
+ {
+  "id": "613",
+  "ctx": "web",
+  "uri": "cele-mai-raspandite-6-metode-de-indepartare-a-tatuajelor-nereusite",
+  "url": "https://lbar.ro/cele-mai-raspandite-6-metode-de-indepartare-a-tatuajelor-nereusite",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Cum să îndepărtați un tatuaj nereușit – cele mai răspândite 6 metode – Blog LBar.ro",
+  "description": [
+   "Cum să îndepărtați machiajul semipermanent nereușit sau vechi pentru a uita de acest coșmar pentru totdeauna? Citiți articolul cu informații detaliate despre cele mai răspândite metode de îndepărtare a tatuajelor pe Blogul LBar"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/cele-mai-raspandite-6-metode-de-indepartare-a-tatuajelor-nereusite"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/cele-mai-raspandite-6-metode-de-indepartare-a-tatuajelor-nereusite"
+  ],
+  "og": {},
+  "h1": [
+   "Cele mai răspândite 6 metode de îndepărtare a tatuajelor nereușite (vechi)"
+  ],
+  "h2": [
+   "Cele mai răspândite motive pentru îndepărtarea tatuajelor",
+   "Este o procedură complicată îndepărtarea tatuajului?",
+   "Metode eficiente de îndepărtare a tatuajului sprâncene, ochi eyeliner și buze",
+   "Folosirea remediilor tradiționale",
+   "Pericolele îndepărtării tatuajelor la domiciliu",
+   "Care este cea mai bună modalitate de îndepărtare a tatuajelor?"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "b78c4d5c971e8412ce4d9bcd9cbb234b"
+ },
+ {
+  "id": "614",
+  "ctx": "web",
+  "uri": "totul-despre-acoperirea-tatuajelor-vechi-nereusite",
+  "url": "https://lbar.ro/totul-despre-acoperirea-tatuajelor-vechi-nereusite",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Totul despre acoperirea tatuajelor vechi/nereușite. Corecția sau îndepărtarea? Imagini – Blog LBar.ro",
+  "description": [
+   "Informații detaliate despre modificarea tatuajelor vechi  ✅: pot fi acoperite tatuajele vechi, care sunt caracteristicile procedurii, pot fi realizate sprâncene pudrate, se pot corecta nuanțele de gri, albastru și roșu ale sprâncenelor – Blog LBar"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/totul-despre-acoperirea-tatuajelor-vechi-nereusite"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/totul-despre-acoperirea-tatuajelor-vechi-nereusite"
+  ],
+  "og": {},
+  "h1": [
+   "Totul despre acoperirea tatuajelor vechi/nereușite"
+  ],
+  "h2": [
+   "Când este necesară corectarea unui tatuaj vechi?",
+   "Când nu este posibilă acoperirea tatuajului vechi?",
+   "Ce puteți face dacă vechiul tatuaj nu poate fi acoperit",
+   "Este posibilă efectuarea sprâncenelor pudrate peste tatuajul vechi",
+   "Cum se realizează procedura de acoperire tatuaje",
+   "Cum să vă pregătiți pentru ședința de acoperire tatuaje",
+   "Acoperirea tatuajelor: Merită de făcut sau nu?",
+   "Răspunsuri la întrebări frecvente"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "b4692b00bd8892d16673f46572be8448"
+ },
+ {
+  "id": "615",
+  "ctx": "web",
+  "uri": "totul-despre-indepartarea-tatuajelor",
+  "url": "https://lbar.ro/totul-despre-indepartarea-tatuajelor",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Totul despre îndepărtarea tatuajelor și machiajului semipermanent cu laser  – Blog LBar",
+  "description": [
+   "Îndepărtarea tatuajelor și machiajului semipermanent cu laser ✅: avantajele și dezavantajele metodei. Calcularea numărului de ședințe conform Kirby-Desai Scale – Citiți articolul Citiți articolul și vizualizați fotografiile pe blogul studioului LBar și evaluați argumentele pro și contra"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/totul-despre-indepartarea-tatuajelor"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/totul-despre-indepartarea-tatuajelor"
+  ],
+  "og": {},
+  "h1": [
+   "Totul despre îndepărtarea tatuajelor și machiajului semipermanent cu laser"
+  ],
+  "h2": [
+   "Mecanismul de acțiune al laserului",
+   "Tipuri de lasere",
+   "Avantajele și dezavantajele îndepărtării tatuajelor cu laser",
+   "Este posibilă înroșirea și inflamarea pielii după procedură?",
+   "Ce trebuie să întreprindeți dacă nu dispare?",
+   "Aspecte privind îndepărtarea cu laser",
+   "Pregătirea pentru procedură",
+   "Etapele de efectuare a procedurii",
+   "Cum să vă îngrijiți pielea după procedură",
+   "Imagini cu tatuaje și machiaj  semipermanent după îndepărtarea cu laser",
+   "Care este cea mai eficientă metodă de eliminare a tatuajului: remover sau laser?",
+   "Adresați-vă pentru serviciul de îndepărtare doar la profesioniști"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "e37d6d5f9d8df92a9028e45eaf4abb44"
+ },
+ {
+  "id": "616",
+  "ctx": "web",
+  "uri": "alegerea-aparatului-de-micropigmentare",
+  "url": "https://lbar.ro/alegerea-aparatului-de-micropigmentare",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Alegerea aparatului (mașinii) de machiaj semipermanent: cursă scurtă sau cursă lungă – Blog LBar",
+  "description": [
+   "Informații detaliate privind alegerea aparatului de micropigmentare. ✅Tipurile de aparate pentru machiajul semipermanent: ✅ Cursă lungă, cursă scurtă sau hibrid? Vă explicăm cum să vă alegeți cel mai eficient model – Blog LBar"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/alegerea-aparatului-de-micropigmentare"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/alegerea-aparatului-de-micropigmentare"
+  ],
+  "og": {},
+  "h1": [
+   "Alegerea aparatului de micropigmentare: cursă scurtă sau cursă lungă"
+  ],
+  "h2": [
+   "Tipuri de aparate de micropigmentare",
+   "Ce aparat este eficient pentru sprâncene pudrate și micropigmentarea tuturor zonelor?",
+   "Cele mai eficiente aparate de micropigmentare",
+   "Alegerea aparatului de micropigmentare și costul acestuia",
+   "Răspunsuri la întrebări frecvente"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "1648e729410eb9016eb0da95c6483682"
+ },
+ {
+  "id": "617",
+  "ctx": "web",
+  "uri": "cele-mai-raspandite-7-intrebari-despre-micropigmentarea-sprancene-pudrat",
+  "url": "https://lbar.ro/cele-mai-raspandite-7-intrebari-despre-micropigmentarea-sprancene-pudrat",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Cele mai răspândite 7 întrebări despre micropigmentarea sprancene pudrat – Blog lbar.ro",
+  "description": [
+   "Totul despre sprâncene pudrate de la masterii studioului LBar: citiți pe blog răspunsuri detaliate la cele mai populare întrebări despre tehnica respectivă"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/cele-mai-raspandite-7-intrebari-despre-micropigmentarea-sprancene-pudrat"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/cele-mai-raspandite-7-intrebari-despre-micropigmentarea-sprancene-pudrat"
+  ],
+  "og": {},
+  "h1": [
+   "Cele mai răspândite 7 întrebări despre micropigmentarea sprancene pudrat"
+  ],
+  "h2": [
+   "Ce este micropigmentarea sprancene pudrat?",
+   "Care este diferența dintre sprâncenele pudrate și tatuajul clasic?",
+   "Este dureroasă procedura de micropigmentare sprâncene pudrat?",
+   "De ce este necesară corecția după sprâncene pudrate?",
+   "Este posibilă efectuarea sprâncenelor pudrate peste tatuajul vechi?",
+   "Se permite efectuarea sprâncene powder în timpul verii?",
+   "Pot fi îndepărtate sprâncenele pudrate și cum se realizează aceasta?",
+   "Micropigmentare sprancene pudrat – ocazie excelentă de a vă îmbunătăți viața"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "2fb8da3a6d3ed9090243640b1b19eeda"
+ },
+ {
+  "id": "618",
+  "ctx": "web",
+  "uri": "kit-de-initiere-al-artistului-de-machiaj-semipermanent",
+  "url": "https://lbar.ro/kit-de-initiere-al-artistului-de-machiaj-semipermanent",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Kit de inițiere al artistului de machiaj semipermanent, lista echipamentelor și materialelor consumabile – LBar",
+  "description": [
+   "Întreaga listă de materiale esențiale pentru kitul de inițiere al artistului de machiaj semipermanent. ✅: Kit de bază pentru micropigmentare în funcție de preț/calitate. Cele mai importante 30 elemente pentru începător – Blog lbar.ro"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/kit-de-initiere-al-artistului-de-machiaj-semipermanent"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/kit-de-initiere-al-artistului-de-machiaj-semipermanent"
+  ],
+  "og": {},
+  "h1": [
+   "Kit de inițiere al artistului de machiaj semipermanent"
+  ],
+  "h2": [
+   "Ce conține kitul de bază pentru tatuaje",
+   "Amenajarea locului de muncă al artistului de machiaj semipermanent",
+   "Kit de inițiere performant pentru machiajul semipermanent – cheia unei cariere de succes",
+   "Răspunsuri la întrebări frecvente"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "5af9db83ebb27a3906174da003198470"
+ },
+ {
+  "id": "619",
+  "ctx": "web",
+  "uri": "microblading-sprancene-cea-mai-obiectiva-prezentare-a-tehnicii",
+  "url": "https://lbar.ro/microblading-sprancene-cea-mai-obiectiva-prezentare-a-tehnicii",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Microblading sprancene: cea mai obiectivă prezentare a tehnicii de micropigmentare, argumente pro și contra – Blog lbar.ro",
+  "description": [
+   "Totul despre tehnica microblading sprancene + Foto. Cele mai obiective avantaje și dezavantaje ale microbladingului, etapele de efectuare a procedurii și procesul de vindecare. Citiți articolul detaliat, lăsați un comentariu despre această tehnică de micropigmentare | Blog lbar.ro"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/microblading-sprancene-cea-mai-obiectiva-prezentare-a-tehnicii"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/microblading-sprancene-cea-mai-obiectiva-prezentare-a-tehnicii"
+  ],
+  "og": {},
+  "h1": [
+   "Microblading sprancene: cea mai obiectivă prezentare a tehnicii de micropigmentare, argumente pro și contra"
+  ],
+  "h2": [
+   "Microblading: în ce constă procedura?",
+   "Care este diferența dintre microblading și tatuajul clasic?",
+   "Cui i se potrivește tehnica fir cu fir?",
+   "Cât timp durează efectul procedurii microblading sprâncene?",
+   "Avantajele tehnicii",
+   "Dezavantajele tehnicii",
+   "Este dureroasă procedura de microblading?",
+   "Cum arată sprâncenele după microblading: fotografii înainte și după procedură",
+   "Cum se efectuează procedura de microblading sprâncene?",
+   "Cum să vă pregătiți pentru procedura de microblading sprâncene?",
+   "Îngrijirea pielii după procedura de microblading",
+   "Ce nu se permite să faceți în perioada recuperării pielii după microblading?",
+   "Contraindicații privind procedura de microblading",
+   "Este necesară efectuarea corecției după procedura de microblading?",
+   "Tehnica de micropigmentare care a înlocuit tatuajul"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "b7fc0669aa4e69467558201f06a3e097"
+ },
+ {
+  "id": "620",
+  "ctx": "web",
+  "uri": "tehnica-de-micropigmentare-sprancene-fir-cu-fir",
+  "url": "https://lbar.ro/tehnica-de-micropigmentare-sprancene-fir-cu-fir",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Tehnica de micropigmentare sprancene fir cu fir: detalii despre acest trend în lumea frumuseții – Blog lbar.ro",
+  "description": [
+   "Sunteți interesați de tehnica de micropigmentare sprancene fir cu fir? Citiți articolul de pe blogul LBar pentru a descoperi de ce este atât de solicitată și dacă vi se potrivește"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/tehnica-de-micropigmentare-sprancene-fir-cu-fir"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/tehnica-de-micropigmentare-sprancene-fir-cu-fir"
+  ],
+  "og": {},
+  "h1": [
+   "Tehnica de micropigmentare sprancene fir cu fir: detalii despre acest trend în lumea frumuseții"
+  ],
+  "h2": [
+   "Ce este tehnica de micropigmentare sprancene fir cu fir?",
+   "Tipuri de tehnici de micropigmentare fir cu fir",
+   "Contraindicații privind tehnica fir cu fir",
+   "Avantajele și dezavantajele tehnicii",
+   "De ce depinde durata efectului machiajului semipermanent în tehnica fir cu fir?",
+   "Cum se desfășoară ședința de micropigmentarea sprancene fir cu fir?",
+   "Îngrijirea sprâncenelor după tehnica fir cu fir",
+   "Este posibilă acoperirea tatuajului vechi prin tehnica fir cu fir?",
+   "Tehnica fir cu fir – alegerea ideală?"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "8900c89aba9c0bd2c8e4fb43a564ae62"
+ },
+ {
+  "id": "621",
+  "ctx": "web",
+  "uri": "micropigmentarea-in-timpul-sarcinii-si-alaptarii",
+  "url": "https://lbar.ro/micropigmentarea-in-timpul-sarcinii-si-alaptarii",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Micropigmentarea în timpul sarcinii și alăptării: este posibilă? – Blog LBar.ro",
+  "description": [
+   "Se permite micropigmentarea în timpul sarcinii și a alăptării? ✅ Ce tehnici și zone (sprâncene, buze, pleoape) 《 sunt sigure în perioada alăptării 》 și care dintre acestea nu trebuie efectuate în mod categoric?  ✅ Citiți articolul Kseniei Kobilianskaia de pe blogul LBar pentru a afla răspunsul."
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/micropigmentarea-in-timpul-sarcinii-si-alaptarii"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/micropigmentarea-in-timpul-sarcinii-si-alaptarii"
+  ],
+  "og": {},
+  "h1": [
+   "Micropigmentarea în timpul sarcinii și alăptării: este posibilă?"
+  ],
+  "h2": [
+   "De ce unele femei doresc să-și facă un machiaj semipermanent în timpul sarcinii?",
+   "Când este cel mai potrivit moment pentru micropigmentare în timpul sarcinii?",
+   "Este oare dureroasă procedura de micropigmentare?",
+   "Se permite efectuarea sprâncenelor pudrate în timpul sarcinii sau alăptării?",
+   "Există diferențe în micropigmentarea buzelor, pleoapelor și a sprâncenelor în timpul sarcinii și care sunt consecințele?",
+   "Se permite micropigmentarea în timpul alăptării?",
+   "Există pericole privind efectuarea micropigmentării în perioada de alăptare?",
+   "Micropigmentarea în perioada sarcinii: se permite sau nu"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "c98f1f94447872d98391190287d4d854"
+ },
+ {
+  "id": "622",
+  "ctx": "web",
+  "uri": "cat-dureaza-vindecarea-sprancenelor-dupa-microblading",
+  "url": "https://lbar.ro/cat-dureaza-vindecarea-sprancenelor-dupa-microblading",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Cât durează vindecarea sprâncenelor după microblading? Prezentare detaliată a etapelor de recuperare a pielii după procedură – Blog LBar.ro",
+  "description": [
+   "Vă faceți griji în legătură cu vindecarea sprâncenelor după microblading? Citiți acest articol de pe blogul LBar pentru a putea alege momentul ideal pentru procedură"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/cat-dureaza-vindecarea-sprancenelor-dupa-microblading"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/cat-dureaza-vindecarea-sprancenelor-dupa-microblading"
+  ],
+  "og": {},
+  "h1": [
+   "Cât durează vindecarea sprâncenelor după microblading? Prezentare detaliată a etapelor de recuperare a pielii după procedură"
+  ],
+  "h2": [
+   "Pentru cei care încă nu cunosc. Ce include serviciul de microblading?",
+   "Este dureroasă procedura de microblading?",
+   "Cum arată sprâncenele după procedura de microblading?",
+   "Cât durează vindecarea sprâncenelor după microblading?",
+   "Procesul de vindecare a sprâncenelor după microblading: etapele principale",
+   "De ce este important retușul?",
+   "Cum arată sprâncenele vindecate după microblading?"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "5460fa359744f4b6b3561085a8fa5ee8"
+ },
+ {
+  "id": "623",
+  "ctx": "web",
+  "uri": "cand-este-mai-potrivit-de-efectuat-micropigmentarea",
+  "url": "https://lbar.ro/cand-este-mai-potrivit-de-efectuat-micropigmentarea",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Micropigmentarea vara și iarna: când este mai potrivit de efectuat și caracteristici de îngrijire a sprâncenelor și a buzelor – Blog LBar.ro",
+  "description": [
+   "Când este mai potrivit de efectuat micropigmentarea: vara sau iarna? \r\nCaracteristici de îngrijire a sprâncenelor pudrate și a machiajului semipermanent buze și ochi înainte de a vă expune la soare – Citiți articolul de pe blogul LBar"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/cand-este-mai-potrivit-de-efectuat-micropigmentarea"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/cand-este-mai-potrivit-de-efectuat-micropigmentarea"
+  ],
+  "og": {},
+  "h1": [
+   "Când este mai potrivit de efectuat micropigmentarea: vara sau iarna?"
+  ],
+  "h2": [
+   "Micropigmentarea – o procedură potrivită pentru toate anotimpurile",
+   "Micropigmentarea în timpul verii: aspecte pro, contra și mod de îngrijire",
+   "Avantajele micropigmentării în timpul verii",
+   "Micropigmentarea în timpul iernii: aspecte pro, contra și mod de îngrijire",
+   "Sprâncene powder – tehnică universală pentru orice perioadă a anului"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "b8b0390cab630ef4fc29f27088e9357d"
+ },
+ {
+  "id": "624",
+  "ctx": "web",
+  "uri": "micropigmentarea-prezentare-detaliata-a-trendului",
+  "url": "https://lbar.ro/micropigmentarea-prezentare-detaliata-a-trendului",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Micropigmentarea: detalii despre procedură, fotografii cu lucrări ale machiajului semipermanent pe toate zonele – Blog LBar.ro",
+  "description": [
+   "Informații detaliate despre micropigmentare. ✅ Prezentare generală a zonelor și a tehnicilor de micropigmentare ✅ fotografii cu lucrări ale machiajului semipermanent sprancene, buze și pleoape (eyeliner) | Aflați cât timp durează procedura și modul de vindecare – detalii pe blogul LBar"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/micropigmentarea-prezentare-detaliata-a-trendului"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/micropigmentarea-prezentare-detaliata-a-trendului"
+  ],
+  "og": {},
+  "h1": [
+   "Micropigmentarea: prezentare detaliată a trendului"
+  ],
+  "h2": [
+   "Ce este micropigmentarea?",
+   "Avantajele și dezavantajele micropigmentării",
+   "Etapele procedurii de micropigmentare",
+   "Cum să vă pregătiți pentru micropigmentare",
+   "Cum să îngrijiți pielea după machiajul semipermanent",
+   "Este necesară corecția machiajului semipermanent?",
+   "Tipuri și caracteristici ale micropigmentării în funcție de zonă",
+   "Micropigmentare ochi (pleoape)",
+   "Micropigmentare buze",
+   "Să recapitulăm. Ce vă oferă serviciul de micropigmentare?",
+   "Răspunsuri la întrebări frecvente"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "ee6ed700b7942e581e8adb68e975b865"
+ },
+ {
+  "id": "625",
+  "ctx": "web",
+  "uri": "indepartare-tatuaj-cu-laser",
+  "url": "https://lbar.ro/indepartare-tatuaj-cu-laser",
+  "template": "19",
+  "status": 200,
+  "location": null,
+  "title": "Indepartare tatuaj cu laser in Bucuresti, scoatere tatuaje sprancene pret",
+  "description": [
+   "Indepartare cu laser tatuaje și machiaj permanent ✅ Sectorul 1 Bucuresti ➔ corectam tatuaje ✓ indepartam tatuaje de orice complexitate ➔ laser de ultima generatie certificat"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/indepartare-tatuaj-cu-laser"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/indepartare-tatuaj-cu-laser",
+   "ru=https://lbar.ro/ru/lazernoye-udaleniye-tatuazha-i-tatu"
+  ],
+  "og": {},
+  "h1": [
+   "Indepartare tatuaj cu laser"
+  ],
+  "h2": [
+   "Ia o consultație de la un specialist",
+   "Visați la o piele curată fără tatuaje? Îndepărtarea tatuajelor cu laser – cea mai bună opțiune",
+   "Ce echipamente folosim",
+   "Solicitați o consultație gratuită",
+   "Prețuri îndepărtare tatuaj și machiaj permanent cu laser",
+   "Galerie foto – îndepărtare cu laser înainte și după procedură",
+   "Tehnician dermopigmentist Îndepărtare tatuaj și machiaj permanent",
+   "Recenzii îndepărtare tatuaje cu laser",
+   "Răspunsuri la întrebări frecvente",
+   "Contact"
+  ],
+  "jsonld": 4,
+  "lang": "ro",
+  "text_hash": "a582113b772c724aa6b1df233c7c7a97"
+ },
+ {
+  "id": "626",
+  "ctx": "web",
+  "uri": "extensii-de-gene-fir-cu-fir",
+  "url": "https://lbar.ro/extensii-de-gene-fir-cu-fir",
+  "template": "8",
+  "status": 200,
+  "location": null,
+  "title": "Extensii de gene fir cu fir în Bucuresti. Pretul genelor false Lbar",
+  "description": [
+   "Extensii de gene fir cu fir in Bucuresti la Studio LBar ⚡ Masteri cu experienta de peste 5 ani ✔ Metode moderne de genelor false ✔ Preturi accesibile ✎ Va garantam rezultate excelente si efect natural"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/extensii-de-gene-fir-cu-fir"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/extensii-de-gene-fir-cu-fir"
+  ],
+  "og": {},
+  "h1": [
+   "Extensii de gene fir cu fir"
+  ],
+  "h2": [
+   "3 motive pentru a vă face extensii de gene",
+   "Bine ați venit la LBar! Eu sunt Ksenia Kobilianskaia, lash stylist",
+   "Obțineți o consultație personală",
+   "Galerie foto – extensii de gene înainte și după procedură",
+   "Preturi extensii gene fir cu fir în Bucuresti la Studio LBar",
+   "Recenzii extensii de gene de la clientele noastre dragi",
+   "Răspunsuri la întrebări frecvente",
+   "De ce extensia genelor este atât de solicitată?",
+   "Beneficii extensii gene fir cu fir",
+   "Cum se aplică extensii gene fir cu fir în Bucuresti în salonul LBar?",
+   "Despre retuș",
+   "Îngrijirea după extensia genelor",
+   "Contact"
+  ],
+  "jsonld": 4,
+  "lang": "ro",
+  "text_hash": "ac8b87eb377d25388842039fe441e1bc"
+ },
+ {
+  "id": "627",
+  "ctx": "web",
+  "uri": "epilare-definitiva-cu-laser",
+  "url": "https://lbar.ro/epilare-definitiva-cu-laser",
+  "template": "8",
+  "status": 200,
+  "location": null,
+  "title": "Epilare Definitiva cu Laser in Bucuresti  ᐈ Preturi Epilare Definitiva  | LBar",
+  "description": [
+   "Epilare definitiva cu laser in Bucuresti la salon LBar ⚡ Masteri cu experienta de peste 5 ani ✔ Metode moderne cu laser dioda ✔ Preturi accesibile ✎ Echipament modern de înaltă calitate"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/epilare-definitiva-cu-laser"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/epilare-definitiva-cu-laser",
+   "ru=https://lbar.ro/ru/lazernaya-epilyatsiya"
+  ],
+  "og": {},
+  "h1": [
+   "Epilare Definitiva cu Laser in Bucuresti"
+  ],
+  "h2": [
+   "3 motive de a recurge la epilare laser",
+   "Bine ați venit la LBar! Eu sunt Ksenia Kobilianskaia, estetician epilare laser",
+   "Obțineți o consultație personală",
+   "Epilare definitiva preturi în Bucuresti la Studio LBar",
+   "Recenzii epilare definitiva laser diode de la clientele noastre dragi",
+   "Răspunsuri la întrebări frecvente",
+   "De ce epilarea definitiva laser a devenit atât de populară?",
+   "Beneficii epilare definitivă laser",
+   "Cum se desfășoară procedura în salonul de epilare definitiva laser Bucuresti?",
+   "Pregătirea pentru epilarea cu laser",
+   "Îngrijirea pielii după epilare definitiva laser",
+   "Despre laser",
+   "Contact"
+  ],
+  "jsonld": 4,
+  "lang": "ro",
+  "text_hash": "dda08c60d324b283a4a565f8a877714f"
+ },
+ {
+  "id": "629",
+  "ctx": "web",
+  "uri": "manichiura",
+  "url": "https://lbar.ro/manichiura",
+  "template": "8",
+  "status": 200,
+  "location": null,
+  "title": "Manichiură București Sector 1 Dorobanti - Salon unghii gel, pret si poza Lbar",
+  "description": [
+   "Manichiură in Bucuresti la Salon unghii gel LBar ⚡ Masteri cu experienta de peste 5 ani ✔ Sector 1, Dorobanti (statia Perla) ✔ Preturi accesibile ✎ Va garantam rezultate excelente si efect natural"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/manichiura"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/manichiura",
+   "ru=https://lbar.ro/ru/manichiura"
+  ],
+  "og": {},
+  "h1": [
+   "Manichiură București la salonul Lbar"
+  ],
+  "h2": [
+   "Unghii cu gel cu manichiură - exemple ale muncii noastre",
+   "Prețul pentru manichiură clasică, gel-lac și alte servicii pentru unghii în București",
+   "Recenzii de manichiură de la dragii noștri clienți",
+   "În Lbar puteți face toate tipurile de manichiură în București.",
+   "Contact"
+  ],
+  "jsonld": 4,
+  "lang": "ro",
+  "text_hash": "564628658d75babe8e5b0c602bcb3fb8"
+ },
+ {
+  "id": "631",
+  "ctx": "web",
+  "uri": "pedichiura",
+  "url": "https://lbar.ro/pedichiura",
+  "template": "8",
+  "status": 200,
+  "location": null,
+  "title": "Pedichiură București Sector 1 Dorobanti - Salon unghii gel, pret si poza Lbar",
+  "description": [
+   "Pedichiură in Bucuresti la Salon unghii gel LBar ⚡ Masteri cu experienta de peste 5 ani ✔ Sector 1, Dorobanti (statia Perla) ✔ Preturi accesibile ✎ Va garantam rezultate excelente si efect natural"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/pedichiura"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/pedichiura",
+   "ru=https://lbar.ro/ru/pedichiura"
+  ],
+  "og": {},
+  "h1": [
+   "Pedichiură București la salonul Lbar"
+  ],
+  "h2": [
+   "Unghii cu gel cu pedichiură - exemple ale muncii noastre",
+   "Prețul pentru Pedichiură, gel-lac unghii în București",
+   "Recenzii de Pedichiură de la dragii noștri clienți",
+   "6 motive pentru a vă programa la pedichiură în Dorobanți la studioul Lbar:",
+   "Contact"
+  ],
+  "jsonld": 4,
+  "lang": "ro",
+  "text_hash": "775aa45c900f6b539a1421c25908db07"
+ },
+ {
+  "id": "633",
+  "ctx": "web",
+  "uri": "micropigmentare-eyeliner-cu-efect-de-umbrire-informatii-detaliate-cu-fotografii-reale",
+  "url": "https://lbar.ro/micropigmentare-eyeliner-cu-efect-de-umbrire-informatii-detaliate-cu-fotografii-reale",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Machiaj semipermanent – eyeliner estompat: avantajele tehnicii de machiaj al pleoapei superioare",
+  "description": [
+   "Machiajul semipermanent al ochilor cu efect de estompare: ce este, de ce se face, tipuri, rezultate, cât durează și contraindicații. Cum să alegi culoarea și forma potrivită? Citiți articolul realizat de profesioniști pe site-ul Lbar"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/micropigmentare-eyeliner-cu-efect-de-umbrire-informatii-detaliate-cu-fotografii-reale"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/micropigmentare-eyeliner-cu-efect-de-umbrire-informatii-detaliate-cu-fotografii-reale"
+  ],
+  "og": {},
+  "h1": [
+   "Micropigmentare eyeliner cu efect de umbrire: informații detaliate cu fotografii reale"
+  ],
+  "h2": [
+   "Popularitatea machiajului permanent",
+   "Tipuri și tehnici de micropigmentare ochi",
+   "Micropigmentare eyeliner cu efect de umbrire",
+   "Fotografii cu lucrări impecabile ale specialiștilor noștri",
+   "Pregătirea pentru ședință și etapele de aplicare",
+   "Cei mai buni artiști de machiaj permanent"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "91289d47bc962d51fe7032214c76b00b"
+ },
+ {
+  "id": "634",
+  "ctx": "web",
+  "uri": "machiaj-permanent-sprancene-nereusit-cauze-fotografii-inainte-si-dupa",
+  "url": "https://lbar.ro/machiaj-permanent-sprancene-nereusit-cauze-fotografii-inainte-si-dupa",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Machiaj semipermanent nereușit al sprâncenelor: metode de corectare? Cauze și consecințe, fotografii înainte și după",
+  "description": [
+   "Machiajul semipermanent nereușit al sprâncenelor poate deveni o problemă serioasă, dar poate fi corectat. Analizăm cauzele, posibilele consecințe și metode eficiente de corecție. Fotografii înainte și după, sfaturi de la specialiști – citiți articolul pe site-ul Lbar"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/machiaj-permanent-sprancene-nereusit-cauze-fotografii-inainte-si-dupa"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/machiaj-permanent-sprancene-nereusit-cauze-fotografii-inainte-si-dupa"
+  ],
+  "og": {},
+  "h1": [
+   "Machiaj permanent sprâncene nereușit: cauze, fotografii înainte și după"
+  ],
+  "h2": [
+   "De ce se ajunge la un machiaj permanent sprâncene nereușit?",
+   "Consecințele tatuajului nereușit",
+   "Acoperirea sau îndepărtarea tatuajelor vechi?",
+   "Metode de îndepărtare a machiajului permanent sprâncene nereușit",
+   "Machiaj permanent nou sau cum să evitați greșelile anterioare?",
+   "Rezultate care vorbesc de la sine"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "7c1c70d38891ea6baf0f380984c185c1"
+ },
+ {
+  "id": "635",
+  "ctx": "web",
+  "uri": "tatuajul-sprancenelor-principalele-intrebari",
+  "url": "https://lbar.ro/tatuajul-sprancenelor-principalele-intrebari",
+  "template": "5",
+  "status": 200,
+  "location": null,
+  "title": "Tatuajul sprancenelor - avantaje și dezavantaje blog Lbar",
+  "description": [
+   "Avantaje și dezavantaje ale tatuajului sprâncenelor: tehnici, etapele procedurii, vindecare, îngrijire, cât durează și cât costă la LBar București"
+  ],
+  "keywords": [],
+  "robots": [
+   "index, follow"
+  ],
+  "canonical": [
+   "https://lbar.ro/tatuajul-sprancenelor-principalele-intrebari"
+  ],
+  "alternate": [
+   "ro=https://lbar.ro/tatuajul-sprancenelor-principalele-intrebari"
+  ],
+  "og": {},
+  "h1": [
+   "Tatuajul sprâncenelor – principalele întrebări"
+  ],
+  "h2": [
+   "Cum decurge tatuajul la sprâncene?",
+   "Cât costă tatuajul la sprâncene la LBar în București?",
+   "Recenzii de la clientele noastre",
+   "De ce îmi lipsesc sprâncenele?",
+   "Pot să-mi schimb forma sprâncenelor?",
+   "Când trebuie să apelați la tatuarea sprâncenelor?",
+   "Ce este micropigmentarea?",
+   "Este dureroasă procedura de tatuaj?",
+   "Ce este tehnica fir cu fir?",
+   "Care sunt avantajele tatuajului sprâncenelor?",
+   "Se poate face tatuajul la sprâncene după 60 de ani?",
+   "Cum decurge ședința de tatuaj sprâncene?",
+   "Ce experiență au specialiștii de la LBar?",
+   "Este tatuajul sprâncenelor o procedură sigură?",
+   "Cât timp durează efectul tatuajului pentru sprâncene?",
+   "Cum pot ști dacă am nevoie de un tatuaj la sprâncene?",
+   "Ce este repigmentarea?",
+   "Pot să-mi repigmentez tatuajul sprâncenelor la studioul LBar, dacă l-am efectuat la un alt salon?",
+   "Pot să-mi fac mai multe machiaje permanente la o singură ședință?",
+   "De ce ține cont specialistul atunci când desenează forma sprâncenelor?",
+   "Cât timp durează procedura?",
+   "Prețul tatuajului sprâncenelor variază în funcție de grosimea acestora?",
+   "Cum vor arăta sprâncenele mele după procedură?",
+   "Cum să-mi îngrijesc sprâncenele tatuate după procedură?",
+   "Trebuie să-mi fac o programare prealabilă pentru procedură?",
+   "Pot să-mi fac tatuaj la sprâncene înainte de a pleca în vacanță?"
+  ],
+  "jsonld": 3,
+  "lang": "ro",
+  "text_hash": "fa1deddce362524d07ed39c0f1d4ba31"
+ }
+]
