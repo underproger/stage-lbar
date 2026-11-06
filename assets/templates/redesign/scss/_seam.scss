@@ -6,11 +6,12 @@
 // (overflow: hidden), вместе получается цельная картинка. Декор лежит над фоном блока, но под контентом (z-index: 1).
 //
 // Стыки: баннер → «О микропигментации» (seam-hero.svg), «О микропигментации» → «Услуги» (seam.svg),
-//        «Услуги» → «implică» (seam-implica.svg).
+//        «Услуги» → «implică» (seam-implica.svg), «implică» → «Консультация» (seam-consult.svg).
 $seam-h: 760;              // высота декора, px @1920
 $seam-hero: #f8f1ec;       // баннер → «О микропигментации»
 $seam-color: #f7eee8;      // «О микропигментации» → «Услуги»
 $seam-implica: #faf0e8;    // «Услуги» → «implică»
+$seam-consult: #f6eee9;    // «implică» → «Консультация»
 
 @mixin lb-seam($side, $svg: "seam.svg", $pseudo: after) {
 	&::#{$pseudo} {
@@ -95,25 +96,43 @@ $seam-implica: #faf0e8;    // «Услуги» → «implică»
 	}
 }
 
-// ---------- «implică»: фото проявляется из цвета стыка ----------
+// ---------- «implică»: сверху — из «Услуг», снизу — в «Консультацию» ----------
 .lb-implica {
-	background: linear-gradient(180deg, $seam-implica 0, $im-bg vw(160));
+	background: linear-gradient(180deg, $seam-implica 0, $im-bg vw(160), $im-bg calc(100% - #{vw(200)}), $seam-consult 100%);
 	@include lb-seam(top, "seam-implica.svg");
+	@include lb-seam(bottom, "seam-consult.svg", before);
 	&__arc,
 	&__col {
 		z-index: 1;
 	}
 	@include desktop {
 		&__bg {
-			-webkit-mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .5) vw(50), #000 vw(150));
-			mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .5) vw(50), #000 vw(150));
+			-webkit-mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .5) vw(50), #000 vw(150), #000 calc(100% - #{vw(240)}), transparent 100%);
+			mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .5) vw(50), #000 vw(150), #000 calc(100% - #{vw(240)}), transparent 100%);
 		}
 	}
 	@include mobile {
-		background: linear-gradient(180deg, $seam-implica 0, $im-bg 120px);
+		background: linear-gradient(180deg, $seam-implica 0, $im-bg 120px, $im-bg calc(100% - 80px), $seam-consult 100%);
 		&__bg {
 			-webkit-mask-image: linear-gradient(180deg, transparent 0, #000 60px, #000 82%, transparent 100%);
 			mask-image: linear-gradient(180deg, transparent 0, #000 60px, #000 82%, transparent 100%);
+		}
+	}
+}
+
+// ---------- «Консультация»: графика проявляется из цвета стыка, снизу мягко уходит в фон ----------
+.lb-consult {
+	background: linear-gradient(180deg, $seam-consult 0, $cs-bg vw(160));
+	@include lb-seam(top, "seam-consult.svg");
+	&__bg {
+		-webkit-mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .45) vw(60), #000 vw(170), #000 calc(100% - #{vw(90)}), rgba(0, 0, 0, .6) 100%);
+		mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .45) vw(60), #000 vw(170), #000 calc(100% - #{vw(90)}), rgba(0, 0, 0, .6) 100%);
+	}
+	@include mobile {
+		background: linear-gradient(180deg, $seam-consult 0, $cs-bg 100px);
+		&__bg {
+			-webkit-mask-image: linear-gradient(180deg, transparent 0, #000 120px, #000 85%, rgba(0, 0, 0, .5) 100%);
+			mask-image: linear-gradient(180deg, transparent 0, #000 120px, #000 85%, rgba(0, 0, 0, .5) 100%);
 		}
 	}
 }

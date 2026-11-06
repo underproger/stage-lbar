@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 855" preserveAspectRatio="xMidYMid slice">
+  <!-- Фон блока «Консультация»: только графика (без фото). Геометрия — по макету 1920×855. -->
+  <defs>
+    <linearGradient id="c0" x1="1920" y1="0" x2="880" y2="700" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#a8907e"/>
+      <stop offset=".45" stop-color="#c6b09f"/>
+      <stop offset=".8" stop-color="#ddc9bb"/>
+      <stop offset="1" stop-color="#ead9ce"/>
+    </linearGradient>
+    <linearGradient id="c0low" x1="0" y1="420" x2="0" y2="855" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f1e5dc" stop-opacity="0"/>
+      <stop offset="1" stop-color="#f1e5dc" stop-opacity=".75"/>
+    </linearGradient>
+    <radialGradient id="c0light" cx="1250" cy="420" r="620" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff6f0" stop-opacity=".55"/>
+      <stop offset=".6" stop-color="#fff6f0" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#fff6f0" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="c1" x1="700" y1="300" x2="1300" y2="855" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f3e8e0"/>
+      <stop offset="1" stop-color="#e9d9cd"/>
+    </linearGradient>
+    <linearGradient id="c2" x1="1250" y1="620" x2="520" y2="855" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#dcc7b7" stop-opacity="0"/>
+      <stop offset=".35" stop-color="#dcc6b6" stop-opacity=".9"/>
+      <stop offset=".7" stop-color="#e9dbcf"/>
+      <stop offset="1" stop-color="#f3e8df"/>
+    </linearGradient>
+    <linearGradient id="line1" x1="0" y1="320" x2="0" y2="680" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b8906f" stop-opacity="0"/>
+      <stop offset=".35" stop-color="#b8906f" stop-opacity=".7"/>
+      <stop offset="1" stop-color="#b8906f" stop-opacity=".85"/>
+    </linearGradient>
+    <linearGradient id="line2" x1="0" y1="640" x2="0" y2="855" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b8906f" stop-opacity=".85"/>
+      <stop offset="1" stop-color="#b8906f" stop-opacity=".5"/>
+    </linearGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="0" y2="260" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity=".7"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="380" cy="300" r="620" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="2"/></filter>
+  </defs>
+  <!-- мягкий свет на кремовом поле слева -->
+  <rect width="1920" height="855" fill="url(#sun)"/>
+  <!-- светлый диск за карточкой -->
+  <circle cx="1301" cy="630" r="598" fill="url(#c1)"/>
+  <!-- тёплая «стена» справа: сверху — дуга окружности (1441, 505, r 673), ниже край уходит за карточку -->
+  <path id="wall" d="M1003 -6A673 673 0 0 0 882 130C892 300 896 520 902 700C912 780 940 830 960 860H1930V-6Z" fill="url(#c0)"/>
+  <path d="M1003 -6A673 673 0 0 0 882 130C892 300 896 520 902 700C912 780 940 830 960 860H1930V-6Z" fill="url(#c0light)"/>
+  <path d="M1003 -6A673 673 0 0 0 882 130C892 300 896 520 902 700C912 780 940 830 960 860H1930V-6Z" fill="url(#c0low)"/>
+  <!-- нижний диск («подиум») -->
+  <circle cx="1003" cy="1183" r="597" fill="url(#c2)"/>
+  <!-- светлый кант по верхнему краю «стены» -->
+  <path d="M1003 -6A673 673 0 0 0 882 130" fill="none" stroke="url(#rim)" stroke-width="2" filter="url(#blur)"/>
+  <!-- тонкие медные дуги -->
+  <path d="M789.6 320A598 598 0 0 0 703.8 660" fill="none" stroke="url(#line1)" stroke-width="1.6"/>
+  <path d="M715.1 660A597 597 0 0 0 504.2 855" fill="none" stroke="url(#line2)" stroke-width="1.6"/>
+</svg>

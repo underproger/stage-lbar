@@ -52,7 +52,7 @@
 		var y = el.getBoundingClientRect().top + window.pageYOffset - offset - 10;
 		window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
 	};
-	document.querySelectorAll('.lb-header a[href^="#"], .lb-hero a[href^="#"], .lb-implica a[href^="#"]').forEach(function (a) {
+	document.querySelectorAll('.lb-header a[href^="#"], .lb-hero a[href^="#"], .lb-about a[href^="#"], .lb-implica a[href^="#"]').forEach(function (a) {
 		a.addEventListener('click', function (e) {
 			var id = a.getAttribute('href').slice(1);
 			var target = id && document.getElementById(id);
@@ -128,6 +128,22 @@
 		if (document.fonts && document.fonts.ready) document.fonts.ready.then(placeDots);
 	}
 
+	/* ---------- Блок «Консультация»: поле телефона (intlTelInput) ----------
+	   Библиотека считает отступ текста от кода страны один раз — при смене ширины экрана (размеры в vw) пересчитываем. */
+	var consult = document.querySelector('.lb-consult');
+	if (consult) {
+		var tel = consult.querySelector('input[name="phone"]');
+		var itiTimer;
+		window.addEventListener('resize', function () {
+			clearTimeout(itiTimer);
+			itiTimer = setTimeout(function () {
+				var iti = tel && window.intlTelInputGlobals && window.intlTelInputGlobals.getInstance(tel);
+				var data = iti && iti.getSelectedCountryData();
+				if (data && data.iso2) iti.setCountry(data.iso2);
+			}, 150);
+		});
+	}
+
 	/* ---------- Появление блоков при прокрутке ---------- */
 	var initReveal = function () {
 		if (reduce || typeof window.gsap === 'undefined' || !window.ScrollTrigger) return;
@@ -140,6 +156,17 @@
 				.from(about.querySelectorAll('.lb-about__eyebrow, .lb-about__t1, .lb-about__t2, .lb-about__textwrap'), { y: 40, opacity: 0, duration: 1.3, stagger: 0.1, clearProps: 'transform' }, 0.15)
 				.from(about.querySelectorAll('.lb-about__item'), { x: -30, opacity: 0, duration: 1.2, stagger: 0.1, clearProps: 'transform' }, 0.5)
 				.from(about.querySelectorAll('.lb-about__quote, .lb-about__cta'), { y: 30, opacity: 0, duration: 1.2, stagger: 0.1, clearProps: 'transform' }, 0.8);
+		}
+		if (consult) {
+			var cq = function (s) { return consult.querySelectorAll(s); };
+			var ctl = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: consult, start: 'top 72%' } });
+			ctl.from(consult.querySelector('.lb-consult__bg'), { opacity: 0, scale: 1.04, duration: 2, ease: 'power3.out', clearProps: 'transform' }, 0)
+				.from(cq('.lb-consult__eyebrow'), { x: -30, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.15)
+				.from(cq('.lb-consult__lin'), { yPercent: 105, duration: 1.5, stagger: 0.12 }, 0.2)
+				.fromTo(cq('.lb-consult__flourish'), { clipPath: 'inset(0% 100% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.6, ease: 'power2.inOut', clearProps: 'clipPath' }, 0.75)
+				.from(cq('.lb-consult__text'), { y: 30, opacity: 0, duration: 1.3, clearProps: 'transform' }, 0.6)
+				.from(cq('.lb-consult__card'), { y: 70, opacity: 0, duration: 1.6, clearProps: 'transform' }, 0.3)
+				.from(cq('.lb-cform__field, .lb-cform__btn, .lb-cform__policy'), { y: 26, opacity: 0, duration: 1.2, stagger: 0.09, clearProps: 'transform' }, 0.6);
 		}
 		if (implica) {
 			var iq = function (s) { return implica.querySelectorAll(s); };

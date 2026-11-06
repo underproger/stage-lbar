@@ -1,0 +1,484 @@
+// ================= БЛОК «КОНСУЛЬТАЦИЯ» (главная, 5-й экран: форма) =================
+// Макет 1920×855. Фон — только графика (img/consult-bg.svg: диски, тонкие медные дуги, свет), без фото.
+$cs-bg: #f9f2ed;
+
+.lb-consult {
+	position: relative;
+	min-height: vw(855);
+	overflow: hidden;
+	font-family: $f-sans;
+	color: #222;
+	background: $cs-bg;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	:where(*, *::before, *::after) {
+		box-sizing: border-box;
+	}
+	:where(p, ul, li) {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	:where(svg) {
+		display: block;
+	}
+
+	&__bg {
+		position: absolute;
+		inset: 0;
+		background: url("/assets/templates/redesign/img/consult-bg.svg") 50% 0 / 100% vw(855) no-repeat;
+	}
+
+	// ----- левая колонка -----
+	&__intro {
+		position: absolute;
+		z-index: 1;
+		top: vw(94);
+		left: vw(143);
+		width: vw(640);
+	}
+	&__eyebrow {
+		display: flex;
+		align-items: center;
+		gap: vw(22);
+		height: vw(22);
+		font-family: $f-text;
+		font-size: vw(23);
+		font-weight: 500;
+		line-height: 1;
+		letter-spacing: .2em;
+		text-transform: uppercase;
+		color: #7b5538;
+		&::after {
+			content: "";
+			width: vw(64);
+			height: 1.5px;
+			background: #b48b6e;
+			transform-origin: left center;
+		}
+	}
+	&__title {
+		margin-top: vw(58);
+		font-family: $f-classic;
+		font-size: vw(99);
+		font-weight: 340;
+		line-height: vw(88);
+		letter-spacing: .02em;
+		color: #251c18;
+		em {
+			font-style: italic;
+			margin-left: -.1em;
+			font-size: 1.15em;
+			font-weight: 400;
+			line-height: 0;
+			letter-spacing: .048em;
+			color: transparent;
+			background: linear-gradient(95deg, #8f5f40 0%, #a7774f 45%, #9a6a48 75%, #8c5e3f 100%);
+			-webkit-background-clip: text;
+			background-clip: text;
+			padding-right: .06em;
+		}
+	}
+	&__line {
+		display: block;
+		overflow: hidden;
+		// запас под выносные элементы и курсив — чтобы маска анимации их не обрезала
+		padding: 0 .2em .18em .1em;
+		margin: 0 -.2em -.18em -.1em;
+		font-weight: 340; // старый CSS задаёт span{font-weight:400}
+	}
+	&__lin {
+		display: block;
+		font-weight: 340;
+	}
+	&__line:has(em) {
+		margin-top: vw(6);
+	}
+	// кириллица — в Spectral (шире Crimson Pro): трекинг под латиницу ей не нужен
+	html[lang="ru"] & &__title,
+	html[lang="ru"] & &__title em {
+		letter-spacing: 0;
+	}
+	html[lang="ru"] & &__title em {
+		font-size: 1.08em;
+	}
+	&__flourish {
+		width: vw(440);
+		height: vw(50);
+		margin: vw(-2) 0 0 vw(-13);
+		overflow: visible;
+	}
+	&__text {
+		margin-top: vw(55);
+		font-size: vw(30);
+		font-weight: 400;
+		line-height: vw(41);
+		color: #545453;
+	}
+
+	// ----- стеклянная карточка с формой -----
+	&__card {
+		position: absolute;
+		z-index: 1;
+		top: vw(122);
+		left: vw(866);
+		width: vw(823);
+		min-height: vw(577);
+		padding: vw(101) vw(61) vw(50) vw(62);
+		border-radius: vw(84);
+		background: linear-gradient(160deg, rgba(255, 252, 249, .8) 0%, rgba(252, 246, 242, .7) 55%, rgba(250, 243, 238, .74) 100%);
+		box-shadow:
+			0 vw(40) vw(80) rgba(120, 82, 60, .14),
+			0 vw(6) vw(18) rgba(120, 82, 60, .06),
+			inset 0 0 0 1.5px rgba(255, 255, 255, .85),
+			inset 0 vw(2) vw(6) rgba(255, 255, 255, .6);
+		-webkit-backdrop-filter: blur(18px) saturate(1.05);
+		backdrop-filter: blur(18px) saturate(1.05);
+	}
+}
+
+// ----- форма -----
+.lb-cform {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+
+	&__field {
+		position: relative;
+		display: flex;
+		align-items: center;
+		width: vw(700);
+		height: vw(84);
+		margin: 0;
+		border-radius: 999px;
+		background: rgba(255, 252, 250, .55);
+		box-shadow: inset 0 0 0 1.5px rgba(206, 182, 165, .62), 0 vw(4) vw(12) rgba(150, 110, 85, .04);
+		transition: box-shadow .4s $ease-out, background-color .4s $ease-out;
+		cursor: text;
+		& + & {
+			margin-top: vw(34);
+		}
+		&:focus-within {
+			background: rgba(255, 253, 251, .85);
+			box-shadow: inset 0 0 0 1.5px rgba(166, 116, 84, .85), 0 0 0 vw(5) rgba(176, 128, 96, .1), 0 vw(8) vw(20) rgba(150, 110, 85, .08);
+		}
+		@include hover {
+			box-shadow: inset 0 0 0 1.5px rgba(176, 132, 104, .75), 0 vw(6) vw(16) rgba(150, 110, 85, .06);
+		}
+	}
+	&__ic {
+		position: absolute;
+		top: 50%;
+		left: vw(43);
+		width: vw(33);
+		height: vw(33);
+		margin-top: vw(-17);
+		color: #9b6a47;
+		pointer-events: none;
+		svg {
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	// поля ввода (перебиваем стили старого сайта для input)
+	& &__field input {
+		display: block;
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0 vw(40) 0 vw(112);
+		border: 0;
+		border-radius: 999px;
+		outline: 0;
+		background: transparent;
+		box-shadow: none;
+		font-family: $f-sans;
+		font-size: vw(24);
+		font-weight: 400;
+		line-height: normal;
+		letter-spacing: 0;
+		color: #2a2421;
+		&::placeholder {
+			color: #6d6b6a;
+			opacity: 1;
+		}
+		&.error {
+			border: 0;
+		}
+	}
+	&__field:has(input.error) {
+		box-shadow: inset 0 0 0 1.5px rgba(196, 84, 70, .75), 0 0 0 vw(5) rgba(196, 84, 70, .08);
+	}
+
+	// телефон: intlTelInput (флаг + код страны слева, затем разделитель). padding-left поля считает сама библиотека.
+	// CSS библиотеки подключается позже нашего — специфичность поднята через «& &__field--phone»
+	& &__field--phone {
+		.iti {
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
+		.iti__flag-container {
+			padding: 0;
+		}
+		.iti__flag-container:hover .iti__selected-flag,
+		.iti__selected-flag[aria-expanded="true"] {
+			background: none;
+		}
+		.iti--separate-dial-code .iti__selected-flag,
+		.iti__selected-flag {
+			display: flex;
+			align-items: center;
+			height: 100%;
+			padding: 0 vw(44) 0 vw(43);
+			border-radius: 999px 0 0 999px;
+			background: none;
+			font-family: $f-sans;
+			font-size: vw(26);
+			font-weight: 500;
+			color: #241e1b;
+			outline: 0;
+			&:hover,
+			&:focus {
+				background: none;
+			}
+			// разделитель между кодом страны и номером
+			&::after {
+				content: "";
+				position: absolute;
+				top: 50%;
+				right: 0;
+				width: 1.5px;
+				height: vw(44);
+				margin-top: vw(-22);
+				background: rgba(186, 160, 142, .7);
+			}
+		}
+		// флаг — спрайт 20×15 библиотеки, увеличен до 28×21 (transform не влияет на раскладку — компенсируем отступом)
+		.iti__selected-flag .iti__flag {
+			flex: none;
+			transform: scale(1.4);
+			transform-origin: left center;
+			margin-right: calc(8px + #{vw(21)});
+			box-shadow: none;
+		}
+		.iti__selected-dial-code {
+			margin-left: 6px;
+		}
+		// стрелка — шеврон вместо треугольника
+		.iti__arrow {
+			width: vw(9);
+			height: vw(9);
+			margin: vw(-4) 0 0 vw(16);
+			border: 0;
+			border-right: 2px solid #94633f;
+			border-bottom: 2px solid #94633f;
+			transform: rotate(45deg);
+			transition: transform .3s $ease-out;
+			&--up {
+				margin-top: vw(4);
+				transform: rotate(-135deg);
+			}
+		}
+		.iti__country-list {
+			width: vw(700);
+			max-height: vw(300);
+			margin-top: vw(8);
+			padding: vw(8) 0;
+			border: 0;
+			border-radius: vw(18);
+			background: #fffaf7;
+			box-shadow: 0 vw(20) vw(40) rgba(120, 82, 60, .18);
+			font-family: $f-sans;
+			font-size: vw(18);
+			color: #2a2421;
+		}
+		.iti__country.iti__highlight {
+			background: #f3e6dd;
+		}
+	}
+	// при отдельном коде страны библиотека сама ставит inline padding-left (= ширина блока с кодом + 6px);
+	// без библиотеки поле выглядит как поле имени; отступ текста от разделителя — через text-indent
+	& &__field--phone .iti input {
+		text-indent: vw(40);
+	}
+
+	&__btn.lb-btn {
+		width: vw(610);
+		height: vw(85);
+		margin: vw(50) 0 0 vw(49);
+		padding: 0 vw(110) 0 vw(80);
+		font-size: vw(20);
+		border: 0;
+		.lb-btn__arr {
+			position: absolute;
+			top: 50%;
+			right: vw(56);
+			margin-top: vw(-7);
+		}
+		&:disabled {
+			cursor: wait;
+			opacity: .75;
+		}
+	}
+
+	&__policy {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: vw(16);
+		align-self: center;
+		margin-top: vw(50);
+		font-family: $f-sans;
+		font-size: vw(19.5);
+		line-height: vw(24);
+		color: #4f4a48;
+		svg {
+			flex: none;
+			width: vw(25);
+			height: vw(29);
+			color: #a06e4c;
+		}
+		span {
+			font-weight: 400;
+		}
+	}
+}
+
+@include mobile {
+	.lb-consult {
+		min-height: 0;
+		padding: 48px 0 52px;
+		&__bg {
+			background-size: auto 100%;
+			background-position: 34% 0;
+		}
+		&__intro {
+			position: relative;
+			top: auto;
+			left: auto;
+			width: auto;
+			padding: 0 22px;
+		}
+		&__eyebrow {
+			gap: 14px;
+			height: auto;
+			font-size: 12px;
+			&::after {
+				width: 40px;
+			}
+		}
+		&__title {
+			margin-top: 16px;
+			font-size: mvw(46);
+			line-height: 1;
+		}
+		&__line:has(em) {
+			margin-top: 2px;
+		}
+		&__title em {
+			margin-left: -.04em;
+		}
+		&__flourish {
+			width: 220px;
+			height: 25px;
+			margin: 0 0 0 -6px;
+		}
+		&__text {
+			margin-top: 18px;
+			font-size: 16px;
+			line-height: 1.5;
+			br {
+				display: none;
+			}
+		}
+		&__card {
+			position: relative;
+			top: auto;
+			left: auto;
+			width: auto;
+			min-height: 0;
+			margin: 28px 16px 0;
+			padding: 28px 18px 22px;
+			border-radius: 32px;
+		}
+	}
+	.lb-cform {
+		align-items: stretch;
+		&__field {
+			width: auto;
+			height: 56px;
+			& + & {
+				margin-top: 14px;
+			}
+		}
+		&__ic {
+			left: 20px;
+			width: 22px;
+			height: 22px;
+			margin-top: -11px;
+		}
+		& &__field input {
+			padding: 0 20px 0 56px;
+			font-size: 16px; // ≥16px — иначе iOS увеличивает страницу при фокусе
+		}
+		& &__field--phone {
+			.iti--separate-dial-code .iti__selected-flag,
+			.iti__selected-flag {
+				padding: 0 14px 0 18px;
+				font-size: 16px;
+				&::after {
+					height: 28px;
+					margin-top: -14px;
+				}
+			}
+			.iti__selected-flag .iti__flag {
+				transform: scale(1.1);
+				margin-right: 2px;
+			}
+			.iti__arrow {
+				width: 7px;
+				height: 7px;
+				margin: -3px 0 0 8px;
+				&--up {
+					margin-top: 3px;
+				}
+			}
+			.iti__country-list {
+				width: calc(100vw - 72px);
+				max-height: 190px; // блок обрезает выходящее за него (overflow: hidden) — список помещается над низом блока
+				margin-top: 6px;
+				border-radius: 14px;
+				font-size: 14px;
+				white-space: normal;
+			}
+		}
+		& &__field--phone .iti input {
+			text-indent: 10px;
+		}
+		&__btn.lb-btn {
+			width: auto;
+			height: 54px;
+			margin: 22px 0 0;
+			padding: 0 56px 0 28px;
+			font-size: 12.5px;
+			.lb-btn__arr {
+				right: 24px;
+				margin-top: -6px;
+			}
+		}
+		&__policy {
+			gap: 10px;
+			margin-top: 18px;
+			font-size: 12.5px;
+			line-height: 1.4;
+			text-align: left;
+			svg {
+				width: 17px;
+				height: 20px;
+			}
+		}
+	}
+}

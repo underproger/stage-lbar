@@ -1,6 +1,6 @@
 # stage-lbar — handoff (редизайн lbar.ro на MODX)
 
-Состояние на 06.11.2026 (вечер), сделаны блоки 1–4 главной, последний коммит — см. `git log`. Папка `_dev/` — служебная (закрыта `.htaccess`),
+Состояние на 06.11.2026 (вечер), сделаны блоки 1–5 главной, последний коммит — см. `git log`. Папка `_dev/` — служебная (закрыта `.htaccess`),
 **в конце проекта удалить** вместе с остальным мусором.
 
 ## 1. Проект
@@ -30,8 +30,10 @@
   и контурная пилюля (`.lb-btn--ghost`), стрелка `→` (`svg.lb-btn__arr`).
 - **Не писать «Lbar Studio» в каждом блоке** (макеты-ИИ любят надзаголовки «LBAR STUDIO», подписи «LBar studio», логотип поверх фото) —
   такие элементы не переносить. Уже убрано: подпись «LBar studio» в фоне блока «Услуги», RU-надзаголовок «Студия LBar» → «Наши процедуры».
-  Блок 4: надзаголовок «LBAR STUDIO» заменён на «Standardele noastre / Наши стандарты» (лексикон `lbar.rd.implica.eyebrow`,
-  пустое значение → надзаголовок не выводится), логотип «LBar | Studio de micropigmentare» с фото убран.
+  **Решение пользователя:** надзаголовок «LBAR STUDIO» — только в блоке 4 (`lbar.rd.implica.eyebrow`), в остальных блоках его не делать
+  (в блоке 5 — «Programare online / Онлайн-запись»). Логотип «LBar | Studio de micropigmentare» с фото блока 4 убран.
+- **Фон блоков — без фото, только графика** (решение пользователя с блока 5): вазы, камни, цветы, тени листьев и т.п. из макетов не переносить,
+  фон рисовать SVG/CSS (диски, тонкие медные дуги, градиенты, свет).
   Открытый вопрос: круглая печать «Studio LBar · Micropigmentare» и водяные знаки «Lbar» в фонах блоков 2–3 — уточнить, убирать ли.
 - Папки картинок `images/` и `assets/images/` в архивах **не пришли** (локально 404) — пользователь ещё не прислал. На проде они есть.
 
@@ -47,16 +49,16 @@
 | Тексты интерфейса RO/RU | лексикон `core/components/babel/lexicon/{ro,ru}/translate.inc.php`, ключи `lbar.rd.*` (так уже было на сайте: `lbar.*`) |
 
 **Сборка CSS:** `cd assets/templates/redesign && /home/claude/build/node_modules/.bin/sass scss/redesign.scss css/redesign.css --style=compressed --no-source-map --silence-deprecation=import`
-**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.3.1**) — поднимать при изменениях.
+**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.4.0**) — поднимать при изменениях.
 **Новые/изменённые чанки в БД:** `sudo -u www-data php _dev/tools/modx_apply3.php` (пересохраняет все `*.tpl` из папки как статичные чанки и меняет
-вызов в шаблоне «Главная») — для нового блока сделать по аналогии `modx_apply5.php` (последний — `modx_apply4.php`, замена `[[$старый-чанк]]` → `[[$lb-новый]]`).
+вызов в шаблоне «Главная») — для нового блока сделать по аналогии `modx_apply5.php` (последний — `modx_apply5.php`, замена `[[$старый-чанк]]` → `[[$lb-новый]]`).
 **После правки `.tpl` чистить `core/cache/resource/`** (главная кэшируется — без этого на скриншоте старая разметка; CSS/JS это не касается).
 
-Шаблон **«Главная» (id 1)** сейчас: `[[$head]] [[$lb-head]]` … `[[$lb-header]] [[$lb-banner-main]] [[$lb-about]] [[$lb-services]] [[*title-main-bl3:notempty=`[[$lb-implica]]`]] [[$bl4-form]] …` `[[$script]] [[$lb-scripts]]`.
+Шаблон **«Главная» (id 1)** сейчас: `[[$head]] [[$lb-head]]` … `[[$lb-header]] [[$lb-banner-main]] [[$lb-about]] [[$lb-services]] [[*title-main-bl3:notempty=`[[$lb-implica]]`]] [[$lb-consult]] [[$bl2-study-trener]] …` `[[$script]] [[$lb-scripts]]`.
 Старые чанки используются ещё на других шаблонах (напр. `bl1-about-us`, `bl3-text` — в шаблоне «Категория», 27 страниц) — **их не правим**, делаем новые `lb-*` и подключаем только в «Главную».
 
 Шрифты: `LB Serif` = Noto Serif Display (var wdth/wght, +italic), `LB Sans` = DM Sans (+Onest для кириллицы), `LB Display` = Playfair Display (+italic),
-`LB Text` = Montserrat (+italic). Подключены в `scss/_fonts.scss` с unicode-range (latin / румынские ș ț ă / кириллица). Новые шрифты брать из npm `@fontsource-variable/*`.
+`LB Text` = Montserrat (+italic), `LB Classic` = Crimson Pro (wght 300–500 / italic 400–500, урезан) + Spectral для кириллицы (300 / italic 400) — заголовок блока 5. Подключены в `scss/_fonts.scss` с unicode-range (latin / румынские ș ț ă / кириллица). Новые шрифты брать из npm `@fontsource-variable/*`.
 
 ### Подводные камни (уже решены — не наступать снова)
 - Старый CSS (`.wrapper.main-ro h1/h2`, `span{font-weight:400}`) перебивает новые стили → для h1/h2 поднимать специфичность
@@ -83,8 +85,8 @@
 4. **Блок «Услуги» `lb-services` + tpl `lb.serviceCard`** — TV `main-title-bl2`, `sub-title-bl2`, `id-bl2`; фото из макета для 3 услуг главной
    (карта id → картинка в tpl), для остальных — TV `im-category`. Слайдер-свайп на мобильном.
 5. **Единый стиль кнопок** (шапка, баннер, блоки 2–3).
-6. **Перетекающий фон** на всех стыках: баннер → 2 (`img/seam-hero.svg`), 2 → 3 (`img/seam.svg`), 3 → 4 (`img/seam-implica.svg`).
-   Всё в `scss/_seam.scss` (подключается последним): фоны блоков уходят в общий цвет стыка (маски фото + градиенты), шёлковая лента
+6. **Перетекающий фон** на всех стыках (пользователь просит делать так между всеми блоками): баннер → 2 (`img/seam-hero.svg`), 2 → 3 (`img/seam.svg`), 3 → 4 (`img/seam-implica.svg`).
+   Плюс 4 → 5 (`img/seam-consult.svg`). Всё в `scss/_seam.scss` (подключается последним): фоны блоков уходят в общий цвет стыка (маски фото + градиенты), шёлковая лента
    рисуется половинками в обоих блоках (`::before`/`::after`), контент — над ней (`z-index: 1`). Ленту под новый стык генерить
    `_dev/tools/make_seam.py OUT.svg "x:dy …"` — точки обходят фото и тексты соседних блоков.
 7. **Блок «Micropigmentarea … implică» `lb-implica`** (`scss/_implica.scss`) — вместо `bl3-text` (условие `[[*title-main-bl3:notempty=…]]` сохранено).
@@ -94,16 +96,25 @@
    Дуга — SVG-окружность (586, 603, r 435 @1920), точки на ней ставит JS по фактической высоте карточек; в RU блок выше 1080 —
    JS ставит `.is-tall`, низ фото растворяется. Анимация: прорисовка дуги, «выезд» строк H2, карточки справа, иконки, точки.
    Фон `img/implica-bg*.webp` (без текста/кнопок/карточек/дуги/логотипа), мобильный `implica-mobile.webp`. Сверка с макетом на 1920 — ±1–5px.
+8. **Блок «Консультация» (форма) `lb-consult` + tpl формы `lb.formConsult`** (`scss/_consult.scss`) — вместо `bl4-form`. Заголовок — TV `main-title-bl4`
+   (div, не H2 — как было), разбивка/курсив — лексикон `lbar.rd.consult.title`; подзаголовок — TV `sub-title-bl4`; кнопка — TV `link-form-bl4`.
+   Форма — тот же вызов `[[!AjaxForm]]` (FormIt, хуки `spam,email,FormItSaveForm,GoogleSheetsSaveForm`, валидация), `id="form-bl4"` сохранён
+   (на него завязаны якоря `#form-bl4` и редирект на «спасибо» в чанке `script`), поля/скрытые поля — как в `tpl.Form.Bl4`.
+   Телефон — intlTelInput из чанка `inttelinput` (флаг, код, разделитель стилизованы; padding-left считает библиотека, при resize пересчёт в JS).
+   Фон — `img/consult-bg.svg` (только графика). Старые `bl4-form`/`tpl.Form.Bl4` используются в шаблонах 8 и 19 — не трогаем.
+   Локально отправка падает на PHP 8 (PHPMailer `__autoload`) — это окружение; валидация/AJAX проверены, на хостинге PHP 7 — работает как раньше.
+   Для скриншотов с телефонным полем — `_dev/tools/shot5.py` (подставляет intl-tel-input из npm `/home/claude/iti`, внешние запросы в песочнице закрыты).
 
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
-`stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»; проверен импортом на копии).
-После 04 БД **не менялась** (стыки баннер → 2 и 3 → 4, ?v=1.3.1 — только файлы; статичные чанки MODX читает из файлов,
-копия `lb-head`/`lb-scripts` в БД со старым ?v= — не страшно, обновится вместе со следующим патчем).
+`stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
+`stage-lbar-05-consult.sql` (чанки `lb-consult` id 275, `lb.formConsult` id 276 + все чанки Redesign + шаблон «Главная»). Патчи проверены импортом.
+После 05 БД **не менялась**.
 
-## 5. Следующий шаг — блок 5 (по порядку шаблона: `[[$bl4-form]]`, форма «Obțineți o consultație personală»)
+## 5. Следующий шаг — блок 6 (по порядку шаблона: `[[$bl2-study-trener]]`, «Faceți cunoștință! Masterul dvs. – Ksenia Kobilianskaia»)
 
-Макета пока нет — ждём от пользователя. Дальше по шаблону: `bl2-study-trener`, `bl6-portfolio-front-page`, `bl7-price`, `bl8-form`, `bl9-reviews`,
-`bl-faq`, `bl-seo`, `bl-blog`, `bl-contact`, `footer`. Формы — осторожно: id/якоря (`#form-bl4`, `#bl8-form`) и обработчики (ajaxForm/ec-form) не ломать.
+Макета пока нет — ждём от пользователя. Дальше по шаблону: `bl6-portfolio-front-page`, `bl7-price`, `bl8-form`, `bl9-reviews`,
+`bl-faq`, `bl-seo`, `bl-blog`, `bl-contact`, `footer`. В `bl2-study-trener` есть кнопка-попап «Obțineți o consultație personală» (H2 попапа в SEO-эталоне) — не терять.
+Формы — осторожно: id (`form-bl8`, `form-study-*`) и обработчики (AjaxForm, редирект в чанке `script`) не ломать. Стык 5 → 6 сделать по `_seam.scss`.
 
 ## 6. Конвейер «1 в 1» (как делались блоки)
 

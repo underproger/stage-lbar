@@ -87,8 +87,13 @@ $_lang['lbar.rd.services.eyebrow'] = "Наши процедуры";
 
 // --- редизайн: блок «Перманентный татуаж … — это» ---
 $_lang['lbar.rd.implica.alt'] = "Мастер перманентного макияжа в студии, Бухарест";
-$_lang['lbar.rd.implica.eyebrow'] = "Наши стандарты";
+$_lang['lbar.rd.implica.eyebrow'] = "Lbar Studio"; // «LBAR STUDIO» — только в этом блоке, в остальных блоках не писать
 // разбивка H2 (TV title-main-bl3) на строки «|» и курсив *…*; текст без разметки должен совпадать с TV
 $_lang['lbar.rd.implica.title'] = "Перманентный|татуаж в *Бухаресте*|от LBar — это:";
 $_lang['lbar.rd.implica.cta'] = "Записаться";
 $_lang['lbar.rd.implica.portfolio'] = "Смотреть портфолио";
+
+// --- редизайн: блок «Консультация» (форма) ---
+$_lang['lbar.rd.consult.eyebrow'] = "Онлайн-запись";
+// разбивка заголовка (TV main-title-bl4) на строки «|» и курсив *…*; текст без разметки должен совпадать с TV
+$_lang['lbar.rd.consult.title'] = "Закажите|*бесплатную*|консультацию";
