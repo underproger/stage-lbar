@@ -9,8 +9,7 @@ $im-bg: #f4ebe7;
 	overflow: hidden;
 	font-family: $f-text;
 	color: #222;
-	// сверху — цвет низа блока «Услуги», фото проявляется из него (без жёсткого стыка)
-	background: linear-gradient(180deg, #faf0e8 0, $im-bg vw(90));
+	background: $im-bg; // стык с блоком «Услуги» — в _seam.scss
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 
@@ -30,15 +29,13 @@ $im-bg: #f4ebe7;
 		display: block;
 	}
 
-	// фон: фото, светлое кольцо, флаконы — одним слоем, как в макете; сверху мягко вытекает из блока «Услуги»
+	// фон: фото, светлое кольцо, флаконы — одним слоем, как в макете (верх растворяется в стыке — _seam.scss)
 	&__bg {
 		position: absolute;
 		top: 0;
 		left: 0;
 		width: 100%;
 		height: 100%;
-		-webkit-mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .55) vw(30), #000 vw(90));
-		mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .55) vw(30), #000 vw(90));
 		img {
 			width: 100%;
 			height: vw(1080);

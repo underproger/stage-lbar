@@ -47,7 +47,7 @@
 | Тексты интерфейса RO/RU | лексикон `core/components/babel/lexicon/{ro,ru}/translate.inc.php`, ключи `lbar.rd.*` (так уже было на сайте: `lbar.*`) |
 
 **Сборка CSS:** `cd assets/templates/redesign && /home/claude/build/node_modules/.bin/sass scss/redesign.scss css/redesign.css --style=compressed --no-source-map --silence-deprecation=import`
-**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.3.0**) — поднимать при изменениях.
+**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.3.1**) — поднимать при изменениях.
 **Новые/изменённые чанки в БД:** `sudo -u www-data php _dev/tools/modx_apply3.php` (пересохраняет все `*.tpl` из папки как статичные чанки и меняет
 вызов в шаблоне «Главная») — для нового блока сделать по аналогии `modx_apply5.php` (последний — `modx_apply4.php`, замена `[[$старый-чанк]]` → `[[$lb-новый]]`).
 **После правки `.tpl` чистить `core/cache/resource/`** (главная кэшируется — без этого на скриншоте старая разметка; CSS/JS это не касается).
@@ -83,7 +83,10 @@
 4. **Блок «Услуги» `lb-services` + tpl `lb.serviceCard`** — TV `main-title-bl2`, `sub-title-bl2`, `id-bl2`; фото из макета для 3 услуг главной
    (карта id → картинка в tpl), для остальных — TV `im-category`. Слайдер-свайп на мобильном.
 5. **Единый стиль кнопок** (шапка, баннер, блоки 2–3).
-6. **Перетекающий фон** между блоками 2 и 3 (`scss/_seam.scss`, `img/seam.svg`) — декор рисуется половинками в обоих блоках.
+6. **Перетекающий фон** на всех стыках: баннер → 2 (`img/seam-hero.svg`), 2 → 3 (`img/seam.svg`), 3 → 4 (`img/seam-implica.svg`).
+   Всё в `scss/_seam.scss` (подключается последним): фоны блоков уходят в общий цвет стыка (маски фото + градиенты), шёлковая лента
+   рисуется половинками в обоих блоках (`::before`/`::after`), контент — над ней (`z-index: 1`). Ленту под новый стык генерить
+   `_dev/tools/make_seam.py OUT.svg "x:dy …"` — точки обходят фото и тексты соседних блоков.
 7. **Блок «Micropigmentarea … implică» `lb-implica`** (`scss/_implica.scss`) — вместо `bl3-text` (условие `[[*title-main-bl3:notempty=…]]` сохранено).
    H2 — TV `title-main-bl3` (текст не менялся), разбивка на строки и курсив — лексикон `lbar.rd.implica.title`
    (`|` — перенос, `*…*` — курсив; если TV изменят и он перестанет совпадать — H2 выводится как есть). Карточки — TV `title/text-1..3-bl3`,
@@ -94,7 +97,8 @@
 
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»; проверен импортом на копии).
-После 04 БД **не менялась**.
+После 04 БД **не менялась** (стыки баннер → 2 и 3 → 4, ?v=1.3.1 — только файлы; статичные чанки MODX читает из файлов,
+копия `lb-head`/`lb-scripts` в БД со старым ?v= — не страшно, обновится вместе со следующим патчем).
 
 ## 5. Следующий шаг — блок 5 (по порядку шаблона: `[[$bl4-form]]`, форма «Obțineți o consultație personală»)
 
