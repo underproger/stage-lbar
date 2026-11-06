@@ -32,8 +32,8 @@
         <p class="lb-hero__sub">{$_modx->resource['suptitle-banner']}</p>
         {/if}
         <div class="lb-hero__btns">
-            <a class="lb-btn lb-btn--solid" href="#form-bl4">{'lbar.rd.hero.consult' | lexicon}<i class="lb-btn__arr"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h8M6.8 2.8 10 6 6.8 9.2"/></svg></i></a>
-            <a class="lb-btn lb-btn--ghost" href="{$_modx->makeUrl($isRo ? 100 : 198)}">{'lbar.rd.hero.portfolio' | lexicon}<i class="lb-btn__arr"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h8M6.8 2.8 10 6 6.8 9.2"/></svg></i></a>
+            <a class="lb-btn lb-btn--solid" href="#form-bl4">{'lbar.rd.hero.consult' | lexicon}<svg class="lb-btn__arr" viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg></a>
+            <a class="lb-btn lb-btn--ghost" href="{$_modx->makeUrl($isRo ? 100 : 198)}">{'lbar.rd.hero.portfolio' | lexicon}<svg class="lb-btn__arr" viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg></a>
         </div>
     </div>
 

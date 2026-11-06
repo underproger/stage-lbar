@@ -60,6 +60,6 @@
             <p class="lb-about__qtext">{'lbar.rd.about.quote' | lexicon}</p>
         </div>
 
-        <a class="lb-about__cta" href="#form-bl4">{'lbar.rd.about.cta' | lexicon}<svg viewBox="0 0 24 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 8h21M15.5 1.5 22 8l-6.5 6.5"/></svg></a>
+        <a class="lb-btn lb-btn--solid lb-about__cta" href="#form-bl4">{'lbar.rd.about.cta' | lexicon}<svg class="lb-btn__arr" viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg></a>
     </div>
 </section>

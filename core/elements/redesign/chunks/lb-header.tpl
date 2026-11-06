@@ -35,7 +35,7 @@
                     Șoseaua Ștefan cel Mare Nr 1<br>
                     {$isRo ? 'Luni-Duminică' : 'Пн-Вс'}: [[++schedule]]
                 </p>
-                <a class="lb-btn lb-btn--solid lb-mnav__cta js-lb-book" href="#bl8-form">{'lbar.buttons.banner.book' | lexicon}</a>
+                <a class="lb-btn lb-btn--solid lb-mnav__cta js-lb-book" href="#bl8-form">{'lbar.buttons.banner.book' | lexicon}<svg class="lb-btn__arr" viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg></a>
                 <div class="lb-mnav__social">
                     <a href="[[++insta]]" target="_blank" rel="nofollow noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r=".9" fill="currentColor" stroke="none"/></svg></a>
                     <a href="[[++facebook]]" target="_blank" rel="nofollow noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1z"/></svg></a>
@@ -50,7 +50,7 @@
                 <span class="lb-header__phone-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16.4v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 1.1 3.7 2 2 0 0 1 3.1 1.5h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L7.1 9.3a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2.1z"/></svg></span>
                 <span>[[++phone-1]]</span>
             </a>
-            <a class="lb-btn lb-btn--solid lb-header__cta js-lb-book" href="#bl8-form">{'lbar.buttons.banner.book' | lexicon}</a>
+            <a class="lb-btn lb-btn--solid lb-header__cta js-lb-book" href="#bl8-form">{'lbar.buttons.banner.book' | lexicon}<svg class="lb-btn__arr" viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg></a>
             <button class="lb-header__burger" type="button" aria-label="{$isRo ? 'Meniu' : 'Меню'}" aria-controls="lb-mnav" aria-expanded="false"><span></span><span></span></button>
         </div>
     </div>

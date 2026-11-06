@@ -1,0 +1,304 @@
+// ================= БЛОК «УСЛУГИ» (главная, 3-й экран) =================
+.lb-services {
+	position: relative;
+	box-sizing: border-box;
+	min-height: vw(1080);
+	padding: vw(118) 0 vw(100);
+	overflow: hidden;
+	font-family: $f-text;
+	color: #2b2420;
+	background: #faf0e8;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	:where(*, *::before, *::after) {
+		box-sizing: border-box;
+	}
+	:where(ul, li, p, h2, h3) {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		font-weight: inherit;
+	}
+	:where(a) {
+		text-decoration: none;
+		color: inherit;
+	}
+	:where(img, svg) {
+		display: block;
+	}
+
+	&__bg {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: vw(1080);
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	// ----- левая колонка -----
+	&__intro {
+		position: absolute;
+		top: vw(283);
+		left: vw(72);
+		width: vw(380);
+	}
+	&__eyebrow {
+		display: flex;
+		align-items: center;
+		gap: vw(20);
+		font-size: vw(17);
+		font-weight: 600;
+		line-height: 1;
+		letter-spacing: .14em;
+		text-transform: uppercase;
+		color: #221a16;
+		&::before {
+			content: "";
+			flex: none;
+			width: vw(48);
+			height: 2px;
+			background: #b08c74;
+		}
+	}
+	// h2 перебивается старым CSS (.wrapper.main-ro h2) — поднимаем специфичность
+	& &__intro h2#{&}__title {
+		margin-top: vw(54);
+		font-family: $f-text;
+		font-size: vw(47.2);
+		font-weight: 600;
+		line-height: vw(57);
+		letter-spacing: -.005em;
+		color: #151110;
+		text-transform: none;
+	}
+	&__text {
+		margin-top: vw(44);
+		width: vw(340);
+		font-size: vw(20.2);
+		line-height: vw(31);
+		color: #6b5e57;
+	}
+
+	// ----- карточки -----
+	&__list {
+		position: relative;
+		display: flex;
+		gap: vw(31);
+		margin-left: vw(480);
+	}
+}
+
+.lb-scard {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: vw(442);
+	min-height: vw(862);
+	border-radius: vw(30);
+	background: #fbf3ee;
+	box-shadow: 0 vw(24) vw(50) rgba(150, 105, 80, .1), 0 vw(4) vw(10) rgba(150, 105, 80, .05);
+	transition: translate .7s $ease-expo, box-shadow .7s $ease-expo;
+	@include hover {
+		translate: 0 vw(-8);
+		box-shadow: 0 vw(34) vw(60) rgba(150, 105, 80, .16), 0 vw(4) vw(10) rgba(150, 105, 80, .05);
+		.lb-scard__img img {
+			transform: scale(1.06);
+		}
+		.lb-scard__num::after {
+			transform: scaleX(1);
+		}
+	}
+
+	&__img {
+		position: relative;
+		display: block;
+		height: vw(428);
+		border-radius: vw(30) vw(30) vw(30) vw(30);
+		overflow: hidden;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: transform 1.2s $ease-expo;
+		}
+	}
+
+	// тело карточки с «язычком», заходящим на фото
+	&__body {
+		position: relative;
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		padding: vw(18) vw(37) vw(36);
+		border-radius: 0 0 vw(30) vw(30);
+		background: #fbf3ee;
+		&::before {
+			content: "";
+			position: absolute;
+			left: 0;
+			bottom: 100%;
+			width: vw(132);
+			height: vw(20);
+			border-radius: vw(30) vw(30) 0 0;
+			background: inherit;
+		}
+		&::after {
+			// вогнутый угол справа от «язычка»
+			content: "";
+			position: absolute;
+			left: vw(132);
+			bottom: 100%;
+			width: vw(20);
+			height: vw(20);
+			background: radial-gradient(circle at 100% 0, transparent vw(20), #fbf3ee calc(#{vw(20)} + .5px));
+		}
+	}
+
+	&__num {
+		display: flex;
+		align-items: center;
+		gap: vw(38);
+		font-family: $f-serif;
+		font-size: vw(48);
+		font-style: italic;
+		font-weight: 400;
+		font-stretch: 87.5%;
+		line-height: 1;
+		color: #8b6a58;
+		&::after {
+			content: "";
+			width: vw(127);
+			height: 1.5px;
+			background: #b49380;
+			transform: scaleX(.75);
+			transform-origin: left center;
+			transition: transform .7s $ease-expo;
+		}
+	}
+	&__title {
+		margin-top: vw(22);
+		font-size: vw(32.7);
+		font-weight: 600;
+		line-height: vw(39);
+		color: #151110;
+		a {
+			color: inherit;
+			transition: color .3s;
+			@include hover {
+				color: $c-btn-dark;
+			}
+		}
+	}
+	&__text {
+		margin-top: vw(22);
+		margin-bottom: vw(34);
+		font-size: vw(19.2);
+		line-height: vw(27);
+		color: #6b5e57;
+	}
+	&__btn {
+		margin-top: auto;
+	}
+}
+
+@include mobile {
+	.lb-services {
+		min-height: 0;
+		padding: 56px 0 48px;
+		&__bg {
+			display: none;
+		}
+		&__intro {
+			position: static;
+			width: auto;
+			padding: 0 22px;
+		}
+		&__eyebrow {
+			gap: 14px;
+			font-size: 12px;
+			&::before {
+				width: 36px;
+			}
+		}
+		& &__intro h2#{&}__title {
+			margin-top: 18px;
+			font-size: 30px;
+			line-height: 1.15;
+		}
+		&__text {
+			width: auto;
+			margin-top: 14px;
+			font-size: 15px;
+			line-height: 1.55;
+		}
+		&__list {
+			gap: 14px;
+			margin: 28px 0 0;
+			padding: 4px 22px 24px;
+			overflow-x: auto;
+			scroll-snap-type: x mandatory;
+			scroll-padding: 0 22px;
+			-webkit-overflow-scrolling: touch;
+			scrollbar-width: none;
+			&::-webkit-scrollbar {
+				display: none;
+			}
+		}
+	}
+	.lb-scard {
+		flex: none;
+		width: 82vw;
+		max-width: 340px;
+		min-height: 0;
+		border-radius: 24px;
+		scroll-snap-align: start;
+		box-shadow: 0 14px 30px rgba(150, 105, 80, .12);
+		&__img {
+			height: auto;
+			aspect-ratio: 442 / 428;
+			border-radius: 24px;
+		}
+		&__body {
+			padding: 14px 22px 24px;
+			border-radius: 0 0 24px 24px;
+			&::before {
+				width: 92px;
+				height: 14px;
+				border-radius: 24px 24px 0 0;
+			}
+			&::after {
+				left: 92px;
+				width: 14px;
+				height: 14px;
+				background: radial-gradient(circle at 100% 0, transparent 14px, #fbf3ee 14.5px);
+			}
+		}
+		&__num {
+			gap: 20px;
+			font-size: 34px;
+			&::after {
+				width: 70px;
+			}
+		}
+		&__title {
+			margin-top: 12px;
+			font-size: 21px;
+			line-height: 1.2;
+		}
+		&__text {
+			margin-top: 12px;
+			font-size: 14px;
+			line-height: 1.5;
+		}
+		&__text {
+			margin-bottom: 20px;
+		}
+	}
+}

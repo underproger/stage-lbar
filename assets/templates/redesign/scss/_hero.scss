@@ -150,17 +150,8 @@
 		left: vw(1031);
 		display: flex;
 		gap: vw(28);
-		.lb-btn--solid {
-			width: vw(266);
-			padding: 0 vw(27) 0 vw(38);
-			justify-content: space-between;
-		}
-		.lb-btn--ghost {
-			width: vw(220);
-			height: vw(62);
-			margin-top: vw(1);
-			padding: 0 vw(16) 0 vw(31);
-			justify-content: space-between;
+		.lb-btn {
+			height: vw(64);
 		}
 	}
 
@@ -241,13 +232,9 @@
 			flex-wrap: wrap;
 			gap: 12px;
 			margin-top: 22px;
-			.lb-btn--solid,
-			.lb-btn--ghost {
+			.lb-btn {
 				flex: 1 1 100%;
-				width: auto;
 				height: 52px;
-				margin: 0;
-				padding: 0 10px 0 22px;
 			}
 		}
 		&__cards {

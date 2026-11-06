@@ -80,3 +80,6 @@ $_lang['lbar.rd.about.f2'] = "Rezistență îndelungată";
 $_lang['lbar.rd.about.f3'] = "Corectarea delicată a trăsăturilor";
 $_lang['lbar.rd.about.quote'] = "La Studio Lbar, fiecare procedură este realizată cu precizie, grijă și atenție la proporțiile feței.";
 $_lang['lbar.rd.about.cta'] = "Programează o consultație";
+
+// --- редизайн: блок «Услуги» ---
+$_lang['lbar.rd.services.eyebrow'] = "Serviciile noastre";
