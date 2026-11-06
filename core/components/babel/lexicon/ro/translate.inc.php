@@ -83,3 +83,11 @@ $_lang['lbar.rd.about.cta'] = "Programează o consultație";
 
 // --- редизайн: блок «Услуги» ---
 $_lang['lbar.rd.services.eyebrow'] = "Serviciile noastre";
+
+// --- редизайн: блок «Micropigmentarea … implică» ---
+$_lang['lbar.rd.implica.alt'] = "Maestru de micropigmentare în studio, București";
+$_lang['lbar.rd.implica.eyebrow'] = "Standardele noastre";
+// разбивка H2 (TV title-main-bl3) на строки «|» и курсив *…*; текст без разметки должен совпадать с TV
+$_lang['lbar.rd.implica.title'] = "Micropigmentarea|în salonul nostru din|*București*, implică:";
+$_lang['lbar.rd.implica.cta'] = "Programează-te";
+$_lang['lbar.rd.implica.portfolio'] = "Vezi portofoliul";

@@ -52,7 +52,7 @@
 		var y = el.getBoundingClientRect().top + window.pageYOffset - offset - 10;
 		window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
 	};
-	document.querySelectorAll('.lb-header a[href^="#"], .lb-hero a[href^="#"]').forEach(function (a) {
+	document.querySelectorAll('.lb-header a[href^="#"], .lb-hero a[href^="#"], .lb-implica a[href^="#"]').forEach(function (a) {
 		a.addEventListener('click', function (e) {
 			var id = a.getAttribute('href').slice(1);
 			var target = id && document.getElementById(id);
@@ -100,6 +100,34 @@
 		});
 	});
 
+	/* ---------- Блок «implică»: точки на дуге ----------
+	   Дуга — окружность (586, 603), r = 435 в координатах макета 1920. Точку ставим на дугу
+	   по фактической высоте карточки (у RU-текстов карточки выше, чем в макете). */
+	var implica = document.querySelector('.lb-implica');
+	if (implica) {
+		var ARC = { cx: 586, cy: 603, r: 435 };
+		var placeDots = function () {
+			var k = implica.offsetWidth / 1920;
+			implica.classList.toggle('is-tall', isDesktop() && implica.offsetHeight > 1080 * k + 4);
+			if (!isDesktop()) return;
+			var col = implica.querySelector('.lb-implica__col');
+			// offset* — без учёта transform (карточки в этот момент могут анимироваться)
+			implica.querySelectorAll('.lb-implica__item').forEach(function (item) {
+				var dot = item.querySelector('.lb-implica__dot');
+				if (!dot) return;
+				var left = col.offsetLeft + item.offsetLeft;
+				var y = (col.offsetTop + item.offsetTop + dot.offsetTop + dot.offsetHeight / 2) / k;
+				var dy = Math.max(-ARC.r, Math.min(ARC.r, y - ARC.cy));
+				var x = ARC.cx + Math.sqrt(ARC.r * ARC.r - dy * dy);
+				item.style.setProperty('--dot-x', (x * k - left) + 'px');
+			});
+		};
+		placeDots();
+		window.addEventListener('resize', placeDots);
+		window.addEventListener('load', placeDots);
+		if (document.fonts && document.fonts.ready) document.fonts.ready.then(placeDots);
+	}
+
 	/* ---------- Появление блоков при прокрутке ---------- */
 	var initReveal = function () {
 		if (reduce || typeof window.gsap === 'undefined' || !window.ScrollTrigger) return;
@@ -112,6 +140,25 @@
 				.from(about.querySelectorAll('.lb-about__eyebrow, .lb-about__t1, .lb-about__t2, .lb-about__textwrap'), { y: 40, opacity: 0, duration: 1.3, stagger: 0.1, clearProps: 'transform' }, 0.15)
 				.from(about.querySelectorAll('.lb-about__item'), { x: -30, opacity: 0, duration: 1.2, stagger: 0.1, clearProps: 'transform' }, 0.5)
 				.from(about.querySelectorAll('.lb-about__quote, .lb-about__cta'), { y: 30, opacity: 0, duration: 1.2, stagger: 0.1, clearProps: 'transform' }, 0.8);
+		}
+		if (implica) {
+			var iq = function (s) { return implica.querySelectorAll(s); };
+			var arc = implica.querySelector('.lb-implica__arcline');
+			var desk = isDesktop();
+			var itl = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: implica, start: 'top 70%' } });
+			itl.from(implica.querySelector('.lb-implica__bg'), { opacity: 0, duration: 1.6, ease: 'power2.out' }, 0)
+				.from(implica.querySelector('.lb-implica__bg img'), { scale: 1.06, duration: 2.4, ease: 'power3.out', clearProps: 'transform' }, 0)
+				.from(iq('.lb-implica__eyebrow'), { x: -30, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.2)
+				.from(iq('.lb-implica__lin'), { yPercent: 105, duration: 1.5, stagger: 0.12 }, 0.25)
+				.from(iq('.lb-implica__item'), { x: desk ? 120 : 0, y: desk ? 0 : 30, opacity: 0, duration: 1.4, stagger: 0.16, clearProps: 'transform' }, 0.55)
+				.from(iq('.lb-implica__ic svg'), { scale: 0.4, rotation: -25, opacity: 0, duration: 1.2, stagger: 0.16, ease: 'back.out(2)', clearProps: 'transform' }, 0.85)
+				.from(iq('.lb-implica__btns > *'), { y: 26, opacity: 0, duration: 1.2, stagger: 0.1, clearProps: 'transform' }, 1.05);
+			if (desk && arc && arc.getTotalLength) {
+				var len = arc.getTotalLength();
+				gsap.set(arc, { strokeDasharray: len, strokeDashoffset: len });
+				itl.to(arc, { strokeDashoffset: 0, duration: 2, ease: 'power2.inOut' }, 0.3)
+					.from(iq('.lb-implica__dot'), { scale: 0, duration: 0.9, stagger: 0.32, ease: 'back.out(3)', clearProps: 'transform' }, 0.75);
+			}
 		}
 	};
 	initReveal();

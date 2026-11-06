@@ -1,8 +1,11 @@
 #!/bin/bash
 # Локальное окружение stage-lbar в облачной сессии Claude (Ubuntu 24.04, root).
 # Запуск из корня репо:
-#   bash _dev/setup_local.sh /mnt/user-data/uploads/lbar-full-stage-2026-11-06.sql.gz \
-#        /mnt/user-data/uploads/stage-lbar-02-about.sql /mnt/user-data/uploads/stage-lbar-03-services.sql
+#   bash _dev/setup_local.sh <дамп> <патч> <патч> …   — файлы импортируются по порядку, например:
+#   bash _dev/setup_local.sh mysql_impua_testlbar_….tar.gz stage-lbar-urls.sql stage-lbar-01-header-banner.sql \
+#        stage-lbar-02-about.sql stage-lbar-03-services.sql stage-lbar-04-implica.sql
+#   (или lbar-full-stage-2026-11-06.sql.gz = дамп + urls + 01, затем 02, 03, 04)
+#   Форматы: .sql, .sql.gz, .tar.gz; строка «enable the sandbox mode» вырезается при импорте.
 # После перезапуска контейнера (MariaDB/Apache упали, /etc/hosts сброшен): bash _dev/tools/up.sh
 set -e
 REPO=$(cd "$(dirname "$0")/.." && pwd)
@@ -25,7 +28,11 @@ for i in $(seq 1 20); do mysqladmin ping >/dev/null 2>&1 && break; sleep 1; done
 mysql -e "CREATE DATABASE IF NOT EXISTS lbar CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; CREATE USER IF NOT EXISTS 'lbar'@'localhost' IDENTIFIED BY 'lbar'; GRANT ALL ON lbar.* TO 'lbar'@'localhost'; FLUSH PRIVILEGES;"
 for f in "$@"; do
   echo "   импорт $f"
-  case "$f" in *.gz) zcat "$f" | mysql lbar ;; *) mysql lbar < "$f" ;; esac
+  case "$f" in
+    *.tar.gz|*.tgz) tar xzOf "$f" ;;
+    *.gz) zcat "$f" ;;
+    *) cat "$f" ;;
+  esac | sed '/enable the sandbox mode/d' | mysql lbar
 done
 
 echo "== PHP: MODX 2.8.1 падает на PHP 8 без get_magic_quotes_gpc — полифилл только локально"
@@ -40,6 +47,7 @@ cp /etc/php/8.3/apache2/conf.d/99-local.ini /etc/php/8.3/cli/conf.d/99-local.ini
 
 echo "== файлы сайта: пути как на проде (/home/impua/lbar.ro/www → репо), локальные конфиги"
 mkdir -p /home/impua/lbar.ro && ln -sfn "$REPO" /home/impua/lbar.ro/www
+mkdir -p core/config core/export core/packages   # в git их нет (конфиги и кэш — в .gitignore)
 cp _dev/local-config/config.core.php ./config.core.php
 cp _dev/local-config/config.core.php ./connectors/config.core.php
 cp _dev/local-config/config.core.php ./impulsemanager/config.core.php

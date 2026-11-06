@@ -1,0 +1,521 @@
+// ================= БЛОК «MICROPIGMENTAREA … IMPLICĂ» (главная, 4-й экран) =================
+// Геометрия — по макету 1920×1080. Дуга: окружность с центром (586, 603) и радиусом 435 (в px макета),
+// точки на ней ставит JS по фактической высоте карточек (для RU-текстов карточки выше).
+$im-bg: #f4ebe7;
+
+.lb-implica {
+	position: relative;
+	min-height: vw(1080);
+	overflow: hidden;
+	font-family: $f-text;
+	color: #222;
+	// сверху — цвет низа блока «Услуги», фото проявляется из него (без жёсткого стыка)
+	background: linear-gradient(180deg, #faf0e8 0, $im-bg vw(90));
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	:where(*, *::before, *::after) {
+		box-sizing: border-box;
+	}
+	:where(ul, li, p, h2) {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		font-weight: inherit;
+	}
+	:where(a) {
+		text-decoration: none;
+	}
+	:where(img, svg) {
+		display: block;
+	}
+
+	// фон: фото, светлое кольцо, флаконы — одним слоем, как в макете; сверху мягко вытекает из блока «Услуги»
+	&__bg {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		-webkit-mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .55) vw(30), #000 vw(90));
+		mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .55) vw(30), #000 vw(90));
+		img {
+			width: 100%;
+			height: vw(1080);
+			object-fit: cover;
+		}
+	}
+	// контент выше макета (RU-тексты длиннее): низ фото растворяется в фоне блока (класс ставит JS)
+	&.is-tall &__bg img {
+		-webkit-mask-image: linear-gradient(180deg, #000 calc(100% - #{vw(160)}), transparent 100%);
+		mask-image: linear-gradient(180deg, #000 calc(100% - #{vw(160)}), transparent 100%);
+	}
+
+	// дуга
+	&__arc {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: vw(1080);
+		overflow: visible;
+		pointer-events: none;
+	}
+	&__arcline {
+		fill: none;
+		stroke-width: 2.2;
+		stroke-linecap: round;
+	}
+
+	&__col {
+		position: relative;
+		z-index: 1;
+		padding: vw(40) 0 vw(70) vw(927);
+	}
+
+	// — надзаголовок —
+	&__eyebrow {
+		display: flex;
+		align-items: center;
+		gap: vw(26);
+		height: vw(28);
+		margin-left: vw(3);
+		font-size: vw(21);
+		font-weight: 500;
+		line-height: 1;
+		letter-spacing: .34em;
+		text-transform: uppercase;
+		color: #6b4636;
+		&::after {
+			content: "";
+			width: vw(56);
+			height: 1px;
+			background: #c9a491;
+			transform-origin: left center;
+		}
+	}
+
+	// — заголовок (TV title-main-bl3; строки и курсив — из лексикона) —
+	// h2 перебивается старым CSS (.wrapper.main-ro h2) — поднимаем специфичность
+	& &__col h2#{&}__title {
+		margin: vw(14) 0 0;
+		font-family: $f-serif;
+		font-size: vw(66);
+		font-weight: 560;
+		font-stretch: 100%;
+		line-height: vw(68);
+		letter-spacing: 0;
+		word-spacing: vw(5);
+		color: #141010;
+		text-transform: none;
+		em {
+			font-style: italic;
+			font-size: 1.17em;
+			font-weight: 470;
+			line-height: 0;
+			letter-spacing: .012em;
+			word-spacing: 0;
+			color: transparent;
+			background: linear-gradient(95deg, #a0704f 0%, #8f5f42 40%, #a77756 70%, #8e5e41 100%);
+			-webkit-background-clip: text;
+			background-clip: text;
+			padding-right: .04em;
+		}
+	}
+	&__line {
+		display: block;
+		overflow: hidden;
+		font-weight: 560; // старый CSS задаёт span{font-weight:400}
+		// запас под выносные элементы, курсив и «ș» — чтобы маска анимации их не обрезала
+		padding: 0 .2em .2em .12em;
+		margin: 0 -.2em -.2em -.12em;
+	}
+	&__lin {
+		display: block;
+		font-weight: 560;
+	}
+	// строка с курсивом крупнее — в макете у неё больше интерлиньяж
+	&__line:has(em) {
+		margin-top: vw(6);
+	}
+
+	// — карточки —
+	&__list {
+		margin-top: vw(50);
+		margin-left: vw(101); // карточка 1 начинается с x = 1028
+	}
+	&__item {
+		--x: 0px;
+		--w: #{vw(782)};
+		--tx: #{vw(22)};
+		--pr: #{vw(20)};
+		--by: #{vw(-5)};
+		--dy: 0px;
+		position: relative;
+		display: flex;
+		align-items: center;
+		width: var(--w);
+		min-height: vw(163);
+		margin-left: var(--x);
+		padding: vw(16) var(--pr) vw(16) vw(22);
+		border-radius: vw(82);
+		background: linear-gradient(100deg, rgba(255, 252, 250, .72) 0%, rgba(255, 250, 248, .5) 60%, rgba(255, 249, 246, .42) 100%);
+		box-shadow:
+			0 vw(24) vw(40) rgba(140, 95, 72, .12),
+			0 vw(4) vw(10) rgba(140, 95, 72, .05),
+			inset 0 0 0 1px rgba(255, 255, 255, .55),
+			inset 0 vw(2) vw(3) rgba(255, 255, 255, .6);
+		-webkit-backdrop-filter: blur(6px);
+		backdrop-filter: blur(6px);
+		transition: translate .7s $ease-expo, box-shadow .7s $ease-expo, background-color .5s;
+		& + & {
+			margin-top: vw(18);
+		}
+		// карточки «лесенкой» вдоль дуги — как в макете
+		@include desktop {
+			&--2 {
+				--x: #{vw(25)};
+				--w: #{vw(814)};
+				--pr: #{vw(32)};
+				--by: 0px;
+				--dy: #{vw(-3.5)};
+			}
+			&--3 {
+				--x: #{vw(1)};
+				--w: #{vw(829)};
+				--tx: #{vw(30)};
+				--by: #{vw(1)};
+				--dy: #{vw(-7.5)};
+			}
+		}
+		@include hover {
+			translate: vw(-8) 0;
+			box-shadow:
+				0 vw(28) vw(54) rgba(140, 95, 72, .15),
+				0 vw(3) vw(8) rgba(140, 95, 72, .06),
+				inset 0 0 0 1px rgba(255, 255, 255, .85),
+				inset 0 vw(2) vw(3) rgba(255, 255, 255, .6);
+			.lb-implica__ic {
+				scale: 1.04;
+			}
+			.lb-implica__ic::after {
+				left: 130%;
+			}
+			// точка остаётся на дуге, хотя карточка сдвигается
+			.lb-implica__dot {
+				translate: vw(8) 0;
+				scale: 1.35;
+			}
+		}
+	}
+
+	// точка на дуге (центр — по x дуги; JS уточняет --dot-x под фактическую высоту карточки)
+	&__dot {
+		--dot-x: #{vw(-44.6)};
+		position: absolute;
+		top: calc(50% + var(--dy));
+		left: var(--dot-x);
+		width: vw(17);
+		height: vw(17);
+		margin: vw(-8.5) 0 0 vw(-8.5);
+		border-radius: 50%;
+		background: radial-gradient(circle at 40% 35%, #a77657 0%, #9a6849 55%, #8d5d40 100%);
+		box-shadow: 0 0 0 vw(2.5) #fbf8f6, 0 vw(3) vw(8) rgba(120, 80, 55, .25);
+		transition: scale .5s $ease-expo, translate .7s $ease-expo;
+	}
+	&__item--1 &__dot {
+		--dot-x: #{vw(-44.6)};
+	}
+	&__item--2 &__dot {
+		--dot-x: #{vw(-32.8)};
+	}
+	&__item--3 &__dot {
+		--dot-x: #{vw(-39.2)};
+	}
+
+	// медная плашка с иконкой в светлом «гнезде»
+	&__ic {
+		position: relative;
+		flex: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: vw(147);
+		height: vw(129);
+		border-radius: vw(34);
+		background: linear-gradient(160deg, #fdfbf9 0%, #f9f2ee 100%);
+		box-shadow: 0 vw(10) vw(22) rgba(140, 95, 72, .1), 0 0 vw(10) rgba(255, 255, 255, .8);
+		transition: scale .6s $ease-expo;
+		overflow: hidden;
+		&::before {
+			content: "";
+			position: absolute;
+			left: vw(16);
+			top: vw(15.5);
+			width: vw(112);
+			height: vw(98);
+			border-radius: vw(28);
+			background: linear-gradient(100deg, #c49575 0%, #bb8c6d 50%, #b5866a 100%);
+			box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18), 0 vw(6) vw(14) rgba(140, 95, 72, .16);
+		}
+		// блик по плашке при наведении на карточку
+		&::after {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: -70%;
+			width: 45%;
+			height: 100%;
+			background: linear-gradient(100deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .3) 50%, rgba(255, 255, 255, 0) 100%);
+			transform: skewX(-20deg);
+			transition: left .9s $ease-expo;
+			pointer-events: none;
+		}
+		svg {
+			position: relative;
+			width: vw(66);
+			height: vw(66);
+			margin: 0 vw(3) 0 0;
+			color: #fbf6f3;
+		}
+	}
+
+	&__body {
+		flex: 1;
+		min-width: 0;
+		margin-top: var(--by); // смещение текста относительно центра карточки — как в макете
+		padding-left: var(--tx);
+	}
+	&__name {
+		font-size: vw(29.6);
+		font-weight: 700;
+		line-height: vw(36);
+		letter-spacing: -.003em;
+		color: #222;
+	}
+	&__text {
+		margin-top: vw(3.5);
+		font-size: vw(19.6);
+		font-weight: 470;
+		line-height: vw(28);
+		color: #555252;
+	}
+
+	// — кнопки —
+	&__btns {
+		display: flex;
+		align-items: center;
+		gap: vw(59);
+		margin: vw(55) 0 0 vw(100);
+	}
+	&__cta.lb-btn {
+		height: vw(73);
+		padding: 0 vw(42) 0 vw(45);
+		gap: vw(22);
+		font-size: vw(18.4);
+	}
+	&__play {
+		display: inline-flex;
+		align-items: center;
+		gap: vw(21);
+		margin-top: vw(4);
+		color: #23262b;
+		@include hover {
+			.lb-implica__playic {
+				color: #fbf6f3;
+				background: $c-btn-dark;
+				border-color: $c-btn-dark;
+				&::after {
+					opacity: 1;
+					scale: 1.35;
+				}
+			}
+			.lb-implica__playtxt::after {
+				transform: scaleX(.35);
+			}
+		}
+		&:focus-visible {
+			outline: 2px solid $c-btn-dark;
+			outline-offset: 4px;
+			border-radius: 4px;
+		}
+	}
+	&__playic {
+		position: relative;
+		flex: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: vw(51);
+		height: vw(51);
+		border: 1.5px solid #ad8670;
+		border-radius: 50%;
+		color: #8f5f44;
+		transition: background-color .45s $ease-out, color .45s $ease-out, border-color .45s $ease-out;
+		// мягкая «волна» вокруг круга при наведении
+		&::after {
+			content: "";
+			position: absolute;
+			inset: -1.5px;
+			border: 1px solid rgba(173, 134, 112, .55);
+			border-radius: 50%;
+			opacity: 0;
+			transition: opacity .6s $ease-out, scale .8s $ease-expo;
+		}
+		svg {
+			width: vw(15);
+			height: vw(17);
+			margin-left: vw(4);
+		}
+	}
+	&__playtxt {
+		position: relative;
+		padding-bottom: vw(9);
+		font-size: vw(21.6);
+		font-weight: 500;
+		line-height: vw(26);
+		&::after {
+			content: "";
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			height: 1.5px;
+			background: currentColor;
+			transform-origin: left center;
+			transition: transform .6s $ease-expo;
+		}
+	}
+}
+
+@include mobile {
+	.lb-implica {
+		min-height: 0;
+		padding: 0 0 48px;
+
+		&__bg {
+			position: relative;
+			width: auto;
+			height: auto;
+			max-width: 420px;
+			margin: 0 auto;
+			-webkit-mask-image: linear-gradient(180deg, #000 82%, transparent 100%);
+			mask-image: linear-gradient(180deg, #000 82%, transparent 100%);
+			img {
+				height: auto;
+				aspect-ratio: 840 / 861;
+			}
+		}
+		&__arc {
+			display: none;
+		}
+		&__col {
+			margin-top: -24px;
+			padding: 0 22px;
+		}
+		&__eyebrow {
+			gap: 16px;
+			height: auto;
+			margin: 0;
+			font-size: 12px;
+			letter-spacing: .26em;
+			&::after {
+				width: 40px;
+			}
+		}
+		& &__col h2#{&}__title {
+			margin-top: 14px;
+			font-size: mvw(30);
+			line-height: 1.14;
+			word-spacing: 0;
+		}
+		&__line:has(em) {
+			margin-top: 2px;
+		}
+		&__list {
+			margin: 26px 0 0;
+		}
+		// иконка и название в строку, текст — на всю ширину карточки
+		&__item {
+			display: grid;
+			grid-template-columns: auto 1fr;
+			align-items: center;
+			column-gap: 14px;
+			width: auto;
+			min-height: 0;
+			padding: 14px 18px 16px 14px;
+			border-radius: 22px;
+			-webkit-backdrop-filter: none;
+			backdrop-filter: none;
+			background: rgba(255, 251, 249, .78);
+			box-shadow: 0 10px 26px rgba(140, 95, 72, .1), inset 0 0 0 1px rgba(255, 255, 255, .8);
+			& + & {
+				margin-top: 12px;
+			}
+		}
+		&__dot {
+			display: none;
+		}
+		&__ic {
+			width: 58px;
+			height: 52px;
+			border-radius: 16px;
+			&::before {
+				left: 6px;
+				top: 6px;
+				width: 46px;
+				height: 40px;
+				border-radius: 12px;
+			}
+			svg {
+				width: 30px;
+				height: 30px;
+				margin: 0;
+			}
+		}
+		&__body {
+			display: contents;
+		}
+		&__name {
+			font-size: 18px;
+			line-height: 24px;
+		}
+		&__text {
+			grid-column: 1 / -1;
+			margin-top: 10px;
+			font-size: 14px;
+			line-height: 21px;
+		}
+		&__btns {
+			flex-direction: column;
+			align-items: stretch;
+			gap: 18px;
+			margin: 28px 0 0;
+		}
+		&__cta.lb-btn {
+			height: 52px;
+			padding: 0 24px 0 28px;
+			gap: 14px;
+			font-size: 12.5px;
+		}
+		&__play {
+			align-self: center;
+			gap: 14px;
+			margin-top: 0;
+		}
+		&__playic {
+			width: 42px;
+			height: 42px;
+			svg {
+				width: 11px;
+				height: 13px;
+				margin-left: 2px;
+			}
+		}
+		&__playtxt {
+			padding-bottom: 6px;
+			font-size: 16px;
+			line-height: 20px;
+		}
+	}
+}

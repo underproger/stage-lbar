@@ -1,6 +1,6 @@
 # stage-lbar — handoff (редизайн lbar.ro на MODX)
 
-Состояние на 06.11.2026, последний коммит — см. `git log`. Папка `_dev/` — служебная (закрыта `.htaccess`),
+Состояние на 06.11.2026 (вечер), сделаны блоки 1–4 главной, последний коммит — см. `git log`. Папка `_dev/` — служебная (закрыта `.htaccess`),
 **в конце проекта удалить** вместе с остальным мусором.
 
 ## 1. Проект
@@ -30,6 +30,8 @@
   и контурная пилюля (`.lb-btn--ghost`), стрелка `→` (`svg.lb-btn__arr`).
 - **Не писать «Lbar Studio» в каждом блоке** (макеты-ИИ любят надзаголовки «LBAR STUDIO», подписи «LBar studio», логотип поверх фото) —
   такие элементы не переносить. Уже убрано: подпись «LBar studio» в фоне блока «Услуги», RU-надзаголовок «Студия LBar» → «Наши процедуры».
+  Блок 4: надзаголовок «LBAR STUDIO» заменён на «Standardele noastre / Наши стандарты» (лексикон `lbar.rd.implica.eyebrow`,
+  пустое значение → надзаголовок не выводится), логотип «LBar | Studio de micropigmentare» с фото убран.
   Открытый вопрос: круглая печать «Studio LBar · Micropigmentare» и водяные знаки «Lbar» в фонах блоков 2–3 — уточнить, убирать ли.
 - Папки картинок `images/` и `assets/images/` в архивах **не пришли** (локально 404) — пользователь ещё не прислал. На проде они есть.
 
@@ -45,11 +47,12 @@
 | Тексты интерфейса RO/RU | лексикон `core/components/babel/lexicon/{ro,ru}/translate.inc.php`, ключи `lbar.rd.*` (так уже было на сайте: `lbar.*`) |
 
 **Сборка CSS:** `cd assets/templates/redesign && /home/claude/build/node_modules/.bin/sass scss/redesign.scss css/redesign.css --style=compressed --no-source-map --silence-deprecation=import`
-**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.2.0**) — поднимать при изменениях.
+**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.3.0**) — поднимать при изменениях.
 **Новые/изменённые чанки в БД:** `sudo -u www-data php _dev/tools/modx_apply3.php` (пересохраняет все `*.tpl` из папки как статичные чанки и меняет
-вызов в шаблоне «Главная») — для нового блока сделать по аналогии `modx_apply4.php` (замена `[[$старый-чанк]]` → `[[$lb-новый]]`).
+вызов в шаблоне «Главная») — для нового блока сделать по аналогии `modx_apply5.php` (последний — `modx_apply4.php`, замена `[[$старый-чанк]]` → `[[$lb-новый]]`).
+**После правки `.tpl` чистить `core/cache/resource/`** (главная кэшируется — без этого на скриншоте старая разметка; CSS/JS это не касается).
 
-Шаблон **«Главная» (id 1)** сейчас: `[[$head]] [[$lb-head]]` … `[[$lb-header]] [[$lb-banner-main]] [[$lb-about]] [[$lb-services]] [[*title-main-bl3:notempty=`[[$bl3-text]]`]] …` `[[$script]] [[$lb-scripts]]`.
+Шаблон **«Главная» (id 1)** сейчас: `[[$head]] [[$lb-head]]` … `[[$lb-header]] [[$lb-banner-main]] [[$lb-about]] [[$lb-services]] [[*title-main-bl3:notempty=`[[$lb-implica]]`]] [[$bl4-form]] …` `[[$script]] [[$lb-scripts]]`.
 Старые чанки используются ещё на других шаблонах (напр. `bl1-about-us`, `bl3-text` — в шаблоне «Категория», 27 страниц) — **их не правим**, делаем новые `lb-*` и подключаем только в «Главную».
 
 Шрифты: `LB Serif` = Noto Serif Display (var wdth/wght, +italic), `LB Sans` = DM Sans (+Onest для кириллицы), `LB Display` = Playfair Display (+italic),
@@ -64,6 +67,9 @@
 - В tpl для pdoResources лексикон не подхвачен → в начале tpl `{$_modx->lexicon->load('babel:translate')}`.
 - `lazy`-плагин добавляет `loading="lazy"` всем img без атрибута → у первого экрана ставить `loading="eager"`.
 - webp-плагин подменяет jpg/png на `/webp/...` если файл есть — наши картинки сразу `.webp`.
+- `span{font-weight:400}` из старого CSS бьёт и по служебным span внутри заголовков (строки H2 блока 4) — вес ставить на сами span.
+- `.lb-x :where(a){color:inherit}` имеет специфичность (0,1,0) и перебивает `.lb-btn--solid` (цвет текста кнопки) — в новых блоках `color` в ресете ссылок не задавать.
+- H2 с курсивом (`<em>București</em>, …`): `get_text(' ')` в bs4 даёт «București , …» — `seo_compare.py` нормализует пробел перед пунктуацией (так видит текст браузер).
 
 ## 4. Сделано
 
@@ -78,19 +84,22 @@
    (карта id → картинка в tpl), для остальных — TV `im-category`. Слайдер-свайп на мобильном.
 5. **Единый стиль кнопок** (шапка, баннер, блоки 2–3).
 6. **Перетекающий фон** между блоками 2 и 3 (`scss/_seam.scss`, `img/seam.svg`) — декор рисуется половинками в обоих блоках.
+7. **Блок «Micropigmentarea … implică» `lb-implica`** (`scss/_implica.scss`) — вместо `bl3-text` (условие `[[*title-main-bl3:notempty=…]]` сохранено).
+   H2 — TV `title-main-bl3` (текст не менялся), разбивка на строки и курсив — лексикон `lbar.rd.implica.title`
+   (`|` — перенос, `*…*` — курсив; если TV изменят и он перестанет совпадать — H2 выводится как есть). Карточки — TV `title/text-1..3-bl3`,
+   иконки SVG, кнопки `.lb-btn--solid` («Programează-te» → `#bl8-form`) и ссылка с кругом-play на портфолио (100/198).
+   Дуга — SVG-окружность (586, 603, r 435 @1920), точки на ней ставит JS по фактической высоте карточек; в RU блок выше 1080 —
+   JS ставит `.is-tall`, низ фото растворяется. Анимация: прорисовка дуги, «выезд» строк H2, карточки справа, иконки, точки.
+   Фон `img/implica-bg*.webp` (без текста/кнопок/карточек/дуги/логотипа), мобильный `implica-mobile.webp`. Сверка с макетом на 1920 — ±1–5px.
 
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
-`stage-lbar-03-services.sql`. После 03 БД **не менялась** (последние правки — только файлы).
+`stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»; проверен импортом на копии).
+После 04 БД **не менялась**.
 
-## 5. Следующий шаг — блок 4 «Micropigmentarea … implică:»
+## 5. Следующий шаг — блок 5 (по порядку шаблона: `[[$bl4-form]]`, форма «Obțineți o consultație personală»)
 
-Макет: `_dev/mockups/block4-implica-NEXT.png`. Старый чанк **`bl3-text`** (вызов в шаблоне: `[[*title-main-bl3:notempty=`[[$bl3-text]]`]]` — сохранить условие).
-Данные (TV ресурсов 1 / 193): `title-main-bl3` (H2: RO «Micropigmentarea în salonul nostru din București, implică:», RU «Перманентный татуаж в Бухаресте от LBar — это:»),
-`title-1..3-bl3`, `text-1..3-bl3` (RO Calitate/Siguranță/Frumusețe, RU Красиво/Безопасно/Современно), `im-1-bl3`, `alt-im-1-bl3`.
-- Тексты — из TV (как в макете для RO совпадают). В заголовке выделить курсивом (Playfair italic, медный) слово/фразу как в макете («București») — для RU решить аналогично.
-- **Не переносить** надзаголовок «LBAR STUDIO» и логотип «LBar | Studio de micropigmentare» на фото.
-- Кнопки: «Programează-te →» (solid) и «Vezi portfolio» (ссылка с кругом-play) — тексты в лексикон; ссылки: форма записи `#bl8-form` / портфолио (id 100 RO, 198 RU).
-- Иконки (бриллиант, щит, лотос) в медных плашках — SVG. Дуга с точками — SVG/CSS.
+Макета пока нет — ждём от пользователя. Дальше по шаблону: `bl2-study-trener`, `bl6-portfolio-front-page`, `bl7-price`, `bl8-form`, `bl9-reviews`,
+`bl-faq`, `bl-seo`, `bl-blog`, `bl-contact`, `footer`. Формы — осторожно: id/якоря (`#form-bl4`, `#bl8-form`) и обработчики (ajaxForm/ec-form) не ломать.
 
 ## 6. Конвейер «1 в 1» (как делались блоки)
 
@@ -105,13 +114,19 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 7. SEO-сверка `python3 -I _dev/tools/seo_compare.py`, проверка утечек старого CSS (`probe.py`), мобильный 390×844.
 8. Коммит + пуш, SQL-патч (если менялась БД) → файлы пользователю + сравнение «макет / сайт».
 
-Скрипты в `_dev/tools` писались под конкретные блоки — пути (`/home/claude/sr`, `/home/claude/b2`, …) поправить под себя.
+Блок 4 делался вариантом с координатами в системе 1920 (удобнее мерить по `ref1920.png`):
+`grid.py IN OUT x1 y1 x2 y2 scale step` — кроп с сеткой координат; `clean4.py up2.png clean.png _dev/rects/block4-implica.json` — очистка
+(прямоугольники в px 1920, маска дуги `arcmask.py`, логотип на фото — inpaint по маске букв); `cmp.py REF SHOT out [x1 y1 x2 y2]` — наложение/разница;
+`tmeas.py` / `cardmeas.py` — замер строк заголовка и карточек; `shotcss.py` — скрин с подмешанным CSS (подбор шрифтов/размеров без пересборки);
+`fontcmp.py` — сравнение шрифтов-кандидатов с макетом; `probe4.py` — позиции/стили элементов после анимации.
+Скрипты в `_dev/tools` писались под конкретные блоки — пути (`/home/claude/sr`, `/home/claude/b4`, `/home/claude/tools`, …) поправить под себя.
 
 ## 7. Локальное окружение (новая сессия)
 
 1. Подключить репо (`add_repo underproger/stage-lbar`, push), клонировать в `/home/claude/stage-lbar`.
-2. Пользователь прикладывает `lbar-full-stage-2026-11-06.sql.gz`, `stage-lbar-02-about.sql`, `stage-lbar-03-services.sql`.
-3. `cd /home/claude/stage-lbar && bash _dev/setup_local.sh <full.sql.gz> <02.sql> <03.sql>` — поднимет MariaDB, Apache+SSL, PHP-полифилл,
+2. Пользователь прикладывает дамп и патчи. В этот раз пришёл дамп хостинга `mysql_impua_testlbar_….tar.gz` (исходная база, без патчей) +
+   `stage-lbar-urls.sql`, `-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`; плюс теперь `-04-implica.sql`.
+3. `cd /home/claude/stage-lbar && bash _dev/setup_local.sh <дамп> <urls> <01> <02> <03> <04>` (файлы — по порядку; .tar.gz/.gz/.sql) — поднимет MariaDB, Apache+SSL, PHP-полифилл,
    конфиги из `_dev/local-config`, hosts (`stage-lbar.touchit.vinnica.ua` → 127.0.0.1), симлинк `/home/impua/lbar.ro/www` → репо.
 4. После рестарта контейнера: `bash _dev/tools/up.sh`. Chrome для скриншотов запускать с `--no-proxy-server`, внешние запросы блокировать (так в `shot*.py`).
 5. Хостинг, скорее всего, на PHP 7.x — **PHP 8 на сервере не включать** (MODX 2.8.1 падает).
