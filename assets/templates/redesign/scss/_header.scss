@@ -57,7 +57,7 @@
 		display: flex;
 		align-items: center;
 		gap: vw(10);
-		font-size: vw(18.7);
+		font-size: vw(17.5);
 		font-weight: 400;
 		letter-spacing: .005em;
 		color: $c-ink;
@@ -149,8 +149,8 @@
 		align-items: center;
 		gap: vw(7);
 		padding: vw(10) 0;
-		font-size: vw(20.5);
-		font-weight: 400;
+		font-size: vw(18.5);
+		font-weight: 500;
 		line-height: 1.2;
 		color: rgba(43, 29, 24, .88);
 		white-space: nowrap;
@@ -449,10 +449,8 @@
 			}
 		}
 		.lb-nav__list > .lb-nav__item > .lb-nav__link {
-			font-family: $f-serif;
-			font-size: 26px;
-			font-weight: 300;
-			font-stretch: 75%;
+			@include lb-title;
+			font-size: 24px;
 			color: $c-ink;
 		}
 		.lb-nav__toggle {
@@ -536,10 +534,8 @@
 		}
 		&__phone {
 			display: block;
-			font-family: $f-serif;
-			font-size: 30px;
-			font-weight: 300;
-			font-stretch: 75%;
+			@include lb-title;
+			font-size: 28px;
 			color: $c-ink;
 		}
 		&__addr {

@@ -53,7 +53,7 @@
 | Тексты интерфейса RO/RU | лексикон `core/components/babel/lexicon/{ro,ru}/translate.inc.php`, ключи `lbar.rd.*` (так уже было на сайте: `lbar.*`) |
 
 **Сборка CSS:** `cd assets/templates/redesign && /home/claude/build/node_modules/.bin/sass scss/redesign.scss css/redesign.css --style=compressed --no-source-map --silence-deprecation=import`
-**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.5.0**) — поднимать при изменениях.
+**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.6.0**) — поднимать при изменениях.
 **Новые/изменённые чанки в БД:** `sudo -u www-data php _dev/tools/modx_apply3.php` (пересохраняет все `*.tpl` из папки как статичные чанки и меняет
 вызов в шаблоне «Главная») — для нового блока сделать по аналогии (последний — `modx_apply6.php`, замена `[[$старый-чанк]]` → `[[$lb-новый]]`).
 **После правки `.tpl` чистить `core/cache/resource/`** (главная кэшируется — без этого на скриншоте старая разметка; CSS/JS это не касается).
@@ -61,8 +61,14 @@
 Шаблон **«Главная» (id 1)** сейчас: `[[$head]] [[$lb-head]]` … `[[$lb-header]] [[$lb-banner-main]] [[$lb-about]] [[$lb-services]] [[*title-main-bl3:notempty=`[[$lb-implica]]`]] [[$lb-consult]] [[$lb-master]] [[-$bl5-about-me]] [[$bl6-portfolio-front-page]] …` `[[$script]] [[$lb-scripts]]`.
 Старые чанки используются ещё на других шаблонах (напр. `bl1-about-us`, `bl3-text` — в шаблоне «Категория», 27 страниц) — **их не правим**, делаем новые `lb-*` и подключаем только в «Главную».
 
-Шрифты: `LB Serif` = Noto Serif Display (var wdth/wght, +italic), `LB Sans` = DM Sans (+Onest для кириллицы), `LB Display` = Playfair Display (+italic),
-`LB Text` = Montserrat (+italic), `LB Round` = Nunito Sans (var wght; текст блока 6), `LB Classic` = Crimson Pro (wght 300–500 / italic 400–500, урезан) + Spectral для кириллицы (300 / italic 400) — заголовок блока 5. Подключены в `scss/_fonts.scss` с unicode-range (latin / румынские ș ț ă / кириллица). Новые шрифты брать из npm `@fontsource-variable/*`.
+**Шрифтовой стандарт (решение пользователя: «как в блоке lb-about») — для всех блоков, новых тоже:**
+- заголовок блока — `@include lb-title` (Playfair Display 500, `LB Display`);
+- акцентная часть заголовка (курсив) — `@include lb-accent` (Noto Serif Display Italic 420, stretch 80%, медный градиент; на тёмном фоне — `lb-accent(true)`);
+- текст, подписи, кнопки, формы — Montserrat (`$f-text`, `LB Text`); подписи-«лейблы» — Montserrat 600–620;
+- надзаголовок — `@include lb-eyebrow` (Montserrat 500, капс, .2em, #8f6b58);
+- `LB Serif` прямой (Noto Serif Display) — только логотип «LBAR».
+Миксины — в `scss/_base.scss`, @font-face — `scss/_fonts.scss` (latin / румынские ș ț ă / кириллица). DM Sans, Onest, Crimson Pro, Spectral, Nunito Sans удалены.
+Старый CSS `strong, b {font-family: FuturaDemic}` в новых блоках нейтрализован (`_ui.scss`) — новые блоки добавлять в этот список.
 
 ### Подводные камни (уже решены — не наступать снова)
 - Старый CSS (`.wrapper.main-ro h1/h2`, `span{font-weight:400}`) перебивает новые стили → для h1/h2 поднимать специфичность
@@ -121,8 +127,9 @@
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
 `stage-lbar-05-consult.sql` (чанки `lb-consult` id 275, `lb.formConsult` id 276 + все чанки Redesign + шаблон «Главная»),
-`stage-lbar-06-master.sql` (чанк `lb-master` id 277 + все чанки Redesign + шаблон «Главная»). Патчи проверены импортом цепочкой «полная база + 02…06».
-После 06 БД **не менялась**.
+`stage-lbar-06-master.sql` (чанк `lb-master` id 277 + все чанки Redesign + шаблон «Главная»),
+`stage-lbar-07-fonts.sql` (единый шрифтовой стандарт: preload и `?v=1.6.0` в `lb-head`/`lb-scripts` + все чанки Redesign). Патчи проверены импортом цепочкой «полная база + 02…07».
+После 07 БД **не менялась**.
 
 ## 5. Следующий шаг — блок 7 (по порядку шаблона: `[[$bl6-portfolio-front-page]]`, H2 «Galerie foto – machiaj permanent după procedură»)
 
@@ -162,9 +169,9 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 
 1. Подключить репо (`add_repo underproger/stage-lbar`, push), клонировать в `/home/claude/stage-lbar`.
 2. Пользователь прикладывает дамп и патчи **по порядку**: дамп хостинга `mysql_impua_testlbar_….tar.gz` (исходная база, без патчей),
-   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`
+   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`
    (вместо дампа+urls+01 может прийти `lbar-full-stage-2026-11-06.sql.gz` — это то же самое).
-3. `cd /home/claude/stage-lbar && bash _dev/setup_local.sh <дамп> <urls> <01> <02> <03> <04> <05> <06>` (файлы — по порядку; .tar.gz/.gz/.sql, строка sandbox вырезается) — поднимет MariaDB, Apache+SSL, PHP-полифилл,
+3. `cd /home/claude/stage-lbar && bash _dev/setup_local.sh <дамп> <urls> <01> <02> <03> <04> <05> <06> <07>` (файлы — по порядку; .tar.gz/.gz/.sql, строка sandbox вырезается) — поднимет MariaDB, Apache+SSL, PHP-полифилл,
    конфиги из `_dev/local-config`, hosts (`stage-lbar.touchit.vinnica.ua` → 127.0.0.1), симлинк `/home/impua/lbar.ro/www` → репо,
    sass+gsap (`/home/claude/build`), EDSR-модель (`/home/claude/sr`), intl-tel-input для скриншотов формы (`/home/claude/iti`).
    Проверка, что всё поднялось: `python3 -I _dev/tools/seo_compare.py` — всё OK, кроме согласованного H1.

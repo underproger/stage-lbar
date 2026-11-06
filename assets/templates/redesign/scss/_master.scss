@@ -7,7 +7,7 @@ $ms-bg: #2f2521;
 	position: relative;
 	min-height: vw(890);
 	overflow: hidden;
-	font-family: $f-round;
+	font-family: $f-text;
 	color: #d6d2cf;
 	background: $ms-bg;
 	-webkit-font-smoothing: antialiased;
@@ -81,12 +81,9 @@ $ms-bg: #2f2521;
 	& &__col h2#{&}__title {
 		width: vw(1090);
 		margin: 0 0 0 vw(40);
-		font-family: $f-classic;
-		font-size: vw(67.4);
-		font-weight: 400;
-		line-height: vw(72);
-		letter-spacing: 0;
-		text-transform: none;
+		@include lb-title;
+		font-size: vw(62.4);
+		line-height: vw(76);
 		color: #f8f6f4;
 		&::after {
 			content: "";
@@ -98,15 +95,9 @@ $ms-bg: #2f2521;
 			background: linear-gradient(90deg, rgba(200, 176, 156, .9), rgba(200, 176, 156, 0));
 		}
 		.gold-word {
-			font-family: $f-classic;
-			font-size: vw(83.3);
-			font-style: italic;
-			font-weight: 400;
-			line-height: vw(72);
-			color: transparent;
-			background: linear-gradient(100deg, #f4d9c7 0%, #ecc3ac 45%, #f1d2bf 75%, #e6b9a0 100%);
-			-webkit-background-clip: text;
-			background-clip: text;
+			@include lb-accent(true);
+			font-size: vw(73.7);
+			line-height: vw(76);
 			padding-right: .06em; // хвост курсива при background-clip
 		}
 	}
@@ -166,12 +157,12 @@ $ms-bg: #2f2521;
 	&__text {
 		width: vw(392);
 		margin-left: vw(48);
-		font-size: vw(25);
+		font-size: vw(22);
 		font-weight: 400;
 		line-height: vw(31.5);
 		color: #d6d2cf;
 		b {
-			font-weight: 750;
+			font-weight: 700;
 			color: #f4f1ef;
 		}
 	}
@@ -231,7 +222,7 @@ $ms-bg: #2f2521;
 				vertical-align: .3em;
 			}
 			.gold-word {
-				font-size: mvw(36);
+				font-size: mvw(35);
 				line-height: 1.15;
 			}
 		}
@@ -264,8 +255,8 @@ $ms-bg: #2f2521;
 		&__list + &__list &__text {
 			width: auto;
 			margin-left: 16px;
-			font-size: 15px;
-			line-height: 1.45;
+			font-size: 14.5px;
+			line-height: 1.5;
 		}
 		&__btn {
 			width: 100%;

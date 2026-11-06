@@ -52,12 +52,9 @@
 		display: flex;
 		align-items: center;
 		gap: vw(20);
+		@include lb-eyebrow;
 		font-size: vw(17);
-		font-weight: 600;
 		line-height: 1;
-		letter-spacing: .14em;
-		text-transform: uppercase;
-		color: #221a16;
 		&::before {
 			content: "";
 			flex: none;
@@ -69,13 +66,10 @@
 	// h2 перебивается старым CSS (.wrapper.main-ro h2) — поднимаем специфичность
 	& &__intro h2#{&}__title {
 		margin-top: vw(54);
-		font-family: $f-text;
-		font-size: vw(47.2);
-		font-weight: 600;
-		line-height: vw(57);
-		letter-spacing: -.005em;
-		color: #151110;
-		text-transform: none;
+		@include lb-title;
+		font-size: vw(58);
+		line-height: vw(64);
+		color: #24130f;
 	}
 	&__text {
 		margin-top: vw(44);
@@ -165,13 +159,9 @@
 		display: flex;
 		align-items: center;
 		gap: vw(38);
-		font-family: $f-serif;
+		@include lb-accent;
 		font-size: vw(48);
-		font-style: italic;
-		font-weight: 400;
-		font-stretch: 87.5%;
-		line-height: 1;
-		color: #8b6a58;
+		line-height: 1.1;
 		&::after {
 			content: "";
 			width: vw(127);
@@ -231,8 +221,8 @@
 		}
 		& &__intro h2#{&}__title {
 			margin-top: 18px;
-			font-size: 30px;
-			line-height: 1.15;
+			font-size: 34px;
+			line-height: 1.12;
 		}
 		&__text {
 			width: auto;

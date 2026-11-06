@@ -77,12 +77,9 @@ $im-bg: #f4ebe7;
 		gap: vw(26);
 		height: vw(28);
 		margin-left: vw(3);
-		font-size: vw(21);
-		font-weight: 500;
+		@include lb-eyebrow;
+		font-size: vw(20.7);
 		line-height: 1;
-		letter-spacing: .34em;
-		text-transform: uppercase;
-		color: #6b4636;
 		&::after {
 			content: "";
 			width: vw(56);
@@ -96,33 +93,21 @@ $im-bg: #f4ebe7;
 	// h2 перебивается старым CSS (.wrapper.main-ro h2) — поднимаем специфичность
 	& &__col h2#{&}__title {
 		margin: vw(14) 0 0;
-		font-family: $f-serif;
-		font-size: vw(66);
-		font-weight: 560;
-		font-stretch: 100%;
-		line-height: vw(68);
-		letter-spacing: 0;
-		word-spacing: vw(5);
-		color: #141010;
-		text-transform: none;
+		@include lb-title;
+		font-size: vw(72);
+		line-height: vw(78);
+		color: #24130f;
 		em {
-			font-style: italic;
-			font-size: 1.17em;
-			font-weight: 470;
+			@include lb-accent;
+			font-size: 1.12em;
 			line-height: 0;
-			letter-spacing: .012em;
-			word-spacing: 0;
-			color: transparent;
-			background: linear-gradient(95deg, #a0704f 0%, #8f5f42 40%, #a77756 70%, #8e5e41 100%);
-			-webkit-background-clip: text;
-			background-clip: text;
 			padding-right: .04em;
 		}
 	}
 	&__line {
 		display: block;
 		overflow: hidden;
-		font-weight: 560; // старый CSS задаёт span{font-weight:400}
+		font-weight: 500; // старый CSS задаёт span{font-weight:400}
 		// запас под выносные элементы, курсив и «ș» — чтобы маска анимации их не обрезала
 		padding: 0 .2em .2em .12em;
 		margin: 0 -.2em -.2em -.12em;
@@ -285,7 +270,7 @@ $im-bg: #f4ebe7;
 	}
 	&__name {
 		font-size: vw(29.6);
-		font-weight: 700;
+		font-weight: 620;
 		line-height: vw(36);
 		letter-spacing: -.003em;
 		color: #222;

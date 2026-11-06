@@ -6,7 +6,7 @@ $cs-bg: #f9f2ed;
 	position: relative;
 	min-height: vw(855);
 	overflow: hidden;
-	font-family: $f-sans;
+	font-family: $f-text;
 	color: #222;
 	background: $cs-bg;
 	-webkit-font-smoothing: antialiased;
@@ -43,13 +43,9 @@ $cs-bg: #f9f2ed;
 		align-items: center;
 		gap: vw(22);
 		height: vw(22);
-		font-family: $f-text;
-		font-size: vw(23);
-		font-weight: 500;
+		@include lb-eyebrow;
+		font-size: vw(20.7);
 		line-height: 1;
-		letter-spacing: .2em;
-		text-transform: uppercase;
-		color: #7b5538;
 		&::after {
 			content: "";
 			width: vw(64);
@@ -59,24 +55,16 @@ $cs-bg: #f9f2ed;
 		}
 	}
 	&__title {
-		margin-top: vw(58);
-		font-family: $f-classic;
-		font-size: vw(99);
-		font-weight: 340;
-		line-height: vw(88);
-		letter-spacing: .02em;
-		color: #251c18;
+		margin-top: vw(54);
+		@include lb-title;
+		font-size: vw(84);
+		line-height: vw(96);
+		color: #24130f;
 		em {
-			font-style: italic;
-			margin-left: -.1em;
-			font-size: 1.15em;
-			font-weight: 400;
+			@include lb-accent;
+			margin-left: -.04em;
+			font-size: 1.12em;
 			line-height: 0;
-			letter-spacing: .048em;
-			color: transparent;
-			background: linear-gradient(95deg, #8f5f40 0%, #a7774f 45%, #9a6a48 75%, #8c5e3f 100%);
-			-webkit-background-clip: text;
-			background-clip: text;
 			padding-right: .06em;
 		}
 	}
@@ -86,22 +74,14 @@ $cs-bg: #f9f2ed;
 		// запас под выносные элементы и курсив — чтобы маска анимации их не обрезала
 		padding: 0 .2em .18em .1em;
 		margin: 0 -.2em -.18em -.1em;
-		font-weight: 340; // старый CSS задаёт span{font-weight:400}
+		font-weight: 500; // старый CSS задаёт span{font-weight:400}
 	}
 	&__lin {
 		display: block;
-		font-weight: 340;
+		font-weight: 500;
 	}
 	&__line:has(em) {
 		margin-top: vw(6);
-	}
-	// кириллица — в Spectral (шире Crimson Pro): трекинг под латиницу ей не нужен
-	html[lang="ru"] & &__title,
-	html[lang="ru"] & &__title em {
-		letter-spacing: 0;
-	}
-	html[lang="ru"] & &__title em {
-		font-size: 1.08em;
 	}
 	&__flourish {
 		width: vw(440);
@@ -111,9 +91,9 @@ $cs-bg: #f9f2ed;
 	}
 	&__text {
 		margin-top: vw(55);
-		font-size: vw(30);
+		font-size: vw(27.2);
 		font-weight: 400;
-		line-height: vw(41);
+		line-height: vw(38);
 		color: #545453;
 	}
 
@@ -194,7 +174,7 @@ $cs-bg: #f9f2ed;
 		outline: 0;
 		background: transparent;
 		box-shadow: none;
-		font-family: $f-sans;
+		font-family: $f-text;
 		font-size: vw(24);
 		font-weight: 400;
 		line-height: normal;
@@ -235,7 +215,7 @@ $cs-bg: #f9f2ed;
 			padding: 0 vw(44) 0 vw(43);
 			border-radius: 999px 0 0 999px;
 			background: none;
-			font-family: $f-sans;
+			font-family: $f-text;
 			font-size: vw(26);
 			font-weight: 500;
 			color: #241e1b;
@@ -291,7 +271,7 @@ $cs-bg: #f9f2ed;
 			border-radius: vw(18);
 			background: #fffaf7;
 			box-shadow: 0 vw(20) vw(40) rgba(120, 82, 60, .18);
-			font-family: $f-sans;
+			font-family: $f-text;
 			font-size: vw(18);
 			color: #2a2421;
 		}
@@ -331,7 +311,7 @@ $cs-bg: #f9f2ed;
 		gap: vw(16);
 		align-self: center;
 		margin-top: vw(50);
-		font-family: $f-sans;
+		font-family: $f-text;
 		font-size: vw(19.5);
 		line-height: vw(24);
 		color: #4f4a48;
@@ -372,8 +352,8 @@ $cs-bg: #f9f2ed;
 		}
 		&__title {
 			margin-top: 16px;
-			font-size: mvw(46);
-			line-height: 1;
+			font-size: mvw(42);
+			line-height: 1.12;
 		}
 		&__line:has(em) {
 			margin-top: 2px;

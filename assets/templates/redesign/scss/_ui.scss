@@ -1,7 +1,7 @@
 // ---------- Scoped reset (старые стили сайта не должны протекать в новые блоки) ----------
 .lb-header,
 .lb-hero {
-	font-family: $f-sans;
+	font-family: $f-text;
 	color: $c-text;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -159,5 +159,18 @@
 		&--solid {
 			box-shadow: 0 10px 22px rgba(110, 70, 45, .24);
 		}
+	}
+}
+
+// старый CSS задаёт `strong, b { font-family: FuturaDemic }` — в новых блоках жирный текст остаётся в шрифте блока
+.lb-header,
+.lb-hero,
+.lb-about,
+.lb-services,
+.lb-implica,
+.lb-consult,
+.lb-master {
+	:where(b, strong) {
+		font-family: inherit;
 	}
 }

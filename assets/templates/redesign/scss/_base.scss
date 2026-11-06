@@ -46,11 +46,45 @@ $c-btn-dark: #7b4c32;
 $g-gold-text: linear-gradient(95deg, #c88672 0%, #d9a493 22%, #c4806c 40%, #e2b6a6 58%, #c98b78 76%, #d7a291 100%);
 
 $f-serif: "LB Serif", "Times New Roman", serif;
-$f-sans: "LB Sans", "Helvetica Neue", Arial, sans-serif;
 $f-display: "LB Display", Georgia, serif;
-$f-round: "LB Round", "Helvetica Neue", Arial, sans-serif;
 $f-text: "LB Text", "Helvetica Neue", Arial, sans-serif;
-$f-classic: "LB Classic", Georgia, serif;
 
 $ease-out: cubic-bezier(.22, .61, .36, 1);
 $ease-expo: cubic-bezier(.16, 1, .3, 1);
+
+// ---------- Типографика: общий стандарт (как в блоке lb-about) ----------
+// Заголовок блока — Playfair Display 500; акцент в заголовке — Noto Serif Display Italic (узкий) с медным градиентом;
+// текст, подписи, кнопки — Montserrat; надзаголовок — Montserrat 500, капс, разрядка .2em.
+$g-accent: linear-gradient(95deg, #93705c 0%, #7d5a47 45%, #8f6c58 75%, #7a5845 100%);
+$g-accent-light: linear-gradient(100deg, #f4d9c7 0%, #ecc3ac 45%, #f1d2bf 75%, #e6b9a0 100%); // на тёмном фоне
+
+@mixin lb-title {
+	font-family: $f-display;
+	font-style: normal;
+	font-weight: 500;
+	font-stretch: normal;
+	letter-spacing: -.02em;
+	text-transform: none;
+}
+@mixin lb-accent($light: false) {
+	font-family: $f-serif;
+	font-style: italic;
+	font-weight: 420;
+	font-stretch: 80%;
+	letter-spacing: -.01em;
+	color: transparent;
+	@if $light {
+		background: $g-accent-light;
+	} @else {
+		background: $g-accent;
+	}
+	-webkit-background-clip: text;
+	background-clip: text;
+}
+@mixin lb-eyebrow {
+	font-family: $f-text;
+	font-weight: 500;
+	letter-spacing: .2em;
+	text-transform: uppercase;
+	color: #8f6b58;
+}
