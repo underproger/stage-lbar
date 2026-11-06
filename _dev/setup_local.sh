@@ -19,6 +19,8 @@ locale-gen ru_RU.UTF-8 ro_RO.UTF-8 >/dev/null
 pip install --break-system-packages -q opencv-contrib-python-headless fonttools brotli bs4 requests 2>/dev/null || true
 mkdir -p /home/claude/build && (cd /home/claude/build && [ -d node_modules/sass ] || (npm init -y >/dev/null && npm i -s sass gsap >/dev/null 2>&1))
 mkdir -p /home/claude/sr && [ -s /home/claude/sr/EDSR_x2.pb ] || curl -sSL -o /home/claude/sr/EDSR_x2.pb https://raw.githubusercontent.com/Saafke/EDSR_Tensorflow/master/models/EDSR_x2.pb
+# intl-tel-input — локальная копия для скриншотов формы (_dev/tools/shot5.py), внешние CDN в песочнице закрыты
+mkdir -p /home/claude/iti && (cd /home/claude/iti && [ -d node_modules/intl-tel-input ] || (npm init -y >/dev/null && npm i -s intl-tel-input@17.0.13 >/dev/null 2>&1))
 
 echo "== MariaDB (как на хостинге: без strict mode)"
 printf "[mysqld]\nsql_mode=NO_ENGINE_SUBSTITUTION\n" > /etc/mysql/mariadb.conf.d/99-local.cnf

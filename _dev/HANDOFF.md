@@ -34,7 +34,10 @@
   (в блоке 5 — «Programare online / Онлайн-запись»). Логотип «LBar | Studio de micropigmentare» с фото блока 4 убран.
 - **Фон блоков — без фото, только графика** (решение пользователя с блока 5): вазы, камни, цветы, тени листьев и т.п. из макетов не переносить,
   фон рисовать SVG/CSS (диски, тонкие медные дуги, градиенты, свет).
-  Открытый вопрос: круглая печать «Studio LBar · Micropigmentare» и водяные знаки «Lbar» в фонах блоков 2–3 — уточнить, убирать ли.
+- **Открытые вопросы (ответа пользователя ещё нет):**
+  - круглая печать «Studio LBar · Micropigmentare» и водяные знаки «Lbar» в фонах блоков 2–3 — убирать ли;
+  - в общем лексиконе `lbar.form.policy` (RO) опечатка «nu vor transmise» → «nu vor **fi** transmise» — текст общий для всех форм, без согласования не правили;
+  - блок 5: RU-курсив на «бесплатную» («Закажите / *бесплатную* / консультацию») и надзаголовок «Programare online / Онлайн-запись» — оставить или убрать.
 - Папки картинок `images/` и `assets/images/` в архивах **не пришли** (локально 404) — пользователь ещё не прислал. На проде они есть.
 
 ## 3. Архитектура редизайна
@@ -134,14 +137,20 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 (прямоугольники в px 1920, маска дуги `arcmask.py`, логотип на фото — inpaint по маске букв); `cmp.py REF SHOT out [x1 y1 x2 y2]` — наложение/разница;
 `tmeas.py` / `cardmeas.py` — замер строк заголовка и карточек; `shotcss.py` — скрин с подмешанным CSS (подбор шрифтов/размеров без пересборки);
 `fontcmp.py` — сравнение шрифтов-кандидатов с макетом; `probe4.py` — позиции/стили элементов после анимации.
+Блок 5 (фон только графикой): фон — SVG `img/consult-bg.svg`, рисуется по геометрии макета (окружности/дуги снимались с `ref1920.png` подгонкой
+окружности по точкам края), просмотр SVG — `svgshot.py SVG OUT W H`; текст — подбор шрифта по линейке кандидатов (`@fontsource*` в `/home/claude/fonttest`),
+замер строк — `m5.py REF SHOT`; скрины с формой — `shot5.py URL OUT W H '#lb-xxx'`.
 Скрипты в `_dev/tools` писались под конкретные блоки — пути (`/home/claude/sr`, `/home/claude/b4`, `/home/claude/tools`, …) поправить под себя.
 
 ## 7. Локальное окружение (новая сессия)
 
 1. Подключить репо (`add_repo underproger/stage-lbar`, push), клонировать в `/home/claude/stage-lbar`.
-2. Пользователь прикладывает дамп и патчи. В этот раз пришёл дамп хостинга `mysql_impua_testlbar_….tar.gz` (исходная база, без патчей) +
-   `stage-lbar-urls.sql`, `-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`; плюс теперь `-04-implica.sql`.
-3. `cd /home/claude/stage-lbar && bash _dev/setup_local.sh <дамп> <urls> <01> <02> <03> <04>` (файлы — по порядку; .tar.gz/.gz/.sql) — поднимет MariaDB, Apache+SSL, PHP-полифилл,
-   конфиги из `_dev/local-config`, hosts (`stage-lbar.touchit.vinnica.ua` → 127.0.0.1), симлинк `/home/impua/lbar.ro/www` → репо.
+2. Пользователь прикладывает дамп и патчи **по порядку**: дамп хостинга `mysql_impua_testlbar_….tar.gz` (исходная база, без патчей),
+   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`
+   (вместо дампа+urls+01 может прийти `lbar-full-stage-2026-11-06.sql.gz` — это то же самое).
+3. `cd /home/claude/stage-lbar && bash _dev/setup_local.sh <дамп> <urls> <01> <02> <03> <04> <05>` (файлы — по порядку; .tar.gz/.gz/.sql, строка sandbox вырезается) — поднимет MariaDB, Apache+SSL, PHP-полифилл,
+   конфиги из `_dev/local-config`, hosts (`stage-lbar.touchit.vinnica.ua` → 127.0.0.1), симлинк `/home/impua/lbar.ro/www` → репо,
+   sass+gsap (`/home/claude/build`), EDSR-модель (`/home/claude/sr`), intl-tel-input для скриншотов формы (`/home/claude/iti`).
+   Проверка, что всё поднялось: `python3 -I _dev/tools/seo_compare.py` — всё OK, кроме согласованного H1.
 4. После рестарта контейнера: `bash _dev/tools/up.sh`. Chrome для скриншотов запускать с `--no-proxy-server`, внешние запросы блокировать (так в `shot*.py`).
 5. Хостинг, скорее всего, на PHP 7.x — **PHP 8 на сервере не включать** (MODX 2.8.1 падает).
