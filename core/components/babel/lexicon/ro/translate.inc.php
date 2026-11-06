@@ -96,3 +96,6 @@ $_lang['lbar.rd.implica.portfolio'] = "Vezi portofoliul";
 $_lang['lbar.rd.consult.eyebrow'] = "Programare online";
 // разбивка заголовка (TV main-title-bl4) на строки «|» и курсив *…*; текст без разметки должен совпадать с TV
 $_lang['lbar.rd.consult.title'] = "Solicitați o|consultație|*gratuită*";
+
+// --- редизайн: блок «Мастер» ---
+$_lang['lbar.rd.master.alt'] = "Ksenia Kobilianskaia — maestru în micropigmentare, Studio LBar";

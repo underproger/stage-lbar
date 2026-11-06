@@ -136,3 +136,46 @@ $seam-consult: #f6eee9;    // «implică» → «Консультация»
 		}
 	}
 }
+
+// ---------- «Консультация» → «Мастер» (светлый → тёмный) ----------
+// Тёмный тон верха «Мастера» поднимается в низ «Консультации» волной с медной линией (img/seam-master.svg,
+// заливка — цвета верхней строки img/master-bg.webp). Волна ниже карточки формы и текста, над графикой фона.
+.lb-consult {
+	&::before {
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: -1px;
+		width: 100%;
+		height: vw(160);
+		z-index: 0;
+		pointer-events: none;
+		background: url("/assets/templates/redesign/img/seam-master.svg") center bottom / 100% 100% no-repeat;
+		@include mobile {
+			height: mvw(70);
+		}
+	}
+	&__bg {
+		z-index: -1;
+	}
+}
+.lb-consult {
+	isolation: isolate;
+}
+// верх «Мастера» продолжает тон волны и плавно уходит в фон блока
+.lb-master::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: vw(170);
+	z-index: 1;
+	pointer-events: none;
+	background: linear-gradient(90deg, #3c2f2a 0%, #453630 10%, #453630 20%, #322724 30%, #2c231f 40%, #2d2420 50%, #302824 60%, #2c231f 70%, #2c231f 80%, #312623 90%, #322722 100%);
+	-webkit-mask-image: linear-gradient(180deg, #000 0, rgba(0, 0, 0, .6) 35%, transparent 100%);
+	mask-image: linear-gradient(180deg, #000 0, rgba(0, 0, 0, .6) 35%, transparent 100%);
+	@include mobile {
+		height: mvw(80);
+	}
+}

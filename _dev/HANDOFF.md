@@ -1,6 +1,6 @@
 # stage-lbar — handoff (редизайн lbar.ro на MODX)
 
-Состояние на 06.11.2026 (вечер), сделаны блоки 1–5 главной, последний коммит — см. `git log`. Папка `_dev/` — служебная (закрыта `.htaccess`),
+Состояние на 06.11.2026 (поздний вечер), сделаны блоки 1–6 главной, последний коммит — см. `git log`. Папка `_dev/` — служебная (закрыта `.htaccess`),
 **в конце проекта удалить** вместе с остальным мусором.
 
 ## 1. Проект
@@ -32,8 +32,9 @@
   такие элементы не переносить. Уже убрано: подпись «LBar studio» в фоне блока «Услуги», RU-надзаголовок «Студия LBar» → «Наши процедуры».
   **Решение пользователя:** надзаголовок «LBAR STUDIO» — только в блоке 4 (`lbar.rd.implica.eyebrow`), в остальных блоках его не делать
   (в блоке 5 — «Programare online / Онлайн-запись»). Логотип «LBar | Studio de micropigmentare» с фото блока 4 убран.
+  В блоке 6 надпись «LBAR STUDIO» слева вверху макета не переносили.
 - **Фон блоков — без фото, только графика** (решение пользователя с блока 5): вазы, камни, цветы, тени листьев и т.п. из макетов не переносить,
-  фон рисовать SVG/CSS (диски, тонкие медные дуги, градиенты, свет).
+  фон рисовать SVG/CSS (диски, тонкие медные дуги, градиенты, свет). Фото людей (мастер в блоке 6) — вырезка без фона (rembg, см. п. 6).
 - **Открытые вопросы (ответа пользователя ещё нет):**
   - круглая печать «Studio LBar · Micropigmentare» и водяные знаки «Lbar» в фонах блоков 2–3 — убирать ли;
   - в общем лексиконе `lbar.form.policy` (RO) опечатка «nu vor transmise» → «nu vor **fi** transmise» — текст общий для всех форм, без согласования не правили;
@@ -52,16 +53,16 @@
 | Тексты интерфейса RO/RU | лексикон `core/components/babel/lexicon/{ro,ru}/translate.inc.php`, ключи `lbar.rd.*` (так уже было на сайте: `lbar.*`) |
 
 **Сборка CSS:** `cd assets/templates/redesign && /home/claude/build/node_modules/.bin/sass scss/redesign.scss css/redesign.css --style=compressed --no-source-map --silence-deprecation=import`
-**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.4.0**) — поднимать при изменениях.
+**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.5.0**) — поднимать при изменениях.
 **Новые/изменённые чанки в БД:** `sudo -u www-data php _dev/tools/modx_apply3.php` (пересохраняет все `*.tpl` из папки как статичные чанки и меняет
-вызов в шаблоне «Главная») — для нового блока сделать по аналогии `modx_apply5.php` (последний — `modx_apply5.php`, замена `[[$старый-чанк]]` → `[[$lb-новый]]`).
+вызов в шаблоне «Главная») — для нового блока сделать по аналогии (последний — `modx_apply6.php`, замена `[[$старый-чанк]]` → `[[$lb-новый]]`).
 **После правки `.tpl` чистить `core/cache/resource/`** (главная кэшируется — без этого на скриншоте старая разметка; CSS/JS это не касается).
 
-Шаблон **«Главная» (id 1)** сейчас: `[[$head]] [[$lb-head]]` … `[[$lb-header]] [[$lb-banner-main]] [[$lb-about]] [[$lb-services]] [[*title-main-bl3:notempty=`[[$lb-implica]]`]] [[$lb-consult]] [[$bl2-study-trener]] …` `[[$script]] [[$lb-scripts]]`.
+Шаблон **«Главная» (id 1)** сейчас: `[[$head]] [[$lb-head]]` … `[[$lb-header]] [[$lb-banner-main]] [[$lb-about]] [[$lb-services]] [[*title-main-bl3:notempty=`[[$lb-implica]]`]] [[$lb-consult]] [[$lb-master]] [[-$bl5-about-me]] [[$bl6-portfolio-front-page]] …` `[[$script]] [[$lb-scripts]]`.
 Старые чанки используются ещё на других шаблонах (напр. `bl1-about-us`, `bl3-text` — в шаблоне «Категория», 27 страниц) — **их не правим**, делаем новые `lb-*` и подключаем только в «Главную».
 
 Шрифты: `LB Serif` = Noto Serif Display (var wdth/wght, +italic), `LB Sans` = DM Sans (+Onest для кириллицы), `LB Display` = Playfair Display (+italic),
-`LB Text` = Montserrat (+italic), `LB Classic` = Crimson Pro (wght 300–500 / italic 400–500, урезан) + Spectral для кириллицы (300 / italic 400) — заголовок блока 5. Подключены в `scss/_fonts.scss` с unicode-range (latin / румынские ș ț ă / кириллица). Новые шрифты брать из npm `@fontsource-variable/*`.
+`LB Text` = Montserrat (+italic), `LB Round` = Nunito Sans (var wght; текст блока 6), `LB Classic` = Crimson Pro (wght 300–500 / italic 400–500, урезан) + Spectral для кириллицы (300 / italic 400) — заголовок блока 5. Подключены в `scss/_fonts.scss` с unicode-range (latin / румынские ș ț ă / кириллица). Новые шрифты брать из npm `@fontsource-variable/*`.
 
 ### Подводные камни (уже решены — не наступать снова)
 - Старый CSS (`.wrapper.main-ro h1/h2`, `span{font-weight:400}`) перебивает новые стили → для h1/h2 поднимать специфичность
@@ -108,16 +109,28 @@
    Локально отправка падает на PHP 8 (PHPMailer `__autoload`) — это окружение; валидация/AJAX проверены, на хостинге PHP 7 — работает как раньше.
    Для скриншотов с телефонным полем — `_dev/tools/shot5.py` (подставляет intl-tel-input из npm `/home/claude/iti`, внешние запросы в песочнице закрыты).
 
+9. **Блок «Мастер» `lb-master`** (`scss/_master.scss`) — вместо `bl2-study-trener` (тёмный блок). H2 — TV `title-bl2-study` как есть
+   (выделение — `<span class="gold-word">` из TV, курсив Crimson Pro), 5 пунктов — TV `text-1..5-bl2-study` (пусто → с главной контекста, как было);
+   числа (4000+, 400+) автоматически жирные. Колонки: пункты 1–3 и 4–5. Иконки по смыслу пунктов (порядок в RO и RU разный — массив `$icons` в tpl).
+   Кнопка «Obțineți o consultație personală» — `.lb-btn--light` (светлая пилюля для тёмных блоков) + класс `trainer-btn` → открывает **прежний** попап
+   `.overlay-trainer` с формой `tpl.Form.Study.Modal.BL2` (H2 попапа в SEO-эталоне) — разметка попапа перенесена из старого чанка без изменений.
+   Фото — `img/master.webp` (вырезка rembg из апскейла макета, дуга из вырезки убрана), фон — `img/master-bg.webp` (сильно размытый тон макета, без деталей)
+   + SVG: медная дуга (окружность центр (-93,727) r 803 @1920×890) и блик справа внизу. Колонка текста в потоке — в RU (тексты длиннее) блок растёт вниз.
+   Стык 5 → 6 (светлый → тёмный): тёмная волна с медной линией `img/seam-master.svg` внизу «Консультации» + верх «Мастера» продолжает её тон (`_seam.scss`).
+
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
-`stage-lbar-05-consult.sql` (чанки `lb-consult` id 275, `lb.formConsult` id 276 + все чанки Redesign + шаблон «Главная»). Патчи проверены импортом.
-После 05 БД **не менялась**.
+`stage-lbar-05-consult.sql` (чанки `lb-consult` id 275, `lb.formConsult` id 276 + все чанки Redesign + шаблон «Главная»),
+`stage-lbar-06-master.sql` (чанк `lb-master` id 277 + все чанки Redesign + шаблон «Главная»). Патчи проверены импортом цепочкой «полная база + 02…06».
+После 06 БД **не менялась**.
 
-## 5. Следующий шаг — блок 6 (по порядку шаблона: `[[$bl2-study-trener]]`, «Faceți cunoștință! Masterul dvs. – Ksenia Kobilianskaia»)
+## 5. Следующий шаг — блок 7 (по порядку шаблона: `[[$bl6-portfolio-front-page]]`, H2 «Galerie foto – machiaj permanent după procedură»)
 
-Макета пока нет — ждём от пользователя. Дальше по шаблону: `bl6-portfolio-front-page`, `bl7-price`, `bl8-form`, `bl9-reviews`,
-`bl-faq`, `bl-seo`, `bl-blog`, `bl-contact`, `footer`. В `bl2-study-trener` есть кнопка-попап «Obțineți o consultație personală» (H2 попапа в SEO-эталоне) — не терять.
-Формы — осторожно: id (`form-bl8`, `form-study-*`) и обработчики (AjaxForm, редирект в чанке `script`) не ломать. Стык 5 → 6 сделать по `_seam.scss`.
+Макета пока нет — ждём от пользователя. Дальше по шаблону: `bl7-price`, `bl8-form`, `bl9-reviews`, `bl-faq`, `bl-seo`, `bl-blog`, `bl-contact`, `footer`.
+Портфолио берёт картинки из ms2Gallery (`assets/images/resources/…` — локально этих файлов нет, на проде есть).
+Формы — осторожно: id (`form-bl8`, `form-study-*`) и обработчики (AjaxForm, редирект в чанке `script`) не ломать. Стык 6 (тёмный) → 7 сделать по `_seam.scss`.
+Открытый вопрос по блоку 6: в макете жирным выделены целые фразы («Experiență de peste 4000+», «Master Trainer») — в TV их разметки нет,
+сейчас автоматически жирные только числа; можно добавить `<b>` прямо в TV (с согласия пользователя).
 
 ## 6. Конвейер «1 в 1» (как делались блоки)
 
@@ -140,15 +153,18 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 Блок 5 (фон только графикой): фон — SVG `img/consult-bg.svg`, рисуется по геометрии макета (окружности/дуги снимались с `ref1920.png` подгонкой
 окружности по точкам края), просмотр SVG — `svgshot.py SVG OUT W H`; текст — подбор шрифта по линейке кандидатов (`@fontsource*` в `/home/claude/fonttest`),
 замер строк — `m5.py REF SHOT`; скрины с формой — `shot5.py URL OUT W H '#lb-xxx'`.
+Блок 6: вырезка фото — `rembg` (`pip install "rembg[cpu]"`, модель `isnet-general-use`, качается сама ~180 МБ) по апскейлу, затем чистка альфы
+(оставить крупнейшую компоненту; тонкие линии дуги — morphological opening в полосе вокруг окружности); фон — push-pull заливка всего, что станет кодом,
++ сильное размытие (только тон). Стык светлый → тёмный — `shot_seam2.py URL OUT W H '#верхний' '#нижний'`.
 Скрипты в `_dev/tools` писались под конкретные блоки — пути (`/home/claude/sr`, `/home/claude/b4`, `/home/claude/tools`, …) поправить под себя.
 
 ## 7. Локальное окружение (новая сессия)
 
 1. Подключить репо (`add_repo underproger/stage-lbar`, push), клонировать в `/home/claude/stage-lbar`.
 2. Пользователь прикладывает дамп и патчи **по порядку**: дамп хостинга `mysql_impua_testlbar_….tar.gz` (исходная база, без патчей),
-   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`
+   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`
    (вместо дампа+urls+01 может прийти `lbar-full-stage-2026-11-06.sql.gz` — это то же самое).
-3. `cd /home/claude/stage-lbar && bash _dev/setup_local.sh <дамп> <urls> <01> <02> <03> <04> <05>` (файлы — по порядку; .tar.gz/.gz/.sql, строка sandbox вырезается) — поднимет MariaDB, Apache+SSL, PHP-полифилл,
+3. `cd /home/claude/stage-lbar && bash _dev/setup_local.sh <дамп> <urls> <01> <02> <03> <04> <05> <06>` (файлы — по порядку; .tar.gz/.gz/.sql, строка sandbox вырезается) — поднимет MariaDB, Apache+SSL, PHP-полифилл,
    конфиги из `_dev/local-config`, hosts (`stage-lbar.touchit.vinnica.ua` → 127.0.0.1), симлинк `/home/impua/lbar.ro/www` → репо,
    sass+gsap (`/home/claude/build`), EDSR-модель (`/home/claude/sr`), intl-tel-input для скриншотов формы (`/home/claude/iti`).
    Проверка, что всё поднялось: `python3 -I _dev/tools/seo_compare.py` — всё OK, кроме согласованного H1.

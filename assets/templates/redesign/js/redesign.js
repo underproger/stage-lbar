@@ -187,6 +187,32 @@
 					.from(iq('.lb-implica__dot'), { scale: 0, duration: 0.9, stagger: 0.32, ease: 'back.out(3)', clearProps: 'transform' }, 0.75);
 			}
 		}
+
+		var master = document.querySelector('.lb-master');
+		if (master) {
+			var mq = function (s) { return master.querySelectorAll(s); };
+			var mdesk = isDesktop();
+			var mtl = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: master, start: 'top 70%' } });
+			mtl.from(master.querySelector('.lb-master__photo'), { y: mdesk ? 60 : 30, opacity: 0, duration: 1.8, ease: 'power3.out', clearProps: 'transform' }, 0)
+				.from(mq('.lb-master__title'), { y: 40, opacity: 0, duration: 1.4, clearProps: 'transform' }, 0.2)
+				.from(mq('.lb-master__item'), { y: 30, opacity: 0, duration: 1.2, stagger: 0.1, clearProps: 'transform' }, 0.45)
+				.from(mq('.lb-master__ic svg'), { scale: 0.4, rotation: -20, opacity: 0, duration: 1.1, stagger: 0.1, ease: 'back.out(2)', clearProps: 'transform' }, 0.65)
+				.from(mq('.lb-master__btn'), { y: 26, opacity: 0, duration: 1.2, clearProps: 'transform' }, 1);
+			var marc = master.querySelector('.lb-master__arc');
+			var msheen = master.querySelector('.lb-master__sheen');
+			if (mdesk && marc && marc.getTotalLength) {
+				[marc, msheen].forEach(function (path, k) {
+					if (!path) return;
+					var l = path.getTotalLength();
+					gsap.set(path, { strokeDasharray: l, strokeDashoffset: l });
+					mtl.to(path, { strokeDashoffset: 0, duration: k ? 1.6 : 2.2, ease: 'power2.inOut' }, k ? 0.9 : 0.1);
+				});
+			}
+			// фото чуть смещается при прокрутке (глубина)
+			if (mdesk) {
+				gsap.to(master.querySelector('.lb-master__photo img'), { yPercent: -4, ease: 'none', scrollTrigger: { trigger: master, start: 'top bottom', end: 'bottom top', scrub: true } });
+			}
+		}
 	};
 	initReveal();
 

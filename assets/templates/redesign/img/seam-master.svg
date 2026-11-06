@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 160" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="fill" x1="0" y1="0" x2="1" y2="0"><stop offset="0.0" stop-color="#3c2f2a"/><stop offset="0.1" stop-color="#453630"/><stop offset="0.2" stop-color="#453630"/><stop offset="0.3" stop-color="#322724"/><stop offset="0.4" stop-color="#2c231f"/><stop offset="0.5" stop-color="#2d2420"/><stop offset="0.6" stop-color="#302824"/><stop offset="0.7" stop-color="#2c231f"/><stop offset="0.8" stop-color="#2c231f"/><stop offset="0.9" stop-color="#312623"/><stop offset="1.0" stop-color="#322722"/></linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#c79a80" stop-opacity=".2"/>
+      <stop offset=".18" stop-color="#d2a68c" stop-opacity=".9"/>
+      <stop offset=".6" stop-color="#c79a80" stop-opacity=".75"/>
+      <stop offset="1" stop-color="#c79a80" stop-opacity=".15"/>
+    </linearGradient>
+    <linearGradient id="shade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2f2521" stop-opacity="0"/>
+      <stop offset="1" stop-color="#2f2521" stop-opacity=".16"/>
+    </linearGradient>
+    <filter id="blur" x="-5%" y="-60%" width="110%" height="220%"><feGaussianBlur stdDeviation="9"/></filter>
+  </defs>
+  <!-- мягкая тень над волной -->
+  <path filter="url(#blur)" fill="url(#shade)" d="M0 30C380-10 700 22 1000 86S1600 140 1920 58V160H0Z"/>
+  <!-- тёмная волна: тон верха блока «Мастер» -->
+  <path fill="url(#fill)" d="M0 46C380 6 700 38 1000 102S1600 156 1920 74V160H0Z"/>
+  <!-- медная линия по краю волны и её свечение -->
+  <path fill="none" stroke="#e7c2aa" stroke-opacity=".35" stroke-width="6" filter="url(#blur)" d="M0 46C380 6 700 38 1000 102S1600 156 1920 74"/>
+  <path fill="none" stroke="url(#line)" stroke-width="1.6" d="M0 46C380 6 700 38 1000 102S1600 156 1920 74"/>
+</svg>

@@ -1,0 +1,297 @@
+// ================= БЛОК «МАСТЕР» (главная, 6-й экран, вместо bl2-study-trener) =================
+// Фон — только графика: тёмный тон по цветам макета (img/master-bg.webp, сильно размыт), медная дуга и блик — SVG.
+// Фото мастера — вырезка без фона (img/master.webp). Координаты — по макету 1920×890.
+$ms-bg: #2f2521;
+
+.lb-master {
+	position: relative;
+	min-height: vw(890);
+	overflow: hidden;
+	font-family: $f-round;
+	color: #d6d2cf;
+	background: $ms-bg;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	:where(*, *::before, *::after) {
+		box-sizing: border-box;
+	}
+	:where(ul, li, p, h2) {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	&__bg {
+		position: absolute;
+		inset: 0;
+		background:
+			radial-gradient(22% 30% at 20% 22%, rgba(196, 146, 118, .16), rgba(196, 146, 118, 0) 100%),
+			url("/assets/templates/redesign/img/master-bg.webp") 0 0 / 100% 100% no-repeat,
+			$ms-bg;
+	}
+	&__lines {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: vw(890);
+		fill: none;
+		overflow: visible;
+	}
+	&__arc {
+		stroke-width: 1.6;
+		vector-effect: non-scaling-stroke;
+	}
+	&__sheen {
+		stroke-width: 2;
+		vector-effect: non-scaling-stroke;
+		filter: drop-shadow(0 0 6px rgba(246, 214, 194, .7));
+	}
+
+	// ----- фото мастера -----
+	&__photo {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: vw(762);
+		z-index: 1;
+		pointer-events: none;
+		img {
+			display: block;
+			width: 100%;
+			height: auto;
+			margin-bottom: vw(-20); // запас под параллакс при прокрутке
+		}
+	}
+
+	// ----- текст -----
+	// колонка в потоке: при длинных текстах (RU) блок растёт вниз, кнопка не наезжает на пункты
+	&__col {
+		position: relative;
+		z-index: 2;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		min-height: vw(890);
+		padding: vw(71) 0 vw(89) vw(745);
+	}
+
+	// h2 перебивается старым CSS (.wrapper.main-ro h2) — поднимаем специфичность
+	& &__col h2#{&}__title {
+		width: vw(1090);
+		margin: 0 0 0 vw(40);
+		font-family: $f-classic;
+		font-size: vw(67.4);
+		font-weight: 400;
+		line-height: vw(72);
+		letter-spacing: 0;
+		text-transform: none;
+		color: #f8f6f4;
+		&::after {
+			content: "";
+			display: inline-block;
+			width: vw(310);
+			height: 1.5px;
+			margin-left: vw(30);
+			vertical-align: vw(14);
+			background: linear-gradient(90deg, rgba(200, 176, 156, .9), rgba(200, 176, 156, 0));
+		}
+		.gold-word {
+			font-family: $f-classic;
+			font-size: vw(83.3);
+			font-style: italic;
+			font-weight: 400;
+			line-height: vw(72);
+			color: transparent;
+			background: linear-gradient(100deg, #f4d9c7 0%, #ecc3ac 45%, #f1d2bf 75%, #e6b9a0 100%);
+			-webkit-background-clip: text;
+			background-clip: text;
+			padding-right: .06em; // хвост курсива при background-clip
+		}
+	}
+
+	&__lists {
+		display: flex;
+		margin-top: vw(68);
+	}
+	&__list {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: vw(40);
+		width: vw(552);
+		& + & {
+			gap: vw(56);
+			width: auto;
+			margin-left: vw(45);
+			// вертикальный разделитель колонок
+			&::before {
+				content: "";
+				position: absolute;
+				top: vw(4);
+				left: vw(-45);
+				width: 1px;
+				height: vw(380);
+				background: linear-gradient(180deg, rgba(214, 180, 158, 0), rgba(214, 180, 158, .5) 25%, rgba(214, 180, 158, .35) 70%, rgba(214, 180, 158, 0));
+			}
+		}
+	}
+	&__item {
+		display: flex;
+		align-items: flex-start;
+	}
+	&__ic {
+		flex: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: vw(76);
+		height: vw(76);
+		margin-top: vw(8);
+		border-radius: 50%;
+		color: #f0c9b3;
+		background: radial-gradient(circle at 50% 35%, rgba(120, 88, 72, .55), rgba(60, 44, 38, .35) 70%);
+		box-shadow: inset 0 0 0 1.5px rgba(201, 158, 132, .75), 0 vw(8) vw(22) rgba(0, 0, 0, .28), 0 0 vw(18) rgba(220, 170, 140, .12);
+		transition: scale .6s $ease-expo, box-shadow .6s $ease-expo;
+		svg {
+			width: vw(46);
+			height: vw(46);
+		}
+	}
+	&__item:hover &__ic {
+		scale: 1.06;
+		box-shadow: inset 0 0 0 1.5px rgba(232, 190, 164, .95), 0 vw(10) vw(26) rgba(0, 0, 0, .3), 0 0 vw(26) rgba(232, 180, 150, .25);
+	}
+	&__text {
+		width: vw(392);
+		margin-left: vw(48);
+		font-size: vw(25);
+		font-weight: 400;
+		line-height: vw(31.5);
+		color: #d6d2cf;
+		b {
+			font-weight: 750;
+			color: #f4f1ef;
+		}
+	}
+	&__list + &__list &__text {
+		width: vw(370);
+		margin-left: vw(60);
+	}
+
+	&__btn {
+		margin: vw(65) 0 0 vw(149);
+		width: vw(689);
+		height: vw(85);
+		padding: 0 vw(46) 0 vw(64);
+		justify-content: space-between;
+		font-size: vw(21.5);
+		letter-spacing: .13em;
+	}
+
+	// ---------- mobile ----------
+	@include mobile {
+		min-height: 0;
+		padding: 0 0 48px;
+
+		&__bg {
+			background:
+				radial-gradient(70% 40% at 30% 18%, rgba(196, 146, 118, .22), rgba(196, 146, 118, 0) 100%),
+				radial-gradient(80% 50% at 90% 100%, rgba(170, 120, 95, .2), rgba(170, 120, 95, 0) 100%),
+				$ms-bg;
+		}
+		&__lines {
+			display: none;
+		}
+		&__photo {
+			position: relative;
+			left: auto;
+			bottom: auto;
+			width: 86%;
+			max-width: 420px;
+			margin: 0 auto;
+			padding-top: 20px;
+			-webkit-mask-image: linear-gradient(180deg, #000 75%, transparent 100%);
+			mask-image: linear-gradient(180deg, #000 75%, transparent 100%);
+		}
+		&__col {
+			min-height: 0;
+			margin-top: -40px;
+			padding: 0 22px;
+		}
+		& &__col h2#{&}__title {
+			width: auto;
+			margin: 0;
+			font-size: mvw(30);
+			line-height: 1.2;
+			&::after {
+				width: 60px;
+				margin-left: 12px;
+				vertical-align: .3em;
+			}
+			.gold-word {
+				font-size: mvw(36);
+				line-height: 1.15;
+			}
+		}
+		&__lists {
+			display: block;
+			width: 100%;
+			margin-top: 28px;
+		}
+		&__list {
+			width: auto;
+			gap: 20px;
+			& + & {
+				gap: 20px;
+				margin: 20px 0 0;
+				&::before {
+					display: none;
+				}
+			}
+		}
+		&__ic {
+			width: 48px;
+			height: 48px;
+			margin-top: 0;
+			svg {
+				width: 26px;
+				height: 26px;
+			}
+		}
+		&__text,
+		&__list + &__list &__text {
+			width: auto;
+			margin-left: 16px;
+			font-size: 15px;
+			line-height: 1.45;
+		}
+		&__btn {
+			width: 100%;
+			height: 56px;
+			margin: 30px 0 0;
+			padding: 0 18px 0 22px;
+			font-size: 11.5px;
+			letter-spacing: .07em;
+		}
+	}
+}
+
+// светлая кнопка для тёмных блоков (форма и стрелка — как у .lb-btn)
+.lb-btn--light {
+	color: #140e0c;
+	background: linear-gradient(100deg, #dab89f 0%, #e4bea5 45%, #e8b799 100%);
+	box-shadow: 0 vw(16) vw(36) rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .45);
+	@include hover {
+		box-shadow: 0 vw(20) vw(42) rgba(0, 0, 0, .42), 0 0 vw(30) rgba(236, 190, 160, .3), inset 0 1px 0 rgba(255, 255, 255, .5);
+	}
+	@include mobile {
+		box-shadow: 0 10px 24px rgba(0, 0, 0, .3);
+	}
+}
+
+// RU: заголовок длиннее и выделение в середине фразы — декоративная линия после заголовка переносилась бы на отдельную строку
+html[lang="ru"] .lb-master .lb-master__col h2.lb-master__title::after {
+	display: none;
+}
