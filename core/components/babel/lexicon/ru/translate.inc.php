@@ -61,3 +61,12 @@ $_lang['lbar-study-banner-trainer-position'] = "Преподаватель ку�
 $_lang['lbar-study-banner-form-title'] = "Получить консультацию";
 $_lang['lbar-study-banner-form-subtitle'] = "Узнайте все детали обучения и получите ответы на оставшиеся вопросы от вашего преподавателя";
 $_lang['lbar-study-banner-form-btn'] = "Получить консультацию";
+
+// --- редизайн: баннер главной ---
+$_lang['lbar.rd.hero.alt'] = "Перманентный макияж premium в Бухаресте — студия LBar";
+$_lang['lbar.rd.hero.consult'] = "Консультация";
+$_lang['lbar.rd.hero.portfolio'] = "Портфолио";
+$_lang['lbar.rd.hero.card1.num'] = "4000+";
+$_lang['lbar.rd.hero.card1.txt'] = "процедур";
+$_lang['lbar.rd.hero.card2.txt'] = "Натуральный<br>результат";
+$_lang['lbar.rd.hero.card3.txt'] = "Премиум<br>студия";

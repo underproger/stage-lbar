@@ -60,3 +60,12 @@ $_lang['lbar-study-banner-trainer-position'] = "Trainerul cursului";
 $_lang['lbar-study-banner-form-title'] = "PRIMEȘTE O CONSULTAȚIE";
 $_lang['lbar-study-banner-form-subtitle'] = "Vă vom prezenta în detaliu modul în care puteți beneficia de instruire la preț avantajos";
 $_lang['lbar-study-banner-form-btn'] = "PRIMEȘTE O CONSULTAȚIE";
+
+// --- редизайн: баннер главной ---
+$_lang['lbar.rd.hero.alt'] = "Micropigmentare premium în București — Studio LBar";
+$_lang['lbar.rd.hero.consult'] = "Consultație";
+$_lang['lbar.rd.hero.portfolio'] = "Portofoliu";
+$_lang['lbar.rd.hero.card1.num'] = "4000+";
+$_lang['lbar.rd.hero.card1.txt'] = "proceduri";
+$_lang['lbar.rd.hero.card2.txt'] = "Rezultate<br>naturale";
+$_lang['lbar.rd.hero.card3.txt'] = "Studio<br>premium";

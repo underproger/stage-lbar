@@ -1,0 +1,154 @@
+// ---------- Scoped reset (старые стили сайта не должны протекать в новые блоки) ----------
+.lb-header,
+.lb-hero {
+	font-family: $f-sans;
+	color: $c-text;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
+
+	:where(*, *::before, *::after) {
+		box-sizing: border-box;
+	}
+	:where(ul, ol, li) {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	:where(a) {
+		text-decoration: none;
+		color: inherit;
+	}
+	:where(h1, p) {
+		margin: 0;
+		padding: 0;
+		font-weight: inherit;
+	}
+	:where(button) {
+		font: inherit;
+		color: inherit;
+		background: none;
+		border: 0;
+		padding: 0;
+		margin: 0;
+		cursor: pointer;
+	}
+	:where(img, svg) {
+		display: block;
+		max-width: none;
+	}
+}
+
+// ---------- Buttons ----------
+.lb-btn {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: vw(16);
+	height: vw(64);
+	padding: 0 vw(40);
+	border-radius: 999px;
+	font-family: $f-sans;
+	font-size: vw(16.5);
+	font-weight: 600;
+	letter-spacing: .085em;
+	line-height: 1;
+	text-transform: uppercase;
+	white-space: nowrap;
+	cursor: pointer;
+	isolation: isolate;
+	overflow: hidden;
+	transition: translate .5s $ease-expo, box-shadow .5s $ease-expo, background-color .4s, color .4s, border-color .4s;
+
+	// блик, пробегающий по кнопке при наведении
+	&::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: -60%;
+		width: 40%;
+		height: 100%;
+		background: linear-gradient(100deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .45) 50%, rgba(255, 255, 255, 0) 100%);
+		transform: skewX(-20deg);
+		transition: left .8s $ease-expo;
+		z-index: -1;
+		pointer-events: none;
+	}
+	@include hover {
+		translate: 0 -2px;
+		&::after {
+			left: 130%;
+		}
+	}
+	&:focus-visible {
+		outline: 2px solid $c-rose-dark;
+		outline-offset: 3px;
+	}
+
+	&--solid {
+		color: rgba(255, 255, 255, .94);
+		background: $g-rose;
+		box-shadow: 0 vw(14) vw(30) rgba(176, 112, 92, .28), inset 0 1px 0 rgba(255, 255, 255, .25);
+		@include hover {
+			box-shadow: 0 vw(18) vw(36) rgba(176, 112, 92, .36), inset 0 1px 0 rgba(255, 255, 255, .25);
+		}
+	}
+	&--ghost {
+		color: $c-ink;
+		background: rgba(255, 250, 247, .28);
+		border: 1px solid rgba(201, 139, 121, .34);
+		-webkit-backdrop-filter: blur(6px);
+		backdrop-filter: blur(6px);
+		@include hover {
+			background: rgba(255, 250, 247, .7);
+			border-color: rgba(201, 139, 121, .7);
+		}
+	}
+
+	&__arr {
+		flex: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: vw(32);
+		height: vw(32);
+		border-radius: 50%;
+		border: 1.5px solid currentColor;
+		transition: translate .5s $ease-expo;
+		svg {
+			width: vw(12);
+			height: vw(12);
+		}
+	}
+	&--solid &__arr {
+		border-color: rgba(255, 255, 255, .85);
+	}
+	&--ghost &__arr {
+		border-color: rgba(201, 139, 121, .55);
+	}
+	@include hover {
+		.lb-btn__arr {
+			translate: 4px 0;
+		}
+	}
+
+	@include mobile {
+		height: 52px;
+		padding: 0 26px;
+		gap: 12px;
+		font-size: 13px;
+		box-shadow: none;
+		&__arr {
+			width: 28px;
+			height: 28px;
+			svg {
+				width: 11px;
+				height: 11px;
+			}
+		}
+		&--solid {
+			box-shadow: 0 10px 24px rgba(176, 112, 92, .28);
+		}
+	}
+}
