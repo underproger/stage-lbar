@@ -216,7 +216,9 @@
 			display: none;
 		}
 		&__intro {
-			position: static;
+			position: relative;
+			top: auto;
+			left: auto;
 			width: auto;
 			padding: 0 22px;
 		}

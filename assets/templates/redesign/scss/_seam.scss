@@ -1,0 +1,64 @@
+@use "sass:math";
+// ================= ПЕРЕТЕКАНИЕ ФОНА МЕЖДУ БЛОКАМИ =================
+// Декор рисуется дважды с одинаковой геометрией относительно линии стыка:
+// нижняя половина — в нижнем блоке (top: -h/2), верхняя — в верхнем (bottom: -h/2).
+// Каждый блок обрезает свою половину (overflow: hidden), вместе получается цельная картинка.
+$seam-color: #f7eee8; // общий цвет на линии стыка «О микропигментации» → «Услуги»
+$seam-h: 760;         // высота декора, px @1920
+
+@mixin lb-seam($side) {
+	&::after {
+		content: "";
+		position: absolute;
+		#{$side}: vw(math.div(-$seam-h, 2));
+		left: 0;
+		width: 100%;
+		height: vw($seam-h);
+		z-index: 0;
+		pointer-events: none;
+		background:
+			url("/assets/templates/redesign/img/seam.svg") center / 100% 100% no-repeat,
+			radial-gradient(40% 32% at 80% 50%, rgba(236, 211, 196, .5), rgba(236, 211, 196, 0) 100%),
+			radial-gradient(36% 30% at 18% 54%, rgba(255, 255, 255, .65), rgba(255, 255, 255, 0) 100%);
+		@include mobile {
+			#{$side}: mvw(-130);
+			height: mvw(260);
+		}
+	}
+}
+
+// верхний блок: фон плавно уходит в цвет стыка
+.lb-about {
+	background: linear-gradient(180deg, #f8f2ee 0%, #f8f2ee 70%, $seam-color 100%);
+	@include lb-seam(bottom);
+	&__bg {
+		-webkit-mask-image: linear-gradient(180deg, #000 92%, transparent 100%);
+		mask-image: linear-gradient(180deg, #000 92%, transparent 100%);
+	}
+	&__col {
+		z-index: 1;
+	}
+	@include mobile {
+		&__bg {
+			-webkit-mask-image: none;
+			mask-image: none;
+		}
+	}
+}
+
+// нижний блок: картинка фона проявляется из цвета стыка
+.lb-services {
+	background: linear-gradient(180deg, $seam-color 0%, #faf0e8 vw(320), #faf0e8 100%);
+	@include lb-seam(top);
+	&__bg {
+		-webkit-mask-image: linear-gradient(180deg, transparent 0, #000 vw(300));
+		mask-image: linear-gradient(180deg, transparent 0, #000 vw(300));
+	}
+	&__intro,
+	&__list {
+		z-index: 1;
+	}
+	@include mobile {
+		background: linear-gradient(180deg, $seam-color 0%, #faf0e8 160px);
+	}
+}
