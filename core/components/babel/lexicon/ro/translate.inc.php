@@ -99,3 +99,7 @@ $_lang['lbar.rd.consult.title'] = "Solicitați o|consultație|*gratuită*";
 
 // --- редизайн: блок «Мастер» ---
 $_lang['lbar.rd.master.alt'] = "Ksenia Kobilianskaia — maestru în micropigmentare, Studio LBar";
+
+// --- редизайн: блок «Галерея фото» ---
+$_lang['lbar.rd.portfolio.title'] = "Galerie foto –|*machiaj permanent după procedură*";
+$_lang['lbar.rd.portfolio.less'] = "Ascunde lucrările";

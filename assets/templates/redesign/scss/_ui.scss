@@ -92,6 +92,10 @@
 		outline-offset: 3px;
 	}
 
+	// старый CSS: span{font-weight:400} — текст внутри кнопки держит вес кнопки
+	> span {
+		font-weight: inherit;
+	}
 	&__arr {
 		flex: none;
 		width: vw(27);
@@ -169,7 +173,8 @@
 .lb-services,
 .lb-implica,
 .lb-consult,
-.lb-master {
+.lb-master,
+.lb-portfolio {
 	:where(b, strong) {
 		font-family: inherit;
 	}

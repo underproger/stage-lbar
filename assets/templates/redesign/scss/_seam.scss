@@ -179,3 +179,27 @@ $seam-consult: #f6eee9;    // «implică» → «Консультация»
 		height: mvw(80);
 	}
 }
+
+// ---------- «Мастер» → «Галерея» (тёмный → светлый) ----------
+// Тон низа «Мастера» опускается в верх «Галереи» волной с медной линией (img/seam-portfolio.svg —
+// заливка по цветам нижней строки img/master-bg.webp).
+.lb-portfolio {
+	isolation: isolate;
+	&::before {
+		content: "";
+		position: absolute;
+		top: -1px;
+		left: 0;
+		width: 100%;
+		height: vw(160);
+		z-index: 0;
+		pointer-events: none;
+		background: url("/assets/templates/redesign/img/seam-portfolio.svg") center top / 100% 100% no-repeat;
+		@include mobile {
+			height: mvw(70);
+		}
+	}
+	&__bg {
+		z-index: -1;
+	}
+}

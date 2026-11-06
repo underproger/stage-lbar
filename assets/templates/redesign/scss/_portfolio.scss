@@ -1,0 +1,258 @@
+// ================= БЛОК «ГАЛЕРЕЯ ФОТО» (главная, 7-й экран, вместо bl6-portfolio-front-page) =================
+// Фон — только графика (светлый тон + тонкие медные дуги). Фото — ms2Gallery: сетка 4 в ряд (планшет — 3, телефон — 2),
+// первые 8 видны, остальные раскрываются кнопкой. Без табов и подписи «LBar studio» из макета.
+$pf-bg: #f8f1ec;
+
+.lb-portfolio {
+	position: relative;
+	padding: vw(120) 0 vw(110);
+	overflow: hidden;
+	font-family: $f-text;
+	color: #2b2420;
+	background: $pf-bg;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	:where(*, *::before, *::after) {
+		box-sizing: border-box;
+	}
+	:where(p, h2) {
+		margin: 0;
+		padding: 0;
+	}
+	:where(a) {
+		text-decoration: none;
+	}
+
+	&__bg {
+		position: absolute;
+		inset: 0;
+		background:
+			radial-gradient(40% 30% at 78% 12%, rgba(255, 255, 255, .8), rgba(255, 255, 255, 0) 100%),
+			radial-gradient(45% 40% at 8% 90%, rgba(236, 214, 200, .55), rgba(236, 214, 200, 0) 100%),
+			linear-gradient(180deg, #faf4f0 0%, $pf-bg 45%, #f6ede7 100%);
+	}
+	&__lines {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		fill: none;
+	}
+	&__arc {
+		stroke-width: 1.4;
+		vector-effect: non-scaling-stroke;
+	}
+
+	// ----- заголовок -----
+	&__head {
+		position: relative;
+		z-index: 1;
+		width: vw(1300);
+		margin-left: vw(210);
+	}
+	// h2 перебивается старым CSS (.wrapper.main-ro h2) — поднимаем специфичность
+	& &__head h2#{&}__title {
+		margin: 0;
+		@include lb-title;
+		font-size: vw(72);
+		line-height: vw(80);
+		color: #24130f;
+		em {
+			@include lb-accent;
+			font-size: 1.04em;
+			line-height: 0;
+			padding-right: .05em;
+		}
+	}
+	&__line {
+		display: block;
+		overflow: hidden;
+		font-weight: 500; // старый CSS задаёт span{font-weight:400}
+		padding: 0 .2em .2em .12em;
+		margin: 0 -.2em -.2em -.12em;
+	}
+	&__lin {
+		display: block;
+		font-weight: 500;
+	}
+	&__sub {
+		margin-top: vw(22);
+		max-width: vw(620);
+		font-size: vw(21);
+		line-height: vw(31);
+		color: #6f625b;
+	}
+
+	// ----- кнопка -----
+	&__foot {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		justify-content: center;
+		margin-top: vw(56);
+	}
+	&__lesstxt {
+		display: none;
+	}
+	&.is-open &__moretxt {
+		display: none;
+	}
+	&.is-open &__lesstxt {
+		display: inline;
+	}
+	&.is-open &__more .lb-btn__arr {
+		rotate: -90deg;
+	}
+	&__more .lb-btn__arr {
+		rotate: 90deg;
+		transition: translate .5s $ease-expo, rotate .5s $ease-expo;
+	}
+	&__foot.is-hidden {
+		display: none;
+	}
+
+	@include mobile {
+		padding: 56px 0 48px;
+		&__lines {
+			display: none;
+		}
+		&__head {
+			width: auto;
+			margin: 0;
+			padding: 0 22px;
+		}
+		& &__head h2#{&}__title {
+			font-size: mvw(34);
+			line-height: 1.18;
+		}
+		&__sub {
+			max-width: none;
+			margin-top: 14px;
+			font-size: 15px;
+			line-height: 1.5;
+		}
+		&__foot {
+			margin-top: 28px;
+			padding: 0 22px;
+			.lb-btn {
+				width: 100%;
+			}
+		}
+	}
+}
+
+// ----- сетка фото -----
+.lb-gallery {
+	position: relative;
+	z-index: 1;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: vw(22);
+	width: vw(1500);
+	margin: vw(56) auto 0;
+
+	&__item {
+		position: relative;
+		display: block;
+		aspect-ratio: 1;
+		overflow: hidden;
+		border-radius: vw(18);
+		background: #eadbd1;
+		box-shadow: 0 vw(14) vw(34) rgba(120, 82, 60, .12);
+		isolation: isolate;
+		transition: translate .6s $ease-expo, box-shadow .6s $ease-expo;
+		img {
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: scale 1.2s $ease-expo;
+		}
+		// лёгкое затемнение и значок «увеличить» при наведении
+		&::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(180deg, rgba(43, 29, 24, 0) 45%, rgba(43, 29, 24, .42) 100%);
+			opacity: 0;
+			transition: opacity .5s $ease-out;
+		}
+		@include hover {
+			translate: 0 vw(-6);
+			box-shadow: 0 vw(24) vw(44) rgba(120, 82, 60, .2);
+			img {
+				scale: 1.06;
+			}
+			&::after {
+				opacity: 1;
+			}
+			.lb-gallery__zoom {
+				opacity: 1;
+				scale: 1;
+			}
+		}
+		&:focus-visible {
+			outline: 2px solid $c-btn-dark;
+			outline-offset: 3px;
+		}
+		&--more {
+			display: none;
+		}
+	}
+	&.is-open &__item--more {
+		display: block;
+	}
+	&__zoom {
+		position: absolute;
+		z-index: 1;
+		right: vw(18);
+		bottom: vw(18);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: vw(52);
+		height: vw(52);
+		border-radius: 50%;
+		color: #fff;
+		background: rgba(255, 255, 255, .18);
+		border: 1px solid rgba(255, 255, 255, .55);
+		-webkit-backdrop-filter: blur(6px);
+		backdrop-filter: blur(6px);
+		opacity: 0;
+		scale: .7;
+		transition: opacity .45s $ease-out, scale .55s $ease-expo;
+		svg {
+			width: vw(24);
+			height: vw(24);
+		}
+	}
+
+	@include mobile {
+		grid-template-columns: repeat(3, 1fr);
+		gap: 10px;
+		width: auto;
+		margin: 26px 22px 0;
+		&__item {
+			border-radius: 14px;
+			box-shadow: 0 8px 20px rgba(120, 82, 60, .1);
+			// на планшете видно 9 фото (3 ряда по 3)
+			&:nth-child(9) {
+				display: block;
+			}
+		}
+		&__zoom {
+			display: none;
+		}
+	}
+	@media (max-width: 600px) {
+		grid-template-columns: repeat(2, 1fr);
+		&__item:nth-child(9) {
+			display: none;
+		}
+		&.is-open &__item:nth-child(9) {
+			display: block;
+		}
+	}
+}

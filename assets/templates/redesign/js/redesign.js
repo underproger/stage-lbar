@@ -144,6 +144,31 @@
 		});
 	}
 
+	/* ---------- Галерея: «Смотреть все работы» раскрывает остальные фото ---------- */
+	document.querySelectorAll('.lb-portfolio').forEach(function (sec) {
+		var grid = sec.querySelector('.lb-gallery');
+		var btn = sec.querySelector('.lb-portfolio__more');
+		var foot = sec.querySelector('.lb-portfolio__foot');
+		if (!grid || !btn) return;
+		var more = grid.querySelectorAll('.lb-gallery__item--more');
+		if (!more.length) { if (foot) foot.classList.add('is-hidden'); return; }
+		btn.addEventListener('click', function () {
+			var open = !grid.classList.contains('is-open');
+			var shown = [].filter.call(grid.children, function (el) { return getComputedStyle(el).display === 'none'; });
+			grid.classList.toggle('is-open', open);
+			sec.classList.toggle('is-open', open);
+			btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+			if (open && !reduce && window.gsap) {
+				window.gsap.from(shown, { y: 40, opacity: 0, duration: 1, stagger: 0.035, ease: 'expo.out', clearProps: 'transform,opacity' });
+			}
+			if (!open) {
+				var top = grid.getBoundingClientRect().top;
+				if (top < 0) window.scrollBy({ top: top - 140, behavior: reduce ? 'auto' : 'smooth' });
+			}
+			if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+		});
+	});
+
 	/* ---------- Появление блоков при прокрутке ---------- */
 	var initReveal = function () {
 		if (reduce || typeof window.gsap === 'undefined' || !window.ScrollTrigger) return;
@@ -211,6 +236,25 @@
 			// фото чуть смещается при прокрутке (глубина)
 			if (mdesk) {
 				gsap.to(master.querySelector('.lb-master__photo img'), { yPercent: -4, ease: 'none', scrollTrigger: { trigger: master, start: 'top bottom', end: 'bottom top', scrub: true } });
+			}
+		}
+
+		var portfolio = document.querySelector('.lb-portfolio');
+		if (portfolio) {
+			var pq = function (s) { return portfolio.querySelectorAll(s); };
+			var ptl = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: portfolio, start: 'top 72%' } });
+			ptl.from(pq('.lb-portfolio__lin'), { yPercent: 105, duration: 1.5, stagger: 0.12 }, 0)
+				.from(pq('.lb-portfolio__sub'), { y: 26, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.3)
+				.from(pq('.lb-gallery__item:not(.lb-gallery__item--more)'), { y: 60, opacity: 0, scale: 0.96, duration: 1.3, stagger: 0.06, clearProps: 'transform,opacity' }, 0.25)
+				.from(pq('.lb-portfolio__foot'), { y: 26, opacity: 0, duration: 1.1, clearProps: 'transform' }, 0.8);
+			var parcs = pq('.lb-portfolio__arc');
+			if (isDesktop()) {
+				[].forEach.call(parcs, function (path, k) {
+					if (!path.getTotalLength) return;
+					var l = path.getTotalLength();
+					gsap.set(path, { strokeDasharray: l, strokeDashoffset: l });
+					ptl.to(path, { strokeDashoffset: 0, duration: 2, ease: 'power2.inOut' }, 0.1 + k * 0.3);
+				});
 			}
 		}
 	};

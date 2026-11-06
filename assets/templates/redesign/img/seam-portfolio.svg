@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 160" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="fill" x1="0" y1="0" x2="1" y2="0"><stop offset="0.0" stop-color="#3d2e28"/><stop offset="0.1" stop-color="#3d2e28"/><stop offset="0.2" stop-color="#3e2f29"/><stop offset="0.3" stop-color="#41322b"/><stop offset="0.4" stop-color="#4a3934"/><stop offset="0.5" stop-color="#342a24"/><stop offset="0.6" stop-color="#312623"/><stop offset="0.7" stop-color="#42332d"/><stop offset="0.8" stop-color="#554035"/><stop offset="0.9" stop-color="#765746"/><stop offset="1.0" stop-color="#362922"/></linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#c79a80" stop-opacity=".15"/>
+      <stop offset=".4" stop-color="#c79a80" stop-opacity=".75"/>
+      <stop offset=".82" stop-color="#d2a68c" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#c79a80" stop-opacity=".2"/>
+    </linearGradient>
+    <linearGradient id="shade" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#2f2521" stop-opacity="0"/>
+      <stop offset="1" stop-color="#2f2521" stop-opacity=".14"/>
+    </linearGradient>
+    <filter id="blur" x="-5%" y="-60%" width="110%" height="220%"><feGaussianBlur stdDeviation="9"/></filter>
+  </defs>
+  <path filter="url(#blur)" fill="url(#shade)" d="M0 0H1920V102C1540 150 1240 96 920 58S320 24 0 92Z" transform="translate(0 16)"/>
+  <path fill="url(#fill)" d="M0 0H1920V102C1540 150 1240 96 920 58S320 24 0 92Z"/>
+  <path fill="none" stroke="#e7c2aa" stroke-opacity=".35" stroke-width="6" filter="url(#blur)" d="M1920 102C1540 150 1240 96 920 58S320 24 0 92"/>
+  <path fill="none" stroke="url(#line)" stroke-width="1.6" d="M1920 102C1540 150 1240 96 920 58S320 24 0 92"/>
+</svg>
