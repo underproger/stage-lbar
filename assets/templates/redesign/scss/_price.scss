@@ -1,0 +1,575 @@
+// ================= БЛОК «ЦЕНЫ» (главная, 8-й экран, вместо bl7-price) =================
+// Макет 1920×1080. Фон — только графика (светлый тон, шёлковая лента и тонкие медные линии слева внизу), без теней листьев.
+// Слева — H2 и кнопка; справа — текст над таблицей (свёрнут до 3 строк) и «стеклянная» таблица с выделенной колонкой цены.
+$pr-bg: #f8efea;
+
+.lb-price {
+	position: relative;
+	box-sizing: border-box;
+	min-height: vw(1080);
+	padding: vw(58) 0 vw(150);
+	overflow: hidden;
+	font-family: $f-text;
+	color: #1d1a19;
+	background: $pr-bg;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	:where(*, *::before, *::after) {
+		box-sizing: border-box;
+	}
+	:where(p, h2) {
+		margin: 0;
+		padding: 0;
+	}
+	:where(a) {
+		text-decoration: none;
+	}
+	:where(button) {
+		font: inherit;
+		background: none;
+		border: 0;
+		padding: 0;
+		cursor: pointer;
+	}
+	:where(svg) {
+		display: block;
+	}
+
+	// ----- фон -----
+	&__bg {
+		position: absolute;
+		inset: 0;
+		background:
+			radial-gradient(38% 34% at 22% 30%, rgba(255, 255, 255, .6), rgba(255, 255, 255, 0) 100%),
+			radial-gradient(46% 40% at 92% 92%, rgba(238, 220, 208, .55), rgba(238, 220, 208, 0) 100%),
+			linear-gradient(180deg, #f8efea 0%, #f6ede8 60%, #f4eae6 100%);
+	}
+	&__lines {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: vw(1080);
+		fill: none;
+	}
+	&__line {
+		stroke-width: 1.3;
+		vector-effect: non-scaling-stroke;
+		&--thin {
+			stroke-width: .9;
+			opacity: .7;
+		}
+	}
+
+	// ----- левая колонка: H2 и кнопка -----
+	&__intro {
+		position: absolute;
+		z-index: 1;
+		top: vw(114);
+		left: vw(104);
+		width: vw(570);
+	}
+	// h2 перебивается старым CSS (.wrapper.main-ro h2) — поднимаем специфичность
+	& &__intro h2#{&}__title {
+		margin: 0;
+		@include lb-title;
+		font-size: vw(69);
+		line-height: vw(75.5);
+		color: #2b2521;
+		em {
+			@include lb-accent;
+			display: inline-block;
+			font-size: 1.03em;
+			line-height: 1;
+			padding-right: .06em;
+		}
+	}
+	// кириллица шире: RU-заголовок в 4 строки и чуть меньше
+	html[lang="ru"] & &__intro h2#{&}__title {
+		font-size: vw(66);
+		line-height: vw(72);
+	}
+	&__line-t {
+		display: block;
+		overflow: hidden;
+		font-weight: 500; // старый CSS задаёт span{font-weight:400}
+		padding: 0 .2em .16em .1em;
+		margin: 0 -.2em -.16em -.1em;
+	}
+	&__lin {
+		display: block;
+		font-weight: 500;
+	}
+	&__cta.lb-btn {
+		margin-top: vw(48);
+		height: vw(64);
+		padding: 0 vw(54) 0 vw(62);
+		gap: vw(34);
+		font-size: vw(21);
+		font-weight: 500;
+		letter-spacing: .05em;
+	}
+
+	// ----- правая колонка -----
+	&__main {
+		position: relative;
+		z-index: 1;
+		width: vw(1161);
+		margin-left: vw(680);
+		&--notext {
+			padding-top: vw(70); // нет текста над таблицей (RU) — таблица на уровне заголовка
+			.lb-price__card {
+				margin-top: 0;
+			}
+		}
+	}
+
+	// текст над таблицей (TV table-bl7): 3 строки + «Читать далее»
+	&__textwrap {
+		position: relative;
+		margin-left: vw(10);
+		padding-left: vw(38);
+		width: vw(1110);
+		&::before {
+			content: "";
+			position: absolute;
+			left: 0;
+			top: vw(6);
+			width: 1.5px;
+			height: vw(86);
+			background: linear-gradient(180deg, rgba(190, 158, 136, .9), rgba(190, 158, 136, .5));
+		}
+	}
+	&__text {
+		max-height: vw(34 * 3);
+		overflow: hidden;
+		font-size: vw(21);
+		font-weight: 400;
+		line-height: vw(34);
+		color: #4b4643;
+		transition: max-height .8s $ease-expo;
+		p {
+			margin: 0;
+		}
+		p:first-child {
+			font-weight: 600;
+			color: #1d1a19;
+		}
+		p + p {
+			margin-top: vw(12);
+		}
+		span {
+			font: inherit !important;
+			color: inherit !important;
+		}
+	}
+	&__more {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		display: flex;
+		align-items: center;
+		gap: vw(8);
+		height: vw(34);
+		padding-left: vw(120);
+		font-size: vw(18);
+		font-weight: 600;
+		letter-spacing: .04em;
+		color: #8f6b58;
+		background: linear-gradient(90deg, rgba(248, 239, 234, 0) 0%, $pr-bg 42%);
+		transition: color .3s;
+		svg {
+			width: vw(12);
+			height: vw(12);
+			transition: transform .5s $ease-expo;
+		}
+		span {
+			font-weight: inherit;
+		}
+		@include hover {
+			color: #5e4334;
+		}
+	}
+	&__less {
+		display: none;
+	}
+	&__textwrap.is-open &__more {
+		position: static;
+		margin-top: vw(10);
+		padding-left: 0;
+		background: none;
+		svg {
+			transform: rotate(180deg);
+		}
+	}
+	&__textwrap.is-open &__less {
+		display: inline;
+	}
+	&__textwrap.is-open &__moretxt {
+		display: none;
+	}
+	&__textwrap.is-short {
+		.lb-price__text {
+			max-height: none;
+		}
+		.lb-price__more {
+			display: none;
+		}
+	}
+
+	// «стеклянная» карточка таблицы
+	&__card {
+		position: relative;
+		margin-top: vw(64);
+		border-radius: vw(30);
+		background: linear-gradient(170deg, rgba(255, 250, 246, .92) 0%, rgba(252, 245, 240, .86) 60%, rgba(250, 242, 237, .9) 100%);
+		box-shadow:
+			0 vw(30) vw(70) rgba(130, 90, 66, .13),
+			0 vw(6) vw(16) rgba(130, 90, 66, .07),
+			inset 0 0 0 1.5px rgba(255, 255, 255, .9);
+		overflow: hidden;
+		// выделенная колонка цены: «язычок» в шапке + светлая полоса до низа
+		&::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			width: vw(225);
+			border-radius: vw(30) vw(30) 0 0;
+			background: linear-gradient(180deg, #efd8c8 0%, #f2dfd1 vw(85), #f6e8de vw(86), #f8ece3 60%, #f6e8de 100%);
+			box-shadow: vw(-10) 0 vw(24) rgba(150, 105, 78, .08), inset 1px 0 0 rgba(255, 255, 255, .7);
+			pointer-events: none;
+		}
+	}
+}
+
+// ----- таблица (div + ARIA-роли) -----
+$pt-cols: vw(654) vw(282) vw(225);
+.lb-ptable {
+	position: relative;
+	font-family: $f-text;
+
+	&__head,
+	&__row {
+		display: grid;
+		grid-template-columns: $pt-cols;
+		align-items: center;
+	}
+	&__head {
+		height: vw(85);
+		border-bottom: 1.5px solid rgba(196, 168, 148, .55);
+		background: linear-gradient(180deg, rgba(255, 252, 249, .55), rgba(246, 234, 225, .5));
+	}
+	&__h {
+		position: relative;
+		font-family: $f-display;
+		font-size: vw(24);
+		font-weight: 400;
+		line-height: 1;
+		letter-spacing: .25em;
+		text-transform: uppercase;
+		text-align: center;
+		color: #7d5a45;
+		&--name {
+			padding-left: vw(61);
+			text-align: left;
+			span {
+				font-weight: 400;
+			}
+		}
+		&--dur {
+			// короткий разделитель слева
+			&::before {
+				content: "";
+				position: absolute;
+				left: vw(15);
+				top: 50%;
+				width: 1.5px;
+				height: vw(30);
+				margin-top: vw(-15);
+				background: rgba(186, 158, 138, .75);
+			}
+		}
+		&--price {
+			font-family: $f-serif;
+			font-style: italic;
+			font-weight: 450;
+			font-stretch: 80%;
+			font-size: vw(30);
+			letter-spacing: .1em;
+			color: #6a3a22;
+		}
+	}
+	// орнамент «— ✦ —» после «PROCEDURĂ»
+	&__orn {
+		position: absolute;
+		top: 50%;
+		left: vw(331);
+		width: vw(272);
+		height: vw(16);
+		margin-top: vw(-8);
+		color: #b88a68;
+		&::before,
+		&::after {
+			content: "";
+			position: absolute;
+			top: 50%;
+			width: vw(84);
+			height: 1px;
+			background: rgba(190, 160, 138, .85);
+		}
+		&::before {
+			left: 0;
+		}
+		&::after {
+			right: 0;
+		}
+		svg {
+			width: vw(16);
+			height: vw(16);
+			margin: 0 auto;
+		}
+	}
+
+	&__row {
+		min-height: vw(90);
+		transition: background-color .4s $ease-out;
+		&:nth-child(odd) {
+			background: rgba(240, 226, 216, .34);
+		}
+		&:nth-child(even) {
+			background: rgba(255, 253, 251, .38);
+		}
+		& + & {
+			border-top: 1px solid rgba(255, 255, 255, .7);
+		}
+		@include hover {
+			background-color: rgba(236, 216, 202, .45);
+			.lb-ptable__ic {
+				scale: 1.08;
+				translate: vw(4) 0;
+			}
+			.lb-ptable__price {
+				letter-spacing: .02em;
+			}
+		}
+	}
+	&__name {
+		position: relative;
+		display: flex;
+		align-items: center;
+		align-self: stretch;
+		padding: vw(12) vw(20) vw(12) vw(180);
+	}
+	&__ic {
+		position: absolute;
+		top: 50%;
+		left: vw(45);
+		width: vw(80);
+		height: vw(40);
+		margin-top: vw(-20);
+		color: #9d6d4d;
+		transition: scale .6s $ease-expo, translate .6s $ease-expo;
+		svg {
+			width: 100%;
+			height: 100%;
+		}
+	}
+	&__proc {
+		display: block;
+		b {
+			display: block;
+			font-size: vw(22.4);
+			font-weight: 600;
+			line-height: vw(30);
+			color: #121010;
+		}
+	}
+	&__sub {
+		display: block;
+		font-size: vw(20.6);
+		font-weight: 400;
+		line-height: vw(29);
+		color: #2b2724;
+	}
+	&__dur {
+		position: relative;
+		display: flex;
+		align-items: center;
+		align-self: stretch;
+		padding: 0 vw(10) 0 vw(98);
+		font-size: vw(21);
+		font-weight: 400;
+		line-height: 1.3;
+		color: #3a312d;
+		white-space: nowrap;
+		// тонкий вертикальный разделитель колонок
+		&::before {
+			content: "";
+			position: absolute;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			width: 1px;
+			background: rgba(220, 200, 186, .45);
+		}
+	}
+	&__clock {
+		position: absolute;
+		top: 50%;
+		left: vw(52);
+		width: vw(28);
+		height: vw(28);
+		margin-top: vw(-14);
+		color: #9b6a4a;
+		svg {
+			width: 100%;
+			height: 100%;
+		}
+	}
+	&__price {
+		position: relative;
+		text-align: center;
+		font-size: vw(26.4);
+		font-weight: 650;
+		line-height: 1;
+		letter-spacing: 0;
+		white-space: nowrap;
+		color: transparent;
+		background: linear-gradient(95deg, #6e3418 0%, #8a4a2a 50%, #6a3016 100%);
+		-webkit-background-clip: text;
+		background-clip: text;
+		transition: letter-spacing .5s $ease-expo;
+	}
+}
+
+@include mobile {
+	.lb-price {
+		min-height: 0;
+		padding: 56px 0 52px;
+		&__lines {
+			display: none;
+		}
+		// порядок на телефоне: заголовок → текст и таблица → кнопка
+		display: flex;
+		flex-direction: column;
+		&__intro {
+			display: contents;
+		}
+		html[lang="ru"] & &__intro h2#{&}__title,
+		& &__intro h2#{&}__title {
+			order: 1;
+			position: relative;
+			z-index: 1;
+			padding: 0 22px;
+			font-size: min(#{mvw(36)}, 54px); // планшет — без гигантского заголовка
+			line-height: 1.12;
+		}
+		&__cta.lb-btn {
+			order: 3;
+			position: relative;
+			z-index: 1;
+			display: flex;
+			margin: 24px 16px 0;
+			height: 52px;
+			padding: 0 24px 0 28px;
+			gap: 14px;
+			font-size: 12.5px;
+		}
+		&__main {
+			order: 2;
+			width: auto;
+			margin: 22px 0 0;
+			padding: 0 16px;
+			&--notext {
+				padding-top: 0;
+			}
+		}
+		&__textwrap {
+			width: auto;
+			margin: 0 6px;
+			padding-left: 16px;
+			&::before {
+				top: 3px;
+				height: calc(100% - 6px);
+				max-height: 66px;
+			}
+		}
+		&__text {
+			max-height: 22px * 3;
+			font-size: 14.5px;
+			line-height: 22px;
+		}
+		&__more {
+			height: 22px;
+			gap: 6px;
+			padding-left: 70px;
+			font-size: 13px;
+			svg {
+				width: 10px;
+				height: 10px;
+			}
+		}
+		&__textwrap.is-open &__more {
+			margin-top: 8px;
+		}
+		&__card {
+			margin-top: 24px;
+			border-radius: 24px;
+			&::before {
+				display: none;
+			}
+		}
+	}
+	.lb-ptable {
+		&__head {
+			display: none;
+		}
+		&__row {
+			grid-template-columns: 1fr auto;
+			min-height: 0;
+			padding: 14px 16px 14px 74px;
+			position: relative;
+			row-gap: 6px;
+		}
+		&__name {
+			grid-column: 1 / -1;
+			position: static;
+			padding: 0;
+		}
+		&__ic {
+			top: 18px;
+			left: 14px;
+			width: 46px;
+			height: 23px;
+			margin: 0;
+		}
+		&__proc b {
+			font-size: 15px;
+			line-height: 20px;
+		}
+		&__sub {
+			font-size: 13.5px;
+			line-height: 19px;
+		}
+		&__dur {
+			padding: 0 0 0 22px;
+			font-size: 13.5px;
+			&::before {
+				display: none;
+			}
+		}
+		&__clock {
+			left: 0;
+			width: 16px;
+			height: 16px;
+			margin-top: -8px;
+		}
+		&__price {
+			font-size: 17px;
+			text-align: right;
+		}
+	}
+}

@@ -52,7 +52,7 @@
 		var y = el.getBoundingClientRect().top + window.pageYOffset - offset - 10;
 		window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
 	};
-	document.querySelectorAll('.lb-header a[href^="#"], .lb-hero a[href^="#"], .lb-about a[href^="#"], .lb-implica a[href^="#"]').forEach(function (a) {
+	document.querySelectorAll('.lb-header a[href^="#"], .lb-hero a[href^="#"], .lb-about a[href^="#"], .lb-implica a[href^="#"], .lb-price a[href^="#"]').forEach(function (a) {
 		a.addEventListener('click', function (e) {
 			var id = a.getAttribute('href').slice(1);
 			var target = id && document.getElementById(id);
@@ -72,33 +72,38 @@
 		});
 	});
 
-	/* ---------- «Читать далее» (текст свёрнут до 3 строк) ---------- */
-	document.querySelectorAll('.lb-about__textwrap').forEach(function (wrap) {
-		var text = wrap.querySelector('.lb-about__text');
-		var btn = wrap.querySelector('.lb-about__more');
-		if (!text || !btn) return;
-		var check = function () {
-			if (wrap.classList.contains('is-open')) return;
-			var clamped = parseFloat(getComputedStyle(text).maxHeight) || 0;
-			wrap.classList.toggle('is-short', text.scrollHeight <= clamped + 2);
-		};
-		check();
-		window.addEventListener('resize', check);
-		if (document.fonts && document.fonts.ready) document.fonts.ready.then(check);
-		btn.addEventListener('click', function () {
-			var open = !wrap.classList.contains('is-open');
-			if (open) {
-				text.style.maxHeight = text.scrollHeight + 'px';
-				wrap.classList.add('is-open');
-			} else {
-				text.style.maxHeight = '';
-				wrap.classList.remove('is-open');
-				var top = wrap.getBoundingClientRect().top;
-				if (top < 0) window.scrollBy({ top: top - 120, behavior: reduce ? 'auto' : 'smooth' });
-			}
-			btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+	/* ---------- «Читать далее» (текст свёрнут до 3 строк): блоки «О микропигментации» и «Цены» ---------- */
+	var initClamp = function (wrapSel, textSel, btnSel) {
+		document.querySelectorAll(wrapSel).forEach(function (wrap) {
+			var text = wrap.querySelector(textSel);
+			var btn = wrap.querySelector(btnSel);
+			if (!text || !btn) return;
+			var check = function () {
+				if (wrap.classList.contains('is-open')) return;
+				var clamped = parseFloat(getComputedStyle(text).maxHeight) || 0;
+				wrap.classList.toggle('is-short', text.scrollHeight <= clamped + 2);
+			};
+			check();
+			window.addEventListener('resize', check);
+			if (document.fonts && document.fonts.ready) document.fonts.ready.then(check);
+			btn.addEventListener('click', function () {
+				var open = !wrap.classList.contains('is-open');
+				if (open) {
+					text.style.maxHeight = text.scrollHeight + 'px';
+					wrap.classList.add('is-open');
+				} else {
+					text.style.maxHeight = '';
+					wrap.classList.remove('is-open');
+					var top = wrap.getBoundingClientRect().top;
+					if (top < 0) window.scrollBy({ top: top - 120, behavior: reduce ? 'auto' : 'smooth' });
+				}
+				btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+				if (window.ScrollTrigger) setTimeout(function () { window.ScrollTrigger.refresh(); }, 850);
+			});
 		});
-	});
+	};
+	initClamp('.lb-about__textwrap', '.lb-about__text', '.lb-about__more');
+	initClamp('.lb-price__textwrap', '.lb-price__text', '.lb-price__more');
 
 	/* ---------- Блок «implică»: точки на дуге ----------
 	   Дуга — окружность (586, 603), r = 435 в координатах макета 1920. Точку ставим на дугу
@@ -181,6 +186,29 @@
 				.from(about.querySelectorAll('.lb-about__eyebrow, .lb-about__t1, .lb-about__t2, .lb-about__textwrap'), { y: 40, opacity: 0, duration: 1.3, stagger: 0.1, clearProps: 'transform' }, 0.15)
 				.from(about.querySelectorAll('.lb-about__item'), { x: -30, opacity: 0, duration: 1.2, stagger: 0.1, clearProps: 'transform' }, 0.5)
 				.from(about.querySelectorAll('.lb-about__quote, .lb-about__cta'), { y: 30, opacity: 0, duration: 1.2, stagger: 0.1, clearProps: 'transform' }, 0.8);
+		}
+		var price = document.querySelector('.lb-price');
+		if (price) {
+			var pq = function (s) { return price.querySelectorAll(s); };
+			var pdesk = isDesktop();
+			var ptl = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: price, start: 'top 70%' } });
+			ptl.from(pq('.lb-price__lin'), { yPercent: 105, duration: 1.5, stagger: 0.12 }, 0)
+				.from(pq('.lb-price__cta'), { y: 26, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.5)
+				.from(pq('.lb-price__textwrap'), { x: pdesk ? 40 : 0, y: pdesk ? 0 : 24, opacity: 0, duration: 1.3, clearProps: 'transform' }, 0.15)
+				.from(pq('.lb-price__card'), { y: 70, opacity: 0, duration: 1.6, clearProps: 'transform' }, 0.3)
+				.from(pq('.lb-ptable__row'), { x: pdesk ? 60 : 0, y: pdesk ? 0 : 20, opacity: 0, duration: 1.2, stagger: 0.08, clearProps: 'transform' }, 0.55)
+				.from(pq('.lb-ptable__ic svg'), { scale: 0.4, opacity: 0, duration: 1, stagger: 0.08, ease: 'back.out(2)', clearProps: 'transform' }, 0.75);
+			// цены «набегают» от нуля (в HTML — итоговые значения)
+			pq('.lb-ptable__price').forEach(function (cell, n) {
+				var txt = cell.textContent;
+				var m = txt.match(/^(\D*)(\d[\d\s\u202f\u00a0]*\d|\d)(.*)$/);
+				if (!m) return;
+				var val = parseInt(m[2].replace(/\D/g, ''), 10);
+				if (!val) return;
+				var fmt = function (v) { return m[1] + String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0') + m[3]; };
+				var o = { v: 0 };
+				ptl.to(o, { v: val, duration: 1.4, ease: 'power3.out', onStart: function () { cell.textContent = fmt(0); }, onUpdate: function () { cell.textContent = fmt(o.v); }, onComplete: function () { cell.textContent = txt; } }, 0.7 + n * 0.08);
+			});
 		}
 		if (consult) {
 			var cq = function (s) { return consult.querySelectorAll(s); };

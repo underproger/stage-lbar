@@ -6,7 +6,8 @@
 // (overflow: hidden), вместе получается цельная картинка. Декор лежит над фоном блока, но под контентом (z-index: 1).
 //
 // Стыки: баннер → «О микропигментации» (seam-hero.svg), «О микропигментации» → «Услуги» (seam.svg),
-//        «Услуги» → «implică» (seam-implica.svg), «implică» → «Консультация» (seam-consult.svg).
+//        «Услуги» → «implică» (seam-implica.svg), «implică» → «Консультация» (seam-consult.svg),
+//        «Консультация» → «Мастер» (seam-master.svg), «Мастер» → «Галерея» (seam-portfolio.svg), «Галерея» → «Цены» (seam-price.svg).
 $seam-h: 760;              // высота декора, px @1920
 $seam-hero: #f8f1ec;       // баннер → «О микропигментации»
 $seam-color: #f7eee8;      // «О микропигментации» → «Услуги»
@@ -201,5 +202,34 @@ $seam-consult: #f6eee9;    // «implică» → «Консультация»
 	}
 	&__bg {
 		z-index: -1;
+	}
+}
+
+// ---------- «Галерея» → «Цены» (светлый → светлый) ----------
+// Низ «Галереи» уходит в общий цвет стыка, «Цены» начинаются из него; шёлковая лента (img/seam-price.svg)
+// идёт над кнопкой «Смотреть все работы» и над заголовком / текстом блока цен.
+$seam-price: #f6ede8;
+.lb-portfolio {
+	@include lb-seam(bottom, "seam-price.svg");
+	&::after {
+		z-index: 0;
+	}
+	&__bg {
+		background:
+			radial-gradient(40% 30% at 78% 12%, rgba(255, 255, 255, .8), rgba(255, 255, 255, 0) 100%),
+			// тёплое пятно слева поднято выше низа — к стыку фон ровный, как верх «Цен»
+			radial-gradient(45% 28% at 8% 62%, rgba(236, 214, 200, .45), rgba(236, 214, 200, 0) 100%),
+			linear-gradient(180deg, #faf4f0 0%, $pf-bg 45%, #f6ede7 calc(100% - #{vw(220)}), $seam-price 100%);
+	}
+}
+.lb-price {
+	isolation: isolate;
+	@include lb-seam(top, "seam-price.svg");
+	&__bg {
+		z-index: -1;
+		background:
+			radial-gradient(38% 34% at 22% 30%, rgba(255, 255, 255, .55), rgba(255, 255, 255, 0) 100%),
+			radial-gradient(46% 40% at 92% 92%, rgba(238, 220, 208, .55), rgba(238, 220, 208, 0) 100%),
+			linear-gradient(180deg, $seam-price 0%, $pr-bg vw(220), #f6ede8 60%, #f4eae6 100%);
 	}
 }

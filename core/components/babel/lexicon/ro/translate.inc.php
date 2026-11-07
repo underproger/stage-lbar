@@ -103,3 +103,7 @@ $_lang['lbar.rd.master.alt'] = "Ksenia Kobilianskaia — maestru în micropigmen
 // --- редизайн: блок «Галерея фото» ---
 $_lang['lbar.rd.portfolio.title'] = "Galerie foto –|*machiaj permanent după procedură*";
 $_lang['lbar.rd.portfolio.less'] = "Ascunde lucrările";
+
+// --- редизайн: блок «Цены» ---
+// разбивка H2 (TV title-bl7) на строки «|» и курсив *…*; текст без разметки должен совпадать с TV
+$_lang['lbar.rd.price.title'] = "Lista de prețuri:|*micropigmentare*|*în București*";
