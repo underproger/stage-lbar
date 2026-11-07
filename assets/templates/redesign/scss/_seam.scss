@@ -8,7 +8,8 @@
 // Стыки: баннер → «О микропигментации» (seam-hero.svg), «О микропигментации» → «Услуги» (seam.svg),
 //        «Услуги» → «implică» (seam-implica.svg), «implică» → «Консультация» (seam-consult.svg),
 //        «Консультация» → «Мастер» (seam-master.svg), «Мастер» → «Галерея» (seam-portfolio.svg), «Галерея» → «Цены» (seam-price.svg),
-//        «Цены» → «Запись на процедуру» (seam-book.svg), «Запись» → «Отзывы» (seam-reviews.svg).
+//        «Цены» → «Запись на процедуру» (seam-book.svg), «Запись» → «Отзывы» (seam-reviews.svg),
+//        «Отзывы» → «Вопросы и ответы» (seam-faq.svg).
 $seam-h: 760;              // высота декора, px @1920
 $seam-hero: #f8f1ec;       // баннер → «О микропигментации»
 $seam-color: #f7eee8;      // «О микропигментации» → «Услуги»
@@ -241,6 +242,7 @@ $seam-book: #f4eae6;     // «Цены» → «Запись на процеду�
 // Лента (img/seam-book.svg) идёт под таблицей цен и над заголовком / карточкой формы. У «Цен» ::after занят верхним стыком —
 // нижний рисуем в ::before.
 $seam-reviews: #f8f0ea;   // «Запись» → «Отзывы»
+$seam-faq: #f7efea;      // «Отзывы» → «Вопросы и ответы»
 .lb-price {
 	@include lb-seam(bottom, "seam-book.svg", before);
 }
@@ -264,24 +266,48 @@ $seam-reviews: #f8f0ea;   // «Запись» → «Отзывы»
 
 // ---------- «Запись на процедуру» → «Отзывы» (светлый → светлый) ----------
 // Лента (img/seam-reviews.svg) выходит из шёлковых складок слева, проходит под карточкой формы и над заголовком «Отзывов».
-// У «Записи» ::after занят верхним стыком — нижний в ::before. Низ «Отзывов» уходит в белый фон старого блока FAQ.
+// У «Записи» ::after занят верхним стыком — нижний в ::before.
 .lb-book {
 	@include lb-seam(bottom, "seam-reviews.svg", before);
 }
 .lb-reviews {
 	isolation: isolate;
-	background: linear-gradient(180deg, $seam-reviews 0, $rv-bg vw(160), $rv-bg calc(100% - #{vw(220)}), #fff 100%);
+	background: linear-gradient(180deg, $seam-reviews 0, $rv-bg vw(160), $rv-bg calc(100% - #{vw(220)}), $seam-faq 100%);
 	@include lb-seam(top, "seam-reviews.svg");
 	&__bg {
 		z-index: -1;
-		-webkit-mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - #{vw(200)}), transparent calc(100% - #{vw(10)}));
-		mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - #{vw(200)}), transparent calc(100% - #{vw(10)}));
+		-webkit-mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - #{vw(260)}), transparent calc(100% - #{vw(40)}));
+		mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - #{vw(260)}), transparent calc(100% - #{vw(40)}));
 	}
 	@include mobile {
-		background: linear-gradient(180deg, $seam-reviews 0, $rv-bg 90px, $rv-bg calc(100% - 100px), #fff 100%);
+		background: linear-gradient(180deg, $seam-reviews 0, $rv-bg 90px, $rv-bg calc(100% - 100px), $seam-faq 100%);
 		&__bg {
 			-webkit-mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 110px), transparent calc(100% - 10px));
 			mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 110px), transparent calc(100% - 10px));
+		}
+	}
+}
+
+// ---------- «Отзывы» → «Вопросы и ответы» (светлый → светлый) ----------
+// Лента (img/seam-faq.svg) идёт под кнопками «Отзывов» и над заголовком / списком FAQ. У «Отзывов» ::after занят верхним стыком —
+// нижний в ::before. Низ FAQ уходит в белый фон следующего (старого) SEO-блока.
+.lb-reviews {
+	@include lb-seam(bottom, "seam-faq.svg", before);
+}
+.lb-faq {
+	isolation: isolate;
+	background: linear-gradient(180deg, $seam-faq 0, $fq-bg vw(170), $fq-bg calc(100% - #{vw(260)}), #fff 100%);
+	@include lb-seam(top, "seam-faq.svg");
+	&__bg {
+		z-index: -1;
+		-webkit-mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .5) vw(70), #000 vw(190), #000 calc(100% - #{vw(320)}), transparent calc(100% - #{vw(20)}));
+		mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .5) vw(70), #000 vw(190), #000 calc(100% - #{vw(320)}), transparent calc(100% - #{vw(20)}));
+	}
+	@include mobile {
+		background: linear-gradient(180deg, $seam-faq 0, $fq-bg 100px, $fq-bg calc(100% - 120px), #fff 100%);
+		&__bg {
+			-webkit-mask-image: linear-gradient(180deg, transparent 0, #000 120px, #000 calc(100% - 160px), transparent calc(100% - 10px));
+			mask-image: linear-gradient(180deg, transparent 0, #000 120px, #000 calc(100% - 160px), transparent calc(100% - 10px));
 		}
 	}
 }

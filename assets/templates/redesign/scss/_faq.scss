@@ -1,0 +1,418 @@
+// ================= БЛОК «ВОПРОСЫ И ОТВЕТЫ» (главная, после «Отзывов») =================
+// Макета не было — сделан в стилистике сайта. Сетка 1920: слева (143…783) заголовок, текст и кнопки,
+// справа (860…1777) — аккордеон из стеклянных карточек. Фон — только графика (img/faq-bg.svg), без фото.
+// Раскрытие ответа — CSS (grid-template-rows 0fr → 1fr), переключение — redesign.js.
+$fq-bg: #f8f1ec;
+$fq-ink: #2f1f18;
+$fq-copper: #a87856;
+
+.lb-faq {
+	position: relative;
+	padding: vw(150) 0 vw(170);
+	overflow: hidden;
+	font-family: $f-text;
+	color: $fq-ink;
+	background: $fq-bg;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	:where(*, *::before, *::after) {
+		box-sizing: border-box;
+	}
+	:where(p, h2, ul, li) {
+		margin: 0;
+		padding: 0;
+	}
+	:where(ul, li) {
+		list-style: none;
+	}
+	:where(a) {
+		text-decoration: none;
+	}
+	:where(button:not(.lb-btn)) {
+		font: inherit;
+		color: inherit;
+		background: none;
+		border: 0;
+		padding: 0;
+		margin: 0;
+		cursor: pointer;
+		text-align: left;
+	}
+	:where(svg) {
+		display: block;
+	}
+
+	&__bg {
+		position: absolute;
+		inset: 0;
+		background: url("/assets/templates/redesign/img/faq-bg.svg") 50% 0 / 100% auto no-repeat;
+		pointer-events: none;
+	}
+
+	&__inner {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		width: vw(1634);
+		margin: 0 auto;
+	}
+
+	// ----- левая колонка -----
+	// прилипание (sticky) не используется: у старого .wrapper overflow: hidden — sticky там не работает
+	&__intro {
+		flex: none;
+		width: vw(640);
+		padding-top: vw(26);
+	}
+	// h2 перебивается старым CSS (.wrapper.main-ro h2) — поднимаем специфичность
+	& &__intro h2#{&}__title {
+		margin: 0;
+		@include lb-title;
+		font-size: vw(72);
+		line-height: vw(80);
+		color: $fq-ink;
+		text-align: left;
+		em {
+			@include lb-accent;
+			display: inline-block;
+			font-size: 1.12em;
+			line-height: 1;
+			padding-right: .06em;
+		}
+	}
+	// RU: курсив «часто задаваемые» шире — чуть меньше кегль, чтобы строка не переносилась
+	html[lang="ru"] & &__intro h2#{&}__title {
+		@include desktop {
+			font-size: vw(66);
+			line-height: vw(74);
+		}
+	}
+	&__line {
+		display: block;
+		overflow: hidden;
+		font-weight: 500; // старый CSS задаёт span{font-weight:400}
+		padding: 0 .2em .16em .1em;
+		margin: 0 -.2em -.16em -.1em;
+	}
+	&__lin {
+		display: block;
+		font-weight: 500;
+	}
+	&__flourish {
+		width: vw(440);
+		height: vw(50);
+		margin: vw(4) 0 0 vw(-8);
+	}
+	&__text {
+		max-width: vw(540);
+		margin-top: vw(40);
+		font-size: vw(21);
+		font-weight: 400;
+		line-height: 1.62;
+		color: #545453;
+	}
+	&__ctas {
+		display: flex;
+		flex-wrap: wrap;
+		gap: vw(18);
+		margin-top: vw(46);
+	}
+	&__btn--tel {
+		gap: vw(14);
+		letter-spacing: .08em;
+	}
+	&__tel {
+		width: vw(20);
+		height: vw(20);
+		flex: none;
+	}
+
+	// ----- аккордеон -----
+	&__list {
+		flex: none;
+		width: vw(917);
+		display: flex;
+		flex-direction: column;
+		gap: vw(18);
+	}
+	&__item {
+		position: relative;
+		border: 1px solid rgba(203, 170, 148, .45);
+		border-radius: vw(30);
+		background: linear-gradient(180deg, rgba(255, 253, 251, .62), rgba(255, 250, 246, .42));
+		box-shadow: 0 vw(14) vw(34) rgba(140, 100, 76, .06), inset 0 1px 0 rgba(255, 255, 255, .85);
+		-webkit-backdrop-filter: blur(8px);
+		backdrop-filter: blur(8px);
+		transition: background-color .5s, box-shadow .6s $ease-expo, border-color .5s;
+		// медная линия слева у открытого вопроса
+		&::before {
+			content: "";
+			position: absolute;
+			left: -1px;
+			top: vw(30);
+			bottom: vw(30);
+			width: 2px;
+			border-radius: 2px;
+			background: linear-gradient(180deg, rgba($fq-copper, 0), $fq-copper 30%, $fq-copper 70%, rgba($fq-copper, 0));
+			transform-origin: 50% 0;
+			scale: 1 0;
+			transition: scale .7s $ease-expo;
+		}
+		&.is-open {
+			background-color: rgba(255, 255, 255, .45);
+			border-color: rgba(190, 150, 124, .55);
+			box-shadow: 0 vw(24) vw(56) rgba(140, 100, 76, .12), inset 0 1px 0 rgba(255, 255, 255, .9);
+			&::before {
+				scale: 1 1;
+			}
+		}
+	}
+	&__q {
+		display: flex;
+		align-items: center;
+		gap: vw(26);
+		width: 100%;
+		min-height: vw(112);
+		padding: vw(26) vw(32) vw(26) vw(40);
+		border-radius: vw(30);
+		&:focus-visible {
+			outline: 2px solid $c-btn-dark;
+			outline-offset: -4px;
+		}
+	}
+	&__num {
+		flex: none;
+		width: vw(46);
+		font-family: $f-serif;
+		font-style: italic;
+		font-stretch: 80%;
+		font-size: vw(30);
+		font-weight: 420;
+		line-height: 1;
+		color: rgba($fq-copper, .55);
+		transition: color .4s;
+		.is-open & {
+			color: $fq-copper;
+		}
+	}
+	&__qt {
+		flex: 1;
+		@include lb-title;
+		font-size: vw(27);
+		line-height: 1.3;
+		letter-spacing: -.005em;
+		color: $fq-ink;
+		font-weight: 500; // старый CSS: span{font-weight:400}
+	}
+	// плюс → крестик
+	&__ic {
+		position: relative;
+		flex: none;
+		width: vw(54);
+		height: vw(54);
+		border: 1px solid rgba(168, 120, 86, .45);
+		border-radius: 50%;
+		color: $fq-copper;
+		transition: background-color .45s, border-color .45s, color .45s, rotate .6s $ease-expo;
+		&::before,
+		&::after {
+			content: "";
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			width: vw(18);
+			height: 1.5px;
+			margin: -.75px 0 0 vw(-9);
+			border-radius: 1px;
+			background: currentColor;
+		}
+		&::after {
+			rotate: 90deg;
+		}
+		.is-open & {
+			rotate: 135deg;
+			color: #fff;
+			border-color: transparent;
+			background: $g-btn;
+		}
+	}
+	&__q:hover &__ic {
+		border-color: $fq-copper;
+	}
+
+	&__a {
+		display: grid;
+		grid-template-rows: 0fr;
+		transition: grid-template-rows .6s $ease-expo, visibility 0s .6s;
+		visibility: hidden;
+		.is-open & {
+			grid-template-rows: 1fr;
+			visibility: visible;
+			transition: grid-template-rows .7s $ease-expo, visibility 0s 0s;
+		}
+	}
+	&__ain {
+		min-height: 0;
+		overflow: hidden;
+	}
+	&__body {
+		padding: 0 vw(110) vw(36) vw(112);
+		font-size: vw(18);
+		font-weight: 400;
+		line-height: 1.7;
+		color: #545453;
+		opacity: 0;
+		translate: 0 vw(-10);
+		transition: opacity .35s, translate .5s $ease-expo;
+		.is-open & {
+			opacity: 1;
+			translate: 0 0;
+			transition: opacity .6s .12s, translate .8s .12s $ease-expo;
+		}
+		// разметка ответа из TV (p, span, списки) — старые стили не нужны
+		:where(p) {
+			margin: 0 0 .75em;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+		:where(span) {
+			font-weight: inherit;
+		}
+		:where(ul, ol) {
+			margin: 0 0 .75em;
+			padding: 0;
+		}
+		:where(li) {
+			position: relative;
+			padding-left: 1.3em;
+			margin-bottom: .35em;
+			&::before {
+				content: "";
+				position: absolute;
+				left: .25em;
+				top: .72em;
+				width: .38em;
+				height: .38em;
+				border-radius: 50%;
+				background: rgba($fq-copper, .7);
+			}
+		}
+		:where(b, strong) {
+			font-family: inherit;
+			font-weight: 600;
+			color: #3d302a;
+		}
+		:where(a) {
+			color: $fq-copper;
+			text-decoration: underline;
+			text-underline-offset: .2em;
+		}
+	}
+}
+
+// ----- мобильный -----
+@include mobile {
+	.lb-faq {
+		padding: 72px 0 80px;
+		&__bg {
+			background-size: auto 100%;
+			background-position: 70% 0;
+			opacity: .8;
+		}
+		&__inner {
+			flex-direction: column;
+			align-items: stretch;
+			width: auto;
+			padding: 0 16px;
+		}
+		&__intro {
+			width: auto;
+			padding: 0 6px;
+		}
+		& &__intro h2#{&}__title {
+			font-size: min(mvw(38), 56px);
+			line-height: 1.12;
+		}
+		&__flourish {
+			width: 230px;
+			height: 26px;
+			margin: 4px 0 0 -4px;
+		}
+		&__text {
+			max-width: none;
+			margin-top: 20px;
+			font-size: 15.5px;
+			line-height: 1.6;
+		}
+		&__ctas {
+			gap: 12px;
+			margin-top: 24px;
+			.lb-btn {
+				flex: 1 1 100%;
+			}
+		}
+		&__btn--tel {
+			gap: 10px;
+		}
+		&__tel {
+			width: 17px;
+			height: 17px;
+		}
+		&__list {
+			width: auto;
+			gap: 12px;
+			margin-top: 40px;
+		}
+		&__item {
+			border-radius: 22px;
+			&::before {
+				top: 22px;
+				bottom: 22px;
+			}
+		}
+		&__q {
+			gap: 14px;
+			min-height: 76px;
+			padding: 18px 16px 18px 18px;
+			border-radius: 22px;
+		}
+		&__num {
+			width: 26px;
+			font-size: 20px;
+		}
+		&__qt {
+			font-size: 17px;
+			line-height: 1.32;
+		}
+		&__ic {
+			width: 38px;
+			height: 38px;
+			&::before,
+			&::after {
+				width: 14px;
+				margin-left: -7px;
+			}
+		}
+		&__body {
+			padding: 0 18px 22px 58px;
+			font-size: 15px;
+			line-height: 1.65;
+		}
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.lb-faq {
+		&__a,
+		&__body,
+		&__ic,
+		&__item,
+		&__item::before {
+			transition: none !important;
+		}
+	}
+}

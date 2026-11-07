@@ -178,7 +178,8 @@
 .lb-price,
 .lb-book,
 .lb-reviews,
-.lb-rmodal {
+.lb-rmodal,
+.lb-faq {
 	:where(b, strong) {
 		font-family: inherit;
 	}

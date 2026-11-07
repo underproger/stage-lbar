@@ -54,7 +54,7 @@
 	};
 	// Слушаем на фазе перехвата: старый custom.js («Jacor») вешает на все a[href^="#"] свой jQuery-скролл без учёта
 	// фиксированной шапки — для ссылок новых блоков он не должен срабатывать (stopPropagation до цели).
-	var anchorSel = '.lb-header a[href^="#"], .lb-hero a[href^="#"], .lb-about a[href^="#"], .lb-implica a[href^="#"], .lb-price a[href^="#"]';
+	var anchorSel = '.lb-header a[href^="#"], .lb-hero a[href^="#"], .lb-about a[href^="#"], .lb-implica a[href^="#"], .lb-price a[href^="#"], .lb-faq a[href^="#"]';
 	document.addEventListener('click', function (e) {
 		var a = e.target.closest && e.target.closest(anchorSel);
 		if (!a) return;
@@ -445,6 +445,42 @@
 		});
 	});
 
+	/* ---------- Блок FAQ: аккордеон ----------
+	   Открыт один вопрос: клик по другому закрывает предыдущий. Высота — CSS (grid-template-rows), здесь — классы и aria.
+	   После раскрытия пересчитываем ScrollTrigger (меняется высота страницы); на мобильном открытый вопрос докручиваем в экран. */
+	var faq = document.querySelector('.lb-faq');
+	if (faq) {
+		var fItems = [].slice.call(faq.querySelectorAll('.lb-faq__item'));
+		var fRefresh;
+		var setItem = function (li, open) {
+			li.classList.toggle('is-open', open);
+			var b = li.querySelector('.lb-faq__q');
+			if (b) b.setAttribute('aria-expanded', open ? 'true' : 'false');
+		};
+		// на мобильном список изначально свёрнут (первый ответ длинный — так вопросы видны сразу)
+		if (window.matchMedia('(max-width: 1024px)').matches) {
+			fItems.forEach(function (li) { setItem(li, false); });
+		}
+		fItems.forEach(function (li) {
+			var b = li.querySelector('.lb-faq__q');
+			if (!b) return;
+			b.addEventListener('click', function () {
+				var open = !li.classList.contains('is-open');
+				fItems.forEach(function (o) { if (o !== li) setItem(o, false); });
+				setItem(li, open);
+				clearTimeout(fRefresh);
+				fRefresh = setTimeout(function () {
+					if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+					if (open) {
+						var hdr = document.querySelector('.lb-header');
+						var top = li.getBoundingClientRect().top - (hdr ? hdr.offsetHeight : 0) - 16;
+						if (top < 0) window.scrollBy({ top: top, behavior: reduce ? 'auto' : 'smooth' });
+					}
+				}, 720);
+			});
+		});
+	}
+
 	/* ---------- Появление блоков при прокрутке ---------- */
 	var initReveal = function () {
 		if (reduce || typeof window.gsap === 'undefined' || !window.ScrollTrigger) return;
@@ -585,6 +621,22 @@
 				var o = { v: 0 };
 				rtl.to(o, { v: val, duration: 1.4, ease: 'power3.out', onUpdate: function () { num.textContent = o.v.toFixed(1); }, onComplete: function () { num.textContent = val.toFixed(1); } }, 0.6);
 			}
+		}
+		if (faq) {
+			var fq = function (s) { return faq.querySelectorAll(s); };
+			var ftl = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: faq, start: 'top 70%' } });
+			var fadd = function (sel, from, at, to) {
+				var els = fq(sel);
+				if (!els.length) return;
+				if (to) ftl.fromTo(els, from, to, at); else ftl.from(els, from, at);
+			};
+			fadd('.lb-faq__bg', { opacity: 0, scale: 1.04, duration: 2, ease: 'power3.out', clearProps: 'transform' }, 0);
+			fadd('.lb-faq__lin', { yPercent: 105, duration: 1.5, stagger: 0.12 }, 0.15);
+			fadd('.lb-faq__flourish', { clipPath: 'inset(0% 100% 0% 0%)' }, 0.7, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.6, ease: 'power2.inOut', clearProps: 'clipPath' });
+			fadd('.lb-faq__text', { y: 30, opacity: 0, duration: 1.3, clearProps: 'transform' }, 0.55);
+			fadd('.lb-faq__ctas > *', { y: 26, opacity: 0, duration: 1.2, stagger: 0.09, clearProps: 'transform' }, 0.75);
+			fadd('.lb-faq__item', { y: 60, opacity: 0, duration: 1.4, stagger: 0.1, clearProps: 'transform' }, 0.3);
+			fadd('.lb-faq__num', { yPercent: 60, opacity: 0, duration: 1.1, stagger: 0.1, clearProps: 'transform' }, 0.6);
 		}
 	};
 	initReveal();

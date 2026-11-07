@@ -120,6 +120,24 @@ $rv-gold: #d29a3e;
 		-webkit-backdrop-filter: blur(6px);
 		backdrop-filter: blur(6px);
 	}
+	&__google {
+		display: flex;
+		align-items: center;
+		gap: vw(12);
+		font-size: vw(20);
+		font-weight: 500;
+		line-height: 1;
+		color: #3b302b;
+		white-space: nowrap;
+		> span {
+			font-weight: inherit; // старый CSS: span{font-weight:400}
+		}
+	}
+	&__g {
+		flex: none;
+		width: vw(31);
+		height: vw(31);
+	}
 	&__score {
 		display: flex;
 		align-items: baseline;
@@ -745,6 +763,16 @@ html.is-lb-modal {
 		}
 		&__sep {
 			display: none;
+		}
+		&__google {
+			flex-basis: 100%;
+			justify-content: center;
+			gap: 9px;
+			font-size: 15px;
+		}
+		&__g {
+			width: 22px;
+			height: 22px;
 		}
 		&__based {
 			flex-basis: 100%;

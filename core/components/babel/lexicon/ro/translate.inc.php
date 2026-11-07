@@ -115,6 +115,7 @@ $_lang['lbar.rd.book.title'] = "Solicitați o|programare|pentru o ședință|*ch
 $_lang['lbar.rd.reviews.title'] = "*Recenzii tatuaje cosmetice de la clientele* noastre";
 $_lang['lbar.rd.reviews.sub'] = "Experiențe reale, rezultate care inspiră încredere.";
 $_lang['lbar.rd.reviews.based'] = "bazat pe";
+$_lang['lbar.rd.reviews.google'] = "Google Reviews";
 // формы слова для числа отзывов: 1 | 2–19 | 20+ (румынское «de» с 20)
 $_lang['lbar.rd.reviews.forms'] = "recenzie|recenzii|de recenzii";
 $_lang['lbar.rd.reviews.all'] = "Vezi toate recenziile";
@@ -124,3 +125,8 @@ $_lang['lbar.rd.reviews.next'] = "Recenzia următoare";
 $_lang['lbar.rd.reviews.dot'] = "Recenzia";
 $_lang['lbar.rd.reviews.close'] = "Închide";
 $_lang['lbar.rd.reviews.of'] = "din";
+// --- редизайн: блок «Вопросы и ответы» (FAQ) ---
+// разбивка заголовка (TV title-bl-faq) на строки «|» и курсив *…*; текст без разметки и тегов должен совпадать с TV
+$_lang['lbar.rd.faq.title'] = "Răspunsuri la|*întrebări frecvente*";
+$_lang['lbar.rd.faq.text'] = "Am adunat răspunsurile la întrebările pe care ni le adresați cel mai des. Nu ați găsit răspunsul? Vă consultăm gratuit.";
+$_lang['lbar.rd.faq.cta'] = "Consultație gratuită";

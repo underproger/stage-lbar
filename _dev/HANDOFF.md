@@ -1,6 +1,6 @@
 # stage-lbar — handoff (редизайн lbar.ro на MODX)
 
-Состояние на 07.11.2026, сделаны блоки 1–10 главной, последний коммит — см. `git log`. Папка `_dev/` — служебная (закрыта `.htaccess`),
+Состояние на 07.11.2026, сделаны блоки 1–11 главной, последний коммит — см. `git log`. Папка `_dev/` — служебная (закрыта `.htaccess`),
 **в конце проекта удалить** вместе с остальным мусором.
 
 ## 1. Проект
@@ -53,13 +53,13 @@
 | Тексты интерфейса RO/RU | лексикон `core/components/babel/lexicon/{ro,ru}/translate.inc.php`, ключи `lbar.rd.*` (так уже было на сайте: `lbar.*`) |
 
 **Сборка CSS:** `cd assets/templates/redesign && /home/claude/build/node_modules/.bin/sass scss/redesign.scss css/redesign.css --style=compressed --no-source-map --silence-deprecation=import`
-**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.10.0**) — поднимать при изменениях.
+**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.11.0**) — поднимать при изменениях.
 **Новые/изменённые чанки в БД:** `sudo -u www-data php _dev/tools/modx_apply3.php` (пересохраняет все `*.tpl` из папки как статичные чанки и меняет
-вызов в шаблоне «Главная») — для нового блока сделать по аналогии (последний — `modx_apply10.php`, замена `[[$старый-чанк]]` → `[[$lb-новый]]`).
+вызов в шаблоне «Главная») — для нового блока сделать по аналогии (последний — `modx_apply11.php`, замена `[[$старый-чанк]]` → `[[$lb-новый]]`).
 **После правки `.tpl` чистить `core/cache/resource/`** (главная кэшируется — без этого на скриншоте старая разметка; CSS/JS это не касается).
 **После наката SQL-патчей чистить весь `core/cache/`** (кроме `logs`): иначе MODX берёт шаблон/чанки из кэша и новые блоки не появляются.
 
-Шаблон **«Главная» (id 1)** сейчас: `[[$head]] [[$lb-head]]` … `[[$lb-header]] [[$lb-banner-main]] [[$lb-about]] [[$lb-services]] [[*title-main-bl3:notempty=`[[$lb-implica]]`]] [[$lb-consult]] [[$lb-master]] [[-$bl5-about-me]] [[$lb-portfolio]] [[*title-bl7:notempty=`[[$lb-price]]`]] [[$lb-book]] <!--[[$bl-gallery-studio]]--> [[$lb-reviews]] [[*migx_questions:notempty=`[[$bl-faq]]`]] …` `[[$script]] [[$lb-scripts]]`.
+Шаблон **«Главная» (id 1)** сейчас: `[[$head]] [[$lb-head]]` … `[[$lb-header]] [[$lb-banner-main]] [[$lb-about]] [[$lb-services]] [[*title-main-bl3:notempty=`[[$lb-implica]]`]] [[$lb-consult]] [[$lb-master]] [[-$bl5-about-me]] [[$lb-portfolio]] [[*title-bl7:notempty=`[[$lb-price]]`]] [[$lb-book]] <!--[[$bl-gallery-studio]]--> [[$lb-reviews]] [[*migx_questions:notempty=`[[$lb-faq]]`]] [[$bl-seo]] …` `[[$script]] [[$lb-scripts]]`.
 Старые чанки используются ещё на других шаблонах (напр. `bl1-about-us`, `bl3-text` — в шаблоне «Категория», 27 страниц) — **их не правим**, делаем новые `lb-*` и подключаем только в «Главную».
 
 **Шрифтовой стандарт (решение пользователя: «как в блоке lb-about») — для всех блоков, новых тоже:**
@@ -184,6 +184,21 @@
    низ «Записи» больше не уходит в белый. Низ «Отзывов» уходит в белый фон старого FAQ.
    Локально отправка отзыва создаёт сообщение, но ответ 500 — PHPMailer на PHP 8 (как у форм заявок); на хостинге PHP 7 — как раньше.
    **Сброс `:where(button)` внутри блока не должен задевать `.lb-btn`** (`:where(button:not(.lb-btn))`) — иначе слетают фон/рамка кнопок; у `<button class="lb-btn">` — `border: 0`.
+   **Значок Google** в плашке рейтинга (`lb-reviews__google`, по просьбе пользователя, как в макете): логотип — `google-icon` из набора `@iconify-json/logos`
+   (inline SVG в `lb.reviewsWrap`), подпись — лексикон `lbar.rd.reviews.google` (RO «Google Reviews», RU «Отзывы Google»). Цифры рядом — по-прежнему данные
+   EasyComm (отзывы на сайте); ссылки на профиль Google в базе нет — если дадут, значок можно сделать ссылкой.
+
+14. **Блок «Вопросы и ответы» `lb-faq`** (`scss/_faq.scss`) — вместо `bl-faq` (условие `[[*migx_questions:notempty=…]]` сохранено). Макета не было —
+   сделан в стилистике сайта: слева H2 (TV `title-bl-faq`, разбивка/курсив — лексикон `lbar.rd.faq.title`, сравнение без тегов: в RU-TV `<br/>`;
+   RU — 3 строки и кегль 66px), завиток, короткий текст и кнопки (новые ключи `lbar.rd.faq.text` / `lbar.rd.faq.cta`: «Consultație gratuită» → `#lb-consult`,
+   контурная — телефон из настройки `phone-1`); справа — аккордеон из стеклянных карточек (номер, вопрос, плюс → крестик; у открытого — медная линия слева).
+   Данные — прежний MIGX TV `migx_questions` (до 18 шт., Fenom `fromJSON`), микроразметка schema.org FAQPage / Question / Answer — как в старом блоке
+   (проверено: 4 вопроса, name + acceptedAnswer/text). Ответы — HTML из TV как есть. Раскрытие — CSS `grid-template-rows: 0fr → 1fr`, JS (`redesign.js`):
+   открыт один вопрос, aria-expanded/aria-controls, после раскрытия — `ScrollTrigger.refresh()` и докрутка в экран; первый открыт на десктопе,
+   на мобильном список изначально свёрнут. **`position: sticky` не работает** — у старого `.wrapper` `overflow: hidden` (поэтому колонка не прилипает).
+   Фон — графика `img/faq-bg.svg` (свет, большой диск за списком, медные дуги, кольца-«орбиты» слева внизу). Стык 10 → 11: лента `img/seam-faq.svg`
+   (у «Отзывов» — `::before`); низ FAQ уходит в белый фон старого SEO-блока. Если FAQ на странице нет (пустой TV) — низ «Отзывов» остаётся
+   в цвете стыка с лентой (на главных RO/RU FAQ есть).
 
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
@@ -193,21 +208,24 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `stage-lbar-08-portfolio.sql` (чанки `lb.galleryItem` id 278, `lb-portfolio` id 279 + все чанки Redesign + шаблон «Главная»),
 `stage-lbar-09-price.sql` (чанк `lb-price` id 280 + все чанки Redesign + шаблон «Главная»),
 `stage-lbar-10-book.sql` (чанки `lb-book` id 281, `lb.formBook` id 282 + все чанки Redesign + шаблон «Главная»),
-`stage-lbar-11-reviews.sql` (чанки `lb.ecForm` 283, `lb.reviewCard` 284, `lb-reviews` 285, `lb.reviewsWrap` 286 + все чанки Redesign + шаблон «Главная»). Патчи проверены импортом.
-После 11 БД **не менялась**.
+`stage-lbar-11-reviews.sql` (чанки `lb.ecForm` 283, `lb.reviewCard` 284, `lb-reviews` 285, `lb.reviewsWrap` 286 + все чанки Redesign + шаблон «Главная»),
+`stage-lbar-12-faq.sql` (чанк `lb-faq` 287 + все чанки Redesign + шаблон «Главная»; значок Google в `lb.reviewsWrap`). Патчи проверены импортом.
+После 12 БД **не менялась**.
 
-## 5. Следующий шаг — блок 11 (по порядку шаблона: `[[*migx_questions:notempty=`[[$bl-faq]]`]]` — FAQ, H2 «Răspunsuri la întrebări frecvente»)
+## 5. Следующий шаг — блок 12 (по порядку шаблона: `[[$bl-seo]]` — SEO-текст, H2 — TV `title-bl-seo`, текст — TV `text-bl-seo`, картинка — TV `img-bl-seo`)
 
-Макета пока нет — ждём от пользователя. Дальше по шаблону: `bl-seo`, `bl-blog`, `bl-contact`, `footer`.
-FAQ — MIGX TV `migx_questions` (условие в шаблоне сохранить), старый чанк не править (новый `lb-*`). Стык 10 → 11: сейчас низ `lb-reviews` уходит в белый —
-при новом FAQ заменить на ленту по `_seam.scss`. Возможна микроразметка FAQPage в JSON-LD (seo_compare считает блоки jsonld — не терять существующие).
+Макета пока нет — ждём от пользователя. Дальше по шаблону: `bl-blog`, `bl-contact`, `footer`.
+SEO-блок — самый чувствительный для SEO: H2/H3 и текст TV не менять, вывод `text-bl-seo` как есть; условие `img-bl-seo:notempty` сохранить.
+Стык 11 → 12: сейчас низ `lb-faq` уходит в белый — при новом блоке заменить на ленту по `_seam.scss`.
 Открытый вопрос по блоку 6: в макете жирным выделены целые фразы («Experiență de peste 4000+», «Master Trainer») — в TV их разметки нет,
 сейчас автоматически жирные только числа; можно добавить `<b>` прямо в TV (с согласия пользователя).
 Открытые вопросы по блоку 8: подписи колонок без диакритики («Procedura», «Durata» — в макете «Procedură», «Durată»); названия процедур
 в БД короче/иначе, чем в макете («Retuș» вместо «Remover», без пояснений в скобках) — правка лексикона/TV только с согласия.
 Блок 9: сделан без макета по образцу блока 5 — если придёт макет, подогнать; можно добавить надзаголовок (ключ лексикона) по согласию.
-Блок 10: H2 по макету («Recenzii ale clientelor noastre») — только с согласия (сейчас прежний TV); Google-рейтинг — только если дадут реальные данные/ссылку
-на профиль Google (тогда «Lasă un review» можно вести на форму отзыва Google); монограмма «LB» — по согласию (как и печати/водяные знаки в блоках 2–3).
+Блок 10: H2 по макету («Recenzii ale clientelor noastre») — только с согласия (сейчас прежний TV); значок Google добавлен по просьбе, но цифры —
+отзывы сайта (EasyComm); ссылка на профиль Google — если дадут (тогда значок и «Lăsați o recenzie» можно вести в Google); монограмма «LB» — по согласию
+(как и печати/водяные знаки в блоках 2–3).
+Блок 11 (FAQ): сделан без макета — тексты слева (`lbar.rd.faq.text`, `.cta`) новые, править по желанию пользователя.
 
 ## 6. Конвейер «1 в 1» (как делались блоки)
 
@@ -239,7 +257,7 @@ FAQ — MIGX TV `migx_questions` (условие в шаблоне сохран�
 
 1. Подключить репо (`add_repo underproger/stage-lbar`, push), клонировать в `/home/claude/stage-lbar`.
 2. Пользователь прикладывает дамп и патчи **по порядку**: дамп хостинга `mysql_impua_testlbar_….tar.gz` (исходная база, без патчей),
-   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`
+   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`
    (вместо дампа+urls+01 может прийти `lbar-full-stage-2026-11-06.sql.gz` — это то же самое).
 3. `cd /home/claude/stage-lbar && bash _dev/setup_local.sh <дамп> <urls> <01> <02> <03> <04> <05> <06> <07> <08> <09> <10> <11>` (файлы — по порядку; .tar.gz/.gz/.sql, строка sandbox вырезается) — поднимет MariaDB, Apache+SSL, PHP-полифилл,
    конфиги из `_dev/local-config`, hosts (`stage-lbar.touchit.vinnica.ua` → 127.0.0.1), симлинк `/home/impua/lbar.ro/www` → репо,
