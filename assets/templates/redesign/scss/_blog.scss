@@ -1,0 +1,256 @@
+// ================= БЛОК «СТАТЬИ» (главная, после SEO-текста) =================
+// Макета не было — в стилистике сайта: заголовок по центру с завитком, три стеклянные карточки (фото, номер, название, текст),
+// кнопка «все статьи». Фон — только графика (img/blog-bg.svg). На мобильном — лента карточек с прокруткой вбок (scroll-snap).
+$bl-bg: #f8f1ec;
+$bl-ink: #2f1f18;
+
+.lb-blog {
+	position: relative;
+	padding: vw(140) 0 vw(150);
+	overflow: hidden;
+	font-family: $f-text;
+	color: $bl-ink;
+	background: $bl-bg;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	:where(*, *::before, *::after) {
+		box-sizing: border-box;
+	}
+	:where(p) {
+		margin: 0;
+	}
+	:where(img, svg) {
+		display: block;
+	}
+
+	&__bg {
+		position: absolute;
+		inset: 0;
+		background: url("/assets/templates/redesign/img/blog-bg.svg") 50% 0 / 100% auto no-repeat;
+		pointer-events: none;
+	}
+	&__inner {
+		position: relative;
+		z-index: 1;
+		width: vw(1634);
+		margin: 0 auto;
+	}
+
+	// ----- заголовок -----
+	&__head {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
+	&__title {
+		@include lb-title;
+		font-size: vw(72);
+		line-height: vw(84);
+		color: $bl-ink;
+		em {
+			@include lb-accent;
+			display: inline-block;
+			font-size: 1.12em;
+			line-height: 1;
+			padding-right: .06em;
+		}
+	}
+	&__line {
+		display: block;
+		overflow: hidden;
+		font-weight: 500; // старый CSS: span{font-weight:400}
+		padding: 0 .2em .16em .1em;
+		margin: 0 -.2em -.16em -.1em;
+	}
+	&__lin {
+		display: block;
+		font-weight: 500;
+	}
+	&__flourish {
+		width: vw(330);
+		height: vw(38);
+		margin-top: vw(2);
+	}
+
+	// ----- карточки -----
+	&__list {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: vw(36);
+		margin-top: vw(64);
+	}
+	&__card {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		padding: vw(16) vw(16) vw(34);
+		border: 1px solid rgba(203, 170, 148, .45);
+		border-radius: vw(34);
+		background: linear-gradient(180deg, rgba(255, 253, 251, .7), rgba(255, 250, 246, .45));
+		box-shadow: 0 vw(18) vw(44) rgba(140, 100, 76, .08), inset 0 1px 0 rgba(255, 255, 255, .85);
+		-webkit-backdrop-filter: blur(8px);
+		backdrop-filter: blur(8px);
+		transition: translate .7s $ease-expo, box-shadow .7s $ease-expo;
+		@include hover {
+			translate: 0 vw(-8);
+			box-shadow: 0 vw(28) vw(60) rgba(140, 100, 76, .14), inset 0 1px 0 rgba(255, 255, 255, .9);
+			.lb-blog__img img {
+				scale: 1.06;
+			}
+		}
+	}
+	// фото; если файла нет — видна графическая подложка
+	&__img {
+		position: relative;
+		aspect-ratio: 520 / 350;
+		overflow: hidden;
+		border-radius: vw(24);
+		background: url("/assets/templates/redesign/img/blog-ph.svg") 50% 50% / cover no-repeat, #efe2d8;
+		img {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: scale 1.2s $ease-expo;
+			// псевдоэлемент у <img> рисуется только если картинка не загрузилась — закрываем значок «битой» картинки подложкой
+			&::after {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background: url("/assets/templates/redesign/img/blog-ph.svg") 50% 50% / cover no-repeat, #efe2d8;
+			}
+		}
+		&::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			border-radius: inherit;
+			box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .35);
+			background: linear-gradient(180deg, rgba(47, 31, 24, 0) 60%, rgba(47, 31, 24, .12));
+			pointer-events: none;
+		}
+	}
+	&__info {
+		position: relative;
+		padding: vw(30) vw(18) 0 vw(18);
+	}
+	&__num {
+		position: absolute;
+		top: vw(-30);
+		right: vw(22);
+		display: grid;
+		place-items: center;
+		width: vw(60);
+		height: vw(60);
+		border-radius: 50%;
+		font-family: $f-serif;
+		font-style: italic;
+		font-stretch: 80%;
+		font-size: vw(26);
+		font-weight: 420;
+		line-height: 1;
+		color: #fff;
+		background: $g-btn;
+		box-shadow: 0 vw(10) vw(24) rgba(123, 76, 50, .3), 0 0 0 vw(5) rgba(255, 250, 246, .85);
+	}
+	&__name {
+		@include lb-title;
+		max-width: vw(400);
+		font-size: vw(27);
+		line-height: 1.3;
+		letter-spacing: -.005em;
+		color: $bl-ink;
+	}
+	&__text {
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 4;
+		overflow: hidden;
+		margin-top: vw(16);
+		font-size: vw(16.5);
+		font-weight: 400;
+		line-height: 1.66;
+		color: #5a4d46;
+	}
+
+	&__cta {
+		display: flex;
+		justify-content: center;
+		margin-top: vw(56);
+	}
+}
+
+@include mobile {
+	.lb-blog {
+		padding: 64px 0 72px;
+		&__bg {
+			background-size: 220% auto;
+			background-position: 60% 0;
+		}
+		&__inner {
+			width: auto;
+		}
+		&__title {
+			font-size: min(mvw(40), 58px);
+			line-height: 1.15;
+		}
+		&__flourish {
+			width: 200px;
+			height: 24px;
+		}
+		&__list {
+			display: flex;
+			gap: 14px;
+			margin-top: 28px;
+			padding: 6px 20px 26px;
+			overflow-x: auto;
+			scroll-snap-type: x mandatory;
+			scroll-padding: 0 20px;
+			scrollbar-width: none;
+			&::-webkit-scrollbar {
+				display: none;
+			}
+		}
+		&__card {
+			flex: 0 0 82%;
+			padding: 10px 10px 22px;
+			border-radius: 24px;
+			scroll-snap-align: start;
+			-webkit-backdrop-filter: none;
+			backdrop-filter: none;
+			background: rgba(255, 252, 249, .8);
+		}
+		&__img {
+			border-radius: 18px;
+		}
+		&__info {
+			padding: 22px 10px 0;
+		}
+		&__num {
+			top: -22px;
+			right: 14px;
+			width: 44px;
+			height: 44px;
+			font-size: 19px;
+			box-shadow: 0 8px 18px rgba(123, 76, 50, .28), 0 0 0 4px rgba(255, 250, 246, .85);
+		}
+		&__name {
+			max-width: 82%;
+			font-size: 19px;
+		}
+		&__text {
+			margin-top: 10px;
+			font-size: 14.5px;
+		}
+		&__cta {
+			margin-top: 14px;
+			padding: 0 20px;
+			.lb-btn {
+				width: 100%;
+			}
+		}
+	}
+}

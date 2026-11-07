@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1000" preserveAspectRatio="xMidYMid slice">
+  <!-- Фон блока «Контакты»: только графика. Свет слева за заголовком, тёплый диск справа за списком контактов, тонкие кольца. -->
+  <defs>
+    <radialGradient id="c-sun" cx="420" cy="160" r="640" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity=".75"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="c-disk" cx="1640" cy="460" r="560" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#eddccf" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#eddccf" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="c-ring" x1="1300" y1="0" x2="1920" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b8906f" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#b8906f" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#b8906f" stop-opacity=".1"/>
+    </linearGradient>
+  </defs>
+  <rect width="1920" height="1000" fill="url(#c-sun)"/>
+  <rect width="1920" height="1000" fill="url(#c-disk)"/>
+  <g fill="none" stroke="url(#c-ring)">
+    <circle cx="1900" cy="880" r="300" stroke-width="1.2"/>
+    <circle cx="1900" cy="880" r="350" stroke-width=".8" opacity=".6"/>
+  </g>
+</svg>

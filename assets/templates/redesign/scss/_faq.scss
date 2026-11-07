@@ -405,6 +405,14 @@ $fq-copper: #a87856;
 	}
 }
 
+// мгновенное сворачивание при загрузке (redesign.js)
+.lb-faq.is-instant {
+	&,
+	* {
+		transition: none !important;
+	}
+}
+
 @media (prefers-reduced-motion: reduce) {
 	.lb-faq {
 		&__a,

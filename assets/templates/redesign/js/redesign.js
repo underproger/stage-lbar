@@ -457,9 +457,14 @@
 			var b = li.querySelector('.lb-faq__q');
 			if (b) b.setAttribute('aria-expanded', open ? 'true' : 'false');
 		};
-		// на мобильном список изначально свёрнут (первый ответ длинный — так вопросы видны сразу)
+		// на мобильном список изначально свёрнут (первый ответ длинный — так вопросы видны сразу).
+		// Сворачиваем без анимации: иначе ScrollTrigger блоков ниже (SEO, «Статьи», «Контакты») посчитает позиции
+		// по ещё не свернувшемуся списку, и анимации появления сработают на ~высоту ответа позже (контент остаётся скрытым).
 		if (window.matchMedia('(max-width: 1024px)').matches) {
+			faq.classList.add('is-instant');
 			fItems.forEach(function (li) { setItem(li, false); });
+			void faq.offsetHeight;
+			faq.classList.remove('is-instant');
 		}
 		fItems.forEach(function (li) {
 			var b = li.querySelector('.lb-faq__q');
@@ -672,6 +677,33 @@
 			fadd('.lb-faq__item', { y: 60, opacity: 0, duration: 1.4, stagger: 0.1, clearProps: 'transform' }, 0.3);
 			fadd('.lb-faq__num', { yPercent: 60, opacity: 0, duration: 1.1, stagger: 0.1, clearProps: 'transform' }, 0.6);
 		}
+		// «Статьи» и «Контакты»: одинаковая схема — заголовок, затем карточки / строки по очереди
+		var revealBlock = function (sec, start, steps) {
+			if (!sec) return;
+			var tl = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: sec, start: start } });
+			steps.forEach(function (st) {
+				var els = sec.querySelectorAll(st[0]);
+				if (!els.length) return;
+				if (st[3]) tl.fromTo(els, st[1], st[3], st[2]); else tl.from(els, st[1], st[2]);
+			});
+		};
+		revealBlock(document.querySelector('.lb-blog'), 'top 70%', [
+			['.lb-blog__bg', { opacity: 0, duration: 1.8, ease: 'power2.out' }, 0],
+			['.lb-blog__lin', { yPercent: 105, duration: 1.5, stagger: 0.12 }, 0.1],
+			['.lb-blog__flourish', { clipPath: 'inset(0% 50% 0% 50%)' }, 0.55, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.5, ease: 'power2.inOut', clearProps: 'clipPath' }],
+			['.lb-blog__card', { y: 90, opacity: 0, duration: 1.5, stagger: 0.12, clearProps: 'transform' }, 0.35],
+			['.lb-blog__num', { scale: 0, rotation: -30, duration: 1, stagger: 0.12, ease: 'back.out(2)', clearProps: 'transform' }, 0.9],
+			['.lb-blog__cta > *', { y: 26, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.9]
+		]);
+		revealBlock(document.querySelector('.lb-contact'), 'top 70%', [
+			['.lb-contact__bg', { opacity: 0, duration: 1.8, ease: 'power2.out' }, 0],
+			['.lb-contact__title', { y: 50, opacity: 0, duration: 1.4, clearProps: 'transform' }, 0.1],
+			['.lb-contact__sub', { y: 30, opacity: 0, duration: 1.3, clearProps: 'transform' }, 0.25],
+			['.lb-contact__map', { y: 60, scale: 0.97, opacity: 0, duration: 1.6, clearProps: 'transform' }, 0.35],
+			['.lb-contact__side', { clipPath: 'inset(0% 0% 100% 0%)' }, 0.3, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.6, ease: 'power3.inOut', clearProps: 'clipPath' }],
+			['.lb-contact__row', { x: 40, opacity: 0, duration: 1.2, stagger: 0.07, clearProps: 'transform' }, 0.45],
+			['.lb-contact__badge', { scale: 0.6, opacity: 0, duration: 1, ease: 'back.out(2)', clearProps: 'transform' }, 1.1]
+		]);
 	};
 	initReveal();
 

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 350" preserveAspectRatio="xMidYMid slice">
+  <!-- Подложка под фото статьи (видна, если файла картинки нет): тёплый градиент, мягкий диск и медные дуги. -->
+  <defs>
+    <linearGradient id="p-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4e8df"/>
+      <stop offset="1" stop-color="#e5cfbf"/>
+    </linearGradient>
+    <radialGradient id="p-disk" cx="360" cy="120" r="220" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff8f2" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#fff8f2" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="520" height="350" fill="url(#p-bg)"/>
+  <circle cx="360" cy="120" r="220" fill="url(#p-disk)"/>
+  <g fill="none" stroke="#a87856" stroke-opacity=".35">
+    <path d="M-20 300C120 200 300 190 540 250" stroke-width="1.4"/>
+    <path d="M-20 330C140 235 320 225 540 285" stroke-width="1"/>
+  </g>
+</svg>

@@ -131,3 +131,22 @@ $_lang['lbar.rd.reviews.of'] = "из";
 $_lang['lbar.rd.faq.title'] = "Ответы на|*часто задаваемые*|вопросы";
 $_lang['lbar.rd.faq.text'] = "Собрали ответы на вопросы, которые нам задают чаще всего. Не нашли ответа? Проконсультируем бесплатно.";
 $_lang['lbar.rd.faq.cta'] = "Бесплатная консультация";
+// --- редизайн: блок «Статьи» (бывший bl-blog) ---
+// разбивка заголовка (TV title-blog-bl12) на строки «|» и курсив *…*; текст без разметки должен совпадать с TV
+$_lang['lbar.rd.blog.title'] = "Наши *статьи*";
+$_lang['lbar.rd.blog.all'] = "Все статьи";
+// --- редизайн: блок «Контакты» (бывший bl-contact) ---
+$_lang['lbar.rd.contacts.sub'] = "Нас легко найти: *Бухарест, Сектор 1*";
+$_lang['lbar.rd.contacts.city'] = "București, Sector 1";
+$_lang['lbar.rd.contacts.street'] = "Strada Polonă 92";
+$_lang['lbar.rd.contacts.metro1'] = "Ștefan cel Mare – 4 мин";
+$_lang['lbar.rd.contacts.metro2'] = "Piața Victoriei – 15 мин";
+$_lang['lbar.rd.contacts.tram'] = "Трамвайная остановка Ștefan cel Mare";
+$_lang['lbar.rd.contacts.walk'] = "пешком";
+$_lang['lbar.rd.contacts.schedule.title'] = "График работы:";
+$_lang['lbar.rd.contacts.schedule'] = "Понедельник – воскресенье: 9:00 – 20:00";
+$_lang['lbar.rd.contacts.appointment'] = "Только по записи";
+$_lang['lbar.rd.contacts.phone'] = "Телефон";
+$_lang['lbar.rd.contacts.email'] = "E-mail";
+$_lang['lbar.rd.contacts.address'] = "Адрес";
+$_lang['lbar.rd.contacts.map'] = "Карта: LBar Studio на Google Maps";

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1100" preserveAspectRatio="xMidYMid slice">
+  <!-- Фон блока «Статьи»: только графика. Свет по центру за заголовком, мягкие диски по краям, тонкие медные дуги. -->
+  <defs>
+    <radialGradient id="g-sun" cx="960" cy="200" r="700" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity=".75"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g-l" cx="80" cy="620" r="520" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ead8cb" stop-opacity=".6"/>
+      <stop offset="1" stop-color="#ead8cb" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g-r" cx="1860" cy="420" r="520" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ecdacd" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#ecdacd" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="g-arc" x1="0" y1="0" x2="1920" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b8906f" stop-opacity="0"/>
+      <stop offset=".2" stop-color="#b8906f" stop-opacity=".4"/>
+      <stop offset=".5" stop-color="#b8906f" stop-opacity=".08"/>
+      <stop offset=".8" stop-color="#b8906f" stop-opacity=".4"/>
+      <stop offset="1" stop-color="#b8906f" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1920" height="1100" fill="url(#g-sun)"/>
+  <rect width="1920" height="1100" fill="url(#g-l)"/>
+  <rect width="1920" height="1100" fill="url(#g-r)"/>
+  <path d="M-40 520C420 300 1500 300 1960 520" fill="none" stroke="url(#g-arc)" stroke-width="1.3"/>
+  <path d="M-40 580C420 360 1500 360 1960 580" fill="none" stroke="url(#g-arc)" stroke-width=".8" opacity=".6"/>
+</svg>

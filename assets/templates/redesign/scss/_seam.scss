@@ -9,7 +9,8 @@
 //        «Услуги» → «implică» (seam-implica.svg), «implică» → «Консультация» (seam-consult.svg),
 //        «Консультация» → «Мастер» (seam-master.svg), «Мастер» → «Галерея» (seam-portfolio.svg), «Галерея» → «Цены» (seam-price.svg),
 //        «Цены» → «Запись на процедуру» (seam-book.svg), «Запись» → «Отзывы» (seam-reviews.svg),
-//        «Отзывы» → «Вопросы и ответы» (seam-faq.svg), FAQ → «SEO-текст» (seam-seo.svg).
+//        «Отзывы» → «Вопросы и ответы» (seam-faq.svg), FAQ → «SEO-текст» (seam-seo.svg),
+//        «SEO-текст» → «Статьи» (seam-blog.svg), «Статьи» → «Контакты» (seam-contact.svg).
 $seam-h: 760;              // высота декора, px @1920
 $seam-hero: #f8f1ec;       // баннер → «О микропигментации»
 $seam-color: #f7eee8;      // «О микропигментации» → «Услуги»
@@ -244,6 +245,8 @@ $seam-book: #f4eae6;     // «Цены» → «Запись на процеду�
 $seam-reviews: #f8f0ea;   // «Запись» → «Отзывы»
 $seam-faq: #f7efea;      // «Отзывы» → «Вопросы и ответы»
 $seam-seo: #f8f2ee;      // «Вопросы и ответы» → «SEO-текст»
+$seam-blog: #f8f1ec;     // «SEO-текст» → «Статьи»
+$seam-contact: #f8f2ee;  // «Статьи» → «Контакты»
 .lb-price {
 	@include lb-seam(bottom, "seam-book.svg", before);
 }
@@ -315,13 +318,12 @@ $seam-seo: #f8f2ee;      // «Вопросы и ответы» → «SEO-тек�
 
 // ---------- «Вопросы и ответы» → «SEO-текст» (светлый → светлый) ----------
 // Лента (img/seam-seo.svg) идёт под списком FAQ и над шапкой SEO-блока. У FAQ ::after занят верхним стыком — нижний в ::before.
-// Низ SEO-блока уходит в белый фон следующего (старого) блока «Блог».
 .lb-faq {
 	@include lb-seam(bottom, "seam-seo.svg", before);
 }
 .lb-seo {
 	isolation: isolate;
-	background: linear-gradient(180deg, $seam-seo 0, $seo-bg vw(170), $seo-bg calc(100% - #{vw(240)}), #fff 100%);
+	background: linear-gradient(180deg, $seam-seo 0, $seo-bg vw(170), $seo-bg calc(100% - #{vw(240)}), $seam-blog 100%);
 	@include lb-seam(top, "seam-seo.svg");
 	&__bg {
 		z-index: -1;
@@ -329,10 +331,51 @@ $seam-seo: #f8f2ee;      // «Вопросы и ответы» → «SEO-тек�
 		mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .5) vw(70), #000 vw(190), #000 calc(100% - #{vw(300)}), transparent calc(100% - #{vw(20)}));
 	}
 	@include mobile {
-		background: linear-gradient(180deg, $seam-seo 0, $seo-bg 100px, $seo-bg calc(100% - 120px), #fff 100%);
+		background: linear-gradient(180deg, $seam-seo 0, $seo-bg 100px, $seo-bg calc(100% - 120px), $seam-blog 100%);
 		&__bg {
 			-webkit-mask-image: linear-gradient(180deg, transparent 0, #000 120px, #000 calc(100% - 160px), transparent calc(100% - 10px));
 			mask-image: linear-gradient(180deg, transparent 0, #000 120px, #000 calc(100% - 160px), transparent calc(100% - 10px));
+		}
+	}
+}
+
+// ---------- «SEO-текст» → «Статьи» → «Контакты» (светлые) ----------
+// У SEO-блока и «Статей» ::after занят верхним стыком — нижний в ::before. Низ «Контактов» — край тёмного (старого) подвала.
+.lb-seo {
+	@include lb-seam(bottom, "seam-blog.svg", before);
+}
+.lb-blog {
+	isolation: isolate;
+	background: linear-gradient(180deg, $seam-blog 0, $bl-bg vw(160), $bl-bg calc(100% - #{vw(200)}), $seam-contact 100%);
+	@include lb-seam(top, "seam-blog.svg");
+	@include lb-seam(bottom, "seam-contact.svg", before);
+	&__bg {
+		z-index: -1;
+		-webkit-mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .5) vw(70), #000 vw(190), #000 calc(100% - #{vw(240)}), transparent calc(100% - #{vw(30)}));
+		mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .5) vw(70), #000 vw(190), #000 calc(100% - #{vw(240)}), transparent calc(100% - #{vw(30)}));
+	}
+	@include mobile {
+		background: linear-gradient(180deg, $seam-blog 0, $bl-bg 90px, $bl-bg calc(100% - 90px), $seam-contact 100%);
+		&__bg {
+			-webkit-mask-image: linear-gradient(180deg, transparent 0, #000 110px, #000 calc(100% - 110px), transparent 100%);
+			mask-image: linear-gradient(180deg, transparent 0, #000 110px, #000 calc(100% - 110px), transparent 100%);
+		}
+	}
+}
+.lb-contact {
+	isolation: isolate;
+	background: linear-gradient(180deg, $seam-contact 0, $ct-bg vw(160));
+	@include lb-seam(top, "seam-contact.svg");
+	&__bg {
+		z-index: -1;
+		-webkit-mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .5) vw(70), #000 vw(190));
+		mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .5) vw(70), #000 vw(190));
+	}
+	@include mobile {
+		background: linear-gradient(180deg, $seam-contact 0, $ct-bg 90px);
+		&__bg {
+			-webkit-mask-image: linear-gradient(180deg, transparent 0, #000 110px);
+			mask-image: linear-gradient(180deg, transparent 0, #000 110px);
 		}
 	}
 }

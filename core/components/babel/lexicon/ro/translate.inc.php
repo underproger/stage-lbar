@@ -130,3 +130,22 @@ $_lang['lbar.rd.reviews.of'] = "din";
 $_lang['lbar.rd.faq.title'] = "Răspunsuri la|*întrebări frecvente*";
 $_lang['lbar.rd.faq.text'] = "Am adunat răspunsurile la întrebările pe care ni le adresați cel mai des. Nu ați găsit răspunsul? Vă consultăm gratuit.";
 $_lang['lbar.rd.faq.cta'] = "Consultație gratuită";
+// --- редизайн: блок «Статьи» (бывший bl-blog) ---
+// разбивка заголовка (TV title-blog-bl12) на строки «|» и курсив *…*; текст без разметки должен совпадать с TV
+$_lang['lbar.rd.blog.title'] = "Articolele *noastre*";
+$_lang['lbar.rd.blog.all'] = "Toate articolele";
+// --- редизайн: блок «Контакты» (бывший bl-contact) ---
+$_lang['lbar.rd.contacts.sub'] = "Ne găsești ușor în *București, Sector 1*";
+$_lang['lbar.rd.contacts.city'] = "București, Sector 1";
+$_lang['lbar.rd.contacts.street'] = "Strada Polonă 92";
+$_lang['lbar.rd.contacts.metro1'] = "Ștefan cel Mare – 4 min";
+$_lang['lbar.rd.contacts.metro2'] = "Piața Victoriei – 15 min";
+$_lang['lbar.rd.contacts.tram'] = "Stația de tramvai Ștefan cel Mare";
+$_lang['lbar.rd.contacts.walk'] = "pe jos";
+$_lang['lbar.rd.contacts.schedule.title'] = "Program:";
+$_lang['lbar.rd.contacts.schedule'] = "Luni – Duminică: 9:00 – 20:00";
+$_lang['lbar.rd.contacts.appointment'] = "By appointment only";
+$_lang['lbar.rd.contacts.phone'] = "Telefon";
+$_lang['lbar.rd.contacts.email'] = "E-mail";
+$_lang['lbar.rd.contacts.address'] = "Adresă";
+$_lang['lbar.rd.contacts.map'] = "Harta: LBar Studio pe Google Maps";

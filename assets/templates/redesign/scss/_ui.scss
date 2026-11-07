@@ -180,7 +180,9 @@
 .lb-reviews,
 .lb-rmodal,
 .lb-faq,
-.lb-seo {
+.lb-seo,
+.lb-blog,
+.lb-contact {
 	:where(b, strong) {
 		font-family: inherit;
 	}
