@@ -1,14 +1,11 @@
 {* Блок «Контакты» (редизайн, главная, перед подвалом) — вместо bl-contact.
    H2 — прежний лексикон lbar.contacts.title. Телефон и почта — настройки phone-1 / e-mail, карта — настройка google-map (iframe Google),
-   как раньше; в RO язык карточки Google переключается на румынский (в коде карты стоит ru). Адрес, метро, трамвай, график —
+   как раньше (в {disableSource}, как в старом чанке — карта не отдаётся Lighthouse); в RO язык карточки Google переключается на румынский (в коде карты стоит ru). Адрес, метро, трамвай, график —
    тексты старого чанка, вынесены в лексикон lbar.rd.contacts.* (RO — как в макете, RU — перевод; названия станций — как есть).
    Якорь #conract (старые ссылки) сохранён. Иконки мессенджеров и логотип из старого блока не выводятся — в макете их нет. *}
 {set $isRu = $_modx->config.cultureKey == 'ru'}
-{set $phone = $_modx->config['phone-1'] | trim}
-{set $mail = $_modx->config['e-mail'] | trim}
-{set $map = $_modx->config['google-map'] | trim}
-{if !$isRu}{set $map = $map | replace : '!1sru!2sro' : '!1sro!2sro'}{/if}
-{set $map = $map | replace : '<iframe ' : ('<iframe title="' ~ ('lbar.rd.contacts.map' | lexicon) ~ '" ')}
+{* настройки ClientConfig выводим MODX-тегами (++ключ): в $_modx->config Fenom их может не оказаться (снимок конфига до ClientConfig) — в кэш попало бы пусто *}
+{set $mapTitle = 'lbar.rd.contacts.map' | lexicon}
 {set $sub = 'lbar.rd.contacts.sub' | lexicon}
 <div id="conract"></div>
 <section class="lb-contact" id="lb-contact">
@@ -17,28 +14,22 @@
         <div class="lb-contact__main">
             <h2 class="lb-contact__title">{$_modx->lexicon('lbar.contacts.title')}</h2>
             <p class="lb-contact__sub">{foreach ($sub | split : '*') as $k => $part}{if $k % 2}<span class="lb-contact__accent">{$part}</span>{else}{$part}{/if}{/foreach}</p>
-            {if $map}
             <div class="lb-contact__map">
                 <div class="lb-contact__mapph" aria-hidden="true"></div>
-                <div class="lb-contact__frame">{$map}</div>
+                <div class="lb-contact__frame">{disableSource}{if $isRu}[[++google-map:replace=`<iframe ==<iframe title="{$mapTitle}" `]]{else}[[++google-map:replace=`!1sru!2sro==!1sro!2sro`:replace=`<iframe ==<iframe title="{$mapTitle}" `]]{/if}{/disableSource}</div>
             </div>
-            {/if}
         </div>
 
         <div class="lb-contact__side">
             <ul class="lb-contact__list">
-                {if $phone}
                 <li class="lb-contact__row">
                     <span class="lb-contact__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16.4v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 1.1 3.7 2 2 0 0 1 3.1 1.5h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L7.1 9.3a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2.1z"/></svg></span>
-                    <a class="lb-contact__big" href="tel:{$phone | replace : ' ' : ''}" aria-label="{'lbar.rd.contacts.phone' | lexicon}: {$phone}">{$phone}</a>
+                    <a class="lb-contact__big" href="tel:[[++phone-1:replace=` ==`]]" aria-label="{'lbar.rd.contacts.phone' | lexicon}: [[++phone-1]]">[[++phone-1]]</a>
                 </li>
-                {/if}
-                {if $mail}
                 <li class="lb-contact__row">
                     <span class="lb-contact__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6 9 7 9-7"/></svg></span>
-                    <a class="lb-contact__mail" href="mailto:{$mail}" aria-label="{'lbar.rd.contacts.email' | lexicon}: {$mail}">{$mail}</a>
+                    <a class="lb-contact__mail" href="mailto:[[++e-mail]]" aria-label="{'lbar.rd.contacts.email' | lexicon}: [[++e-mail]]">[[++e-mail]]</a>
                 </li>
-                {/if}
                 <li class="lb-contact__row lb-contact__row--top">
                     <span class="lb-contact__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.5s-7-6.1-7-11.7a7 7 0 0 1 14 0c0 5.6-7 11.7-7 11.7z"/><circle cx="12" cy="9.8" r="2.6"/></svg></span>
                     <address class="lb-contact__addr"><b>{'lbar.rd.contacts.city' | lexicon}</b><span>{'lbar.rd.contacts.street' | lexicon}</span></address>

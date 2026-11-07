@@ -704,6 +704,15 @@
 			['.lb-contact__row', { x: 40, opacity: 0, duration: 1.2, stagger: 0.07, clearProps: 'transform' }, 0.45],
 			['.lb-contact__badge', { scale: 0.6, opacity: 0, duration: 1, ease: 'back.out(2)', clearProps: 'transform' }, 1.1]
 		]);
+		// подвал: у блока с окном «Заказать звонок» (.lb-footer__call) — только прозрачность (transform ломает position: fixed окна)
+		revealBlock(document.querySelector('.lb-footer'), 'top 80%', [
+			['.lb-footer__logo', { y: 40, opacity: 0, duration: 1.4, clearProps: 'transform' }, 0],
+			['.lb-footer__copy', { y: 24, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.15],
+			['.lb-footer__soc', { y: 20, scale: 0.8, opacity: 0, duration: 1, stagger: 0.06, ease: 'back.out(2)', clearProps: 'transform' }, 0.3],
+			['.lb-footer__col p', { y: 18, opacity: 0, duration: 1, stagger: 0.04, clearProps: 'transform' }, 0.2],
+			['.lb-footer__contacts > :not(.lb-footer__call)', { y: 22, opacity: 0, duration: 1.1, stagger: 0.07, clearProps: 'transform' }, 0.3],
+			['.lb-footer__call', { opacity: 0, duration: 1.2 }, 0.8]
+		]);
 	};
 	initReveal();
 

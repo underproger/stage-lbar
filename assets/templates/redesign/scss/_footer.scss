@@ -1,0 +1,495 @@
+// ================= ПОДВАЛ (редизайн, только шаблон «Главная») =================
+// Макета не было — в стилистике сайта: тёмный «эспрессо»-фон с медной графикой (img/footer-bg.svg), в верх подвала из «Контактов»
+// опускается тёмная волна с медной линией (img/seam-footer.svg, _seam.scss). Колонки: логотип + копирайт + соцсети | меню (2 колонки) |
+// контакты, график и «Заказать звонок». Внизу — строка разработчика. Окно «Заказать звонок» — старая разметка, вид переопределён здесь.
+$ft-bg: #231814;
+$ft-bg-2: #1b120f;
+$ft-text: #e6d6cc;
+$ft-muted: rgba(230, 214, 204, .62);
+$ft-line: rgba(214, 170, 140, .2);
+$ft-copper: #d4a184;
+
+.lb-footer {
+	position: relative;
+	padding: vw(110) 0 0;
+	overflow: hidden;
+	font-family: $f-text;
+	color: $ft-text;
+	background: linear-gradient(180deg, $ft-bg 0, $ft-bg-2 100%);
+	// без isolation / z-index: окно «Заказать звонок» (position: fixed внутри подвала) должно быть выше шапки и плавающих кнопок
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	:where(*, *::before, *::after) {
+		box-sizing: border-box;
+	}
+	:where(p) {
+		margin: 0;
+	}
+	:where(a) {
+		text-decoration: none;
+		color: inherit;
+	}
+	:where(svg) {
+		display: block;
+	}
+	span {
+		font-weight: inherit; // старый CSS: span{font-weight:400}
+	}
+
+	&__bg {
+		position: absolute;
+		inset: 0;
+		background: url("/assets/templates/redesign/img/footer-bg.svg") 50% 0 / 100% auto no-repeat;
+		pointer-events: none;
+		// сверху — ровный тон волны стыка (img/seam-footer.svg), графика проявляется ниже
+		-webkit-mask-image: linear-gradient(180deg, transparent 0, #000 vw(220));
+		mask-image: linear-gradient(180deg, transparent 0, #000 vw(220));
+	}
+	&__inner {
+		position: relative; // поверх __bg (порядок в DOM), без z-index — не создаёт контекст наложения
+		width: vw(1634);
+		margin: 0 auto;
+	}
+	&__top {
+		display: grid;
+		grid-template-columns: vw(400) 1fr vw(440);
+		column-gap: vw(80);
+		align-items: start;
+	}
+
+	// ----- логотип, копирайт, соцсети -----
+	&__logo {
+		display: inline-block;
+		font-family: $f-serif;
+		font-size: vw(112);
+		font-weight: 160;
+		font-stretch: 62.5%;
+		line-height: .9;
+		letter-spacing: -.022em;
+		color: transparent;
+		background: linear-gradient(180deg, #f3d6c4 0%, #d9a68a 55%, #c08466 100%);
+		-webkit-background-clip: text;
+		background-clip: text;
+	}
+	&__copy {
+		margin-top: vw(26);
+		font-size: vw(16);
+		line-height: 1.75;
+		color: $ft-muted;
+	}
+	&__social {
+		display: flex;
+		flex-wrap: wrap;
+		gap: vw(12);
+		margin-top: vw(36);
+	}
+	&__soc {
+		display: grid;
+		place-items: center;
+		width: vw(50);
+		height: vw(50);
+		border: 1px solid rgba(214, 170, 140, .35);
+		border-radius: 50%;
+		color: #e8cdb9;
+		transition: background-color .4s, border-color .4s, color .4s, translate .5s $ease-expo;
+		svg {
+			width: vw(20);
+			height: vw(20);
+		}
+		@include hover {
+			translate: 0 -3px;
+			color: #fff;
+			border-color: transparent;
+			background-color: #9b6a4b;
+		}
+		&:focus-visible {
+			outline: 2px solid $ft-copper;
+			outline-offset: 3px;
+		}
+	}
+
+	// ----- меню (поля foot-link-l / foot-link-r — как есть: <p><a>…</a></p>) -----
+	&__nav {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		column-gap: vw(40);
+		padding-top: vw(14);
+	}
+	&__col {
+		p {
+			margin: 0 0 vw(15);
+			font-size: vw(18);
+			line-height: 1.45;
+			color: $ft-text;
+		}
+		a {
+			position: relative;
+			color: $ft-text;
+			background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+			transition: color .3s, background-size .5s $ease-expo;
+			@include hover {
+				color: $ft-copper;
+				background-size: 100% 1px;
+			}
+		}
+	}
+
+	// ----- контакты -----
+	&__contacts {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		padding-top: vw(14);
+	}
+	&__label {
+		@include lb-eyebrow;
+		font-size: vw(14);
+		color: $ft-copper;
+	}
+	&__phone {
+		margin-top: vw(18);
+		font-size: vw(32);
+		font-weight: 600;
+		letter-spacing: .005em;
+		color: #fff4ec;
+		transition: color .3s;
+		@include hover {
+			color: $ft-copper;
+		}
+	}
+	&__mail {
+		margin-top: vw(8);
+		font-size: vw(19);
+		color: $ft-text;
+		transition: color .3s;
+		@include hover {
+			color: $ft-copper;
+		}
+	}
+	&__addr {
+		margin-top: vw(10);
+		font-size: vw(17);
+		line-height: 1.5;
+		color: $ft-muted;
+	}
+	&__time {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: vw(4) vw(10);
+		margin-top: vw(22);
+		padding-top: vw(20);
+		border-top: 1px solid $ft-line;
+		width: 100%;
+		font-size: vw(17);
+		color: $ft-text;
+	}
+	&__time-t {
+		font-weight: 600 !important;
+		color: #fff4ec;
+	}
+	&__badge {
+		margin-top: vw(6);
+		padding: vw(7) vw(20);
+		border: 1px solid rgba(214, 170, 140, .45);
+		border-radius: 999px;
+		font-size: vw(15);
+		font-weight: 500 !important;
+		color: $ft-copper;
+	}
+	&__call {
+		margin-top: vw(28);
+	}
+
+	// ----- нижняя строка -----
+	&__bottom {
+		margin-top: vw(90);
+		padding: vw(28) 0 vw(34);
+		border-top: 1px solid $ft-line;
+	}
+	&__dev {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: vw(10);
+		font-size: vw(14);
+		color: rgba(230, 214, 204, .5);
+		img {
+			display: block;
+			height: vw(20);
+			width: auto;
+			opacity: .75;
+			transition: opacity .3s;
+		}
+		a:hover img {
+			opacity: 1;
+		}
+		// если картинки нет (локальная копия) — не показываем значок «битой» картинки
+		img::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background: $ft-bg-2;
+		}
+		a {
+			position: relative;
+			display: block;
+		}
+	}
+
+	// ----- окно «Заказать звонок» (старая разметка и форма tpl.Form.Modal, старый JS) -----
+	.form-modal-overlay {
+		z-index: 10001; // выше шапки и плавающих кнопок
+		background-color: rgba(24, 16, 13, .72) !important; // custom.js ставит инлайн rgba(0,0,0,.9)
+		-webkit-backdrop-filter: blur(6px);
+		backdrop-filter: blur(6px);
+	}
+	.form-modal-body {
+		max-width: 560px;
+		padding: 64px 56px 48px;
+		border: 1px solid rgba(203, 170, 148, .45);
+		border-radius: 32px;
+		background: linear-gradient(180deg, #fdf9f6, #f7eee8);
+		box-shadow: 0 30px 80px rgba(20, 12, 9, .45);
+		font-family: $f-text;
+		color: #2f1f18;
+	}
+	.form-modal-title-content {
+		margin-bottom: 30px;
+	}
+	// старый CSS (.wrapper.main-ro … — Montserrat 600) перебивает — поднимаем специфичность
+	.form-modal-body .form-modal-title-content .form-modal-title-big {
+		@include lb-title;
+		font-size: 34px;
+		line-height: 1.2;
+		color: #2f1f18;
+		text-transform: none;
+	}
+	.ic-close {
+		top: 22px;
+		right: 22px;
+		width: 42px;
+		height: 42px;
+		border: 1px solid rgba(168, 120, 86, .4);
+		border-radius: 50%;
+		background: none !important;
+		cursor: pointer;
+		transition: background-color .3s, rotate .5s $ease-expo;
+		&::before,
+		&::after {
+			content: "";
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			width: 16px;
+			height: 1.5px;
+			margin: -.75px 0 0 -8px;
+			background: #8a5a3c;
+			rotate: 45deg;
+		}
+		&::after {
+			rotate: -45deg;
+		}
+		&:hover {
+			rotate: 90deg;
+			background-color: rgba(168, 120, 86, .1) !important;
+		}
+	}
+	.form-modal-content {
+		.controls {
+			margin-bottom: 16px;
+		}
+		input[type="text"],
+		input[type="tel"] {
+			height: 58px;
+			padding: 0 24px;
+			border: 1px solid rgba(168, 120, 86, .35);
+			border-radius: 999px;
+			background: #fff;
+			font-family: $f-text;
+			font-size: 16px;
+			color: #2f1f18;
+			&:focus {
+				border-color: #a87856;
+				outline: 0;
+			}
+			&.error {
+				border-color: #c0392b;
+			}
+			&::placeholder {
+				font-family: $f-text;
+				color: #8a7a72;
+			}
+		}
+		.iti {
+			width: 100%;
+		}
+		.btn-send {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			max-width: none;
+			height: 58px;
+			margin: 26px 0 0;
+			border: 0;
+			border-radius: 999px;
+			background: $g-btn;
+			font-family: $f-text;
+			font-size: 15px;
+			font-weight: 600;
+			letter-spacing: .2em;
+			text-transform: uppercase;
+			color: #fff;
+			cursor: pointer;
+			box-shadow: 0 12px 28px rgba(123, 76, 50, .3);
+			transition: translate .5s $ease-expo, box-shadow .5s $ease-expo;
+			&:hover {
+				translate: 0 -2px;
+				box-shadow: 0 16px 34px rgba(123, 76, 50, .38);
+			}
+		}
+	}
+}
+
+// кнопка «наверх» (старый main.js: .cd-top / .cd-is-visible) — в стиле сайта; только на главной (redesign.css)
+.cd-top {
+	width: 52px !important;
+	height: 52px !important;
+	right: 42px !important;
+	bottom: 28px !important;
+	border-radius: 50%;
+	background: $g-btn !important;
+	box-shadow: 0 10px 26px rgba(123, 76, 50, .35) !important;
+	&::before {
+		content: "";
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: 12px;
+		height: 12px;
+		margin: -3px 0 0 -6px;
+		border-left: 2px solid #fff;
+		border-top: 2px solid #fff;
+		rotate: 45deg;
+	}
+	&:hover {
+		opacity: 1;
+		background: linear-gradient(100deg, #b98a66 0%, #a06c4a 45%, #8a5a3c 100%) !important;
+	}
+}
+
+@include mobile {
+	.lb-footer {
+		padding: 64px 0 0;
+		&__bg {
+			background-size: 260% auto;
+			background-position: 30% 0;
+		}
+		&__inner {
+			width: auto;
+			padding: 0 24px;
+		}
+		&__top {
+			display: flex;
+			flex-direction: column;
+			gap: 36px;
+		}
+		&__logo {
+			font-size: 72px;
+		}
+		&__copy {
+			margin-top: 16px;
+			font-size: 14px;
+		}
+		&__social {
+			gap: 10px;
+			margin-top: 22px;
+		}
+		&__soc {
+			width: 44px;
+			height: 44px;
+			svg {
+				width: 18px;
+				height: 18px;
+			}
+		}
+		&__nav {
+			column-gap: 20px;
+			padding: 24px 0 0;
+			border-top: 1px solid $ft-line;
+			width: 100%;
+		}
+		&__col p {
+			margin-bottom: 12px;
+			font-size: 15px;
+		}
+		&__contacts {
+			padding: 24px 0 0;
+			border-top: 1px solid $ft-line;
+			width: 100%;
+		}
+		&__label {
+			font-size: 12px;
+		}
+		&__phone {
+			margin-top: 12px;
+			font-size: 24px;
+		}
+		&__mail {
+			font-size: 16px;
+		}
+		&__addr {
+			font-size: 14.5px;
+		}
+		&__time {
+			margin-top: 16px;
+			padding-top: 16px;
+			font-size: 14.5px;
+			gap: 4px 8px;
+		}
+		&__badge {
+			padding: 6px 16px;
+			font-size: 13px;
+		}
+		&__call {
+			width: 100%;
+			margin-top: 20px;
+			.lb-btn {
+				width: 100%;
+			}
+		}
+		&__bottom {
+			margin-top: 40px;
+			padding: 22px 0 90px; // место под плавающие кнопки WhatsApp / «наверх»
+		}
+		&__dev {
+			flex-wrap: wrap;
+			gap: 8px;
+			font-size: 12.5px;
+			text-align: center;
+			img {
+				height: 18px;
+			}
+		}
+		.form-modal-body {
+			padding: 56px 22px 32px;
+			border-radius: 24px;
+		}
+		.form-modal-body .form-modal-title-content .form-modal-title-big {
+			font-size: 26px;
+		}
+		.ic-close {
+			top: 14px;
+			right: 14px;
+		}
+	}
+	// по центру под кнопкой WhatsApp (её центр — 68px от правого края)
+	.cd-top {
+		width: 46px !important;
+		height: 46px !important;
+		right: 45px !important;
+		bottom: 22px !important;
+	}
+}

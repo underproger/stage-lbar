@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 160" preserveAspectRatio="none">
+  <!-- Стык «Контакты» → подвал (светлый → тёмный): тёмная волна цвета верха подвала с медной линией по краю (как «Консультация» → «Мастер»). -->
+  <defs>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#c79a80" stop-opacity=".15"/>
+      <stop offset=".3" stop-color="#d2a68c" stop-opacity=".85"/>
+      <stop offset=".75" stop-color="#c79a80" stop-opacity=".7"/>
+      <stop offset="1" stop-color="#c79a80" stop-opacity=".2"/>
+    </linearGradient>
+    <linearGradient id="shade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2f2521" stop-opacity="0"/>
+      <stop offset="1" stop-color="#2f2521" stop-opacity=".16"/>
+    </linearGradient>
+    <filter id="blur" x="-5%" y="-60%" width="110%" height="220%"><feGaussianBlur stdDeviation="9"/></filter>
+  </defs>
+  <path filter="url(#blur)" fill="url(#shade)" d="M0 84C320 136 720 132 1040 84S1640 14 1920 46V160H0Z"/>
+  <path fill="#231814" d="M0 100C320 152 720 148 1040 100S1640 30 1920 62V160H0Z"/>
+  <path fill="none" stroke="#e7c2aa" stroke-opacity=".3" stroke-width="6" filter="url(#blur)" d="M0 100C320 152 720 148 1040 100S1640 30 1920 62"/>
+  <path fill="none" stroke="url(#line)" stroke-width="1.6" d="M0 100C320 152 720 148 1040 100S1640 30 1920 62"/>
+</svg>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 900" preserveAspectRatio="xMidYMid slice">
+  <!-- Фон подвала: только графика. Тёплое свечение слева за логотипом, тонкие медные дуги и кольца справа. -->
+  <defs>
+    <radialGradient id="f-glow" cx="300" cy="180" r="620" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5a3b2c" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#5a3b2c" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="f-glow2" cx="1700" cy="700" r="560" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4a3024" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#4a3024" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="f-arc" x1="900" y1="0" x2="1920" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d4a184" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#d4a184" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#d4a184" stop-opacity=".08"/>
+    </linearGradient>
+  </defs>
+  <rect width="1920" height="900" fill="url(#f-glow)"/>
+  <rect width="1920" height="900" fill="url(#f-glow2)"/>
+  <g fill="none" stroke="url(#f-arc)">
+    <circle cx="1900" cy="160" r="420" stroke-width="1.2"/>
+    <circle cx="1900" cy="160" r="480" stroke-width=".8" opacity=".6"/>
+    <circle cx="1900" cy="160" r="560" stroke-width=".6" opacity=".35"/>
+  </g>
+</svg>

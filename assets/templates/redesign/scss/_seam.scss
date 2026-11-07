@@ -10,7 +10,7 @@
 //        «Консультация» → «Мастер» (seam-master.svg), «Мастер» → «Галерея» (seam-portfolio.svg), «Галерея» → «Цены» (seam-price.svg),
 //        «Цены» → «Запись на процедуру» (seam-book.svg), «Запись» → «Отзывы» (seam-reviews.svg),
 //        «Отзывы» → «Вопросы и ответы» (seam-faq.svg), FAQ → «SEO-текст» (seam-seo.svg),
-//        «SEO-текст» → «Статьи» (seam-blog.svg), «Статьи» → «Контакты» (seam-contact.svg).
+//        «SEO-текст» → «Статьи» (seam-blog.svg), «Статьи» → «Контакты» (seam-contact.svg), «Контакты» → подвал (seam-footer.svg).
 $seam-h: 760;              // высота декора, px @1920
 $seam-hero: #f8f1ec;       // баннер → «О микропигментации»
 $seam-color: #f7eee8;      // «О микропигментации» → «Услуги»
@@ -340,7 +340,7 @@ $seam-contact: #f8f2ee;  // «Статьи» → «Контакты»
 }
 
 // ---------- «SEO-текст» → «Статьи» → «Контакты» (светлые) ----------
-// У SEO-блока и «Статей» ::after занят верхним стыком — нижний в ::before. Низ «Контактов» — край тёмного (старого) подвала.
+// У SEO-блока и «Статей» ::after занят верхним стыком — нижний в ::before.
 .lb-seo {
 	@include lb-seam(bottom, "seam-blog.svg", before);
 }
@@ -376,6 +376,29 @@ $seam-contact: #f8f2ee;  // «Статьи» → «Контакты»
 		&__bg {
 			-webkit-mask-image: linear-gradient(180deg, transparent 0, #000 110px);
 			mask-image: linear-gradient(180deg, transparent 0, #000 110px);
+		}
+	}
+}
+
+// ---------- «Контакты» → подвал (светлый → тёмный) ----------
+// Тёмная волна цвета верха подвала с медной линией (img/seam-footer.svg) — в ::before «Контактов» (::after занят верхним стыком).
+.lb-contact {
+	padding-bottom: vw(220);
+	&::before {
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: -1px;
+		width: 100%;
+		height: vw(160);
+		z-index: 0;
+		pointer-events: none;
+		background: url("/assets/templates/redesign/img/seam-footer.svg") center bottom / 100% 100% no-repeat;
+	}
+	@include mobile {
+		padding-bottom: 96px;
+		&::before {
+			height: mvw(70);
 		}
 	}
 }

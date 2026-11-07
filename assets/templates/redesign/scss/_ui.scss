@@ -182,7 +182,8 @@
 .lb-faq,
 .lb-seo,
 .lb-blog,
-.lb-contact {
+.lb-contact,
+.lb-footer {
 	:where(b, strong) {
 		font-family: inherit;
 	}

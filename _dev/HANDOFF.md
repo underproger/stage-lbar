@@ -1,6 +1,6 @@
 # stage-lbar — handoff (редизайн lbar.ro на MODX)
 
-Состояние на 07.11.2026, сделаны блоки 1–14 главной (весь контент до подвала), последний коммит — см. `git log`. Папка `_dev/` — служебная (закрыта `.htaccess`),
+Состояние на 07.11.2026, сделана вся главная: блоки 1–14 и подвал, последний коммит — см. `git log`. Папка `_dev/` — служебная (закрыта `.htaccess`),
 **в конце проекта удалить** вместе с остальным мусором.
 
 ## 1. Проект
@@ -53,13 +53,13 @@
 | Тексты интерфейса RO/RU | лексикон `core/components/babel/lexicon/{ro,ru}/translate.inc.php`, ключи `lbar.rd.*` (так уже было на сайте: `lbar.*`) |
 
 **Сборка CSS:** `cd assets/templates/redesign && /home/claude/build/node_modules/.bin/sass scss/redesign.scss css/redesign.css --style=compressed --no-source-map --silence-deprecation=import`
-**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.13.0**) — поднимать при изменениях.
+**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.14.0**) — поднимать при изменениях.
 **Новые/изменённые чанки в БД:** `sudo -u www-data php _dev/tools/modx_apply3.php` (пересохраняет все `*.tpl` из папки как статичные чанки и меняет
-вызов в шаблоне «Главная») — для нового блока сделать по аналогии (последний — `modx_apply13.php`, замена `[[$старый-чанк]]` → `[[$lb-новый]]`).
+вызов в шаблоне «Главная») — для нового блока сделать по аналогии (последний — `modx_apply14.php`, замена `[[$старый-чанк]]` → `[[$lb-новый]]`).
 **После правки `.tpl` чистить `core/cache/resource/`** (главная кэшируется — без этого на скриншоте старая разметка; CSS/JS это не касается).
 **После наката SQL-патчей чистить весь `core/cache/`** (кроме `logs`): иначе MODX берёт шаблон/чанки из кэша и новые блоки не появляются.
 
-Шаблон **«Главная» (id 1)** сейчас: `[[$head]] [[$lb-head]]` … `[[$lb-header]] [[$lb-banner-main]] [[$lb-about]] [[$lb-services]] [[*title-main-bl3:notempty=`[[$lb-implica]]`]] [[$lb-consult]] [[$lb-master]] [[-$bl5-about-me]] [[$lb-portfolio]] [[*title-bl7:notempty=`[[$lb-price]]`]] [[$lb-book]] <!--[[$bl-gallery-studio]]--> [[$lb-reviews]] [[*migx_questions:notempty=`[[$lb-faq]]`]] [[$lb-seo]] [[$lb-blog]] [[$lb-contact]] [[$footer]]` `[[$script]] [[$lb-scripts]]`.
+Шаблон **«Главная» (id 1)** сейчас: `[[$head]] [[$lb-head]]` … `[[$lb-header]] [[$lb-banner-main]] [[$lb-about]] [[$lb-services]] [[*title-main-bl3:notempty=`[[$lb-implica]]`]] [[$lb-consult]] [[$lb-master]] [[-$bl5-about-me]] [[$lb-portfolio]] [[*title-bl7:notempty=`[[$lb-price]]`]] [[$lb-book]] <!--[[$bl-gallery-studio]]--> [[$lb-reviews]] [[*migx_questions:notempty=`[[$lb-faq]]`]] [[$lb-seo]] [[$lb-blog]] [[$lb-contact]] [[$lb-footer]]` `[[$script]] [[$lb-scripts]]`.
 Старые чанки используются ещё на других шаблонах (напр. `bl1-about-us`, `bl3-text` — в шаблоне «Категория», 27 страниц) — **их не правим**, делаем новые `lb-*` и подключаем только в «Главную».
 
 **Шрифтовой стандарт (решение пользователя: «как в блоке lb-about») — для всех блоков, новых тоже:**
@@ -238,6 +238,19 @@
    **Мобильный FAQ сворачивается без анимации** (`.lb-faq.is-instant`): иначе ScrollTrigger блоков ниже считал позиции по развёрнутому списку
    и анимации «Статей»/«Контактов» не срабатывали (контент оставался скрытым).
 
+18. **Подвал `lb-footer`** (`scss/_footer.scss`) — вместо `footer` **только в шаблоне «Главная»** (старый `footer` остаётся на 10 других шаблонах).
+   Макета не было: тёмный «эспрессо»-фон с медной графикой (`img/footer-bg.svg`), в верх подвала из «Контактов» опускается волна с медной линией
+   (`img/seam-footer.svg`, `::before` «Контактов», как «Консультация» → «Мастер»). Колонки: логотип LBAR (как в шапке) + копирайт (`lbar.footer.copyright`)
+   + соцсети | меню — поля `foot-link-l` / `foot-link-r` главной как есть (в RU там текст без ссылок — так и было) | контакты, график, «Solicită un apel».
+   Соцсети — настройки youtube / facebook / insta + telegram / viber / whatsapp (раньше были в старом блоке контактов); иконки — Simple Icons (CC0).
+   Окно «Заказать звонок» — прежняя разметка и AjaxForm (`tpl.Form.Modal`, id формы `form-bl4`, открывает старый custom.js: `.btn-mobal` → соседний
+   `.form-modal-overlay`), вид переопределён. **У подвала нет isolation/z-index** — иначе окно (fixed) оказывается под шапкой и кнопкой WhatsApp.
+   Кнопка «наверх» `.cd-top` (старый main.js) и кнопка WhatsApp — прежняя разметка; `.cd-top` перекрашена (на главной), по центру под WhatsApp.
+   Строка разработчика — прежняя (`lbar.footer.sitedev` + логотип Impulse Design; картинки нет локально — у «битой» `img::after` закрывает значок).
+   **Настройки ClientConfig (phone-1, e-mail, google-map, соцсети) выводить MODX-тегами `[[++…]]`, не `$_modx->config[...]` в Fenom:** в одном из
+   рендеров RU `$_modx->config` оказался без настроек ClientConfig (снимок конфига до плагина) — и пустые телефон/почта попали в кэш страницы.
+   Исправлено в `lb-faq`, `lb-contact`, `lb-footer`. Карта в «Контактах» — `{disableSource}` (как в старом чанке: Lighthouse карту не получает).
+
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
 `stage-lbar-05-consult.sql` (чанки `lb-consult` id 275, `lb.formConsult` id 276 + все чанки Redesign + шаблон «Главная»),
@@ -249,13 +262,14 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `stage-lbar-11-reviews.sql` (чанки `lb.ecForm` 283, `lb.reviewCard` 284, `lb-reviews` 285, `lb.reviewsWrap` 286 + все чанки Redesign + шаблон «Главная»),
 `stage-lbar-12-faq.sql` (чанк `lb-faq` 287 + все чанки Redesign + шаблон «Главная»; значок Google в `lb.reviewsWrap`),
 `stage-lbar-13-seo.sql` (чанк `lb-seo` 288 + все чанки Redesign + шаблон «Главная»),
-`stage-lbar-14-blog-contact.sql` (чанки `lb-blog` 289, `lb-contact` 290 + все чанки Redesign + шаблон «Главная»). Патчи проверены импортом.
-После 14 БД **не менялась**.
+`stage-lbar-14-blog-contact.sql` (чанки `lb-blog` 289, `lb-contact` 290 + все чанки Redesign + шаблон «Главная»),
+`stage-lbar-15-footer.sql` (чанк `lb-footer` 291 + все чанки Redesign + шаблон «Главная»). Патчи проверены импортом.
+После 15 БД **не менялась**.
 
-## 5. Следующий шаг — подвал (`[[$footer]]`, общий для всех шаблонов!) и уборка
+## 5. Следующий шаг — главная готова; дальше — по решению пользователя
 
-Контент главной перенесён полностью. Подвал `footer` используется на всех шаблонах — новый `lb-footer` подключать только в «Главную» (или
-согласовать замену везде). Стык 14 → подвал: сейчас край тёмного подвала. В конце проекта — уборка мусора (по правилам HANDOFF).
+Главная (RO/RU) полностью в новом дизайне. Варианты: внутренние шаблоны (услуги, цены, блог…) — старые чанки на них не трогали;
+перенос нового подвала/шапки на все шаблоны (сейчас `lb-header`/`lb-footer` только в «Главной»); уборка мусора в конце проекта (по правилам HANDOFF).
 Открытый вопрос по блоку 6: в макете жирным выделены целые фразы («Experiență de peste 4000+», «Master Trainer») — в TV их разметки нет,
 сейчас автоматически жирные только числа; можно добавить `<b>` прямо в TV (с согласия пользователя).
 Открытые вопросы по блоку 8: подписи колонок без диакритики («Procedura», «Durata» — в макете «Procedură», «Durată»); названия процедур
@@ -266,6 +280,7 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 (как и печати/водяные знаки в блоках 2–3).
 Блок 11 (FAQ): сделан без макета — тексты слева (`lbar.rd.faq.text`, `.cta`) новые, править по желанию пользователя.
 Блоки 13–14: ссылки карточек статей на RO-аналоги, иконки мессенджеров в «Контактах», свой маркер на карте — по согласию.
+Подвал: в RU меню без ссылок (поле foot-link-l/r) — добавить ссылки только с согласия; номер Viber в настройках — украинский (+380).
 Блок 12 (SEO): тексты в макете отличаются от БД (RU-заголовок и абзацы) — выводится БД; курсив в заголовках — только с правкой TV и согласия.
 
 ## 6. Конвейер «1 в 1» (как делались блоки)
@@ -298,7 +313,7 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 
 1. Подключить репо (`add_repo underproger/stage-lbar`, push), клонировать в `/home/claude/stage-lbar`.
 2. Пользователь прикладывает дамп и патчи **по порядку**: дамп хостинга `mysql_impua_testlbar_….tar.gz` (исходная база, без патчей),
-   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`
+   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`, `-15-footer.sql`
    (вместо дампа+urls+01 может прийти `lbar-full-stage-2026-11-06.sql.gz` — это то же самое).
 3. `cd /home/claude/stage-lbar && bash _dev/setup_local.sh <дамп> <urls> <01> <02> <03> <04> <05> <06> <07> <08> <09> <10> <11>` (файлы — по порядку; .tar.gz/.gz/.sql, строка sandbox вырезается) — поднимет MariaDB, Apache+SSL, PHP-полифилл,
    конфиги из `_dev/local-config`, hosts (`stage-lbar.touchit.vinnica.ua` → 127.0.0.1), симлинк `/home/impua/lbar.ro/www` → репо,
