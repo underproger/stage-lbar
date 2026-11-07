@@ -110,3 +110,17 @@ $_lang['lbar.rd.price.title'] = "Lista de prețuri:|*micropigmentare*|*în Bucur
 // --- редизайн: блок «Запись на процедуру» (форма перед отзывами) ---
 // разбивка заголовка (TV main-title-bl8) на строки «|» и курсив *…*; текст без разметки должен совпадать с TV
 $_lang['lbar.rd.book.title'] = "Solicitați o|programare|pentru o ședință|*chiar acum*";
+// --- редизайн: блок «Отзывы» ---
+// разбивка H2 (TV title-bl9) на строки «|» и курсив *…*; текст без разметки должен совпадать с TV (без тегов)
+$_lang['lbar.rd.reviews.title'] = "*Recenzii tatuaje cosmetice de la clientele* noastre";
+$_lang['lbar.rd.reviews.sub'] = "Experiențe reale, rezultate care inspiră încredere.";
+$_lang['lbar.rd.reviews.based'] = "bazat pe";
+// формы слова для числа отзывов: 1 | 2–19 | 20+ (румынское «de» с 20)
+$_lang['lbar.rd.reviews.forms'] = "recenzie|recenzii|de recenzii";
+$_lang['lbar.rd.reviews.all'] = "Vezi toate recenziile";
+$_lang['lbar.rd.reviews.read'] = "Citește recenzia completă";
+$_lang['lbar.rd.reviews.prev'] = "Recenzia anterioară";
+$_lang['lbar.rd.reviews.next'] = "Recenzia următoare";
+$_lang['lbar.rd.reviews.dot'] = "Recenzia";
+$_lang['lbar.rd.reviews.close'] = "Închide";
+$_lang['lbar.rd.reviews.of'] = "din";

@@ -161,6 +161,265 @@
 		});
 	}
 
+	/* ---------- Блок «Отзывы»: бесконечная карусель карточек ----------
+	   Лента — оригинальные карточки + по копии набора слева и справа (копии — aria-hidden, без Tab, только для «бесконечности»).
+	   Десктоп: по центру экрана — промежуток между 2-й и 3-й видимой карточкой (как в макете); мобильный — текущая карточка по центру.
+	   Если все карточки помещаются в ширину — ряд по центру без стрелок и точек. Свайп/перетаскивание, стрелки, точки, ←/→,
+	   автопрокрутка (пауза при наведении/фокусе, вне экрана; останавливается после первого действия пользователя). */
+	var reviews = document.querySelector('.lb-reviews');
+	var rvCar = reviews && reviews.querySelector('.lb-reviews__carousel');
+	if (rvCar) (function () {
+		var track = rvCar.querySelector('.lb-reviews__track');
+		var viewport = rvCar.querySelector('.lb-reviews__viewport');
+		var dotsWrap = rvCar.querySelector('.lb-reviews__dots');
+		var originals = [].slice.call(track.children);
+		var N = originals.length;
+		if (!N) return;
+		var st = { p: 0, pitch: 0, anchor: 0, loop: false, x: 0 };
+		var dots = [];
+		var clones = false;
+		var auto = null, autoStopped = reduce, hovered = false, inView = false;
+
+		var makeClones = function () {
+			return originals.map(function (c) {
+				var k = c.cloneNode(true);
+				k.removeAttribute('id');
+				k.setAttribute('aria-hidden', 'true');
+				k.classList.add('is-clone');
+				// копия видна и кликается мышью/пальцем, но не попадает в порядок Tab и в дерево доступности
+				[].forEach.call(k.querySelectorAll('button, a'), function (b) { b.setAttribute('tabindex', '-1'); });
+				return k;
+			});
+		};
+		var setClones = function (on) {
+			if (on === clones) return;
+			if (on) {
+				makeClones().forEach(function (k) { track.insertBefore(k, originals[0]); });
+				makeClones().forEach(function (k) { track.appendChild(k); });
+			} else {
+				[].slice.call(track.querySelectorAll('.is-clone')).forEach(function (k) { k.parentNode.removeChild(k); });
+			}
+			clones = on;
+		};
+		var setX = function (x, anim) {
+			track.classList.toggle('is-anim', !!anim);
+			st.x = x;
+			track.style.transform = 'translate3d(' + x.toFixed(2) + 'px,0,0)';
+		};
+		var curX = function () {
+			var m = getComputedStyle(track).transform;
+			if (!m || m === 'none') return st.x;
+			var v = m.match(/matrix(3d)?\(([^)]+)\)/);
+			if (!v) return st.x;
+			var a = v[2].split(',');
+			return parseFloat(v[1] ? a[12] : a[4]);
+		};
+		var posFor = function (p) { return st.anchor - (N + p) * st.pitch; };
+		var norm = function (p) { return ((p % N) + N) % N; };
+		var setActive = function () {
+			var a = norm(st.p);
+			dots.forEach(function (d, i) {
+				d.classList.toggle('is-active', i === a);
+				if (i === a) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current');
+			});
+		};
+		var renderDots = function () {
+			if (dots.length === N || !dotsWrap) return;
+			dotsWrap.innerHTML = '';
+			dots = originals.map(function (c, i) {
+				var b = document.createElement('button');
+				b.type = 'button';
+				b.className = 'lb-reviews__dot';
+				b.setAttribute('aria-label', (rvCar.getAttribute('data-dot') || '') + ' ' + (i + 1));
+				b.addEventListener('click', function () {
+					stopAuto();
+					var d = i - norm(st.p);
+					if (d > N / 2) d -= N;
+					if (d < -N / 2) d += N;
+					go(st.p + d);
+				});
+				dotsWrap.appendChild(b);
+				return b;
+			});
+		};
+		var measure = function () {
+			var cs = getComputedStyle(track);
+			var gap = parseFloat(cs.columnGap) || parseFloat(cs.gap) || 0;
+			var w = originals[0].offsetWidth;
+			var vw = viewport.clientWidth;
+			st.pitch = w + gap;
+			st.anchor = isDesktop() ? vw / 2 - 2 * st.pitch + gap / 2 : (vw - w) / 2;
+			return N * st.pitch - gap <= vw;
+		};
+		var update = function () {
+			var fits = measure();
+			st.loop = N > 1 && !fits;
+			rvCar.classList.toggle('is-static', !st.loop);
+			setClones(st.loop);
+			if (st.loop) {
+				st.p = norm(st.p);
+				setX(posFor(st.p), false);
+			} else {
+				track.classList.remove('is-anim');
+				track.style.transform = '';
+			}
+			renderDots();
+			setActive();
+		};
+		var go = function (target) {
+			if (!st.loop) return;
+			// индекс уходит дальше одной копии — мгновенно переносим ленту на равноценную позицию
+			if (target > N) {
+				setX(curX() + N * st.pitch, false);
+				target -= N;
+				void track.offsetWidth;
+			} else if (target < -1) {
+				setX(curX() - N * st.pitch, false);
+				target += N;
+				void track.offsetWidth;
+			}
+			st.p = target;
+			setX(posFor(target), true);
+			setActive();
+		};
+		track.addEventListener('transitionend', function (e) {
+			if (e.target !== track || e.propertyName !== 'transform') return;
+			if (st.p >= N || st.p < 0) {
+				st.p = norm(st.p);
+				setX(posFor(st.p), false);
+			}
+		});
+
+		// стрелки и клавиатура
+		var prev = rvCar.querySelector('.lb-reviews__arrow--prev');
+		var next = rvCar.querySelector('.lb-reviews__arrow--next');
+		if (prev) prev.addEventListener('click', function () { stopAuto(); go(st.p - 1); });
+		if (next) next.addEventListener('click', function () { stopAuto(); go(st.p + 1); });
+		rvCar.addEventListener('keydown', function (e) {
+			if (!st.loop || (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight')) return;
+			if (e.target.closest && e.target.closest('input, textarea')) return;
+			e.preventDefault();
+			stopAuto();
+			go(st.p + (e.key === 'ArrowRight' ? 1 : -1));
+		});
+
+		// перетаскивание / свайп
+		var drag = null, suppressClick = false;
+		viewport.addEventListener('pointerdown', function (e) {
+			if (!st.loop || (e.pointerType === 'mouse' && e.button !== 0)) return;
+			drag = { id: e.pointerId, x0: e.clientX, y0: e.clientY, sx: curX(), moved: false };
+		});
+		window.addEventListener('pointermove', function (e) {
+			if (!drag || e.pointerId !== drag.id) return;
+			var dx = e.clientX - drag.x0;
+			if (!drag.moved) {
+				if (Math.abs(dx) < 6) return;
+				if (Math.abs(e.clientY - drag.y0) > Math.abs(dx)) { drag = null; return; }
+				drag.moved = true;
+				stopAuto();
+				viewport.classList.add('is-drag');
+			}
+			setX(drag.sx + dx, false);
+		});
+		var endDrag = function (e) {
+			if (!drag || (e && e.pointerId !== drag.id)) return;
+			var d = drag;
+			drag = null;
+			viewport.classList.remove('is-drag');
+			if (!d.moved) return;
+			suppressClick = true;
+			setTimeout(function () { suppressClick = false; }, 0);
+			var dx = (e ? e.clientX : d.x0) - d.x0;
+			var from = Math.round((st.anchor - d.sx) / st.pitch) - N;
+			var steps = Math.round(-dx / st.pitch);
+			if (!steps && Math.abs(dx) > 40) steps = dx < 0 ? 1 : -1;
+			st.p = from;
+			go(from + steps);
+		};
+		window.addEventListener('pointerup', endDrag);
+		window.addEventListener('pointercancel', endDrag);
+		viewport.addEventListener('click', function (e) {
+			if (suppressClick) { e.preventDefault(); e.stopPropagation(); }
+		}, true);
+		viewport.addEventListener('dragstart', function (e) { e.preventDefault(); });
+
+		// автопрокрутка
+		var tick = function () { if (st.loop && !hovered && inView && !document.hidden && !drag) go(st.p + 1); };
+		var startAuto = function () { if (!autoStopped && !auto) auto = setInterval(tick, 6000); };
+		var stopAuto = function () { autoStopped = true; if (auto) { clearInterval(auto); auto = null; } };
+		rvCar.addEventListener('mouseenter', function () { hovered = true; });
+		rvCar.addEventListener('mouseleave', function () { hovered = false; });
+		rvCar.addEventListener('focusin', function () { hovered = true; });
+		rvCar.addEventListener('focusout', function () { hovered = false; });
+		if ('IntersectionObserver' in window) {
+			new IntersectionObserver(function (en) { inView = en[0].isIntersecting; if (inView) startAuto(); }, { threshold: 0.35 }).observe(rvCar);
+		}
+
+		var rvTimer;
+		window.addEventListener('resize', function () {
+			clearTimeout(rvTimer);
+			rvTimer = setTimeout(update, 120);
+		});
+		if (document.fonts && document.fonts.ready) document.fonts.ready.then(update);
+		update();
+	})();
+
+	/* ---------- Блок «Отзывы»: окна (полный отзыв, форма отзыва) ---------- */
+	if (reviews) (function () {
+		var rmodal = document.getElementById('lb-rmodal');
+		var rform = document.getElementById('lb-rform');
+		var opener = null;
+		var open = function (dlg, from) {
+			if (!dlg) return;
+			opener = from || null;
+			if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', '');
+			doc.classList.add('is-lb-modal');
+		};
+		var close = function (dlg) {
+			if (!dlg || !dlg.hasAttribute('open')) return;
+			if (typeof dlg.close === 'function') dlg.close(); else { dlg.removeAttribute('open'); onClose(); }
+		};
+		var onClose = function () {
+			doc.classList.remove('is-lb-modal');
+			if (opener && opener.focus) opener.focus();
+			opener = null;
+		};
+		[rmodal, rform].forEach(function (dlg) {
+			if (!dlg) return;
+			dlg.addEventListener('close', onClose);
+			dlg.addEventListener('click', function (e) {
+				// клик по подложке (вне окна) или по крестику
+				if (e.target === dlg || (e.target.closest && e.target.closest('.lb-rmodal__close'))) close(dlg);
+			});
+		});
+		// полный отзыв: шапка карточки, весь текст, ответ студии
+		reviews.addEventListener('click', function (e) {
+			var card = e.target.closest && e.target.closest('.lb-rcard');
+			if (!card || !rmodal) return;
+			if (!e.target.closest('.lb-rcard__more, .lb-rcard__text')) return;
+			var body = rmodal.querySelector('.lb-rmodal__body');
+			var head = card.querySelector('.lb-rcard__head').cloneNode(true);
+			var name = head.querySelector('.lb-rcard__name');
+			if (name) name.id = 'lb-rmodal-name';
+			var text = document.createElement('div');
+			text.className = 'lb-rmodal__text';
+			text.innerHTML = card.querySelector('.lb-rcard__text').innerHTML;
+			body.innerHTML = '';
+			body.appendChild(head);
+			body.appendChild(text);
+			var reply = card.querySelector('.lb-rcard__reply');
+			if (reply) {
+				var r = reply.cloneNode(true);
+				r.hidden = false;
+				body.appendChild(r);
+			}
+			open(rmodal, card.querySelector('.lb-rcard__more'));
+		});
+		reviews.querySelectorAll('.js-lb-review-form').forEach(function (b) {
+			b.addEventListener('click', function () { open(rform, b); });
+		});
+	})();
+
 	/* ---------- Галерея: «Смотреть все работы» раскрывает остальные фото ---------- */
 	document.querySelectorAll('.lb-portfolio').forEach(function (sec) {
 		var grid = sec.querySelector('.lb-gallery');
@@ -302,6 +561,29 @@
 					gsap.set(path, { strokeDasharray: l, strokeDashoffset: l });
 					ptl.to(path, { strokeDashoffset: 0, duration: 2, ease: 'power2.inOut' }, 0.1 + k * 0.3);
 				});
+			}
+		}
+		if (reviews) {
+			var rq = function (s) { return reviews.querySelectorAll(s); };
+			var rtl = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: reviews, start: 'top 68%' } });
+			var radd = function (sel, from, at) { var els = typeof sel === 'string' ? rq(sel) : sel; if (els.length) rtl.from(els, from, at); };
+			radd('.lb-reviews__bg', { opacity: 0, duration: 1.8, ease: 'power2.out' }, 0);
+			radd('.lb-reviews__lin', { yPercent: 105, duration: 1.5, stagger: 0.12 }, 0.1);
+			radd('.lb-reviews__sub', { y: 24, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.4);
+			radd('.lb-reviews__pill', { y: 24, scale: 0.96, opacity: 0, duration: 1.3, clearProps: 'transform' }, 0.5);
+			radd('.lb-reviews__star', { scale: 0, rotation: -40, duration: 0.9, stagger: 0.08, ease: 'back.out(2.4)', clearProps: 'transform' }, 0.8);
+			// видимые карточки — по очереди слева направо, остальные — сразу
+			var vis = [].filter.call(rq('.lb-rcard'), function (c) {
+				var r = c.getBoundingClientRect();
+				return r.right > 0 && r.left < window.innerWidth;
+			});
+			radd(vis, { y: 80, opacity: 0, duration: 1.5, stagger: 0.09, clearProps: 'transform' }, 0.55);
+			radd('.lb-reviews__nav, .lb-reviews__btns > *', { y: 26, opacity: 0, duration: 1.2, stagger: 0.08, clearProps: 'transform' }, 0.95);
+			var num = reviews.querySelector('.lb-reviews__num');
+			var val = num && parseFloat(num.textContent);
+			if (val) {
+				var o = { v: 0 };
+				rtl.to(o, { v: val, duration: 1.4, ease: 'power3.out', onUpdate: function () { num.textContent = o.v.toFixed(1); }, onComplete: function () { num.textContent = val.toFixed(1); } }, 0.6);
 			}
 		}
 	};

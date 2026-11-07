@@ -8,7 +8,7 @@
 // Стыки: баннер → «О микропигментации» (seam-hero.svg), «О микропигментации» → «Услуги» (seam.svg),
 //        «Услуги» → «implică» (seam-implica.svg), «implică» → «Консультация» (seam-consult.svg),
 //        «Консультация» → «Мастер» (seam-master.svg), «Мастер» → «Галерея» (seam-portfolio.svg), «Галерея» → «Цены» (seam-price.svg),
-//        «Цены» → «Запись на процедуру» (seam-book.svg).
+//        «Цены» → «Запись на процедуру» (seam-book.svg), «Запись» → «Отзывы» (seam-reviews.svg).
 $seam-h: 760;              // высота декора, px @1920
 $seam-hero: #f8f1ec;       // баннер → «О микропигментации»
 $seam-color: #f7eee8;      // «О микропигментации» → «Услуги»
@@ -239,24 +239,49 @@ $seam-book: #f4eae6;     // «Цены» → «Запись на процеду�
 
 // ---------- «Цены» → «Запись на процедуру» (светлый → светлый) ----------
 // Лента (img/seam-book.svg) идёт под таблицей цен и над заголовком / карточкой формы. У «Цен» ::after занят верхним стыком —
-// нижний рисуем в ::before. Низ «Записи» уходит в белый фон следующего (старого) блока «Отзывы».
+// нижний рисуем в ::before.
+$seam-reviews: #f8f0ea;   // «Запись» → «Отзывы»
 .lb-price {
 	@include lb-seam(bottom, "seam-book.svg", before);
 }
 .lb-book {
 	isolation: isolate;
-	background: linear-gradient(180deg, $seam-book 0, $cs-bg vw(170), $cs-bg calc(100% - #{vw(260)}), #fff 100%);
+	background: linear-gradient(180deg, $seam-book 0, $cs-bg vw(170), $cs-bg calc(100% - #{vw(200)}), $seam-reviews 100%);
 	@include lb-seam(top, "seam-book.svg");
 	&__bg {
 		z-index: -1;
-		-webkit-mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .45) vw(60), #000 vw(170), #000 calc(100% - #{vw(300)}), transparent calc(100% - #{vw(20)}));
-		mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .45) vw(60), #000 vw(170), #000 calc(100% - #{vw(300)}), transparent calc(100% - #{vw(20)}));
+		-webkit-mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .45) vw(60), #000 vw(170), #000 calc(100% - #{vw(260)}), transparent calc(100% - #{vw(40)}));
+		mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .45) vw(60), #000 vw(170), #000 calc(100% - #{vw(260)}), transparent calc(100% - #{vw(40)}));
 	}
 	@include mobile {
-		background: linear-gradient(180deg, $seam-book 0, $cs-bg 100px, $cs-bg calc(100% - 120px), #fff 100%);
+		background: linear-gradient(180deg, $seam-book 0, $cs-bg 100px, $cs-bg calc(100% - 100px), $seam-reviews 100%);
 		&__bg {
-			-webkit-mask-image: linear-gradient(180deg, transparent 0, #000 120px, #000 calc(100% - 160px), transparent calc(100% - 10px));
-			mask-image: linear-gradient(180deg, transparent 0, #000 120px, #000 calc(100% - 160px), transparent calc(100% - 10px));
+			-webkit-mask-image: linear-gradient(180deg, transparent 0, #000 120px, #000 calc(100% - 140px), transparent calc(100% - 20px));
+			mask-image: linear-gradient(180deg, transparent 0, #000 120px, #000 calc(100% - 140px), transparent calc(100% - 20px));
+		}
+	}
+}
+
+// ---------- «Запись на процедуру» → «Отзывы» (светлый → светлый) ----------
+// Лента (img/seam-reviews.svg) выходит из шёлковых складок слева, проходит под карточкой формы и над заголовком «Отзывов».
+// У «Записи» ::after занят верхним стыком — нижний в ::before. Низ «Отзывов» уходит в белый фон старого блока FAQ.
+.lb-book {
+	@include lb-seam(bottom, "seam-reviews.svg", before);
+}
+.lb-reviews {
+	isolation: isolate;
+	background: linear-gradient(180deg, $seam-reviews 0, $rv-bg vw(160), $rv-bg calc(100% - #{vw(220)}), #fff 100%);
+	@include lb-seam(top, "seam-reviews.svg");
+	&__bg {
+		z-index: -1;
+		-webkit-mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - #{vw(200)}), transparent calc(100% - #{vw(10)}));
+		mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - #{vw(200)}), transparent calc(100% - #{vw(10)}));
+	}
+	@include mobile {
+		background: linear-gradient(180deg, $seam-reviews 0, $rv-bg 90px, $rv-bg calc(100% - 100px), #fff 100%);
+		&__bg {
+			-webkit-mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 110px), transparent calc(100% - 10px));
+			mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 110px), transparent calc(100% - 10px));
 		}
 	}
 }

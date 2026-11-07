@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 420">
+  <!-- Фон блока «Отзывы», правый нижний угол: шёлковые складки (только графика, без фото). Масштаб — макет 1920. -->
+  <defs>
+    <filter id="b1" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="16"/></filter>
+    <filter id="b2" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5"/></filter>
+    <filter id="b3" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="1.4"/></filter>
+    <linearGradient id="cloth" x1="760" y1="420" x2="420" y2="80" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ead5c5"/>
+      <stop offset=".14" stop-color="#fcf5ef"/>
+      <stop offset=".26" stop-color="#e3cab7"/>
+      <stop offset=".4" stop-color="#faf2ec"/>
+      <stop offset=".55" stop-color="#ecdacd"/>
+      <stop offset=".7" stop-color="#fbf4ee"/>
+      <stop offset=".85" stop-color="#f2e4d9"/>
+      <stop offset="1" stop-color="#f8efe9"/>
+    </linearGradient>
+    <radialGradient id="fade" cx="760" cy="420" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(760 420) scale(700 400) translate(-760 -420)">
+      <stop offset=".42" stop-color="#fff"/>
+      <stop offset=".7" stop-color="#fff" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <mask id="m"><rect width="760" height="420" fill="url(#fade)"/></mask>
+    <!-- низ картинки тоже гаснет: в CSS она поднята над низом блока (низ блока уходит в белый) -->
+    <linearGradient id="fadeB" x1="0" y1="0" x2="0" y2="420" gradientUnits="userSpaceOnUse">
+      <stop offset=".55" stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <mask id="mb"><rect width="760" height="420" fill="url(#fadeB)"/></mask>
+  </defs>
+  <g mask="url(#mb)"><g mask="url(#m)">
+    <rect width="760" height="420" fill="url(#cloth)"/>
+    <path filter="url(#b1)" fill="#d9bea9" fill-opacity=".5" d="M300 450C380 400 450 350 520 300S650 220 790 180L790 230C660 260 570 320 500 370S400 450 360 470Z"/>
+    <path filter="url(#b1)" fill="#dcc3af" fill-opacity=".45" d="M520 450C580 380 630 320 690 270S760 220 790 200L790 280C740 300 690 350 640 400S580 460 560 470Z"/>
+    <path filter="url(#b2)" fill="#fff" fill-opacity=".85" d="M260 440C350 380 430 330 510 285S650 210 790 170L790 188C660 228 560 280 490 320S340 420 290 450Z"/>
+    <path filter="url(#b2)" fill="#fff" fill-opacity=".8" d="M470 450C540 370 600 310 660 260S740 190 790 160L790 178C740 210 680 270 630 320S520 430 490 460Z"/>
+    <path filter="url(#b3)" fill="none" stroke="#fff" stroke-opacity=".95" stroke-width="2" d="M275 436C360 380 440 330 515 290S650 218 790 178"/>
+    <path filter="url(#b3)" fill="none" stroke="#fff" stroke-opacity=".9" stroke-width="1.6" d="M480 450C548 372 606 314 664 266S744 196 790 168"/>
+    <path filter="url(#b3)" fill="none" stroke="#c7a48c" stroke-opacity=".35" stroke-width="1" d="M290 446C372 392 452 342 526 302S660 232 790 194"/>
+  </g></g>
+</svg>

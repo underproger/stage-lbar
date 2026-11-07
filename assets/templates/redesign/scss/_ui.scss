@@ -176,7 +176,9 @@
 .lb-master,
 .lb-portfolio,
 .lb-price,
-.lb-book {
+.lb-book,
+.lb-reviews,
+.lb-rmodal {
 	:where(b, strong) {
 		font-family: inherit;
 	}

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 560">
+  <!-- Фон блока «Отзывы», левый верхний угол: шёлковые складки (только графика, без фото). Масштаб — макет 1920. -->
+  <defs>
+    <filter id="b1" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="16"/></filter>
+    <filter id="b2" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5"/></filter>
+    <filter id="b3" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="1.4"/></filter>
+    <!-- полосы ткани поперёк складок -->
+    <linearGradient id="cloth" x1="40" y1="20" x2="430" y2="410" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f1e1d5"/>
+      <stop offset=".12" stop-color="#fdf7f2"/>
+      <stop offset=".22" stop-color="#e8d3c3"/>
+      <stop offset=".36" stop-color="#fbf3ed"/>
+      <stop offset=".5" stop-color="#f3e5da"/>
+      <stop offset=".62" stop-color="#e6cfbe"/>
+      <stop offset=".76" stop-color="#fcf6f1"/>
+      <stop offset=".9" stop-color="#efe0d4"/>
+      <stop offset="1" stop-color="#f8efe9"/>
+    </linearGradient>
+    <radialGradient id="fade" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="scale(700 520)">
+      <stop offset=".42" stop-color="#fff"/>
+      <stop offset=".7" stop-color="#fff" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <mask id="m"><rect width="780" height="560" fill="url(#fade)"/></mask>
+    <!-- верх картинки гаснет: над блоком — стык с «Записью» -->
+    <linearGradient id="fadeT" x1="0" y1="0" x2="0" y2="560" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".3" stop-color="#fff"/>
+    </linearGradient>
+    <mask id="mt"><rect width="780" height="560" fill="url(#fadeT)"/></mask>
+  </defs>
+  <g mask="url(#mt)"><g mask="url(#m)">
+    <rect width="780" height="560" fill="url(#cloth)"/>
+    <!-- изгиб складок: тени в заломах -->
+    <path filter="url(#b1)" fill="#dcc2ae" fill-opacity=".55" d="M-30 300C40 250 90 190 150 140S270 40 330 -30L380 -30C320 50 260 120 190 180S70 290 -30 360Z"/>
+    <path filter="url(#b1)" fill="#d9bfaa" fill-opacity=".45" d="M-30 470C70 420 150 350 230 290S400 170 520 130L540 170C430 210 330 280 250 340S90 470 -10 520Z"/>
+    <path filter="url(#b1)" fill="#e2cbba" fill-opacity=".5" d="M120 -30C170 20 230 50 300 60S440 40 520 -30Z"/>
+    <!-- блики на гребнях -->
+    <path filter="url(#b2)" fill="#fff" fill-opacity=".9" d="M-30 250C50 200 100 150 150 100S250 10 300 -30L322 -30C270 30 210 100 160 150S60 240 -30 290Z"/>
+    <path filter="url(#b2)" fill="#fff" fill-opacity=".85" d="M-30 410C60 370 140 310 220 250S380 130 500 90L506 108C390 150 300 220 230 275S80 400 -30 440Z"/>
+    <path filter="url(#b3)" fill="none" stroke="#fff" stroke-opacity=".95" stroke-width="2" d="M-20 262C55 214 105 164 154 116S248 22 296 -24"/>
+    <path filter="url(#b3)" fill="none" stroke="#fff" stroke-opacity=".9" stroke-width="1.6" d="M-20 420C66 382 144 322 222 262S384 140 500 100"/>
+    <path filter="url(#b3)" fill="none" stroke="#c7a48c" stroke-opacity=".35" stroke-width="1" d="M-20 280C58 232 110 180 160 132S256 40 306 -20"/>
+  </g></g>
+</svg>
