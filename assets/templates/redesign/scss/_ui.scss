@@ -175,7 +175,8 @@
 .lb-consult,
 .lb-master,
 .lb-portfolio,
-.lb-price {
+.lb-price,
+.lb-book {
 	:where(b, strong) {
 		font-family: inherit;
 	}

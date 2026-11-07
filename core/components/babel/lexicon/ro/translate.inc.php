@@ -107,3 +107,6 @@ $_lang['lbar.rd.portfolio.less'] = "Ascunde lucrările";
 // --- редизайн: блок «Цены» ---
 // разбивка H2 (TV title-bl7) на строки «|» и курсив *…*; текст без разметки должен совпадать с TV
 $_lang['lbar.rd.price.title'] = "Lista de prețuri:|*micropigmentare*|*în București*";
+// --- редизайн: блок «Запись на процедуру» (форма перед отзывами) ---
+// разбивка заголовка (TV main-title-bl8) на строки «|» и курсив *…*; текст без разметки должен совпадать с TV
+$_lang['lbar.rd.book.title'] = "Solicitați o|programare|pentru o ședință|*chiar acum*";

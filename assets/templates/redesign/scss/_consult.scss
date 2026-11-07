@@ -1,8 +1,11 @@
-// ================= БЛОК «КОНСУЛЬТАЦИЯ» (главная, 5-й экран: форма) =================
-// Макет 1920×855. Фон — только графика (img/consult-bg.svg: диски, тонкие медные дуги, свет), без фото.
+// ================= БЛОКИ С ФОРМОЙ: «КОНСУЛЬТАЦИЯ» (5-й экран) и «ЗАПИСЬ НА ПРОЦЕДУРУ» (перед отзывами) =================
+// Макет «Консультации» 1920×855. Фон — только графика (img/consult-bg.svg: диски, тонкие медные дуги, свет), без фото.
+// «Запись» (.lb-book) сделана по образцу «Консультации»: общая вёрстка ниже — для обоих блоков (селектор-список),
+// отличия .lb-book — в конце раздела. Форма у обоих — .lb-cform.
 $cs-bg: #f9f2ed;
 
-.lb-consult {
+.lb-consult,
+.lb-book {
 	position: relative;
 	min-height: vw(855);
 	overflow: hidden;
@@ -119,6 +122,29 @@ $cs-bg: #f9f2ed;
 }
 
 // ----- форма -----
+
+// ----- «Запись на процедуру»: отличия от «Консультации» -----
+// Надзаголовка нет; заголовок в 4 строки (RO) — колонка начинается выше. Фон — своя графика: арка-«портал» за карточкой
+// (img/book-bg.svg); низ уходит в белый фон следующего (старого) блока «Отзывы» — см. _seam.scss.
+.lb-book {
+	min-height: vw(880);
+	&__bg {
+		background-image: url("/assets/templates/redesign/img/book-bg.svg");
+		background-size: 100% vw(880);
+	}
+	&__intro {
+		top: vw(118);
+	}
+	&__title {
+		margin-top: 0;
+	}
+	@include desktop {
+		html[lang="ru"] &__intro {
+			top: vw(160);
+		}
+	}
+}
+
 .lb-cform {
 	display: flex;
 	flex-direction: column;
@@ -328,7 +354,8 @@ $cs-bg: #f9f2ed;
 }
 
 @include mobile {
-	.lb-consult {
+	.lb-consult,
+	.lb-book {
 		min-height: 0;
 		padding: 48px 0 52px;
 		&__bg {
@@ -384,6 +411,9 @@ $cs-bg: #f9f2ed;
 			padding: 28px 18px 22px;
 			border-radius: 32px;
 		}
+	}
+	.lb-book__title {
+		margin-top: 0;
 	}
 	.lb-cform {
 		align-items: stretch;

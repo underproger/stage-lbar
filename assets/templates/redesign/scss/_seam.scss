@@ -7,7 +7,8 @@
 //
 // Стыки: баннер → «О микропигментации» (seam-hero.svg), «О микропигментации» → «Услуги» (seam.svg),
 //        «Услуги» → «implică» (seam-implica.svg), «implică» → «Консультация» (seam-consult.svg),
-//        «Консультация» → «Мастер» (seam-master.svg), «Мастер» → «Галерея» (seam-portfolio.svg), «Галерея» → «Цены» (seam-price.svg).
+//        «Консультация» → «Мастер» (seam-master.svg), «Мастер» → «Галерея» (seam-portfolio.svg), «Галерея» → «Цены» (seam-price.svg),
+//        «Цены» → «Запись на процедуру» (seam-book.svg).
 $seam-h: 760;              // высота декора, px @1920
 $seam-hero: #f8f1ec;       // баннер → «О микропигментации»
 $seam-color: #f7eee8;      // «О микропигментации» → «Услуги»
@@ -209,6 +210,7 @@ $seam-consult: #f6eee9;    // «implică» → «Консультация»
 // Низ «Галереи» уходит в общий цвет стыка, «Цены» начинаются из него; шёлковая лента (img/seam-price.svg)
 // идёт над кнопкой «Смотреть все работы» и над заголовком / текстом блока цен.
 $seam-price: #f6ede8;
+$seam-book: #f4eae6;     // «Цены» → «Запись на процедуру»
 .lb-portfolio {
 	@include lb-seam(bottom, "seam-price.svg");
 	&::after {
@@ -229,7 +231,32 @@ $seam-price: #f6ede8;
 		z-index: -1;
 		background:
 			radial-gradient(38% 34% at 22% 30%, rgba(255, 255, 255, .55), rgba(255, 255, 255, 0) 100%),
-			radial-gradient(46% 40% at 92% 92%, rgba(238, 220, 208, .55), rgba(238, 220, 208, 0) 100%),
-			linear-gradient(180deg, $seam-price 0%, $pr-bg vw(220), #f6ede8 60%, #f4eae6 100%);
+			// тёплое пятно справа поднято выше низа — к стыку с «Записью» фон ровный
+			radial-gradient(46% 34% at 92% 72%, rgba(238, 220, 208, .55), rgba(238, 220, 208, 0) 100%),
+			linear-gradient(180deg, $seam-price 0%, $pr-bg vw(220), #f6ede8 60%, $seam-book 100%);
+	}
+}
+
+// ---------- «Цены» → «Запись на процедуру» (светлый → светлый) ----------
+// Лента (img/seam-book.svg) идёт под таблицей цен и над заголовком / карточкой формы. У «Цен» ::after занят верхним стыком —
+// нижний рисуем в ::before. Низ «Записи» уходит в белый фон следующего (старого) блока «Отзывы».
+.lb-price {
+	@include lb-seam(bottom, "seam-book.svg", before);
+}
+.lb-book {
+	isolation: isolate;
+	background: linear-gradient(180deg, $seam-book 0, $cs-bg vw(170), $cs-bg calc(100% - #{vw(260)}), #fff 100%);
+	@include lb-seam(top, "seam-book.svg");
+	&__bg {
+		z-index: -1;
+		-webkit-mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .45) vw(60), #000 vw(170), #000 calc(100% - #{vw(300)}), transparent calc(100% - #{vw(20)}));
+		mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .45) vw(60), #000 vw(170), #000 calc(100% - #{vw(300)}), transparent calc(100% - #{vw(20)}));
+	}
+	@include mobile {
+		background: linear-gradient(180deg, $seam-book 0, $cs-bg 100px, $cs-bg calc(100% - 120px), #fff 100%);
+		&__bg {
+			-webkit-mask-image: linear-gradient(180deg, transparent 0, #000 120px, #000 calc(100% - 160px), transparent calc(100% - 10px));
+			mask-image: linear-gradient(180deg, transparent 0, #000 120px, #000 calc(100% - 160px), transparent calc(100% - 10px));
+		}
 	}
 }

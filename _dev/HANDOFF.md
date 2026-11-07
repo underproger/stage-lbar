@@ -1,6 +1,6 @@
 # stage-lbar — handoff (редизайн lbar.ro на MODX)
 
-Состояние на 07.11.2026, сделаны блоки 1–8 главной, последний коммит — см. `git log`. Папка `_dev/` — служебная (закрыта `.htaccess`),
+Состояние на 07.11.2026, сделаны блоки 1–9 главной, последний коммит — см. `git log`. Папка `_dev/` — служебная (закрыта `.htaccess`),
 **в конце проекта удалить** вместе с остальным мусором.
 
 ## 1. Проект
@@ -53,13 +53,13 @@
 | Тексты интерфейса RO/RU | лексикон `core/components/babel/lexicon/{ro,ru}/translate.inc.php`, ключи `lbar.rd.*` (так уже было на сайте: `lbar.*`) |
 
 **Сборка CSS:** `cd assets/templates/redesign && /home/claude/build/node_modules/.bin/sass scss/redesign.scss css/redesign.css --style=compressed --no-source-map --silence-deprecation=import`
-**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.8.0**) — поднимать при изменениях.
+**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.9.0**) — поднимать при изменениях.
 **Новые/изменённые чанки в БД:** `sudo -u www-data php _dev/tools/modx_apply3.php` (пересохраняет все `*.tpl` из папки как статичные чанки и меняет
-вызов в шаблоне «Главная») — для нового блока сделать по аналогии (последний — `modx_apply8.php`, замена `[[$старый-чанк]]` → `[[$lb-новый]]`).
+вызов в шаблоне «Главная») — для нового блока сделать по аналогии (последний — `modx_apply9.php`, замена `[[$старый-чанк]]` → `[[$lb-новый]]`).
 **После правки `.tpl` чистить `core/cache/resource/`** (главная кэшируется — без этого на скриншоте старая разметка; CSS/JS это не касается).
 **После наката SQL-патчей чистить весь `core/cache/`** (кроме `logs`): иначе MODX берёт шаблон/чанки из кэша и новые блоки не появляются.
 
-Шаблон **«Главная» (id 1)** сейчас: `[[$head]] [[$lb-head]]` … `[[$lb-header]] [[$lb-banner-main]] [[$lb-about]] [[$lb-services]] [[*title-main-bl3:notempty=`[[$lb-implica]]`]] [[$lb-consult]] [[$lb-master]] [[-$bl5-about-me]] [[$lb-portfolio]] [[*title-bl7:notempty=`[[$lb-price]]`]] [[$bl8-form]] …` `[[$script]] [[$lb-scripts]]`.
+Шаблон **«Главная» (id 1)** сейчас: `[[$head]] [[$lb-head]]` … `[[$lb-header]] [[$lb-banner-main]] [[$lb-about]] [[$lb-services]] [[*title-main-bl3:notempty=`[[$lb-implica]]`]] [[$lb-consult]] [[$lb-master]] [[-$bl5-about-me]] [[$lb-portfolio]] [[*title-bl7:notempty=`[[$lb-price]]`]] [[$lb-book]] <!--[[$bl-gallery-studio]]--> [[$bl9-reviews]] …` `[[$script]] [[$lb-scripts]]`.
 Старые чанки используются ещё на других шаблонах (напр. `bl1-about-us`, `bl3-text` — в шаблоне «Категория», 27 страниц) — **их не правим**, делаем новые `lb-*` и подключаем только в «Главную».
 
 **Шрифтовой стандарт (решение пользователя: «как в блоке lb-about») — для всех блоков, новых тоже:**
@@ -152,24 +152,40 @@
    Мобильный: строки таблицы — карточки (название / время + цена), кнопка под таблицей (порядок через `display: contents` + `order`).
    Стык 7 → 8: лента `img/seam-price.svg` (`_seam.scss`), тёплое пятно фона «Галереи» поднято выше низа, чтобы к стыку цвета совпадали.
 
+12. **Блок «Запись на процедуру» `lb-book`** + форма `lb.formBook` — вместо `bl8-form`, макета не было: сделан **по образцу `lb-consult`**
+   (та же раскладка: текст слева, стеклянная карточка с формой справа; общая вёрстка в `_consult.scss` — селектор-список `.lb-consult, .lb-book`,
+   отличия `.lb-book` — в конце раздела; форма — тот же класс `.lb-cform`). Заголовок — TV `main-title-bl8` (сначала `-interial`, как в старом чанке),
+   не H2 (как было); разбивка/курсив — лексикон `lbar.rd.book.title` (RO — 4 строки, RU — 3). Надзаголовка нет. Подзаголовок — TV `sub-title-bl8`,
+   кнопка — TV `link-form-bl8`. AjaxForm — параметры старого `bl8-form` без изменений (валидация телефона `minLength=^10^`), `id="form-bl8"` (редирект в `script`).
+   Якорь `<div id="bl8-form"></div>` перед блоком сохранён. Фон — своя графика `img/book-bg.svg` (арка-«портал» за карточкой, медные контуры, мягкие диски).
+   Стык 8 → 9: лента `img/seam-book.svg` (у «Цен» — в `::before`, т.к. `::after` занят верхним стыком), тёплое пятно «Цен» поднято выше низа.
+   Низ блока уходит в белый фон старого блока «Отзывы» (градиент фона + маска графики).
+   JS: телефон (пересчёт intlTelInput при resize) и анимация появления — общие для `.lb-consult` и `.lb-book` (`formBlocks`); твины для
+   отсутствующих элементов не создаются (без предупреждений GSAP; то же для пустого текста «Цен» в RU).
+   **Якоря:** старый `custom.js` («Jacor») вешает на все `a[href^="#"]` jQuery-скролл к `offset().top` без учёта фиксированной шапки — он перебивал наш
+   плавный скролл (цель уезжала под шапку). Теперь обработчик якорей новых блоков — на `document` в фазе перехвата со `stopPropagation`;
+   мобильное меню при этом закрывается в нём же.
+
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
 `stage-lbar-05-consult.sql` (чанки `lb-consult` id 275, `lb.formConsult` id 276 + все чанки Redesign + шаблон «Главная»),
 `stage-lbar-06-master.sql` (чанк `lb-master` id 277 + все чанки Redesign + шаблон «Главная»),
 `stage-lbar-07-fonts.sql` (единый шрифтовой стандарт: preload и `?v=1.6.0` в `lb-head`/`lb-scripts` + все чанки Redesign),
 `stage-lbar-08-portfolio.sql` (чанки `lb.galleryItem` id 278, `lb-portfolio` id 279 + все чанки Redesign + шаблон «Главная»),
-`stage-lbar-09-price.sql` (чанк `lb-price` id 280 + все чанки Redesign + шаблон «Главная»). Патчи проверены импортом.
-После 09 БД **не менялась**.
+`stage-lbar-09-price.sql` (чанк `lb-price` id 280 + все чанки Redesign + шаблон «Главная»),
+`stage-lbar-10-book.sql` (чанки `lb-book`, `lb.formBook` + все чанки Redesign + шаблон «Главная»). Патчи проверены импортом.
+После 10 БД **не менялась**.
 
-## 5. Следующий шаг — блок 9 (по порядку шаблона: `[[$bl8-form]]`, H2 «Obțineți o consultație personală» / «Получить личную консультацию»)
+## 5. Следующий шаг — блок 10 (по порядку шаблона: `[[$bl9-reviews]]`, H2 — TV `title-bl9` «Recenzii tatuaje cosmetice de la clientele noastre»)
 
-Макета пока нет — ждём от пользователя. Дальше по шаблону: `bl9-reviews`, `bl-faq`, `bl-seo`, `bl-blog`, `bl-contact`, `footer`.
-Формы — осторожно: `id="bl8-form"` (якорь кнопок «Записаться» в шапке и блоках 4, 8) и `form-bl8` (редирект в чанке `script`), обработчики AjaxForm не ломать
-(образец — `lb-consult` + `lb.formConsult`). Стык 8 → 9 сделать по `_seam.scss`.
+Макета пока нет — ждём от пользователя. Дальше по шаблону: `bl-faq` (условие `migx_questions:notempty`), `bl-seo`, `bl-blog`, `bl-contact`, `footer`.
+Отзывы — сниппеты EasyComm (`ecMessagesCount`, `ecThreadRating`, лента отзывов) и якорь `#review` — логику не ломать, старый чанк не править (новый `lb-*`).
+Стык 9 → 10: сейчас низ `lb-book` уходит в белый — при новом блоке отзывов заменить на ленту по `_seam.scss`.
 Открытый вопрос по блоку 6: в макете жирным выделены целые фразы («Experiență de peste 4000+», «Master Trainer») — в TV их разметки нет,
 сейчас автоматически жирные только числа; можно добавить `<b>` прямо в TV (с согласия пользователя).
 Открытые вопросы по блоку 8: подписи колонок без диакритики («Procedura», «Durata» — в макете «Procedură», «Durată»); названия процедур
 в БД короче/иначе, чем в макете («Retuș» вместо «Remover», без пояснений в скобках) — правка лексикона/TV только с согласия.
+Блок 9: сделан без макета по образцу блока 5 — если придёт макет, подогнать; можно добавить надзаголовок (ключ лексикона) по согласию.
 
 ## 6. Конвейер «1 в 1» (как делались блоки)
 
@@ -201,9 +217,9 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 
 1. Подключить репо (`add_repo underproger/stage-lbar`, push), клонировать в `/home/claude/stage-lbar`.
 2. Пользователь прикладывает дамп и патчи **по порядку**: дамп хостинга `mysql_impua_testlbar_….tar.gz` (исходная база, без патчей),
-   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`
+   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`
    (вместо дампа+urls+01 может прийти `lbar-full-stage-2026-11-06.sql.gz` — это то же самое).
-3. `cd /home/claude/stage-lbar && bash _dev/setup_local.sh <дамп> <urls> <01> <02> <03> <04> <05> <06> <07> <08> <09>` (файлы — по порядку; .tar.gz/.gz/.sql, строка sandbox вырезается) — поднимет MariaDB, Apache+SSL, PHP-полифилл,
+3. `cd /home/claude/stage-lbar && bash _dev/setup_local.sh <дамп> <urls> <01> <02> <03> <04> <05> <06> <07> <08> <09> <10>` (файлы — по порядку; .tar.gz/.gz/.sql, строка sandbox вырезается) — поднимет MariaDB, Apache+SSL, PHP-полифилл,
    конфиги из `_dev/local-config`, hosts (`stage-lbar.touchit.vinnica.ua` → 127.0.0.1), симлинк `/home/impua/lbar.ro/www` → репо,
    sass+gsap (`/home/claude/build`), EDSR-модель (`/home/claude/sr`), intl-tel-input для скриншотов формы (`/home/claude/iti`).
    Проверка, что всё поднялось: `python3 -I _dev/tools/seo_compare.py` — всё OK, кроме согласованного H1.

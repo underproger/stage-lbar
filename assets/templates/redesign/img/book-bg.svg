@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 880" preserveAspectRatio="xMidYMid slice">
+  <!-- Фон блока «Запись на процедуру»: только графика (без фото). Арка-«портал» за карточкой формы,
+       тонкие медные контуры арки, мягкие диски и свет. Сетка — макет 1920, карточка 866…1689 × 122…699. -->
+  <defs>
+    <radialGradient id="b-sun" cx="380" cy="320" r="640" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity=".6"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="b-arch" x1="0" y1="40" x2="0" y2="880" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d3baa8"/>
+      <stop offset=".38" stop-color="#e0cbbc"/>
+      <stop offset=".75" stop-color="#ecdfd5"/>
+      <stop offset="1" stop-color="#f3eae3"/>
+    </linearGradient>
+    <radialGradient id="b-archlight" cx="1180" cy="330" r="560" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff7f1" stop-opacity=".6"/>
+      <stop offset=".6" stop-color="#fff7f1" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#fff7f1" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="b-archshade" x1="1747" y1="0" x2="1380" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b79c88" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#b79c88" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="b-rim" x1="0" y1="40" x2="0" y2="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity=".85"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="b-line" x1="0" y1="0" x2="0" y2="760" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b8906f" stop-opacity=".9"/>
+      <stop offset=".45" stop-color="#b8906f" stop-opacity=".5"/>
+      <stop offset="1" stop-color="#b8906f" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="b-line2" x1="760" y1="0" x2="1800" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b8906f" stop-opacity="0"/>
+      <stop offset=".3" stop-color="#b8906f" stop-opacity=".45"/>
+      <stop offset=".75" stop-color="#b8906f" stop-opacity=".6"/>
+      <stop offset="1" stop-color="#b8906f" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="b-disk" cx="170" cy="1030" r="430" gradientUnits="userSpaceOnUse">
+      <stop offset=".55" stop-color="#ecdcd0" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#f3e8e0" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="b-warm" cx="1900" cy="760" r="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e6d2c4" stop-opacity=".75"/>
+      <stop offset="1" stop-color="#e6d2c4" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="b-blur" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="2"/></filter>
+  </defs>
+
+  <!-- свет на кремовом поле слева (за заголовком) -->
+  <rect width="1920" height="880" fill="url(#b-sun)"/>
+  <!-- тёплое пятно справа внизу -->
+  <rect width="1920" height="880" fill="url(#b-warm)"/>
+
+  <!-- мягкий диск слева внизу (под текстом — без контура) -->
+  <circle cx="170" cy="1030" r="430" fill="url(#b-disk)"/>
+
+  <!-- арка-«портал» за карточкой: центр (1277, 520), r 470 -->
+  <path d="M807 900V520A470 470 0 0 1 1747 520V900Z" fill="url(#b-arch)"/>
+  <path d="M807 900V520A470 470 0 0 1 1747 520V900Z" fill="url(#b-archlight)"/>
+  <path d="M807 900V520A470 470 0 0 1 1747 520V900Z" fill="url(#b-archshade)"/>
+  <!-- светлый кант по своду арки -->
+  <path d="M807 520A470 470 0 0 1 1747 520" fill="none" stroke="url(#b-rim)" stroke-width="2.5" filter="url(#b-blur)"/>
+
+  <!-- тонкие медные контуры арки -->
+  <path d="M777 760V520A500 500 0 0 1 1777 520V760" fill="none" stroke="url(#b-line)" stroke-width="1.6"/>
+  <path d="M830 224A536 536 0 0 1 1813 520" fill="none" stroke="url(#b-line2)" stroke-width="1.1"/>
+</svg>

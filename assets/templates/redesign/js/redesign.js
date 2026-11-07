@@ -52,25 +52,35 @@
 		var y = el.getBoundingClientRect().top + window.pageYOffset - offset - 10;
 		window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
 	};
-	document.querySelectorAll('.lb-header a[href^="#"], .lb-hero a[href^="#"], .lb-about a[href^="#"], .lb-implica a[href^="#"], .lb-price a[href^="#"]').forEach(function (a) {
-		a.addEventListener('click', function (e) {
-			var id = a.getAttribute('href').slice(1);
-			var target = id && document.getElementById(id);
-			if (target) {
+	// Слушаем на фазе перехвата: старый custom.js («Jacor») вешает на все a[href^="#"] свой jQuery-скролл без учёта
+	// фиксированной шапки — для ссылок новых блоков он не должен срабатывать (stopPropagation до цели).
+	var anchorSel = '.lb-header a[href^="#"], .lb-hero a[href^="#"], .lb-about a[href^="#"], .lb-implica a[href^="#"], .lb-price a[href^="#"]';
+	document.addEventListener('click', function (e) {
+		var a = e.target.closest && e.target.closest(anchorSel);
+		if (!a) return;
+		var id = a.getAttribute('href').slice(1);
+		var target = id && document.getElementById(id);
+		// событие дальше не идёт — мобильное меню закрываем здесь
+		if (burger && a.closest('.lb-mnav')) {
+			doc.classList.remove('is-menu-open');
+			burger.setAttribute('aria-expanded', 'false');
+		}
+		if (target) {
+			e.preventDefault();
+			e.stopPropagation();
+			scrollToEl(target);
+			return;
+		}
+		// формы записи нет на странице — открываем попап «Заказать звонок» из футера
+		if (a.classList.contains('js-lb-book')) {
+			var modalBtn = document.querySelector('.footer .btn-mobal, footer .btn-mobal, .btn-mobal');
+			if (modalBtn) {
 				e.preventDefault();
-				scrollToEl(target);
-				return;
+				e.stopPropagation();
+				modalBtn.click();
 			}
-			// формы записи нет на странице — открываем попап «Заказать звонок» из футера
-			if (a.classList.contains('js-lb-book')) {
-				var modalBtn = document.querySelector('.footer .btn-mobal, footer .btn-mobal, .btn-mobal');
-				if (modalBtn) {
-					e.preventDefault();
-					modalBtn.click();
-				}
-			}
-		});
-	});
+		}
+	}, true);
 
 	/* ---------- «Читать далее» (текст свёрнут до 3 строк): блоки «О микропигментации» и «Цены» ---------- */
 	var initClamp = function (wrapSel, textSel, btnSel) {
@@ -133,18 +143,20 @@
 		if (document.fonts && document.fonts.ready) document.fonts.ready.then(placeDots);
 	}
 
-	/* ---------- Блок «Консультация»: поле телефона (intlTelInput) ----------
+	/* ---------- Блоки с формой («Консультация», «Запись на процедуру»): поле телефона (intlTelInput) ----------
 	   Библиотека считает отступ текста от кода страны один раз — при смене ширины экрана (размеры в vw) пересчитываем. */
-	var consult = document.querySelector('.lb-consult');
-	if (consult) {
-		var tel = consult.querySelector('input[name="phone"]');
+	var formBlocks = [].slice.call(document.querySelectorAll('.lb-consult, .lb-book'));
+	var tels = formBlocks.map(function (sec) { return sec.querySelector('input[name="phone"]'); }).filter(Boolean);
+	if (tels.length) {
 		var itiTimer;
 		window.addEventListener('resize', function () {
 			clearTimeout(itiTimer);
 			itiTimer = setTimeout(function () {
-				var iti = tel && window.intlTelInputGlobals && window.intlTelInputGlobals.getInstance(tel);
-				var data = iti && iti.getSelectedCountryData();
-				if (data && data.iso2) iti.setCountry(data.iso2);
+				tels.forEach(function (tel) {
+					var iti = window.intlTelInputGlobals && window.intlTelInputGlobals.getInstance(tel);
+					var data = iti && iti.getSelectedCountryData();
+					if (data && data.iso2) iti.setCountry(data.iso2);
+				});
 			}, 150);
 		});
 	}
@@ -193,9 +205,10 @@
 			var pdesk = isDesktop();
 			var ptl = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: price, start: 'top 70%' } });
 			ptl.from(pq('.lb-price__lin'), { yPercent: 105, duration: 1.5, stagger: 0.12 }, 0)
-				.from(pq('.lb-price__cta'), { y: 26, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.5)
-				.from(pq('.lb-price__textwrap'), { x: pdesk ? 40 : 0, y: pdesk ? 0 : 24, opacity: 0, duration: 1.3, clearProps: 'transform' }, 0.15)
-				.from(pq('.lb-price__card'), { y: 70, opacity: 0, duration: 1.6, clearProps: 'transform' }, 0.3)
+				.from(pq('.lb-price__cta'), { y: 26, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.5);
+			// вводного текста может не быть (пустой TV table-bl7, напр. в RU)
+			if (pq('.lb-price__textwrap').length) ptl.from(pq('.lb-price__textwrap'), { x: pdesk ? 40 : 0, y: pdesk ? 0 : 24, opacity: 0, duration: 1.3, clearProps: 'transform' }, 0.15);
+			ptl.from(pq('.lb-price__card'), { y: 70, opacity: 0, duration: 1.6, clearProps: 'transform' }, 0.3)
 				.from(pq('.lb-ptable__row'), { x: pdesk ? 60 : 0, y: pdesk ? 0 : 20, opacity: 0, duration: 1.2, stagger: 0.08, clearProps: 'transform' }, 0.55)
 				.from(pq('.lb-ptable__ic svg'), { scale: 0.4, opacity: 0, duration: 1, stagger: 0.08, ease: 'back.out(2)', clearProps: 'transform' }, 0.75);
 			// цены «набегают» от нуля (в HTML — итоговые значения)
@@ -210,17 +223,23 @@
 				ptl.to(o, { v: val, duration: 1.4, ease: 'power3.out', onStart: function () { cell.textContent = fmt(0); }, onUpdate: function () { cell.textContent = fmt(o.v); }, onComplete: function () { cell.textContent = txt; } }, 0.7 + n * 0.08);
 			});
 		}
-		if (consult) {
-			var cq = function (s) { return consult.querySelectorAll(s); };
-			var ctl = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: consult, start: 'top 72%' } });
-			ctl.from(consult.querySelector('.lb-consult__bg'), { opacity: 0, scale: 1.04, duration: 2, ease: 'power3.out', clearProps: 'transform' }, 0)
-				.from(cq('.lb-consult__eyebrow'), { x: -30, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.15)
-				.from(cq('.lb-consult__lin'), { yPercent: 105, duration: 1.5, stagger: 0.12 }, 0.2)
-				.fromTo(cq('.lb-consult__flourish'), { clipPath: 'inset(0% 100% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.6, ease: 'power2.inOut', clearProps: 'clipPath' }, 0.75)
-				.from(cq('.lb-consult__text'), { y: 30, opacity: 0, duration: 1.3, clearProps: 'transform' }, 0.6)
-				.from(cq('.lb-consult__card'), { y: 70, opacity: 0, duration: 1.6, clearProps: 'transform' }, 0.3)
-				.from(cq('.lb-cform__field, .lb-cform__btn, .lb-cform__policy'), { y: 26, opacity: 0, duration: 1.2, stagger: 0.09, clearProps: 'transform' }, 0.6);
-		}
+		// блоки с формой: «Консультация» (.lb-consult) и «Запись на процедуру» (.lb-book) — одинаковая анимация
+		formBlocks.forEach(function (sec) {
+			var b = sec.classList.contains('lb-book') ? 'lb-book' : 'lb-consult';
+			var ctl = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: sec, start: 'top 72%' } });
+			var add = function (sel, from, at, to) {
+				var els = sec.querySelectorAll(sel);
+				if (!els.length) return;
+				if (to) ctl.fromTo(els, from, to, at); else ctl.from(els, from, at);
+			};
+			add('.' + b + '__bg', { opacity: 0, scale: 1.04, duration: 2, ease: 'power3.out', clearProps: 'transform' }, 0);
+			add('.' + b + '__eyebrow', { x: -30, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.15);
+			add('.' + b + '__lin', { yPercent: 105, duration: 1.5, stagger: 0.12 }, 0.2);
+			add('.' + b + '__flourish', { clipPath: 'inset(0% 100% 0% 0%)' }, 0.75, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.6, ease: 'power2.inOut', clearProps: 'clipPath' });
+			add('.' + b + '__text', { y: 30, opacity: 0, duration: 1.3, clearProps: 'transform' }, 0.6);
+			add('.' + b + '__card', { y: 70, opacity: 0, duration: 1.6, clearProps: 'transform' }, 0.3);
+			add('.lb-cform__field, .lb-cform__btn, .lb-cform__policy', { y: 26, opacity: 0, duration: 1.2, stagger: 0.09, clearProps: 'transform' }, 0.6);
+		});
 		if (implica) {
 			var iq = function (s) { return implica.querySelectorAll(s); };
 			var arc = implica.querySelector('.lb-implica__arcline');
