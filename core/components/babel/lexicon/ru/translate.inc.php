@@ -150,3 +150,10 @@ $_lang['lbar.rd.contacts.phone'] = "Телефон";
 $_lang['lbar.rd.contacts.email'] = "E-mail";
 $_lang['lbar.rd.contacts.address'] = "Адрес";
 $_lang['lbar.rd.contacts.map'] = "Карта: LBar Studio на Google Maps";
+// --- редизайн: мега-меню «Услуги» в шапке ---
+$_lang['lbar.rd.mega.badge'] = "Рекомендуем";
+$_lang['lbar.rd.mega.promo'] = "Естественная и гармоничная форма, подобранная под черты вашего лица.";
+$_lang['lbar.rd.mega.micro'] = "Перманентный макияж";
+$_lang['lbar.rd.mega.brows'] = "Брови";
+$_lang['lbar.rd.mega.other'] = "Другие услуги";
+$_lang['lbar.rd.mega.quick'] = "Быстрый доступ";

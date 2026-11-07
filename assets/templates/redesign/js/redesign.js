@@ -45,6 +45,19 @@
 			btn.setAttribute('aria-expanded', open ? 'true' : 'false');
 		});
 	});
+	/* мега-меню (десктоп): Esc закрывает панель и возвращает фокус на «Servicii»; снова открывается при уходе мыши / фокуса */
+	document.querySelectorAll('.lb-nav__item--mega').forEach(function (it) {
+		var link = it.querySelector('.lb-nav__link');
+		it.addEventListener('keydown', function (e) {
+			if (e.key !== 'Escape' || !isDesktop()) return;
+			it.classList.add('is-shut');
+			if (link) link.focus();
+		});
+		it.addEventListener('mouseleave', function () { it.classList.remove('is-shut'); });
+		it.addEventListener('focusout', function (e) {
+			if (!it.contains(e.relatedTarget)) it.classList.remove('is-shut');
+		});
+	});
 
 	/* ---------- Плавный скролл к якорям на этой странице ---------- */
 	var scrollToEl = function (el) {

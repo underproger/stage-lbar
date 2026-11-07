@@ -53,9 +53,9 @@
 | Тексты интерфейса RO/RU | лексикон `core/components/babel/lexicon/{ro,ru}/translate.inc.php`, ключи `lbar.rd.*` (так уже было на сайте: `lbar.*`) |
 
 **Сборка CSS:** `cd assets/templates/redesign && /home/claude/build/node_modules/.bin/sass scss/redesign.scss css/redesign.css --style=compressed --no-source-map --silence-deprecation=import`
-**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.14.0**) — поднимать при изменениях.
+**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.15.0**) — поднимать при изменениях.
 **Новые/изменённые чанки в БД:** `sudo -u www-data php _dev/tools/modx_apply3.php` (пересохраняет все `*.tpl` из папки как статичные чанки и меняет
-вызов в шаблоне «Главная») — для нового блока сделать по аналогии (последний — `modx_apply14.php`, замена `[[$старый-чанк]]` → `[[$lb-новый]]`).
+вызов в шаблоне «Главная») — для нового блока сделать по аналогии (последний — `modx_apply15.php`, замена `[[$старый-чанк]]` → `[[$lb-новый]]`).
 **После правки `.tpl` чистить `core/cache/resource/`** (главная кэшируется — без этого на скриншоте старая разметка; CSS/JS это не касается).
 **После наката SQL-патчей чистить весь `core/cache/`** (кроме `logs`): иначе MODX берёт шаблон/чанки из кэша и новые блоки не появляются.
 
@@ -86,6 +86,9 @@
 - **Не использовать `<table>` в новых блоках:** старый `custom.js` вызывает `$('table').resTables()` — клонирует каждую таблицу, а на ≤800px
   прячет оригинал (`table.restables-origin {display:none}`). Таблица цен сделана на div с ARIA-ролями (`role="table|row|columnheader|cell"`) + CSS grid.
 - У корневого `<section>` блока со своим `padding` ставить `box-sizing: border-box` (ресет `:where(*)` действует только на потомков) — иначе `min-height` + padding.
+- **Порядок обработки: сначала MODX-теги, потом Fenom.** Переменные Fenom внутри `[[…]]` не работают (pThumb получал `[[*img-st-{$i}]]`
+  буквально → «File not found»), а значения TV нельзя подставлять в строковые литералы Fenom (кавычка в тексте сломает шаблон) — такие места
+  разворачивать литералами (так сделаны карточки `lb-blog`). В комментариях Fenom `{* *}` не писать MODX-теги.
 - Узкий неразрывный пробел U+202F в Montserrat почти нулевой ширины — для разрядов цен («1 100 RON») — обычный `&nbsp;`.
 
 ## 4. Сделано
@@ -251,6 +254,19 @@
    рендеров RU `$_modx->config` оказался без настроек ClientConfig (снимок конфига до плагина) — и пустые телефон/почта попали в кэш страницы.
    Исправлено в `lb-faq`, `lb-contact`, `lb-footer`. Карта в «Контактах» — `{disableSource}` (как в старом чанке: Lighthouse карту не получает).
 
+19. **Мега-меню «Servicii / Услуги»** в `lb-header` — по макету. pdoMenu получил `tplParentRow` = `lb.navParent`: для пунктов 80 (RO) / 302 (RU)
+   вызывается `lb.navMega`, остальные родители — как раньше (выпадашка). Ссылки — **те же ресурсы из дерева** (дети «Servicii» через
+   `$_modx->getResources`, опубл., не скрытые из меню, по menuindex; тексты — menutitle как в БД), разложены по колонкам: «Micropigmentare»
+   (RO 2, 162, 167, 119, 625 / RU 303, 317, 319, 316, 321), «Sprâncene» (дети 2 / 303), «Alte servicii» (остальные дети, иконки по id),
+   «Acces rapid» (Gift Voucher 177/323, `#lb-consult`, Portofoliu 100/198, Preturi 44/270 — дубли пунктов шапки). Карточка «Recomandat» —
+   `img/service-brows.webp`, заголовок — menutitle 2/303, текст и подписи колонок — лексикон `lbar.rd.mega.*`, кнопка → `#bl8-form`.
+   Десктоп: панель `vw(1430)` по центру под шапкой (у `.lb-nav` убран `translate` — иначе он становился containing block), открывается hover /
+   focus-within, «мостик» `::before`, колонки появляются по очереди; Esc закрывает (класс `is-shut`, JS) и возвращает фокус на «Servicii».
+   Мобильный (≤1024, бургер): раскрывается кнопкой +, карточка компактная (фото 96px + заголовок + кнопка), колонки списком, «быстрый доступ» —
+   сетка 2×2; планшет 600–1024 — группы в 2 колонки. При открытом бургер-меню кнопки WhatsApp и «наверх» скрыты.
+   SEO: все ссылки меню сохранены (27/23), добавились якоря `#lb-consult`, `#bl8-form`.
+   Тем же патчем — фикс карточек `lb-blog` (развёрнуты литералами, см. «Порядок обработки»).
+
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
 `stage-lbar-05-consult.sql` (чанки `lb-consult` id 275, `lb.formConsult` id 276 + все чанки Redesign + шаблон «Главная»),
@@ -263,8 +279,9 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `stage-lbar-12-faq.sql` (чанк `lb-faq` 287 + все чанки Redesign + шаблон «Главная»; значок Google в `lb.reviewsWrap`),
 `stage-lbar-13-seo.sql` (чанк `lb-seo` 288 + все чанки Redesign + шаблон «Главная»),
 `stage-lbar-14-blog-contact.sql` (чанки `lb-blog` 289, `lb-contact` 290 + все чанки Redesign + шаблон «Главная»),
-`stage-lbar-15-footer.sql` (чанк `lb-footer` 291 + все чанки Redesign + шаблон «Главная»). Патчи проверены импортом.
-После 15 БД **не менялась**.
+`stage-lbar-15-footer.sql` (чанк `lb-footer` 291 + все чанки Redesign + шаблон «Главная»),
+`stage-lbar-16-mega.sql` (чанки `lb.navParent`, `lb.navMega` + все чанки Redesign + шаблон «Главная» без изменений; фикс `lb-blog`). Патчи проверены импортом.
+После 16 БД **не менялась**.
 
 ## 5. Следующий шаг — главная готова; дальше — по решению пользователя
 
@@ -281,6 +298,10 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 Блок 11 (FAQ): сделан без макета — тексты слева (`lbar.rd.faq.text`, `.cta`) новые, править по желанию пользователя.
 Блоки 13–14: ссылки карточек статей на RO-аналоги, иконки мессенджеров в «Контактах», свой маркер на карте — по согласию.
 Подвал: в RU меню без ссылок (поле foot-link-l/r) — добавить ссылки только с согласия; номер Viber в настройках — украинский (+380).
+Мега-меню: тексты пунктов — menutitle из БД (длинные, в макете короче) — сокращать только правкой menutitle с согласия;
+фото в карточке «Recomandat» — из блока «Услуги» (заменить — по желанию).
+Фото с хостинга для локальных превью (в git их нет, папки в .gitignore): `assets/images/resources/1/` и `/193/` (+ `medium/`) — галерея,
+`images/all/master-min.jpg`, `skolko-min.jpg`, `eskiz-min.jpg` — статьи, `images/design/copyright-white-min.png` — подвал.
 Блок 12 (SEO): тексты в макете отличаются от БД (RU-заголовок и абзацы) — выводится БД; курсив в заголовках — только с правкой TV и согласия.
 
 ## 6. Конвейер «1 в 1» (как делались блоки)
@@ -313,7 +334,7 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 
 1. Подключить репо (`add_repo underproger/stage-lbar`, push), клонировать в `/home/claude/stage-lbar`.
 2. Пользователь прикладывает дамп и патчи **по порядку**: дамп хостинга `mysql_impua_testlbar_….tar.gz` (исходная база, без патчей),
-   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`, `-15-footer.sql`
+   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`, `-15-footer.sql`, `-16-mega.sql`
    (вместо дампа+urls+01 может прийти `lbar-full-stage-2026-11-06.sql.gz` — это то же самое).
 3. `cd /home/claude/stage-lbar && bash _dev/setup_local.sh <дамп> <urls> <01> <02> <03> <04> <05> <06> <07> <08> <09> <10> <11>` (файлы — по порядку; .tar.gz/.gz/.sql, строка sandbox вырезается) — поднимет MariaDB, Apache+SSL, PHP-полифилл,
    конфиги из `_dev/local-config`, hosts (`stage-lbar.touchit.vinnica.ua` → 127.0.0.1), симлинк `/home/impua/lbar.ro/www` → репо,

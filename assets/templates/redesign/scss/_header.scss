@@ -130,8 +130,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 0 vw(30);
-	translate: 0 vw(2);
+	padding: vw(4) vw(30) 0; // вместо translate: transform сделал бы .lb-nav блоком отсчёта для панели мега-меню
 
 	&__list {
 		display: flex;
@@ -590,5 +589,12 @@
 	html.is-menu-open,
 	html.is-menu-open body {
 		overflow: hidden;
+	}
+	// плавающие кнопки (WhatsApp, «наверх») не перекрывают открытое меню
+	html.is-menu-open #whatsapp-button,
+	html.is-menu-open .cd-top {
+		opacity: 0 !important;
+		visibility: hidden !important;
+		pointer-events: none !important;
 	}
 }

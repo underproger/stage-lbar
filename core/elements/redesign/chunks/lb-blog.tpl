@@ -9,6 +9,8 @@
 {set $fmt = 'lbar.rd.blog.title' | lexicon}
 {set $plain = $fmt | replace : '|' : ' ' | replace : '*' : ''}
 {set $isRu = $_modx->config.cultureKey == 'ru'}
+{* Карточки — развёрнуты по номерам. Порядок обработки: сначала MODX-теги, потом Fenom — поэтому переменные Fenom внутри MODX-тегов нельзя
+   (pThumb получал имя TV с «{$i}» буквально), а значения TV — не в строковые литералы Fenom (кавычки в тексте сломали бы шаблон). *}
 <section class="lb-blog" id="lb-blog">
     <div class="lb-blog__bg" aria-hidden="true"></div>
     <div class="lb-blog__inner">
@@ -39,21 +41,40 @@
         {/if}
 
         <div class="lb-blog__list">
-            {foreach 1..3 as $i}
-            {set $t = $_modx->resource['title-st-' ~ $i] | trim}
-            {if $i == 1 || $t}
             <article class="lb-blog__card">
                 <div class="lb-blog__img">
-                    <img src="[[pthumb? &input=`[[*img-st-{$i}]]` &options=`w=1040&h=700&zc=1`]]" alt="[[*alt-st-{$i}]]" width="520" height="350">
+                    <img src="[[pthumb? &input=`[[*img-st-1]]` &options=`w=1040&h=700&zc=1`]]" alt="[[*alt-st-1]]" width="520" height="350">
                 </div>
                 <div class="lb-blog__info">
-                    <span class="lb-blog__num" aria-hidden="true">0{$i}</span>
-                    <div class="lb-blog__name">[[*title-st-{$i}]]</div>
-                    <div class="lb-blog__text">[[*text-st-{$i}]]</div>
+                    <span class="lb-blog__num" aria-hidden="true">01</span>
+                    <div class="lb-blog__name">[[*title-st-1]]</div>
+                    <div class="lb-blog__text">[[*text-st-1]]</div>
+                </div>
+            </article>
+            {if ($_modx->resource['title-st-2'] | trim)}
+            <article class="lb-blog__card">
+                <div class="lb-blog__img">
+                    <img src="[[pthumb? &input=`[[*img-st-2]]` &options=`w=1040&h=700&zc=1`]]" alt="[[*alt-st-2]]" width="520" height="350">
+                </div>
+                <div class="lb-blog__info">
+                    <span class="lb-blog__num" aria-hidden="true">02</span>
+                    <div class="lb-blog__name">[[*title-st-2]]</div>
+                    <div class="lb-blog__text">[[*text-st-2]]</div>
                 </div>
             </article>
             {/if}
-            {/foreach}
+            {if ($_modx->resource['title-st-3'] | trim)}
+            <article class="lb-blog__card">
+                <div class="lb-blog__img">
+                    <img src="[[pthumb? &input=`[[*img-st-3]]` &options=`w=1040&h=700&zc=1`]]" alt="[[*alt-st-3]]" width="520" height="350">
+                </div>
+                <div class="lb-blog__info">
+                    <span class="lb-blog__num" aria-hidden="true">03</span>
+                    <div class="lb-blog__name">[[*title-st-3]]</div>
+                    <div class="lb-blog__text">[[*text-st-3]]</div>
+                </div>
+            </article>
+            {/if}
         </div>
 
         {if !$isRu}

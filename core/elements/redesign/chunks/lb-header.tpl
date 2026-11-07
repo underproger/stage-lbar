@@ -1,4 +1,5 @@
-{* Шапка (редизайн). Меню строится из дерева ресурсов, как и раньше — набор ссылок не меняется. *}
+{* Шапка (редизайн). Меню строится из дерева ресурсов, как и раньше — набор ссылок не меняется.
+   Родительские пункты — чанк lb.navParent; «Servicii / Услуги» — мега-меню lb.navMega. *}
 {set $menu = $_modx->runSnippet('!pdoMenu', [
     'level' => 3,
     'parents' => 0,
@@ -11,7 +12,7 @@
     'lastClass' => '',
     'levelClass' => '',
     'tpl' => '@INLINE <li[[+classes]]><a class="lb-nav__link" href="[[+link]]" [[+attributes]]>[[+menutitle]]</a>[[+wrapper]]</li>',
-    'tplParentRow' => '@INLINE <li[[+classes]]><a class="lb-nav__link" href="[[+link]]" [[+attributes]]>[[+menutitle]]</a><button class="lb-nav__toggle" type="button" aria-label="[[+menutitle]]" aria-expanded="false"></button>[[+wrapper]]</li>',
+    'tplParentRow' => 'lb.navParent',
     'tplInner' => '@INLINE <ul class="lb-nav__sub">[[+wrapper]]</ul>',
     'tplCategoryFolder' => '@INLINE <li[[+classes]]><span class="lb-nav__link">[[+menutitle]]</span>[[+wrapper]]</li>',
 ])}

@@ -1,0 +1,436 @@
+// ================= МЕГА-МЕНЮ «SERVICII / УСЛУГИ» (шапка) =================
+// Разметка — chunks/lb.navMega.tpl (из pdoMenu через lb.navParent). Десктоп: панель под шапкой по центру, открывается при наведении /
+// фокусе (как прежние подменю): карточка «Рекомендуем» + 4 колонки. Мобильный (бургер): раскрывается кнопкой +, колонки идут списком,
+// карточка — компактная горизонтальная, «быстрый доступ» — сетка 2×2.
+$mg-ink: #2c1f19;
+$mg-text: #4a3a33;
+$mg-copper: #a0705a;
+$mg-line: rgba(201, 139, 121, .22);
+
+.lb-mega {
+	:where(ul, li) {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	:where(p) {
+		margin: 0;
+	}
+	:where(a) {
+		text-decoration: none;
+		color: inherit;
+	}
+	:where(svg) {
+		display: block;
+	}
+	span {
+		font-weight: inherit; // старый CSS: span{font-weight:400}
+	}
+
+	&__h {
+		display: flex;
+		align-items: center;
+		gap: vw(10);
+		font-family: $f-display;
+		font-size: vw(19);
+		font-weight: 600;
+		line-height: 1.2;
+		color: $mg-ink;
+		white-space: nowrap;
+		svg {
+			flex: none;
+			width: vw(24);
+			height: vw(24);
+			fill: none;
+			stroke: $mg-copper;
+			stroke-width: 1.4;
+			stroke-linecap: round;
+			stroke-linejoin: round;
+		}
+	}
+	&__list > li + li {
+		border-top: 1px solid $mg-line;
+	}
+	&__link {
+		display: flex;
+		align-items: center;
+		gap: vw(10);
+		padding: vw(9) vw(6) vw(9) 0;
+		font-family: $f-display;
+		font-size: vw(16);
+		font-weight: 400;
+		line-height: 1.3;
+		color: $mg-text;
+		transition: color .3s, translate .4s $ease-expo;
+		span {
+			flex: 1;
+		}
+		@include hover {
+			color: $c-rose-dark;
+			translate: vw(3) 0;
+			.lb-mega__chev {
+				translate: vw(3) 0;
+				opacity: 1;
+			}
+		}
+		&:focus-visible {
+			outline: 2px solid $c-btn-dark;
+			outline-offset: 2px;
+			border-radius: 4px;
+		}
+	}
+	&__chev {
+		flex: none;
+		width: vw(16);
+		height: vw(16);
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 1.6;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		opacity: .55;
+		transition: translate .4s $ease-expo, opacity .3s;
+	}
+	&__ic {
+		flex: none;
+		width: vw(19);
+		height: vw(19);
+		fill: none;
+		stroke: $mg-copper;
+		stroke-width: 1.4;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+	&__list--ic &__link {
+		font-size: vw(15.5);
+	}
+
+	// «быстрый доступ» — пилюли
+	&__quick {
+		display: flex;
+		flex-direction: column;
+		gap: vw(10);
+	}
+	&__pill {
+		display: flex;
+		align-items: center;
+		gap: vw(12);
+		padding: vw(12) vw(14) vw(12) vw(16);
+		border-radius: vw(14);
+		font-family: $f-display;
+		font-size: vw(15.5);
+		line-height: 1.25;
+		color: $mg-ink;
+		background: rgba(236, 216, 203, .5);
+		transition: background-color .35s, translate .4s $ease-expo, box-shadow .4s;
+		span {
+			flex: 1;
+		}
+		@include hover {
+			background: rgba(236, 216, 203, .85);
+			translate: 0 -1px;
+			box-shadow: 0 vw(8) vw(18) rgba(140, 100, 76, .1);
+			.lb-mega__chev {
+				translate: vw(3) 0;
+				opacity: 1;
+			}
+		}
+		&:focus-visible {
+			outline: 2px solid $c-btn-dark;
+			outline-offset: 2px;
+		}
+	}
+
+	// карточка «Рекомендуем»
+	&__promo {
+		display: flex;
+		flex-direction: column;
+		padding: vw(12) vw(12) vw(18);
+		border: 1px solid rgba(255, 255, 255, .9);
+		border-radius: vw(22);
+		background: rgba(255, 255, 255, .55);
+		box-shadow: 0 vw(10) vw(28) rgba(140, 100, 76, .08);
+	}
+	&__promo-img {
+		position: relative;
+		display: block;
+		aspect-ratio: 260 / 170;
+		overflow: hidden;
+		border-radius: vw(16);
+		background: #efe2d8;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: 50% 40%;
+			transition: scale 1.2s $ease-expo;
+		}
+		@include hover {
+			img {
+				scale: 1.06;
+			}
+		}
+	}
+	&__badge {
+		position: absolute;
+		top: vw(10);
+		left: vw(10);
+		display: inline-flex;
+		align-items: center;
+		gap: vw(5);
+		padding: vw(5) vw(11) vw(5) vw(8);
+		border-radius: 999px;
+		font-size: vw(12);
+		font-weight: 500 !important;
+		color: $mg-ink;
+		background: rgba(255, 255, 255, .88);
+		box-shadow: 0 vw(4) vw(10) rgba(80, 50, 35, .12);
+		svg {
+			width: vw(13);
+			height: vw(13);
+			fill: none;
+			stroke: $mg-copper;
+			stroke-width: 1.6;
+			stroke-linejoin: round;
+		}
+	}
+	&__promo-t {
+		margin-top: vw(14);
+		padding: 0 vw(4);
+		font-family: $f-display;
+		font-size: vw(23);
+		font-weight: 600;
+		line-height: 1.1;
+		color: $mg-ink;
+	}
+	&__promo-p {
+		margin-top: vw(8);
+		padding: 0 vw(4);
+		font-size: vw(13.5);
+		line-height: 1.5;
+		color: #6f5f58;
+	}
+	&__promo-btn {
+		align-self: flex-start;
+		height: vw(44);
+		margin: vw(16) 0 0 vw(4);
+		padding: 0 vw(20) 0 vw(24);
+		gap: vw(12);
+		font-size: vw(12.5);
+		letter-spacing: .14em;
+		.lb-btn__arr {
+			width: vw(20);
+		}
+	}
+}
+
+// ----- десктоп: панель под шапкой -----
+@include desktop {
+	.lb-nav__list > .lb-nav__item--mega {
+		position: static; // панель — от .lb-header__inner, по центру шапки
+	}
+	.lb-mega {
+		position: absolute;
+		z-index: 6;
+		top: 100%;
+		left: 50%;
+		width: vw(1430);
+		margin: vw(30) 0 0 vw(-715);
+		opacity: 0;
+		visibility: hidden;
+		translate: 0 vw(12);
+		transition: opacity .35s $ease-out, translate .5s $ease-expo, visibility 0s linear .35s;
+		// «мостик» от пункта меню до панели — чтобы не закрывалась при переводе курсора
+		&::before {
+			content: "";
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 100%;
+			height: vw(46);
+		}
+		&__panel {
+			display: grid;
+			grid-template-columns: vw(272) 1.12fr 1.22fr 1fr .95fr;
+			align-items: start;
+			padding: vw(16);
+			border: 1px solid rgba(255, 255, 255, .85);
+			border-radius: vw(28);
+			background: linear-gradient(180deg, rgba(252, 248, 245, .96), rgba(249, 242, 237, .95));
+			-webkit-backdrop-filter: blur(18px);
+			backdrop-filter: blur(18px);
+			box-shadow: 0 vw(30) vw(80) rgba(110, 70, 50, .18), 0 vw(6) vw(18) rgba(110, 70, 50, .06);
+		}
+		&__col {
+			position: relative;
+			padding: vw(16) vw(22) vw(10) vw(24);
+			// тонкие вертикальные разделители
+			& + & {
+				border-left: 1px solid $mg-line;
+			}
+		}
+		&__promo + &__col {
+			margin-left: vw(12);
+		}
+		&__h {
+			margin-bottom: vw(14);
+		}
+		// появление колонок по очереди
+		&__promo,
+		&__col {
+			opacity: 0;
+			translate: 0 vw(10);
+			transition: opacity .3s, translate .5s $ease-expo;
+		}
+	}
+	.lb-nav__item--mega:not(.is-shut):hover > .lb-mega,
+	.lb-nav__item--mega:not(.is-shut):focus-within > .lb-mega {
+		opacity: 1;
+		visibility: visible;
+		translate: 0 0;
+		transition: opacity .35s $ease-out, translate .5s $ease-expo, visibility 0s;
+		.lb-mega__promo,
+		.lb-mega__col {
+			opacity: 1;
+			translate: 0 0;
+			transition: opacity .5s, translate .7s $ease-expo;
+		}
+		@for $i from 1 through 5 {
+			.lb-mega__panel > :nth-child(#{$i}) {
+				transition-delay: #{.04 + $i * .05}s;
+			}
+		}
+	}
+}
+
+// ----- мобильный: внутри панели бургер-меню -----
+@include mobile {
+	.lb-mnav .lb-nav__item--mega {
+		position: relative;
+	}
+	.lb-mega {
+		display: none;
+		padding: 2px 0 18px;
+		.lb-nav__item.is-open > & {
+			display: block;
+		}
+		&__panel {
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+		}
+		&__promo {
+			display: grid;
+			grid-template-columns: 96px 1fr;
+			grid-template-rows: auto auto;
+			column-gap: 14px;
+			align-items: center;
+			padding: 10px;
+			border-radius: 18px;
+		}
+		&__promo-img {
+			grid-row: 1 / 3;
+			aspect-ratio: 1;
+			border-radius: 13px;
+		}
+		&__badge {
+			top: 6px;
+			left: 6px;
+			padding: 3px 7px 3px 5px;
+			font-size: 9.5px;
+			gap: 3px;
+			svg {
+				width: 10px;
+				height: 10px;
+			}
+		}
+		&__promo-t {
+			align-self: end;
+			margin: 0;
+			padding: 0;
+			font-size: 18px;
+		}
+		&__promo-p {
+			display: none;
+		}
+		&__promo-btn {
+			align-self: start;
+			justify-self: start;
+			height: 36px;
+			margin: 8px 0 0;
+			padding: 0 14px 0 16px;
+			gap: 8px;
+			font-size: 11px;
+			letter-spacing: .12em;
+			.lb-btn__arr {
+				width: 16px;
+			}
+		}
+		&__h {
+			gap: 8px;
+			margin-bottom: 6px;
+			font-family: $f-text;
+			font-size: 12px;
+			font-weight: 600;
+			letter-spacing: .16em;
+			text-transform: uppercase;
+			color: $mg-copper;
+			svg {
+				width: 18px;
+				height: 18px;
+			}
+		}
+		&__link {
+			gap: 10px;
+			padding: 11px 2px 11px 0;
+			font-family: $f-text;
+			font-size: 16px;
+			color: $mg-text;
+		}
+		&__list--ic &__link {
+			font-size: 16px;
+		}
+		&__chev {
+			width: 15px;
+			height: 15px;
+		}
+		&__ic {
+			width: 19px;
+			height: 19px;
+		}
+		&__quick {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 8px;
+		}
+		&__pill {
+			gap: 8px;
+			min-height: 52px;
+			padding: 10px 10px 10px 12px;
+			border-radius: 14px;
+			font-family: $f-text;
+			font-size: 13.5px;
+			.lb-mega__chev {
+				display: none;
+			}
+		}
+	}
+}
+
+// ----- планшет: группы в две колонки, карточка на всю ширину -----
+@media (min-width: 600px) and (max-width: #{$bp-mobile}) {
+	.lb-mega {
+		&__panel {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 26px 44px;
+		}
+		&__promo {
+			grid-column: 1 / -1;
+			grid-template-columns: 120px 1fr;
+		}
+		&__promo-t {
+			font-size: 21px;
+		}
+	}
+}

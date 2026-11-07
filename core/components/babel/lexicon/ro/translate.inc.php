@@ -149,3 +149,10 @@ $_lang['lbar.rd.contacts.phone'] = "Telefon";
 $_lang['lbar.rd.contacts.email'] = "E-mail";
 $_lang['lbar.rd.contacts.address'] = "Adresă";
 $_lang['lbar.rd.contacts.map'] = "Harta: LBar Studio pe Google Maps";
+// --- редизайн: мега-меню «Servicii» в шапке ---
+$_lang['lbar.rd.mega.badge'] = "Recomandat";
+$_lang['lbar.rd.mega.promo'] = "Definire naturală și armonioasă, adaptată trăsăturilor tale.";
+$_lang['lbar.rd.mega.micro'] = "Micropigmentare";
+$_lang['lbar.rd.mega.brows'] = "Sprâncene";
+$_lang['lbar.rd.mega.other'] = "Alte servicii";
+$_lang['lbar.rd.mega.quick'] = "Acces rapid";
