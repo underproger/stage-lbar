@@ -1,6 +1,6 @@
 # stage-lbar — handoff (редизайн lbar.ro на MODX)
 
-Состояние на 07.11.2026, сделаны блоки 1–11 главной, последний коммит — см. `git log`. Папка `_dev/` — служебная (закрыта `.htaccess`),
+Состояние на 07.11.2026, сделаны блоки 1–12 главной, последний коммит — см. `git log`. Папка `_dev/` — служебная (закрыта `.htaccess`),
 **в конце проекта удалить** вместе с остальным мусором.
 
 ## 1. Проект
@@ -53,13 +53,13 @@
 | Тексты интерфейса RO/RU | лексикон `core/components/babel/lexicon/{ro,ru}/translate.inc.php`, ключи `lbar.rd.*` (так уже было на сайте: `lbar.*`) |
 
 **Сборка CSS:** `cd assets/templates/redesign && /home/claude/build/node_modules/.bin/sass scss/redesign.scss css/redesign.css --style=compressed --no-source-map --silence-deprecation=import`
-**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.11.0**) — поднимать при изменениях.
+**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.12.0**) — поднимать при изменениях.
 **Новые/изменённые чанки в БД:** `sudo -u www-data php _dev/tools/modx_apply3.php` (пересохраняет все `*.tpl` из папки как статичные чанки и меняет
-вызов в шаблоне «Главная») — для нового блока сделать по аналогии (последний — `modx_apply11.php`, замена `[[$старый-чанк]]` → `[[$lb-новый]]`).
+вызов в шаблоне «Главная») — для нового блока сделать по аналогии (последний — `modx_apply12.php`, замена `[[$старый-чанк]]` → `[[$lb-новый]]`).
 **После правки `.tpl` чистить `core/cache/resource/`** (главная кэшируется — без этого на скриншоте старая разметка; CSS/JS это не касается).
 **После наката SQL-патчей чистить весь `core/cache/`** (кроме `logs`): иначе MODX берёт шаблон/чанки из кэша и новые блоки не появляются.
 
-Шаблон **«Главная» (id 1)** сейчас: `[[$head]] [[$lb-head]]` … `[[$lb-header]] [[$lb-banner-main]] [[$lb-about]] [[$lb-services]] [[*title-main-bl3:notempty=`[[$lb-implica]]`]] [[$lb-consult]] [[$lb-master]] [[-$bl5-about-me]] [[$lb-portfolio]] [[*title-bl7:notempty=`[[$lb-price]]`]] [[$lb-book]] <!--[[$bl-gallery-studio]]--> [[$lb-reviews]] [[*migx_questions:notempty=`[[$lb-faq]]`]] [[$bl-seo]] …` `[[$script]] [[$lb-scripts]]`.
+Шаблон **«Главная» (id 1)** сейчас: `[[$head]] [[$lb-head]]` … `[[$lb-header]] [[$lb-banner-main]] [[$lb-about]] [[$lb-services]] [[*title-main-bl3:notempty=`[[$lb-implica]]`]] [[$lb-consult]] [[$lb-master]] [[-$bl5-about-me]] [[$lb-portfolio]] [[*title-bl7:notempty=`[[$lb-price]]`]] [[$lb-book]] <!--[[$bl-gallery-studio]]--> [[$lb-reviews]] [[*migx_questions:notempty=`[[$lb-faq]]`]] [[$lb-seo]] [[$bl-blog]] …` `[[$script]] [[$lb-scripts]]`.
 Старые чанки используются ещё на других шаблонах (напр. `bl1-about-us`, `bl3-text` — в шаблоне «Категория», 27 страниц) — **их не правим**, делаем новые `lb-*` и подключаем только в «Главную».
 
 **Шрифтовой стандарт (решение пользователя: «как в блоке lb-about») — для всех блоков, новых тоже:**
@@ -200,6 +200,22 @@
    (у «Отзывов» — `::before`); низ FAQ уходит в белый фон старого SEO-блока. Если FAQ на странице нет (пустой TV) — низ «Отзывов» остаётся
    в цвете стыка с лентой (на главных RO/RU FAQ есть).
 
+15. **Блок «SEO-текст» `lb-seo`** (`scss/_seo.scss`) — вместо `bl-seo`. **Главное правило: HTML текстов не меняется.** TV выводятся теми же
+   MODX-тегами, что в старом чанке (`[[*title-bl-seo]]`, `[[*text-bl-seo]]`, `[[*text-bl-seo-2]]`), внутри — ни span, ни em, ни классов
+   (проверено побайтно: вывод RO/RU совпадает со старым; в браузере DOM текста тоже не меняется — JS трогает только обёртки).
+   Курсивных акцентов в заголовках из макета нет — по просьбе пользователя (текст в приоритете). Надзаголовков «LBAR STUDIO» нет.
+   Шапка: H2 (TV `title-bl-seo`) слева, `text-bl-seo` справа за вертикальной медной линией. Тело (`text-bl-seo-2`) оформлено только CSS по тегам:
+   h2 — разделы с тонкой линией между ними; **h3 и всё под ним до следующего h2/h3 — «таймлайн»** (кружок у h3, вертикальная линия,
+   абзацы — светлые карточки); абзацы сразу после h2 — обычный текст; списки — карточка с точками и разделителями; абзац после списка —
+   примечание с медной чертой. «Под h2» или «под h3» — определяется цепочками соседей (`h2 + :not(h2,h3) + …`, генерируются в SCSS до 8 шагов,
+   в текстах сейчас максимум 3) и `:where()`, чтобы не раздувать специфичность. Номеров у шагов нет намеренно: в RO под «Etapele…» пять h3,
+   из них «Corecția» и «Contraindicații» — не шаги, нумерация была бы неверной. Шрифт заголовков — Montserrat 600 (как в макете; блок текстовый).
+   Картинка TV `img-bl-seo` (`seo-img-1.jpg` — файла на сайте нет) и декоративная `opacity-text-bl11.png` не выводятся (в макете их нет).
+   Анимация: текст **никогда не скрывается**; JS по прокрутке ставит `.is-anim/.is-in` на секцию и `data-seen` (сколько h3 показано) на `.lb-seo__body`,
+   CSS через `h3:nth-of-type` «вспыхивает» кружки и проращивает линии. CSS scroll-driven (`animation-timeline: view()`) и `position: sticky`
+   здесь не работают — у старого `.wrapper` `overflow: hidden`. Фон — графика `img/seo-bg.svg`. Стык 11 → 12: лента `img/seam-seo.svg`
+   (у FAQ — `::before`); низ SEO-блока уходит в белый фон старого блока «Блог».
+
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
 `stage-lbar-05-consult.sql` (чанки `lb-consult` id 275, `lb.formConsult` id 276 + все чанки Redesign + шаблон «Главная»),
@@ -209,14 +225,14 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `stage-lbar-09-price.sql` (чанк `lb-price` id 280 + все чанки Redesign + шаблон «Главная»),
 `stage-lbar-10-book.sql` (чанки `lb-book` id 281, `lb.formBook` id 282 + все чанки Redesign + шаблон «Главная»),
 `stage-lbar-11-reviews.sql` (чанки `lb.ecForm` 283, `lb.reviewCard` 284, `lb-reviews` 285, `lb.reviewsWrap` 286 + все чанки Redesign + шаблон «Главная»),
-`stage-lbar-12-faq.sql` (чанк `lb-faq` 287 + все чанки Redesign + шаблон «Главная»; значок Google в `lb.reviewsWrap`). Патчи проверены импортом.
-После 12 БД **не менялась**.
+`stage-lbar-12-faq.sql` (чанк `lb-faq` 287 + все чанки Redesign + шаблон «Главная»; значок Google в `lb.reviewsWrap`),
+`stage-lbar-13-seo.sql` (чанк `lb-seo` 288 + все чанки Redesign + шаблон «Главная»). Патчи проверены импортом.
+После 13 БД **не менялась**.
 
-## 5. Следующий шаг — блок 12 (по порядку шаблона: `[[$bl-seo]]` — SEO-текст, H2 — TV `title-bl-seo`, текст — TV `text-bl-seo`, картинка — TV `img-bl-seo`)
+## 5. Следующий шаг — блок 13 (по порядку шаблона: `[[$bl-blog]]` — «Articolele noastre» / статьи блога)
 
-Макета пока нет — ждём от пользователя. Дальше по шаблону: `bl-blog`, `bl-contact`, `footer`.
-SEO-блок — самый чувствительный для SEO: H2/H3 и текст TV не менять, вывод `text-bl-seo` как есть; условие `img-bl-seo:notempty` сохранить.
-Стык 11 → 12: сейчас низ `lb-faq` уходит в белый — при новом блоке заменить на ленту по `_seam.scss`.
+Макета пока нет — ждём от пользователя. Дальше по шаблону: `bl-contact`, `footer`.
+Стык 12 → 13: сейчас низ `lb-seo` уходит в белый — при новом блоке заменить на ленту по `_seam.scss`.
 Открытый вопрос по блоку 6: в макете жирным выделены целые фразы («Experiență de peste 4000+», «Master Trainer») — в TV их разметки нет,
 сейчас автоматически жирные только числа; можно добавить `<b>` прямо в TV (с согласия пользователя).
 Открытые вопросы по блоку 8: подписи колонок без диакритики («Procedura», «Durata» — в макете «Procedură», «Durată»); названия процедур
@@ -226,6 +242,7 @@ SEO-блок — самый чувствительный для SEO: H2/H3 и т
 отзывы сайта (EasyComm); ссылка на профиль Google — если дадут (тогда значок и «Lăsați o recenzie» можно вести в Google); монограмма «LB» — по согласию
 (как и печати/водяные знаки в блоках 2–3).
 Блок 11 (FAQ): сделан без макета — тексты слева (`lbar.rd.faq.text`, `.cta`) новые, править по желанию пользователя.
+Блок 12 (SEO): тексты в макете отличаются от БД (RU-заголовок и абзацы) — выводится БД; курсив в заголовках — только с правкой TV и согласия.
 
 ## 6. Конвейер «1 в 1» (как делались блоки)
 
@@ -257,7 +274,7 @@ SEO-блок — самый чувствительный для SEO: H2/H3 и т
 
 1. Подключить репо (`add_repo underproger/stage-lbar`, push), клонировать в `/home/claude/stage-lbar`.
 2. Пользователь прикладывает дамп и патчи **по порядку**: дамп хостинга `mysql_impua_testlbar_….tar.gz` (исходная база, без патчей),
-   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`
+   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`
    (вместо дампа+urls+01 может прийти `lbar-full-stage-2026-11-06.sql.gz` — это то же самое).
 3. `cd /home/claude/stage-lbar && bash _dev/setup_local.sh <дамп> <urls> <01> <02> <03> <04> <05> <06> <07> <08> <09> <10> <11>` (файлы — по порядку; .tar.gz/.gz/.sql, строка sandbox вырезается) — поднимет MariaDB, Apache+SSL, PHP-полифилл,
    конфиги из `_dev/local-config`, hosts (`stage-lbar.touchit.vinnica.ua` → 127.0.0.1), симлинк `/home/impua/lbar.ro/www` → репо,

@@ -481,6 +481,40 @@
 		});
 	}
 
+	/* ---------- SEO-блок: кружки таймлайна и линии при прокрутке ----------
+	   В HTML текста ничего не меняем (даже классы): отмечаем только обёртки — .is-anim/.is-in на секции
+	   и data-seen (сколько h3 уже показано) на .lb-seo__body; кружки выбирает CSS через h3:nth-of-type. */
+	var seo = document.querySelector('.lb-seo');
+	var seoBody = seo && seo.querySelector('.lb-seo__body');
+	if (seo && seoBody && !reduce && window.requestAnimationFrame) {
+		var seoHead = seo.querySelector('.lb-seo__head');
+		var seoH3 = [].filter.call(seoBody.children, function (el) { return el.tagName === 'H3'; });
+		var seen = 0, seoTick = false;
+		seo.classList.add('is-anim');
+		// показано всё, что уже выше 88% высоты экрана (и при быстрой прокрутке / переходе по якорю ничего не остаётся скрытым)
+		var seoCheck = function () {
+			seoTick = false;
+			var lim = window.innerHeight * 0.88;
+			if (seoHead && seoHead.getBoundingClientRect().top < lim) seo.classList.add('is-in');
+			var n = seen;
+			while (n < seoH3.length && seoH3[n].getBoundingClientRect().top < lim) n++;
+			if (n > seen) {
+				seen = n;
+				seoBody.setAttribute('data-seen', String(seen));
+			}
+			if (seen >= seoH3.length && seo.classList.contains('is-in')) {
+				window.removeEventListener('scroll', seoOnScroll);
+				window.removeEventListener('resize', seoOnScroll);
+			}
+		};
+		var seoOnScroll = function () {
+			if (!seoTick) { seoTick = true; window.requestAnimationFrame(seoCheck); }
+		};
+		window.addEventListener('scroll', seoOnScroll, { passive: true });
+		window.addEventListener('resize', seoOnScroll);
+		seoCheck();
+	}
+
 	/* ---------- Появление блоков при прокрутке ---------- */
 	var initReveal = function () {
 		if (reduce || typeof window.gsap === 'undefined' || !window.ScrollTrigger) return;

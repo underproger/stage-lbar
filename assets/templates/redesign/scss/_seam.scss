@@ -9,7 +9,7 @@
 //        «Услуги» → «implică» (seam-implica.svg), «implică» → «Консультация» (seam-consult.svg),
 //        «Консультация» → «Мастер» (seam-master.svg), «Мастер» → «Галерея» (seam-portfolio.svg), «Галерея» → «Цены» (seam-price.svg),
 //        «Цены» → «Запись на процедуру» (seam-book.svg), «Запись» → «Отзывы» (seam-reviews.svg),
-//        «Отзывы» → «Вопросы и ответы» (seam-faq.svg).
+//        «Отзывы» → «Вопросы и ответы» (seam-faq.svg), FAQ → «SEO-текст» (seam-seo.svg).
 $seam-h: 760;              // высота декора, px @1920
 $seam-hero: #f8f1ec;       // баннер → «О микропигментации»
 $seam-color: #f7eee8;      // «О микропигментации» → «Услуги»
@@ -243,6 +243,7 @@ $seam-book: #f4eae6;     // «Цены» → «Запись на процеду�
 // нижний рисуем в ::before.
 $seam-reviews: #f8f0ea;   // «Запись» → «Отзывы»
 $seam-faq: #f7efea;      // «Отзывы» → «Вопросы и ответы»
+$seam-seo: #f8f2ee;      // «Вопросы и ответы» → «SEO-текст»
 .lb-price {
 	@include lb-seam(bottom, "seam-book.svg", before);
 }
@@ -290,13 +291,13 @@ $seam-faq: #f7efea;      // «Отзывы» → «Вопросы и ответ�
 
 // ---------- «Отзывы» → «Вопросы и ответы» (светлый → светлый) ----------
 // Лента (img/seam-faq.svg) идёт под кнопками «Отзывов» и над заголовком / списком FAQ. У «Отзывов» ::after занят верхним стыком —
-// нижний в ::before. Низ FAQ уходит в белый фон следующего (старого) SEO-блока.
+// нижний в ::before.
 .lb-reviews {
 	@include lb-seam(bottom, "seam-faq.svg", before);
 }
 .lb-faq {
 	isolation: isolate;
-	background: linear-gradient(180deg, $seam-faq 0, $fq-bg vw(170), $fq-bg calc(100% - #{vw(260)}), #fff 100%);
+	background: linear-gradient(180deg, $seam-faq 0, $fq-bg vw(170), $fq-bg calc(100% - #{vw(260)}), $seam-seo 100%);
 	@include lb-seam(top, "seam-faq.svg");
 	&__bg {
 		z-index: -1;
@@ -304,7 +305,31 @@ $seam-faq: #f7efea;      // «Отзывы» → «Вопросы и ответ�
 		mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .5) vw(70), #000 vw(190), #000 calc(100% - #{vw(320)}), transparent calc(100% - #{vw(20)}));
 	}
 	@include mobile {
-		background: linear-gradient(180deg, $seam-faq 0, $fq-bg 100px, $fq-bg calc(100% - 120px), #fff 100%);
+		background: linear-gradient(180deg, $seam-faq 0, $fq-bg 100px, $fq-bg calc(100% - 120px), $seam-seo 100%);
+		&__bg {
+			-webkit-mask-image: linear-gradient(180deg, transparent 0, #000 120px, #000 calc(100% - 160px), transparent calc(100% - 10px));
+			mask-image: linear-gradient(180deg, transparent 0, #000 120px, #000 calc(100% - 160px), transparent calc(100% - 10px));
+		}
+	}
+}
+
+// ---------- «Вопросы и ответы» → «SEO-текст» (светлый → светлый) ----------
+// Лента (img/seam-seo.svg) идёт под списком FAQ и над шапкой SEO-блока. У FAQ ::after занят верхним стыком — нижний в ::before.
+// Низ SEO-блока уходит в белый фон следующего (старого) блока «Блог».
+.lb-faq {
+	@include lb-seam(bottom, "seam-seo.svg", before);
+}
+.lb-seo {
+	isolation: isolate;
+	background: linear-gradient(180deg, $seam-seo 0, $seo-bg vw(170), $seo-bg calc(100% - #{vw(240)}), #fff 100%);
+	@include lb-seam(top, "seam-seo.svg");
+	&__bg {
+		z-index: -1;
+		-webkit-mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .5) vw(70), #000 vw(190), #000 calc(100% - #{vw(300)}), transparent calc(100% - #{vw(20)}));
+		mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .5) vw(70), #000 vw(190), #000 calc(100% - #{vw(300)}), transparent calc(100% - #{vw(20)}));
+	}
+	@include mobile {
+		background: linear-gradient(180deg, $seam-seo 0, $seo-bg 100px, $seo-bg calc(100% - 120px), #fff 100%);
 		&__bg {
 			-webkit-mask-image: linear-gradient(180deg, transparent 0, #000 120px, #000 calc(100% - 160px), transparent calc(100% - 10px));
 			mask-image: linear-gradient(180deg, transparent 0, #000 120px, #000 calc(100% - 160px), transparent calc(100% - 10px));

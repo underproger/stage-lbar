@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1300" preserveAspectRatio="xMidYMid slice">
+  <!-- Фон SEO-блока: только графика (без фото), очень мягкая — блок текстовый. Свет за заголовком слева,
+       тёплый диск в правом верхнем углу с тонкими медными дугами, кольца слева на уровне таймлайна. -->
+  <defs>
+    <radialGradient id="s-sun" cx="360" cy="260" r="620" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity=".75"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="s-disk" cx="1790" cy="110" r="430" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ecdacd" stop-opacity=".6"/>
+      <stop offset=".65" stop-color="#efe0d5" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#f3e8e0" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="s-arc" x1="1300" y1="0" x2="1920" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b8906f" stop-opacity="0"/>
+      <stop offset=".45" stop-color="#b8906f" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#b8906f" stop-opacity=".2"/>
+    </linearGradient>
+    <linearGradient id="s-ring" x1="0" y1="760" x2="0" y2="1280" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b8906f" stop-opacity="0"/>
+      <stop offset=".35" stop-color="#b8906f" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#b8906f" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1920" height="1300" fill="url(#s-sun)"/>
+  <circle cx="1790" cy="110" r="430" fill="url(#s-disk)"/>
+  <path d="M1330 40A470 470 0 0 0 1700 570" fill="none" stroke="url(#s-arc)" stroke-width="1.3"/>
+  <path d="M1290 -10A520 520 0 0 0 1660 620" fill="none" stroke="url(#s-arc)" stroke-width=".9" opacity=".6"/>
+
+  <g fill="none" stroke="url(#s-ring)">
+    <circle cx="-40" cy="1020" r="230" stroke-width="1.2"/>
+    <circle cx="-40" cy="1020" r="275" stroke-width=".8" opacity=".6"/>
+  </g>
+</svg>
