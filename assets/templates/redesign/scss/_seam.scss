@@ -590,3 +590,76 @@ $seam-contact: #f8f2ee;  // «Статьи» → «Контакты»
 		background: linear-gradient(180deg, $seam-hero 0, $rv-bg 90px, $rv-bg calc(100% - 100px), $seam-faq 100%);
 	}
 }
+
+// ---------- блог: баннер → список статей → подвал; баннер → статья → (FAQ) → комментарии → подвал ----------
+.lb-bloglist,
+.lb-article {
+	background: linear-gradient(180deg, $seam-hero 0, #f8f2ee vw(200));
+	@include lb-seam(top, "seam-hero.svg");
+	@include mobile {
+		background: linear-gradient(180deg, $seam-hero 0, #f8f2ee 100px);
+	}
+}
+.lb-bloglist {
+	padding-bottom: vw(220);
+	// в подвал — та же тёмная волна, что у «Контактов»
+	&::before {
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: -1px;
+		width: 100%;
+		height: vw(160);
+		z-index: 0;
+		pointer-events: none;
+		background: url("/assets/templates/redesign/img/seam-footer.svg") center bottom / 100% 100% no-repeat;
+	}
+	@include mobile {
+		padding-bottom: 96px;
+		&::before {
+			height: mvw(70);
+		}
+	}
+}
+.lb-article {
+	background: linear-gradient(180deg, $seam-hero 0, #f8f2ee vw(200), #f8f2ee calc(100% - #{vw(200)}), $seam-faq 100%);
+	@include lb-seam(bottom, "seam-faq.svg", before);
+	@include mobile {
+		background: linear-gradient(180deg, $seam-hero 0, #f8f2ee 100px, #f8f2ee calc(100% - 80px), $seam-faq 100%);
+	}
+}
+.lb-article + .lb-comments {
+	&::after {
+		@include lb-seam-bg("seam-faq.svg");
+	}
+}
+.lb-comments {
+	isolation: isolate;
+	background: linear-gradient(180deg, $seam-faq 0, #f8f2ee vw(160));
+	@include lb-seam(top, "seam-seo.svg");
+	padding-bottom: vw(220);
+	&::before {
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: -1px;
+		width: 100%;
+		height: vw(160);
+		z-index: 0;
+		pointer-events: none;
+		background: url("/assets/templates/redesign/img/seam-footer.svg") center bottom / 100% 100% no-repeat;
+	}
+	@include mobile {
+		background: linear-gradient(180deg, $seam-faq 0, #f8f2ee 90px);
+		padding-bottom: 96px;
+		&::before {
+			height: mvw(70);
+		}
+	}
+}
+// FAQ в статье: сверху из статьи, снизу — в комментарии (у lb-faq нижний стык — лента seam-seo, как к SEO-тексту)
+.lb-article + .lb-faq + .lb-comments {
+	&::after {
+		@include lb-seam-bg("seam-seo.svg");
+	}
+}

@@ -41,7 +41,7 @@
             {/if}
             <p class="lb-faq__text">{'lbar.rd.faq.text' | lexicon}</p>
             <div class="lb-faq__ctas">
-                <a class="lb-btn lb-btn--solid lb-faq__btn" href="#lb-consult">{'lbar.rd.faq.cta' | lexicon}<svg class="lb-btn__arr" viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg></a>
+                <a class="lb-btn lb-btn--solid lb-faq__btn js-lb-book" href="#lb-consult">{'lbar.rd.faq.cta' | lexicon}<svg class="lb-btn__arr" viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg></a>
                 <a class="lb-btn lb-btn--ghost lb-faq__btn lb-faq__btn--tel" href="tel:[[++phone-1:replace=` ==`]]"><svg class="lb-faq__tel" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16.4v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 1.1 3.7 2 2 0 0 1 3.1 1.5h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L7.1 9.3a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2.1z"/></svg>[[++phone-1]]</a>
             </div>
         </div>
