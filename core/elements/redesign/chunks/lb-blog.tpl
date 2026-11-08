@@ -4,7 +4,7 @@
    если заполнен заголовок, как в старом чанке). В старом чанке у 2-й карточки по ошибке выводился text-st-1 — здесь text-st-2.
    Ссылка карточки — TV link-st-N (id или путь статьи, разбор — чанк lb.blogHref): если статья опубликована, заголовок становится ссылкой,
    а её область (::after) растянута на всю карточку; удалённые / снятые статьи — карточка без ссылки. Кнопка «Toate articolele» — на блог (RO, id 31);
-   в RU блога нет — кнопка не выводится. Картинки — pthumb, как раньше; если файла нет — под ним графическая подложка. *}
+   в RU блога нет — кнопка не выводится. Картинки — pthumb, как раньше (в RU pthumb отдаёт путь с /ru/ — убираем: файл лежит в /assets/image-cache/); если файла нет — под ним графическая подложка. *}
 {set $raw = $_modx->resource['title-blog-bl12'] | trim}
 {set $title = $raw | striptags | replace : '  ' : ' ' | trim}
 {set $fmt = 'lbar.rd.blog.title' | lexicon}
@@ -46,7 +46,7 @@
             {set $href1 = $_modx->getChunk('lb.blogHref', ['v' => $_modx->resource['link-st-1']]) | trim}
             <article class="lb-blog__card{if $href1} lb-blog__card--link{/if}">
                 <div class="lb-blog__img">
-                    <img src="[[pthumb? &input=`[[*img-st-1]]` &options=`w=1040&h=700&zc=1`]]" alt="[[*alt-st-1]]" width="520" height="350">
+                    <img src="[[pthumb:replace=`/ru/assets/==/assets/`? &input=`[[*img-st-1]]` &options=`w=1040&h=700&zc=1`]]" alt="[[*alt-st-1]]" width="520" height="350">
                 </div>
                 <div class="lb-blog__info">
                     <span class="lb-blog__num" aria-hidden="true">01</span>
@@ -59,7 +59,7 @@
             {set $href2 = $_modx->getChunk('lb.blogHref', ['v' => $_modx->resource['link-st-2']]) | trim}
             <article class="lb-blog__card{if $href2} lb-blog__card--link{/if}">
                 <div class="lb-blog__img">
-                    <img src="[[pthumb? &input=`[[*img-st-2]]` &options=`w=1040&h=700&zc=1`]]" alt="[[*alt-st-2]]" width="520" height="350">
+                    <img src="[[pthumb:replace=`/ru/assets/==/assets/`? &input=`[[*img-st-2]]` &options=`w=1040&h=700&zc=1`]]" alt="[[*alt-st-2]]" width="520" height="350">
                 </div>
                 <div class="lb-blog__info">
                     <span class="lb-blog__num" aria-hidden="true">02</span>
@@ -73,7 +73,7 @@
             {set $href3 = $_modx->getChunk('lb.blogHref', ['v' => $_modx->resource['link-st-3']]) | trim}
             <article class="lb-blog__card{if $href3} lb-blog__card--link{/if}">
                 <div class="lb-blog__img">
-                    <img src="[[pthumb? &input=`[[*img-st-3]]` &options=`w=1040&h=700&zc=1`]]" alt="[[*alt-st-3]]" width="520" height="350">
+                    <img src="[[pthumb:replace=`/ru/assets/==/assets/`? &input=`[[*img-st-3]]` &options=`w=1040&h=700&zc=1`]]" alt="[[*alt-st-3]]" width="520" height="350">
                 </div>
                 <div class="lb-blog__info">
                     <span class="lb-blog__num" aria-hidden="true">03</span>

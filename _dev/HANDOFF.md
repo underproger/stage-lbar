@@ -533,6 +533,21 @@
    К краям экрана намеренно: фоны, фото баннеров, фото «О микропигментации», «implică», мастера, лента отзывов, слайдеры на телефоне.
    По центру внутри контейнера (уже): карточка текста галереи (1200), 404/«Спасибо», заголовок «Отзывов».
 
+37. **Полная SEO-сверка «исходный сайт ↔ стейдж»** (инструменты и порядок — `_dev/tools/seo_full/README.md`). Исходный сайт отрисован
+   локально из исходного дампа (база `lbar_orig`, старые шаблоны), сравнены все 106 адресов эталона: статусы и редиректы, title,
+   description, keywords, robots, canonical, hreflang, og, lang — **без изменений**; H1–H6 (97 / 675 / 266 / 4) — **изменилось только
+   «Контакты» RO/RU: убран H2** «SOLICITĂ UN APEL SOLICITĂ UN APEL Trimite» / «Заказать звонок Заказать звонок Отправить» (было: кнопка окна
+   внутри h2); микроразметка (Article, BreadcrumbList, FAQPage, ProfessionalService/LocalBusiness/WebSite) — без изменений; JSON-LD +3
+   только на 404/«Спасибо» (п. 32); ссылки — пропали только якоря `#review`, `#bl1`, `#conract`; alt — 74 картинкам добавлен, ни один
+   не убран; тексты из базы — на месте (отличаются только служебные надписи старых шапки/подвала/мобильного меню; в старом мобильном меню
+   был другой адрес — «Șoseaua Ștefan cel Mare Nr 1 / Calea Dorobanților», теперь везде «Strada Polonă 92», как в JSON-LD).
+   Исправлено по итогам (v1.28.0, только чанки): логотип и графика первого экрана — `loading="eager"` (плагин addLazyToImg ставил lazy
+   всем картинкам без атрибута); RU-главная, «Статьи» — pthumb отдавал путь с `/ru/assets/…` (404), теперь `/assets/…`.
+   Список фото, которых нет на стейдже: `_dev/photos/photos-missing.txt` (A — непеределанные страницы: курс 182, лазер 625/321; B — 
+   переделанные: Gift Voucher 177, фото в тексте RU «Пудровые брови», SEO-фото «Отзывов», карточки «Обучение»/«Услуги», логотипы микроразметки).
+   Найдено, но не трогали (было и на живом сайте): на RU-странице «Пудровые брови» фото в тексте с относительным путём `images/all/…` →
+   `/ru/images/…` (404) — правится только в тексте TV (по согласию).
+
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
 `stage-lbar-05-consult.sql` (чанки `lb-consult` id 275, `lb.formConsult` id 276 + все чанки Redesign + шаблон «Главная»),
@@ -563,7 +578,8 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `stage-lbar-35-headings.sql` («Контакты»: H1 в баннере — **шаблон 9**; единая шкала заголовков; версия 1.27.0).
 `stage-lbar-36-h1.sql` (исходные H1: **UPDATE TV title-banner** ресурсов 1/193, «Контакты» снова без баннера — **шаблон 9**; версия 1.27.1).
 `stage-lbar-37-container.sql` (единый контейнер — только чанки lb-head/lb-scripts с версией 1.28.0).
-Патчи проверены импортом. После 37 БД **не менялась** (кроме локальной настройки phpThumb выше).
+`stage-lbar-38-seo-fixes.sql` (после SEO-сверки: eager для логотипа и графики баннера, путь фото «Статей» на RU-главной).
+Патчи проверены импортом. После 38 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — по решению пользователя
 
@@ -620,7 +636,7 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 
 1. Подключить репо (`add_repo underproger/stage-lbar`, push), клонировать в `/home/claude/stage-lbar`.
 2. Пользователь прикладывает дамп и патчи **по порядку**: дамп хостинга `mysql_impua_testlbar_….tar.gz` (исходная база, без патчей),
-   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`, `-15-footer.sql`, `-16-mega.sql`, `-17-fixes.sql`, `-18-visited.sql`, `-19-lang-blog.sql`, `-20-lang-slug.sql`, `-21-services-banner.sql`, `-22-buttons.sql`, `-23-hero.sql`, `-24-services.sql`, `-25-seo-img.sql`, `-26-logo-hubs.sql`, `-27-portfolio.sql`, `-28-hub-banner.sql`, `-29-pages.sql`, `-30-blog.sql`, `-31-blog-info.sql`, `-32-contact.sql`, `-33-404-thanks.sql`, `-34-article-banner.sql`, `-35-headings.sql`, `-36-h1.sql`, `-37-container.sql`
+   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`, `-15-footer.sql`, `-16-mega.sql`, `-17-fixes.sql`, `-18-visited.sql`, `-19-lang-blog.sql`, `-20-lang-slug.sql`, `-21-services-banner.sql`, `-22-buttons.sql`, `-23-hero.sql`, `-24-services.sql`, `-25-seo-img.sql`, `-26-logo-hubs.sql`, `-27-portfolio.sql`, `-28-hub-banner.sql`, `-29-pages.sql`, `-30-blog.sql`, `-31-blog-info.sql`, `-32-contact.sql`, `-33-404-thanks.sql`, `-34-article-banner.sql`, `-35-headings.sql`, `-36-h1.sql`, `-37-container.sql`, `-38-seo-fixes.sql`
    (вместо дампа+urls+01 может прийти `lbar-full-stage-2026-11-06.sql.gz` — это то же самое).
 3. `cd /home/claude/stage-lbar && bash _dev/setup_local.sh <дамп> <urls> <01> <02> <03> <04> <05> <06> <07> <08> <09> <10> <11>` (файлы — по порядку; .tar.gz/.gz/.sql, строка sandbox вырезается) — поднимет MariaDB, Apache+SSL, PHP-полифилл,
    конфиги из `_dev/local-config`, hosts (`stage-lbar.touchit.vinnica.ua` → 127.0.0.1), симлинк `/home/impua/lbar.ro/www` → репо,

@@ -20,9 +20,9 @@
                 <img src="{$img}hero-bg.webp" srcset="{$img}hero-bg-1440.webp 1440w, {$img}hero-bg.webp 2166w, {$img}hero-bg-2880.webp 2880w" sizes="100vw" width="2166" height="1218" alt="{'lbar.rd.hero.alt' | lexicon}" loading="eager" fetchpriority="high" decoding="async">
             </picture>
             <div class="lb-hero__art" aria-hidden="true">
-                <img class="lb-hero__arches" src="{$img}hero-arches.svg" width="220" height="600" alt="">
-                <img class="lb-hero__vline" src="{$img}hero-line.svg" width="44" height="660" alt="">
-                <img class="lb-hero__letters" src="{$img}hero-letters.svg" width="912" height="410" alt="">
+                <img class="lb-hero__arches" src="{$img}hero-arches.svg" width="220" height="600" alt="" loading="eager">
+                <img class="lb-hero__vline" src="{$img}hero-line.svg" width="44" height="660" alt="" loading="eager">
+                <img class="lb-hero__letters" src="{$img}hero-letters.svg" width="912" height="410" alt="" loading="eager">
             </div>
             <div class="lb-hero__deco" aria-hidden="true">
                 <span class="lb-hero__spark lb-hero__spark--p1"><svg viewBox="0 0 40 40"><path fill="currentColor" d="M20 0c.9 10.6 8.4 18.6 20 20-11.6 1.4-19.1 9.4-20 20-.9-10.6-8.4-18.6-20-20C11.6 18.6 19.1 10.6 20 0z"/></svg></span>
