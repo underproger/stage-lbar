@@ -254,7 +254,7 @@
 		}
 		&__t2 {
 			margin-top: mvw(-8);
-			font-size: mvw(92);
+			font-size: mvw(86); // «Bucuresti» — в ширину экрана с полями
 		}
 		&__t3 {
 			margin-top: mvw(-2);
@@ -421,5 +421,14 @@ html[lang="ru"] .lb-hero__t1 {
 	@include mobile {
 		font-size: mvw(30);
 		margin-top: 0;
+	}
+}
+
+// длинная 2-я строка H1 (RU «в Бухаресте», больше 9 знаков) — мельче, чтобы не выходила за край: ширина как у RO «Bucuresti»
+.lb-hero__title--t2l .lb-hero__t2 {
+	font-size: vw(136);
+	@include mobile {
+		font-size: mvw(62);
+		white-space: nowrap;
 	}
 }

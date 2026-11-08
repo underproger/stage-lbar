@@ -177,3 +177,4 @@ $_lang['lbar.rd.thanks.home'] = "ВЕРНУТЬСЯ НА ГЛАВНУЮ";
 $_lang['lbar.rd.blog.min'] = "мин";
 $_lang['lbar.rd.blog.views'] = "просмотры";
 $_lang['lbar.rd.blog.ncomments'] = "комментарии";
+$_lang['lbar.rd.hero.title'] = "Перманентный макияж|в Бухаресте|от LBar";

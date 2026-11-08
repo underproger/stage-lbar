@@ -176,3 +176,4 @@ $_lang['lbar.rd.thanks.home'] = "ÎNAPOI LA PAGINA PRINCIPALĂ";
 $_lang['lbar.rd.blog.min'] = "min";
 $_lang['lbar.rd.blog.views'] = "vizualizări";
 $_lang['lbar.rd.blog.ncomments'] = "comentarii";
+$_lang['lbar.rd.hero.title'] = "Micropigmentare|Bucuresti|Studio Lbar";

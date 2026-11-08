@@ -1,7 +1,11 @@
 {* Главный баннер (редизайн).
-   H1 берётся из TV title-banner. Строки разделяются символом «|»: «Micropigmentare|premium|în București».
-   Без «|» заголовок выводится одной строкой. Подзаголовок — TV suptitle-banner. *}
+   H1 — TV title-banner, исходный текст сайта («Micropigmentare Bucuresti Studio Lbar» / «Перманентный макияж в Бухаресте от LBar»).
+   Разбивка на три строки композиции макета (обычная / крупный курсив / мелкая) — лексикон lbar.rd.hero.title («|» — граница строк);
+   применяется, только если без «|» он совпадает с TV, иначе H1 — одной строкой. «|» прямо в TV тоже работает. Подзаголовок — TV suptitle-banner.
+   Длинная 2-я строка (больше 9 знаков, RU «в Бухаресте») — мельче (lb-hero__title--t2l), чтобы строка помещалась. *}
 {set $tb = $_modx->resource['title-banner'] | trim}
+{set $lay = 'lbar.rd.hero.title' | lexicon}
+{if !($tb | ematch : '~[|]~') && ($lay | replace : '|' : ' ') == $tb}{set $tb = $lay}{/if}
 {set $parts = $tb | split : '|'}
 {set $isRo = $_modx->config.cultureKey == 'ro'}
 {set $img = '/assets/templates/redesign/img/'}
@@ -36,7 +40,7 @@
 
     <div class="lb-hero__content">
         {if $parts | length > 2}
-        <h1 class="lb-hero__title"><span class="lb-hero__t1">{$parts[0] | trim}</span> <span class="lb-hero__t2">{$parts[1] | trim}</span> <span class="lb-hero__t3">{$parts[2] | trim}</span></h1>
+        <h1 class="lb-hero__title{($parts[1] | trim | length) > 9 ? ' lb-hero__title--t2l' : ''}"><span class="lb-hero__t1">{$parts[0] | trim}</span> <span class="lb-hero__t2">{$parts[1] | trim}</span> <span class="lb-hero__t3">{$parts[2] | trim}</span></h1>
         {elseif $tb}
         <h1 class="lb-hero__title lb-hero__title--plain">{$tb}</h1>
         {/if}

@@ -319,6 +319,42 @@ $ct-tile: #f2e4d9;
 }
 
 
+// ---------- страница «Контакты»: блок — первый экран под шапкой (баннера нет); заголовок — H1 (pagetitle), крошки — под картой ----------
+.lb-contact--page {
+	padding-top: vw(150);
+	@include desktop {
+		.lb-contact__inner {
+			align-items: start;
+		}
+	}
+	.lb-contact__head {
+		flex-wrap: wrap;
+		align-items: flex-end;
+		row-gap: vw(18);
+	}
+	// h1 перебивается старым CSS (.wrapper.main-ro h1) — поднимаем специфичность; размер — h1 общей шкалы
+	& .lb-contact__head h1.lb-contact__title {
+		flex: 0 1 auto;
+		margin: 0;
+		padding: 0;
+		@include lb-title;
+		@include lb-h(1);
+		line-height: 1.1;
+		text-align: left;
+		color: $ct-ink;
+	}
+	.lb-contact__line {
+		margin: 0 0 vw(14);
+	}
+	.lb-contact__card {
+		margin-top: vw(10);
+	}
+	.lb-contact__crumbs {
+		position: static;
+		margin-top: vw(34);
+	}
+}
+
 @include mobile {
 	.lb-contact {
 		padding: 64px 0 72px;
@@ -457,4 +493,20 @@ $ct-tile: #f2e4d9;
 		}
 	}
 
+	.lb-contact--page {
+		padding-top: 84px;
+		.lb-contact__head {
+			row-gap: 10px;
+		}
+		.lb-contact__line {
+			margin: 0 0 6px;
+		}
+		.lb-contact__card {
+			margin-top: 26px;
+		}
+		.lb-contact__crumbs {
+			order: 5;
+			margin: 24px 4px 0;
+		}
+	}
 }
