@@ -57,10 +57,10 @@ $ct-tile: #f2e4d9;
 		position: relative;
 		z-index: 1;
 		display: grid;
-		grid-template-columns: vw(959) vw(686);
+		grid-template-columns: vw($lb-wrap - 686 - 60) vw(686);
 		justify-content: space-between;
 		align-items: end;
-		width: vw(1722);
+		width: vw($lb-wrap); // контейнер
 		margin: 0 auto;
 	}
 
@@ -367,7 +367,7 @@ $ct-tile: #f2e4d9;
 			flex-direction: column;
 			align-items: stretch;
 			width: auto;
-			padding: 0 16px;
+			padding: 0 $lb-gut-m;
 		}
 		&__main {
 			display: contents;
@@ -375,7 +375,7 @@ $ct-tile: #f2e4d9;
 		&__head {
 			order: 1;
 			gap: 16px;
-			margin: 0 4px;
+			margin: 0;
 		}
 		&__line {
 			flex: 1;
@@ -390,7 +390,7 @@ $ct-tile: #f2e4d9;
 		}
 		&__sub {
 			order: 2;
-			margin: 12px 4px 0;
+			margin: 12px 0 0;
 			font-size: 18px;
 		}
 		&__card {
@@ -506,7 +506,7 @@ $ct-tile: #f2e4d9;
 		}
 		.lb-contact__crumbs {
 			order: 5;
-			margin: 24px 4px 0;
+			margin: 24px 0 0;
 		}
 	}
 }

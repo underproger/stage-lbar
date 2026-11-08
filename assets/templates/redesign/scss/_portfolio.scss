@@ -49,8 +49,8 @@ $pf-bg: #f8f1ec;
 	&__head {
 		position: relative;
 		z-index: 1;
-		width: vw(1300);
-		margin-left: vw(210);
+		width: vw($lb-wrap); // контейнер
+		margin: 0 auto;
 	}
 	// h2 перебивается старым CSS (.wrapper.main-ro h2) — поднимаем специфичность
 	& &__head h2#{&}__title {
@@ -141,7 +141,7 @@ $pf-bg: #f8f1ec;
 		&__head {
 			width: auto;
 			margin: 0;
-			padding: 0 22px;
+			padding: 0 $lb-gut-m;
 		}
 		& &__head h2#{&}__title {
 			line-height: 1.18;
@@ -156,7 +156,7 @@ $pf-bg: #f8f1ec;
 			flex-direction: column;
 			gap: 14px;
 			margin-top: 28px;
-			padding: 0 22px;
+			padding: 0 $lb-gut-m;
 			.lb-btn {
 				width: 100%;
 			}
@@ -171,7 +171,7 @@ $pf-bg: #f8f1ec;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	gap: vw(22);
-	width: vw(1500);
+	width: vw($lb-wrap); // контейнер
 	margin: vw(56) auto 0;
 
 	&__item {
@@ -254,7 +254,7 @@ $pf-bg: #f8f1ec;
 		grid-template-columns: repeat(3, 1fr);
 		gap: 10px;
 		width: auto;
-		margin: 26px 22px 0;
+		margin: 26px $lb-gut-m 0;
 		&__item {
 			border-radius: 14px;
 			box-shadow: 0 8px 20px rgba(120, 82, 60, .1);

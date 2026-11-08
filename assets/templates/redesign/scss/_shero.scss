@@ -114,8 +114,8 @@ $sh-text: #4a3a33;
 	&__content {
 		position: absolute;
 		top: vw(232);
-		left: vw(203);
-		width: vw(720);
+		left: vw($lb-gut); // поле контейнера
+		width: vw(740);
 	}
 	&__eyebrow {
 		display: flex;
@@ -264,7 +264,7 @@ $sh-text: #4a3a33;
 // ----- хлебные крошки -----
 .lb-crumbs {
 	position: absolute;
-	left: vw(203);
+	left: vw($lb-gut);
 	bottom: vw(48);
 	&__list {
 		display: flex;

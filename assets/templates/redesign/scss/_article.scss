@@ -147,7 +147,7 @@ $ar-copper: #a87856;
 	&__inner {
 		position: relative;
 		z-index: 1;
-		width: vw(1634);
+		width: vw($lb-wrap); // контейнер
 		margin: 0 auto;
 	}
 	&__grid {
@@ -334,7 +334,7 @@ $ar-copper: #a87856;
 		grid-template-columns: vw(1060) vw(420);
 		justify-content: space-between;
 		align-items: start;
-		width: vw(1590);
+		width: vw($lb-wrap); // контейнер
 		margin: 0 auto;
 	}
 	&__main {
@@ -768,7 +768,7 @@ $ar-copper: #a87856;
 	&__inner {
 		position: relative;
 		z-index: 1;
-		width: vw(1590);
+		width: vw($lb-wrap); // контейнер
 		margin: 0 auto;
 	}
 	&__title {
@@ -920,7 +920,7 @@ $ar-copper: #a87856;
 		padding: 48px 0 60px;
 		&__inner {
 			width: auto;
-			padding: 0 16px;
+			padding: 0 $lb-gut-m;
 		}
 		&__grid {
 			grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -995,7 +995,7 @@ $ar-copper: #a87856;
 			grid-template-columns: 1fr;
 			gap: 40px;
 			width: auto;
-			padding: 0 20px;
+			padding: 0 $lb-gut-m;
 		}
 		&__body {
 			font-size: 15.5px;
@@ -1133,11 +1133,10 @@ $ar-copper: #a87856;
 		padding: 44px 0 60px;
 		&__inner {
 			width: auto;
-			padding: 0 16px;
+			padding: 0 $lb-gut-m;
 		}
 		&__title {
 			gap: 10px;
-			padding: 0 4px;
 		}
 		&__grid {
 			grid-template-columns: 1fr;

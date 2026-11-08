@@ -56,7 +56,7 @@ $fq-copper: #a87856;
 		display: flex;
 		align-items: flex-start;
 		justify-content: space-between;
-		width: vw(1634);
+		width: vw($lb-wrap); // контейнер
 		margin: 0 auto;
 	}
 
@@ -320,11 +320,11 @@ $fq-copper: #a87856;
 			flex-direction: column;
 			align-items: stretch;
 			width: auto;
-			padding: 0 16px;
+			padding: 0 $lb-gut-m;
 		}
 		&__intro {
 			width: auto;
-			padding: 0 6px;
+			padding: 0;
 		}
 		& &__intro h2#{&}__title {
 			line-height: 1.12;

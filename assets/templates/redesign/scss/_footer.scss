@@ -48,7 +48,7 @@ $ft-copper: #d4a184;
 	}
 	&__inner {
 		position: relative; // поверх __bg (порядок в DOM), без z-index — не создаёт контекст наложения
-		width: vw(1634);
+		width: vw($lb-wrap); // контейнер
 		margin: 0 auto;
 	}
 	&__top {
@@ -385,7 +385,7 @@ $ft-copper: #d4a184;
 		}
 		&__inner {
 			width: auto;
-			padding: 0 24px;
+			padding: 0 $lb-gut-m;
 		}
 		&__top {
 			display: flex;

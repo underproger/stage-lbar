@@ -30,7 +30,7 @@
 	&__inner {
 		position: relative;
 		z-index: 1;
-		width: vw(1634);
+		width: vw($lb-wrap); // контейнер
 		margin: 0 auto;
 	}
 	&__intro {
@@ -106,7 +106,7 @@
 		padding: 48px 0 60px;
 		&__inner {
 			width: auto;
-			padding: 0 16px;
+			padding: 0 $lb-gut-m;
 		}
 		&__intro {
 			max-width: none;
@@ -123,7 +123,7 @@
 		}
 		&__head {
 			position: static;
-			padding: 0 6px;
+			padding: 0;
 		}
 		&__num {
 			font-size: 32px;

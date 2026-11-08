@@ -49,7 +49,7 @@
 
 	&__col {
 		position: relative;
-		width: vw(1010);
+		width: vw(1920 - 816 - $lb-gut); // справа — поле контейнера; слева — фото у края
 		margin-left: vw(816);
 		padding: vw(89) 0 vw(96);
 	}
@@ -301,7 +301,7 @@
 		&__col {
 			width: auto;
 			margin: 0;
-			padding: 24px 22px 0;
+			padding: 24px $lb-gut-m 0;
 		}
 		&__eyebrow {
 			margin: 0;
@@ -394,7 +394,7 @@
 			display: flex;
 			width: 100%;
 			margin-top: 28px;
-			padding: 0 20px;
+			padding: 0 $lb-gut-m;
 			gap: 12px;
 			letter-spacing: .1em;
 		}
@@ -462,7 +462,7 @@
 		.lb-about__col {
 			display: block;
 			min-height: 0;
-			padding: 24px 22px 0;
+			padding: 24px $lb-gut-m 0;
 		}
 		.lb-about__textwrap {
 			margin-top: 18px;

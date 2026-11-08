@@ -67,7 +67,7 @@ $seo-d: 54;
 	&__inner {
 		position: relative;
 		z-index: 1;
-		width: vw(1634);
+		width: vw($lb-wrap); // контейнер
 		margin: 0 auto;
 	}
 
@@ -297,7 +297,7 @@ $seo-md: 30;
 		}
 		&__inner {
 			width: auto;
-			padding: 0 20px;
+			padding: 0 $lb-gut-m;
 		}
 		&__head {
 			display: block;

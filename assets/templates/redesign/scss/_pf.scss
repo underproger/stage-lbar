@@ -35,7 +35,7 @@
 	&__inner {
 		position: relative;
 		z-index: 1;
-		width: vw(1634);
+		width: vw($lb-wrap); // контейнер
 		margin: 0 auto;
 	}
 	&__eyebrow {
@@ -199,11 +199,11 @@
 		padding: 56px 0 64px;
 		&__inner {
 			width: auto;
-			padding: 0 16px;
+			padding: 0 $lb-gut-m;
 		}
 		&__eyebrow {
 			gap: 14px;
-			padding: 0 6px;
+			padding: 0;
 			font-size: 12px;
 			&::before {
 				width: 36px;
@@ -270,7 +270,7 @@
 			flex-direction: column;
 			gap: 12px;
 			margin-top: 28px;
-			padding: 0 22px;
+			padding: 0 $lb-gut-m;
 			.lb-btn {
 				width: 100%;
 			}
@@ -317,7 +317,7 @@
 @include mobile {
 	.lb-pgallery__intro {
 		width: auto;
-		margin: 0 16px 32px;
+		margin: 0 $lb-gut-m 32px;
 		padding: 22px 20px;
 		border-radius: 22px;
 	}

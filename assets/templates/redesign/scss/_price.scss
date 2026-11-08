@@ -67,8 +67,8 @@ $pr-bg: #f8efea;
 		position: absolute;
 		z-index: 1;
 		top: vw(114);
-		left: vw(104);
-		width: vw(570);
+		left: vw($lb-gut); // поле контейнера
+		width: vw(500);
 	}
 	// h2 перебивается старым CSS (.wrapper.main-ro h2) — поднимаем специфичность
 	& &__intro h2#{&}__title {
@@ -110,7 +110,7 @@ $pr-bg: #f8efea;
 	&__main {
 		position: relative;
 		z-index: 1;
-		width: vw(1161);
+		width: vw(1920 - $lb-gut - 680); // до правого поля контейнера
 		margin-left: vw(680);
 		&--notext {
 			padding-top: vw(70); // нет текста над таблицей (RU) — таблица на уровне заголовка
@@ -125,7 +125,7 @@ $pr-bg: #f8efea;
 		position: relative;
 		margin-left: vw(10);
 		padding-left: vw(38);
-		width: vw(1110);
+		width: vw(1920 - $lb-gut - 680 - 51);
 		&::before {
 			content: "";
 			position: absolute;
@@ -241,7 +241,7 @@ $pr-bg: #f8efea;
 }
 
 // ----- таблица (div + ARIA-роли) -----
-$pt-cols: vw(654) vw(282) vw(225);
+$pt-cols: minmax(0, 1fr) vw(282) vw(225); // первая колонка — по ширине таблицы (главная / страница «Цены»)
 .lb-ptable {
 	position: relative;
 	font-family: $f-text;
@@ -302,7 +302,7 @@ $pt-cols: vw(654) vw(282) vw(225);
 		position: absolute;
 		top: 50%;
 		left: vw(331);
-		width: vw(272);
+		width: vw(230);
 		height: vw(16);
 		margin-top: vw(-8);
 		color: #b88a68;
@@ -458,7 +458,7 @@ $pt-cols: vw(654) vw(282) vw(225);
 			order: 1;
 			position: relative;
 			z-index: 1;
-			padding: 0 22px;
+			padding: 0 $lb-gut-m;
 			line-height: 1.12;
 		}
 		&__cta.lb-btn {
@@ -466,7 +466,7 @@ $pt-cols: vw(654) vw(282) vw(225);
 			position: relative;
 			z-index: 1;
 			display: flex;
-			margin: 24px 16px 0;
+			margin: 24px $lb-gut-m 0;
 			height: 52px;
 			padding: 0 24px 0 28px;
 			gap: 14px;
@@ -476,7 +476,7 @@ $pt-cols: vw(654) vw(282) vw(225);
 			order: 2;
 			width: auto;
 			margin: 22px 0 0;
-			padding: 0 16px;
+			padding: 0 $lb-gut-m;
 			&--notext {
 				padding-top: 0;
 			}

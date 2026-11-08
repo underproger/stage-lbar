@@ -194,7 +194,7 @@ $msg-copper: linear-gradient(180deg, #dcae93 0%, #ab7152 58%, #875840 100%);
 		}
 		&__inner {
 			width: auto;
-			padding: 0 20px;
+			padding: 0 $lb-gut-m;
 		}
 		&__num {
 			gap: 4px;

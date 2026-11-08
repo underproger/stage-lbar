@@ -33,7 +33,7 @@ $bl-ink: #2f1f18;
 	&__inner {
 		position: relative;
 		z-index: 1;
-		width: vw(1634);
+		width: vw($lb-wrap); // контейнер
 		margin: 0 auto;
 	}
 
@@ -255,7 +255,7 @@ $bl-ink: #2f1f18;
 			padding: 6px 20px 26px;
 			overflow-x: auto;
 			scroll-snap-type: x mandatory;
-			scroll-padding: 0 20px;
+			scroll-padding: 0 $lb-gut-m;
 			scrollbar-width: none;
 			&::-webkit-scrollbar {
 				display: none;
@@ -302,7 +302,7 @@ $bl-ink: #2f1f18;
 		}
 		&__cta {
 			margin-top: 14px;
-			padding: 0 20px;
+			padding: 0 $lb-gut-m;
 			.lb-btn {
 				width: 100%;
 			}

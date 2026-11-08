@@ -200,7 +200,7 @@
 	&__cards {
 		position: absolute;
 		top: vw(846);
-		left: vw(136);
+		left: vw($lb-gut); // поле контейнера
 		display: flex;
 		gap: vw(27);
 	}
@@ -237,7 +237,7 @@
 		&__content {
 			position: relative;
 			height: auto;
-			padding: 0 22px;
+			padding: 0 $lb-gut-m;
 			margin-top: -36px;
 		}
 		&__line,
@@ -284,7 +284,7 @@
 		}
 		&__cards {
 			gap: 10px;
-			margin: 26px 22px 0;
+			margin: 26px $lb-gut-m 0;
 			> .lb-card {
 				flex: 1;
 			}

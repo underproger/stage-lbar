@@ -30,7 +30,7 @@ $cs-bg: #f9f2ed;
 	&__bg {
 		position: absolute;
 		inset: 0;
-		background: url("/assets/templates/redesign/img/consult-bg.svg") 50% 0 / 100% vw(855) no-repeat;
+		background: url("/assets/templates/redesign/img/consult-bg.svg?v=2") 50% 0 / 100% vw(855) no-repeat;
 	}
 
 	// ----- левая колонка -----
@@ -38,7 +38,7 @@ $cs-bg: #f9f2ed;
 		position: absolute;
 		z-index: 1;
 		top: vw(94);
-		left: vw(143);
+		left: vw($lb-gut);
 		width: vw(640);
 	}
 	&__eyebrow {
@@ -106,7 +106,7 @@ $cs-bg: #f9f2ed;
 		position: absolute;
 		z-index: 1;
 		top: vw(122);
-		left: vw(866);
+		left: vw(1920 - $lb-gut - 823); // правый край — поле контейнера (фоновая графика сдвинута вместе с карточкой)
 		width: vw(823);
 		min-height: vw(577);
 		padding: vw(101) vw(61) vw(50) vw(62);
@@ -130,7 +130,7 @@ $cs-bg: #f9f2ed;
 .lb-book {
 	min-height: vw(880);
 	&__bg {
-		background-image: url("/assets/templates/redesign/img/book-bg.svg");
+		background-image: url("/assets/templates/redesign/img/book-bg.svg?v=2");
 		background-size: 100% vw(880);
 	}
 	&__intro {
@@ -368,7 +368,7 @@ $cs-bg: #f9f2ed;
 			top: auto;
 			left: auto;
 			width: auto;
-			padding: 0 22px;
+			padding: 0 $lb-gut-m;
 		}
 		&__eyebrow {
 			gap: 14px;
@@ -407,7 +407,7 @@ $cs-bg: #f9f2ed;
 			left: auto;
 			width: auto;
 			min-height: 0;
-			margin: 28px 16px 0;
+			margin: 28px $lb-gut-m 0;
 			padding: 28px 18px 22px;
 			border-radius: 32px;
 		}

@@ -235,8 +235,8 @@ $mg-line: rgba(201, 139, 121, .22);
 		z-index: 6;
 		top: 100%;
 		left: 50%;
-		width: vw(1430);
-		margin: vw(30) 0 0 vw(-715);
+		width: vw($lb-wrap); // по контейнеру шапки
+		margin: vw(30) 0 0 vw(-$lb-wrap * .5);
 		opacity: 0;
 		visibility: hidden;
 		translate: 0 vw(12);

@@ -45,8 +45,8 @@
 	&__intro {
 		position: absolute;
 		top: vw(283);
-		left: vw(72);
-		width: vw(380);
+		left: vw($lb-gut); // поле контейнера
+		width: vw(330);
 	}
 	&__eyebrow {
 		display: flex;
@@ -73,7 +73,7 @@
 	}
 	&__text {
 		margin-top: vw(44);
-		width: vw(340);
+		width: vw(320);
 		font-size: vw(20.2);
 		line-height: vw(31);
 		color: #6b5e57;
@@ -84,7 +84,15 @@
 		position: relative;
 		display: flex;
 		gap: vw(31);
-		margin-left: vw(480);
+		// от колонки заголовка до правого поля контейнера; карточки делят ширину поровну
+		margin: 0 vw($lb-gut) 0 vw($lb-gut + 330 + 40);
+		@include desktop {
+			.lb-scard {
+				flex: 1 1 0;
+				width: auto;
+				min-width: 0;
+			}
+		}
 	}
 }
 
@@ -213,7 +221,7 @@
 			top: auto;
 			left: auto;
 			width: auto;
-			padding: 0 22px;
+			padding: 0 $lb-gut-m;
 		}
 		&__eyebrow {
 			gap: 14px;
@@ -235,10 +243,10 @@
 		&__list {
 			gap: 14px;
 			margin: 28px 0 0;
-			padding: 4px 22px 24px;
+			padding: 4px $lb-gut-m 24px;
 			overflow-x: auto;
 			scroll-snap-type: x mandatory;
-			scroll-padding: 0 22px;
+			scroll-padding: 0 $lb-gut-m;
 			-webkit-overflow-scrolling: touch;
 			scrollbar-width: none;
 			&::-webkit-scrollbar {
@@ -260,7 +268,7 @@
 			border-radius: 24px 24px 24px 0;
 		}
 		&__body {
-			padding: 14px 22px 24px;
+			padding: 14px $lb-gut-m 24px;
 			border-radius: 0 0 24px 24px;
 			&::before {
 				width: 92px;
@@ -300,7 +308,7 @@
 // ---------- подуслуги на странице услуги (lb-subservices: дочерние ресурсы, 4 и больше карточек) ----------
 .lb-services--sub {
 	min-height: 0;
-	padding: vw(120) vw(72) vw(120);
+	padding: vw(120) vw($lb-gut) vw(120);
 	.lb-services__intro {
 		position: relative;
 		top: auto;
@@ -366,7 +374,7 @@
 		padding: 56px 0 48px;
 		.lb-services__intro {
 			display: block;
-			padding: 0 22px;
+			padding: 0 $lb-gut-m;
 		}
 		& .lb-services__intro h2.lb-services__title {
 			margin-top: 18px;
@@ -384,7 +392,7 @@
 			width: 82vw;
 		}
 		.lb-scard__body {
-			padding: 14px 22px 24px;
+			padding: 14px $lb-gut-m 24px;
 		}
 		.lb-scard__num {
 			font-size: 34px;

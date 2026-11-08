@@ -715,7 +715,7 @@ html.is-lb-modal {
 	.lb-reviews {
 		padding: 56px 0 64px;
 		& &__head {
-			padding: 0 20px;
+			padding: 0 $lb-gut-m;
 		}
 		& &__head h2#{&}__title {
 			line-height: 1.16;
@@ -802,7 +802,7 @@ html.is-lb-modal {
 			align-items: center;
 			gap: 12px;
 			margin-top: 30px;
-			padding: 0 20px;
+			padding: 0 $lb-gut-m;
 		}
 		&__btn.lb-btn {
 			width: min(100%, 440px);
@@ -904,13 +904,20 @@ html.is-lb-modal {
 		padding: vw(24) 0 0;
 		margin: 0;
 	}
+	// сетка — по контейнеру (4 колонки на всю ширину)
 	.lb-reviews__track {
 		display: grid;
-		grid-template-columns: repeat(4, vw(334));
-		justify-content: center;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
 		gap: vw(28) vw(21);
-		width: auto;
+		width: vw($lb-wrap);
+		margin: 0 auto;
 		transform: none !important;
+		@include mobile {
+			width: auto;
+		}
+	}
+	.lb-rcard {
+		width: auto;
 	}
 	.lb-reviews__nav {
 		display: none;
@@ -921,7 +928,7 @@ html.is-lb-modal {
 	}
 	@include mobile {
 		.lb-reviews__viewport {
-			padding: 14px 20px 0;
+			padding: 14px $lb-gut-m 0;
 		}
 		.lb-reviews__track {
 			grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
