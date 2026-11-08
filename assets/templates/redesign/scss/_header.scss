@@ -28,22 +28,17 @@
 		pointer-events: auto;
 	}
 
+	// логотип студии (img/logo.svg — контуры фирменного logo-2, 420×221; белые штрихи в круге — просветы на фон)
 	&__logo {
 		flex: none;
 		display: block;
-		font-family: $f-serif;
-		font-size: vw(79);
-		font-weight: 160;
-		font-stretch: 62.5%;
-		line-height: 1;
-		letter-spacing: -.022em;
-		color: transparent;
-		background: linear-gradient(180deg, #dcae9c 0%, #c98a76 55%, #b9775f 100%);
-		-webkit-background-clip: text;
-		background-clip: text;
-		translate: 0 vw(3);
 		transform-origin: left center;
 		transition: scale .5s $ease-out;
+		img {
+			display: block;
+			width: auto;
+			height: vw(74);
+		}
 	}
 
 	&__right {
@@ -412,9 +407,8 @@
 			margin: 0;
 			padding: 0 16px 0 20px;
 		}
-		&__logo {
-			font-size: 44px;
-			translate: 0 2px;
+		&__logo img {
+			height: 42px;
 		}
 		&__phone {
 			span:not(.lb-header__phone-ic) {

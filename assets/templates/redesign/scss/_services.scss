@@ -402,3 +402,23 @@
 		}
 	}
 }
+
+// ---------- общая страница «Услуги» (lb-subservices в режиме hub): все услуги — сетка по 4 ----------
+.lb-services--hub {
+	.lb-services__list {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		row-gap: vw(40);
+	}
+	.lb-scard__img {
+		aspect-ratio: 4 / 3;
+	}
+	@include mobile {
+		.lb-services__list {
+			display: flex;
+		}
+		.lb-scard__img {
+			aspect-ratio: 442 / 380;
+		}
+	}
+}

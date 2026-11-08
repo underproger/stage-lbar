@@ -59,18 +59,14 @@ $ft-copper: #d4a184;
 	}
 
 	// ----- логотип, копирайт, соцсети -----
+	// светлый вариант логотипа (img/logo-light.svg): штрихи в круге — просветы на тёмный фон
 	&__logo {
 		display: inline-block;
-		font-family: $f-serif;
-		font-size: vw(112);
-		font-weight: 160;
-		font-stretch: 62.5%;
-		line-height: .9;
-		letter-spacing: -.022em;
-		color: transparent;
-		background: linear-gradient(180deg, #f3d6c4 0%, #d9a68a 55%, #c08466 100%);
-		-webkit-background-clip: text;
-		background-clip: text;
+		img {
+			display: block;
+			width: auto;
+			height: vw(104);
+		}
 	}
 	&__copy {
 		margin-top: vw(26);
@@ -396,8 +392,8 @@ $ft-copper: #d4a184;
 			flex-direction: column;
 			gap: 36px;
 		}
-		&__logo {
-			font-size: 72px;
+		&__logo img {
+			height: 70px;
 		}
 		&__copy {
 			margin-top: 16px;

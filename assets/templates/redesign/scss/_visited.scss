@@ -17,7 +17,7 @@
 
 // шапка, меню, мега-меню, мобильное меню
 .lb-header__logo,
-.lb-footer__logo { @include lb-visited(transparent); }
+.lb-footer__logo { color: inherit; @include lb-visited(inherit); } // логотип — картинка, цвет ссылки не виден
 .lb-header__phone,
 .lb-mnav__phone { @include lb-visited(#2b1d18); }
 .lb-nav__link { @include lb-visited(rgba(43, 29, 24, .88)); }

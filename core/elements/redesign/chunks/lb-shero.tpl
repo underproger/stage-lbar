@@ -8,10 +8,14 @@
    Фото — TV img_banner_main. Если его нет — фото родителя (подразделы бровей), а на фото — две плашки
    title/description-banner-categoty-1/2 (в старом баннере без фото выводились они); если фото нет и у родителя — графическая подложка.
    Кнопки — прежние: запись (#bl8-form), консультация (#conract). Хлебные крошки — pdoCrumbs с прежними параметрами и микроразметкой.
+   Общие страницы «Услуги» / «Обучение» (шаблоны «Услуги — общая» и «Внутренняя - Обучение», вместо banner-interial; режим hub):
+   H1 — pagetitle (как в banner-interial), под ним — TV description-banner-inerial, фото — только своё (нет — графика),
+   хлебные крошки — без exclude (как в banner-interial).
    Внимание: в выражениях Fenom не писать «*» + «/» подряд (закрывает служебный комментарий в скомпилированном шаблоне). *}
 {set $r = $_modx->resource}
 {set $isRo = $_modx->config.cultureKey == 'ro'}
-{set $t = $r['title-banner'] | trim}
+{set $hub = $r.template != 8}
+{set $t = ($hub ? $r.pagetitle : $r['title-banner']) | trim}
 {set $first = $t | ereplace : '~\s.*$~s' : ''}
 {set $rest = $t | ereplace : '~^\S+\s*~' : ''}
 {set $len = $t | length}
@@ -19,7 +23,7 @@
 {set $eyebrow = $_modx->runSnippet('pdoField', ['id' => $_modx->config.site_start, 'field' => 'suptitle-banner']) | trim}
 
 {* преимущества *}
-{set $desc = $r['description-banner'] | trim}
+{set $desc = $hub ? '' : ($r['description-banner'] | trim)}
 {set $items = []}
 {set $max = 0}
 {if $desc}
@@ -35,7 +39,7 @@
 {set $own = $_modx->getResource($r.id, ['includeTVs' => 'img_banner_main', 'processTVs' => 1, 'tvPrefix' => '', 'select' => 'id,parent'])}
 {set $photo = $own.img_banner_main | trim}
 {set $badges = !$photo}
-{if !$photo && $r.parent}
+{if !$photo && $r.parent && !$hub}
 {set $par = $_modx->getResource($r.parent, ['includeTVs' => 'img_banner_main', 'processTVs' => 1, 'tvPrefix' => '', 'select' => 'id'])}
 {set $photo = $par.img_banner_main | trim}
 {/if}
@@ -47,7 +51,7 @@
     '<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="9" width="28" height="25" rx="3"/><path d="M6 16h28M13 5v7M27 5v7"/><path d="M13 22h.01M20 22h.01M27 22h.01M13 28h.01M20 28h.01M27 28h.01" stroke-width="2.6"/></svg>'
 ]}
 {set $arr = '<svg class="lb-btn__arr" viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg>'}
-<section class="lb-shero{if !$photo} lb-shero--art{/if}" id="lb-shero">
+<section class="lb-shero{if !$photo} lb-shero--art{/if}{if $hub} lb-shero--hub{/if}" id="lb-shero">
     <div class="lb-shero__bg" aria-hidden="true"></div>
 
     <div class="lb-shero__media">
@@ -77,7 +81,9 @@
         <div class="lb-shero__content">
             {if $eyebrow}<p class="lb-shero__eyebrow">{$eyebrow}</p>{/if}
             <h1 class="lb-shero__title{$size}"><span class="lb-shero__t1">{$first}</span>{if $rest} <span class="lb-shero__t2">{$rest}</span>{/if}</h1>
-            {if $r['sub-title-banner'] | trim}<p class="lb-shero__sub">{$r['sub-title-banner']}</p>{/if}
+            {if $hub}
+            {if $r['description-banner-inerial'] | trim}<div class="lb-shero__desc">{$r['description-banner-inerial']}</div>{/if}
+            {elseif $r['sub-title-banner'] | trim}<p class="lb-shero__sub">{$r['sub-title-banner']}</p>{/if}
 
             {if $mode == 'cols'}
             <ul class="lb-shero__feats">
@@ -105,7 +111,7 @@
             {$_modx->runSnippet('!pdoCrumbs', [
                 'showHome' => 1,
                 'showAtHome' => 0,
-                'exclude' => '80,60',
+                'exclude' => $hub ? '' : '80,60',
                 'tplWrapper' => '@INLINE <ol class="lb-crumbs__list" itemscope itemtype="http://schema.org/BreadcrumbList">[[+output]]</ol>',
                 'tplHome' => '@INLINE <li class="lb-crumbs__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a class="lb-crumbs__link lb-crumbs__link--home" href="[[+link]]" itemprop="item"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.2 10 3l7 6.2"/><path d="M5 8v9h4v-5h2v5h4V8"/></svg><span itemprop="name">[[+menutitle]]</span><meta itemprop="position" content="[[+idx]]" /></a></li>',
                 'tpl' => '@INLINE <li class="lb-crumbs__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a class="lb-crumbs__link" href="[[+link]]" itemprop="item"><span itemprop="name">[[+menutitle]]</span><meta itemprop="position" content="[[+idx]]" /></a></li>',

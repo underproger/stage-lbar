@@ -510,3 +510,34 @@ $seam-contact: #f8f2ee;  // «Статьи» → «Контакты»
 		background: linear-gradient(180deg, $seam-blog 0, $ct-bg 90px);
 	}
 }
+
+// ---------- общие страницы «Услуги» и «Обучение» ----------
+// «Услуги» (все карточки) → «Запись»
+.lb-services + #bl8-form + .lb-book {
+	background: linear-gradient(180deg, $seam-implica 0, $cs-bg vw(170), $cs-bg calc(100% - #{vw(200)}), $seam-reviews 100%);
+	&::after {
+		@include lb-seam-bg("seam-implica.svg");
+	}
+	@include mobile {
+		background: linear-gradient(180deg, $seam-implica 0, $cs-bg 100px, $cs-bg calc(100% - 100px), $seam-reviews 100%);
+	}
+}
+// «Запись» → «SEO-текст» (нет отзывов и FAQ)
+.lb-book + .lb-seo {
+	background: linear-gradient(180deg, $seam-reviews 0, $seo-bg vw(170), $seo-bg calc(100% - #{vw(240)}), $seam-blog 100%);
+	&::after {
+		@include lb-seam-bg("seam-reviews.svg");
+	}
+	@include mobile {
+		background: linear-gradient(180deg, $seam-reviews 0, $seo-bg 100px, $seo-bg calc(100% - 120px), $seam-blog 100%);
+	}
+}
+// баннер → «Курсы» → «SEO-текст»
+.lb-courses {
+	background: linear-gradient(180deg, $seam-hero 0, #f8f2ee vw(200), #f8f2ee calc(100% - #{vw(240)}), $seam-seo 100%);
+	@include lb-seam(top, "seam-hero.svg");
+	@include lb-seam(bottom, "seam-seo.svg", before);
+	@include mobile {
+		background: linear-gradient(180deg, $seam-hero 0, #f8f2ee 100px, #f8f2ee calc(100% - 100px), $seam-seo 100%);
+	}
+}

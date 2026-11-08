@@ -1,0 +1,6 @@
+# Фото для общих страниц «Услуги» и «Обучение», которых не было в прошлых списках. Пути — от корня сайта.
+# Запуск на хостинге из корня сайта: bash get-photos.sh photos-hubs.txt  → lbar-photos.tar.gz
+# карточка «Îndepărtare tatuaj cu laser / Удаление тату» (баннер услуги)
+images/design/laserbanner1.jpg
+# карточка курса «Curs complet micropigmentare» (TV im-category курса)
+images/design/6dbrovi-min.jpg

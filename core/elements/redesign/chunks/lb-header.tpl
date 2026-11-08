@@ -20,7 +20,7 @@
 <header class="lb-header" id="lb-header">
     <div class="lb-header__bar"></div>
     <div class="lb-header__inner">
-        <a class="lb-header__logo" href="[[++site_url]]" aria-label="[[++site_name]]">LBAR</a>
+        <a class="lb-header__logo" href="[[++site_url]]" aria-label="[[++site_name]]"><img src="/assets/templates/redesign/img/logo.svg?v=1" width="420" height="221" alt="LBar"></a>
 
         <div class="lb-mnav" id="lb-mnav">
             <nav class="lb-nav" aria-label="{$isRo ? 'Meniul site' : 'Меню сайта'}">

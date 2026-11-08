@@ -1,0 +1,232 @@
+// ================= БЛОК «КУРСЫ» (общая страница «Обучение», lb-courses) =================
+// Карточка курса: фото слева, справа номер, название, подзаголовок курса и его преимущества (TV курса), кнопка на страницу курса.
+.lb-courses {
+	position: relative;
+	padding: vw(150) 0 vw(170);
+	overflow: hidden;
+	font-family: $f-text;
+	color: #2b2420;
+	background: linear-gradient(180deg, $c-bg 0, #f9f2ee vw(200), #f8f2ee 100%);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	:where(*, *::before, *::after) {
+		box-sizing: border-box;
+	}
+	:where(ul, li, p) {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	:where(a:not(.lb-btn)) {
+		text-decoration: none;
+		color: inherit;
+	}
+	:where(img) {
+		display: block;
+	}
+
+	&__bg {
+		position: absolute;
+		inset: 0;
+		background:
+			radial-gradient(34% 40% at 88% 30%, rgba(236, 214, 200, .5), rgba(236, 214, 200, 0) 100%),
+			radial-gradient(30% 36% at 6% 80%, rgba(255, 255, 255, .7), rgba(255, 255, 255, 0) 100%);
+		pointer-events: none;
+	}
+	&__inner {
+		position: relative;
+		z-index: 1;
+		width: vw(1634);
+		margin: 0 auto;
+	}
+	&__eyebrow {
+		display: flex;
+		align-items: center;
+		gap: vw(20);
+		@include lb-eyebrow;
+		font-size: vw(17);
+		line-height: 1;
+		&::before {
+			content: "";
+			flex: none;
+			width: vw(48);
+			height: 2px;
+			background: #b08c74;
+		}
+	}
+	&__list {
+		display: grid;
+		gap: vw(48);
+		margin-top: vw(48);
+	}
+}
+
+.lb-course {
+	position: relative;
+	display: grid;
+	grid-template-columns: vw(760) 1fr;
+	align-items: center;
+	column-gap: vw(90);
+	padding: vw(28);
+	border-radius: vw(40);
+	background: linear-gradient(160deg, rgba(255, 251, 248, .95) 0%, rgba(250, 242, 237, .9) 100%);
+	box-shadow: 0 vw(30) vw(70) rgba(130, 90, 66, .12), 0 vw(6) vw(16) rgba(130, 90, 66, .06), inset 0 0 0 1.5px rgba(255, 255, 255, .9);
+
+	&__img {
+		position: relative;
+		display: block;
+		height: vw(560);
+		border-radius: vw(30);
+		overflow: hidden;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: transform 1.2s $ease-expo;
+		}
+	}
+	@include hover {
+		.lb-course__img img {
+			transform: scale(1.05);
+		}
+	}
+	&__body {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		padding: vw(20) vw(60) vw(20) 0;
+	}
+	&__num {
+		display: flex;
+		align-items: center;
+		gap: vw(30);
+		@include lb-accent;
+		font-size: vw(52);
+		line-height: 1.1;
+		&::after {
+			content: "";
+			width: vw(120);
+			height: 1.5px;
+			background: #b49380;
+		}
+	}
+	&__title {
+		margin-top: vw(18);
+		@include lb-title;
+		font-size: vw(56);
+		line-height: 1.1;
+		color: #24130f;
+		a {
+			transition: color .3s;
+			@include hover {
+				color: $c-btn-dark;
+			}
+		}
+	}
+	&__text {
+		margin-top: vw(22);
+		max-width: vw(680);
+		font-size: vw(21);
+		line-height: 1.6;
+		color: #5f524b;
+	}
+	&__list {
+		display: grid;
+		gap: vw(16);
+		margin-top: vw(30);
+	}
+	&__li {
+		position: relative;
+		padding-left: vw(46);
+		font-size: vw(19);
+		line-height: 1.5;
+		color: #2b2420;
+		// отметка — медный кружок с галочкой
+		&::before {
+			content: "";
+			position: absolute;
+			left: 0;
+			top: vw(1);
+			width: vw(28);
+			height: vw(28);
+			border-radius: 50%;
+			background:
+				url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6.5 12.5 3.6 3.5 7.4-8'/%3E%3C/svg%3E") center / 62% no-repeat,
+				linear-gradient(140deg, #c49575, #a8714f);
+			box-shadow: 0 vw(4) vw(10) rgba(140, 95, 72, .2);
+		}
+	}
+	&__btn {
+		margin-top: vw(40);
+	}
+}
+
+@include mobile {
+	.lb-courses {
+		padding: 56px 0 64px;
+		&__inner {
+			width: auto;
+			padding: 0 16px;
+		}
+		&__eyebrow {
+			gap: 14px;
+			padding: 0 6px;
+			font-size: 12px;
+			&::before {
+				width: 36px;
+			}
+		}
+		&__list {
+			gap: 24px;
+			margin-top: 22px;
+		}
+	}
+	.lb-course {
+		grid-template-columns: 1fr;
+		padding: 12px;
+		border-radius: 26px;
+		&__img {
+			height: auto;
+			aspect-ratio: 4 / 3;
+			border-radius: 18px;
+		}
+		&__body {
+			padding: 22px 10px 12px;
+		}
+		&__num {
+			gap: 18px;
+			font-size: 32px;
+			&::after {
+				width: 64px;
+			}
+		}
+		&__title {
+			margin-top: 10px;
+			font-size: mvw(30);
+		}
+		&__text {
+			max-width: none;
+			margin-top: 12px;
+			font-size: 15px;
+		}
+		&__list {
+			gap: 10px;
+			margin-top: 18px;
+		}
+		&__li {
+			padding-left: 34px;
+			font-size: 14.5px;
+			&::before {
+				top: 0;
+				width: 22px;
+				height: 22px;
+			}
+		}
+		&__btn {
+			display: flex;
+			width: 100%;
+			margin-top: 26px;
+		}
+	}
+}

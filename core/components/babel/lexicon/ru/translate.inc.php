@@ -86,6 +86,7 @@ $_lang['lbar.rd.about.cta'] = "Записаться на консультаци�
 // --- редизайн: блок «Услуги» ---
 $_lang['lbar.rd.services.eyebrow'] = "Наши процедуры";
 $_lang['lbar.rd.subservices.eyebrow'] = "Техники";
+$_lang['lbar.rd.courses.eyebrow'] = "Курсы академии";
 
 // --- редизайн: блок «Перманентный татуаж … — это» ---
 $_lang['lbar.rd.implica.alt'] = "Мастер перманентного макияжа в студии, Бухарест";

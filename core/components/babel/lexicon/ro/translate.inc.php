@@ -85,6 +85,7 @@ $_lang['lbar.rd.about.cta'] = "Programează o consultație";
 // --- редизайн: блок «Услуги» ---
 $_lang['lbar.rd.services.eyebrow'] = "Serviciile noastre";
 $_lang['lbar.rd.subservices.eyebrow'] = "Tehnici";
+$_lang['lbar.rd.courses.eyebrow'] = "Cursurile academiei";
 
 // --- редизайн: блок «Micropigmentarea … implică» ---
 $_lang['lbar.rd.implica.alt'] = "Maestru de micropigmentare în studio, București";
