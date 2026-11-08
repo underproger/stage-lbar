@@ -87,6 +87,12 @@ $_lang['lbar.rd.about.cta'] = "Записаться на консультаци�
 $_lang['lbar.rd.services.eyebrow'] = "Наши процедуры";
 $_lang['lbar.rd.subservices.eyebrow'] = "Техники";
 $_lang['lbar.rd.courses.eyebrow'] = "Курсы академии";
+$_lang['lbar.rd.pf.masters'] = "Наши мастера";
+$_lang['lbar.rd.pf.cats'] = "Работы по направлениям";
+$_lang['lbar.rd.pf.open'] = "Смотреть фото";
+$_lang['lbar.rd.pf.nav'] = "Разделы портфолио";
+$_lang['lbar.rd.pf.all'] = "Все работы";
+$_lang['lbar.rd.pf.more'] = "Показать ещё";
 
 // --- редизайн: блок «Перманентный татуаж … — это» ---
 $_lang['lbar.rd.implica.alt'] = "Мастер перманентного макияжа в студии, Бухарест";

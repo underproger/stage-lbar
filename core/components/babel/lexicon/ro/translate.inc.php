@@ -86,6 +86,12 @@ $_lang['lbar.rd.about.cta'] = "Programează o consultație";
 $_lang['lbar.rd.services.eyebrow'] = "Serviciile noastre";
 $_lang['lbar.rd.subservices.eyebrow'] = "Tehnici";
 $_lang['lbar.rd.courses.eyebrow'] = "Cursurile academiei";
+$_lang['lbar.rd.pf.masters'] = "Masterii noștri";
+$_lang['lbar.rd.pf.cats'] = "Lucrări pe tehnici";
+$_lang['lbar.rd.pf.open'] = "Vezi fotografiile";
+$_lang['lbar.rd.pf.nav'] = "Secțiuni portofoliu";
+$_lang['lbar.rd.pf.all'] = "Toate lucrările";
+$_lang['lbar.rd.pf.more'] = "Mai multe fotografii";
 
 // --- редизайн: блок «Micropigmentarea … implică» ---
 $_lang['lbar.rd.implica.alt'] = "Maestru de micropigmentare în studio, București";

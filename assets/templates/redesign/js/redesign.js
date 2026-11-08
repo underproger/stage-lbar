@@ -478,6 +478,30 @@
 		});
 	});
 
+	/* ---------- Галерея внутренней страницы портфолио: «Показать ещё» — по 16 фото ---------- */
+	document.querySelectorAll('.lb-pgallery').forEach(function (sec) {
+		var grid = sec.querySelector('.lb-gallery');
+		var btn = sec.querySelector('.lb-pgallery__more');
+		var foot = sec.querySelector('.lb-pgallery__foot');
+		if (!btn) return;
+		var hidden = function () { return grid ? grid.querySelectorAll('.lb-gallery__item--more') : []; };
+		var sync = function () {
+			if (hidden().length) return;
+			btn.classList.add('is-hidden');
+			if (foot && !foot.querySelector('a.lb-btn')) foot.classList.add('is-hidden');
+		};
+		sync();
+		btn.addEventListener('click', function () {
+			var next = [].slice.call(hidden(), 0, 16);
+			next.forEach(function (el) { el.classList.remove('lb-gallery__item--more'); });
+			if (next.length && !reduce && window.gsap) {
+				window.gsap.from(next, { y: 40, opacity: 0, duration: 1, stagger: 0.035, ease: 'expo.out', clearProps: 'transform,opacity' });
+			}
+			sync();
+			if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+		});
+	});
+
 	/* ---------- Блок FAQ: аккордеон ----------
 	   Открыт один вопрос: клик по другому закрывает предыдущий. Высота — CSS (grid-template-rows), здесь — классы и aria.
 	   После раскрытия пересчитываем ScrollTrigger (меняется высота страницы); на мобильном открытый вопрос докручиваем в экран. */
@@ -742,6 +766,20 @@
 			['.lb-contact__side', { clipPath: 'inset(0% 0% 100% 0%)' }, 0.3, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.6, ease: 'power3.inOut', clearProps: 'clipPath' }],
 			['.lb-contact__row', { x: 40, opacity: 0, duration: 1.2, stagger: 0.07, clearProps: 'transform' }, 0.45],
 			['.lb-contact__badge', { scale: 0.6, opacity: 0, duration: 1, ease: 'back.out(2)', clearProps: 'transform' }, 1.1]
+		]);
+		// портфолио (общая страница и галереи), курсы
+		revealBlock(document.querySelector('.lb-pfhub'), 'top 75%', [
+			['.lb-pfhub__eyebrow', { x: -30, opacity: 0, duration: 1.2, stagger: 0.3, clearProps: 'transform' }, 0],
+			['.lb-pfcard', { y: 70, opacity: 0, duration: 1.4, stagger: 0.1, clearProps: 'transform' }, 0.15]
+		]);
+		revealBlock(document.querySelector('.lb-pgallery'), 'top 80%', [
+			['.lb-pgallery__tab', { y: 20, opacity: 0, duration: 1, stagger: 0.04, clearProps: 'transform' }, 0],
+			['.lb-gallery__item:not(.lb-gallery__item--more)', { y: 50, opacity: 0, scale: 0.97, duration: 1.2, stagger: 0.04, clearProps: 'transform,opacity' }, 0.2]
+		]);
+		revealBlock(document.querySelector('.lb-courses'), 'top 75%', [
+			['.lb-courses__eyebrow', { x: -30, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0],
+			['.lb-course', { y: 70, opacity: 0, duration: 1.5, stagger: 0.12, clearProps: 'transform' }, 0.15],
+			['.lb-course__li', { x: 30, opacity: 0, duration: 1.1, stagger: 0.08, clearProps: 'transform' }, 0.6]
 		]);
 		// подвал: у блока с окном «Заказать звонок» (.lb-footer__call) — только прозрачность (transform ломает position: fixed окна)
 		revealBlock(document.querySelector('.lb-footer'), 'top 80%', [

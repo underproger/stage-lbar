@@ -1,0 +1,334 @@
+// ================= ПОРТФОЛИО: общая страница (lb-pfhub) и внутренние галереи (lb-pgallery) =================
+.lb-pfhub,
+.lb-pgallery {
+	position: relative;
+	overflow: hidden;
+	font-family: $f-text;
+	color: #2b2420;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	:where(*, *::before, *::after) {
+		box-sizing: border-box;
+	}
+	:where(a:not(.lb-btn)) {
+		text-decoration: none;
+		color: inherit;
+	}
+	:where(img) {
+		display: block;
+	}
+}
+.lb-pfhub__bg,
+.lb-pgallery__bg {
+	position: absolute;
+	inset: 0;
+	background:
+		radial-gradient(34% 30% at 90% 20%, rgba(236, 214, 200, .5), rgba(236, 214, 200, 0) 100%),
+		radial-gradient(30% 26% at 4% 72%, rgba(255, 255, 255, .7), rgba(255, 255, 255, 0) 100%);
+	pointer-events: none;
+}
+
+// ---------- общая страница ----------
+.lb-pfhub {
+	padding: vw(140) 0 vw(170);
+	&__inner {
+		position: relative;
+		z-index: 1;
+		width: vw(1634);
+		margin: 0 auto;
+	}
+	&__eyebrow {
+		display: flex;
+		align-items: center;
+		gap: vw(20);
+		@include lb-eyebrow;
+		font-size: vw(17);
+		line-height: 1;
+		&::before {
+			content: "";
+			flex: none;
+			width: vw(48);
+			height: 2px;
+			background: #b08c74;
+		}
+		&--cats {
+			margin-top: vw(90);
+		}
+	}
+	&__masters {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: vw(34);
+		margin-top: vw(40);
+	}
+	&__cats {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: vw(28);
+		margin-top: vw(40);
+	}
+}
+
+.lb-pfcard {
+	position: relative;
+	display: flex;
+	border-radius: vw(30);
+	background: #fbf3ee;
+	box-shadow: 0 vw(24) vw(50) rgba(150, 105, 80, .1), 0 vw(4) vw(10) rgba(150, 105, 80, .05);
+	overflow: hidden;
+	transition: translate .7s $ease-expo, box-shadow .7s $ease-expo;
+	&__img {
+		position: relative;
+		display: block;
+		overflow: hidden;
+		background: #efe2d9;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: transform 1.2s $ease-expo;
+		}
+	}
+	&__body {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	&__title {
+		@include lb-title;
+		color: #24130f;
+	}
+	&__more {
+		display: inline-flex;
+		align-items: center;
+		gap: vw(14);
+		margin-top: auto;
+		font-size: vw(15);
+		font-weight: 600;
+		letter-spacing: .16em;
+		text-transform: uppercase;
+		color: #8a5d44;
+	}
+	&__arr {
+		width: vw(27);
+		height: vw(14);
+		transition: translate .5s $ease-expo;
+	}
+	&__num {
+		@include lb-accent;
+		font-size: vw(40);
+		line-height: 1.1;
+	}
+	@include hover {
+		translate: 0 vw(-8);
+		box-shadow: 0 vw(34) vw(60) rgba(150, 105, 80, .16), 0 vw(4) vw(10) rgba(150, 105, 80, .05);
+		.lb-pfcard__img img {
+			transform: scale(1.06);
+		}
+		.lb-pfcard__arr {
+			translate: vw(6) 0;
+		}
+	}
+
+	// мастер: фото слева, имя справа
+	&--master {
+		align-items: stretch;
+		min-height: vw(380);
+		.lb-pfcard__img {
+			flex: none;
+			width: vw(340);
+		}
+		.lb-pfcard__body {
+			flex: 1;
+			padding: vw(48) vw(48) vw(44);
+		}
+		.lb-pfcard__title {
+			font-size: vw(46);
+			line-height: 1.12;
+		}
+		.lb-pfcard__more {
+			padding-top: vw(30);
+		}
+	}
+	// раздел: квадратное фото сверху, «язычок» и подпись снизу
+	&--cat {
+		flex-direction: column;
+		.lb-pfcard__img {
+			aspect-ratio: 1;
+		}
+		.lb-pfcard__body {
+			flex: 1;
+			padding: vw(22) vw(30) vw(30);
+		}
+		.lb-pfcard__title {
+			margin-top: vw(10);
+			margin-bottom: vw(24);
+			font-size: vw(30);
+			line-height: 1.15;
+		}
+	}
+}
+
+// ---------- внутренние страницы: вкладки разделов + галерея ----------
+.lb-pgallery {
+	padding: vw(110) 0 vw(160);
+	&__inner {
+		position: relative;
+		z-index: 1;
+	}
+	&__nav {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: vw(10);
+		width: vw(1640);
+		margin: 0 auto;
+	}
+	&__tab {
+		display: inline-flex;
+		align-items: center;
+		height: vw(48);
+		padding: 0 vw(22);
+		border: 1px solid rgba(176, 140, 116, .45);
+		border-radius: vw(30);
+		font-size: vw(15.5);
+		font-weight: 500;
+		line-height: 1;
+		color: #4a3a32;
+		background: rgba(255, 252, 249, .6);
+		transition: background-color .35s, color .35s, border-color .35s;
+		@include hover {
+			border-color: #b08c74;
+			background: #fff;
+		}
+		&.is-current {
+			color: #fff;
+			border-color: transparent;
+			background: linear-gradient(100deg, #ad7c5c 0%, #946140 100%);
+		}
+	}
+	.lb-gallery {
+		margin-top: vw(50);
+	}
+	&__foot {
+		display: flex;
+		justify-content: center;
+		gap: vw(24);
+		margin-top: vw(56);
+		&.is-hidden {
+			display: none;
+		}
+	}
+	&__more.is-hidden {
+		display: none;
+	}
+}
+
+@include mobile {
+	.lb-pfhub {
+		padding: 56px 0 64px;
+		&__inner {
+			width: auto;
+			padding: 0 16px;
+		}
+		&__eyebrow {
+			gap: 14px;
+			padding: 0 6px;
+			font-size: 12px;
+			&::before {
+				width: 36px;
+			}
+			&--cats {
+				margin-top: 44px;
+			}
+		}
+		&__masters {
+			grid-template-columns: 1fr;
+			gap: 16px;
+			margin-top: 20px;
+		}
+		&__cats {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 12px;
+			margin-top: 20px;
+		}
+	}
+	.lb-pfcard {
+		border-radius: 20px;
+		&__more {
+			gap: 10px;
+			font-size: 11px;
+			letter-spacing: .12em;
+		}
+		&__arr {
+			width: 20px;
+			height: 10px;
+		}
+		&__num {
+			font-size: 26px;
+		}
+		&--master {
+			min-height: 0;
+			.lb-pfcard__img {
+				width: 40%;
+				aspect-ratio: 4 / 5;
+			}
+			.lb-pfcard__body {
+				padding: 20px 18px;
+			}
+			.lb-pfcard__title {
+				font-size: 24px;
+			}
+			.lb-pfcard__more {
+				padding-top: 16px;
+			}
+		}
+		&--cat {
+			.lb-pfcard__body {
+				padding: 12px 14px 16px;
+			}
+			.lb-pfcard__title {
+				margin: 4px 0 12px;
+				font-size: 17px;
+			}
+		}
+	}
+	.lb-pgallery {
+		padding: 44px 0 60px;
+		&__nav {
+			flex-wrap: nowrap;
+			justify-content: flex-start;
+			width: auto;
+			padding: 0 16px 4px;
+			overflow-x: auto;
+			scrollbar-width: none;
+			&::-webkit-scrollbar {
+				display: none;
+			}
+		}
+		&__tab {
+			flex: none;
+			height: 40px;
+			padding: 0 18px;
+			border-radius: 20px;
+			font-size: 14px;
+		}
+		.lb-gallery {
+			margin-top: 24px;
+		}
+		&__foot {
+			flex-direction: column;
+			gap: 12px;
+			margin-top: 28px;
+			padding: 0 22px;
+			.lb-btn {
+				width: 100%;
+			}
+		}
+	}
+}
+// галерея страницы: видны первые 16 (на главной правила для 9-го фото подгоняют сетку под 8 — здесь не нужны)
+.lb-gallery--page .lb-gallery__item:not(.lb-gallery__item--more) {
+	display: block;
+}
