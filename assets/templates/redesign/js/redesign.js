@@ -459,7 +459,8 @@
 		var foot = sec.querySelector('.lb-portfolio__foot');
 		if (!grid || !btn) return;
 		var more = grid.querySelectorAll('.lb-gallery__item--more');
-		if (!more.length) { if (foot) foot.classList.add('is-hidden'); return; }
+		// фото не больше 8 — кнопка не нужна; ссылка на портфолио (страницы услуг) остаётся
+		if (!more.length) { btn.classList.add('is-hidden'); if (foot && !foot.querySelector('.lb-portfolio__all')) foot.classList.add('is-hidden'); return; }
 		btn.addEventListener('click', function () {
 			var open = !grid.classList.contains('is-open');
 			var shown = [].filter.call(grid.children, function (el) { return getComputedStyle(el).display === 'none'; });
@@ -523,6 +524,10 @@
 	   и data-seen (сколько h3 уже показано) на .lb-seo__body; кружки выбирает CSS через h3:nth-of-type. */
 	var seo = document.querySelector('.lb-seo');
 	var seoBody = seo && seo.querySelector('.lb-seo__body');
+	// пустые абзацы из редактора (<p>&nbsp;</p>) не рисуем пустыми карточками — прячем (в HTML текст не меняется)
+	if (seoBody) [].forEach.call(seoBody.querySelectorAll('p'), function (p) {
+		if (!p.textContent.trim() && !p.querySelector('img, iframe, video')) p.classList.add('is-empty');
+	});
 	if (seo && seoBody && !reduce && window.requestAnimationFrame) {
 		var seoHead = seo.querySelector('.lb-seo__head');
 		var seoH3 = [].filter.call(seoBody.children, function (el) { return el.tagName === 'H3'; });
@@ -557,6 +562,8 @@
 		if (reduce || typeof window.gsap === 'undefined' || !window.ScrollTrigger) return;
 		var gsap = window.gsap;
 		gsap.registerPlugin(window.ScrollTrigger);
+		// на страницах услуг части блоков нет (преимуществ и цитаты в «О процедуре», иконок в «implică» и т. п.) — пустые цели не ошибка
+		gsap.config({ nullTargetWarn: false });
 		var about = document.querySelector('.lb-about');
 		if (about) {
 			var tl = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: about, start: 'top 72%' } });

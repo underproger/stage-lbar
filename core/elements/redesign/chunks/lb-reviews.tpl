@@ -22,7 +22,7 @@
             <span class="lb-reviews__line"><span class="lb-reviews__lin">{foreach ($line | split : '*') as $k => $part}{if $k % 2}<em>{$part}</em>{else}{$part}{/if}{/foreach}</span></span>
             {/foreach}
             {else}
-            <span class="lb-reviews__line"><span class="lb-reviews__lin">{$raw}</span></span>
+            <span class="lb-reviews__line"><span class="lb-reviews__lin">{$_modx->getChunk('lb.accent', ['t' => $raw])}</span></span>
             {/if}
         </h2>
         {/if}

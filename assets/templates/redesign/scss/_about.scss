@@ -401,3 +401,95 @@
 		}
 	}
 }
+
+// ---------- страницы услуг (lb-about--svc) ----------
+// фото услуги (TV img_bl1_about) — поверх фото фона в его рамке; печать — отдельным слоем поверх фото.
+// Координаты — доли кадра фона (about-bg 2166×1218, about-mobile 840×1090), радиус — доли самого фото.
+.lb-about--svc {
+	.lb-about__photo {
+		position: absolute;
+		left: 9.28%;
+		top: 12.479%;
+		width: 27.932%;
+		height: 78.571%;
+		border-radius: 17.52% / 11.08%;
+		object-fit: cover;
+	}
+	.lb-about__stamp {
+		position: absolute;
+		left: 3.693%;
+		top: 66.749%;
+		width: 10.342%;
+		img {
+			width: 100%;
+			height: auto;
+		}
+	}
+	// без преимуществ и цитаты колонка короче — по центру высоты фона
+	.lb-about__col {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: center;
+		min-height: vw(1080);
+		padding: vw(80) 0 vw(110);
+	}
+	.lb-about__title--long {
+		.lb-about__t1 {
+			font-size: vw(60);
+			line-height: 1.08;
+		}
+		.lb-about__t2 {
+			font-size: vw(58);
+		}
+	}
+	.lb-about__textwrap {
+		margin-top: vw(38);
+	}
+	.lb-about__text {
+		max-height: vw(38 * 7);
+	}
+	.lb-about__cta {
+		margin-top: vw(56);
+	}
+
+	@include mobile {
+		.lb-about__bg {
+			position: relative;
+		}
+		.lb-about__photo {
+			left: 19.167%;
+			top: 9.45%;
+			width: 71.905%;
+			height: 87.615%;
+			border-radius: 17.22% / 10.89%;
+		}
+		.lb-about__stamp {
+			left: 4.881%;
+			top: 70.275%;
+			width: 26.19%;
+		}
+		.lb-about__col {
+			display: block;
+			min-height: 0;
+			padding: 24px 22px 0;
+		}
+		.lb-about__title--long {
+			.lb-about__t1 {
+				font-size: mvw(30);
+			}
+			.lb-about__t2 {
+				font-size: mvw(28);
+			}
+		}
+		.lb-about__textwrap {
+			margin-top: 18px;
+		}
+		.lb-about__text {
+			max-height: 24px * 6;
+		}
+		.lb-about__cta {
+			margin-top: 28px;
+		}
+	}
+}

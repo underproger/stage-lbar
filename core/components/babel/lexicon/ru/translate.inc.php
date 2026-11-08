@@ -74,6 +74,7 @@ $_lang['lbar.rd.hero.card3.txt'] = "Премиум<br>студия";
 // --- редизайн: блок «О микропигментации» ---
 $_lang['lbar.rd.about.alt'] = "Студия LBar — перманентный макияж в Бухаресте";
 $_lang['lbar.rd.about.eyebrow'] = "О перманентном макияже";
+$_lang['lbar.rd.about.eyebrow.svc'] = "О процедуре";
 $_lang['lbar.rd.about.more'] = "Читать далее";
 $_lang['lbar.rd.about.less'] = "Свернуть";
 $_lang['lbar.rd.about.f1'] = "Естественный и гармоничный вид";
@@ -84,6 +85,7 @@ $_lang['lbar.rd.about.cta'] = "Записаться на консультаци�
 
 // --- редизайн: блок «Услуги» ---
 $_lang['lbar.rd.services.eyebrow'] = "Наши процедуры";
+$_lang['lbar.rd.subservices.eyebrow'] = "Техники";
 
 // --- редизайн: блок «Перманентный татуаж … — это» ---
 $_lang['lbar.rd.implica.alt'] = "Мастер перманентного макияжа в студии, Бухарест";

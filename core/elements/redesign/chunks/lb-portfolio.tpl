@@ -29,7 +29,7 @@
             <span class="lb-portfolio__line"><span class="lb-portfolio__lin">{foreach ($line | split : '*') as $k => $part}{if $k % 2}<em>{$part}</em>{else}{$part}{/if}{/foreach}</span></span>
             {/foreach}
             {else}
-            <span class="lb-portfolio__line"><span class="lb-portfolio__lin">{$title}</span></span>
+            <span class="lb-portfolio__line"><span class="lb-portfolio__lin">{$_modx->getChunk('lb.accent', ['t' => $title])}</span></span>
             {/if}
         </h2>
         {/if}
@@ -54,5 +54,10 @@
             <span class="lb-portfolio__moretxt">{'lbar.portfolio.button.more' | lexicon}</span><span class="lb-portfolio__lesstxt">{'lbar.rd.portfolio.less' | lexicon}</span>
             <svg class="lb-btn__arr" viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg>
         </button>
+        {* страницы услуг: ссылка на портфолио из TV link-bl6 (как кнопка старого bl6-portfolio) *}
+        {set $link = ($_modx->resource.id != $_modx->config.site_start) ? ($_modx->resource['link-bl6'] | trim) : ''}
+        {if $link}
+        <a class="lb-btn lb-btn--ghost lb-portfolio__all" href="{$link}">{'lbar.rd.implica.portfolio' | lexicon}<svg class="lb-btn__arr" viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg></a>
+        {/if}
     </div>
 </section>

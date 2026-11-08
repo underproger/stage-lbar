@@ -73,6 +73,7 @@ $_lang['lbar.rd.hero.card3.txt'] = "Studio<br>premium";
 // --- редизайн: блок «О микропигментации» ---
 $_lang['lbar.rd.about.alt'] = "Studio LBar — micropigmentare în București";
 $_lang['lbar.rd.about.eyebrow'] = "Despre micropigmentare";
+$_lang['lbar.rd.about.eyebrow.svc'] = "Despre procedură";
 $_lang['lbar.rd.about.more'] = "Citește mai mult";
 $_lang['lbar.rd.about.less'] = "Ascunde";
 $_lang['lbar.rd.about.f1'] = "Aspect natural și armonios";
@@ -83,6 +84,7 @@ $_lang['lbar.rd.about.cta'] = "Programează o consultație";
 
 // --- редизайн: блок «Услуги» ---
 $_lang['lbar.rd.services.eyebrow'] = "Serviciile noastre";
+$_lang['lbar.rd.subservices.eyebrow'] = "Tehnici";
 
 // --- редизайн: блок «Micropigmentarea … implică» ---
 $_lang['lbar.rd.implica.alt'] = "Maestru de micropigmentare în studio, București";

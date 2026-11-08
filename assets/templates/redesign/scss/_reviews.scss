@@ -901,3 +901,8 @@ html.is-lb-modal {
 		}
 	}
 }
+
+// длинные H2 страниц услуг — строки ровнее
+.lb-reviews__title {
+	text-wrap: balance;
+}

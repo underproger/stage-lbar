@@ -5,8 +5,10 @@
    Заголовок — не H2 (как и в старом блоке), чтобы не менять структуру заголовков страницы.
    Форма: AjaxForm + FormIt с прежними параметрами bl8-form, id формы — form-bl8 (на него завязан редирект после отправки).
    Якорь #bl8-form (кнопки «Записаться» в шапке, баннере, «Ценах») — прежний пустой div перед блоком. *}
-{set $title = ($_modx->resource['main-title-bl8-interial'] ?: $_modx->resource['main-title-bl8']) | trim}
-{set $sub = $_modx->resource['sub-title-bl8-interial'] ?: $_modx->resource['sub-title-bl8']}
+{* на страницах услуг TV пустые — берутся main-title-bl8 / sub-title-bl8 с главной контекста (как :default в старом bl8-form) *}
+{set $start = $_modx->config.site_start}
+{set $title = ($_modx->resource['main-title-bl8-interial'] ?: $_modx->resource['main-title-bl8'] ?: $_modx->runSnippet('pdoField', ['id' => $start, 'field' => 'main-title-bl8'])) | trim}
+{set $sub = $_modx->resource['sub-title-bl8-interial'] ?: $_modx->resource['sub-title-bl8'] ?: $_modx->runSnippet('pdoField', ['id' => $start, 'field' => 'sub-title-bl8'])}
 {set $fmt = 'lbar.rd.book.title' | lexicon}
 {set $plain = $fmt | replace : '|' : ' ' | replace : '*' : ''}
 <div id="bl8-form"></div>

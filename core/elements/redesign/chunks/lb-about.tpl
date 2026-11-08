@@ -1,28 +1,40 @@
-{* Блок «О микропигментации» (редизайн, 2-й экран главной).
+{* Блок «О микропигментации» (редизайн, 2-й экран главной; на страницах услуг — вместо bl1-about-us).
    Заголовок и текст — прежние TV: title_bl1_about, text_bl1_about.
-   Часть заголовка после тире выводится курсивом. Текст свёрнут до 3 строк. *}
+   Часть заголовка после тире выводится курсивом. Текст свёрнут до 3 строк (на услугах — до 7).
+   Страницы услуг (модификатор --svc): свой надзаголовок, без преимуществ и цитаты главной; фото — TV img_bl1_about
+   (если задано — поверх фото фона в той же рамке + печать отдельным слоем; если нет — фото фона, это то же
+   img-about.jpg, что показывал старый блок). *}
 {set $title = $_modx->resource['title_bl1_about'] | trim}
 {set $dash = ''}
 {if ' — ' in $title}{set $dash = '—'}{elseif ' – ' in $title}{set $dash = '–'}{/if}
 {set $tp = ($dash ? ($title | split : (' ' ~ $dash ~ ' ')) : [$title])}
 {set $text = $_modx->resource['text_bl1_about']}
 {set $img = '/assets/templates/redesign/img/'}
+{set $svc = $_modx->resource.id != $_modx->config.site_start}
+{set $photo = $svc ? ('[[*img_bl1_about]]' | trim) : ''}
 <div id="bl1"></div>
-<section class="lb-about" id="lb-about">
+<section class="lb-about{$svc ? ' lb-about--svc' : ''}" id="lb-about">
     <div class="lb-about__bg">
         <picture>
             <source media="(max-width: 1024px)" srcset="{$img}about-mobile.webp" width="840" height="1090">
-            <img src="{$img}about-bg.webp" srcset="{$img}about-bg-1440.webp 1440w, {$img}about-bg.webp 2166w" sizes="100vw" width="2166" height="1218" alt="{'lbar.rd.about.alt' | lexicon}" loading="lazy" decoding="async">
+            <img src="{$img}about-bg.webp" srcset="{$img}about-bg-1440.webp 1440w, {$img}about-bg.webp 2166w" sizes="100vw" width="2166" height="1218" alt="{$photo ? '' : ('lbar.rd.about.alt' | lexicon)}" loading="lazy" decoding="async">
         </picture>
+        {if $photo}
+        <img class="lb-about__photo" src="/{$photo | replace : ' ' : '%20'}" alt="{$title | escape}" width="540" height="850" loading="lazy" decoding="async">
+        <picture class="lb-about__stamp" aria-hidden="true">
+            <source media="(max-width: 1024px)" srcset="{$img}about-stamp-m.webp" width="220" height="220">
+            <img src="{$img}about-stamp.webp" width="224" height="224" alt="" loading="lazy" decoding="async">
+        </picture>
+        {/if}
     </div>
 
     <div class="lb-about__col">
-        <div class="lb-about__eyebrow">{'lbar.rd.about.eyebrow' | lexicon}</div>
+        <div class="lb-about__eyebrow">{($svc ? 'lbar.rd.about.eyebrow.svc' : 'lbar.rd.about.eyebrow') | lexicon}</div>
 
         {if $title}
-        <div class="lb-about__title">
+        <div class="lb-about__title{($svc && ($title | length) > 40) ? ' lb-about__title--long' : ''}">
             {if $tp | length > 1}
-            <span class="lb-about__t1">{$tp[0]} {$dash}</span>
+            <span class="lb-about__t1">{$tp[0]}&nbsp;{$dash}</span>
             <span class="lb-about__t2">{$tp[1]}</span>
             {else}
             <span class="lb-about__t1">{$title}</span>
@@ -40,6 +52,7 @@
         </div>
         {/if}
 
+        {if !$svc}
         <ul class="lb-about__list">
             <li class="lb-about__item">
                 <span class="lb-about__ic" aria-hidden="true"><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><path d="M7 29 27 9"/><path d="M27.5 8.5c-5.5-1.8-13.4.8-16.6 7.8-1.6 3.4-1.7 7-1.3 9.9 3 .5 6.6.2 10-1.4 7-3.3 9.6-11 7.9-16.3z"/><path d="M12.5 21h6.5M15.5 17.5h6M19 14h4.5"/></svg></span>
@@ -59,6 +72,7 @@
             <svg class="lb-about__qmark" viewBox="0 0 55 44" aria-hidden="true"><path fill="currentColor" d="M12.6 44C5.3 44 0 38.6 0 31.4 0 19.6 9.6 6.4 22.3 0l2.2 3.3C16.8 8.2 12 14.6 11.3 20.4c.7-.2 1.5-.3 2.3-.3 6.4 0 11.3 5 11.3 11.7S19.8 44 12.6 44zm30.1 0c-7.3 0-12.6-5.4-12.6-12.6C30.1 19.6 39.7 6.4 52.4 0l2.2 3.3C46.9 8.2 42.1 14.6 41.4 20.4c.7-.2 1.5-.3 2.3-.3 6.4 0 11.3 5 11.3 11.7S49.9 44 42.7 44z"/></svg>
             <p class="lb-about__qtext">{'lbar.rd.about.quote' | lexicon}</p>
         </div>
+        {/if}
 
         <a class="lb-btn lb-btn--solid lb-about__cta" href="#form-bl4">{'lbar.rd.about.cta' | lexicon}<svg class="lb-btn__arr" viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg></a>
     </div>

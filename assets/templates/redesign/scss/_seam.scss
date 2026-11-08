@@ -420,3 +420,93 @@ $seam-contact: #f8f2ee;  // «Статьи» → «Контакты»
 		}
 	}
 }
+
+// ================= СТРАНИЦЫ УСЛУГ: ДРУГИЕ СОСЕДИ БЛОКОВ =================
+// На услугах часть блоков может отсутствовать (нет подуслуг, «implică», мастера, галереи, FAQ, статей) — тогда встречаются
+// блоки, которые на главной не соседствуют. Верх нижнего блока подстраивается под низ верхнего: та же лента и тот же цвет стыка
+// (иначе половинки декора разные и виден шов). Между блоками бывают служебные пустые div (якоря #conract, попап мастера).
+@mixin lb-seam-bg($svg) {
+	background:
+		url("/assets/templates/redesign/img/#{$svg}") center / 100% 100% no-repeat,
+		radial-gradient(40% 32% at 80% 50%, rgba(236, 211, 196, .5), rgba(236, 211, 196, 0) 100%),
+		radial-gradient(36% 30% at 18% 54%, rgba(255, 255, 255, .65), rgba(255, 255, 255, 0) 100%);
+}
+
+// «О процедуре» → «implică» (нет подуслуг)
+.lb-about + .lb-implica {
+	background: linear-gradient(180deg, $seam-color 0, $im-bg vw(160), $im-bg calc(100% - #{vw(200)}), $seam-consult 100%);
+	&::after {
+		@include lb-seam-bg("seam.svg");
+	}
+	@include mobile {
+		background: linear-gradient(180deg, $seam-color 0, $im-bg 120px, $im-bg calc(100% - 80px), $seam-consult 100%);
+	}
+}
+// «О процедуре» → «Консультация» (нет «implică»)
+.lb-about + #conract + .lb-consult {
+	background: linear-gradient(180deg, $seam-color 0, $cs-bg vw(160));
+	&::after {
+		@include lb-seam-bg("seam.svg");
+	}
+	@include mobile {
+		background: linear-gradient(180deg, $seam-color 0, $cs-bg 100px);
+	}
+}
+// «Консультация» → «Галерея» (нет мастера): вместо тёмной волны — светлая лента
+.lb-consult:has(+ .lb-portfolio) {
+	@include lb-seam(bottom, "seam-price.svg", before);
+}
+.lb-consult + .lb-portfolio {
+	@include lb-seam(top, "seam-price.svg", before);
+	.lb-portfolio__bg::after {
+		display: none;
+	}
+}
+// «Мастер» → «Цены» (нет галереи): тёмная волна мастера опускается в верх «Цен» — как в «Галерее»
+.lb-master + .overlay-trainer + .lb-price {
+	&::after {
+		top: -1px;
+		height: vw(160);
+		background: url("/assets/templates/redesign/img/seam-portfolio.svg") center top / 100% 100% no-repeat;
+		@include mobile {
+			top: -1px;
+			height: mvw(70);
+		}
+	}
+	.lb-price__bg::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: vw(160);
+		transform: scaleY(-1);
+		background: url("/assets/templates/redesign/img/master-bg.webp") 0 100% / 100% vw(890) no-repeat, $ms-bg;
+		-webkit-mask: url("/assets/templates/redesign/img/seam-portfolio-mask.svg") 0 0 / 100% 100% no-repeat;
+		mask: url("/assets/templates/redesign/img/seam-portfolio-mask.svg") 0 0 / 100% 100% no-repeat;
+		@include mobile {
+			height: mvw(70);
+			background: radial-gradient(80% 520px at 90% 100%, rgba(170, 120, 95, .2), rgba(170, 120, 95, 0) 100%), $ms-bg;
+		}
+	}
+}
+// «Отзывы» → «SEO-текст» (нет FAQ)
+.lb-reviews + .lb-seo {
+	background: linear-gradient(180deg, $seam-faq 0, $seo-bg vw(170), $seo-bg calc(100% - #{vw(240)}), $seam-blog 100%);
+	&::after {
+		@include lb-seam-bg("seam-faq.svg");
+	}
+	@include mobile {
+		background: linear-gradient(180deg, $seam-faq 0, $seo-bg 100px, $seo-bg calc(100% - 120px), $seam-blog 100%);
+	}
+}
+// «SEO-текст» → «Контакты» (нет статей)
+.lb-seo + #conract + .lb-contact {
+	background: linear-gradient(180deg, $seam-blog 0, $ct-bg vw(160));
+	&::after {
+		@include lb-seam-bg("seam-blog.svg");
+	}
+	@include mobile {
+		background: linear-gradient(180deg, $seam-blog 0, $ct-bg 90px);
+	}
+}

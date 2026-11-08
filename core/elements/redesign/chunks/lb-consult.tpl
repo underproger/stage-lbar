@@ -4,7 +4,10 @@
    если TV изменят и он перестанет совпадать с лексиконом — заголовок выводится как есть.
    Заголовок — не H2 (как и в старом блоке), чтобы не менять структуру заголовков страницы.
    Форма: AjaxForm + FormIt с прежними параметрами, id формы — form-bl4 (на него завязаны якоря и редирект после отправки). *}
-{set $title = $_modx->resource['main-title-bl4'] | trim}
+{* на страницах услуг TV пустые — берутся с главной контекста (как :default в старом bl4-form) *}
+{set $start = $_modx->config.site_start}
+{set $title = ($_modx->resource['main-title-bl4'] ?: $_modx->runSnippet('pdoField', ['id' => $start, 'field' => 'main-title-bl4'])) | trim}
+{set $sub = $_modx->resource['sub-title-bl4'] ?: $_modx->runSnippet('pdoField', ['id' => $start, 'field' => 'sub-title-bl4'])}
 {set $fmt = 'lbar.rd.consult.title' | lexicon}
 {set $plain = $fmt | replace : '|' : ' ' | replace : '*' : ''}
 {set $eyebrow = 'lbar.rd.consult.eyebrow' | lexicon}
@@ -41,8 +44,8 @@
         </svg>
         {/if}
 
-        {if $_modx->resource['sub-title-bl4']}
-        <div class="lb-consult__text">{$_modx->resource['sub-title-bl4']}</div>
+        {if $sub}
+        <div class="lb-consult__text">{$sub}</div>
         {/if}
     </div>
 

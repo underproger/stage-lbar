@@ -24,7 +24,7 @@
                 <span class="lb-blog__line"><span class="lb-blog__lin">{foreach ($line | split : '*') as $k => $part}{if $k % 2}<em>{$part}</em>{else}{$part}{/if}{/foreach}</span></span>
                 {/foreach}
                 {else}
-                <span class="lb-blog__line"><span class="lb-blog__lin">{$raw}</span></span>
+                <span class="lb-blog__line"><span class="lb-blog__lin">{$_modx->getChunk('lb.accent', ['t' => $raw])}</span></span>
                 {/if}
             </div>
             <svg class="lb-blog__flourish" viewBox="0 0 440 50" aria-hidden="true">

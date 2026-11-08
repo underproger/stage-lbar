@@ -501,3 +501,65 @@ $im-bg: #f4ebe7;
 		}
 	}
 }
+
+// ---------- страницы услуг (lb-implica--svc) ----------
+// вместо иконок — номера пунктов на той же плашке
+.lb-implica__num {
+	position: relative;
+	margin-right: vw(3);
+	font-family: $f-serif;
+	font-size: vw(46);
+	font-style: italic;
+	font-weight: 420;
+	font-stretch: 80%;
+	line-height: 1;
+	color: #fff8f2;
+}
+// фото услуги (TV im-1-bl3) — в круге на месте фото главной: центр (586, 603), радиус 425 — внутри медной дуги (r 435)
+.lb-implica--photo {
+	.lb-implica__bg {
+		background:
+			radial-gradient(34% 46% at 30% 56%, rgba(232, 208, 194, .55), rgba(232, 208, 194, 0) 100%),
+			radial-gradient(30% 40% at 78% 30%, rgba(255, 255, 255, .6), rgba(255, 255, 255, 0) 100%);
+	}
+	& .lb-implica__bg img.lb-implica__photo {
+		position: absolute;
+		left: vw(161);
+		top: vw(178);
+		width: vw(850);
+		height: vw(850);
+		border-radius: 50%;
+		object-fit: cover;
+		box-shadow: 0 0 0 vw(10) rgba(255, 255, 255, .35), 0 vw(40) vw(90) rgba(120, 80, 60, .2);
+		-webkit-mask-image: none;
+		mask-image: none;
+	}
+}
+
+@include mobile {
+	.lb-implica__num {
+		margin: 0;
+		font-size: 26px;
+	}
+	.lb-implica--photo {
+		.lb-implica__bg {
+			max-width: none;
+			padding: 40px 0 44px;
+			-webkit-mask-image: none;
+			mask-image: none;
+		}
+		& .lb-implica__bg img.lb-implica__photo {
+			position: relative;
+			left: auto;
+			top: auto;
+			width: min(82vw, 380px);
+			height: auto;
+			aspect-ratio: 1;
+			margin: 0 auto;
+			box-shadow: 0 0 0 6px rgba(255, 255, 255, .4), 0 20px 46px rgba(120, 80, 60, .18);
+		}
+		.lb-implica__col {
+			margin-top: 0;
+		}
+	}
+}

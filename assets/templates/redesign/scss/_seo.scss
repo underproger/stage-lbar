@@ -452,3 +452,47 @@ $seo-max-h3: 16;
 		}
 	}
 }
+
+// ---------- страницы услуг: картинка TV img-bl-seo над H2 ----------
+.lb-seo__head--img {
+	grid-template-rows: auto auto;
+	column-gap: 0;
+	.lb-seo__img {
+		grid-column: 1;
+		grid-row: 1;
+		display: block;
+		width: calc(100% - #{vw(40)});
+		height: auto;
+		max-height: vw(420);
+		margin-bottom: vw(40);
+		border-radius: vw(30);
+		object-fit: cover;
+		box-shadow: 0 vw(24) vw(54) rgba(130, 90, 66, .14), 0 0 0 vw(6) rgba(255, 255, 255, .7);
+	}
+	.lb-seo__title {
+		grid-column: 1;
+		grid-row: 2;
+	}
+	.lb-seo__lead {
+		grid-column: 2;
+		grid-row: 1 / span 2;
+	}
+	@include mobile {
+		.lb-seo__img {
+			width: 100%;
+			max-height: none;
+			margin-bottom: 22px;
+			border-radius: 20px;
+			box-shadow: 0 14px 30px rgba(130, 90, 66, .14);
+		}
+		.lb-seo__title,
+		.lb-seo__lead {
+			grid-column: auto;
+			grid-row: auto;
+		}
+	}
+}
+// пустые абзацы текста (<p>&nbsp;</p>) — класс ставит JS
+.lb-seo__body p.is-empty {
+	display: none;
+}

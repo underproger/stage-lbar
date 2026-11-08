@@ -573,3 +573,142 @@ $pt-cols: vw(654) vw(282) vw(225);
 		}
 	}
 }
+
+// ---------- страницы услуг: другие виды таблицы (TV table_select) ----------
+// ширина карточки та же (1161 @1920); выделенная полоса (__card::before) — под последней колонкой цены
+.lb-ptable--full {
+	.lb-ptable__head,
+	.lb-ptable__row {
+		grid-template-columns: vw(560) vw(200) vw(196) vw(205);
+	}
+	@include desktop {
+		.lb-ptable__name {
+			padding-left: vw(140);
+		}
+		.lb-ptable__ic {
+			left: vw(36);
+		}
+		.lb-ptable__dur {
+			padding-left: vw(62);
+		}
+		.lb-ptable__clock {
+			left: vw(24);
+		}
+		.lb-ptable__h--dur::before {
+			left: 0;
+		}
+	}
+}
+.lb-ptable--three {
+	.lb-ptable__head,
+	.lb-ptable__row {
+		grid-template-columns: vw(661) vw(250) vw(250);
+	}
+}
+.lb-ptable--two {
+	.lb-ptable__head,
+	.lb-ptable__row {
+		grid-template-columns: vw(881) vw(280);
+	}
+}
+.lb-ptable--full,
+.lb-ptable--three {
+	.lb-ptable__orn {
+		display: none;
+	}
+	.lb-ptable__h--price {
+		padding: 0 vw(12);
+		font-size: vw(21);
+		line-height: 1.15;
+		letter-spacing: .06em;
+	}
+	// первая из двух цен — с разделителем, как у длительности
+	.lb-ptable__price + .lb-ptable__price,
+	.lb-ptable__h--price + .lb-ptable__h--price {
+		box-shadow: inset 1px 0 0 rgba(220, 200, 186, .45);
+	}
+}
+.lb-ptable--three .lb-ptable__price:first-of-type {
+	box-shadow: inset 1px 0 0 rgba(220, 200, 186, .45);
+}
+.lb-price__card:has(.lb-ptable--full)::before {
+	width: vw(205);
+}
+.lb-price__card:has(.lb-ptable--three)::before {
+	width: vw(250);
+}
+.lb-price__card:has(.lb-ptable--two)::before {
+	width: vw(280);
+}
+.lb-ptable__price {
+	align-self: stretch;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: vw(8) vw(12);
+}
+// текстовая цена («100% din prețul primei ședințe») — меньше и с переносом
+.lb-ptable__price--long {
+	font-size: vw(19);
+	line-height: 1.25;
+	white-space: normal;
+}
+
+@include mobile {
+	.lb-ptable--full,
+	.lb-ptable--three,
+	.lb-ptable--two {
+		.lb-ptable__row {
+			grid-template-columns: 1fr auto;
+		}
+	}
+	.lb-ptable--three .lb-ptable__row {
+		grid-template-columns: 1fr 1fr;
+	}
+	.lb-ptable--full .lb-ptable__row {
+		grid-template-columns: auto 1fr 1fr;
+		column-gap: 10px;
+	}
+	.lb-ptable__price {
+		justify-content: flex-end;
+		padding: 0;
+	}
+	.lb-ptable--full,
+	.lb-ptable--three {
+		.lb-ptable__price {
+			flex-direction: column;
+			align-items: flex-end;
+			justify-content: center;
+			box-shadow: none;
+			&::before {
+				content: attr(data-label);
+				display: block;
+				margin-bottom: 3px;
+				font-size: 10.5px;
+				font-weight: 500;
+				letter-spacing: .08em;
+				text-transform: uppercase;
+				color: #9a7a66;
+			}
+		}
+	}
+	.lb-ptable__price--long {
+		font-size: 13.5px;
+		text-align: right;
+	}
+}
+
+// ---------- страницы услуг: высота по таблице (на главной — экран 1080) ----------
+.lb-price--svc {
+	min-height: vw(780);
+}
+// после «Мастера» (нет галереи) сверху опускается тёмная волна — контент ниже
+.lb-master + .overlay-trainer + .lb-price {
+	padding-top: vw(200);
+	.lb-price__intro {
+		top: vw(256);
+	}
+	@include mobile {
+		padding-top: 96px;
+	}
+}

@@ -124,8 +124,13 @@ $pf-bg: #f8f1ec;
 			}
 		}
 	}
-	&__foot.is-hidden {
+	&__foot.is-hidden,
+	&__more.is-hidden {
 		display: none;
+	}
+	// страницы услуг: рядом — ссылка на портфолио (TV link-bl6)
+	&__foot {
+		gap: vw(24);
 	}
 
 	@include mobile {
@@ -149,6 +154,8 @@ $pf-bg: #f8f1ec;
 			line-height: 1.5;
 		}
 		&__foot {
+			flex-direction: column;
+			gap: 14px;
 			margin-top: 28px;
 			padding: 0 22px;
 			.lb-btn {
