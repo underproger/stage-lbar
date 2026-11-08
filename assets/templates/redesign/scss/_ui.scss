@@ -1,6 +1,7 @@
 // ---------- Scoped reset (старые стили сайта не должны протекать в новые блоки) ----------
 .lb-header,
-.lb-hero {
+.lb-hero,
+.lb-shero {
 	font-family: $f-text;
 	color: $c-text;
 	-webkit-font-smoothing: antialiased;

@@ -29,6 +29,9 @@
 .lb-contact__big,
 .lb-contact__mail { @include lb-visited(#231914); }
 
+// хлебные крошки (баннер услуг)
+.lb-crumbs__link { @include lb-visited(#8b7469); }
+
 // подвал
 .lb-footer__soc { @include lb-visited(#e8cdb9); }
 .lb-footer__phone { @include lb-visited(#fff4ec); }

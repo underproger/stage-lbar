@@ -86,7 +86,7 @@
 	};
 	// Слушаем на фазе перехвата: старый custom.js («Jacor») вешает на все a[href^="#"] свой jQuery-скролл без учёта
 	// фиксированной шапки — для ссылок новых блоков он не должен срабатывать (stopPropagation до цели).
-	var anchorSel = '.lb-header a[href^="#"], .lb-hero a[href^="#"], .lb-about a[href^="#"], .lb-implica a[href^="#"], .lb-price a[href^="#"], .lb-faq a[href^="#"]';
+	var anchorSel = '.lb-header a[href^="#"], .lb-hero a[href^="#"], .lb-about a[href^="#"], .lb-implica a[href^="#"], .lb-price a[href^="#"], .lb-faq a[href^="#"], .lb-shero a[href^="#"]';
 	document.addEventListener('click', function (e) {
 		var a = e.target.closest && e.target.closest(anchorSel);
 		if (!a) return;
@@ -747,6 +747,26 @@
 		]);
 	};
 	initReveal();
+
+	/* ---------- Баннер страниц услуг (lb-shero): интро ---------- */
+	var shero = document.querySelector('.lb-shero');
+	if (shero && !reduce && typeof window.gsap !== 'undefined') {
+		var sq = function (s) { return shero.querySelectorAll(s); };
+		var stl = window.gsap.timeline({ defaults: { ease: 'expo.out' } });
+		var sAdd = function (sel, vars, pos) { var els = sq(sel); if (els.length) stl.from(els, vars, pos); };
+		sAdd('.lb-shero__frame', { xPercent: 6, opacity: 0, duration: 1.8, ease: 'power3.out', clearProps: 'transform' }, 0);
+		sAdd('.lb-shero__photo', { opacity: 0, duration: 1.4, ease: 'power2.out' }, 0.1);
+		sAdd('.lb-shero__photo img', { scale: 1.12, duration: 2.4, ease: 'power3.out', clearProps: 'transform' }, 0.1);
+		/* шапка — как на главной: ссылки меню по отдельности (transform на .lb-nav ломает позицию мега-панели) */
+		stl.from(isDesktop() ? '.lb-header__logo, .lb-nav__list > li > .lb-nav__link, .lb-lang, .lb-header__right' : '.lb-header__logo, .lb-header__right', { y: -24, opacity: 0, duration: 1.2, stagger: isDesktop() ? 0.035 : 0.08, clearProps: 'transform' }, 0.3);
+		sAdd('.lb-shero__eyebrow', { x: -30, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.4);
+		sAdd('.lb-shero__t1, .lb-shero__t2', { yPercent: 40, opacity: 0, duration: 1.5, stagger: 0.12, clearProps: 'transform' }, 0.5);
+		sAdd('.lb-shero__sub', { y: 20, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.8);
+		sAdd('.lb-shero__feat, .lb-shero__li, .lb-shero__desc', { y: 20, opacity: 0, duration: 1.1, stagger: 0.08, clearProps: 'transform' }, 0.95);
+		sAdd('.lb-shero__btns > *', { y: 24, opacity: 0, duration: 1.2, stagger: 0.1, clearProps: 'transform' }, 1.1);
+		sAdd('.lb-shero__badge', { y: 40, opacity: 0, duration: 1.3, stagger: 0.12, clearProps: 'transform' }, 1.0);
+		sAdd('.lb-crumbs__item', { x: -16, opacity: 0, duration: 1, stagger: 0.06, clearProps: 'transform' }, 1.25);
+	}
 
 	/* ---------- Анимации баннера (GSAP) ---------- */
 	var hero = document.querySelector('.lb-hero');

@@ -122,3 +122,14 @@ images/all/eskiz-min.jpg
 
 # Подвал: логотип разработчика
 images/design/copyright-white-min.png
+
+# Баннеры страниц услуг (TV img_banner_main, шаблон «Категория»)
+images/design/bannerepilare-min.jpg
+images/design/bannerpowdered2.jpg
+images/design/gybybanner3.jpg
+images/design/IMG_5877-min.jpg
+images/design/manik3-min.jpg
+images/design/port3.jpg
+images/design/resnitsabanner1.jpg
+images/design/shop_property_file_606_913.jpg
+images/design/strelkabanner1.jpg

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 900" preserveAspectRatio="none">
+  <!-- фон баннера услуг (мобильный) -->
+  <defs>
+    <linearGradient id="b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbf7f4"/><stop offset="1" stop-color="#f7efe9"/></linearGradient>
+  </defs>
+  <rect width="390" height="900" fill="url(#b)"/>
+  <path fill="#f2e7e0" d="M0 790C70 820 140 860 200 900H0Z"/>
+</svg>

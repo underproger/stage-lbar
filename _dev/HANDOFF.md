@@ -17,11 +17,13 @@
 - Общение — по-русски, коротко и по делу.
 - Конфиги и кэш — **в `.gitignore`** (`config.core.php` ×3, `core/config/config.inc.php`, `core/cache/`, `assets/image-cache/`, `webp/`). Конфиги на хостинг кладёт сам.
 - **БД:** полную базу больше не присылать. Присылать **только SQL-патч, когда БД реально изменилась**; если не менялась — так и сказать («импорт не нужен»).
-  Патч генерить `_dev/tools/make_patch.sh` (все чанки категории *Redesign* + шаблон «Главная») и **проверять импортом** на копии.
+  Патч генерить `_dev/tools/make_patch.sh` (все чанки категории *Redesign* + шаблоны «Главная» (1) и «Категория» (8)) и **проверять импортом** на копии.
   Из дампов MariaDB **удалять строку** `/*M!999999\- enable the sandbox mode */` (ломает импорт консольным клиентом MySQL) — `make_patch.sh` это делает.
 - **SEO:** тексты/заголовки из БД не менять без согласования (новые можно добавлять). После каждого блока — сверка `_dev/tools/seo_compare.py`
   (title, description, canonical, hreflang, robots, H1/H2, JSON-LD, ссылки меню) с эталоном `_dev/seo-baseline/seo.json` (снят до редизайна).
   Единственное согласованное изменение — H1 главной (см. блок 1). Пробел в конце alias у страницы `3d-i-6d-tatuaj-sprancene ` — **не трогать** (решение пользователя).
+- **Страницы услуг:** в новом дизайне — только шаблон «Категория» (id 8). Шаблон «Категория NEW» (19, «Удаление тату») и шаблоны обучения
+  («Обучение» 15, «Внутренняя - Обучение» 21) **не трогаем** (решение пользователя).
 - **Мусор удаляем в конце:** старые чанки (`header`, `banner-main`, `bl1-about-us`, `bl2-category`, …), таблицы статистики
   `stat_online_users` / `stat_page_statistics` (~670 МБ из 700), `_dev/`, `.DS_Store` и т.п.
 - **Без инлайн-стилей** в HTML, стили — в SCSS (BEM, vw-система), скрипты — отдельным файлом.
@@ -53,9 +55,9 @@
 | Тексты интерфейса RO/RU | лексикон `core/components/babel/lexicon/{ro,ru}/translate.inc.php`, ключи `lbar.rd.*` (так уже было на сайте: `lbar.*`) |
 
 **Сборка CSS:** `cd assets/templates/redesign && /home/claude/build/node_modules/.bin/sass scss/redesign.scss css/redesign.css --style=compressed --no-source-map --silence-deprecation=import`
-**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.17.1**) — поднимать при изменениях.
+**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.18.0**) — поднимать при изменениях.
 **Новые/изменённые чанки в БД:** `sudo -u www-data php _dev/tools/modx_apply3.php` (пересохраняет все `*.tpl` из папки как статичные чанки и меняет
-вызов в шаблоне «Главная») — для нового блока сделать по аналогии (последний — `modx_apply16.php`, замена `[[$старый-чанк]]` → `[[$lb-новый]]`).
+вызов в шаблоне «Главная») — для нового блока сделать по аналогии (последний — `modx_apply17.php`, замена `[[$старый-чанк]]` → `[[$lb-новый]]`).
 **После правки `.tpl` чистить `core/cache/resource/`** (главная кэшируется — без этого на скриншоте старая разметка; CSS/JS это не касается).
 **После наката SQL-патчей чистить весь `core/cache/`** (кроме `logs`): иначе MODX берёт шаблон/чанки из кэша и новые блоки не появляются.
 
@@ -299,6 +301,22 @@
    Локально pThumb не находил файлы (корень сайта — симлинк `/home/impua/lbar.ro/www` → клон, phpThumb считает путь «выше docroot»):
    в **локальной** БД `phpthumb_allow_src_above_docroot = 1`. Только для песочницы, в патчи не входит, на хостинг не переносить.
 
+23. **Баннер страниц услуг `lb-shero`** (`scss/_shero.scss`, v1.18.0) — по макету. Шаблон «Категория» (8): в `<head>` + `[[$lb-head]]`, вместо
+   `header` / `banner-interial-category(-with-img)` / `breadcrumb-wrap` — `[[$lb-header]]` + `[[$lb-shero]]`, перед `</body>` + `[[$lb-scripts]]`;
+   остальные (старые) блоки шаблона не менялись, подвал — старый. Скрипт `modx_apply17.php`.
+   Тексты — прежние TV: надзаголовок — `suptitle-banner` главной (как в старом баннере; «Studio LBar» из макета не переносили — правило п. 2),
+   H1 — `title-banner` (первое слово прямо, остальное курсивом `lb-accent`; текст H1 тот же; размер по длине: >30 / >45 символов — меньше),
+   подзаголовок — `sub-title-banner`, преимущества — `description-banner`, разбитый по `<br>`/`<p>`: 2–3 строки до 40 символов — колонки
+   с иконками (как в макете), до 80 — список с отметками, иначе — HTML из TV как было. Кнопки — прежние (#bl8-form, #conract).
+   Фото — TV `img_banner_main` (`images/design/…`, `fetchpriority=high`, alt = H1); нет своего — фото родителя + две плашки
+   `title/description-banner-categoty-1/2` (их показывал старый баннер без фото); нет и у родителя — графика `img/shero-art.svg`.
+   Форма фото — маска `img/shero-photo.svg`, рамки — `img/shero-frame.svg` (обе сняты точками с макета, генератор — Catmull-Rom),
+   фон — `img/shero-bg.svg`; мобильные — `*-m.svg` (фото сверху, текст ниже, кнопки во всю ширину).
+   Хлебные крошки — внутри баннера (pdoCrumbs с прежними параметрами, микроразметка BreadcrumbList та же; в RU, как и раньше, есть «Услуги»).
+   SEO всех 26 страниц шаблона (кроме `3d-i-6d-tatuaj-sprancene ` — локально 403 из-за пробела) сверены со снимком до правки:
+   title / description / canonical / hreflang / robots / H1 / H2 / JSON-LD / крошки — без изменений, ссылки не пропали.
+   **Локально** `images/design/IMG_5877-min.jpg` — временная вырезка фото из макета (для превью); остальных баннеров нет — список в `photos.txt`.
+
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
 `stage-lbar-05-consult.sql` (чанки `lb-consult` id 275, `lb.formConsult` id 276 + все чанки Redesign + шаблон «Главная»),
@@ -314,8 +332,8 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `stage-lbar-15-footer.sql` (чанк `lb-footer` 291 + все чанки Redesign + шаблон «Главная»),
 `stage-lbar-16-mega.sql` (чанки `lb.navParent`, `lb.navMega` + все чанки Redesign + шаблон «Главная» без изменений; фикс `lb-blog`),
 `stage-lbar-17-fixes.sql` (все чанки Redesign: версия `?v=1.16.0`), `stage-lbar-18-visited.sql` (версия `?v=1.16.1`), `stage-lbar-19-lang-blog.sql` (чанки + новый `lb.blogHref`, версия 1.17.0,
-**UPDATE значений TV link-st-1..3 ресурса 1**), `stage-lbar-20-lang-slug.sql` (языки — только код, версия 1.17.1). Патчи проверены импортом.
-После 20 БД **не менялась** (кроме локальной настройки phpThumb выше).
+**UPDATE значений TV link-st-1..3 ресурса 1**), `stage-lbar-20-lang-slug.sql` (языки — только код, версия 1.17.1), `stage-lbar-21-services-banner.sql` (чанк `lb-shero`, **шаблон 8**, версия 1.18.0).
+Патчи проверены импортом. После 21 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — главная готова; дальше — по решению пользователя
 
@@ -368,7 +386,7 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 
 1. Подключить репо (`add_repo underproger/stage-lbar`, push), клонировать в `/home/claude/stage-lbar`.
 2. Пользователь прикладывает дамп и патчи **по порядку**: дамп хостинга `mysql_impua_testlbar_….tar.gz` (исходная база, без патчей),
-   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`, `-15-footer.sql`, `-16-mega.sql`, `-17-fixes.sql`, `-18-visited.sql`, `-19-lang-blog.sql`, `-20-lang-slug.sql`
+   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`, `-15-footer.sql`, `-16-mega.sql`, `-17-fixes.sql`, `-18-visited.sql`, `-19-lang-blog.sql`, `-20-lang-slug.sql`, `-21-services-banner.sql`
    (вместо дампа+urls+01 может прийти `lbar-full-stage-2026-11-06.sql.gz` — это то же самое).
 3. `cd /home/claude/stage-lbar && bash _dev/setup_local.sh <дамп> <urls> <01> <02> <03> <04> <05> <06> <07> <08> <09> <10> <11>` (файлы — по порядку; .tar.gz/.gz/.sql, строка sandbox вырезается) — поднимет MariaDB, Apache+SSL, PHP-полифилл,
    конфиги из `_dev/local-config`, hosts (`stage-lbar.touchit.vinnica.ua` → 127.0.0.1), симлинк `/home/impua/lbar.ro/www` → репо,

@@ -1,0 +1,462 @@
+// ================= Баннер страниц услуг (lb-shero, шаблон «Категория») =================
+// Макет: слева текст (надзаголовок, H1, подзаголовок, преимущества, кнопки, хлебные крошки), справа фото услуги
+// с изогнутым левым краем и двумя светлыми «рамками» вдоль изгиба. Координаты — в системе 1920 (vw()).
+// Фон — только графика: img/shero-bg.svg (тон, мягкая волна снизу слева, рамки); форма фото — маска img/shero-photo.svg.
+
+$sh-ink: #24130f;
+$sh-text: #4a3a33;
+
+.lb-shero {
+	position: relative;
+	height: vw(1040);
+	overflow: hidden;
+	background: #f9f4f0;
+
+	&__bg {
+		position: absolute;
+		inset: 0;
+		background: url("/assets/templates/redesign/img/shero-bg.svg") 0 0 / 100% 100% no-repeat;
+	}
+
+	// ----- фото справа -----
+	&__media {
+		position: absolute;
+		top: vw(142);
+		left: vw(890);
+		right: 0;
+		bottom: 0;
+	}
+	// светлая и бежевая «рамки» вдоль изгиба (шире фото на 1 слой)
+	&__frame {
+		position: absolute;
+		inset: 0;
+		background: url("/assets/templates/redesign/img/shero-frame.svg") 0 0 / 100% 100% no-repeat;
+	}
+	&__photo {
+		position: absolute;
+		inset: 0;
+		overflow: hidden;
+		// подложка, пока фото грузится / если файла нет
+		background: radial-gradient(70% 60% at 60% 40%, #f3e2d6 0%, #e7cdbb 55%, #d9b8a2 100%);
+		-webkit-mask: url("/assets/templates/redesign/img/shero-photo.svg") 0 0 / 100% 100% no-repeat;
+		mask: url("/assets/templates/redesign/img/shero-photo.svg") 0 0 / 100% 100% no-repeat;
+		img {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: 50% 40%;
+			// у «битой» картинки рисуется только ::after — закрываем значок подложкой
+			&::after {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background: radial-gradient(70% 60% at 60% 40%, #f3e2d6 0%, #e7cdbb 55%, #d9b8a2 100%);
+			}
+		}
+	}
+	// без фото — графика: тёплый градиент, тонкие медные дуги
+	&--art &__photo {
+		background:
+			url("/assets/templates/redesign/img/shero-art.svg") 0 0 / 100% 100% no-repeat,
+			linear-gradient(160deg, #f1ddd0 0%, #e4c4b0 50%, #d2a98f 100%);
+	}
+
+	// плашки (title/description-banner-categoty) — на страницах без своего фото
+	&__badges {
+		position: absolute;
+		right: vw(64);
+		bottom: vw(64);
+		display: flex;
+		gap: vw(16);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	&__badge {
+		display: flex;
+		flex-direction: column;
+		gap: vw(6);
+		width: vw(330);
+		padding: vw(20) vw(24);
+		border: 1px solid rgba(255, 255, 255, .55);
+		border-radius: vw(22);
+		background: rgba(255, 250, 246, .72);
+		box-shadow: 0 vw(18) vw(40) rgba(92, 58, 40, .14), inset 0 1px 0 rgba(255, 255, 255, .8);
+		-webkit-backdrop-filter: blur(12px);
+		backdrop-filter: blur(12px);
+	}
+	&__badge-t {
+		@include lb-title;
+		font-size: vw(22);
+		line-height: 1.2;
+		color: $sh-ink;
+		br {
+			display: none;
+		}
+	}
+	&__badge-d {
+		font-size: vw(14.5);
+		line-height: 1.5;
+		color: #5a4d46;
+	}
+
+	// ----- текст слева -----
+	&__inner {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		> * {
+			pointer-events: auto;
+		}
+	}
+	&__content {
+		position: absolute;
+		top: vw(232);
+		left: vw(203);
+		width: vw(720);
+	}
+	&__eyebrow {
+		display: flex;
+		align-items: center;
+		gap: vw(20);
+		margin: 0;
+		@include lb-eyebrow;
+		font-size: vw(15);
+		line-height: 1.3;
+		&::after {
+			content: "";
+			flex: none;
+			width: vw(56);
+			height: 1px;
+			background: #b48b6e;
+		}
+	}
+	// h1: старый CSS (.wrapper h1, .category-page h1 и т.п.) — поднимаем специфичность
+	& &__content h1#{&}__title {
+		margin: vw(30) 0 0;
+		padding: 0;
+		@include lb-title;
+		font-size: vw(88);
+		line-height: 1.08;
+		color: $sh-ink;
+		text-transform: none;
+		&--m {
+			font-size: vw(72);
+		}
+		&--l {
+			font-size: vw(60);
+			line-height: 1.12;
+		}
+	}
+	&__t1,
+	&__t2 {
+		display: block;
+	}
+	&__t1 {
+		font-weight: inherit; // старый CSS: span { font-weight: 400 }
+	}
+	&__t2 {
+		@include lb-accent;
+		padding: 0 .08em .06em 0;
+	}
+	&__sub {
+		margin: vw(30) 0 0;
+		max-width: vw(640);
+		font-size: vw(23);
+		font-weight: 400;
+		line-height: 1.45;
+		color: $sh-text;
+	}
+
+	// преимущества — колонки с иконками (короткие строки, как в макете)
+	&__feats {
+		display: flex;
+		margin: vw(48) 0 0;
+		padding: 0;
+		list-style: none;
+	}
+	&__feat {
+		display: flex;
+		align-items: center;
+		gap: vw(16);
+		flex: 1 1 0;
+		min-width: 0;
+		padding: vw(2) vw(26);
+		&:first-child {
+			padding-left: 0;
+		}
+		& + & {
+			border-left: 1px solid rgba(180, 139, 110, .32);
+		}
+	}
+	&__ico {
+		flex: none;
+		width: vw(42);
+		height: vw(42);
+		color: #8f6146;
+		svg {
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
+	}
+	&__feat-t {
+		font-size: vw(16.5);
+		line-height: 1.4;
+		color: $sh-text;
+	}
+	// преимущества — список с отметками (строки длиннее)
+	&__list {
+		display: grid;
+		gap: vw(12);
+		margin: vw(40) 0 0;
+		padding: 0;
+		list-style: none;
+	}
+	&__li {
+		position: relative;
+		padding-left: vw(40);
+		font-size: vw(18);
+		line-height: 1.45;
+		color: $sh-text;
+		&::before {
+			content: "";
+			position: absolute;
+			top: .1em;
+			left: 0;
+			width: vw(26);
+			height: vw(26);
+			border-radius: 50%;
+			background:
+				url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Cpath fill='none' stroke='%23fff8f3' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' d='m8 13.4 3.4 3.3L18.2 9.6'/%3E%3C/svg%3E") 50% 50% / 100% 100% no-repeat,
+				$g-btn;
+			box-shadow: 0 vw(4) vw(10) rgba(123, 76, 50, .22);
+		}
+	}
+	// преимущества — длинный текст: выводится как в TV
+	&__desc {
+		margin-top: vw(32);
+		font-size: vw(17);
+		line-height: 1.6;
+		color: $sh-text;
+		p {
+			margin: 0 0 .5em;
+		}
+		strong,
+		b {
+			font-weight: 600;
+		}
+	}
+
+	&__btns {
+		display: flex;
+		gap: vw(24);
+		margin-top: vw(56);
+		.lb-btn {
+			height: vw(64);
+		}
+	}
+}
+
+// ----- хлебные крошки -----
+.lb-crumbs {
+	position: absolute;
+	left: vw(203);
+	bottom: vw(48);
+	&__list {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	&__item {
+		display: flex;
+		align-items: center;
+		font-size: vw(15);
+		line-height: 1.3;
+		color: #2f2420;
+		& + &::before {
+			content: "";
+			width: vw(7);
+			height: vw(7);
+			margin: 0 vw(14) 0 vw(12);
+			border-top: 1.4px solid #a98a7a;
+			border-right: 1.4px solid #a98a7a;
+			rotate: 45deg;
+		}
+	}
+	&__link {
+		display: inline-flex;
+		align-items: center;
+		gap: vw(10);
+		color: #8b7469;
+		text-decoration: none;
+		transition: color .3s;
+		svg {
+			width: vw(20);
+			height: vw(20);
+			margin-top: vw(-2);
+		}
+		@include hover {
+			color: $c-rose-dark;
+		}
+	}
+}
+
+// ================= мобильный =================
+@include mobile {
+	.lb-shero {
+		height: auto;
+		padding: 64px 0 34px;
+		&__bg {
+			background-image: url("/assets/templates/redesign/img/shero-bg-m.svg");
+		}
+		// фото — в потоке, сверху; плашки (если есть) — под фото
+		&__media {
+			position: relative;
+			top: auto;
+			left: auto;
+		}
+		&__frame,
+		&__photo {
+			bottom: auto;
+			height: mvw(330);
+		}
+		&__frame {
+			position: absolute;
+			top: 0;
+			left: mvw(34);
+			right: 0;
+			background-image: url("/assets/templates/redesign/img/shero-frame-m.svg");
+		}
+		&__photo {
+			position: relative;
+			inset: auto;
+			margin-left: mvw(34);
+			-webkit-mask-image: url("/assets/templates/redesign/img/shero-photo-m.svg");
+			mask-image: url("/assets/templates/redesign/img/shero-photo-m.svg");
+		}
+		&__badges {
+			position: static;
+			right: auto;
+			bottom: auto;
+			flex-direction: row;
+			gap: 10px;
+			margin: 18px 20px 0;
+		}
+		&__badge {
+			flex: 1 1 0;
+			width: auto;
+			padding: 14px 14px;
+			border-radius: 16px;
+			gap: 4px;
+		}
+		&__badge-t {
+			font-size: 16px;
+		}
+		&__badge-d {
+			font-size: 12.5px;
+		}
+		// relative — иначе абсолютный фон (__bg) рисуется поверх текста
+		&__inner {
+			position: relative;
+			inset: auto;
+		}
+		&__content {
+			position: static;
+			width: auto;
+			padding: 26px 20px 0;
+		}
+		&__eyebrow {
+			gap: 14px;
+			font-size: 11.5px;
+			&::after {
+				width: 34px;
+			}
+		}
+		& &__content h1#{&}__title {
+			margin-top: 16px;
+			font-size: mvw(44);
+			&--m {
+				font-size: mvw(38);
+			}
+			&--l {
+				font-size: mvw(32);
+			}
+		}
+		&__sub {
+			max-width: none;
+			margin-top: 16px;
+			font-size: 16px;
+		}
+		&__feats {
+			display: grid;
+			gap: 14px;
+			margin-top: 24px;
+		}
+		&__feat {
+			padding: 0;
+			gap: 14px;
+			& + & {
+				border-left: 0;
+			}
+		}
+		&__ico {
+			width: 34px;
+			height: 34px;
+		}
+		&__feat-t {
+			font-size: 15px;
+		}
+		&__list {
+			gap: 12px;
+			margin-top: 22px;
+		}
+		&__li {
+			padding-left: 34px;
+			font-size: 15px;
+			&::before {
+				width: 22px;
+				height: 22px;
+				box-shadow: 0 3px 8px rgba(123, 76, 50, .2);
+			}
+		}
+		&__desc {
+			margin-top: 20px;
+			font-size: 15px;
+		}
+		&__btns {
+			flex-direction: column;
+			gap: 12px;
+			margin-top: 28px;
+			.lb-btn {
+				width: 100%;
+				height: 56px;
+			}
+		}
+	}
+	.lb-crumbs {
+		position: static;
+		margin: 28px 20px 0;
+		&__item {
+			font-size: 13px;
+			& + &::before {
+				width: 6px;
+				height: 6px;
+				margin: 0 10px 0 8px;
+			}
+		}
+		&__link {
+			gap: 7px;
+			svg {
+				width: 17px;
+				height: 17px;
+				margin-top: -2px;
+			}
+		}
+	}
+}

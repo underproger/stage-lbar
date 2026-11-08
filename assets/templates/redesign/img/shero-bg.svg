@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1040" preserveAspectRatio="none">
+  <!-- фон баннера услуг: светлый тёплый тон, мягкий свет слева сверху, едва заметная волна снизу слева (по макету) -->
+  <defs>
+    <linearGradient id="b" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbf7f4"/>
+      <stop offset="1" stop-color="#f8f1ec"/>
+    </linearGradient>
+    <radialGradient id="g" cx=".2" cy=".32" r=".42">
+      <stop offset="0" stop-color="#fff" stop-opacity=".75"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="w" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f2e7e0"/>
+      <stop offset="1" stop-color="#f6eee9"/>
+    </linearGradient>
+  </defs>
+  <rect width="1920" height="1040" fill="url(#b)"/>
+  <rect width="1920" height="1040" fill="url(#g)"/>
+  <path fill="url(#w)" d="M0 846C78 884 168 952 238 1000C262 1016 284 1030 304 1040H0Z"/>
+  <path fill="none" stroke="#e9d9cd" stroke-width="1.5" d="M0 812C150 870 330 990 420 1040"/>
+</svg>

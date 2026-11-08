@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 356 330" preserveAspectRatio="none">
+  <!-- рамки вдоль изгиба фото (мобильный) -->
+  <path fill="#f3eae3" d="M76 0C28 34 0 102 0 172C0 236 14 288 32 330H356V0Z"/>
+  <path fill="#e4ccb9" d="M100 0C46 36 8 104 5 174C2 236 17 289 38 330H356V0Z"/>
+</svg>

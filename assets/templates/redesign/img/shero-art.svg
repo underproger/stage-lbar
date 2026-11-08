@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1030 898" preserveAspectRatio="none">
+  <!-- баннер услуги без фото: мягкий свет и тонкие медные дуги поверх тёплого градиента -->
+  <defs>
+    <radialGradient id="l" cx=".62" cy=".38" r=".55">
+      <stop offset="0" stop-color="#fff6ef" stop-opacity=".85"/>
+      <stop offset="1" stop-color="#fff6ef" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1030" height="898" fill="url(#l)"/>
+  <g fill="none" stroke="#fff4ec" stroke-opacity=".55" stroke-width="1.6">
+    <circle cx="700" cy="400" r="300"/>
+    <circle cx="700" cy="400" r="380" stroke-opacity=".3"/>
+  </g>
+  <g fill="none" stroke="#a87856" stroke-opacity=".35" stroke-width="1.2">
+    <path d="M300 898C380 640 560 470 1030 420"/>
+    <path d="M420 898C500 700 660 560 1030 520"/>
+  </g>
+</svg>
