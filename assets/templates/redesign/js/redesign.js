@@ -46,6 +46,25 @@
 		});
 	});
 	/* мега-меню (десктоп): Esc закрывает панель и возвращает фокус на «Servicii»; снова открывается при уходе мыши / фокуса */
+	/* выбор языка (десктоп): hover / фокус открывают через CSS, клик — для тача и клавиатуры; закрытие — клик снаружи и Esc */
+	var lang = document.querySelector('.lb-header .lb-lang');
+	var langBtn = lang && lang.querySelector('.lb-lang__btn');
+	if (langBtn) {
+		var setLang = function (open) {
+			lang.classList.toggle('is-open', open);
+			langBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+		};
+		langBtn.addEventListener('click', function () { setLang(!lang.classList.contains('is-open')); });
+		document.addEventListener('click', function (e) { if (!lang.contains(e.target)) setLang(false); });
+		lang.addEventListener('keydown', function (e) {
+			if (e.key !== 'Escape') return;
+			setLang(false);
+			langBtn.focus();
+			lang.classList.add('is-shut');
+		});
+		lang.addEventListener('mouseleave', function () { lang.classList.remove('is-shut'); });
+		lang.addEventListener('focusout', function (e) { if (!lang.contains(e.relatedTarget)) { lang.classList.remove('is-shut'); setLang(false); } });
+	}
 	document.querySelectorAll('.lb-nav__item--mega').forEach(function (it) {
 		var link = it.querySelector('.lb-nav__link');
 		it.addEventListener('keydown', function (e) {

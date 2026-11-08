@@ -286,34 +286,119 @@
 	}
 }
 
-// ---------- Language switch ----------
+// ---------- Language switch: десктоп — выпадающий список (hover / фокус / клик), в бургере — две «таблетки» ----------
 .lb-lang {
+	position: relative;
 	display: flex;
 	align-items: center;
-	gap: vw(6);
 	margin-right: vw(34);
-	padding-left: vw(28);
+	padding-left: vw(22);
 	border-left: 1px solid rgba(201, 139, 121, .35);
 	translate: 0 vw(1);
-	font-size: vw(16);
-	font-weight: 500;
-	letter-spacing: .08em;
-	text-transform: uppercase;
-	li + li::before {
-		content: "/";
-		margin-right: vw(6);
-		color: rgba(43, 29, 24, .3);
-	}
-	a {
+	&__btn {
+		display: inline-flex;
+		align-items: center;
+		gap: vw(7);
+		padding: vw(8) vw(6);
+		font-family: inherit;
+		font-size: vw(16);
 		font-weight: 500;
-		color: rgba(43, 29, 24, .55);
-		transition: color .3s;
-		@include hover {
-			color: $c-rose-dark;
+		letter-spacing: .08em;
+		text-transform: uppercase;
+		color: $c-rose-dark;
+		background: none;
+		border: 0;
+		cursor: pointer;
+		&:focus-visible {
+			outline: 2px solid rgba(201, 139, 121, .5);
+			outline-offset: 2px;
+			border-radius: vw(6);
 		}
 	}
-	.active a {
-		color: $c-rose-dark;
+	&__chev {
+		width: vw(10);
+		height: auto;
+		transition: rotate .45s $ease-expo;
+	}
+	&__list {
+		position: absolute;
+		top: calc(100% + #{vw(12)});
+		left: vw(4);
+		z-index: 30;
+		min-width: vw(178);
+		margin: 0;
+		padding: vw(8);
+		list-style: none;
+		border: 1px solid rgba(203, 170, 148, .4);
+		border-radius: vw(18);
+		background: rgba(251, 246, 242, .97);
+		box-shadow: 0 vw(24) vw(50) rgba(92, 58, 40, .16), inset 0 1px 0 rgba(255, 255, 255, .8);
+		-webkit-backdrop-filter: blur(14px);
+		backdrop-filter: blur(14px);
+		opacity: 0;
+		visibility: hidden;
+		translate: 0 vw(-8);
+		transition: opacity .3s, translate .5s $ease-expo, visibility 0s .5s;
+		// «мостик», чтобы список не закрывался, пока курсор идёт от кнопки
+		&::before {
+			content: "";
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 100%;
+			height: vw(16);
+		}
+		li + li {
+			margin-top: vw(2);
+		}
+		a {
+			display: flex;
+			align-items: center;
+			gap: vw(12);
+			padding: vw(10) vw(14);
+			border-radius: vw(12);
+			font-size: vw(15);
+			font-weight: 500;
+			color: rgba(43, 29, 24, .8);
+			text-decoration: none;
+			transition: background-color .3s, color .3s;
+			b {
+				min-width: vw(26);
+				font-weight: 600;
+				letter-spacing: .08em;
+				text-transform: uppercase;
+				color: $c-rose-dark;
+			}
+			@include hover {
+				color: $c-ink;
+				background: rgba(201, 139, 121, .1);
+			}
+		}
+		.active a {
+			color: $c-ink;
+			background: rgba(201, 139, 121, .14);
+			&::after {
+				content: "";
+				width: vw(6);
+				height: vw(6);
+				margin-left: auto;
+				border-radius: 50%;
+				background: $c-rose-dark;
+			}
+		}
+	}
+	&:not(.is-shut):hover,
+	&:not(.is-shut):focus-within,
+	&.is-open {
+		.lb-lang__list {
+			opacity: 1;
+			visibility: visible;
+			translate: 0 0;
+			transition: opacity .3s, translate .5s $ease-expo, visibility 0s;
+		}
+		.lb-lang__chev {
+			rotate: 180deg;
+		}
 	}
 }
 
@@ -521,14 +606,60 @@
 			transform: translateY(14px);
 			transition: opacity .4s .25s, transform .6s .25s $ease-expo;
 		}
+		// языки в бургере — две «таблетки» с отступом от последнего пункта меню
 		.lb-lang {
-			margin: 0 0 22px;
+			margin: 26px 0 22px;
 			padding: 0;
 			border: 0;
-			font-size: 15px;
-			gap: 8px;
-			li + li::before {
-				margin-right: 8px;
+			translate: none;
+			&__btn {
+				display: none;
+			}
+			&__list {
+				position: static;
+				display: flex;
+				gap: 8px;
+				min-width: 0;
+				padding: 0;
+				border: 0;
+				background: none;
+				box-shadow: none;
+				-webkit-backdrop-filter: none;
+				backdrop-filter: none;
+				opacity: 1;
+				visibility: visible;
+				translate: none;
+				transition: none;
+				&::before {
+					display: none;
+				}
+				li + li {
+					margin-top: 0;
+				}
+				a {
+					gap: 8px;
+					height: 42px;
+					padding: 0 18px;
+					border: 1px solid rgba(201, 139, 121, .4);
+					border-radius: 999px;
+					font-size: 14px;
+					b {
+						min-width: 0;
+						font-size: 13px;
+					}
+				}
+				.active a {
+					color: #fff8f3;
+					border-color: transparent;
+					background: $g-btn;
+					box-shadow: 0 8px 18px rgba(123, 76, 50, .22);
+					b {
+						color: #fff8f3;
+					}
+					&::after {
+						display: none;
+					}
+				}
 			}
 		}
 		&__phone {

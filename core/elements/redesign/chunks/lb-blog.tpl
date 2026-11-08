@@ -2,13 +2,15 @@
    Данные — прежние TV главной: заголовок title-blog-bl12 (как и раньше — не заголовок h2, а подпись блока; разбивка/курсив — лексикон
    lbar.rd.blog.title, если TV изменят — выводится как есть), карточки img-st-N / alt-st-N / title-st-N / text-st-N (N = 1…3; 2-я и 3-я —
    если заполнен заголовок, как в старом чанке). В старом чанке у 2-й карточки по ошибке выводился text-st-1 — здесь text-st-2.
-   Ссылок у карточек нет (как и раньше): статьи из TV link-st-N сняты с публикации. Кнопка «Toate articolele» — на блог (RO, id 31);
+   Ссылка карточки — TV link-st-N (id или путь статьи, разбор — чанк lb.blogHref): если статья опубликована, заголовок становится ссылкой,
+   а её область (::after) растянута на всю карточку; удалённые / снятые статьи — карточка без ссылки. Кнопка «Toate articolele» — на блог (RO, id 31);
    в RU блога нет — кнопка не выводится. Картинки — pthumb, как раньше; если файла нет — под ним графическая подложка. *}
 {set $raw = $_modx->resource['title-blog-bl12'] | trim}
 {set $title = $raw | striptags | replace : '  ' : ' ' | trim}
 {set $fmt = 'lbar.rd.blog.title' | lexicon}
 {set $plain = $fmt | replace : '|' : ' ' | replace : '*' : ''}
 {set $isRu = $_modx->config.cultureKey == 'ru'}
+{set $read = 'lbar.rd.blog.read' | lexicon}
 {* Карточки — развёрнуты по номерам. Порядок обработки: сначала MODX-теги, потом Fenom — поэтому переменные Fenom внутри MODX-тегов нельзя
    (pThumb получал имя TV с «{$i}» буквально), а значения TV — не в строковые литералы Fenom (кавычки в тексте сломали бы шаблон). *}
 <section class="lb-blog" id="lb-blog">
@@ -41,37 +43,43 @@
         {/if}
 
         <div class="lb-blog__list">
-            <article class="lb-blog__card">
+            {set $href1 = $_modx->getChunk('lb.blogHref', ['v' => $_modx->resource['link-st-1']]) | trim}
+            <article class="lb-blog__card{if $href1} lb-blog__card--link{/if}">
                 <div class="lb-blog__img">
                     <img src="[[pthumb? &input=`[[*img-st-1]]` &options=`w=1040&h=700&zc=1`]]" alt="[[*alt-st-1]]" width="520" height="350">
                 </div>
                 <div class="lb-blog__info">
                     <span class="lb-blog__num" aria-hidden="true">01</span>
-                    <div class="lb-blog__name">[[*title-st-1]]</div>
+                    <div class="lb-blog__name">{if $href1}<a class="lb-blog__link" href="{$href1}">[[*title-st-1]]</a>{else}[[*title-st-1]]{/if}</div>
                     <div class="lb-blog__text">[[*text-st-1]]</div>
+                    {if $href1}<span class="lb-blog__more" aria-hidden="true">{$read}<svg viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg></span>{/if}
                 </div>
             </article>
             {if ($_modx->resource['title-st-2'] | trim)}
-            <article class="lb-blog__card">
+            {set $href2 = $_modx->getChunk('lb.blogHref', ['v' => $_modx->resource['link-st-2']]) | trim}
+            <article class="lb-blog__card{if $href2} lb-blog__card--link{/if}">
                 <div class="lb-blog__img">
                     <img src="[[pthumb? &input=`[[*img-st-2]]` &options=`w=1040&h=700&zc=1`]]" alt="[[*alt-st-2]]" width="520" height="350">
                 </div>
                 <div class="lb-blog__info">
                     <span class="lb-blog__num" aria-hidden="true">02</span>
-                    <div class="lb-blog__name">[[*title-st-2]]</div>
+                    <div class="lb-blog__name">{if $href2}<a class="lb-blog__link" href="{$href2}">[[*title-st-2]]</a>{else}[[*title-st-2]]{/if}</div>
                     <div class="lb-blog__text">[[*text-st-2]]</div>
+                    {if $href2}<span class="lb-blog__more" aria-hidden="true">{$read}<svg viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg></span>{/if}
                 </div>
             </article>
             {/if}
             {if ($_modx->resource['title-st-3'] | trim)}
-            <article class="lb-blog__card">
+            {set $href3 = $_modx->getChunk('lb.blogHref', ['v' => $_modx->resource['link-st-3']]) | trim}
+            <article class="lb-blog__card{if $href3} lb-blog__card--link{/if}">
                 <div class="lb-blog__img">
                     <img src="[[pthumb? &input=`[[*img-st-3]]` &options=`w=1040&h=700&zc=1`]]" alt="[[*alt-st-3]]" width="520" height="350">
                 </div>
                 <div class="lb-blog__info">
                     <span class="lb-blog__num" aria-hidden="true">03</span>
-                    <div class="lb-blog__name">[[*title-st-3]]</div>
+                    <div class="lb-blog__name">{if $href3}<a class="lb-blog__link" href="{$href3}">[[*title-st-3]]</a>{else}[[*title-st-3]]{/if}</div>
                     <div class="lb-blog__text">[[*text-st-3]]</div>
+                    {if $href3}<span class="lb-blog__more" aria-hidden="true">{$read}<svg viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg></span>{/if}
                 </div>
             </article>
             {/if}

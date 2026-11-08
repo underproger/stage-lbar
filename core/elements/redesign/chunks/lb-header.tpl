@@ -26,9 +26,12 @@
             <nav class="lb-nav" aria-label="{$isRo ? 'Meniul site' : 'Меню сайта'}">
                 {$menu}
             </nav>
-            <ul class="lb-lang">
-                [[!BabelLinks? &showCurrent=`1` &tpl=`lb.babelLink`]]
-            </ul>
+            <div class="lb-lang">
+                <button class="lb-lang__btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="lb-lang-list" aria-label="{$isRo ? 'Limba site-ului' : 'Язык сайта'}"><span>{$_modx->config.cultureKey}</span><svg class="lb-lang__chev" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></button>
+                <ul class="lb-lang__list" id="lb-lang-list">
+                    [[!BabelLinks? &showCurrent=`1` &tpl=`lb.babelLink`]]
+                </ul>
+            </div>
             <div class="lb-mnav__foot">
                 <a class="lb-mnav__phone" href="tel:[[++phone-1:replace=` ==`]]">[[++phone-1]]</a>
                 <p class="lb-mnav__addr">

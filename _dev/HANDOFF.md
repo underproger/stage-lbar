@@ -53,9 +53,9 @@
 | Тексты интерфейса RO/RU | лексикон `core/components/babel/lexicon/{ro,ru}/translate.inc.php`, ключи `lbar.rd.*` (так уже было на сайте: `lbar.*`) |
 
 **Сборка CSS:** `cd assets/templates/redesign && /home/claude/build/node_modules/.bin/sass scss/redesign.scss css/redesign.css --style=compressed --no-source-map --silence-deprecation=import`
-**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.16.1**) — поднимать при изменениях.
+**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.17.0**) — поднимать при изменениях.
 **Новые/изменённые чанки в БД:** `sudo -u www-data php _dev/tools/modx_apply3.php` (пересохраняет все `*.tpl` из папки как статичные чанки и меняет
-вызов в шаблоне «Главная») — для нового блока сделать по аналогии (последний — `modx_apply15.php`, замена `[[$старый-чанк]]` → `[[$lb-новый]]`).
+вызов в шаблоне «Главная») — для нового блока сделать по аналогии (последний — `modx_apply16.php`, замена `[[$старый-чанк]]` → `[[$lb-новый]]`).
 **После правки `.tpl` чистить `core/cache/resource/`** (главная кэшируется — без этого на скриншоте старая разметка; CSS/JS это не касается).
 **После наката SQL-патчей чистить весь `core/cache/`** (кроме `logs`): иначе MODX берёт шаблон/чанки из кэша и новые блоки не появляются.
 
@@ -223,9 +223,7 @@
    (как и раньше — подпись блока, **не h2**; курсив — лексикон `lbar.rd.blog.title`). Карточки — прежние TV `img-st-N`, `alt-st-N`, `title-st-N`,
    `text-st-N` (2-я и 3-я — если заполнен заголовок); в старом чанке у 2-й карточки выводился `text-st-1` — здесь `text-st-2` (в RO тексты одинаковые,
    в RU теперь свой). Картинки — pthumb (`w=1040&h=700&zc=1`) из `images/all/*.jpg` — **в git/локально этих файлов нет**, на месте фото подложка
-   `img/blog-ph.svg` (у «битой» `<img>` её рисует `img::after` — так прячется значок битой картинки). Ссылок у карточек нет, как и раньше:
-   статьи из TV `link-st-N` (id 131/135/137 и RU 230/234/236) удалены. В RO есть опубликованные аналоги (596, 597, 598) — карточки можно сделать ссылками
-   (с согласия). Кнопка «Toate articolele» — на блог RO (id 31); в RU блог удалён — кнопки нет. Мобильный — лента карточек со scroll-snap.
+   `img/blog-ph.svg` (у «битой» `<img>` её рисует `img::after` — так прячется значок битой картинки). **Карточки — ссылки** (см. п. 22). Кнопка «Toate articolele» — на блог RO (id 31); в RU блог удалён — кнопки нет. Мобильный — лента карточек со scroll-snap.
    Стык 13 → 14: лента `img/seam-contact.svg` (у «Статей» — `::before`).
 
 17. **Блок «Контакты» `lb-contact`** (`scss/_contact.scss`) — вместо `bl-contact`, по макету. H2 — прежний лексикон `lbar.contacts.title`.
@@ -286,6 +284,17 @@
    Кнопка «Fă o programare» в мега-меню была с тёмным текстом: сброс `.lb-mega :where(a)` перебивал `.lb-btn--solid` → теперь
    `:where(a:not(.lb-btn))`.
 
+22. **v1.17.0: языки выпадающим списком, ссылки статей, фото с хостинга.**
+   - Языки (`lb-header`, `lb.babelLink`): на десктопе кнопка «RO ⌄» + список (hover / фокус / клик, Esc и клик снаружи закрывают; JS —
+     `redesign.js`); в бургере кнопка скрыта, список — две «таблетки» с отступом 26px от меню. Ссылки те же (BabelLinks, hreflang),
+     текст ссылки теперь «ro Română» / «ru Русский».
+   - Карточки статей: TV `link-st-N` (id или путь; разбор — новый чанк `lb.blogHref`: путь → `findResource`, только опубликованные →
+     `makeUrl`). Заголовок — ссылка, её `::after` растянут на карточку; подпись «Citește articolul →» (лексикон `lbar.rd.blog.read`).
+     У главной RO значения TV заменены на опубликованные статьи 597 / 598 / 596 (старые вели на удалённые 137 / 135 / 131) — UPDATE
+     в патче 19. В RU блог удалён — карточки без ссылок. Номер карточки — absolute от карточки (у `__info` нет position).
+   - `_dev/photos/`: `photos.txt` (116 файлов: галерея RO/RU + medium, фото статей, логотип в подвале), `get-photos.sh` (на хостинге из
+     корня сайта → `lbar-photos.tar.gz`), `get-photos.ps1` (Windows: качает с сайта → `lbar-photos.zip`). Архив распаковать в корень клона.
+
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
 `stage-lbar-05-consult.sql` (чанки `lb-consult` id 275, `lb.formConsult` id 276 + все чанки Redesign + шаблон «Главная»),
@@ -300,8 +309,9 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `stage-lbar-14-blog-contact.sql` (чанки `lb-blog` 289, `lb-contact` 290 + все чанки Redesign + шаблон «Главная»),
 `stage-lbar-15-footer.sql` (чанк `lb-footer` 291 + все чанки Redesign + шаблон «Главная»),
 `stage-lbar-16-mega.sql` (чанки `lb.navParent`, `lb.navMega` + все чанки Redesign + шаблон «Главная» без изменений; фикс `lb-blog`),
-`stage-lbar-17-fixes.sql` (все чанки Redesign: версия `?v=1.16.0`), `stage-lbar-18-visited.sql` (версия `?v=1.16.1`). Патчи проверены импортом.
-После 18 БД **не менялась**.
+`stage-lbar-17-fixes.sql` (все чанки Redesign: версия `?v=1.16.0`), `stage-lbar-18-visited.sql` (версия `?v=1.16.1`), `stage-lbar-19-lang-blog.sql` (чанки + новый `lb.blogHref`, версия 1.17.0,
+**UPDATE значений TV link-st-1..3 ресурса 1**). Патчи проверены импортом.
+После 19 БД **не менялась**.
 
 ## 5. Следующий шаг — главная готова; дальше — по решению пользователя
 
@@ -354,7 +364,7 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 
 1. Подключить репо (`add_repo underproger/stage-lbar`, push), клонировать в `/home/claude/stage-lbar`.
 2. Пользователь прикладывает дамп и патчи **по порядку**: дамп хостинга `mysql_impua_testlbar_….tar.gz` (исходная база, без патчей),
-   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`, `-15-footer.sql`, `-16-mega.sql`, `-17-fixes.sql`, `-18-visited.sql`
+   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`, `-15-footer.sql`, `-16-mega.sql`, `-17-fixes.sql`, `-18-visited.sql`, `-19-lang-blog.sql`
    (вместо дампа+urls+01 может прийти `lbar-full-stage-2026-11-06.sql.gz` — это то же самое).
 3. `cd /home/claude/stage-lbar && bash _dev/setup_local.sh <дамп> <urls> <01> <02> <03> <04> <05> <06> <07> <08> <09> <10> <11>` (файлы — по порядку; .tar.gz/.gz/.sql, строка sandbox вырезается) — поднимет MariaDB, Apache+SSL, PHP-полифилл,
    конфиги из `_dev/local-config`, hosts (`stage-lbar.touchit.vinnica.ua` → 127.0.0.1), симлинк `/home/impua/lbar.ro/www` → репо,

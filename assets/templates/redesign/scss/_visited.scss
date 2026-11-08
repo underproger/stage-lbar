@@ -35,6 +35,7 @@
 .lb-footer__mail { @include lb-visited(#e6d6cc); }
 
 // ссылки, которые наследуют цвет родителя (картинки, ссылка в подписи подвала)
+.lb-blog__link,
 .lb-mega__promo-img,
 .lb-scard__img,
 .lb-footer__dev a { @include lb-visited(inherit); }

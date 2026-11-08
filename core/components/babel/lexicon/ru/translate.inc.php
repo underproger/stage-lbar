@@ -135,6 +135,7 @@ $_lang['lbar.rd.faq.cta'] = "Бесплатная консультация";
 // разбивка заголовка (TV title-blog-bl12) на строки «|» и курсив *…*; текст без разметки должен совпадать с TV
 $_lang['lbar.rd.blog.title'] = "Наши *статьи*";
 $_lang['lbar.rd.blog.all'] = "Все статьи";
+$_lang['lbar.rd.blog.read'] = "Читать статью";
 // --- редизайн: блок «Контакты» (бывший bl-contact) ---
 $_lang['lbar.rd.contacts.sub'] = "Нас легко найти: *Бухарест, Сектор 1*";
 $_lang['lbar.rd.contacts.city'] = "București, Sector 1";
