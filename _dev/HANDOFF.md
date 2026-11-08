@@ -393,12 +393,15 @@
    - «Портфолио»: `lb-shero` (hub: H1 = pagetitle, крошки), **`lb-pfhub`** (новый, вместо сеток в banner-interial-portfolio): мастера —
      TV img/alt/master/link-master-1…3 (фото слева, имя), разделы — img/alt/title/link-p-1…5 (квадрат, номер, название; в RU title-p с <br/>);
      карточка без ссылки не выводится (старая 5-я была пустой — пропала только пустая ссылка ""). Заголовков H2 нет, как и было.
-     Фото — pthumb, как раньше (мастер 680×760, раздел 760×760 вместо 390×390).
+     Фото — исходные файлы (они 390×390, как резал старый pthumb), без pthumb.
    - Внутренние: `lb-shero` (hub; TV description-banner-inerial), **`lb-pgallery`** (новый, вместо bl6-portfolio-interial): вкладки разделов
      (родитель «Toate lucrările / Все работы» + соседи по menuindex, showHidden — у них hidemenu; tpl `lb.pfTab`), ms2Gallery с tpl
      **`lb.galleryPage`** (сетка lb-gallery, первые 16, дальше «Mai multe fotografii / Показать ещё» по 16 — redesign.js), кнопка на TV link-bl6.
      H2 у галереи нет (у 124/203 заполнен title-bl6, но старый блок его не выводил — и здесь не выводится). Дальше `lb-book`, отзывы
      (мастера: title-bl9), `lb-seo` (техники: с фото img-bl-seo), `lb-contact`, `lb-footer`.
+   - Длинный TV description-banner-inerial (> 300 знаков: биографии мастеров, описание «Фрагментов») в баннер не помещается —
+     `lb-shero` (hub) его не выводит, его выводит `lb-pgallery` карточкой над вкладками (2 колонки, буквица); у страницы мастера
+     рядом фото мастера с общей страницы (img-master-N родителя, чья link-master-N ведёт на эту страницу). Короткий — в баннере.
    - Лексикон: `lbar.rd.pf.masters/cats/open/nav/all/more`. Стили — `scss/_pf.scss`; стыки — конец `_seam.scss` (баннер → портфолио → «Запись»,
      «Запись»/«Отзывы» → «Контакты»).
    - SEO 14 страниц сверены со снимком до правки (`/home/claude/b23/base`) — без изменений.

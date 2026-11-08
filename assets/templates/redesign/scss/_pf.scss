@@ -134,10 +134,10 @@
 	// мастер: фото слева, имя справа
 	&--master {
 		align-items: stretch;
-		min-height: vw(380);
 		.lb-pfcard__img {
 			flex: none;
-			width: vw(340);
+			width: vw(380);
+			aspect-ratio: 1;
 		}
 		.lb-pfcard__body {
 			flex: 1;
@@ -269,10 +269,8 @@
 			font-size: 26px;
 		}
 		&--master {
-			min-height: 0;
 			.lb-pfcard__img {
-				width: 40%;
-				aspect-ratio: 4 / 5;
+				width: 42%;
 			}
 			.lb-pfcard__body {
 				padding: 20px 18px;
@@ -331,4 +329,77 @@
 // галерея страницы: видны первые 16 (на главной правила для 9-го фото подгоняют сетку под 8 — здесь не нужны)
 .lb-gallery--page .lb-gallery__item:not(.lb-gallery__item--more) {
 	display: block;
+}
+
+// длинный текст страницы (биография мастера, описание раздела) — карточка над вкладками; у мастера — фото слева
+.lb-pgallery__intro {
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr;
+	align-items: start;
+	gap: vw(56);
+	width: vw(1500);
+	margin: 0 auto vw(70);
+	padding: vw(56) vw(64);
+	border-radius: vw(34);
+	background: linear-gradient(160deg, rgba(255, 251, 248, .95) 0%, rgba(250, 242, 237, .9) 100%);
+	box-shadow: 0 vw(30) vw(70) rgba(130, 90, 66, .1), inset 0 0 0 1.5px rgba(255, 255, 255, .9);
+	&--photo {
+		grid-template-columns: vw(330) 1fr;
+	}
+}
+.lb-pgallery__photo {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 1;
+	border-radius: vw(26);
+	object-fit: cover;
+	box-shadow: 0 vw(20) vw(44) rgba(130, 90, 66, .16);
+}
+.lb-pgallery__text {
+	column-count: 2;
+	column-gap: vw(64);
+	font-size: vw(17.5);
+	line-height: 1.75;
+	color: #4a3f39;
+	p {
+		margin: 0 0 1em;
+		break-inside: avoid-column;
+	}
+	> :first-child::first-letter {
+		float: left;
+		margin: vw(6) vw(10) 0 0;
+		@include lb-accent;
+		font-size: vw(64);
+		line-height: .8;
+	}
+	span {
+		font: inherit !important;
+		color: inherit !important;
+	}
+}
+@include mobile {
+	.lb-pgallery__intro {
+		width: auto;
+		margin: 0 16px 32px;
+		padding: 22px 20px;
+		gap: 20px;
+		border-radius: 22px;
+		&--photo {
+			grid-template-columns: 1fr;
+		}
+	}
+	.lb-pgallery__photo {
+		width: 60%;
+		border-radius: 18px;
+	}
+	.lb-pgallery__text {
+		column-count: 1;
+		font-size: 15px;
+		line-height: 1.68;
+		> :first-child::first-letter {
+			margin: 4px 8px 0 0;
+			font-size: 44px;
+		}
+	}
 }

@@ -9,7 +9,8 @@
    title/description-banner-categoty-1/2 (в старом баннере без фото выводились они); если фото нет и у родителя — графическая подложка.
    Кнопки — прежние: запись (#bl8-form), консультация (#conract). Хлебные крошки — pdoCrumbs с прежними параметрами и микроразметкой.
    Общие страницы «Услуги» / «Обучение» (шаблоны «Услуги — общая» и «Внутренняя - Обучение», вместо banner-interial; режим hub):
-   H1 — pagetitle (как в banner-interial), под ним — TV description-banner-inerial, фото — только своё (нет — графика),
+   H1 — pagetitle (как в banner-interial), под ним — TV description-banner-inerial (до 300 знаков; длиннее — в lb-pgallery),
+   фото — только своё (нет — графика),
    хлебные крошки — без exclude (как в banner-interial).
    Внимание: в выражениях Fenom не писать «*» + «/» подряд (закрывает служебный комментарий в скомпилированном шаблоне). *}
 {set $r = $_modx->resource}
@@ -82,7 +83,9 @@
             {if $eyebrow}<p class="lb-shero__eyebrow">{$eyebrow}</p>{/if}
             <h1 class="lb-shero__title{$size}"><span class="lb-shero__t1">{$first}</span>{if $rest} <span class="lb-shero__t2">{$rest}</span>{/if}</h1>
             {if $hub}
-            {if $r['description-banner-inerial'] | trim}<div class="lb-shero__desc">{$r['description-banner-inerial']}</div>{/if}
+            {* длинный текст (у мастеров — биография, 1–2 тыс. знаков) в баннер не помещается — его выводит блок под баннером (lb-pgallery) *}
+            {set $hdesc = $r['description-banner-inerial'] | trim}
+            {if $hdesc && ($hdesc | striptags | trim | length) <= 300}<div class="lb-shero__desc">{$hdesc}</div>{/if}
             {elseif $r['sub-title-banner'] | trim}<p class="lb-shero__sub">{$r['sub-title-banner']}</p>{/if}
 
             {if $mode == 'cols'}
