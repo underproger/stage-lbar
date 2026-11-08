@@ -773,7 +773,7 @@
 			['.lb-pfcard', { y: 70, opacity: 0, duration: 1.4, stagger: 0.1, clearProps: 'transform' }, 0.15]
 		]);
 		revealBlock(document.querySelector('.lb-pgallery'), 'top 80%', [
-			['.lb-pgallery__tab', { y: 20, opacity: 0, duration: 1, stagger: 0.04, clearProps: 'transform' }, 0],
+			['.lb-pgallery__intro', { y: 40, opacity: 0, duration: 1.3, clearProps: 'transform' }, 0],
 			['.lb-gallery__item:not(.lb-gallery__item--more)', { y: 50, opacity: 0, scale: 0.97, duration: 1.2, stagger: 0.04, clearProps: 'transform,opacity' }, 0.2]
 		]);
 		revealBlock(document.querySelector('.lb-courses'), 'top 75%', [

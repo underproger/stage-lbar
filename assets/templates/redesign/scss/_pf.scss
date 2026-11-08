@@ -177,39 +177,8 @@
 		position: relative;
 		z-index: 1;
 	}
-	&__nav {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		gap: vw(10);
-		width: vw(1640);
-		margin: 0 auto;
-	}
-	&__tab {
-		display: inline-flex;
-		align-items: center;
-		height: vw(48);
-		padding: 0 vw(22);
-		border: 1px solid rgba(176, 140, 116, .45);
-		border-radius: vw(30);
-		font-size: vw(15.5);
-		font-weight: 500;
-		line-height: 1;
-		color: #4a3a32;
-		background: rgba(255, 252, 249, .6);
-		transition: background-color .35s, color .35s, border-color .35s;
-		@include hover {
-			border-color: #b08c74;
-			background: #fff;
-		}
-		&.is-current {
-			color: #fff;
-			border-color: transparent;
-			background: linear-gradient(100deg, #ad7c5c 0%, #946140 100%);
-		}
-	}
 	.lb-gallery {
-		margin-top: vw(50);
+		margin-top: 0;
 	}
 	&__foot {
 		display: flex;
@@ -294,26 +263,8 @@
 	}
 	.lb-pgallery {
 		padding: 44px 0 60px;
-		&__nav {
-			flex-wrap: nowrap;
-			justify-content: flex-start;
-			width: auto;
-			padding: 0 16px 4px;
-			overflow-x: auto;
-			scrollbar-width: none;
-			&::-webkit-scrollbar {
-				display: none;
-			}
-		}
-		&__tab {
-			flex: none;
-			height: 40px;
-			padding: 0 18px;
-			border-radius: 20px;
-			font-size: 14px;
-		}
 		.lb-gallery {
-			margin-top: 24px;
+			margin-top: 0;
 		}
 		&__foot {
 			flex-direction: column;
@@ -331,40 +282,25 @@
 	display: block;
 }
 
-// длинный текст страницы (биография мастера, описание раздела) — карточка над вкладками; у мастера — фото слева
+// длинный текст страницы (биография мастера, описание раздела) — карточка над галереей, одна колонка
 .lb-pgallery__intro {
 	position: relative;
-	display: grid;
-	grid-template-columns: 1fr;
-	align-items: start;
-	gap: vw(56);
-	width: vw(1500);
+	width: vw(1200);
 	margin: 0 auto vw(70);
-	padding: vw(56) vw(64);
+	padding: vw(56) vw(80);
 	border-radius: vw(34);
 	background: linear-gradient(160deg, rgba(255, 251, 248, .95) 0%, rgba(250, 242, 237, .9) 100%);
 	box-shadow: 0 vw(30) vw(70) rgba(130, 90, 66, .1), inset 0 0 0 1.5px rgba(255, 255, 255, .9);
-	&--photo {
-		grid-template-columns: vw(330) 1fr;
-	}
-}
-.lb-pgallery__photo {
-	width: 100%;
-	height: auto;
-	aspect-ratio: 1;
-	border-radius: vw(26);
-	object-fit: cover;
-	box-shadow: 0 vw(20) vw(44) rgba(130, 90, 66, .16);
 }
 .lb-pgallery__text {
-	column-count: 2;
-	column-gap: vw(64);
-	font-size: vw(17.5);
+	font-size: vw(18);
 	line-height: 1.75;
 	color: #4a3f39;
 	p {
 		margin: 0 0 1em;
-		break-inside: avoid-column;
+		&:last-child {
+			margin-bottom: 0;
+		}
 	}
 	> :first-child::first-letter {
 		float: left;
@@ -383,18 +319,9 @@
 		width: auto;
 		margin: 0 16px 32px;
 		padding: 22px 20px;
-		gap: 20px;
 		border-radius: 22px;
-		&--photo {
-			grid-template-columns: 1fr;
-		}
-	}
-	.lb-pgallery__photo {
-		width: 60%;
-		border-radius: 18px;
 	}
 	.lb-pgallery__text {
-		column-count: 1;
 		font-size: 15px;
 		line-height: 1.68;
 		> :first-child::first-letter {

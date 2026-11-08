@@ -89,8 +89,6 @@ $_lang['lbar.rd.courses.eyebrow'] = "Cursurile academiei";
 $_lang['lbar.rd.pf.masters'] = "Masterii noștri";
 $_lang['lbar.rd.pf.cats'] = "Lucrări pe tehnici";
 $_lang['lbar.rd.pf.open'] = "Vezi fotografiile";
-$_lang['lbar.rd.pf.nav'] = "Secțiuni portofoliu";
-$_lang['lbar.rd.pf.all'] = "Toate lucrările";
 $_lang['lbar.rd.pf.more'] = "Mai multe fotografii";
 
 // --- редизайн: блок «Micropigmentarea … implică» ---

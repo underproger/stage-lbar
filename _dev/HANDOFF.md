@@ -56,7 +56,7 @@
 | Тексты интерфейса RO/RU | лексикон `core/components/babel/lexicon/{ro,ru}/translate.inc.php`, ключи `lbar.rd.*` (так уже было на сайте: `lbar.*`) |
 
 **Сборка CSS:** `cd assets/templates/redesign && /home/claude/build/node_modules/.bin/sass scss/redesign.scss css/redesign.css --style=compressed --no-source-map --silence-deprecation=import`
-**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.22.0**) — поднимать при изменениях.
+**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.22.1**) — поднимать при изменениях.
 **Новые/изменённые чанки в БД:** `sudo -u www-data php _dev/tools/modx_apply3.php` (пересохраняет все `*.tpl` из папки как статичные чанки и меняет
 вызов в шаблоне «Главная») — для нового блока сделать по аналогии (последний — `modx_apply17.php`, замена `[[$старый-чанк]]` → `[[$lb-новый]]`).
 **После правки `.tpl` чистить `core/cache/resource/`** (главная кэшируется — без этого на скриншоте старая разметка; CSS/JS это не касается).
@@ -394,15 +394,17 @@
      TV img/alt/master/link-master-1…3 (фото слева, имя), разделы — img/alt/title/link-p-1…5 (квадрат, номер, название; в RU title-p с <br/>);
      карточка без ссылки не выводится (старая 5-я была пустой — пропала только пустая ссылка ""). Заголовков H2 нет, как и было.
      Фото — исходные файлы (они 390×390, как резал старый pthumb), без pthumb.
-   - Внутренние: `lb-shero` (hub; TV description-banner-inerial), **`lb-pgallery`** (новый, вместо bl6-portfolio-interial): вкладки разделов
-     (родитель «Toate lucrările / Все работы» + соседи по menuindex, showHidden — у них hidemenu; tpl `lb.pfTab`), ms2Gallery с tpl
+   - Внутренние: `lb-shero` (hub; TV description-banner-inerial), **`lb-pgallery`** (новый, вместо bl6-portfolio-interial): ms2Gallery с tpl
      **`lb.galleryPage`** (сетка lb-gallery, первые 16, дальше «Mai multe fotografii / Показать ещё» по 16 — redesign.js), кнопка на TV link-bl6.
      H2 у галереи нет (у 124/203 заполнен title-bl6, но старый блок его не выводил — и здесь не выводится). Дальше `lb-book`, отзывы
      (мастера: title-bl9), `lb-seo` (техники: с фото img-bl-seo), `lb-contact`, `lb-footer`.
    - Длинный TV description-banner-inerial (> 300 знаков: биографии мастеров, описание «Фрагментов») в баннер не помещается —
-     `lb-shero` (hub) его не выводит, его выводит `lb-pgallery` карточкой над вкладками (2 колонки, буквица); у страницы мастера
-     рядом фото мастера с общей страницы (img-master-N родителя, чья link-master-N ведёт на эту страницу). Короткий — в баннере.
-   - Лексикон: `lbar.rd.pf.masters/cats/open/nav/all/more`. Стили — `scss/_pf.scss`; стыки — конец `_seam.scss` (баннер → портфолио → «Запись»,
+     `lb-shero` (hub) его не выводит, его выводит `lb-pgallery` карточкой над галереей (одна колонка, буквица). Короткий — в баннере.
+   - v1.22.1 (по просьбе пользователя): вкладки разделов над галереей убраны (чанк `lb.pfTab` удалён — `_dev/patches/step20-pftab.sql`,
+     ключи `lbar.rd.pf.nav/all` удалены), у карточки текста — без фото мастера, одна колонка (vw(1200)).
+     Баннер в режиме hub («Услуги», «Обучение», портфолио) — ниже: высота по содержимому (min vw(640), отступы vw(170)/vw(124)),
+     на телефоне без декоративного блока графики (у страниц без своего фото). Баннер страниц услуг (шаблон 8) не менялся.
+   - Лексикон: `lbar.rd.pf.masters/cats/open/more`. Стили — `scss/_pf.scss`; стыки — конец `_seam.scss` (баннер → портфолио → «Запись»,
      «Запись»/«Отзывы» → «Контакты»).
    - SEO 14 страниц сверены со снимком до правки (`/home/claude/b23/base`) — без изменений.
    - Фото: `_dev/photos/photos-portfolio.txt` (карточки, SEO-фото, галереи: 523 оригинала + 523 medium).
@@ -426,8 +428,9 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `stage-lbar-24-services.sql` (страницы услуг: чанки `lb-subservices`, `lb.subserviceCard`, `lb.accent` + все чанки Redesign + **шаблон 8**, версия 1.20.0),
 `stage-lbar-25-seo-img.sql` (SEO-блок: фото слева, H2 и текст справа — главная и услуги; версия 1.20.1),
 `stage-lbar-26-logo-hubs.sql` (логотип; «Услуги» — новый шаблон «Услуги - общая» + назначение 80/302; «Обучение» — шаблон 21; версия 1.21.0),
-`stage-lbar-27-portfolio.sql` (портфолио: чанки `lb-pfhub`, `lb-pgallery`, `lb.galleryPage`, `lb.pfTab` + шаблоны 10 и 13; версия 1.22.0).
-Патчи проверены импортом. После 27 БД **не менялась** (кроме локальной настройки phpThumb выше).
+`stage-lbar-27-portfolio.sql` (портфолио: чанки `lb-pfhub`, `lb-pgallery`, `lb.galleryPage`, `lb.pfTab` + шаблоны 10 и 13; версия 1.22.0),
+`stage-lbar-28-hub-banner.sql` (баннеры общих страниц ниже, без вкладок в портфолио, удаление чанка `lb.pfTab`; версия 1.22.1).
+Патчи проверены импортом. После 28 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — главная и страницы услуг готовы; дальше — по решению пользователя
 
@@ -481,7 +484,7 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 
 1. Подключить репо (`add_repo underproger/stage-lbar`, push), клонировать в `/home/claude/stage-lbar`.
 2. Пользователь прикладывает дамп и патчи **по порядку**: дамп хостинга `mysql_impua_testlbar_….tar.gz` (исходная база, без патчей),
-   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`, `-15-footer.sql`, `-16-mega.sql`, `-17-fixes.sql`, `-18-visited.sql`, `-19-lang-blog.sql`, `-20-lang-slug.sql`, `-21-services-banner.sql`, `-22-buttons.sql`, `-23-hero.sql`, `-24-services.sql`, `-25-seo-img.sql`, `-26-logo-hubs.sql`, `-27-portfolio.sql`
+   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`, `-15-footer.sql`, `-16-mega.sql`, `-17-fixes.sql`, `-18-visited.sql`, `-19-lang-blog.sql`, `-20-lang-slug.sql`, `-21-services-banner.sql`, `-22-buttons.sql`, `-23-hero.sql`, `-24-services.sql`, `-25-seo-img.sql`, `-26-logo-hubs.sql`, `-27-portfolio.sql`, `-28-hub-banner.sql`
    (вместо дампа+urls+01 может прийти `lbar-full-stage-2026-11-06.sql.gz` — это то же самое).
 3. `cd /home/claude/stage-lbar && bash _dev/setup_local.sh <дамп> <urls> <01> <02> <03> <04> <05> <06> <07> <08> <09> <10> <11>` (файлы — по порядку; .tar.gz/.gz/.sql, строка sandbox вырезается) — поднимет MariaDB, Apache+SSL, PHP-полифилл,
    конфиги из `_dev/local-config`, hosts (`stage-lbar.touchit.vinnica.ua` → 127.0.0.1), симлинк `/home/impua/lbar.ro/www` → репо,

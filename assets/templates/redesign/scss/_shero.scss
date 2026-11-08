@@ -471,3 +471,36 @@ $sh-text: #4a3a33;
 		}
 	}
 }
+
+// ---------- общие страницы (режим hub: «Услуги», «Обучение», «Портфолио» и его разделы) — баннер ниже ----------
+// высота по содержимому (H1 + кнопки), без запаса под фото услуги; графика справа тянется по высоте баннера
+.lb-shero--hub {
+	height: auto;
+	min-height: vw(640);
+	@include desktop {
+		.lb-shero__inner {
+			position: relative;
+			inset: auto;
+			padding: vw(170) 0 vw(124);
+		}
+		.lb-shero__content {
+			position: relative;
+			top: auto;
+		}
+	}
+	@include mobile {
+		min-height: 0;
+	}
+}
+// на телефоне у общих страниц без своего фото декоративный блок графики не показываем — сразу заголовок
+@include mobile {
+	.lb-shero--hub.lb-shero--art {
+		padding-top: 72px;
+		.lb-shero__media {
+			display: none;
+		}
+		.lb-shero__content {
+			padding-top: 8px;
+		}
+	}
+}
