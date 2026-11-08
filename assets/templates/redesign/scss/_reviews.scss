@@ -906,3 +906,39 @@ html.is-lb-modal {
 .lb-reviews__title {
 	text-wrap: balance;
 }
+
+// ---------- страница «Отзывы» (lb-reviews--page): все отзывы сеткой, без карусели; первые 12 — остальные кнопкой (redesign.js) ----------
+.lb-reviews--page {
+	.lb-reviews__viewport {
+		overflow: visible;
+		padding: vw(24) 0 0;
+		margin: 0;
+	}
+	.lb-reviews__track {
+		display: grid;
+		grid-template-columns: repeat(4, vw(334));
+		justify-content: center;
+		gap: vw(28) vw(21);
+		width: auto;
+		transform: none !important;
+	}
+	.lb-reviews__nav {
+		display: none;
+	}
+	.lb-rcard.is-more,
+	.lb-reviews__morebtn.is-hidden {
+		display: none;
+	}
+	@include mobile {
+		.lb-reviews__viewport {
+			padding: 14px 20px 0;
+		}
+		.lb-reviews__track {
+			grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+			gap: 14px;
+		}
+		.lb-rcard {
+			width: auto;
+		}
+	}
+}

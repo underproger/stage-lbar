@@ -570,3 +570,23 @@ $seam-contact: #f8f2ee;  // «Статьи» → «Контакты»
 		background: linear-gradient(180deg, $seam-faq 0, $ct-bg 90px);
 	}
 }
+
+// ---------- «Цены», «О нас», вакансии, «Отзывы» ----------
+.lb-prices {
+	background: linear-gradient(180deg, $seam-hero 0, #f8f2ee vw(200), #f8f2ee calc(100% - #{vw(220)}), $seam-book 100%);
+	@include lb-seam(top, "seam-hero.svg");
+	@include lb-seam(bottom, "seam-book.svg", before);
+	@include mobile {
+		background: linear-gradient(180deg, $seam-hero 0, #f8f2ee 100px, #f8f2ee calc(100% - 100px), $seam-book 100%);
+	}
+}
+// баннер → «Отзывы» (страница отзывов: галереи и текста нет)
+.lb-shero + .lb-reviews {
+	background: linear-gradient(180deg, $seam-hero 0, $rv-bg vw(160), $rv-bg calc(100% - #{vw(220)}), $seam-faq 100%);
+	&::after {
+		@include lb-seam-bg("seam-hero.svg");
+	}
+	@include mobile {
+		background: linear-gradient(180deg, $seam-hero 0, $rv-bg 90px, $rv-bg calc(100% - 100px), $seam-faq 100%);
+	}
+}

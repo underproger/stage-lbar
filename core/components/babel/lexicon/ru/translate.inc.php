@@ -91,6 +91,7 @@ $_lang['lbar.rd.pf.masters'] = "Наши мастера";
 $_lang['lbar.rd.pf.cats'] = "Работы по направлениям";
 $_lang['lbar.rd.pf.open'] = "Смотреть фото";
 $_lang['lbar.rd.pf.more'] = "Показать ещё";
+$_lang['lbar.rd.reviews.more'] = "Ещё отзывы";
 
 // --- редизайн: блок «Перманентный татуаж … — это» ---
 $_lang['lbar.rd.implica.alt'] = "Мастер перманентного макияжа в студии, Бухарест";

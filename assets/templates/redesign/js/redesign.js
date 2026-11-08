@@ -200,7 +200,26 @@
 	   автопрокрутка (пауза при наведении/фокусе, вне экрана; останавливается после первого действия пользователя). */
 	var reviews = document.querySelector('.lb-reviews');
 	var rvCar = reviews && reviews.querySelector('.lb-reviews__carousel');
-	if (rvCar) (function () {
+	var rvPage = reviews && reviews.classList.contains('lb-reviews--page');
+	// страница «Отзывы»: сетка без карусели — первые 12 карточек (на телефоне 6), дальше кнопкой столько же
+	if (rvCar && rvPage) (function () {
+		var cards = [].slice.call(rvCar.querySelectorAll('.lb-rcard'));
+		var btn = reviews.querySelector('.lb-reviews__morebtn');
+		var STEP = isDesktop() ? 12 : 6;
+		cards.forEach(function (c, i) { if (i >= STEP) c.classList.add('is-more'); });
+		var sync = function () { if (btn) btn.classList.toggle('is-hidden', !rvCar.querySelector('.lb-rcard.is-more')); };
+		sync();
+		if (btn) btn.addEventListener('click', function () {
+			var next = [].slice.call(rvCar.querySelectorAll('.lb-rcard.is-more'), 0, STEP);
+			next.forEach(function (c) { c.classList.remove('is-more'); });
+			if (next.length && !reduce && window.gsap) {
+				window.gsap.from(next, { y: 40, opacity: 0, duration: 1, stagger: 0.04, ease: 'expo.out', clearProps: 'transform,opacity' });
+			}
+			sync();
+			if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+		});
+	})();
+	if (rvCar && !rvPage) (function () {
 		var track = rvCar.querySelector('.lb-reviews__track');
 		var viewport = rvCar.querySelector('.lb-reviews__viewport');
 		var dotsWrap = rvCar.querySelector('.lb-reviews__dots');
@@ -775,6 +794,10 @@
 		revealBlock(document.querySelector('.lb-pgallery'), 'top 80%', [
 			['.lb-pgallery__intro', { y: 40, opacity: 0, duration: 1.3, clearProps: 'transform' }, 0],
 			['.lb-gallery__item:not(.lb-gallery__item--more)', { y: 50, opacity: 0, scale: 0.97, duration: 1.2, stagger: 0.04, clearProps: 'transform,opacity' }, 0.2]
+		]);
+		revealBlock(document.querySelector('.lb-prices'), 'top 75%', [
+			['.lb-prices__intro', { y: 40, opacity: 0, duration: 1.3, clearProps: 'transform' }, 0],
+			['.lb-prices__group', { y: 70, opacity: 0, duration: 1.4, stagger: 0.12, clearProps: 'transform' }, 0.15]
 		]);
 		revealBlock(document.querySelector('.lb-courses'), 'top 75%', [
 			['.lb-courses__eyebrow', { x: -30, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0],

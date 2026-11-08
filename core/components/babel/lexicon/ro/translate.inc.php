@@ -90,6 +90,7 @@ $_lang['lbar.rd.pf.masters'] = "Masterii noștri";
 $_lang['lbar.rd.pf.cats'] = "Lucrări pe tehnici";
 $_lang['lbar.rd.pf.open'] = "Vezi fotografiile";
 $_lang['lbar.rd.pf.more'] = "Mai multe fotografii";
+$_lang['lbar.rd.reviews.more'] = "Mai multe recenzii";
 
 // --- редизайн: блок «Micropigmentarea … implică» ---
 $_lang['lbar.rd.implica.alt'] = "Maestru de micropigmentare în studio, București";

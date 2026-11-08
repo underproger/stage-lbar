@@ -24,7 +24,7 @@
   Единственное согласованное изменение — H1 главной (см. блок 1). Пробел в конце alias у страницы `3d-i-6d-tatuaj-sprancene ` — **не трогать** (решение пользователя).
 - **Страницы услуг:** в новом дизайне — шаблон «Категория» (id 8). Шаблон «Категория NEW» (19, «Удаление тату») и шаблон курсов
   «Обучение» (15) **не трогаем** (решение пользователя). Общая страница обучения (шаблон 21, только ресурс 60) — переделана по просьбе
-  пользователя (п. 27). Шаблон «Внутренняя» (3) общий для «О нас», вакансий, сертификата — не трогаем: «Услуги» переведены на свой шаблон.
+  пользователя (п. 27). «Услуги» переведены на свой шаблон «Услуги - общая»; шаблон «Внутренняя» (3: «О нас», вакансии, сертификат) переделан в п. 29.
 - **Мусор удаляем в конце:** старые чанки (`header`, `banner-main`, `bl1-about-us`, `bl2-category`, …), таблицы статистики
   `stat_online_users` / `stat_page_statistics` (~670 МБ из 700), `_dev/`, `.DS_Store` и т.п.
 - **Без инлайн-стилей** в HTML, стили — в SCSS (BEM, vw-система), скрипты — отдельным файлом.
@@ -56,7 +56,7 @@
 | Тексты интерфейса RO/RU | лексикон `core/components/babel/lexicon/{ro,ru}/translate.inc.php`, ключи `lbar.rd.*` (так уже было на сайте: `lbar.*`) |
 
 **Сборка CSS:** `cd assets/templates/redesign && /home/claude/build/node_modules/.bin/sass scss/redesign.scss css/redesign.css --style=compressed --no-source-map --silence-deprecation=import`
-**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.22.1**) — поднимать при изменениях.
+**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.23.0**) — поднимать при изменениях.
 **Новые/изменённые чанки в БД:** `sudo -u www-data php _dev/tools/modx_apply3.php` (пересохраняет все `*.tpl` из папки как статичные чанки и меняет
 вызов в шаблоне «Главная») — для нового блока сделать по аналогии (последний — `modx_apply17.php`, замена `[[$старый-чанк]]` → `[[$lb-новый]]`).
 **После правки `.tpl` чистить `core/cache/resource/`** (главная кэшируется — без этого на скриншоте старая разметка; CSS/JS это не касается).
@@ -404,7 +404,24 @@
      ключи `lbar.rd.pf.nav/all` удалены), у карточки текста — без фото мастера, одна колонка (vw(1200)).
      Баннер в режиме hub («Услуги», «Обучение», портфолио) — ниже: высота по содержимому (min vw(640), отступы vw(170)/vw(124)),
      на телефоне без декоративного блока графики (у страниц без своего фото). Баннер страниц услуг (шаблон 8) не менялся.
-   - Лексикон: `lbar.rd.pf.masters/cats/open/more`. Стили — `scss/_pf.scss`; стыки — конец `_seam.scss` (баннер → портфолио → «Запись»,
+   - Лексикон: `lbar.rd.pf.masters/cats/open/more`.
+
+29. **«Цены», «О нас», «Вакансии», «Отзывы» (v1.23.0)** — без макета. Скрипт `_dev/tools/modx_apply21.php`, правятся сами шаблоны:
+   «Внутренняя» (3: «О нас» 102/298, вакансии 105/299 и **на нём же «Gift Voucher» 177 / сертификат 323** и неопубликованные «Акции»),
+   «Цены» (14: 44/270; 176/271 не опубликованы), «Отзывы» (16: 171/300). Шапка/баннер → `lb-header` + `lb-shero` (hub), блоки → lb-*
+   (условия по TV сохранены, в 16 закомментированный `[[-$bl8-form]]` → `[[-$lb-book]]`).
+   - `lb-pgallery` стал общим блоком «текст + галерея»: в шаблонах 3/16 — вместо `gallery_select:notempty → bl6-portfolio-interial-2`;
+     галерея — в шаблоне 13 всегда, в остальных — если задан TV gallery_select (как раньше); длинный description-banner-inerial (> 300) —
+     карточкой (списки с медными точками, strong); нет ни текста, ни фото — блок не выводится (`--text` — только текст).
+   - «Цены»: **`lb-prices`** (новый, вместо таблиц в banner-interial-price): группы по TV table-price-N (1–6) — слева номер, **H2 title-price-N**
+     (как было), text-price-N, кнопка записи; справа таблица. Таблица вынесена в общий чанк **`lb.ptable`** (параметры rows / mode / label / uid),
+     им же пользуется `lb-price` (HTML блока «Цены» на главной и услугах не изменился — сверено). Режимы: 1–3 — notop (col-2 + col-4/col-3),
+     4 — dur3 (col-2 + col-3), 5–6 — two2 (col-2), как колонки старых tpl. Текст description-banner-inerial (> 300) — над таблицами.
+   - «Отзывы»: `lb-reviews` в режиме страницы (`--page`, шаблон 16): все отзывы сеткой 4 в ряд, без карусели, первые 12 (телефон — 6),
+     дальше «Mai multe recenzii / Ещё отзывы» (`lbar.rd.reviews.more`); кнопки «Все отзывы» нет. Стыки — конец `_seam.scss`.
+   - SEO 10 страниц сверены со снимком до правки (`/home/claude/b24/base`) — без изменений.
+   - Фото: `_dev/photos/photos-pages.txt` (SEO-фото, галерея Gift Voucher / сертификата).
+ Стили — `scss/_pf.scss`; стыки — конец `_seam.scss` (баннер → портфолио → «Запись»,
      «Запись»/«Отзывы» → «Контакты»).
    - SEO 14 страниц сверены со снимком до правки (`/home/claude/b23/base`) — без изменений.
    - Фото: `_dev/photos/photos-portfolio.txt` (карточки, SEO-фото, галереи: 523 оригинала + 523 medium).
@@ -429,8 +446,9 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `stage-lbar-25-seo-img.sql` (SEO-блок: фото слева, H2 и текст справа — главная и услуги; версия 1.20.1),
 `stage-lbar-26-logo-hubs.sql` (логотип; «Услуги» — новый шаблон «Услуги - общая» + назначение 80/302; «Обучение» — шаблон 21; версия 1.21.0),
 `stage-lbar-27-portfolio.sql` (портфолио: чанки `lb-pfhub`, `lb-pgallery`, `lb.galleryPage`, `lb.pfTab` + шаблоны 10 и 13; версия 1.22.0),
-`stage-lbar-28-hub-banner.sql` (баннеры общих страниц ниже, без вкладок в портфолио, удаление чанка `lb.pfTab`; версия 1.22.1).
-Патчи проверены импортом. После 28 БД **не менялась** (кроме локальной настройки phpThumb выше).
+`stage-lbar-28-hub-banner.sql` (баннеры общих страниц ниже, без вкладок в портфолио, удаление чанка `lb.pfTab`; версия 1.22.1),
+`stage-lbar-29-pages.sql` («Цены», «О нас», вакансии, «Отзывы», Gift Voucher: чанки `lb-prices`, `lb.ptable` + шаблоны 3, 14, 16; версия 1.23.0).
+Патчи проверены импортом. После 29 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — главная и страницы услуг готовы; дальше — по решению пользователя
 
@@ -484,7 +502,7 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 
 1. Подключить репо (`add_repo underproger/stage-lbar`, push), клонировать в `/home/claude/stage-lbar`.
 2. Пользователь прикладывает дамп и патчи **по порядку**: дамп хостинга `mysql_impua_testlbar_….tar.gz` (исходная база, без патчей),
-   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`, `-15-footer.sql`, `-16-mega.sql`, `-17-fixes.sql`, `-18-visited.sql`, `-19-lang-blog.sql`, `-20-lang-slug.sql`, `-21-services-banner.sql`, `-22-buttons.sql`, `-23-hero.sql`, `-24-services.sql`, `-25-seo-img.sql`, `-26-logo-hubs.sql`, `-27-portfolio.sql`, `-28-hub-banner.sql`
+   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`, `-15-footer.sql`, `-16-mega.sql`, `-17-fixes.sql`, `-18-visited.sql`, `-19-lang-blog.sql`, `-20-lang-slug.sql`, `-21-services-banner.sql`, `-22-buttons.sql`, `-23-hero.sql`, `-24-services.sql`, `-25-seo-img.sql`, `-26-logo-hubs.sql`, `-27-portfolio.sql`, `-28-hub-banner.sql`, `-29-pages.sql`
    (вместо дампа+urls+01 может прийти `lbar-full-stage-2026-11-06.sql.gz` — это то же самое).
 3. `cd /home/claude/stage-lbar && bash _dev/setup_local.sh <дамп> <urls> <01> <02> <03> <04> <05> <06> <07> <08> <09> <10> <11>` (файлы — по порядку; .tar.gz/.gz/.sql, строка sandbox вырезается) — поднимет MariaDB, Apache+SSL, PHP-полифилл,
    конфиги из `_dev/local-config`, hosts (`stage-lbar.touchit.vinnica.ua` → 127.0.0.1), симлинк `/home/impua/lbar.ro/www` → репо,

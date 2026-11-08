@@ -1,0 +1,17 @@
+# Фото страниц «Цены», «О нас», «Вакансии», «Отзывы», «Gift Voucher», которых нет в git. Пути — от корня сайта.
+# Запуск на хостинге из корня сайта: bash get-photos.sh photos-pages.txt  → lbar-photos.tar.gz
+
+# SEO-блок (TV img-bl-seo)
+images/all/seo-img-1.jpg
+images/all/brovi21 (13).jpg
+images/all/skolko-min.jpg
+
+# Галерея «Gift Voucher» / сертификат — оригиналы и превью medium
+assets/images/resources/177/sert1-min.jpg
+assets/images/resources/177/sert4-min.jpg
+assets/images/resources/177/sert3-min.jpg
+assets/images/resources/177/sert5-min.jpg
+assets/images/resources/177/medium/sert1-min.jpg
+assets/images/resources/177/medium/sert4-min.jpg
+assets/images/resources/177/medium/sert3-min.jpg
+assets/images/resources/177/medium/sert5-min.jpg

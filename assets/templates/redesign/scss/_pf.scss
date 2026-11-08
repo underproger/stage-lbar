@@ -330,3 +330,49 @@
 		}
 	}
 }
+
+// текст страницы: заголовки-абзацы (strong), списки — медные точки
+.lb-pgallery__text {
+	strong,
+	b {
+		font-weight: 600;
+		color: #2c211c;
+	}
+	ul,
+	ol {
+		margin: 0 0 1.1em;
+		padding: 0;
+		list-style: none;
+	}
+	li {
+		position: relative;
+		margin: 0;
+		padding-left: 1.6em;
+		& + li {
+			margin-top: .45em;
+		}
+		&::before {
+			content: "";
+			position: absolute;
+			left: .3em;
+			top: .7em;
+			width: .42em;
+			height: .42em;
+			border-radius: 50%;
+			background: #b08360;
+		}
+	}
+}
+// только текст (страницы «О нас», вакансии): без запаса под галерею снизу
+.lb-pgallery--text {
+	padding-bottom: vw(130);
+	.lb-pgallery__intro {
+		margin-bottom: 0;
+	}
+	@include mobile {
+		padding-bottom: 56px;
+		.lb-pgallery__intro {
+			margin-bottom: 0;
+		}
+	}
+}

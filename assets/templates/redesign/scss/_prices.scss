@@ -1,0 +1,146 @@
+// ================= СТРАНИЦА «ЦЕНЫ» (lb-prices, шаблон 14) =================
+// Группы: слева номер, H2 (TV title-price-N), текст и кнопка записи; справа — карточка таблицы (lb.ptable, вид блока «Цены»).
+.lb-prices {
+	position: relative;
+	padding: vw(130) 0 vw(170);
+	overflow: hidden;
+	font-family: $f-text;
+	color: #2b2420;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	:where(*, *::before, *::after) {
+		box-sizing: border-box;
+	}
+	:where(p) {
+		margin: 0;
+	}
+	:where(img, svg) {
+		display: block;
+	}
+
+	&__bg {
+		position: absolute;
+		inset: 0;
+		background:
+			radial-gradient(34% 26% at 90% 18%, rgba(236, 214, 200, .5), rgba(236, 214, 200, 0) 100%),
+			radial-gradient(30% 22% at 4% 62%, rgba(255, 255, 255, .7), rgba(255, 255, 255, 0) 100%);
+		pointer-events: none;
+	}
+	&__inner {
+		position: relative;
+		z-index: 1;
+		width: vw(1634);
+		margin: 0 auto;
+	}
+	&__intro {
+		position: relative;
+		max-width: vw(1100);
+		margin: 0 0 vw(90) vw(4);
+		padding-left: vw(40);
+		font-size: vw(19);
+		line-height: 1.75;
+		color: #4a3f39;
+		&::before {
+			content: "";
+			position: absolute;
+			left: 0;
+			top: vw(6);
+			bottom: vw(6);
+			width: 2px;
+			background: linear-gradient(180deg, rgba(168, 120, 86, .15), rgba(168, 120, 86, .75) 25%, rgba(168, 120, 86, .75) 75%, rgba(168, 120, 86, .15));
+		}
+	}
+	&__group {
+		display: grid;
+		grid-template-columns: vw(420) vw(1161);
+		justify-content: space-between;
+		align-items: start;
+		& + & {
+			margin-top: vw(100);
+		}
+	}
+	&__head {
+		position: sticky;
+		top: vw(120);
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		padding-top: vw(10);
+	}
+	&__num {
+		@include lb-accent;
+		font-size: vw(52);
+		line-height: 1;
+	}
+	// h2 перебивается старым CSS (.wrapper h2) — поднимаем специфичность
+	& &__head h2#{&}__title {
+		margin: vw(16) 0 0;
+		padding: 0;
+		@include lb-title;
+		font-size: vw(46);
+		line-height: 1.12;
+		text-align: left;
+		color: #24130f;
+		em {
+			@include lb-accent;
+			font-size: 1.04em;
+		}
+	}
+	&__text {
+		margin-top: vw(18);
+		font-size: vw(17);
+		line-height: 1.65;
+		color: #5f524b;
+	}
+	&__cta {
+		margin-top: vw(36);
+	}
+	.lb-price__card {
+		margin-top: 0;
+	}
+}
+
+@include mobile {
+	.lb-prices {
+		padding: 48px 0 60px;
+		&__inner {
+			width: auto;
+			padding: 0 16px;
+		}
+		&__intro {
+			max-width: none;
+			margin: 0 6px 40px;
+			padding-left: 16px;
+			font-size: 15px;
+			line-height: 1.68;
+		}
+		&__group {
+			grid-template-columns: 1fr;
+			& + & {
+				margin-top: 48px;
+			}
+		}
+		&__head {
+			position: static;
+			padding: 0 6px;
+		}
+		&__num {
+			font-size: 32px;
+		}
+		& &__head h2#{&}__title {
+			margin-top: 8px;
+			font-size: min(#{mvw(28)}, 40px);
+		}
+		&__text {
+			margin-top: 10px;
+			font-size: 14.5px;
+		}
+		&__cta.lb-btn {
+			margin-top: 18px;
+		}
+		.lb-price__card {
+			margin-top: 20px;
+		}
+	}
+}

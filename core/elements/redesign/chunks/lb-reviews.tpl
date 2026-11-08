@@ -5,13 +5,16 @@
    карточка — lb.reviewCard, обёртка с рейтингом ветки и каруселью — lb.reviewsWrap. Рейтинг и число — данные ветки EasyComm.
    «Vezi toate recenziile» — страница отзывов (RO 171 / RU 300). «Lăsați o recenzie» — окно с формой EasyComm [[!ecForm]]
    (прежние письма и модерация; шаблон формы — lb.ecForm, JS отправки — easyComm из старого custom.js).
-   Полный текст отзыва (и ответ студии) — окно по кнопке ⋮ в карточке. *}
+   Полный текст отзыва (и ответ студии) — окно по кнопке ⋮ в карточке.
+   Страница «Отзывы» (шаблон 16, модификатор --page): все отзывы сеткой (без карусели), первые 12, дальше — кнопкой по 12;
+   кнопки «Все отзывы» нет (это она и есть). *}
 {set $raw = $_modx->resource['title-bl9'] | trim}
 {set $title = $raw | striptags | replace : '  ' : ' ' | trim}
 {set $fmt = 'lbar.rd.reviews.title' | lexicon}
 {set $plain = $fmt | replace : '|' : ' ' | replace : '*' : ''}
 {set $allId = ($_modx->config.cultureKey == 'ru') ? 300 : 171}
-<section class="lb-reviews" id="lb-reviews">
+{set $page = $_modx->resource.template == 16}
+<section class="lb-reviews{$page ? ' lb-reviews--page' : ''}" id="lb-reviews">
     <div class="lb-reviews__bg" aria-hidden="true"></div>
 
     <div class="lb-reviews__head">
@@ -37,7 +40,11 @@
     ]]
 
     <div class="lb-reviews__btns">
+        {if $page}
+        <button class="lb-btn lb-btn--solid lb-btn--sm lb-reviews__btn lb-reviews__morebtn" type="button">{'lbar.rd.reviews.more' | lexicon}<svg class="lb-btn__arr" viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg></button>
+        {else}
         <a class="lb-btn lb-btn--solid lb-btn--sm lb-reviews__btn" href="{$allId | url}">{'lbar.rd.reviews.all' | lexicon}<svg class="lb-btn__arr" viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg></a>
+        {/if}
         <button class="lb-btn lb-btn--ghost lb-btn--sm lb-reviews__btn js-lb-review-form" type="button" aria-haspopup="dialog" aria-controls="lb-rform">{'lbar.reviews.form.title' | lexicon}<svg class="lb-reviews__pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4.2L19.4 8.8a2.3 2.3 0 0 0 0-3.2l-1-1a2.3 2.3 0 0 0-3.2 0L4 15.8V20z"/><path d="m13.6 6.2 4.2 4.2"/></svg></button>
     </div>
 
