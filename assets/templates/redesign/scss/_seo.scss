@@ -453,43 +453,71 @@ $seo-max-h3: 16;
 	}
 }
 
-// ---------- страницы услуг: картинка TV img-bl-seo над H2 ----------
+// ---------- картинка TV img-bl-seo (главная и услуги): слева фото, справа H2 и первый текст за медной линией ----------
 .lb-seo__head--img {
-	grid-template-rows: auto auto;
-	column-gap: 0;
+	grid-template-columns: vw(600) 1fr;
+	align-items: center;
 	.lb-seo__img {
-		grid-column: 1;
-		grid-row: 1;
 		display: block;
-		width: calc(100% - #{vw(40)});
+		width: vw(560);
 		height: auto;
-		max-height: vw(420);
-		margin-bottom: vw(40);
+		max-height: vw(460);
 		border-radius: vw(30);
 		object-fit: cover;
 		box-shadow: 0 vw(24) vw(54) rgba(130, 90, 66, .14), 0 0 0 vw(6) rgba(255, 255, 255, .7);
 	}
-	.lb-seo__title {
-		grid-column: 1;
-		grid-row: 2;
+	.lb-seo__side {
+		position: relative;
+		padding: vw(6) 0 vw(6) vw(66);
+		// медная линия — на всю высоту правой колонки (у текста своя выключена)
+		&::before {
+			content: "";
+			position: absolute;
+			left: vw(4);
+			top: 0;
+			bottom: 0;
+			width: 2px;
+			border-radius: 2px;
+			background: linear-gradient(180deg, rgba($seo-copper, .15), rgba($seo-copper, .75) 25%, rgba($seo-copper, .75) 75%, rgba($seo-copper, .15));
+		}
+	}
+	.lb-seo & h2.lb-seo__title {
+		padding: 0;
 	}
 	.lb-seo__lead {
-		grid-column: 2;
-		grid-row: 1 / span 2;
+		margin-top: vw(28);
+		padding: 0;
+		&::before {
+			display: none;
+		}
 	}
 	@include mobile {
 		.lb-seo__img {
 			width: 100%;
 			max-height: none;
-			margin-bottom: 22px;
+			margin-bottom: 26px;
 			border-radius: 20px;
 			box-shadow: 0 14px 30px rgba(130, 90, 66, .14);
 		}
-		.lb-seo__title,
-		.lb-seo__lead {
-			grid-column: auto;
-			grid-row: auto;
+		.lb-seo__side {
+			padding: 2px 0 2px 18px;
+			&::before {
+				left: 0;
+			}
 		}
+		.lb-seo__lead {
+			margin-top: 16px;
+		}
+	}
+}
+.lb-seo.is-anim {
+	.lb-seo__side::before {
+		transform-origin: 50% 0;
+		scale: 1 0;
+		transition: scale 1.4s $ease-expo .3s;
+	}
+	&.is-in .lb-seo__side::before {
+		scale: 1 1;
 	}
 }
 // пустые абзацы текста (<p>&nbsp;</p>) — класс ставит JS

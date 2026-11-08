@@ -55,7 +55,7 @@
 | Тексты интерфейса RO/RU | лексикон `core/components/babel/lexicon/{ro,ru}/translate.inc.php`, ключи `lbar.rd.*` (так уже было на сайте: `lbar.*`) |
 
 **Сборка CSS:** `cd assets/templates/redesign && /home/claude/build/node_modules/.bin/sass scss/redesign.scss css/redesign.css --style=compressed --no-source-map --silence-deprecation=import`
-**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.20.0**) — поднимать при изменениях.
+**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.20.1**) — поднимать при изменениях.
 **Новые/изменённые чанки в БД:** `sudo -u www-data php _dev/tools/modx_apply3.php` (пересохраняет все `*.tpl` из папки как статичные чанки и меняет
 вызов в шаблоне «Главная») — для нового блока сделать по аналогии (последний — `modx_apply17.php`, замена `[[$старый-чанк]]` → `[[$lb-новый]]`).
 **После правки `.tpl` чистить `core/cache/resource/`** (главная кэшируется — без этого на скриншоте старая разметка; CSS/JS это не касается).
@@ -350,14 +350,18 @@
    - `lb-price`: вид таблицы по TV `table_select` (как старый bl7): without-top (главная) — длительность + цена col-4; по умолчанию
      (table-defult-bl7) — длительность + TOP Master col-3 + TOP Trainer col-4; three-col — две цены col-2/col-3 (сеанс / 8 сеансов);
      two-col — цена col-3. Текстовые цены переносятся (`__price--long`). На услугах высота по таблице (`lb-price--svc`).
-   - `lb-seo`: картинка TV `img-bl-seo` (alt `img-bl-alt`) над H2 (`__head--img`); пустые `<p>&nbsp;</p>` прячет JS (`is-empty`).
+   - `lb-seo`: пустые `<p>&nbsp;</p>` прячет JS (`is-empty`). v1.20.1 (по просьбе пользователя, **и на главной**): картинка TV `img-bl-seo`
+     (alt `img-bl-alt`, пусто — текст H2) слева, справа в `__side` — H2 и первый текст за общей медной линией (`__head--img`);
+     нет картинки — прежняя шапка (H2 слева, текст справа). На главной это `images/all/seo-img-1.jpg` (файл на хостинге есть).
    - Стыки (`_seam.scss`, конец): на услугах бывают соседи, которых нет на главной (about→implica, about→consult, consult→portfolio,
      master→price, reviews→seo, seo→contact) — верх нижнего блока берёт ленту/цвет низа верхнего (`:has()` для consult→portfolio).
    - GSAP: `gsap.config({ nullTargetWarn: false })` — пустые цели (нет блоков/элементов на услугах) не предупреждения.
    SEO всех 26 страниц шаблона — без изменений (title/description/canonical/hreflang/H1/H2/JSON-LD/крошки), пропали только `#review`
    и `tel:` с пробелами (новые ссылки — те же номера/якоря, как на главной). Главная — без изменений (сверка скринов до/после).
-   Фото услуг для превью: `_dev/photos/photos-services.txt` (баннеры, фото блоков, галереи medium) — `bash get-photos.sh photos-services.txt`.
-   **Локально** оригиналы галерей услуг — копии medium (srcset 1200w в `lb.galleryItem`), только для превью.
+   Фото услуг: `_dev/photos/photos-services.txt` — всё (баннеры, фото блоков, галереи: оригиналы + medium, по таблице ms2_resource_files);
+   `_dev/photos/photos-galleries.txt` — только галереи (оригиналы + medium) и 3 фото статей RU 304: первая выгрузка была без оригиналов,
+   а `lb.galleryItem` берёт оригинал по srcset 1200w (плитка шире 400px) и для увеличения — на стейдже галереи были пустые.
+   **Локально** оригиналы галерей услуг пока — копии medium (только для превью), заменить, когда придёт архив.
 
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
@@ -375,8 +379,9 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `stage-lbar-16-mega.sql` (чанки `lb.navParent`, `lb.navMega` + все чанки Redesign + шаблон «Главная» без изменений; фикс `lb-blog`),
 `stage-lbar-17-fixes.sql` (все чанки Redesign: версия `?v=1.16.0`), `stage-lbar-18-visited.sql` (версия `?v=1.16.1`), `stage-lbar-19-lang-blog.sql` (чанки + новый `lb.blogHref`, версия 1.17.0,
 **UPDATE значений TV link-st-1..3 ресурса 1**), `stage-lbar-20-lang-slug.sql` (языки — только код, версия 1.17.1), `stage-lbar-21-services-banner.sql` (чанк `lb-shero`, **шаблон 8**, версия 1.18.0), `stage-lbar-22-buttons.sql` (версия 1.18.1), `stage-lbar-23-hero.sql` (баннер, версия 1.19.0),
-`stage-lbar-24-services.sql` (страницы услуг: чанки `lb-subservices`, `lb.subserviceCard`, `lb.accent` + все чанки Redesign + **шаблон 8**, версия 1.20.0).
-Патчи проверены импортом. После 24 БД **не менялась** (кроме локальной настройки phpThumb выше).
+`stage-lbar-24-services.sql` (страницы услуг: чанки `lb-subservices`, `lb.subserviceCard`, `lb.accent` + все чанки Redesign + **шаблон 8**, версия 1.20.0),
+`stage-lbar-25-seo-img.sql` (SEO-блок: фото слева, H2 и текст справа — главная и услуги; версия 1.20.1).
+Патчи проверены импортом. После 25 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — главная и страницы услуг готовы; дальше — по решению пользователя
 
@@ -430,7 +435,7 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 
 1. Подключить репо (`add_repo underproger/stage-lbar`, push), клонировать в `/home/claude/stage-lbar`.
 2. Пользователь прикладывает дамп и патчи **по порядку**: дамп хостинга `mysql_impua_testlbar_….tar.gz` (исходная база, без патчей),
-   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`, `-15-footer.sql`, `-16-mega.sql`, `-17-fixes.sql`, `-18-visited.sql`, `-19-lang-blog.sql`, `-20-lang-slug.sql`, `-21-services-banner.sql`, `-22-buttons.sql`, `-23-hero.sql`, `-24-services.sql`
+   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`, `-15-footer.sql`, `-16-mega.sql`, `-17-fixes.sql`, `-18-visited.sql`, `-19-lang-blog.sql`, `-20-lang-slug.sql`, `-21-services-banner.sql`, `-22-buttons.sql`, `-23-hero.sql`, `-24-services.sql`, `-25-seo-img.sql`
    (вместо дампа+urls+01 может прийти `lbar-full-stage-2026-11-06.sql.gz` — это то же самое).
 3. `cd /home/claude/stage-lbar && bash _dev/setup_local.sh <дамп> <urls> <01> <02> <03> <04> <05> <06> <07> <08> <09> <10> <11>` (файлы — по порядку; .tar.gz/.gz/.sql, строка sandbox вырезается) — поднимет MariaDB, Apache+SSL, PHP-полифилл,
    конфиги из `_dev/local-config`, hosts (`stage-lbar.touchit.vinnica.ua` → 127.0.0.1), симлинк `/home/impua/lbar.ro/www` → репо,
