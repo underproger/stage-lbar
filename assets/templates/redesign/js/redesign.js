@@ -780,12 +780,16 @@
 		]);
 		revealBlock(document.querySelector('.lb-contact'), 'top 70%', [
 			['.lb-contact__bg', { opacity: 0, duration: 1.8, ease: 'power2.out' }, 0],
+			['.lb-contact__eyebrow', { x: -30, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0],
 			['.lb-contact__title', { y: 50, opacity: 0, duration: 1.4, clearProps: 'transform' }, 0.1],
+			['.lb-contact__line', { clipPath: 'inset(0% 100% 0% 0%)' }, 0.5, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.4, ease: 'power2.inOut', clearProps: 'clipPath' }],
 			['.lb-contact__sub', { y: 30, opacity: 0, duration: 1.3, clearProps: 'transform' }, 0.25],
 			['.lb-contact__map', { y: 60, scale: 0.97, opacity: 0, duration: 1.6, clearProps: 'transform' }, 0.35],
-			['.lb-contact__side', { clipPath: 'inset(0% 0% 100% 0%)' }, 0.3, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.6, ease: 'power3.inOut', clearProps: 'clipPath' }],
-			['.lb-contact__row', { x: 40, opacity: 0, duration: 1.2, stagger: 0.07, clearProps: 'transform' }, 0.45],
-			['.lb-contact__badge', { scale: 0.6, opacity: 0, duration: 1, ease: 'back.out(2)', clearProps: 'transform' }, 1.1]
+			['.lb-contact__card', { y: 60, opacity: 0, duration: 1.6, clearProps: 'transform' }, 0.3],
+			['.lb-contact__row', { x: 40, opacity: 0, duration: 1.2, stagger: 0.07, clearProps: 'transform' }, 0.5],
+			['.lb-contact__sep svg', { scale: 0, rotation: -90, duration: 1, ease: 'back.out(2)', clearProps: 'transform' }, 0.8],
+			['.lb-contact__tile', { y: 24, opacity: 0, duration: 1.1, stagger: 0.08, clearProps: 'transform' }, 0.9],
+			['.lb-contact__btn', { y: 24, opacity: 0, duration: 1.1, clearProps: 'transform' }, 1.1]
 		]);
 		// портфолио (общая страница и галереи), курсы
 		revealBlock(document.querySelector('.lb-pfhub'), 'top 75%', [

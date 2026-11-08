@@ -663,3 +663,54 @@ $seam-contact: #f8f2ee;  // «Статьи» → «Контакты»
 		@include lb-seam-bg("seam-seo.svg");
 	}
 }
+
+// ---------- страница «Контакты»: «Контакты» (первый экран под шапкой) → «Запись» → подвал ----------
+// Верхнего стыка у блока нет (над ним только шапка), нижний — лента «Записи» (seam-book.svg) вместо тёмной волны;
+// тёмная волна в подвал — у «Записи» (в её ::before вместо ленты к «Отзывам»).
+.lb-contact--page {
+	background: linear-gradient(180deg, $ct-bg 0, $ct-bg calc(100% - #{vw(220)}), $seam-book 100%);
+	padding-bottom: vw(190);
+	@include lb-seam(bottom, "seam-book.svg", before);
+	&::after {
+		content: none;
+	}
+	.lb-contact__bg {
+		-webkit-mask-image: linear-gradient(180deg, #000 calc(100% - #{vw(240)}), transparent calc(100% - #{vw(60)}));
+		mask-image: linear-gradient(180deg, #000 calc(100% - #{vw(240)}), transparent calc(100% - #{vw(60)}));
+	}
+	@include mobile {
+		background: linear-gradient(180deg, $ct-bg 0, $ct-bg calc(100% - 100px), $seam-book 100%);
+		padding-bottom: 90px;
+		.lb-contact__bg {
+			-webkit-mask-image: linear-gradient(180deg, #000 calc(100% - 120px), transparent calc(100% - 20px));
+			mask-image: linear-gradient(180deg, #000 calc(100% - 120px), transparent calc(100% - 20px));
+		}
+	}
+}
+.lb-contact--page + #bl8-form + .lb-book {
+	background: linear-gradient(180deg, $seam-book 0, $cs-bg vw(170));
+	padding-bottom: vw(100);
+	&::before {
+		top: auto;
+		bottom: -1px;
+		height: vw(160);
+		background: url("/assets/templates/redesign/img/seam-footer.svg") center bottom / 100% 100% no-repeat;
+	}
+	.lb-book__bg {
+		// арка (book-bg.svg) — высотой vw(880), блок выше на отступ под волну: растворяем арку там же, где в обычном блоке
+		-webkit-mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .45) vw(60), #000 vw(170), #000 vw(620), transparent vw(840));
+		mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .45) vw(60), #000 vw(170), #000 vw(620), transparent vw(840));
+	}
+	@include mobile {
+		background: linear-gradient(180deg, $seam-book 0, $cs-bg 100px);
+		padding-bottom: 96px;
+		&::before {
+			bottom: -1px;
+			height: mvw(70);
+		}
+		.lb-book__bg {
+			-webkit-mask-image: linear-gradient(180deg, transparent 0, #000 120px);
+			mask-image: linear-gradient(180deg, transparent 0, #000 120px);
+		}
+	}
+}

@@ -146,11 +146,6 @@ $_lang['lbar.rd.blog.all'] = "Все статьи";
 $_lang['lbar.rd.blog.read'] = "Читать статью";
 $_lang['lbar.rd.blog.comments'] = "Комментарии";
 $_lang['lbar.rd.blog.cta'] = "Хотите такой же красивый результат? Запишитесь в студию LBar.";
-$_lang['lbar.rd.blog.about'] = "Об этой статье";
-$_lang['lbar.rd.blog.author'] = "Автор";
-$_lang['lbar.rd.blog.cat'] = "Рубрика";
-$_lang['lbar.rd.blog.date'] = "Опубликовано";
-$_lang['lbar.rd.blog.views'] = "Просмотры";
 // --- редизайн: блок «Контакты» (бывший bl-contact) ---
 $_lang['lbar.rd.contacts.sub'] = "Нас легко найти: *Бухарест, Сектор 1*";
 $_lang['lbar.rd.contacts.city'] = "București, Sector 1";

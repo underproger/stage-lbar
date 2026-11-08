@@ -14,7 +14,7 @@
    хлебные крошки — без exclude (как в banner-interial).
    Блог (шаблоны «Блог - список статей» 4 и «Блог - статья» 5) — тоже hub, без кнопки консультации (на этих страницах нет блока
    «Контакты»; запись — окно «Заказать звонок»). Статья: H1 с itemprop="headline" (страница обёрнута в itemscope Article в шаблоне),
-   фото нет (превью статей маленькие — 360–760 px; графика, как у остальных общих страниц), справа — карточка «об статье»: автор, рубрика (itemprop="genre", как было), дата, просмотры (HitsPage, как было), комментарии.
+   фото нет (превью статей маленькие — 360–760 px; графика, как у остальных общих страниц), под H1 — рубрика (itemprop="genre", как было), автор, дата, просмотры (HitsPage, как было) и число комментариев.
    Внимание: в выражениях Fenom не писать «*» + «/» подряд (закрывает служебный комментарий в скомпилированном шаблоне). *}
 {set $r = $_modx->resource}
 {set $isRo = $_modx->config.cultureKey == 'ro'}
@@ -110,44 +110,20 @@
             <div class="lb-shero__desc">{$desc}</div>
             {/if}
 
+            {if $art}
+            <ul class="lb-shero__meta">
+                <li class="lb-shero__mi lb-shero__mi--cat"><a href="{$r.parent | url}" itemprop="genre">{$_modx->runSnippet('pdoField', ['id' => $r.parent, 'field' => 'pagetitle'])}</a></li>
+                <li class="lb-shero__mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 20c.8-4 3.8-6.2 7.5-6.2s6.7 2.2 7.5 6.2"/></svg>[[++autor]]</li>
+                <li class="lb-shero__mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>{$r.publishedon | date : 'd.m.Y'}</li>
+                <li class="lb-shero__mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>[[!HitsPage? &saveTv=`true`]]</li>
+                <li class="lb-shero__mi"><a href="#review"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5a2 2 0 0 1-2 2H8l-4.5 4V5.5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"/></svg>[[!ecMessagesCount]]</a></li>
+            </ul>
+            {/if}
             <div class="lb-shero__btns">
                 <a class="lb-btn lb-btn--solid js-lb-book" href="#bl8-form">{'lbar.buttons.banner.book' | lexicon}{$arr}</a>
                 {if !$blog}<a class="lb-btn lb-btn--ghost" href="#conract">{'lbar.buttons.banner.consultation' | lexicon}{$arr}</a>{/if}
             </div>
         </div>
-
-        {if $art}
-        {* сведения о статье — карточка справа (на телефоне — под заголовком): автор, рубрика (itemprop="genre", как было),
-           дата публикации, просмотры (HitsPage, как было) и комментарии (ссылка на #review) *}
-        <aside class="lb-shero__info" aria-label="{'lbar.rd.blog.about' | lexicon}">
-            <div class="lb-shero__author">
-                <img class="lb-shero__author-img" src="/images/design/autio-blog.jpg" alt="" width="150" height="150" loading="eager" decoding="async">
-                <div class="lb-shero__author-txt">
-                    <span class="lb-shero__info-l">{'lbar.rd.blog.author' | lexicon}</span>
-                    <span class="lb-shero__author-name">[[++autor]]</span>
-                    <span class="lb-shero__author-role">{$isRo ? 'Master de Top/fondatorul studioului' : 'ТОП-мастер/Основатель студии'}</span>
-                </div>
-            </div>
-            <dl class="lb-shero__facts">
-                <div class="lb-shero__fact lb-shero__fact--cat">
-                    <dt class="lb-shero__info-l">{'lbar.rd.blog.cat' | lexicon}</dt>
-                    <dd><a href="{$r.parent | url}" itemprop="genre">{$_modx->runSnippet('pdoField', ['id' => $r.parent, 'field' => 'pagetitle'])}</a></dd>
-                </div>
-                <div class="lb-shero__fact">
-                    <dt class="lb-shero__info-l">{'lbar.rd.blog.date' | lexicon}</dt>
-                    <dd><time datetime="{$r.publishedon | date : 'Y-m-d'}">{$r.publishedon | date : 'd.m.Y'}</time></dd>
-                </div>
-                <div class="lb-shero__fact">
-                    <dt class="lb-shero__info-l">{'lbar.rd.blog.views' | lexicon}</dt>
-                    <dd>[[!HitsPage? &saveTv=`true`]]</dd>
-                </div>
-                <div class="lb-shero__fact">
-                    <dt class="lb-shero__info-l">{'lbar.rd.blog.comments' | lexicon}</dt>
-                    <dd><a href="#review">[[!ecMessagesCount]]</a></dd>
-                </div>
-            </dl>
-        </aside>
-        {/if}
 
         <nav class="lb-crumbs" aria-label="{$isRo ? 'Navigare' : 'Навигация'}">
             {$_modx->runSnippet('!pdoCrumbs', [
