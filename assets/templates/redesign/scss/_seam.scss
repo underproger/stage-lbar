@@ -714,3 +714,23 @@ $seam-contact: #f8f2ee;  // «Статьи» → «Контакты»
 		}
 	}
 }
+
+// ---------- страницы 404 и «Спасибо»: первый экран под шапкой → подвал (тёмная волна, как у списка статей) ----------
+.lb-msg {
+	&::before {
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: -1px;
+		width: 100%;
+		height: vw(160);
+		z-index: 0;
+		pointer-events: none;
+		background: url("/assets/templates/redesign/img/seam-footer.svg") center bottom / 100% 100% no-repeat;
+	}
+	@include mobile {
+		&::before {
+			height: mvw(70);
+		}
+	}
+}

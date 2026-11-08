@@ -468,6 +468,23 @@
    - SEO: 2 страницы сверены со снимком (`/home/claude/b26/base`) — отличие только H2 (выше); главная, услуги, общие, портфолио, страницы,
      блог — без изменений.
 
+32. **Страницы 404 и «Спасибо» (v1.26.0)** — без макета. Скрипт `_dev/tools/modx_apply24.php`, шаблоны переписаны целиком:
+   «404 eror page» (2: RO 20 /oshibka-404, RU 206; отдаётся по любому несуществующему адресу) и «Success-Page-RU» (6: RO 40 /thanx-you,
+   RU 269 — сюда редиректит af_complete из чанка script после форм записи).
+   - `<head>`: прежние мета-строки шаблона (title, Canonical у 404, autor, copyright, favicon; у «Спасибо» — google-tag-head/body) +
+     **`<base href>`** (404 по адресу вида /a/b/c — без base относительные ссылки шапки/подвала ломались), общие CSS старого сайта (как
+     в чанке head), загрузка лексикона, `lb-head`; viewport — как на остальных страницах (был maximum-scale=1.0). Вместо 404.css / success.css
+     и старых скриптов — `[[$script]]` (jQuery, окно «Заказать звонок», телефонный ввод) + `lb-scripts`. **Из-за `[[$script]]` на этих
+     страницах появилась общая JSON-LD (ProfessionalService, LocalBusiness, WebSite — как на всех страницах)** — сообщено пользователю.
+   - **`lb-404`**: «404» (цифры шрифтом заголовков с медным градиентом, ноль — SVG-овал), H1 как было («Hopa!» / «Упс!» — лексикон
+     `lbar.rd.msg.oops` + pagetitle), текст — content ресурса без картинки images/design/404.png и без списка со ссылкой; ссылка — кнопкой
+     с её текстом; вторая кнопка — запись (окно звонка, js-lb-book).
+   - **`lb-thanks`**: печать с галочкой (вместо картинки-логотипа LBarlogo.png), надзаголовок «Studiou micropigmentare by Ksenia
+     Kobilianskaia», «Mulțumesc» (div, заголовков нет — как было), росчерк, текст, кнопка на главную. Тексты — прежние из шаблона,
+     перенесены в лексикон `lbar.rd.thanks.studio/.by/.title/.text/.home` без изменений.
+   - Общий блок `.lb-msg` — `scss/_msg.scss`, фон `img/msg-bg.svg`, волна в подвал — конец `_seam.scss`; интро — redesign.js (lb-msg).
+   - SEO: 4 страницы сверены со снимком (`/home/claude/b27/base`) — title, canonical, robots, H1/H2 без изменений; отличие — JSON-LD 0 → 3.
+
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
 `stage-lbar-05-consult.sql` (чанки `lb-consult` id 275, `lb.formConsult` id 276 + все чанки Redesign + шаблон «Главная»),
@@ -493,15 +510,16 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `stage-lbar-30-blog.sql` (блог: чанки `lb-bloglist`, `lb.blogCard`, `lb-article`, `lb.blogSide`, `lb.blogPrev`, `lb.blogNext`, `lb-comments`, `lb.commentRow` + шаблоны 4, 5; версия 1.24.0).
 `stage-lbar-31-blog-info.sql` (карточка сведений о статье в баннере; версия 1.24.1).
 `stage-lbar-32-contact.sql` (новый вид «Контактов», страница «Контакты» — **шаблон 9**; статья — снова строка сведений; версия 1.25.0).
-Патчи проверены импортом. После 32 БД **не менялась** (кроме локальной настройки phpThumb выше).
+`stage-lbar-33-404-thanks.sql` (404 и «Спасибо»: чанки `lb-404`, `lb-thanks` + **шаблоны 2 и 6**; версия 1.26.0).
+Патчи проверены импортом. После 33 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — по решению пользователя
 
-В новом дизайне (п. 1–31): главная, услуги (8), «Услуги»/«Обучение», портфолио (10, 13), «Цены», «О нас», вакансии, «Отзывы», Gift Voucher
-(3, 14, 16), блог (4, 5), «Контакты» (9). На старых шаблонах остались: 404 (2: 20/206), страницы «спасибо» (6: 40/269), курс (15: 182 —
-не трогать), «Категория NEW» (19: 321/625 — не трогать), служебные без шаблона (22, 23, 195, 196).
+В новом дизайне (п. 1–32): главная, услуги (8), «Услуги»/«Обучение», портфолио (10, 13), «Цены», «О нас», вакансии, «Отзывы», Gift Voucher
+(3, 14, 16), блог (4, 5), «Контакты» (9), 404 (2), «Спасибо» (6). На старых шаблонах остались только курс (15: 182 — не трогать),
+«Категория NEW» (19: 321/625 — не трогать) и служебные без шаблона (22, 23, 195, 196).
 
-Если придёт макет блоков услуг — подогнать (п. 25: сейчас по образцу главной). Варианты дальше: 404 и страницы «спасибо»;
+Если придёт макет блоков услуг — подогнать (п. 25: сейчас по образцу главной). Варианты дальше:
 уборка мусора в конце проекта (по правилам HANDOFF; старые чанки на переведённых шаблонах не трогали).
 Открытый вопрос по блоку 6: в макете жирным выделены целые фразы («Experiență de peste 4000+», «Master Trainer») — в TV их разметки нет,
 сейчас автоматически жирные только числа; можно добавить `<b>` прямо в TV (с согласия пользователя).
@@ -550,7 +568,7 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 
 1. Подключить репо (`add_repo underproger/stage-lbar`, push), клонировать в `/home/claude/stage-lbar`.
 2. Пользователь прикладывает дамп и патчи **по порядку**: дамп хостинга `mysql_impua_testlbar_….tar.gz` (исходная база, без патчей),
-   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`, `-15-footer.sql`, `-16-mega.sql`, `-17-fixes.sql`, `-18-visited.sql`, `-19-lang-blog.sql`, `-20-lang-slug.sql`, `-21-services-banner.sql`, `-22-buttons.sql`, `-23-hero.sql`, `-24-services.sql`, `-25-seo-img.sql`, `-26-logo-hubs.sql`, `-27-portfolio.sql`, `-28-hub-banner.sql`, `-29-pages.sql`, `-30-blog.sql`, `-31-blog-info.sql`, `-32-contact.sql`
+   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`, `-15-footer.sql`, `-16-mega.sql`, `-17-fixes.sql`, `-18-visited.sql`, `-19-lang-blog.sql`, `-20-lang-slug.sql`, `-21-services-banner.sql`, `-22-buttons.sql`, `-23-hero.sql`, `-24-services.sql`, `-25-seo-img.sql`, `-26-logo-hubs.sql`, `-27-portfolio.sql`, `-28-hub-banner.sql`, `-29-pages.sql`, `-30-blog.sql`, `-31-blog-info.sql`, `-32-contact.sql`, `-33-404-thanks.sql`
    (вместо дампа+urls+01 может прийти `lbar-full-stage-2026-11-06.sql.gz` — это то же самое).
 3. `cd /home/claude/stage-lbar && bash _dev/setup_local.sh <дамп> <urls> <01> <02> <03> <04> <05> <06> <07> <08> <09> <10> <11>` (файлы — по порядку; .tar.gz/.gz/.sql, строка sandbox вырезается) — поднимет MariaDB, Apache+SSL, PHP-полифилл,
    конфиги из `_dev/local-config`, hosts (`stage-lbar.touchit.vinnica.ua` → 127.0.0.1), симлинк `/home/impua/lbar.ro/www` → репо,

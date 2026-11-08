@@ -1,0 +1,250 @@
+// ================= СТРАНИЦЫ 404 И «СПАСИБО» (lb-404, lb-thanks; общий блок .lb-msg) =================
+// Без макета, в стиле остальных страниц: первый экран под шапкой, всё по центру. Фон — только графика (img/msg-bg.svg):
+// свет по центру, медные овалы-«порталы», волна, искры. 404: цифры «4» шрифтом заголовков с медным градиентом, «0» — овал-портал (SVG),
+// H1 с курсивным акцентом «Hopa!», текст из content, две кнопки. «Спасибо»: печать с галочкой, надзаголовок «Studiou micropigmentare
+// by Ksenia Kobilianskaia», крупное «Mulțumesc» (не заголовок, как и было), росчерк, текст, кнопка на главную.
+// Низ — тёмная волна в подвал (как у списка статей), см. конец _seam.scss.
+$msg-bg: #f8f2ee;
+$msg-ink: #231914;
+$msg-text: #574840;
+$msg-copper: linear-gradient(180deg, #dcae93 0%, #ab7152 58%, #875840 100%);
+
+.lb-msg {
+	position: relative;
+	isolation: isolate;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: max(100vh, #{vw(1000)});
+	min-height: max(100svh, #{vw(1000)});
+	padding: vw(170) 0 vw(260);
+	overflow: hidden;
+	font-family: $f-text;
+	color: $msg-text;
+	background: $msg-bg;
+	text-align: center;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	:where(*, *::before, *::after) {
+		box-sizing: border-box;
+	}
+	:where(p, h1, div) {
+		margin: 0;
+		padding: 0;
+	}
+	:where(svg) {
+		display: block;
+	}
+	:where(b, strong) {
+		font-family: inherit;
+	}
+	// старый CSS: span{font-weight:400}
+	span {
+		font-weight: inherit;
+	}
+
+	&__bg {
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		background: url("/assets/templates/redesign/img/msg-bg.svg") 50% 50% / cover no-repeat;
+		pointer-events: none;
+	}
+	&__inner {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: vw(1100);
+	}
+
+	// ----- 404: цифры -----
+	&__num {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: vw(14);
+		font-family: $f-display;
+		font-size: vw(300);
+		font-weight: 500;
+		font-variant-numeric: lining-nums;
+		line-height: 1;
+		letter-spacing: 0;
+		user-select: none;
+	}
+	&__digit {
+		display: block;
+		padding: 0 .02em;
+		color: transparent;
+		background: $msg-copper;
+		-webkit-background-clip: text;
+		background-clip: text;
+		filter: drop-shadow(0 vw(18) vw(26) rgba(135, 88, 64, .16));
+		&--zero {
+			padding: 0;
+			background: none;
+		}
+	}
+	&__zero {
+		width: .8em;
+		height: 1em;
+		overflow: visible;
+	}
+	// H1 перебивается старым CSS (.wrapper.main-ro h1) — поднимаем специфичность
+	& &__inner h1#{&}__title {
+		margin: vw(26) 0 0;
+		padding: 0;
+		@include lb-title;
+		font-size: vw(78);
+		font-variant-numeric: lining-nums;
+		line-height: 1.08;
+		text-align: center;
+		color: $msg-ink;
+	}
+	&__accent {
+		@include lb-accent;
+		padding-right: .08em;
+		font-weight: 420 !important; // старый CSS: span{font-weight:400}
+	}
+	& &__inner &__text {
+		max-width: vw(780);
+		margin-top: vw(26);
+		font-size: vw(24);
+		font-weight: 400;
+		line-height: 1.5;
+		color: $msg-text;
+		p {
+			margin: 0;
+			padding: 0;
+			font: inherit;
+			color: inherit;
+			text-align: center;
+		}
+		p + p {
+			margin-top: .6em;
+		}
+	}
+	&__btns {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: vw(24);
+		margin-top: vw(52);
+	}
+
+	// ----- «Спасибо» -----
+	&__seal {
+		width: vw(200);
+		height: vw(200);
+		filter: drop-shadow(0 vw(24) vw(36) rgba(135, 88, 64, .14));
+		svg {
+			width: 100%;
+			height: 100%;
+			overflow: visible;
+		}
+	}
+	& &__inner p#{&}__eyebrow {
+		margin-top: vw(36);
+		@include lb-eyebrow;
+		font-size: vw(17);
+		line-height: 1.4;
+		text-align: center;
+	}
+	&__by {
+		display: inline-block;
+		margin-left: .35em;
+		font-family: $f-serif;
+		font-size: 1.35em;
+		font-style: italic;
+		font-weight: 420 !important;
+		font-stretch: 80%;
+		letter-spacing: 0;
+		text-transform: none;
+		color: #8a5d45;
+	}
+	&__big {
+		margin-top: vw(10);
+		@include lb-title;
+		font-size: vw(150);
+		line-height: 1.05;
+		color: $msg-ink;
+	}
+	&__flourish {
+		width: vw(330);
+		height: vw(38);
+		margin-top: vw(24);
+		color: #b88a68;
+		overflow: visible;
+	}
+	&--thanks &__inner &__text {
+		max-width: vw(960);
+		margin-top: vw(24);
+	}
+}
+
+@include mobile {
+	.lb-msg {
+		min-height: max(100svh, 640px);
+		padding: 110px 0 130px;
+		&__bg {
+			background-position: 50% 40%;
+		}
+		&__inner {
+			width: auto;
+			padding: 0 20px;
+		}
+		&__num {
+			gap: 4px;
+			font-size: min(mvw(130), 190px);
+		}
+		&__digit {
+			filter: drop-shadow(0 8px 14px rgba(135, 88, 64, .16));
+		}
+		& &__inner h1#{&}__title {
+			margin-top: 14px;
+			font-size: min(mvw(38), 52px);
+		}
+		& &__inner &__text {
+			max-width: 520px;
+			margin-top: 14px;
+			font-size: 16px;
+		}
+		&__btns {
+			flex-direction: column;
+			align-items: stretch;
+			gap: 12px;
+			width: 100%;
+			max-width: 420px;
+			margin-top: 30px;
+		}
+		&__seal {
+			width: 128px;
+			height: 128px;
+			filter: drop-shadow(0 12px 20px rgba(135, 88, 64, .14));
+		}
+		& &__inner p#{&}__eyebrow {
+			margin-top: 22px;
+			font-size: 11.5px;
+			letter-spacing: .16em;
+		}
+		&__by {
+			display: block;
+			margin: 4px 0 0;
+			font-size: 17px;
+		}
+		&__big {
+			margin-top: 6px;
+			font-size: min(mvw(68), 96px);
+		}
+		&__flourish {
+			width: 200px;
+			height: 24px;
+			margin-top: 14px;
+		}
+		&--thanks &__inner &__text {
+			margin-top: 14px;
+		}
+	}
+}

@@ -842,6 +842,25 @@
 		sAdd('.lb-crumbs__item', { x: -16, opacity: 0, duration: 1, stagger: 0.06, clearProps: 'transform' }, 1.25);
 	}
 
+	/* ---------- 404 и «Спасибо» (lb-msg): интро ---------- */
+	var msg = document.querySelector('.lb-msg');
+	if (msg && !reduce && typeof window.gsap !== 'undefined') {
+		var mtl = window.gsap.timeline({ defaults: { ease: 'expo.out' } });
+		var mAdd = function (sel, vars, pos, to) { var els = msg.querySelectorAll(sel); if (!els.length) return; if (to) mtl.fromTo(els, vars, to, pos); else mtl.from(els, vars, pos); };
+		mAdd('.lb-msg__bg', { opacity: 0, scale: 1.05, duration: 2.2, ease: 'power3.out', clearProps: 'transform' }, 0);
+		mtl.from(isDesktop() ? '.lb-header__logo, .lb-nav__list > li > .lb-nav__link, .lb-lang, .lb-header__right' : '.lb-header__logo, .lb-header__right', { y: -24, opacity: 0, duration: 1.2, stagger: isDesktop() ? 0.035 : 0.08, clearProps: 'transform' }, 0.3);
+		mAdd('.lb-msg__digit, .lb-msg__seal', { yPercent: 30, opacity: 0, duration: 1.6, stagger: 0.12, clearProps: 'transform' }, 0.35);
+		/* овалы и галочка «прорисовываются» (pathLength=1) */
+		mAdd('.lb-msg__ring', { strokeDashoffset: 1, strokeDasharray: 1 }, 0.7, { strokeDashoffset: 0, strokeDasharray: 1, duration: 1.8, stagger: 0.15, ease: 'power2.inOut', clearProps: 'strokeDashoffset,strokeDasharray' });
+		mAdd('.lb-msg__check', { strokeDashoffset: 1, strokeDasharray: 1 }, 1.0, { strokeDashoffset: 0, strokeDasharray: 1, duration: 1.1, ease: 'power2.inOut', clearProps: 'strokeDashoffset,strokeDasharray' });
+		mAdd('.lb-msg__spark', { scale: 0, rotation: -90, transformOrigin: '50% 50%', duration: 1, stagger: 0.15, ease: 'back.out(2)', clearProps: 'transform' }, 1.2);
+		mAdd('.lb-msg__eyebrow', { y: 20, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.6);
+		mAdd('.lb-msg__title, .lb-msg__big', { yPercent: 30, opacity: 0, duration: 1.5, clearProps: 'transform' }, 0.7);
+		mAdd('.lb-msg__flourish', { clipPath: 'inset(0% 50% 0% 50%)' }, 1.0, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.4, ease: 'power2.inOut', clearProps: 'clipPath' });
+		mAdd('.lb-msg__text', { y: 20, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.95);
+		mAdd('.lb-msg__btns > *', { y: 24, opacity: 0, duration: 1.2, stagger: 0.1, clearProps: 'transform' }, 1.1);
+	}
+
 	/* ---------- Анимации баннера (GSAP) ---------- */
 	var hero = document.querySelector('.lb-hero');
 	if (!hero || reduce || typeof window.gsap === 'undefined') {
