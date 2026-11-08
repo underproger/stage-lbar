@@ -53,7 +53,7 @@
 | Тексты интерфейса RO/RU | лексикон `core/components/babel/lexicon/{ro,ru}/translate.inc.php`, ключи `lbar.rd.*` (так уже было на сайте: `lbar.*`) |
 
 **Сборка CSS:** `cd assets/templates/redesign && /home/claude/build/node_modules/.bin/sass scss/redesign.scss css/redesign.css --style=compressed --no-source-map --silence-deprecation=import`
-**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.17.0**) — поднимать при изменениях.
+**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.17.1**) — поднимать при изменениях.
 **Новые/изменённые чанки в БД:** `sudo -u www-data php _dev/tools/modx_apply3.php` (пересохраняет все `*.tpl` из папки как статичные чанки и меняет
 вызов в шаблоне «Главная») — для нового блока сделать по аналогии (последний — `modx_apply16.php`, замена `[[$старый-чанк]]` → `[[$lb-новый]]`).
 **После правки `.tpl` чистить `core/cache/resource/`** (главная кэшируется — без этого на скриншоте старая разметка; CSS/JS это не касается).
@@ -287,13 +287,17 @@
 22. **v1.17.0: языки выпадающим списком, ссылки статей, фото с хостинга.**
    - Языки (`lb-header`, `lb.babelLink`): на десктопе кнопка «RO ⌄» + список (hover / фокус / клик, Esc и клик снаружи закрывают; JS —
      `redesign.js`); в бургере кнопка скрыта, список — две «таблетки» с отступом 26px от меню. Ссылки те же (BabelLinks, hreflang),
-     текст ссылки теперь «ro Română» / «ru Русский».
+     текст — только код языка (RO / RU, v1.17.1).
    - Карточки статей: TV `link-st-N` (id или путь; разбор — новый чанк `lb.blogHref`: путь → `findResource`, только опубликованные →
      `makeUrl`). Заголовок — ссылка, её `::after` растянут на карточку; подпись «Citește articolul →» (лексикон `lbar.rd.blog.read`).
      У главной RO значения TV заменены на опубликованные статьи 597 / 598 / 596 (старые вели на удалённые 137 / 135 / 131) — UPDATE
      в патче 19. В RU блог удалён — карточки без ссылок. Номер карточки — absolute от карточки (у `__info` нет position).
    - `_dev/photos/`: `photos.txt` (116 файлов: галерея RO/RU + medium, фото статей, логотип в подвале), `get-photos.sh` (на хостинге из
      корня сайта → `lbar-photos.tar.gz`), `get-photos.ps1` (Windows: качает с сайта → `lbar-photos.zip`). Архив распаковать в корень клона.
+   **Фото уже распакованы в локальный клон** (`assets/images/resources/1|193`, `images/all`, `images/design` — в .gitignore). В новом
+   контейнере их нет — попросить архив `lbar-photos.tar.gz` заново.
+   Локально pThumb не находил файлы (корень сайта — симлинк `/home/impua/lbar.ro/www` → клон, phpThumb считает путь «выше docroot»):
+   в **локальной** БД `phpthumb_allow_src_above_docroot = 1`. Только для песочницы, в патчи не входит, на хостинг не переносить.
 
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
@@ -310,8 +314,8 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `stage-lbar-15-footer.sql` (чанк `lb-footer` 291 + все чанки Redesign + шаблон «Главная»),
 `stage-lbar-16-mega.sql` (чанки `lb.navParent`, `lb.navMega` + все чанки Redesign + шаблон «Главная» без изменений; фикс `lb-blog`),
 `stage-lbar-17-fixes.sql` (все чанки Redesign: версия `?v=1.16.0`), `stage-lbar-18-visited.sql` (версия `?v=1.16.1`), `stage-lbar-19-lang-blog.sql` (чанки + новый `lb.blogHref`, версия 1.17.0,
-**UPDATE значений TV link-st-1..3 ресурса 1**). Патчи проверены импортом.
-После 19 БД **не менялась**.
+**UPDATE значений TV link-st-1..3 ресурса 1**), `stage-lbar-20-lang-slug.sql` (языки — только код, версия 1.17.1). Патчи проверены импортом.
+После 20 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — главная готова; дальше — по решению пользователя
 
@@ -364,7 +368,7 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 
 1. Подключить репо (`add_repo underproger/stage-lbar`, push), клонировать в `/home/claude/stage-lbar`.
 2. Пользователь прикладывает дамп и патчи **по порядку**: дамп хостинга `mysql_impua_testlbar_….tar.gz` (исходная база, без патчей),
-   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`, `-15-footer.sql`, `-16-mega.sql`, `-17-fixes.sql`, `-18-visited.sql`, `-19-lang-blog.sql`
+   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`, `-15-footer.sql`, `-16-mega.sql`, `-17-fixes.sql`, `-18-visited.sql`, `-19-lang-blog.sql`, `-20-lang-slug.sql`
    (вместо дампа+urls+01 может прийти `lbar-full-stage-2026-11-06.sql.gz` — это то же самое).
 3. `cd /home/claude/stage-lbar && bash _dev/setup_local.sh <дамп> <urls> <01> <02> <03> <04> <05> <06> <07> <08> <09> <10> <11>` (файлы — по порядку; .tar.gz/.gz/.sql, строка sandbox вырезается) — поднимет MariaDB, Apache+SSL, PHP-полифилл,
    конфиги из `_dev/local-config`, hosts (`stage-lbar.touchit.vinnica.ua` → 127.0.0.1), симлинк `/home/impua/lbar.ro/www` → репо,
