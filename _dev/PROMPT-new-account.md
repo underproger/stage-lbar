@@ -1,11 +1,11 @@
 Первое сообщение для новой сессии. Приложить файлы БД (по порядку): дамп (`lbar-full-stage-2026-11-06.sql.gz` или дамп хостинга
 `mysql_impua_testlbar_….tar.gz` + `stage-lbar-urls.sql` + `stage-lbar-01-header-banner.sql`), `stage-lbar-02-about.sql`, `-03-services.sql`,
-`-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`, `-15-footer.sql`, `-16-mega.sql`, `-17-fixes.sql`, `-18-visited.sql`, `-19-lang-blog.sql`, `-20-lang-slug.sql`, `-21-services-banner.sql`, `-22-buttons.sql`, `-23-hero.sql`, `-24-services.sql`, `-25-seo-img.sql`, `-26-logo-hubs.sql`, `-27-portfolio.sql`, `-28-hub-banner.sql`, `-29-pages.sql`, `-30-blog.sql`, и скрин следующего блока:
+`-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`, `-15-footer.sql`, `-16-mega.sql`, `-17-fixes.sql`, `-18-visited.sql`, `-19-lang-blog.sql`, `-20-lang-slug.sql`, `-21-services-banner.sql`, `-22-buttons.sql`, `-23-hero.sql`, `-24-services.sql`, `-25-seo-img.sql`, `-26-logo-hubs.sql`, `-27-portfolio.sql`, `-28-hub-banner.sql`, `-29-pages.sql`, `-30-blog.sql`, `-31-blog-info.sql`, и скрин следующего блока:
 
 ---
 Продолжаем редизайн MODX-сайта lbar.ro. Репо: underproger/stage-lbar (подключи себя к нему с правом push и склонируй в /home/claude/stage-lbar).
 Сначала прочитай _dev/HANDOFF.md — там правила, архитектура, что сделано и как поднять окружение.
-Подними локально: bash _dev/setup_local.sh <дамп> [<urls> <01>] <02> <03> <04> <05> <06> <07> <08> <09> <10> <11> <12> <13> <14> <15> <16> <17> <18> <19> <20> <21> <22> <23> <24> <25> <26> <27> <28> <29> <30> (файлы в аттаче, по порядку), затем очисти core/cache/.
+Подними локально: bash _dev/setup_local.sh <дамп> [<urls> <01>] <02> <03> <04> <05> <06> <07> <08> <09> <10> <11> <12> <13> <14> <15> <16> <17> <18> <19> <20> <21> <22> <23> <24> <25> <26> <27> <28> <29> <30> <31> (файлы в аттаче, по порядку), затем очисти core/cache/.
 Главная и страницы услуг готовы; дальше — по задаче пользователя (по приложенному макету) — 1 в 1, тексты из БД, без надписей «LBar Studio», фон — только графика (без фото), шрифтовой стандарт как в lb-about.
 Кнопки — общий стиль .lb-btn, стык с предыдущим блоком — перетекающий фон. После блока: SEO-сверка, коммит+пуш, SQL-патч только если менялась БД, скрин «макет/сайт».
 ---

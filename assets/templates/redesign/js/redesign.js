@@ -86,7 +86,8 @@
 	};
 	// Слушаем на фазе перехвата: старый custom.js («Jacor») вешает на все a[href^="#"] свой jQuery-скролл без учёта
 	// фиксированной шапки — для ссылок новых блоков он не должен срабатывать (stopPropagation до цели).
-	var anchorSel = '.lb-header a[href^="#"], .lb-hero a[href^="#"], .lb-about a[href^="#"], .lb-implica a[href^="#"], .lb-price a[href^="#"], .lb-faq a[href^="#"], .lb-shero a[href^="#"]';
+	// все блоки редизайна (id="lb-…") и кнопки «Записаться» (js-lb-book) — где бы они ни стояли
+	var anchorSel = '.lb-header a[href^="#"], [id^="lb-"] a[href^="#"], a.js-lb-book';
 	document.addEventListener('click', function (e) {
 		var a = e.target.closest && e.target.closest(anchorSel);
 		if (!a) return;
@@ -804,14 +805,15 @@
 			['.lb-course', { y: 70, opacity: 0, duration: 1.5, stagger: 0.12, clearProps: 'transform' }, 0.15],
 			['.lb-course__li', { x: 30, opacity: 0, duration: 1.1, stagger: 0.08, clearProps: 'transform' }, 0.6]
 		]);
-		// подвал: у блока с окном «Заказать звонок» (.lb-footer__call) — только прозрачность (transform ломает position: fixed окна)
+		// подвал: в блоке «Заказать звонок» (.lb-footer__call) анимируется только кнопка — окно (position: fixed) лежит рядом с ней:
+		// прозрачность / transform на самом блоке прятали бы окно, открытое до прокрутки к подвалу (кнопки «Записаться» без формы на странице)
 		revealBlock(document.querySelector('.lb-footer'), 'top 80%', [
 			['.lb-footer__logo', { y: 40, opacity: 0, duration: 1.4, clearProps: 'transform' }, 0],
 			['.lb-footer__copy', { y: 24, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.15],
 			['.lb-footer__soc', { y: 20, scale: 0.8, opacity: 0, duration: 1, stagger: 0.06, ease: 'back.out(2)', clearProps: 'transform' }, 0.3],
 			['.lb-footer__col p', { y: 18, opacity: 0, duration: 1, stagger: 0.04, clearProps: 'transform' }, 0.2],
 			['.lb-footer__contacts > :not(.lb-footer__call)', { y: 22, opacity: 0, duration: 1.1, stagger: 0.07, clearProps: 'transform' }, 0.3],
-			['.lb-footer__call', { opacity: 0, duration: 1.2 }, 0.8]
+			['.lb-footer__call > .btn-mobal', { y: 22, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.8]
 		]);
 	};
 	initReveal();
