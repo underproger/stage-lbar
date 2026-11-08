@@ -14,7 +14,9 @@
    хлебные крошки — без exclude (как в banner-interial).
    Блог (шаблоны «Блог - список статей» 4 и «Блог - статья» 5) — тоже hub, без кнопки консультации (на этих страницах нет блока
    «Контакты»; запись — окно «Заказать звонок»). Статья: H1 с itemprop="headline" (страница обёрнута в itemscope Article в шаблоне),
-   фото нет (превью статей маленькие — 360–760 px; графика, как у остальных общих страниц), под H1 — рубрика (itemprop="genre", как было), автор, дата, просмотры (HitsPage, как было) и число комментариев.
+   фото нет (превью статей маленькие — 360–760 px; графика, как у остальных общих страниц), под H1 — рубрика плашкой (itemprop="genre", как было),
+   под ней карточка: дата, время чтения (слова content / 200), просмотры (HitsPage, как было), комментарии (ссылка на #review). Кнопки в баннере статьи нет
+   (по макету пользователя; автор — в блоке под статьёй).
    Внимание: в выражениях Fenom не писать «*» + «/» подряд (закрывает служебный комментарий в скомпилированном шаблоне). *}
 {set $r = $_modx->resource}
 {set $isRo = $_modx->config.cultureKey == 'ro'}
@@ -111,18 +113,23 @@
             {/if}
 
             {if $art}
-            <ul class="lb-shero__meta">
-                <li class="lb-shero__mi lb-shero__mi--cat"><a href="{$r.parent | url}" itemprop="genre">{$_modx->runSnippet('pdoField', ['id' => $r.parent, 'field' => 'pagetitle'])}</a></li>
-                <li class="lb-shero__mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 20c.8-4 3.8-6.2 7.5-6.2s6.7 2.2 7.5 6.2"/></svg>[[++autor]]</li>
-                <li class="lb-shero__mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>{$r.publishedon | date : 'd.m.Y'}</li>
-                <li class="lb-shero__mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>[[!HitsPage? &saveTv=`true`]]</li>
-                <li class="lb-shero__mi"><a href="#review"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5a2 2 0 0 1-2 2H8l-4.5 4V5.5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"/></svg>[[!ecMessagesCount]]</a></li>
+            {* время чтения: слова текста статьи / 200 в минуту, с округлением вверх (целочисленно: в Fenom нет ceil) *}
+            {set $wc = $r.content | striptags | trim | esplit : '~\s+~u' | length}
+            {set $min = ($wc + 199 - ($wc + 199) % 200) / 200}
+            {set $si = ' viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"'}
+            <a class="lb-shero__cat" href="{$r.parent | url}" itemprop="genre"><svg{$si}><path d="M3 12.2V4.5A1.5 1.5 0 0 1 4.5 3h7.7l8.8 8.8a1.5 1.5 0 0 1 0 2.1l-7.1 7.1a1.5 1.5 0 0 1-2.1 0z"/><circle cx="8" cy="8" r="1.6"/></svg>{$_modx->runSnippet('pdoField', ['id' => $r.parent, 'field' => 'pagetitle'])}</a>
+            <ul class="lb-shero__stats">
+                <li class="lb-shero__stat"><span class="lb-shero__sic"><svg{$si}><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4M7.5 13.5h.01M12 13.5h.01M16.5 13.5h.01M7.5 17h.01M12 17h.01"/></svg></span><span class="lb-shero__sv">{$r.publishedon | date : 'd.m.Y'}</span></li>
+                <li class="lb-shero__stat"><span class="lb-shero__sic"><svg{$si}><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span><span class="lb-shero__sv">~ {$min} {'lbar.rd.blog.min' | lexicon}</span></li>
+                <li class="lb-shero__stat"><span class="lb-shero__sic"><svg{$si}><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span><span class="lb-shero__st"><span class="lb-shero__sv lb-shero__sv--num">[[!HitsPage? &saveTv=`true`]]</span><span class="lb-shero__sl">{'lbar.rd.blog.views' | lexicon}</span></span></li>
+                <li class="lb-shero__stat"><a href="#review"><span class="lb-shero__sic"><svg{$si}><path d="M20.5 14.5a2 2 0 0 1-2 2H8l-4.5 4V5.5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"/></svg></span><span class="lb-shero__st"><span class="lb-shero__sv">[[!ecMessagesCount]]</span><span class="lb-shero__sl">{'lbar.rd.blog.ncomments' | lexicon}</span></span></a></li>
             </ul>
-            {/if}
+            {else}
             <div class="lb-shero__btns">
                 <a class="lb-btn lb-btn--solid js-lb-book" href="#bl8-form">{'lbar.buttons.banner.book' | lexicon}{$arr}</a>
                 {if !$blog}<a class="lb-btn lb-btn--ghost" href="#conract">{'lbar.buttons.banner.consultation' | lexicon}{$arr}</a>{/if}
             </div>
+            {/if}
         </div>
 
         <nav class="lb-crumbs" aria-label="{$isRo ? 'Navigare' : 'Навигация'}">

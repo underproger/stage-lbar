@@ -42,3 +42,13 @@
 .lb-mega__promo-img,
 .lb-scard__img,
 .lb-footer__dev a { @include lb-visited(inherit); }
+
+// блог: рубрика в баннере статьи, соцсети автора, соседние статьи, боковая колонка
+.lb-shero__cat { @include lb-visited(#94593a); }
+.lb-article__soc-a { @include lb-visited(#8a5d44); }
+.lb-nb,
+.lb-side__item { @include lb-visited(inherit); }
+.lb-bcard__img,
+.lb-bcard__title a { @include lb-visited(inherit); }
+.lb-bcard__cat { @include lb-visited(#a5795c); }
+.lb-bcard__comments { @include lb-visited(#7a6a61); }

@@ -174,3 +174,6 @@ $_lang['lbar.rd.thanks.by'] = "от Ксении Кобылянской";
 $_lang['lbar.rd.thanks.title'] = "Спасибо";
 $_lang['lbar.rd.thanks.text'] = "Ваша заявка принята. В ближайшее время мы с вами свяжемся";
 $_lang['lbar.rd.thanks.home'] = "ВЕРНУТЬСЯ НА ГЛАВНУЮ";
+$_lang['lbar.rd.blog.min'] = "мин";
+$_lang['lbar.rd.blog.views'] = "просмотры";
+$_lang['lbar.rd.blog.ncomments'] = "комментарии";

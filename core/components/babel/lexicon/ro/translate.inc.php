@@ -173,3 +173,6 @@ $_lang['lbar.rd.thanks.by'] = "by Ksenia Kobilianskaia";
 $_lang['lbar.rd.thanks.title'] = "Mulțumesc";
 $_lang['lbar.rd.thanks.text'] = "Solicitarea dvs. a fost recepționată. Vă vom contacta în cel mai scurt timp";
 $_lang['lbar.rd.thanks.home'] = "ÎNAPOI LA PAGINA PRINCIPALĂ";
+$_lang['lbar.rd.blog.min'] = "min";
+$_lang['lbar.rd.blog.views'] = "vizualizări";
+$_lang['lbar.rd.blog.ncomments'] = "comentarii";

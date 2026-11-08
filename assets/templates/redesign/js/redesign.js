@@ -822,6 +822,12 @@
 	};
 	initReveal();
 
+	/* ---------- Баннер статьи: просмотры с разрядами (9 300) — HitsPage отдаёт число без пробелов ---------- */
+	Array.prototype.forEach.call(document.querySelectorAll('.lb-shero__sv--num'), function (el) {
+		var t = el.textContent.trim();
+		if (/^\d{4,}$/.test(t)) el.textContent = t.replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0');
+	});
+
 	/* ---------- Баннер страниц услуг (lb-shero): интро ---------- */
 	var shero = document.querySelector('.lb-shero');
 	if (shero && !reduce && typeof window.gsap !== 'undefined') {
@@ -838,6 +844,9 @@
 		sAdd('.lb-shero__sub', { y: 20, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.8);
 		sAdd('.lb-shero__feat, .lb-shero__li, .lb-shero__desc', { y: 20, opacity: 0, duration: 1.1, stagger: 0.08, clearProps: 'transform' }, 0.95);
 		sAdd('.lb-shero__btns > *', { y: 24, opacity: 0, duration: 1.2, stagger: 0.1, clearProps: 'transform' }, 1.1);
+		sAdd('.lb-shero__cat', { y: 20, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.85);
+		sAdd('.lb-shero__stats', { y: 30, opacity: 0, duration: 1.3, clearProps: 'transform' }, 0.95);
+		sAdd('.lb-shero__stat', { x: 24, opacity: 0, duration: 1.1, stagger: 0.08, clearProps: 'transform' }, 1.05);
 		sAdd('.lb-shero__badge', { y: 40, opacity: 0, duration: 1.3, stagger: 0.12, clearProps: 'transform' }, 1.0);
 		sAdd('.lb-crumbs__item', { x: -16, opacity: 0, duration: 1, stagger: 0.06, clearProps: 'transform' }, 1.25);
 	}

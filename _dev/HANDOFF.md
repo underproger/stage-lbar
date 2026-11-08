@@ -485,6 +485,15 @@
    - Общий блок `.lb-msg` — `scss/_msg.scss`, фон `img/msg-bg.svg`, волна в подвал — конец `_seam.scss`; интро — redesign.js (lb-msg).
    - SEO: 4 страницы сверены со снимком (`/home/claude/b27/base`) — title, canonical, robots, H1/H2 без изменений; отличие — JSON-LD 0 → 3.
 
+33. **Баннер статьи по макету пользователя (v1.26.1)** — чанк `lb-shero` (режим article), скрипт `_dev/tools/modx_apply25.php` (только чанки).
+   Под H1 — рубрика плашкой с иконкой (`.lb-shero__cat`, itemprop="genre", как было; в макете она над H1 — пользователь попросил под
+   заголовком), под ней стеклянная карточка `.lb-shero__stats`: дата, время чтения («~ N min»: слова content / 200, вверх), просмотры
+   ([[!HitsPage? &saveTv]] как было; разряды пробелом — redesign.js), комментарии (ссылка #review). **Кнопки в баннере статьи нет**, автор
+   из баннера убран (по макету; он есть в блоке под статьёй). Список статей — без изменений (кнопка осталась).
+   Лексикон: `lbar.rd.blog.min`, `.views` («vizualizări» / «просмотры»), `.ncomments`. Стили — `scss/_article.scss`.
+   Цвета посещённых ссылок блога поправлены (`_visited.scss`: рубрика, соцсети, соседние статьи, боковая колонка, карточки списка).
+   SEO 35 страниц блога (`/home/claude/b25/base`) — без изменений.
+
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
 `stage-lbar-05-consult.sql` (чанки `lb-consult` id 275, `lb.formConsult` id 276 + все чанки Redesign + шаблон «Главная»),
@@ -511,11 +520,12 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `stage-lbar-31-blog-info.sql` (карточка сведений о статье в баннере; версия 1.24.1).
 `stage-lbar-32-contact.sql` (новый вид «Контактов», страница «Контакты» — **шаблон 9**; статья — снова строка сведений; версия 1.25.0).
 `stage-lbar-33-404-thanks.sql` (404 и «Спасибо»: чанки `lb-404`, `lb-thanks` + **шаблоны 2 и 6**; версия 1.26.0).
-Патчи проверены импортом. После 33 БД **не менялась** (кроме локальной настройки phpThumb выше).
+`stage-lbar-34-article-banner.sql` (баннер статьи по макету — чанк `lb-shero`; версия 1.26.1).
+Патчи проверены импортом. После 34 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — по решению пользователя
 
-В новом дизайне (п. 1–32): главная, услуги (8), «Услуги»/«Обучение», портфолио (10, 13), «Цены», «О нас», вакансии, «Отзывы», Gift Voucher
+В новом дизайне (п. 1–33): главная, услуги (8), «Услуги»/«Обучение», портфолио (10, 13), «Цены», «О нас», вакансии, «Отзывы», Gift Voucher
 (3, 14, 16), блог (4, 5), «Контакты» (9), 404 (2), «Спасибо» (6). На старых шаблонах остались только курс (15: 182 — не трогать),
 «Категория NEW» (19: 321/625 — не трогать) и служебные без шаблона (22, 23, 195, 196).
 
@@ -568,7 +578,7 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 
 1. Подключить репо (`add_repo underproger/stage-lbar`, push), клонировать в `/home/claude/stage-lbar`.
 2. Пользователь прикладывает дамп и патчи **по порядку**: дамп хостинга `mysql_impua_testlbar_….tar.gz` (исходная база, без патчей),
-   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`, `-15-footer.sql`, `-16-mega.sql`, `-17-fixes.sql`, `-18-visited.sql`, `-19-lang-blog.sql`, `-20-lang-slug.sql`, `-21-services-banner.sql`, `-22-buttons.sql`, `-23-hero.sql`, `-24-services.sql`, `-25-seo-img.sql`, `-26-logo-hubs.sql`, `-27-portfolio.sql`, `-28-hub-banner.sql`, `-29-pages.sql`, `-30-blog.sql`, `-31-blog-info.sql`, `-32-contact.sql`, `-33-404-thanks.sql`
+   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`, `-15-footer.sql`, `-16-mega.sql`, `-17-fixes.sql`, `-18-visited.sql`, `-19-lang-blog.sql`, `-20-lang-slug.sql`, `-21-services-banner.sql`, `-22-buttons.sql`, `-23-hero.sql`, `-24-services.sql`, `-25-seo-img.sql`, `-26-logo-hubs.sql`, `-27-portfolio.sql`, `-28-hub-banner.sql`, `-29-pages.sql`, `-30-blog.sql`, `-31-blog-info.sql`, `-32-contact.sql`, `-33-404-thanks.sql`, `-34-article-banner.sql`
    (вместо дампа+urls+01 может прийти `lbar-full-stage-2026-11-06.sql.gz` — это то же самое).
 3. `cd /home/claude/stage-lbar && bash _dev/setup_local.sh <дамп> <urls> <01> <02> <03> <04> <05> <06> <07> <08> <09> <10> <11>` (файлы — по порядку; .tar.gz/.gz/.sql, строка sandbox вырезается) — поднимет MariaDB, Apache+SSL, PHP-полифилл,
    конфиги из `_dev/local-config`, hosts (`stage-lbar.touchit.vinnica.ua` → 127.0.0.1), симлинк `/home/impua/lbar.ro/www` → репо,
