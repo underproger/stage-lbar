@@ -109,6 +109,21 @@ $pf-bg: #f8f1ec;
 		rotate: 90deg;
 		transition: translate .5s $ease-expo, rotate .5s $ease-expo;
 	}
+	// стрелка смотрит вниз/вверх — на hover сдвигается по направлению, а не вбок (как у остальных кнопок)
+	&__more {
+		@include hover {
+			.lb-btn__arr {
+				translate: 0 vw(4);
+			}
+		}
+	}
+	&.is-open &__more {
+		@include hover {
+			.lb-btn__arr {
+				translate: 0 vw(-4);
+			}
+		}
+	}
 	&__foot.is-hidden {
 		display: none;
 	}

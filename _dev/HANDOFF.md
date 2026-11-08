@@ -53,7 +53,7 @@
 | Тексты интерфейса RO/RU | лексикон `core/components/babel/lexicon/{ro,ru}/translate.inc.php`, ключи `lbar.rd.*` (так уже было на сайте: `lbar.*`) |
 
 **Сборка CSS:** `cd assets/templates/redesign && /home/claude/build/node_modules/.bin/sass scss/redesign.scss css/redesign.css --style=compressed --no-source-map --silence-deprecation=import`
-**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.15.0**) — поднимать при изменениях.
+**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.16.0**) — поднимать при изменениях.
 **Новые/изменённые чанки в БД:** `sudo -u www-data php _dev/tools/modx_apply3.php` (пересохраняет все `*.tpl` из папки как статичные чанки и меняет
 вызов в шаблоне «Главная») — для нового блока сделать по аналогии (последний — `modx_apply15.php`, замена `[[$старый-чанк]]` → `[[$lb-новый]]`).
 **После правки `.tpl` чистить `core/cache/resource/`** (главная кэшируется — без этого на скриншоте старая разметка; CSS/JS это не касается).
@@ -267,6 +267,17 @@
    SEO: все ссылки меню сохранены (27/23), добавились якоря `#lb-consult`, `#bl8-form`.
    Тем же патчем — фикс карточек `lb-blog` (развёрнуты литералами, см. «Порядок обработки»).
 
+20. **Правки после просмотра главной (v1.16.0):**
+   - Карточки услуг: «язычок» `lb-scard__body::before/::after` — S-кривая из выпуклого и вогнутого радиусов h/2 (раньше радиус язычка
+     сжимался браузером и на стыке с вогнутым углом был «шип»); левый нижний угол фото прямой (в скруглении просвечивал фон).
+   - Кнопка «Ещё работы» в галерее: стрелка на hover сдвигается вниз/вверх по направлению, а не вбок.
+   - Мега-меню: интро шапки анимирует ссылки `.lb-nav__link`, а не `.lb-nav` — transform на `.lb-nav` делал его containing block
+     панели, и при наведении во время интро панель уезжала влево. Посещённые ссылки меню — тем же цветом (`:where(:visited)`).
+   - «Консультация»: край тёплой «стены» в `img/consult-bg.svg` — одна плавная кривая без излома, уходит под карточку.
+   - Стык «Мастер» → «Галерея»: заливка волны — зеркальный `master-bg.webp` (`.lb-portfolio__bg::after`, `scaleY(-1)`, маска
+     `img/seam-portfolio-mask.svg`), в `seam-portfolio.svg` остались линия и тень; у фона «Мастера» картинка на 2px выше блока —
+     на дробной высоте последняя строка была цвета `$ms-bg` (тёмная линия на стыке).
+
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
 `stage-lbar-05-consult.sql` (чанки `lb-consult` id 275, `lb.formConsult` id 276 + все чанки Redesign + шаблон «Главная»),
@@ -280,8 +291,9 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `stage-lbar-13-seo.sql` (чанк `lb-seo` 288 + все чанки Redesign + шаблон «Главная»),
 `stage-lbar-14-blog-contact.sql` (чанки `lb-blog` 289, `lb-contact` 290 + все чанки Redesign + шаблон «Главная»),
 `stage-lbar-15-footer.sql` (чанк `lb-footer` 291 + все чанки Redesign + шаблон «Главная»),
-`stage-lbar-16-mega.sql` (чанки `lb.navParent`, `lb.navMega` + все чанки Redesign + шаблон «Главная» без изменений; фикс `lb-blog`). Патчи проверены импортом.
-После 16 БД **не менялась**.
+`stage-lbar-16-mega.sql` (чанки `lb.navParent`, `lb.navMega` + все чанки Redesign + шаблон «Главная» без изменений; фикс `lb-blog`),
+`stage-lbar-17-fixes.sql` (все чанки Redesign: версия `?v=1.16.0`). Патчи проверены импортом.
+После 17 БД **не менялась**.
 
 ## 5. Следующий шаг — главная готова; дальше — по решению пользователя
 
@@ -334,7 +346,7 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 
 1. Подключить репо (`add_repo underproger/stage-lbar`, push), клонировать в `/home/claude/stage-lbar`.
 2. Пользователь прикладывает дамп и патчи **по порядку**: дамп хостинга `mysql_impua_testlbar_….tar.gz` (исходная база, без патчей),
-   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`, `-15-footer.sql`, `-16-mega.sql`
+   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`, `-15-footer.sql`, `-16-mega.sql`, `-17-fixes.sql`
    (вместо дампа+urls+01 может прийти `lbar-full-stage-2026-11-06.sql.gz` — это то же самое).
 3. `cd /home/claude/stage-lbar && bash _dev/setup_local.sh <дамп> <urls> <01> <02> <03> <04> <05> <06> <07> <08> <09> <10> <11>` (файлы — по порядку; .tar.gz/.gz/.sql, строка sandbox вырезается) — поднимет MariaDB, Apache+SSL, PHP-полифилл,
    конфиги из `_dev/local-config`, hosts (`stage-lbar.touchit.vinnica.ua` → 127.0.0.1), симлинк `/home/impua/lbar.ro/www` → репо,

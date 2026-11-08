@@ -185,10 +185,28 @@ $seam-consult: #f6eee9;    // «implică» → «Консультация»
 }
 
 // ---------- «Мастер» → «Галерея» (тёмный → светлый) ----------
-// Тон низа «Мастера» опускается в верх «Галереи» волной с медной линией (img/seam-portfolio.svg —
-// заливка по цветам нижней строки img/master-bg.webp).
+// Фон «Мастера» опускается в верх «Галереи» волной: заливка волны — тот же master-bg.webp, отражённый по вертикали
+// (__bg::after, scaleY(-1)), поэтому на границе блоков тон и блики совпадают попиксельно; форма — маска
+// img/seam-portfolio-mask.svg. Медная линия и тень под волной — img/seam-portfolio.svg (::before, над заливкой).
 .lb-portfolio {
 	isolation: isolate;
+	&__bg::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: vw(160);
+		transform: scaleY(-1);
+		background: url("/assets/templates/redesign/img/master-bg.webp") 0 100% / 100% vw(890) no-repeat, $ms-bg;
+		-webkit-mask: url("/assets/templates/redesign/img/seam-portfolio-mask.svg") 0 0 / 100% 100% no-repeat;
+		mask: url("/assets/templates/redesign/img/seam-portfolio-mask.svg") 0 0 / 100% 100% no-repeat;
+		@include mobile {
+			height: mvw(70);
+			// мобильный фон «Мастера» — без картинки: тон + свечение снизу справа (как в _master.scss)
+			background: radial-gradient(80% 520px at 90% 100%, rgba(170, 120, 95, .2), rgba(170, 120, 95, 0) 100%), $ms-bg;
+		}
+	}
 	&::before {
 		content: "";
 		position: absolute;

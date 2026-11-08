@@ -113,7 +113,8 @@
 		position: relative;
 		display: block;
 		height: vw(428);
-		border-radius: vw(30) vw(30) vw(30) vw(30);
+		// левый нижний угол прямой: его закрывает «язычок» (иначе в скруглении просвечивает фон)
+		border-radius: vw(30) vw(30) vw(30) 0;
 		overflow: hidden;
 		img {
 			width: 100%;
@@ -133,14 +134,16 @@
 		padding: vw(18) vw(37) vw(36);
 		border-radius: 0 0 vw(30) vw(30);
 		background: #fbf3ee;
+		// «язычок»: высота h, справа S-кривая — выпуклый радиус h/2 + вогнутый h/2 (касательные совпадают, без «шипа»);
+		// на 1px заходит в тело, чтобы на дробных пикселях не было волосяной щели
 		&::before {
 			content: "";
 			position: absolute;
 			left: 0;
-			bottom: 100%;
+			bottom: calc(100% - 1px);
 			width: vw(132);
-			height: vw(20);
-			border-radius: vw(30) vw(30) 0 0;
+			height: calc(#{vw(26)} + 1px);
+			border-radius: vw(26) vw(13) 0 0;
 			background: inherit;
 		}
 		&::after {
@@ -148,10 +151,10 @@
 			content: "";
 			position: absolute;
 			left: vw(132);
-			bottom: 100%;
-			width: vw(20);
-			height: vw(20);
-			background: radial-gradient(circle at 100% 0, transparent vw(20), #fbf3ee calc(#{vw(20)} + .5px));
+			bottom: calc(100% - 1px);
+			width: vw(13);
+			height: calc(#{vw(13)} + 1px);
+			background: radial-gradient(circle at 100% 0, transparent vw(13), #fbf3ee calc(#{vw(13)} + .5px));
 		}
 	}
 
@@ -255,21 +258,21 @@
 		&__img {
 			height: auto;
 			aspect-ratio: 442 / 428;
-			border-radius: 24px;
+			border-radius: 24px 24px 24px 0;
 		}
 		&__body {
 			padding: 14px 22px 24px;
 			border-radius: 0 0 24px 24px;
 			&::before {
 				width: 92px;
-				height: 14px;
-				border-radius: 24px 24px 0 0;
+				height: 19px;
+				border-radius: 18px 9px 0 0;
 			}
 			&::after {
 				left: 92px;
-				width: 14px;
-				height: 14px;
-				background: radial-gradient(circle at 100% 0, transparent 14px, #fbf3ee 14.5px);
+				width: 9px;
+				height: 10px;
+				background: radial-gradient(circle at 100% 0, transparent 9px, #fbf3ee 9.5px);
 			}
 		}
 		&__num {

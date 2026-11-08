@@ -27,7 +27,9 @@ $ms-bg: #2f2521;
 		inset: 0;
 		background:
 			radial-gradient(22% 30% at 20% 22%, rgba(196, 146, 118, .16), rgba(196, 146, 118, 0) 100%),
-			url("/assets/templates/redesign/img/master-bg.webp") 0 0 / 100% 100% no-repeat,
+			// высота +2px: на дробной высоте блока картинка не докрывала последнюю строку пикселей — под ней
+			// просвечивала заливка $ms-bg тёмной линией на стыке с «Галереей»
+			url("/assets/templates/redesign/img/master-bg.webp") 0 0 / 100% calc(100% + 2px) no-repeat,
 			$ms-bg;
 	}
 	&__lines {

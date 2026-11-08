@@ -743,7 +743,9 @@
 
 	var tl = gsap.timeline({ defaults: { ease: 'expo.out' }, onComplete: function () { doc.classList.add('lb-anim-done'); } });
 	tl.from(bg, { scale: 1.06, opacity: 0, duration: 2.2, ease: 'power3.out', clearProps: 'transform' }, 0)
-		.from(isDesktop() ? '.lb-header__logo, .lb-nav, .lb-lang, .lb-header__right' : '.lb-header__logo, .lb-header__right', { y: -24, opacity: 0, duration: 1.2, stagger: 0.08, clearProps: 'transform' }, 0.35)
+		/* пункты меню анимируются по ссылкам, не целиком .lb-nav: transform на .lb-nav / li становится containing block
+		   для мега-панели — при наведении во время интро она уезжала влево */
+		.from(isDesktop() ? '.lb-header__logo, .lb-nav__list > li > .lb-nav__link, .lb-lang, .lb-header__right' : '.lb-header__logo, .lb-header__right', { y: -24, opacity: 0, duration: 1.2, stagger: isDesktop() ? 0.035 : 0.08, clearProps: 'transform' }, 0.35)
 		.from(q('.lb-hero__t1, .lb-hero__t2, .lb-hero__t3'), { yPercent: 55, opacity: 0, duration: 1.6, stagger: 0.14 }, 0.5)
 		.from(q('.lb-hero__line'), { scaleX: 0, duration: 1.2 }, 1.05)
 		.from(q('.lb-hero__sub'), { y: 20, opacity: 0, duration: 1.2 }, 1.1)
