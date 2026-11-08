@@ -16,7 +16,8 @@ $mg-line: rgba(201, 139, 121, .22);
 	:where(p) {
 		margin: 0;
 	}
-	:where(a) {
+	// кнопки не трогаем: иначе .lb-mega :where(a) (0,1,0, позже _ui) перебивал цвет .lb-btn--solid — текст «Fă o programare» был тёмным
+	:where(a:not(.lb-btn)) {
 		text-decoration: none;
 		color: inherit;
 	}
@@ -433,13 +434,4 @@ $mg-line: rgba(201, 139, 121, .22);
 			font-size: 21px;
 		}
 	}
-}
-
-// ----- посещённые ссылки (:visited) выглядят как обычные -----
-// :where() — специфичность как у базового класса, поэтому hover/active по-прежнему перекрывают
-.lb-mega__link:where(:visited) {
-	color: $mg-text;
-}
-.lb-mega__pill:where(:visited) {
-	color: $mg-ink;
 }

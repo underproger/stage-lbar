@@ -1,0 +1,40 @@
+// ===== Посещённые ссылки (:visited) =====
+// Старый /assets/templates/css/reset.css (общий для всех страниц, не правим): a:visited{color:#a78e85} — специфичность (0,1,1),
+// поэтому перебивает цвета ссылок, заданные одним классом (0,1,0): посещённые пункты меню, кнопки, телефоны становились серыми.
+// Здесь посещённым ссылкам возвращается их обычный цвет. Селектор «.класс:is(a):where(:visited)» = (0,1,1) и стоит позже reset.css —
+// выигрывает у него, но hover/active-правила (0,2,0 и выше) по-прежнему сильнее. Файл подключается последним.
+// Проверка: python3 -I _dev/tools/visited_check.py URL 1440 / 390 — должен выводить пустой список.
+@mixin lb-visited($c) {
+	&:is(a):where(:visited) {
+		color: $c;
+	}
+}
+
+// кнопки
+.lb-btn--solid { @include lb-visited(#fff8f3); }
+.lb-btn--ghost { @include lb-visited(#221a16); }
+.lb-scard__btn { @include lb-visited(inherit); } // в карточке услуг ghost-кнопка берёт цвет текста карточки
+
+// шапка, меню, мега-меню, мобильное меню
+.lb-header__logo,
+.lb-footer__logo { @include lb-visited(transparent); }
+.lb-header__phone,
+.lb-mnav__phone { @include lb-visited(#2b1d18); }
+.lb-nav__link { @include lb-visited(rgba(43, 29, 24, .88)); }
+.lb-mega__link { @include lb-visited(#4a3a33); }
+.lb-mega__pill { @include lb-visited(#2c1f19); }
+
+// блоки
+.lb-implica__play { @include lb-visited(#23262b); }
+.lb-contact__big,
+.lb-contact__mail { @include lb-visited(#231914); }
+
+// подвал
+.lb-footer__soc { @include lb-visited(#e8cdb9); }
+.lb-footer__phone { @include lb-visited(#fff4ec); }
+.lb-footer__mail { @include lb-visited(#e6d6cc); }
+
+// ссылки, которые наследуют цвет родителя (картинки, ссылка в подписи подвала)
+.lb-mega__promo-img,
+.lb-scard__img,
+.lb-footer__dev a { @include lb-visited(inherit); }
