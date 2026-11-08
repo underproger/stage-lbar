@@ -81,13 +81,9 @@ $seo-d: 54;
 	& &__head h2#{&}__title {
 		margin: 0;
 		padding: 0 vw(40) 0 0;
-		font-family: $f-text;
-		font-size: vw(46);
-		font-weight: 600;
-		font-style: normal;
-		line-height: 1.22;
-		letter-spacing: -.012em;
-		text-transform: none;
+		@include lb-title;
+		@include lb-h(2);
+		line-height: 1.15;
 		text-align: left;
 		color: $seo-ink;
 	}
@@ -149,13 +145,9 @@ $seo-d: 54;
 	& &__body > h2 {
 		margin: 0 0 vw(22);
 		padding: 0;
-		font-family: $f-text;
-		font-size: vw(36);
-		font-weight: 600;
-		font-style: normal;
-		line-height: 1.28;
-		letter-spacing: -.01em;
-		text-transform: none;
+		@include lb-title;
+		@include lb-h(2);
+		line-height: 1.15;
 		text-align: left;
 		color: $seo-ink;
 		&:not(:first-child) {
@@ -209,14 +201,11 @@ $seo-d: 54;
 	& &__body > h3 {
 		position: relative;
 		margin: 0;
-		padding: vw(13) 0 vw(16) vw($seo-g);
-		font-family: $f-text;
-		font-size: vw(19.5);
-		font-weight: 700;
-		font-style: normal;
-		line-height: vw(28);
-		letter-spacing: 0;
-		text-transform: none;
+		// строка заголовка (vw(40)) по центру кружка (центр — vw(27))
+		padding: vw(7) 0 vw(14) vw($seo-g);
+		@include lb-title;
+		@include lb-h(3);
+		line-height: vw(40);
 		text-align: left;
 		color: $seo-ink;
 		// кружок
@@ -315,8 +304,7 @@ $seo-md: 30;
 		}
 		& &__head h2#{&}__title {
 			padding: 0;
-			font-size: min(mvw(26), 38px);
-			line-height: 1.25;
+			line-height: 1.2;
 		}
 		&__lead {
 			margin-top: 20px;
@@ -335,8 +323,7 @@ $seo-md: 30;
 		}
 		& &__body > h2 {
 			margin-bottom: 14px;
-			font-size: min(mvw(22), 30px);
-			line-height: 1.3;
+			line-height: 1.2;
 			&:not(:first-child) {
 				margin-top: 40px;
 				padding-top: 40px;
@@ -371,9 +358,8 @@ $seo-md: 30;
 			margin: 0 0 12px #{$seo-mg}px;
 		}
 		& &__body > h3 {
-			padding: 5px 0 12px #{$seo-mg}px;
-			font-size: 16px;
-			line-height: 20px;
+			padding: 1px 0 12px #{$seo-mg}px;
+			line-height: 28px;
 			&::before {
 				left: #{$seo-mx - math.div($seo-md, 2)}px;
 				width: #{$seo-md}px;

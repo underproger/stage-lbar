@@ -65,22 +65,17 @@ $rv-gold: #d29a3e;
 	& &__head h2#{&}__title {
 		margin: 0;
 		@include lb-title;
-		font-size: vw(62);
-		line-height: vw(76);
+		@include lb-h(2);
+		line-height: 1.18;
 		color: $rv-ink;
 		text-align: center;
 		em {
 			@include lb-accent;
 			display: inline-block;
-			font-size: 1.08em;
+			font-size: $lb-h-accent;
 			line-height: 1;
 			padding-right: .06em;
 		}
-	}
-	// RU — две строки, кириллица в курсиве шире
-	html[lang="ru"] & &__head h2#{&}__title {
-		font-size: vw(62);
-		line-height: vw(74);
 	}
 	&__line {
 		display: block;
@@ -723,11 +718,6 @@ html.is-lb-modal {
 			padding: 0 20px;
 		}
 		& &__head h2#{&}__title {
-			font-size: min(mvw(33), 46px);
-			line-height: 1.16;
-		}
-		html[lang="ru"] & &__head h2#{&}__title {
-			font-size: min(mvw(30), 42px);
 			line-height: 1.16;
 		}
 		&__line {

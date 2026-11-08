@@ -77,25 +77,28 @@
 	}
 
 	// — заголовок (текст из TV title_bl1_about; часть после тире — курсивом) —
+	// не h2 (структура заголовков не менялась), но визуально — заголовок блока: размер h2 из общей шкалы
 	&__title {
 		margin-top: vw(28);
 		font-family: $f-display;
+		@include lb-h(2);
 		font-weight: 500;
 		line-height: 1;
 		color: #24130f;
 	}
 	&__t1 {
 		display: block;
-		font-size: vw(80);
+		font-size: 1em;
+		line-height: 1.1;
 		font-weight: 500;
 		letter-spacing: -.02em;
 	}
 	&__t2 {
 		display: block;
-		margin-top: vw(10);
-		margin-left: vw(-12);
+		margin-top: vw(4);
+		margin-left: vw(-8);
 		font-family: $f-serif;
-		font-size: vw(73);
+		font-size: $lb-h-accent;
 		font-style: italic;
 		font-weight: 420;
 		font-stretch: 80%;
@@ -312,12 +315,8 @@
 		&__title {
 			margin-top: 16px;
 		}
-		&__t1 {
-			font-size: mvw(36);
-		}
 		&__t2 {
 			margin: 4px 0 0;
-			font-size: mvw(30);
 		}
 		&__textwrap {
 			width: auto;
@@ -434,15 +433,6 @@
 		min-height: vw(1080);
 		padding: vw(80) 0 vw(110);
 	}
-	.lb-about__title--long {
-		.lb-about__t1 {
-			font-size: vw(60);
-			line-height: 1.08;
-		}
-		.lb-about__t2 {
-			font-size: vw(58);
-		}
-	}
 	.lb-about__textwrap {
 		margin-top: vw(38);
 	}
@@ -473,14 +463,6 @@
 			display: block;
 			min-height: 0;
 			padding: 24px 22px 0;
-		}
-		.lb-about__title--long {
-			.lb-about__t1 {
-				font-size: mvw(30);
-			}
-			.lb-about__t2 {
-				font-size: mvw(28);
-			}
 		}
 		.lb-about__textwrap {
 			margin-top: 18px;

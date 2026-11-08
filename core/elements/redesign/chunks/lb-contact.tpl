@@ -5,8 +5,8 @@
    H2 — прежний лексикон lbar.contacts.title. Телефон и почта — настройки phone-1 / e-mail, карта — настройка google-map (iframe Google),
    как раньше (в {disableSource} — карта не отдаётся Lighthouse); в RO язык карточки Google — румынский. Адрес, метро, трамвай, график —
    лексикон lbar.rd.contacts.* (у метро время после « – » выводится второй строкой).
-   Страница «Контакты» (шаблон «Контакты», 9): блок — первый экран под шапкой: H1 — pagetitle (как в старом banner-interial-contact)
-   надзаголовком над «Contact», хлебные крошки — pdoCrumbs с прежними параметрами и микроразметкой — под картой.
+   Страница «Контакты» (шаблон «Контакты», 9): над блоком — баннер lb-shero (H1 — pagetitle и хлебные крошки, как в старом
+   banner-interial-contact); модификатор lb-contact--page — только для стыков (снизу — «Запись», а не подвал).
    Якорь #conract (старые ссылки) сохранён. *}
 {set $isRu = $_modx->config.cultureKey == 'ru'}
 {set $isRo = !$isRu}
@@ -21,7 +21,6 @@
     <div class="lb-contact__bg" aria-hidden="true"></div>
     <div class="lb-contact__inner">
         <div class="lb-contact__main">
-            {if $page}<h1 class="lb-contact__eyebrow">{$_modx->resource.pagetitle}</h1>{/if}
             <div class="lb-contact__head">
                 <h2 class="lb-contact__title">{$_modx->lexicon('lbar.contacts.title')}</h2>
                 <span class="lb-contact__line" aria-hidden="true">{$star}</span>
@@ -31,18 +30,6 @@
                 <div class="lb-contact__mapph" aria-hidden="true"></div>
                 <div class="lb-contact__frame">{disableSource}{if $isRu}[[++google-map:replace=`<iframe ==<iframe title="{$mapTitle}" `]]{else}[[++google-map:replace=`!1sru!2sro==!1sro!2sro`:replace=`<iframe ==<iframe title="{$mapTitle}" `]]{/if}{/disableSource}</div>
             </div>
-            {if $page}
-            <nav class="lb-crumbs lb-contact__crumbs" aria-label="{$isRo ? 'Navigare' : 'Навигация'}">
-                {$_modx->runSnippet('!pdoCrumbs', [
-                    'showHome' => 1,
-                    'showAtHome' => 0,
-                    'tplWrapper' => '@INLINE <ol class="lb-crumbs__list" itemscope itemtype="http://schema.org/BreadcrumbList">[[+output]]</ol>',
-                    'tplHome' => '@INLINE <li class="lb-crumbs__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a class="lb-crumbs__link lb-crumbs__link--home" href="[[+link]]" itemprop="item"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.2 10 3l7 6.2"/><path d="M5 8v9h4v-5h2v5h4V8"/></svg><span itemprop="name">[[+menutitle]]</span><meta itemprop="position" content="[[+idx]]" /></a></li>',
-                    'tpl' => '@INLINE <li class="lb-crumbs__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a class="lb-crumbs__link" href="[[+link]]" itemprop="item"><span itemprop="name">[[+menutitle]]</span><meta itemprop="position" content="[[+idx]]" /></a></li>',
-                    'tplCurrent' => '@INLINE <li class="lb-crumbs__item lb-crumbs__item--current" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span itemprop="name">[[+menutitle]]</span><div itemprop="item" content="[[++site_url]][[+link]]"></div><meta itemprop="position" content="[[+idx]]" /></li>',
-                ])}
-            </nav>
-            {/if}
         </div>
 
         <div class="lb-contact__card">

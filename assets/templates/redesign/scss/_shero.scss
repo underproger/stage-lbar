@@ -138,17 +138,10 @@ $sh-text: #4a3a33;
 		margin: vw(30) 0 0;
 		padding: 0;
 		@include lb-title;
-		font-size: vw(88);
-		line-height: 1.08;
+		@include lb-h(1);
+		line-height: 1.1;
 		color: $sh-ink;
 		text-transform: none;
-		&--m {
-			font-size: vw(72);
-		}
-		&--l {
-			font-size: vw(60);
-			line-height: 1.12;
-		}
 	}
 	&__t1,
 	&__t2 {
@@ -159,6 +152,7 @@ $sh-text: #4a3a33;
 	}
 	&__t2 {
 		@include lb-accent;
+		font-size: $lb-h-accent;
 		padding: 0 .08em .06em 0;
 	}
 	&__sub {
@@ -387,13 +381,6 @@ $sh-text: #4a3a33;
 		}
 		& &__content h1#{&}__title {
 			margin-top: 16px;
-			font-size: mvw(44);
-			&--m {
-				font-size: mvw(38);
-			}
-			&--l {
-				font-size: mvw(32);
-			}
 		}
 		&__sub {
 			max-width: none;

@@ -71,23 +71,16 @@ $fq-copper: #a87856;
 	& &__intro h2#{&}__title {
 		margin: 0;
 		@include lb-title;
-		font-size: vw(72);
-		line-height: vw(80);
+		@include lb-h(2);
+		line-height: 1.12;
 		color: $fq-ink;
 		text-align: left;
 		em {
 			@include lb-accent;
 			display: inline-block;
-			font-size: 1.12em;
+			font-size: $lb-h-accent;
 			line-height: 1;
 			padding-right: .06em;
-		}
-	}
-	// RU: курсив «часто задаваемые» шире — чуть меньше кегль, чтобы строка не переносилась
-	html[lang="ru"] & &__intro h2#{&}__title {
-		@include desktop {
-			font-size: vw(66);
-			line-height: vw(74);
 		}
 	}
 	&__line {
@@ -334,7 +327,6 @@ $fq-copper: #a87856;
 			padding: 0 6px;
 		}
 		& &__intro h2#{&}__title {
-			font-size: min(mvw(38), 56px);
 			line-height: 1.12;
 		}
 		&__flourish {

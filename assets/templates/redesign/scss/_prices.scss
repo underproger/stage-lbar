@@ -78,13 +78,13 @@
 		margin: vw(16) 0 0;
 		padding: 0;
 		@include lb-title;
-		font-size: vw(46);
+		@include lb-h(2);
 		line-height: 1.12;
 		text-align: left;
 		color: #24130f;
 		em {
 			@include lb-accent;
-			font-size: 1.04em;
+			font-size: $lb-h-accent;
 		}
 	}
 	&__text {
@@ -130,7 +130,6 @@
 		}
 		& &__head h2#{&}__title {
 			margin-top: 8px;
-			font-size: min(#{mvw(28)}, 40px);
 		}
 		&__text {
 			margin-top: 10px;

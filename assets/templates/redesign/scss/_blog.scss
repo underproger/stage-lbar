@@ -44,15 +44,16 @@ $bl-ink: #2f1f18;
 		align-items: center;
 		text-align: center;
 	}
+	// не h2 (структура заголовков не менялась), но визуально — заголовок блока: размер h2 из общей шкалы
 	&__title {
 		@include lb-title;
-		font-size: vw(72);
-		line-height: vw(84);
+		@include lb-h(2);
+		line-height: 1.15;
 		color: $bl-ink;
 		em {
 			@include lb-accent;
 			display: inline-block;
-			font-size: 1.12em;
+			font-size: $lb-h-accent;
 			line-height: 1;
 			padding-right: .06em;
 		}
@@ -241,7 +242,6 @@ $bl-ink: #2f1f18;
 			width: auto;
 		}
 		&__title {
-			font-size: min(mvw(40), 58px);
 			line-height: 1.15;
 		}
 		&__flourish {

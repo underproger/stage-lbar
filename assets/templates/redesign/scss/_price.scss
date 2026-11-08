@@ -74,21 +74,16 @@ $pr-bg: #f8efea;
 	& &__intro h2#{&}__title {
 		margin: 0;
 		@include lb-title;
-		font-size: vw(69);
-		line-height: vw(75.5);
+		@include lb-h(2);
+		line-height: 1.1;
 		color: #2b2521;
 		em {
 			@include lb-accent;
 			display: inline-block;
-			font-size: 1.03em;
+			font-size: $lb-h-accent;
 			line-height: 1;
 			padding-right: .06em;
 		}
-	}
-	// кириллица шире: RU-заголовок в 4 строки и чуть меньше
-	html[lang="ru"] & &__intro h2#{&}__title {
-		font-size: vw(66);
-		line-height: vw(72);
 	}
 	&__line-t {
 		display: block;
@@ -464,7 +459,6 @@ $pt-cols: vw(654) vw(282) vw(225);
 			position: relative;
 			z-index: 1;
 			padding: 0 22px;
-			font-size: min(#{mvw(36)}, 54px); // планшет — без гигантского заголовка
 			line-height: 1.12;
 		}
 		&__cta.lb-btn {

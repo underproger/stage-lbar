@@ -355,8 +355,8 @@ $ar-copper: #a87856;
 			margin: 1.9em 0 .7em;
 			padding: 0;
 			@include lb-title;
-			font-size: vw(40);
-			line-height: 1.18;
+			@include lb-h(2);
+			line-height: 1.15;
 			text-align: left;
 			text-transform: none;
 			color: $ar-ink;
@@ -364,10 +364,9 @@ $ar-copper: #a87856;
 		h3 {
 			margin: 1.6em 0 .55em;
 			padding: 0;
-			font-family: $f-text;
-			font-size: vw(24);
-			font-weight: 600;
-			line-height: 1.3;
+			@include lb-title;
+			@include lb-h(3);
+			line-height: 1.2;
 			text-align: left;
 			text-transform: none;
 			color: $ar-ink;
@@ -492,16 +491,37 @@ $ar-copper: #a87856;
 	& &__body h2 {
 		font-family: $f-display;
 		font-weight: 500;
-		font-size: vw(40);
-		line-height: 1.18;
+		@include lb-h(2);
+		line-height: 1.15;
 		color: $ar-ink;
 	}
 	& &__body h3 {
-		font-family: $f-text;
-		font-weight: 600;
-		font-size: vw(24);
-		line-height: 1.3;
+		font-family: $f-display;
+		font-weight: 500;
+		@include lb-h(3);
+		line-height: 1.2;
 		color: $ar-ink;
+	}
+	// h4–h6 в текстах сейчас нет — на случай появления: та же шкала, шрифт текста
+	& &__body :is(h4, h5, h6) {
+		margin: 1.4em 0 .5em;
+		padding: 0;
+		font-family: $f-text;
+		font-style: normal;
+		font-weight: 600;
+		line-height: 1.3;
+		text-align: left;
+		text-transform: none;
+		color: $ar-ink;
+	}
+	& &__body h4 {
+		@include lb-h(4);
+	}
+	& &__body h5 {
+		@include lb-h(5);
+	}
+	& &__body h6 {
+		@include lb-h(6);
 	}
 
 	&__action {
@@ -756,7 +776,7 @@ $ar-copper: #a87856;
 		align-items: baseline;
 		gap: vw(16);
 		@include lb-title;
-		font-size: vw(46);
+		@include lb-h(2); // не h2, но визуально — заголовок блока: размер h2 из общей шкалы
 		line-height: 1.1;
 		color: $ar-ink;
 	}
@@ -981,12 +1001,6 @@ $ar-copper: #a87856;
 			font-size: 15.5px;
 			line-height: 1.72;
 		}
-		& &__body h2 {
-			font-size: min(#{mvw(26)}, 36px);
-		}
-		& &__body h3 {
-			font-size: 18px;
-		}
 		&__body {
 			ul,
 			ol {
@@ -1124,7 +1138,6 @@ $ar-copper: #a87856;
 		&__title {
 			gap: 10px;
 			padding: 0 4px;
-			font-size: 30px;
 		}
 		&__grid {
 			grid-template-columns: 1fr;

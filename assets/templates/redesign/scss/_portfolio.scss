@@ -56,12 +56,12 @@ $pf-bg: #f8f1ec;
 	& &__head h2#{&}__title {
 		margin: 0;
 		@include lb-title;
-		font-size: vw(72);
-		line-height: vw(80);
+		@include lb-h(2);
+		line-height: 1.12;
 		color: #24130f;
 		em {
 			@include lb-accent;
-			font-size: 1.04em;
+			font-size: $lb-h-accent;
 			line-height: 0;
 			padding-right: .05em;
 		}
@@ -144,7 +144,6 @@ $pf-bg: #f8f1ec;
 			padding: 0 22px;
 		}
 		& &__head h2#{&}__title {
-			font-size: mvw(34);
 			line-height: 1.18;
 		}
 		&__sub {

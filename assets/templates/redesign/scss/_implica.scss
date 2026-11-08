@@ -94,12 +94,12 @@ $im-bg: #f4ebe7;
 	& &__col h2#{&}__title {
 		margin: vw(14) 0 0;
 		@include lb-title;
-		font-size: vw(72);
-		line-height: vw(78);
+		@include lb-h(2);
+		line-height: 1.12;
 		color: #24130f;
 		em {
 			@include lb-accent;
-			font-size: 1.12em;
+			font-size: $lb-h-accent;
 			line-height: 0;
 			padding-right: .04em;
 		}
@@ -407,7 +407,6 @@ $im-bg: #f4ebe7;
 		}
 		& &__col h2#{&}__title {
 			margin-top: 14px;
-			font-size: mvw(30);
 			line-height: 1.14;
 			word-spacing: 0;
 		}

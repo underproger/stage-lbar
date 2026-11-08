@@ -26,8 +26,6 @@
 {set $t = ($hub ? $r.pagetitle : $r['title-banner']) | trim}
 {set $first = $t | ereplace : '~\s.*$~s' : ''}
 {set $rest = $t | ereplace : '~^\S+\s*~' : ''}
-{set $len = $t | length}
-{set $size = $len > 45 ? ' lb-shero__title--l' : ($len > 30 ? ' lb-shero__title--m' : '')}
 {set $eyebrow = $_modx->runSnippet('pdoField', ['id' => $_modx->config.site_start, 'field' => 'suptitle-banner']) | trim}
 
 {* преимущества *}
@@ -89,7 +87,7 @@
     <div class="lb-shero__inner">
         <div class="lb-shero__content">
             {if $eyebrow}<p class="lb-shero__eyebrow">{$eyebrow}</p>{/if}
-            <h1 class="lb-shero__title{$size}"{if $art} itemprop="headline"{/if}><span class="lb-shero__t1">{$first}</span>{if $rest} <span class="lb-shero__t2">{$rest}</span>{/if}</h1>
+            <h1 class="lb-shero__title"{if $art} itemprop="headline"{/if}><span class="lb-shero__t1">{$first}</span>{if $rest} <span class="lb-shero__t2">{$rest}</span>{/if}</h1>
             {if $hub}
             {* длинный текст (у мастеров — биография, 1–2 тыс. знаков) в баннер не помещается — его выводит блок под баннером (lb-pgallery) *}
             {set $hdesc = $r['description-banner-inerial'] | trim}

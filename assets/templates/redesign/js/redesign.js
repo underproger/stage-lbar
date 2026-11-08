@@ -780,7 +780,6 @@
 		]);
 		revealBlock(document.querySelector('.lb-contact'), 'top 70%', [
 			['.lb-contact__bg', { opacity: 0, duration: 1.8, ease: 'power2.out' }, 0],
-			['.lb-contact__eyebrow', { x: -30, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0],
 			['.lb-contact__title', { y: 50, opacity: 0, duration: 1.4, clearProps: 'transform' }, 0.1],
 			['.lb-contact__line', { clipPath: 'inset(0% 100% 0% 0%)' }, 0.5, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.4, ease: 'power2.inOut', clearProps: 'clipPath' }],
 			['.lb-contact__sub', { y: 30, opacity: 0, duration: 1.3, clearProps: 'transform' }, 0.25],

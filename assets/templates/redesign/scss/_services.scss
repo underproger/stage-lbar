@@ -67,8 +67,8 @@
 	& &__intro h2#{&}__title {
 		margin-top: vw(54);
 		@include lb-title;
-		font-size: vw(58);
-		line-height: vw(64);
+		@include lb-h(2);
+		line-height: 1.15;
 		color: #24130f;
 	}
 	&__text {
@@ -224,7 +224,6 @@
 		}
 		& &__intro h2#{&}__title {
 			margin-top: 18px;
-			font-size: 34px;
 			line-height: 1.12;
 		}
 		&__text {
@@ -320,7 +319,7 @@
 		margin-top: vw(36);
 		em {
 			@include lb-accent;
-			font-size: 1.04em;
+			font-size: $lb-h-accent;
 		}
 	}
 	.lb-services__text {

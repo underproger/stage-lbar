@@ -87,8 +87,8 @@ $ms-bg: #2f2521;
 		width: vw(1090);
 		margin: 0 0 0 vw(40);
 		@include lb-title;
-		font-size: vw(62.4);
-		line-height: vw(76);
+		@include lb-h(2);
+		line-height: 1.2;
 		color: #f8f6f4;
 		&::after {
 			content: "";
@@ -96,13 +96,13 @@ $ms-bg: #2f2521;
 			width: vw(310);
 			height: 1.5px;
 			margin-left: vw(30);
-			vertical-align: vw(14);
+			vertical-align: .22em;
 			background: linear-gradient(90deg, rgba(200, 176, 156, .9), rgba(200, 176, 156, 0));
 		}
 		.gold-word {
 			@include lb-accent(true);
-			font-size: vw(73.7);
-			line-height: vw(76);
+			font-size: $lb-h-accent;
+			line-height: 1;
 			padding-right: .06em; // хвост курсива при background-clip
 		}
 	}
@@ -219,7 +219,6 @@ $ms-bg: #2f2521;
 		& &__col h2#{&}__title {
 			width: auto;
 			margin: 0;
-			font-size: mvw(30);
 			line-height: 1.2;
 			&::after {
 				width: 60px;
@@ -227,7 +226,6 @@ $ms-bg: #2f2521;
 				vertical-align: .3em;
 			}
 			.gold-word {
-				font-size: mvw(35);
 				line-height: 1.15;
 			}
 		}
@@ -290,4 +288,12 @@ $ms-bg: #2f2521;
 // RU: заголовок длиннее и выделение в середине фразы — декоративная линия после заголовка переносилась бы на отдельную строку
 html[lang="ru"] .lb-master .lb-master__col h2.lb-master__title::after {
 	display: none;
+}
+
+// окно «Получить консультацию» мастера (старая разметка .popup, старый CSS — FuturaMediumC 28px): h2 — по общей шкале заголовков
+.overlay-trainer .popup h2.popup-title {
+	@include lb-title;
+	@include lb-h(2);
+	line-height: 1.15;
+	color: #24130f;
 }

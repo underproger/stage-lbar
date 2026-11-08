@@ -97,7 +97,7 @@ $msg-copper: linear-gradient(180deg, #dcae93 0%, #ab7152 58%, #875840 100%);
 		margin: vw(26) 0 0;
 		padding: 0;
 		@include lb-title;
-		font-size: vw(78);
+		@include lb-h(1);
 		font-variant-numeric: lining-nums;
 		line-height: 1.08;
 		text-align: center;
@@ -105,6 +105,7 @@ $msg-copper: linear-gradient(180deg, #dcae93 0%, #ab7152 58%, #875840 100%);
 	}
 	&__accent {
 		@include lb-accent;
+		font-size: $lb-h-accent;
 		padding-right: .08em;
 		font-weight: 420 !important; // старый CSS: span{font-weight:400}
 	}
@@ -167,7 +168,7 @@ $msg-copper: linear-gradient(180deg, #dcae93 0%, #ab7152 58%, #875840 100%);
 	&__big {
 		margin-top: vw(10);
 		@include lb-title;
-		font-size: vw(150);
+		@include lb-h(1);
 		line-height: 1.05;
 		color: $msg-ink;
 	}
@@ -204,7 +205,6 @@ $msg-copper: linear-gradient(180deg, #dcae93 0%, #ab7152 58%, #875840 100%);
 		}
 		& &__inner h1#{&}__title {
 			margin-top: 14px;
-			font-size: min(mvw(38), 52px);
 		}
 		& &__inner &__text {
 			max-width: 520px;
@@ -236,7 +236,6 @@ $msg-copper: linear-gradient(180deg, #dcae93 0%, #ab7152 58%, #875840 100%);
 		}
 		&__big {
 			margin-top: 6px;
-			font-size: min(mvw(68), 96px);
 		}
 		&__flourish {
 			width: 200px;

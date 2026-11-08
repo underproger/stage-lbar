@@ -664,26 +664,28 @@ $seam-contact: #f8f2ee;  // «Статьи» → «Контакты»
 	}
 }
 
-// ---------- страница «Контакты»: «Контакты» (первый экран под шапкой) → «Запись» → подвал ----------
-// Верхнего стыка у блока нет (над ним только шапка), нижний — лента «Записи» (seam-book.svg) вместо тёмной волны;
-// тёмная волна в подвал — у «Записи» (в её ::before вместо ленты к «Отзывам»).
+// ---------- страница «Контакты»: баннер → «Контакты» → «Запись» → подвал ----------
+// Сверху — стык из баннера (лента seam-hero, как у других блоков после баннера), снизу — лента «Записи» (seam-book.svg) вместо
+// тёмной волны; тёмная волна в подвал — у «Записи» (в её ::before вместо ленты к «Отзывам»).
+.lb-shero + #conract + .lb-contact {
+	&::after {
+		@include lb-seam-bg("seam-hero.svg");
+	}
+}
 .lb-contact--page {
-	background: linear-gradient(180deg, $ct-bg 0, $ct-bg calc(100% - #{vw(220)}), $seam-book 100%);
+	background: linear-gradient(180deg, $seam-hero 0, $ct-bg vw(160), $ct-bg calc(100% - #{vw(220)}), $seam-book 100%);
 	padding-bottom: vw(190);
 	@include lb-seam(bottom, "seam-book.svg", before);
-	&::after {
-		content: none;
-	}
 	.lb-contact__bg {
-		-webkit-mask-image: linear-gradient(180deg, #000 calc(100% - #{vw(240)}), transparent calc(100% - #{vw(60)}));
-		mask-image: linear-gradient(180deg, #000 calc(100% - #{vw(240)}), transparent calc(100% - #{vw(60)}));
+		-webkit-mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .5) vw(70), #000 vw(190), #000 calc(100% - #{vw(240)}), transparent calc(100% - #{vw(60)}));
+		mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .5) vw(70), #000 vw(190), #000 calc(100% - #{vw(240)}), transparent calc(100% - #{vw(60)}));
 	}
 	@include mobile {
-		background: linear-gradient(180deg, $ct-bg 0, $ct-bg calc(100% - 100px), $seam-book 100%);
+		background: linear-gradient(180deg, $seam-hero 0, $ct-bg 90px, $ct-bg calc(100% - 100px), $seam-book 100%);
 		padding-bottom: 90px;
 		.lb-contact__bg {
-			-webkit-mask-image: linear-gradient(180deg, #000 calc(100% - 120px), transparent calc(100% - 20px));
-			mask-image: linear-gradient(180deg, #000 calc(100% - 120px), transparent calc(100% - 20px));
+			-webkit-mask-image: linear-gradient(180deg, transparent 0, #000 110px, #000 calc(100% - 120px), transparent calc(100% - 20px));
+			mask-image: linear-gradient(180deg, transparent 0, #000 110px, #000 calc(100% - 120px), transparent calc(100% - 20px));
 		}
 	}
 }

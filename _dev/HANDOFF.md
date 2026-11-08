@@ -15,6 +15,7 @@
 ## 2. Правила пользователя (важно)
 
 - Общение — по-русски, коротко и по делу.
+- **Заголовки**: все заголовки одного уровня — одного размера по всему сайту, h1 > h2 > h3 > … (шкала `lb-h` в `_base.scss`, п. 34). H1 страницы — в баннере.
 - Конфиги и кэш — **в `.gitignore`** (`config.core.php` ×3, `core/config/config.inc.php`, `core/cache/`, `assets/image-cache/`, `webp/`). Конфиги на хостинг кладёт сам.
 - **БД:** полную базу больше не присылать. Присылать **только SQL-патч, когда БД реально изменилась**; если не менялась — так и сказать («импорт не нужен»).
   Патч генерить `_dev/tools/make_patch.sh` (все чанки категории *Redesign* + шаблоны «Главная» (1) и «Категория» (8)) и **проверять импортом** на копии.
@@ -494,6 +495,21 @@
    Цвета посещённых ссылок блога поправлены (`_visited.scss`: рубрика, соцсети, соседние статьи, боковая колонка, карточки списка).
    SEO 35 страниц блога (`/home/claude/b25/base`) — без изменений.
 
+34. **«Контакты»: H1 снова в баннере + единая шкала заголовков (v1.27.0)** — скрипт `_dev/tools/modx_apply26.php`.
+   - Страница «Контакты» (шаблон 9): по просьбе пользователя H1 вернулся в баннер — `lb-header`, **`lb-shero`** (hub: H1 = pagetitle,
+     крошки, как в старом banner-interial-contact), `lb-contact` (обычный блок, H2 «Contact»; модификатор `--page` — только стыки:
+     сверху из баннера seam-hero, снизу к «Записи»), `lb-book`, `lb-footer`. Надзаголовок-H1 и крошки внутри lb-contact убраны.
+   - **Шкала заголовков** (просьба пользователя: все заголовки одного уровня — одного размера, h1 > h2 > h3 …): `_base.scss` —
+     `$lb-h` (десктоп, px макета 1920: h1 68, h2 52, h3 34, h4 27, h5 22, h6 19), `$lb-h-m` (телефон: 36 / 29 / 23 / 20 / 18 / 16),
+     миксин `lb-h($n)`, курсивный акцент в заголовке — `$lb-h-accent` (1.08em). Применено ко всем h1–h3 редизайна: lb-shero (без
+     размеров --m/--l по длине), lb-msg (404), все H2 блоков (services, implica, master, portfolio, price, reviews, faq, seo, contact,
+     prices), h2/h3 в текстах (SEO-блок, статья; h4–h6 статьи — на случай появления), h2 окна мастера (.popup-title).
+     H2/H3 SEO-блока и H3 статьи — теперь шрифтом заголовков (Playfair), как остальные; кружки таймлайна SEO выровнены по строке H3.
+     Визуальные заголовки блоков без тега (lb-about, lb-consult/lb-book, lb-blog, lb-comments) — размера h2, «Mulțumesc» — h1.
+     **Исключение — H1 главного баннера (lb-hero)**: композиция макета (крупное «premium»), оставлена — сообщено пользователю.
+     Новые блоки/тексты: размер заголовка — только через `@include lb-h(n)`, без своих font-size (и без font-size в mobile).
+   - SEO всех снимков (b19, b22–b27) — без изменений, кроме уже известных (H2 «Контактов», JSON-LD 404/«Спасибо»).
+
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
 `stage-lbar-05-consult.sql` (чанки `lb-consult` id 275, `lb.formConsult` id 276 + все чанки Redesign + шаблон «Главная»),
@@ -521,11 +537,12 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `stage-lbar-32-contact.sql` (новый вид «Контактов», страница «Контакты» — **шаблон 9**; статья — снова строка сведений; версия 1.25.0).
 `stage-lbar-33-404-thanks.sql` (404 и «Спасибо»: чанки `lb-404`, `lb-thanks` + **шаблоны 2 и 6**; версия 1.26.0).
 `stage-lbar-34-article-banner.sql` (баннер статьи по макету — чанк `lb-shero`; версия 1.26.1).
-Патчи проверены импортом. После 34 БД **не менялась** (кроме локальной настройки phpThumb выше).
+`stage-lbar-35-headings.sql` («Контакты»: H1 в баннере — **шаблон 9**; единая шкала заголовков; версия 1.27.0).
+Патчи проверены импортом. После 35 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — по решению пользователя
 
-В новом дизайне (п. 1–33): главная, услуги (8), «Услуги»/«Обучение», портфолио (10, 13), «Цены», «О нас», вакансии, «Отзывы», Gift Voucher
+В новом дизайне (п. 1–34): главная, услуги (8), «Услуги»/«Обучение», портфолио (10, 13), «Цены», «О нас», вакансии, «Отзывы», Gift Voucher
 (3, 14, 16), блог (4, 5), «Контакты» (9), 404 (2), «Спасибо» (6). На старых шаблонах остались только курс (15: 182 — не трогать),
 «Категория NEW» (19: 321/625 — не трогать) и служебные без шаблона (22, 23, 195, 196).
 
@@ -578,7 +595,7 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 
 1. Подключить репо (`add_repo underproger/stage-lbar`, push), клонировать в `/home/claude/stage-lbar`.
 2. Пользователь прикладывает дамп и патчи **по порядку**: дамп хостинга `mysql_impua_testlbar_….tar.gz` (исходная база, без патчей),
-   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`, `-15-footer.sql`, `-16-mega.sql`, `-17-fixes.sql`, `-18-visited.sql`, `-19-lang-blog.sql`, `-20-lang-slug.sql`, `-21-services-banner.sql`, `-22-buttons.sql`, `-23-hero.sql`, `-24-services.sql`, `-25-seo-img.sql`, `-26-logo-hubs.sql`, `-27-portfolio.sql`, `-28-hub-banner.sql`, `-29-pages.sql`, `-30-blog.sql`, `-31-blog-info.sql`, `-32-contact.sql`, `-33-404-thanks.sql`, `-34-article-banner.sql`
+   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`, `-15-footer.sql`, `-16-mega.sql`, `-17-fixes.sql`, `-18-visited.sql`, `-19-lang-blog.sql`, `-20-lang-slug.sql`, `-21-services-banner.sql`, `-22-buttons.sql`, `-23-hero.sql`, `-24-services.sql`, `-25-seo-img.sql`, `-26-logo-hubs.sql`, `-27-portfolio.sql`, `-28-hub-banner.sql`, `-29-pages.sql`, `-30-blog.sql`, `-31-blog-info.sql`, `-32-contact.sql`, `-33-404-thanks.sql`, `-34-article-banner.sql`, `-35-headings.sql`
    (вместо дампа+urls+01 может прийти `lbar-full-stage-2026-11-06.sql.gz` — это то же самое).
 3. `cd /home/claude/stage-lbar && bash _dev/setup_local.sh <дамп> <urls> <01> <02> <03> <04> <05> <06> <07> <08> <09> <10> <11>` (файлы — по порядку; .tar.gz/.gz/.sql, строка sandbox вырезается) — поднимет MariaDB, Apache+SSL, PHP-полифилл,
    конфиги из `_dev/local-config`, hosts (`stage-lbar.touchit.vinnica.ua` → 127.0.0.1), симлинк `/home/impua/lbar.ro/www` → репо,

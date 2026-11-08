@@ -57,16 +57,17 @@ $cs-bg: #f9f2ed;
 			transform-origin: left center;
 		}
 	}
+	// не h2 (структура заголовков не менялась), но визуально — заголовок блока: размер h2 из общей шкалы
 	&__title {
 		margin-top: vw(54);
 		@include lb-title;
-		font-size: vw(84);
-		line-height: vw(96);
+		@include lb-h(2);
+		line-height: 1.15;
 		color: #24130f;
 		em {
 			@include lb-accent;
 			margin-left: -.04em;
-			font-size: 1.12em;
+			font-size: $lb-h-accent;
 			line-height: 0;
 			padding-right: .06em;
 		}
@@ -379,7 +380,6 @@ $cs-bg: #f9f2ed;
 		}
 		&__title {
 			margin-top: 16px;
-			font-size: mvw(42);
 			line-height: 1.12;
 		}
 		&__line:has(em) {
