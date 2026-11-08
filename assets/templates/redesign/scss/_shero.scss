@@ -250,12 +250,19 @@ $sh-text: #4a3a33;
 		}
 	}
 
+	// кнопки не сжимаются flex-контейнером (иначе текст со стрелкой не помещался и стрелка на hover упиралась в край);
+	// чтобы обе влезли до изгиба фото — чуть меньше кегль и разрядка, поля по краям vw(44)
 	&__btns {
 		display: flex;
-		gap: vw(24);
+		gap: vw(20);
 		margin-top: vw(56);
 		.lb-btn {
+			flex: none;
 			height: vw(64);
+			padding: 0 vw(44);
+			gap: vw(18);
+			font-size: vw(15.5);
+			letter-spacing: .14em;
 		}
 	}
 }
@@ -436,6 +443,10 @@ $sh-text: #4a3a33;
 			.lb-btn {
 				width: 100%;
 				height: 56px;
+				padding: 0 28px;
+				gap: 14px;
+				font-size: 12.5px;
+				letter-spacing: .16em;
 			}
 		}
 	}

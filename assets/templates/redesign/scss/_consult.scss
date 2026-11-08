@@ -474,6 +474,7 @@ $cs-bg: #f9f2ed;
 			margin: 22px 0 0;
 			padding: 0 56px 0 28px;
 			font-size: 12.5px;
+			letter-spacing: .12em; // RU «Записаться на консультацию» не помещался перед стрелкой
 			.lb-btn__arr {
 				right: 24px;
 				margin-top: -6px;
