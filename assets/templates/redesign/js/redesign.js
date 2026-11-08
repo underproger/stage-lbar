@@ -782,6 +782,10 @@
 
 	var tl = gsap.timeline({ defaults: { ease: 'expo.out' }, onComplete: function () { doc.classList.add('lb-anim-done'); } });
 	tl.from(bg, { scale: 1.06, opacity: 0, duration: 2.2, ease: 'power3.out', clearProps: 'transform' }, 0)
+		.from(q('.lb-hero__master'), { y: 50, opacity: 0, duration: 1.8, ease: 'power3.out', clearProps: 'transform' }, 0.25)
+		.from(q('.lb-hero__letters'), { y: 80, opacity: 0, duration: 2.2, ease: 'power3.out', clearProps: 'transform' }, 0.6)
+		.from(q('.lb-hero__vline'), { clipPath: 'inset(0% 0% 100% 0%)', duration: 1.8, ease: 'power2.inOut', clearProps: 'clipPath' }, 0.55)
+		.from(q('.lb-hero__arches'), { clipPath: 'inset(100% 0% 0% 0%)', duration: 2, ease: 'power2.inOut', clearProps: 'clipPath' }, 0.8)
 		/* пункты меню анимируются по ссылкам, не целиком .lb-nav: transform на .lb-nav / li становится containing block
 		   для мега-панели — при наведении во время интро она уезжала влево */
 		.from(isDesktop() ? '.lb-header__logo, .lb-nav__list > li > .lb-nav__link, .lb-lang, .lb-header__right' : '.lb-header__logo, .lb-header__right', { y: -24, opacity: 0, duration: 1.2, stagger: isDesktop() ? 0.035 : 0.08, clearProps: 'transform' }, 0.35)
@@ -793,10 +797,10 @@
 		.from(q('.lb-hero__deco'), { opacity: 0, duration: 1.6, ease: 'power2.out' }, 1.4);
 
 	if (isDesktop()) {
-		// лёгкий параллакс за курсором (фон не двигаем — он совпадает с макетом 1:1)
-		var deco = hero.querySelector('.lb-hero__deco');
-		var qx = gsap.quickTo(deco, 'x', { duration: 1.6, ease: 'power3.out' });
-		var qy = gsap.quickTo(deco, 'y', { duration: 1.6, ease: 'power3.out' });
+		// лёгкий параллакс за курсором: мастер и карточки (фон, линии и искры на них не двигаем — они совпадают с фоном)
+		var master = hero.querySelector('.lb-hero__master');
+		var qx = gsap.quickTo(master, 'x', { duration: 1.8, ease: 'power3.out' });
+		var qy = gsap.quickTo(master, 'y', { duration: 1.8, ease: 'power3.out' });
 		var cards = hero.querySelector('.lb-hero__cards');
 		var cx = cards && gsap.quickTo(cards, 'x', { duration: 1.4, ease: 'power3.out' });
 		var cy = cards && gsap.quickTo(cards, 'y', { duration: 1.4, ease: 'power3.out' });
@@ -804,7 +808,7 @@
 			var r = hero.getBoundingClientRect();
 			var dx = (e.clientX - r.left) / r.width - 0.5;
 			var dy = (e.clientY - r.top) / r.height - 0.5;
-			qx(dx * -18); qy(dy * -12);
+			qx(dx * 10); qy(dy * 6);
 			if (cards) { cx(dx * 16); cy(dy * 12); }
 		});
 		hero.addEventListener('mouseleave', function () {
@@ -815,7 +819,7 @@
 
 	// фон уезжает медленнее при прокрутке
 	if (window.ScrollTrigger) {
-		gsap.to(hero.querySelector('.lb-hero__bg img'), {
+		gsap.to(hero.querySelector('.lb-hero__scene'), {
 			yPercent: 12,
 			ease: 'none',
 			scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true }

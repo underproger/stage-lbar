@@ -6,19 +6,32 @@
 {set $isRo = $_modx->config.cultureKey == 'ro'}
 {set $img = '/assets/templates/redesign/img/'}
 <section class="lb-hero" id="lb-hero">
+    {* Сцена (десктоп): фон без декора + буквы «BAR», линия и арки (SVG, чёткие на любом экране) + мастер (вырезка, отдельный слой).
+       На мобильном — одна картинка hero-mobile.webp (фон + мастер), слои скрыты; мастер на мобильном не скачивается (пустой source). *}
+    {set $px = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'}
     <div class="lb-hero__bg">
-        <picture>
-            <source media="(max-width: 1024px)" srcset="{$img}hero-mobile.webp" width="1060" height="1100">
-            <img src="{$img}hero-bg.webp" srcset="{$img}hero-bg-1440.webp 1440w, {$img}hero-bg.webp 2166w" sizes="100vw" width="2166" height="1218" alt="{'lbar.rd.hero.alt' | lexicon}" loading="eager" fetchpriority="high" decoding="async">
-        </picture>
-    </div>
-
-    <div class="lb-hero__deco" aria-hidden="true">
-        <span class="lb-hero__spark lb-hero__spark--p1"><svg viewBox="0 0 40 40"><path fill="currentColor" d="M20 0c.9 10.6 8.4 18.6 20 20-11.6 1.4-19.1 9.4-20 20-.9-10.6-8.4-18.6-20-20C11.6 18.6 19.1 10.6 20 0z"/></svg></span>
-        <span class="lb-hero__spark lb-hero__spark--s lb-hero__spark--p2"><svg viewBox="0 0 40 40"><path fill="currentColor" d="M20 0c.9 10.6 8.4 18.6 20 20-11.6 1.4-19.1 9.4-20 20-.9-10.6-8.4-18.6-20-20C11.6 18.6 19.1 10.6 20 0z"/></svg></span>
-        <span class="lb-hero__spark lb-hero__spark--s lb-hero__spark--p3"><svg viewBox="0 0 40 40"><path fill="currentColor" d="M20 0c.9 10.6 8.4 18.6 20 20-11.6 1.4-19.1 9.4-20 20-.9-10.6-8.4-18.6-20-20C11.6 18.6 19.1 10.6 20 0z"/></svg></span>
-        <span class="lb-hero__spark lb-hero__spark--p4"><svg viewBox="0 0 40 40"><path fill="currentColor" d="M20 0c.9 10.6 8.4 18.6 20 20-11.6 1.4-19.1 9.4-20 20-.9-10.6-8.4-18.6-20-20C11.6 18.6 19.1 10.6 20 0z"/></svg></span>
-        <span class="lb-hero__spark lb-hero__spark--s lb-hero__spark--p5"><svg viewBox="0 0 40 40"><path fill="currentColor" d="M20 0c.9 10.6 8.4 18.6 20 20-11.6 1.4-19.1 9.4-20 20-.9-10.6-8.4-18.6-20-20C11.6 18.6 19.1 10.6 20 0z"/></svg></span>
+        <div class="lb-hero__scene">
+            <picture class="lb-hero__pic">
+                <source media="(max-width: 1024px)" srcset="{$img}hero-mobile.webp" width="1060" height="1100">
+                <img src="{$img}hero-bg.webp" srcset="{$img}hero-bg-1440.webp 1440w, {$img}hero-bg.webp 2166w, {$img}hero-bg-2880.webp 2880w" sizes="100vw" width="2166" height="1218" alt="{'lbar.rd.hero.alt' | lexicon}" loading="eager" fetchpriority="high" decoding="async">
+            </picture>
+            <div class="lb-hero__art" aria-hidden="true">
+                <img class="lb-hero__arches" src="{$img}hero-arches.svg" width="220" height="600" alt="">
+                <img class="lb-hero__vline" src="{$img}hero-line.svg" width="44" height="660" alt="">
+                <img class="lb-hero__letters" src="{$img}hero-letters.svg" width="912" height="410" alt="">
+            </div>
+            <div class="lb-hero__deco" aria-hidden="true">
+                <span class="lb-hero__spark lb-hero__spark--p1"><svg viewBox="0 0 40 40"><path fill="currentColor" d="M20 0c.9 10.6 8.4 18.6 20 20-11.6 1.4-19.1 9.4-20 20-.9-10.6-8.4-18.6-20-20C11.6 18.6 19.1 10.6 20 0z"/></svg></span>
+                <span class="lb-hero__spark lb-hero__spark--s lb-hero__spark--p2"><svg viewBox="0 0 40 40"><path fill="currentColor" d="M20 0c.9 10.6 8.4 18.6 20 20-11.6 1.4-19.1 9.4-20 20-.9-10.6-8.4-18.6-20-20C11.6 18.6 19.1 10.6 20 0z"/></svg></span>
+                <span class="lb-hero__spark lb-hero__spark--s lb-hero__spark--p3"><svg viewBox="0 0 40 40"><path fill="currentColor" d="M20 0c.9 10.6 8.4 18.6 20 20-11.6 1.4-19.1 9.4-20 20-.9-10.6-8.4-18.6-20-20C11.6 18.6 19.1 10.6 20 0z"/></svg></span>
+                <span class="lb-hero__spark lb-hero__spark--p4"><svg viewBox="0 0 40 40"><path fill="currentColor" d="M20 0c.9 10.6 8.4 18.6 20 20-11.6 1.4-19.1 9.4-20 20-.9-10.6-8.4-18.6-20-20C11.6 18.6 19.1 10.6 20 0z"/></svg></span>
+                <span class="lb-hero__spark lb-hero__spark--s lb-hero__spark--p5"><svg viewBox="0 0 40 40"><path fill="currentColor" d="M20 0c.9 10.6 8.4 18.6 20 20-11.6 1.4-19.1 9.4-20 20-.9-10.6-8.4-18.6-20-20C11.6 18.6 19.1 10.6 20 0z"/></svg></span>
+            </div>
+            <picture class="lb-hero__master" aria-hidden="true">
+                <source media="(max-width: 1024px)" srcset="{$px}">
+                <img src="{$img}hero-master.webp" srcset="{$img}hero-master.webp 570w, {$img}hero-master-2x.webp 1140w" sizes="30vw" width="570" height="869" alt="" loading="eager" decoding="async">
+            </picture>
+        </div>
     </div>
 
     <div class="lb-hero__content">

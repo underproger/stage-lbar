@@ -55,7 +55,7 @@
 | Тексты интерфейса RO/RU | лексикон `core/components/babel/lexicon/{ro,ru}/translate.inc.php`, ключи `lbar.rd.*` (так уже было на сайте: `lbar.*`) |
 
 **Сборка CSS:** `cd assets/templates/redesign && /home/claude/build/node_modules/.bin/sass scss/redesign.scss css/redesign.css --style=compressed --no-source-map --silence-deprecation=import`
-**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.18.1**) — поднимать при изменениях.
+**Версия кэша CSS/JS:** `?v=` в `lb-head.tpl` и `lb-scripts.tpl` (сейчас **1.19.0**) — поднимать при изменениях.
 **Новые/изменённые чанки в БД:** `sudo -u www-data php _dev/tools/modx_apply3.php` (пересохраняет все `*.tpl` из папки как статичные чанки и меняет
 вызов в шаблоне «Главная») — для нового блока сделать по аналогии (последний — `modx_apply17.php`, замена `[[$старый-чанк]]` → `[[$lb-новый]]`).
 **После правки `.tpl` чистить `core/cache/resource/`** (главная кэшируется — без этого на скриншоте старая разметка; CSS/JS это не касается).
@@ -321,6 +321,18 @@
    `lb-about__cta` (разрядка .1em, поля 20px) и RU `lb-cform__btn` (разрядка .12em) — текст тоже не влезал. Проверка: у видимых `.lb-btn`
    не должно быть `scrollWidth > clientWidth`.
 
+24. **Главный баннер — новый фон, буквы, мастер (v1.19.0)** по новому макету пользователя (он прислал слои: чистый фон 1672×941, линию,
+   арки, логотип LBAR, фото мастера). Баннер теперь собран слоями внутри `.lb-hero__scene` (сдвигается целиком при прокрутке):
+   `hero-bg*.webp` (1440 / 2166 / 2880) — чистый фон, декор с него стёрт (`_dev/hero2/inpaint.py`, маска по линиям/искрам);
+   `hero-letters.svg` — буквы «BAR» (трассировка логотипа potrace, `_dev/hero2/trace.py`, IoU 0.98; «L» не выводится — как в макете),
+   розовое золото + мерцание (feTurbulence); `hero-line.svg` / `hero-arches.svg` — линия с кольцом и три арки (геометрия снята с фона
+   подгонкой окружностей), искры — прежние `.lb-hero__spark` (координаты обновлены); мастер — `hero-master(-2x).webp` (апскейл EDSR ×2,
+   вырезка rembg isnet-general-use, лёгкий тёплый тон), низ растворяется маской за карточками. Порядок слоёв: фон → арки → линия → буквы
+   (арки уходят за «R») → искры → мастер. Мобильный — одна картинка `hero-mobile.webp` (фон + мастер), слои скрыты, мастер на мобильном
+   не качается (пустой `<source>`). Нижнее растворение фона в стык короче (vw(170) / vw(70)), чтобы буквы читались.
+   Интро: мастер поднимается, линия «рисуется» сверху вниз, арки — снизу вверх, буквы всплывают; параллакс за курсором — мастер и карточки.
+   Логотип в шапке не менялся (текст шрифтом) — можно заменить на SVG из присланного LBAR, если пользователь захочет.
+
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
 `stage-lbar-05-consult.sql` (чанки `lb-consult` id 275, `lb.formConsult` id 276 + все чанки Redesign + шаблон «Главная»),
@@ -336,8 +348,8 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `stage-lbar-15-footer.sql` (чанк `lb-footer` 291 + все чанки Redesign + шаблон «Главная»),
 `stage-lbar-16-mega.sql` (чанки `lb.navParent`, `lb.navMega` + все чанки Redesign + шаблон «Главная» без изменений; фикс `lb-blog`),
 `stage-lbar-17-fixes.sql` (все чанки Redesign: версия `?v=1.16.0`), `stage-lbar-18-visited.sql` (версия `?v=1.16.1`), `stage-lbar-19-lang-blog.sql` (чанки + новый `lb.blogHref`, версия 1.17.0,
-**UPDATE значений TV link-st-1..3 ресурса 1**), `stage-lbar-20-lang-slug.sql` (языки — только код, версия 1.17.1), `stage-lbar-21-services-banner.sql` (чанк `lb-shero`, **шаблон 8**, версия 1.18.0), `stage-lbar-22-buttons.sql` (версия 1.18.1).
-Патчи проверены импортом. После 22 БД **не менялась** (кроме локальной настройки phpThumb выше).
+**UPDATE значений TV link-st-1..3 ресурса 1**), `stage-lbar-20-lang-slug.sql` (языки — только код, версия 1.17.1), `stage-lbar-21-services-banner.sql` (чанк `lb-shero`, **шаблон 8**, версия 1.18.0), `stage-lbar-22-buttons.sql` (версия 1.18.1), `stage-lbar-23-hero.sql` (баннер, версия 1.19.0).
+Патчи проверены импортом. После 23 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — главная готова; дальше — по решению пользователя
 
@@ -390,7 +402,7 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 
 1. Подключить репо (`add_repo underproger/stage-lbar`, push), клонировать в `/home/claude/stage-lbar`.
 2. Пользователь прикладывает дамп и патчи **по порядку**: дамп хостинга `mysql_impua_testlbar_….tar.gz` (исходная база, без патчей),
-   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`, `-15-footer.sql`, `-16-mega.sql`, `-17-fixes.sql`, `-18-visited.sql`, `-19-lang-blog.sql`, `-20-lang-slug.sql`, `-21-services-banner.sql`, `-22-buttons.sql`
+   `stage-lbar-urls.sql`, `stage-lbar-01-header-banner.sql`, `-02-about.sql`, `-03-services.sql`, `-04-implica.sql`, `-05-consult.sql`, `-06-master.sql`, `-07-fonts.sql`, `-08-portfolio.sql`, `-09-price.sql`, `-10-book.sql`, `-11-reviews.sql`, `-12-faq.sql`, `-13-seo.sql`, `-14-blog-contact.sql`, `-15-footer.sql`, `-16-mega.sql`, `-17-fixes.sql`, `-18-visited.sql`, `-19-lang-blog.sql`, `-20-lang-slug.sql`, `-21-services-banner.sql`, `-22-buttons.sql`, `-23-hero.sql`
    (вместо дампа+urls+01 может прийти `lbar-full-stage-2026-11-06.sql.gz` — это то же самое).
 3. `cd /home/claude/stage-lbar && bash _dev/setup_local.sh <дамп> <urls> <01> <02> <03> <04> <05> <06> <07> <08> <09> <10> <11>` (файлы — по порядку; .tar.gz/.gz/.sql, строка sandbox вырезается) — поднимет MariaDB, Apache+SSL, PHP-полифилл,
    конфиги из `_dev/local-config`, hosts (`stage-lbar.touchit.vinnica.ua` → 127.0.0.1), симлинк `/home/impua/lbar.ro/www` → репо,
