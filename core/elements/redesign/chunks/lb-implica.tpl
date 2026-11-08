@@ -8,7 +8,8 @@
 {set $title = $_modx->resource['title-main-bl3'] | trim}
 {set $fmt = 'lbar.rd.implica.title' | lexicon}
 {set $plain = $fmt | replace : '|' : ' ' | replace : '*' : ''}
-{set $isRo = $_modx->config.cultureKey == 'ro'}
+{set $pfIds = ['ro' => 100, 'ru' => 198, 'en' => 1100]}
+{set $pfId = $pfIds[$_modx->config.cultureKey] ?: 100}
 {set $img = '/assets/templates/redesign/img/'}
 {set $svc = $_modx->resource.id != $_modx->config.site_start}
 {set $photo = $svc ? ('[[*im-1-bl3]]' | trim) : ''}
@@ -78,7 +79,7 @@
 
         <div class="lb-implica__btns">
             <a class="lb-btn lb-btn--solid lb-implica__cta js-lb-book" href="#bl8-form">{'lbar.rd.implica.cta' | lexicon}<svg class="lb-btn__arr" viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg></a>
-            <a class="lb-implica__play" href="{$_modx->makeUrl($isRo ? 100 : 198)}">
+            <a class="lb-implica__play" href="{$_modx->makeUrl($pfId)}">
                 <span class="lb-implica__playic" aria-hidden="true"><svg viewBox="0 0 12 14"><path fill="currentColor" d="M1.5 1.6v10.8c0 .5.5.8.9.5l8.6-5.4c.4-.2.4-.8 0-1L2.4 1.1c-.4-.3-.9 0-.9.5z"/></svg></span>
                 <span class="lb-implica__playtxt">{'lbar.rd.implica.portfolio' | lexicon}</span>
             </a>

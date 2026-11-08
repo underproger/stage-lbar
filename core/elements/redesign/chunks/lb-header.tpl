@@ -16,18 +16,17 @@
     'tplInner' => '@INLINE <ul class="lb-nav__sub">[[+wrapper]]</ul>',
     'tplCategoryFolder' => '@INLINE <li[[+classes]]><span class="lb-nav__link">[[+menutitle]]</span>[[+wrapper]]</li>',
 ])}
-{set $isRo = $_modx->config.cultureKey == 'ro'}
 <header class="lb-header" id="lb-header">
     <div class="lb-header__bar"></div>
     <div class="lb-header__inner">
         <a class="lb-header__logo" href="[[++site_url]]" aria-label="[[++site_name]]"><img src="/assets/templates/redesign/img/logo.svg?v=1" width="420" height="221" alt="LBar" loading="eager"></a>
 
         <div class="lb-mnav" id="lb-mnav">
-            <nav class="lb-nav" aria-label="{$isRo ? 'Meniul site' : 'Меню сайта'}">
+            <nav class="lb-nav" aria-label="{'lbar.rd.aria.nav' | lexicon}">
                 {$menu}
             </nav>
             <div class="lb-lang">
-                <button class="lb-lang__btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="lb-lang-list" aria-label="{$isRo ? 'Limba site-ului' : 'Язык сайта'}"><span>{$_modx->config.cultureKey}</span><svg class="lb-lang__chev" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></button>
+                <button class="lb-lang__btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="lb-lang-list" aria-label="{'lbar.rd.aria.lang' | lexicon}"><span>{$_modx->config.cultureKey}</span><svg class="lb-lang__chev" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></button>
                 <ul class="lb-lang__list" id="lb-lang-list">
                     [[!BabelLinks? &showCurrent=`1` &tpl=`lb.babelLink`]]
                 </ul>
@@ -35,9 +34,9 @@
             <div class="lb-mnav__foot">
                 <a class="lb-mnav__phone" href="tel:[[++phone-1:replace=` ==`]]">[[++phone-1]]</a>
                 <p class="lb-mnav__addr">
-                    București, Dorobanti, Sector 1<br>
-                    Șoseaua Ștefan cel Mare Nr 1<br>
-                    {$isRo ? 'Luni-Duminică' : 'Пн-Вс'}: [[++schedule]]
+                    {'lbar.rd.header.city' | lexicon}<br>
+                    {'lbar.rd.header.street' | lexicon}<br>
+                    {'lbar.rd.header.days' | lexicon}: [[++schedule]]
                 </p>
                 <a class="lb-btn lb-btn--solid lb-mnav__cta js-lb-book" href="#bl8-form">{'lbar.buttons.banner.book' | lexicon}<svg class="lb-btn__arr" viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg></a>
                 <div class="lb-mnav__social">
@@ -55,7 +54,7 @@
                 <span>[[++phone-1]]</span>
             </a>
             <a class="lb-btn lb-btn--solid lb-header__cta js-lb-book" href="#bl8-form">{'lbar.buttons.banner.book' | lexicon}<svg class="lb-btn__arr" viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg></a>
-            <button class="lb-header__burger" type="button" aria-label="{$isRo ? 'Meniu' : 'Меню'}" aria-controls="lb-mnav" aria-expanded="false"><span></span><span></span></button>
+            <button class="lb-header__burger" type="button" aria-label="{'lbar.rd.aria.burger' | lexicon}" aria-controls="lb-mnav" aria-expanded="false"><span></span><span></span></button>
         </div>
     </div>
 </header>

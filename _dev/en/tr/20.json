@@ -1,0 +1,10 @@
+{
+ "ro_id": 20,
+ "fields": {
+  "pagetitle": "Error 404",
+  "longtitle": "Error 404 - Page not found",
+  "content": "<p><img src=\"images/design/404.png\" alt=\"\" width=\"1484\" height=\"710\" /></p>\r\n<p>There doesn't seem to be any permanent makeup on this page...</p>\r\n<ul>\r\n<li><a class=\"main\" href=\"[[++site_url]]\">BACK TO THE HOME PAGE</a></li>\r\n</ul>"
+ },
+ "tvs": {},
+ "migx": {}
+}

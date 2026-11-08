@@ -15,3 +15,4 @@ Allow: /*.png
 
 Sitemap: https://lbar.ro/sitemap.xml
 Sitemap: https://lbar.ro/ru/sitemap.xml
+Sitemap: https://lbar.ro/en/sitemap.xml

@@ -2,9 +2,11 @@
    Данные — как в старом tpl.category.main: фото TV im-category (alt — alt-im-category), название TV title-bl2, текст TV intro-text-bl2. *}
 {$_modx->lexicon->load('babel:translate')}
 {set $title = $_pls['tv.title-bl2'] ?: $menutitle ?: $pagetitle}
+{* у EN путь картинки TV (источник файлов) приходит с base_url контекста «/en/» — файл лежит от корня *}
+{set $img = $_pls['tv.im-category'] | ereplace : '~^/en/(?=(?:images|assets)/)~' : '/'}
 <article class="lb-scard">
     <a class="lb-scard__img" href="{$uri}" aria-label="{$title | escape}">
-        {if $_pls['tv.im-category']}<img src="{$_pls['tv.im-category']}" alt="{($_pls['tv.alt-im-category'] ?: $title) | escape}" width="420" height="400" loading="lazy" decoding="async">{/if}
+        {if $img}<img src="{$img}" alt="{($_pls['tv.alt-im-category'] ?: $title) | escape}" width="420" height="400" loading="lazy" decoding="async">{/if}
     </a>
     <div class="lb-scard__body">
         <div class="lb-scard__num" aria-hidden="true">{$idx < 10 ? '0' : ''}{$idx}</div>

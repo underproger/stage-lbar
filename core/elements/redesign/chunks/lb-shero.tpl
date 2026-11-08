@@ -19,7 +19,6 @@
    (по макету пользователя; автор — в блоке под статьёй).
    Внимание: в выражениях Fenom не писать «*» + «/» подряд (закрывает служебный комментарий в скомпилированном шаблоне). *}
 {set $r = $_modx->resource}
-{set $isRo = $_modx->config.cultureKey == 'ro'}
 {set $hub = $r.template != 8}
 {set $blog = $r.template == 4 || $r.template == 5}
 {set $art = $r.template == 5}
@@ -130,7 +129,7 @@
             {/if}
         </div>
 
-        <nav class="lb-crumbs" aria-label="{$isRo ? 'Navigare' : 'Навигация'}">
+        <nav class="lb-crumbs" aria-label="{'lbar.rd.aria.crumbs' | lexicon}">
             {$_modx->runSnippet('!pdoCrumbs', [
                 'showHome' => 1,
                 'showAtHome' => 0,

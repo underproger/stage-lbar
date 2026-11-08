@@ -178,3 +178,11 @@ $_lang['lbar.rd.blog.min'] = "мин";
 $_lang['lbar.rd.blog.views'] = "просмотры";
 $_lang['lbar.rd.blog.ncomments'] = "комментарии";
 $_lang['lbar.rd.hero.title'] = "Перманентный макияж|в Бухаресте|от LBar";
+// --- шапка: подписи для экранных чтецов (aria-label) и адрес / график в мобильном меню (раньше — текстом в lb-header / lb-contact / lb-shero) ---
+$_lang['lbar.rd.aria.nav'] = "Меню сайта";
+$_lang['lbar.rd.aria.lang'] = "Язык сайта";
+$_lang['lbar.rd.aria.burger'] = "Меню";
+$_lang['lbar.rd.aria.crumbs'] = "Навигация";
+$_lang['lbar.rd.header.city'] = "București, Dorobanti, Sector 1";
+$_lang['lbar.rd.header.street'] = "Șoseaua Ștefan cel Mare Nr 1";
+$_lang['lbar.rd.header.days'] = "Пн-Вс";

@@ -1,13 +1,15 @@
 {* Карточка услуги на общей странице «Услуги» (tpl pdoResources в lb-subservices, режим hub) — вид lb-scard.
    Название — menutitle (как в меню; TV title-bl2 у многих услуг заполнен копией чужого названия).
-   Фото: у трёх услуг главной — фото из макета (как в lb.serviceCard), иначе TV img_banner_main → TV im-category → первое фото галереи.
+   Фото: у трёх услуг главной — фото из макета (как в lb.serviceCard), иначе TV img_banner_main → TV im-category → первое фото галереи (у EN-ресурса — галерея RO-двойника, BabelTranslation).
    Текст: TV intro-text-bl2 → TV sub-title-banner (на RO-странице текст на кириллице пропускается — в базе есть RU-текст у RO-ресурса). *}
 {$_modx->lexicon->load('babel:translate')}
-{set $map = [2 => 'brows', 303 => 'brows', 162 => 'eyeliner', 317 => 'eyeliner', 167 => 'lips', 319 => 'lips']}
+{set $map = [2 => 'brows', 303 => 'brows', 1002 => 'brows', 162 => 'eyeliner', 317 => 'eyeliner', 1162 => 'eyeliner', 167 => 'lips', 319 => 'lips', 1167 => 'lips']}
 {set $title = $menutitle ?: $pagetitle}
 {set $src = $map[$id] ? ('/assets/templates/redesign/img/service-' ~ $map[$id] ~ '.webp') : (($_pls['tv.img_banner_main'] | trim) ?: ($_pls['tv.im-category'] | trim))}
 {if !$src}
-{set $src = $_modx->runSnippet('ms2Gallery', ['resources' => $id, 'limit' => 1, 'frontend_css' => '', 'frontend_js' => '', 'tpl' => '@INLINE {foreach $files as $f}{$f.medium}{/foreach}']) | trim}
+{set $gid = $id}
+{if $context_key == 'en'}{set $ro = $_modx->runSnippet('BabelTranslation', ['resourceId' => $id, 'contextKey' => 'web']) | trim}{if $ro}{set $gid = $ro}{/if}{/if}
+{set $src = $_modx->runSnippet('ms2Gallery', ['resources' => $gid, 'limit' => 1, 'frontend_css' => '', 'frontend_js' => '', 'tpl' => '@INLINE {foreach $files as $f}{$f.medium}{/foreach}']) | trim}
 {/if}
 {if $src && !($src | ematch : '~^(/|https?:)~')}{set $src = '/' ~ $src}{/if}
 {set $text = $_pls['tv.intro-text-bl2'] | trim}

@@ -1,24 +1,31 @@
-{* Мега-меню пункта «Servicii / Услуги» (шапка, вызывается из lb.navParent). Ссылки — дочерние ресурсы раздела, как и в прежнем
+{* Мега-меню пункта «Servicii / Услуги / Services» (шапка, вызывается из lb.navParent). Ссылки — дочерние ресурсы раздела, как и в прежнем
    выпадающем списке (pdoMenu: опубликованные, не скрытые из меню; текст ссылки — menutitle, иначе pagetitle) — набор ссылок раздела не меняется.
    Раскладка по колонкам (как в макете):
-     «Micropigmentare» — брови, глаза, губы, коррекция, удаление (id ниже, RO / RU), «Sprâncene» — подразделы бровей (дети id 2 / 303),
-     «Alte servicii» — все остальные дети раздела (новые услуги попадут сюда автоматически), «Acces rapid» — Gift Voucher (177 / 323) +
-     консультация (якорь блока «Консультация»), портфолио (100 / 198), цены (44 / 270).
+     «Micropigmentare» — брови, глаза, губы, коррекция, удаление (id ниже, RO / RU / EN), «Sprâncene» — подразделы бровей (дети id 2 / 303 / 1002),
+     «Alte servicii» — все остальные дети раздела (новые услуги попадут сюда автоматически), «Acces rapid» — Gift Voucher (177 / 323 / 1177) +
+     консультация (якорь блока «Консультация»), портфолио (100 / 198 / 1100), цены (44 / 270 / 1044). EN-id = RO-id + 1000.
    Слева — карточка «Рекомендуем» (бровь, фото img/service-brows.webp). Подписи колонок и карточки — лексикон lbar.rd.mega.*.
    Десктоп — панель под шапкой (наведение / фокус), мобильный — раскрывается кнопкой +, как прежние подменю. *}
 {$_modx->lexicon->load('babel:translate')}
-{set $isRu = $id == 302}
+{set $L = ($id == 302) ? 'ru' : (($id == 1080) ? 'en' : 'ro')}
+{set $cfgs = [
+    'ro' => ['brows' => 2, 'micro' => [2, 162, 167, 119, 625], 'quick' => [177], 'pages' => [100, 44]],
+    'ru' => ['brows' => 303, 'micro' => [303, 317, 319, 316, 321], 'quick' => [323], 'pages' => [198, 270]],
+    'en' => ['brows' => 1002, 'micro' => [1002, 1162, 1167, 1119], 'quick' => [1177], 'pages' => [1100, 1044]]
+]}
+{set $cfg = $cfgs[$L]}
 {set $opts = ['sortby' => ['menuindex' => 'ASC', 'id' => 'ASC'], 'select' => 'id,pagetitle,menutitle', 'limit' => 0]}
 {set $items = $_modx->getResources(['parent' => $id, 'published' => 1, 'deleted' => 0, 'hidemenu' => 0], $opts)}
-{set $browsId = $isRu ? 303 : 2}
+{set $browsId = $cfg.brows}
 {set $brows = $_modx->getResources(['parent' => $browsId, 'published' => 1, 'deleted' => 0, 'hidemenu' => 0], $opts)}
-{set $microIds = $isRu ? [303, 317, 319, 316, 321] : [2, 162, 167, 119, 625]}
-{set $quickIds = $isRu ? [323] : [177]}
+{set $microIds = $cfg.micro}
+{set $quickIds = $cfg.quick}
 {set $byId = []}
 {foreach $items as $r}{set $byId[$r.id] = $r}{/foreach}
 {set $icons = [
     626 => 'lash', 163 => 'eye', 318 => 'eye', 627 => 'laser', 628 => 'laser',
-    629 => 'nail', 630 => 'nail', 631 => 'foot', 632 => 'foot', 168 => 'dots', 320 => 'dots'
+    629 => 'nail', 630 => 'nail', 631 => 'foot', 632 => 'foot', 168 => 'dots', 320 => 'dots',
+    1626 => 'lash', 1163 => 'eye', 1627 => 'laser', 1629 => 'nail', 1631 => 'foot', 1168 => 'dots'
 ]}
 {set $svg = [
     'lash'  => '<path d="M3 13c3.5-3 14.5-3 18 0"/><path d="M6 11.2 5 8.5M9.5 10.3 9 7.3M14.5 10.3l.5-3M18 11.2l1-2.7"/>',
@@ -31,8 +38,8 @@
 ]}
 {set $chev = '<svg class="lb-mega__chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 6.5 5.5 5.5-5.5 5.5"/></svg>'}
 {set $brow = $byId[$browsId]}
-{set $pages = $_modx->getResources(['id:IN' => ($isRu ? [198, 270] : [100, 44]), 'published' => 1, 'deleted' => 0], $opts)}
-{set $qicons = [100 => 'photo', 198 => 'photo', 44 => 'coins', 270 => 'coins']}
+{set $pages = $_modx->getResources(['id:IN' => $cfg.pages, 'published' => 1, 'deleted' => 0], $opts)}
+{set $qicons = [100 => 'photo', 198 => 'photo', 1100 => 'photo', 44 => 'coins', 270 => 'coins', 1044 => 'coins']}
 {set $qsvg = [
     'gift'  => '<rect x="3.5" y="8.5" width="17" height="4" rx="1"/><path d="M5 12.5v8h14v-8M12 8.5v12M12 8.5S10.5 4 8 4.5 7 8.5 12 8.5zM12 8.5S13.5 4 16 4.5 17 8.5 12 8.5z"/>',
     'cal'   => '<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4M8 14h2M14 14h2M8 17h2"/>',

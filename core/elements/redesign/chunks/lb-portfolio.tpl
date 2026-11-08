@@ -1,7 +1,7 @@
 {* Блок «Галерея фото» (редизайн, 7-й экран главной) — вместо bl6-portfolio-front-page.
    H2 — TV title-bl6 (текст не менялся); разбивка на строки и курсив — лексикон lbar.rd.portfolio.title
    («|» — перенос, *…* — курсив); если TV изменят и он перестанет совпадать — H2 выводится как есть.
-   Подзаголовок — TV sub-title-bl6 (с главной контекста, как было). Фото — ms2Gallery ресурса (tpl lb.galleryItem):
+   Подзаголовок — TV sub-title-bl6 (с главной контекста, как было). Фото — ms2Gallery ресурса (у EN — RO-двойника, lb.roId; tpl lb.galleryItem):
    первые 8 видны, остальные раскрываются кнопкой; увеличение — fancybox (data-fancybox, как было). *}
 {set $title = $_modx->resource['title-bl6'] | trim}
 {set $fmt = 'lbar.rd.portfolio.title' | lexicon}
@@ -41,6 +41,7 @@
 
     {if !$gallery = $_modx->cacheManager->get('lb-portfolio' ~ $_modx->config.cultureKey ~ $_modx->resource.id)}
         {set $gallery = $_modx->runSnippet('!ms2Gallery', [
+            'resources' => ($_modx->getChunk('lb.roId') | trim),
             'tpl' => 'lb.galleryItem',
             'frontend_css' => '',
             'frontend_js' => '',

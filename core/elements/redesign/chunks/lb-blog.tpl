@@ -5,6 +5,7 @@
    Ссылка карточки — TV link-st-N (id или путь статьи, разбор — чанк lb.blogHref): если статья опубликована, заголовок становится ссылкой,
    а её область (::after) растянута на всю карточку; удалённые / снятые статьи — карточка без ссылки. Кнопка «Toate articolele» — на блог (RO, id 31);
    в RU блога нет — кнопка не выводится. Картинки — pthumb, как раньше (в RU pthumb отдаёт путь с /ru/ — убираем: файл лежит в /assets/image-cache/); если файла нет — под ним графическая подложка. *}
+{if $_modx->config.cultureKey != 'en'}{* в EN блога нет (статьи не переводились) — блок не выводится *}
 {set $raw = $_modx->resource['title-blog-bl12'] | trim}
 {set $title = $raw | striptags | replace : '  ' : ' ' | trim}
 {set $fmt = 'lbar.rd.blog.title' | lexicon}
@@ -92,3 +93,4 @@
         {/if}
     </div>
 </section>
+{/if}

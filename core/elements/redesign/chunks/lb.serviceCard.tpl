@@ -1,6 +1,6 @@
 {* Карточка услуги (pdoResources tpl). Фото — из макета для трёх услуг главной, для остальных — TV im-category. *}
 {$_modx->lexicon->load('babel:translate')}
-{set $map = [2 => 'brows', 303 => 'brows', 162 => 'eyeliner', 317 => 'eyeliner', 167 => 'lips', 319 => 'lips']}
+{set $map = [2 => 'brows', 303 => 'brows', 1002 => 'brows', 162 => 'eyeliner', 317 => 'eyeliner', 1162 => 'eyeliner', 167 => 'lips', 319 => 'lips', 1167 => 'lips']}
 {set $title = $_pls['tv.title-bl2'] ?: $menutitle ?: $pagetitle}
 {set $src = $map[$id] ? ('/assets/templates/redesign/img/service-' ~ $map[$id] ~ '.webp') : $_pls['tv.im-category']}
 <article class="lb-scard">

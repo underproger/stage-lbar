@@ -3,7 +3,8 @@
    («|» — перенос, *…* — курсив; сравнение — без тегов: в RU-TV есть <br>). Если TV изменят — H2 выводится как есть.
    Отзывы — EasyComm, как раньше: [[!ecMessages]] (некэшируемо, ветка resource-<id>, только опубликованные, новые сверху),
    карточка — lb.reviewCard, обёртка с рейтингом ветки и каруселью — lb.reviewsWrap. Рейтинг и число — данные ветки EasyComm.
-   «Vezi toate recenziile» — страница отзывов (RO 171 / RU 300). «Lăsați o recenzie» — окно с формой EasyComm [[!ecForm]]
+   «Vezi toate recenziile» — страница отзывов (RO 171 / RU 300 / EN 1171). На EN-страницах — ветка (отзывы и форма) RO-двойника
+   (lb.roId: общие с RO отзывы и рейтинг; у RO и RU — своя ветка resource-<id>, как было). «Lăsați o recenzie» — окно с формой EasyComm [[!ecForm]]
    (прежние письма и модерация; шаблон формы — lb.ecForm, JS отправки — easyComm из старого custom.js).
    Полный текст отзыва (и ответ студии) — окно по кнопке ⋮ в карточке.
    Страница «Отзывы» (шаблон 16, модификатор --page): все отзывы сеткой (без карусели), первые 12, дальше — кнопкой по 12;
@@ -12,7 +13,9 @@
 {set $title = $raw | striptags | replace : '  ' : ' ' | trim}
 {set $fmt = 'lbar.rd.reviews.title' | lexicon}
 {set $plain = $fmt | replace : '|' : ' ' | replace : '*' : ''}
-{set $allId = ($_modx->config.cultureKey == 'ru') ? 300 : 171}
+{set $allIds = ['ro' => 171, 'ru' => 300, 'en' => 1171]}
+{set $allId = $allIds[$_modx->config.cultureKey] ?: 171}
+{set $tid = $_modx->getChunk('lb.roId') | trim}
 {set $page = $_modx->resource.template == 16}
 <section class="lb-reviews{$page ? ' lb-reviews--page' : ''}" id="lb-reviews">
     <div class="lb-reviews__bg" aria-hidden="true"></div>
@@ -34,6 +37,7 @@
 
     <div id="review"></div>
     [[!ecMessages?
+        &thread=`resource-{$tid}`
         &tpl=`lb.reviewCard`
         &tplWrapper=`lb.reviewsWrap`
         &limit=`80`
@@ -62,6 +66,7 @@
             <button class="lb-rmodal__close" type="button" aria-label="{'lbar.rd.reviews.close' | lexicon}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
             <div class="lb-rmodal__title" id="lb-rform-title">{'lbar.reviews.form.title' | lexicon}</div>
             [[!ecForm?
+                &thread=`resource-{$tid}`
                 &tplForm=`lb.ecForm`
                 &tplSuccess=`tpl.ecForm.Success.Blog`
                 &tplNewEmailManager=`tpl.ecForm.New.Email.Manager.Blog`

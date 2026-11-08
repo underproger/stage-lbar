@@ -177,3 +177,11 @@ $_lang['lbar.rd.blog.min'] = "min";
 $_lang['lbar.rd.blog.views'] = "vizualizări";
 $_lang['lbar.rd.blog.ncomments'] = "comentarii";
 $_lang['lbar.rd.hero.title'] = "Micropigmentare|Bucuresti|Studio Lbar";
+// --- шапка: подписи для экранных чтецов (aria-label) и адрес / график в мобильном меню (раньше — текстом в lb-header / lb-contact / lb-shero) ---
+$_lang['lbar.rd.aria.nav'] = "Meniul site";
+$_lang['lbar.rd.aria.lang'] = "Limba site-ului";
+$_lang['lbar.rd.aria.burger'] = "Meniu";
+$_lang['lbar.rd.aria.crumbs'] = "Navigare";
+$_lang['lbar.rd.header.city'] = "București, Dorobanti, Sector 1";
+$_lang['lbar.rd.header.street'] = "Șoseaua Ștefan cel Mare Nr 1";
+$_lang['lbar.rd.header.days'] = "Luni-Duminică";

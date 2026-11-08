@@ -1,12 +1,12 @@
 {* Текст и галерея внутренней страницы. Шаблоны «Внутренняя - Галерея» (13, портфолио — вместо bl6-portfolio-interial),
    «Внутренняя» (3: «О нас», вакансии, сертификат) и «Отзывы» (16) — вместо [[*gallery_select:notempty=`[[$bl6-portfolio-interial-2]]`]].
    Текст — длинный TV description-banner-inerial (> 300 знаков; в баннер не помещается; короткий выводит баннер lb-shero), карточкой,
-   в одну колонку. Галерея — ms2Gallery ресурса (tpl lb.galleryPage): в шаблоне 13 — всегда, в остальных — если задан TV gallery_select
+   в одну колонку. Галерея — ms2Gallery ресурса (у EN — RO-двойника, lb.roId; tpl lb.galleryPage): в шаблоне 13 — всегда, в остальных — если задан TV gallery_select
    (как раньше); первые 16 фото, дальше — кнопкой по 16 (redesign.js), увеличение — fancybox. Кнопка на TV link-bl6 — как в старом блоке.
    Нет ни текста, ни фото — блок не выводится. Заголовка у старого блока не было — здесь тоже. *}
 {set $r = $_modx->resource}
 {set $showGal = $r.template == 13 || ($r['gallery_select'] | trim)}
-{set $gallery = $showGal ? ($_modx->runSnippet('!ms2Gallery', ['tpl' => 'lb.galleryPage', 'frontend_css' => '', 'frontend_js' => '']) | trim) : ''}
+{set $gallery = $showGal ? ($_modx->runSnippet('!ms2Gallery', ['resources' => ($_modx->getChunk('lb.roId') | trim), 'tpl' => 'lb.galleryPage', 'frontend_css' => '', 'frontend_js' => '']) | trim) : ''}
 {set $link = $r['link-bl6'] | trim}
 {set $desc = $r['description-banner-inerial'] | trim}
 {if !$desc || ($desc | striptags | trim | length) <= 300}{set $desc = ''}{/if}

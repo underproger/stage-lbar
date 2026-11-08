@@ -3,13 +3,12 @@
    почта, адрес, разделитель, график, три плашки «как добраться» (метро / трамвай) и кнопка «By appointment only» (запись: якорь
    #bl8-form, нет формы на странице — окно «Заказать звонок», js-lb-book).
    H2 — прежний лексикон lbar.contacts.title (на странице «Контакты» вместо него — H1, см. ниже). Телефон и почта — настройки phone-1 / e-mail, карта — настройка google-map (iframe Google),
-   как раньше (в {disableSource} — карта не отдаётся Lighthouse); в RO язык карточки Google — румынский. Адрес, метро, трамвай, график —
+   как раньше (в {disableSource} — карта не отдаётся Lighthouse); язык карточки Google — язык контекста (RO — румынский, EN — английский, RU — как в настройке). Адрес, метро, трамвай, график —
    лексикон lbar.rd.contacts.* (у метро время после « – » выводится второй строкой).
    Страница «Контакты» (шаблон «Контакты», 9): блок — первый экран под шапкой (баннера нет): заголовок блока — H1 с исходным текстом
    (pagetitle, как в старом banner-interial-contact), хлебные крошки — pdoCrumbs с прежними параметрами и микроразметкой — под картой.
    Якорь #conract (старые ссылки) сохранён. *}
-{set $isRu = $_modx->config.cultureKey == 'ru'}
-{set $isRo = !$isRu}
+{set $lang = $_modx->config.cultureKey}
 {set $page = $_modx->resource.template == 9}
 {* настройки ClientConfig выводим MODX-тегами (++ключ): в $_modx->config Fenom их может не оказаться (снимок конфига до ClientConfig) — в кэш попало бы пусто *}
 {set $mapTitle = 'lbar.rd.contacts.map' | lexicon}
@@ -32,10 +31,10 @@
             <p class="lb-contact__sub">{foreach ($sub | split : '*') as $k => $part}{if $k % 2}<span class="lb-contact__accent">{$part}</span>{else}{$part}{/if}{/foreach}</p>
             <div class="lb-contact__map">
                 <div class="lb-contact__mapph" aria-hidden="true"></div>
-                <div class="lb-contact__frame">{disableSource}{if $isRu}[[++google-map:replace=`<iframe ==<iframe title="{$mapTitle}" `]]{else}[[++google-map:replace=`!1sru!2sro==!1sro!2sro`:replace=`<iframe ==<iframe title="{$mapTitle}" `]]{/if}{/disableSource}</div>
+                <div class="lb-contact__frame">{disableSource}{if $lang == 'ru'}[[++google-map:replace=`<iframe ==<iframe title="{$mapTitle}" `]]{elseif $lang == 'en'}[[++google-map:replace=`!1sru!2sro==!1sen!2sro`:replace=`<iframe ==<iframe title="{$mapTitle}" `]]{else}[[++google-map:replace=`!1sru!2sro==!1sro!2sro`:replace=`<iframe ==<iframe title="{$mapTitle}" `]]{/if}{/disableSource}</div>
             </div>
             {if $page}
-            <nav class="lb-crumbs lb-contact__crumbs" aria-label="{$isRo ? 'Navigare' : 'Навигация'}">
+            <nav class="lb-crumbs lb-contact__crumbs" aria-label="{'lbar.rd.aria.crumbs' | lexicon}">
                 {$_modx->runSnippet('!pdoCrumbs', [
                     'showHome' => 1,
                     'showAtHome' => 0,

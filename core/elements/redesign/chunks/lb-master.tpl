@@ -5,7 +5,7 @@
 {$_modx->lexicon->load('babel:translate')}
 {set $start = $_modx->config.site_start}
 {set $title = $_modx->resource['title-bl2-study'] ?: $_modx->runSnippet('pdoField', ['id' => $start, 'field' => 'title-bl2-study'])}
-{set $isRo = $_modx->config.cultureKey == 'ro'}
+{set $isRu = $_modx->config.cultureKey == 'ru'}
 {set $ic = [
     'diamond' => '<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M12 9h16l6 7.5L20 33 6 16.5 12 9z"/><path d="M6 16.5h28M12 9l4 7.5L20 9l4 7.5L28 9M16 16.5 20 33l4-16.5"/></svg>',
     'people' => '<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="15" cy="14" r="5"/><circle cx="26.5" cy="14.5" r="4.3"/><path d="M5.5 31c.6-5.6 4.4-9 9.5-9s8.9 3.4 9.5 9H5.5zM22.5 22.6c1.2-.5 2.5-.8 4-.8 4.4 0 7.7 3 8.2 8.2H26"/></svg>',
@@ -14,8 +14,8 @@
     'star' => '<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="m20 6.5 4.2 8.7 9.5 1.3-6.9 6.6 1.7 9.4L20 28l-8.5 4.5 1.7-9.4-6.9-6.6 9.5-1.3L20 6.5z"/></svg>',
     'feather' => '<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 32 30 11"/><path d="M31 9.5c-6-2-14.6.8-18.1 8.5-1.8 3.7-1.9 7.6-1.4 10.8 3.3.5 7.2.2 10.9-1.5 7.6-3.6 10.4-12 8.6-17.8z"/><path d="M14.7 24h7M18 20.2h6.5M21.8 16.4h4.9"/></svg>'
 ]}
-{* иконки по смыслу пунктов: в RO и RU порядок пунктов разный *}
-{set $icons = $isRo ? ['diamond', 'people', 'building', 'cap', 'star'] : ['diamond', 'star', 'cap', 'feather', 'building']}
+{* иконки по смыслу пунктов: в RO (и EN — перевод RO) и RU порядок пунктов разный *}
+{set $icons = $isRu ? ['diamond', 'star', 'cap', 'feather', 'building'] : ['diamond', 'people', 'building', 'cap', 'star']}
 <section class="lb-master" id="lb-master">
     <div class="lb-master__bg" aria-hidden="true">
         <svg class="lb-master__lines" viewBox="0 0 1920 890" preserveAspectRatio="none">

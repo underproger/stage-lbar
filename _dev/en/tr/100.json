@@ -1,0 +1,16 @@
+{
+ "ro_id": 100,
+ "fields": {
+  "pagetitle": "Photo gallery (portfolio) of LBar Studio work",
+  "longtitle": "≋ PHOTO GALLERY ≋ Permanent makeup portfolio | Studio LBar",
+  "menutitle": "Portfolio",
+  "description": "Portfolio of work by LBar studio artists ⭐ See how we make our clients even more beautiful ⭐ Makeup that lasts up to 2 years ⭐ 100% natural look"
+ },
+ "tvs": {
+  "title-p-1": "Eyebrow micropigmentation",
+  "title-p-2": "Eye micropigmentation",
+  "title-p-3": "Lip micropigmentation",
+  "title-p-4": "Training moments"
+ },
+ "migx": {}
+}
