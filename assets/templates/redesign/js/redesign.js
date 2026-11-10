@@ -837,7 +837,7 @@
 		sAdd('.lb-shero__photo', { opacity: 0, duration: 1.4, ease: 'power2.out' }, 0.1);
 		sAdd('.lb-shero__photo img', { scale: 1.12, duration: 2.4, ease: 'power3.out', clearProps: 'transform' }, 0.1);
 		/* шапка — как на главной: ссылки меню по отдельности (transform на .lb-nav ломает позицию мега-панели) */
-		stl.from(isDesktop() ? '.lb-header__logo, .lb-nav__list > li > .lb-nav__link, .lb-lang, .lb-header__right' : '.lb-header__logo, .lb-header__right', { y: -24, opacity: 0, duration: 1.2, stagger: isDesktop() ? 0.035 : 0.08, clearProps: 'transform' }, 0.3);
+		stl.from(isDesktop() ? '.lb-header__logo, .lb-nav__list > li > .lb-nav__link, .lb-header__right' : '.lb-header__logo, .lb-header__right', { y: -24, opacity: 0, duration: 1.2, stagger: isDesktop() ? 0.035 : 0.08, clearProps: 'transform' }, 0.3);
 		sAdd('.lb-shero__eyebrow', { x: -30, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.4);
 		sAdd('.lb-shero__t1, .lb-shero__t2', { yPercent: 40, opacity: 0, duration: 1.5, stagger: 0.12, clearProps: 'transform' }, 0.5);
 		sAdd('.lb-shero__sub', { y: 20, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.8);
@@ -856,7 +856,7 @@
 		var mtl = window.gsap.timeline({ defaults: { ease: 'expo.out' } });
 		var mAdd = function (sel, vars, pos, to) { var els = msg.querySelectorAll(sel); if (!els.length) return; if (to) mtl.fromTo(els, vars, to, pos); else mtl.from(els, vars, pos); };
 		mAdd('.lb-msg__bg', { opacity: 0, scale: 1.05, duration: 2.2, ease: 'power3.out', clearProps: 'transform' }, 0);
-		mtl.from(isDesktop() ? '.lb-header__logo, .lb-nav__list > li > .lb-nav__link, .lb-lang, .lb-header__right' : '.lb-header__logo, .lb-header__right', { y: -24, opacity: 0, duration: 1.2, stagger: isDesktop() ? 0.035 : 0.08, clearProps: 'transform' }, 0.3);
+		mtl.from(isDesktop() ? '.lb-header__logo, .lb-nav__list > li > .lb-nav__link, .lb-header__right' : '.lb-header__logo, .lb-header__right', { y: -24, opacity: 0, duration: 1.2, stagger: isDesktop() ? 0.035 : 0.08, clearProps: 'transform' }, 0.3);
 		mAdd('.lb-msg__digit, .lb-msg__seal', { yPercent: 30, opacity: 0, duration: 1.6, stagger: 0.12, clearProps: 'transform' }, 0.35);
 		/* овалы и галочка «прорисовываются» (pathLength=1) */
 		mAdd('.lb-msg__ring', { strokeDashoffset: 1, strokeDasharray: 1 }, 0.7, { strokeDashoffset: 0, strokeDasharray: 1, duration: 1.8, stagger: 0.15, ease: 'power2.inOut', clearProps: 'strokeDashoffset,strokeDasharray' });
@@ -889,7 +889,7 @@
 		.from(q('.lb-hero__arches'), { clipPath: 'inset(100% 0% 0% 0%)', duration: 2, ease: 'power2.inOut', clearProps: 'clipPath' }, 0.8)
 		/* пункты меню анимируются по ссылкам, не целиком .lb-nav: transform на .lb-nav / li становится containing block
 		   для мега-панели — при наведении во время интро она уезжала влево */
-		.from(isDesktop() ? '.lb-header__logo, .lb-nav__list > li > .lb-nav__link, .lb-lang, .lb-header__right' : '.lb-header__logo, .lb-header__right', { y: -24, opacity: 0, duration: 1.2, stagger: isDesktop() ? 0.035 : 0.08, clearProps: 'transform' }, 0.35)
+		.from(isDesktop() ? '.lb-header__logo, .lb-nav__list > li > .lb-nav__link, .lb-header__right' : '.lb-header__logo, .lb-header__right', { y: -24, opacity: 0, duration: 1.2, stagger: isDesktop() ? 0.035 : 0.08, clearProps: 'transform' }, 0.35)
 		.from(q('.lb-hero__t1, .lb-hero__t2, .lb-hero__t3'), { yPercent: 55, opacity: 0, duration: 1.6, stagger: 0.14 }, 0.5)
 		.from(q('.lb-hero__line'), { scaleX: 0, duration: 1.2 }, 1.05)
 		.from(q('.lb-hero__sub'), { y: 20, opacity: 0, duration: 1.2 }, 1.1)

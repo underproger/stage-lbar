@@ -2,22 +2,21 @@
    H1 — TV title-banner, исходный текст сайта («Micropigmentare Bucuresti Studio Lbar» / «Перманентный макияж в Бухаресте от LBar»).
    Разбивка на три строки композиции макета (обычная / крупный курсив / мелкая) — лексикон lbar.rd.hero.title («|» — граница строк);
    применяется, только если без «|» он совпадает с TV, иначе H1 — одной строкой. «|» прямо в TV тоже работает. Подзаголовок — TV suptitle-banner.
-   Длинная 2-я строка (больше 9 знаков, RU «в Бухаресте») — мельче (lb-hero__title--t2l), чтобы строка помещалась. *}
+   Длинная 2-я строка (больше 9 знаков, RU «в Бухаресте») — мельче (lb-hero__title--t2l), чтобы строка помещалась.
+   Кнопки — как на исходном сайте: «Fă o programare» (скролл к форме #bl8-form) и «Primește o consultație» (скролл к «Контактам» #conract). *}
 {set $tb = $_modx->resource['title-banner'] | trim}
 {set $lay = 'lbar.rd.hero.title' | lexicon}
 {if !($tb | ematch : '~[|]~') && ($lay | replace : '|' : ' ') == $tb}{set $tb = $lay}{/if}
 {set $parts = $tb | split : '|'}
-{set $pfIds = ['ro' => 100, 'ru' => 198, 'en' => 1100]}
-{set $pfId = $pfIds[$_modx->config.cultureKey] ?: 100}
 {set $img = '/assets/templates/redesign/img/'}
 <section class="lb-hero" id="lb-hero">
     {* Сцена (десктоп): фон без декора + буквы «BAR», линия и арки (SVG, чёткие на любом экране) + мастер (вырезка, отдельный слой).
-       На мобильном — одна картинка hero-mobile.webp (фон + мастер), слои скрыты; мастер на мобильном не скачивается (пустой source). *}
+       На мобильном — одна картинка hero-mobile-v2.webp (фон + мастер, _dev/hero2/make_hero.py), слои скрыты; мастер на мобильном не скачивается (пустой source). *}
     {set $px = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'}
     <div class="lb-hero__bg">
         <div class="lb-hero__scene">
             <picture class="lb-hero__pic">
-                <source media="(max-width: 1024px)" srcset="{$img}hero-mobile.webp" width="1060" height="1100">
+                <source media="(max-width: 1024px)" srcset="{$img}hero-mobile-v2.webp" width="1060" height="1107">
                 <img src="{$img}hero-bg.webp" srcset="{$img}hero-bg-1440.webp 1440w, {$img}hero-bg.webp 2166w, {$img}hero-bg-2880.webp 2880w" sizes="100vw" width="2166" height="1218" alt="{'lbar.rd.hero.alt' | lexicon}" loading="eager" fetchpriority="high" decoding="async">
             </picture>
             <div class="lb-hero__art" aria-hidden="true">
@@ -34,7 +33,7 @@
             </div>
             <picture class="lb-hero__master" aria-hidden="true">
                 <source media="(max-width: 1024px)" srcset="{$px}">
-                <img src="{$img}hero-master.webp" srcset="{$img}hero-master.webp 570w, {$img}hero-master-2x.webp 1140w" sizes="30vw" width="570" height="869" alt="" loading="eager" decoding="async">
+                <img src="{$img}hero-master-v2.webp" srcset="{$img}hero-master-v2.webp 570w, {$img}hero-master-v2-2x.webp 1140w" sizes="30vw" width="570" height="760" alt="" loading="eager" decoding="async">
             </picture>
         </div>
     </div>
@@ -50,8 +49,8 @@
         <p class="lb-hero__sub">{$_modx->resource['suptitle-banner']}</p>
         {/if}
         <div class="lb-hero__btns">
-            <a class="lb-btn lb-btn--solid" href="#form-bl4">{'lbar.rd.hero.consult' | lexicon}<svg class="lb-btn__arr" viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg></a>
-            <a class="lb-btn lb-btn--ghost" href="{$_modx->makeUrl($pfId)}">{'lbar.rd.hero.portfolio' | lexicon}<svg class="lb-btn__arr" viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg></a>
+            <a class="lb-btn lb-btn--solid js-lb-book" href="#bl8-form">{'lbar.buttons.banner.book' | lexicon}<svg class="lb-btn__arr" viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg></a>
+            <a class="lb-btn lb-btn--ghost" href="#conract">{'lbar.buttons.banner.consultation' | lexicon}<svg class="lb-btn__arr" viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg></a>
         </div>
     </div>
 
