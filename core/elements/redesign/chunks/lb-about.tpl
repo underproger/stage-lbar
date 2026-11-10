@@ -4,15 +4,26 @@
    Надзаголовков (eyebrow) нет — убраны по просьбе пользователя, как во всех блоках.
    Страницы услуг (модификатор --svc): без преимуществ и цитаты главной; фото — TV img_bl1_about
    (если задано — поверх фото фона в той же рамке; если нет — фото фона). Фон с фото в рамке — кадр пользователя (about-bg-v2 / about-mobile-v2,
-   _dev/hero2/make_about.py), печати «Studio LBar» нет. «Citește mai mult» — под текстом. *}
-{set $title = $_modx->resource['title_bl1_about'] | trim}
+   _dev/hero2/make_about.py), печати «Studio LBar» нет. «Citește mai mult» — под текстом.
+   Удаление тату (шаблон «Удаление тату», шаг 54, вызов с &tz=`1`): TV старого блока bl1-about-service — заголовок
+   bl1_about_service-title (был H2 — остаётся H2; span.gold-word — только оформление, текст тот же), текст text_1, подзаголовок title_2
+   (H3, если заполнен) + text_2, примечание text_3; фото — bl1_about_service-img. *}
+{* параметр &tz из вызова чанка в шаблоне: MODX-плейсхолдер подставляется до Fenom (без параметра остаётся «[[+tz]]» → не 1) *}
+{set $tz = ('[[+tz]]' == '1')}
+{set $r = $_modx->resource}
+{set $title = ($tz ? ($r['bl1_about_service-title'] | striptags) : $r['title_bl1_about']) | trim}
 {set $dash = ''}
 {if ' — ' in $title}{set $dash = '—'}{elseif ' – ' in $title}{set $dash = '–'}{/if}
 {set $tp = ($dash ? ($title | split : (' ' ~ $dash ~ ' ')) : [$title])}
-{set $text = $_modx->resource['text_bl1_about']}
+{if $tz}
+{set $t2 = $r['bl1_about_service-title_2'] | striptags | trim}
+{set $text = ($r['bl1_about_service-text_1'] | trim) ~ ($t2 ? ('<h3>' ~ $t2 ~ '</h3>') : '') ~ ($r['bl1_about_service-text_2'] | trim) ~ ($r['bl1_about_service-text_3'] | trim)}
+{else}
+{set $text = $r['text_bl1_about']}
+{/if}
 {set $img = '/assets/templates/redesign/img/'}
 {set $svc = $_modx->resource.id != $_modx->config.site_start}
-{set $photo = $svc ? ('[[*img_bl1_about]]' | trim) : ''}
+{set $photo = $tz ? ($r['bl1_about_service-img'] | trim | ereplace : '~^/+~' : '') : ($svc ? ('[[*img_bl1_about]]' | trim) : '')}
 <div id="bl1"></div>
 <section class="lb-about{$svc ? ' lb-about--svc' : ''}" id="lb-about">
     <div class="lb-about__bg">
@@ -27,14 +38,14 @@
 
     <div class="lb-about__col">
         {if $title}
-        <div class="lb-about__title{($svc && ($title | length) > 40) ? ' lb-about__title--long' : ''}">
+        <{$tz ? 'h2' : 'div'} class="lb-about__title{($svc && ($title | length) > 40) ? ' lb-about__title--long' : ''}">
             {if $tp | length > 1}
             <span class="lb-about__t1">{$tp[0]}&nbsp;{$dash}</span>
             <span class="lb-about__t2">{$tp[1]}</span>
             {else}
             <span class="lb-about__t1">{$title}</span>
             {/if}
-        </div>
+        </{$tz ? 'h2' : 'div'}>
         {/if}
 
         {if $text}

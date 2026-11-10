@@ -809,6 +809,20 @@
 			['.lb-course', { y: 70, opacity: 0, duration: 1.5, stagger: 0.12, clearProps: 'transform' }, 0.15],
 			['.lb-course__li', { x: 30, opacity: 0, duration: 1.1, stagger: 0.08, clearProps: 'transform' }, 0.6]
 		]);
+		// страница «Удаление тату» (шаг 54): «Оборудование» и «Специалисты»
+		revealBlock(document.querySelector('.lb-tzequip'), 'top 72%', [
+			['.lb-tzequip__title', { y: 50, opacity: 0, duration: 1.4, clearProps: 'transform' }, 0],
+			['.lb-tzequip__sub', { y: 30, opacity: 0, duration: 1.3, clearProps: 'transform' }, 0.2],
+			['.lb-tzequip__item', { y: 80, opacity: 0, duration: 1.5, stagger: 0.14, clearProps: 'transform' }, 0.25],
+			['.lb-tzequip__num', { yPercent: 60, opacity: 0, duration: 1.1, stagger: 0.14, clearProps: 'transform' }, 0.7],
+			['.lb-tzequip__note', { x: isDesktop() ? 60 : 0, y: isDesktop() ? 0 : 40, opacity: 0, duration: 1.5, clearProps: 'transform' }, 0.5],
+			['.lb-tzequip__ic svg', { scale: 0.4, rotation: -45, opacity: 0, duration: 1.2, ease: 'back.out(2)', clearProps: 'transform' }, 0.9]
+		]);
+		revealBlock(document.querySelector('.lb-tzteam'), 'top 72%', [
+			['.lb-tzteam__title', { y: 50, opacity: 0, duration: 1.4, clearProps: 'transform' }, 0],
+			['.lb-tzteam__item', { y: 70, opacity: 0, duration: 1.5, stagger: 0.12, clearProps: 'transform' }, 0.3],
+			['.lb-tzteam__photo', { scale: 0.7, opacity: 0, duration: 1.3, stagger: 0.12, ease: 'back.out(1.6)', clearProps: 'transform' }, 0.55]
+		]);
 		// подвал: в блоке «Заказать звонок» (.lb-footer__call) анимируется только кнопка — окно (position: fixed) лежит рядом с ней:
 		// прозрачность / transform на самом блоке прятали бы окно, открытое до прокрутки к подвалу (кнопки «Записаться» без формы на странице)
 		revealBlock(document.querySelector('.lb-footer'), 'top 80%', [

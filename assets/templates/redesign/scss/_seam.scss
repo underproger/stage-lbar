@@ -903,3 +903,48 @@ $seam-contact: #f8f2ee;  // «Статьи» → «Контакты»
 		background: linear-gradient(180deg, $seam-faq 0, $cs-bg 100px, $cs-bg calc(100% - 100px), $seam-reviews 100%);
 	}
 }
+
+// ---------- страница «Удаление тату» (шаблон «Удаление тату», шаг 54) ----------
+// баннер → «О процедуре» → «Оборудование» (lb-tzequip, на месте «implică») → «Консультация» → «Специалисты» (lb-tzteam, тёмный,
+// на месте «Мастера») → «Галерея» → «Цены» → «Запись» → «Отзывы» → FAQ → «Контакты» (SEO-текста и статей нет)
+.lb-tzequip {
+	background: linear-gradient(180deg, $seam-color 0, $im-bg vw(160), $im-bg calc(100% - #{vw(200)}), $seam-consult 100%);
+	@include lb-seam(top);
+	@include lb-seam(bottom, "seam-consult.svg", before);
+	&__bg {
+		-webkit-mask-image: linear-gradient(180deg, transparent 0, #000 vw(200), #000 calc(100% - #{vw(240)}), transparent 100%);
+		mask-image: linear-gradient(180deg, transparent 0, #000 vw(200), #000 calc(100% - #{vw(240)}), transparent 100%);
+	}
+	@include mobile {
+		background: linear-gradient(180deg, $seam-color 0, $im-bg 120px, $im-bg calc(100% - 80px), $seam-consult 100%);
+	}
+}
+// «Консультация» → «Специалисты»: тёмная волна уже в низу «Консультации»; верх «Специалистов» продолжает её тон (как у «Мастера»)
+.lb-tzteam::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: vw(170);
+	z-index: 1;
+	pointer-events: none;
+	background: linear-gradient(90deg, #3c2f2a 0%, #453630 10%, #453630 20%, #322724 30%, #2c231f 40%, #2d2420 50%, #302824 60%, #2c231f 70%, #2c231f 80%, #312623 90%, #322722 100%);
+	-webkit-mask-image: linear-gradient(180deg, #000 0, rgba(0, 0, 0, .6) 35%, transparent 100%);
+	mask-image: linear-gradient(180deg, #000 0, rgba(0, 0, 0, .6) 35%, transparent 100%);
+	@include mobile {
+		height: mvw(80);
+	}
+}
+// «Специалисты» → «Галерея»: волна «Галереи» по умолчанию (master-bg, отражённый) — на телефоне фон «Специалистов» без картинки,
+// как у «Мастера», волна такая же
+// FAQ → «Контакты» (нет SEO-текста и статей): у FAQ нижняя лента — seam-seo
+.lb-faq + #conract + .lb-contact {
+	background: linear-gradient(180deg, $seam-seo 0, $ct-bg vw(160));
+	&::after {
+		@include lb-seam-bg("seam-seo.svg");
+	}
+	@include mobile {
+		background: linear-gradient(180deg, $seam-seo 0, $ct-bg 90px);
+	}
+}

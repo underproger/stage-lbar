@@ -2,14 +2,16 @@
    pdoResources, parents = текущий, до 12, по menuindex). Выводится, только если дети есть. H2 — TV main-title-bl2,
    подзаголовок — TV sub-title-bl2 (как в tpl.moreWrap-category.main). Вид — блок «Услуги» главной (lb-scard).
    Общая страница «Услуги» (шаблон «Услуги — общая», вместо bl2-category-inerial-2; режим hub): все опубликованные услуги-потомки
-   (шаблоны «Категория» 8 и «Категория NEW» 19, по menuindex), карточка lb.hubCard; H2 и подзаголовок — те же TV. *}
+   (шаблоны «Категория» 8 и «Категория NEW» 19, по menuindex), карточка lb.hubCard; H2 и подзаголовок — те же TV.
+   Шаг 54: и страницы шаблона «Удаление тату» (Redesign; id шаблона на серверах разный — по имени, через JOIN modTemplate). *}
 {set $hub = $_modx->resource.template != 8}
 {if $hub}
 {set $list = $_modx->runSnippet('pdoResources', [
     'parents' => $_modx->resource.id,
     'depth' => 0,
     'limit' => 0,
-    'where' => ['template:IN' => [8, 19], 'class_key:!=' => 'modWebLink'],
+    'leftJoin' => ['Tpl' => ['class' => 'modTemplate', 'on' => 'Tpl.id = modResource.template']],
+    'where' => '[{"template:IN":[8,19],"OR:Tpl.templatename:=":"Удаление тату"},{"class_key:!=":"modWebLink"}]',
     'tpl' => 'lb.hubCard',
     'sortby' => 'menuindex',
     'sortdir' => 'ASC',

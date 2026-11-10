@@ -5,9 +5,13 @@
    Заголовок — не H2 (как и в старом блоке), чтобы не менять структуру заголовков страницы.
    Форма: AjaxForm + FormIt с прежними параметрами, id формы — form-bl4 (на него завязаны якоря и редирект после отправки). *}
 {* на страницах услуг TV пустые — берутся с главной контекста (как :default в старом bl4-form) *}
+{* удаление тату (шаг 54, &tz=`1`): в старом bl4-form-new заголовок был H2 — остаётся H2; span.gold-word → курсив *}
+{* параметр &tz из вызова чанка в шаблоне: MODX-плейсхолдер подставляется до Fenom (без параметра остаётся «[[+tz]]» → не 1) *}
+{set $tz = ('[[+tz]]' == '1')}
 {set $start = $_modx->config.site_start}
 {set $title = ($_modx->resource['main-title-bl4'] ?: $_modx->runSnippet('pdoField', ['id' => $start, 'field' => 'main-title-bl4'])) | trim}
 {set $sub = $_modx->resource['sub-title-bl4'] ?: $_modx->runSnippet('pdoField', ['id' => $start, 'field' => 'sub-title-bl4'])}
+{if $tz}{set $title = $title | replace : '<span class="gold-word">' : '<em>' | replace : '</span>' : '</em>'}{/if}
 {set $fmt = 'lbar.rd.consult.title' | lexicon}
 {set $plain = $fmt | replace : '|' : ' ' | replace : '*' : ''}
 <div id="conract"></div>
@@ -17,7 +21,7 @@
     <div class="lb-consult__intro">
 
         {if $title}
-        <div class="lb-consult__title">
+        <{$tz ? 'h2' : 'div'} class="lb-consult__title">
             {if $plain == $title}
             {foreach ($fmt | split : '|') as $line}
             <span class="lb-consult__line"><span class="lb-consult__lin">{foreach ($line | split : '*') as $k => $part}{if $k % 2}<em>{$part}</em>{else}{$part}{/if}{/foreach}</span></span>
@@ -25,7 +29,7 @@
             {else}
             <span class="lb-consult__line"><span class="lb-consult__lin">{$title}</span></span>
             {/if}
-        </div>
+        </{$tz ? 'h2' : 'div'}>
         <svg class="lb-consult__flourish" viewBox="0 0 440 50" aria-hidden="true">
             <defs>
                 <linearGradient id="lb-consult-fl" x1="0" y1="0" x2="1" y2="0">

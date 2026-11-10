@@ -1,0 +1,424 @@
+// ================= «Удаление тату лазером» (шаблон «Удаление тату», шаг 54) =================
+// Блоки услуг (lb-shero, lb-about, lb-consult в режиме tz, lb-portfolio, lb-price, lb-book, lb-reviews, lb-faq, lb-contact) +
+// свои: lb-tzequip — оборудование (светлый, на месте «implică»), lb-tzteam — специалисты (тёмный, на месте «Мастера»).
+// Стыки — _seam.scss (раздел «Удаление тату»).
+
+// ---------- баннер: 4 преимущества — 2 × 2 ----------
+.lb-shero__feats--4 {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	row-gap: vw(22);
+	width: vw(700);
+	.lb-shero__feat {
+		padding: vw(2) vw(26);
+		border-left: 0;
+		&:nth-child(odd) {
+			padding-left: 0;
+		}
+		&:nth-child(even) {
+			border-left: 1px solid rgba(180, 139, 110, .32);
+		}
+	}
+}
+
+// ---------- H2 там, где в старых блоках был H2 («О процедуре», «Консультация»): вид — как у div-заголовка ----------
+// (старый CSS задаёт h2 свой шрифт Montserrat 600, отступы, выравнивание и регистр — поднимаем специфичность)
+.lb-about h2.lb-about__title,
+.lb-consult h2.lb-consult__title {
+	padding: 0;
+	margin-bottom: 0;
+	font-family: $f-display;
+	font-style: normal;
+	font-weight: 500;
+	text-align: left;
+	text-transform: none;
+}
+.lb-about h2.lb-about__title {
+	letter-spacing: normal;
+}
+.lb-consult h2.lb-consult__title {
+	letter-spacing: -.02em;
+}
+
+// ---------- «золотые» слова в заголовках из TV (span.gold-word, напр. в «Галерее»): как курсивный акцент, цветом заголовка (шаг 50) ----------
+.lb-tzpage :is(h2, h3) .gold-word {
+	@include lb-accent-h;
+	font-size: $lb-h-accent;
+}
+
+// ---------- оборудование ----------
+.lb-tzequip {
+	position: relative;
+	overflow: hidden;
+	padding: vw(150) 0 vw(210);
+	font-family: $f-text;
+	color: #4a3a33;
+	-webkit-font-smoothing: antialiased;
+	:where(*, *::before, *::after) {
+		box-sizing: border-box;
+	}
+	:where(ul, li, p, h2, h4) {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	&__bg {
+		position: absolute;
+		inset: 0;
+		background:
+			radial-gradient(34% 46% at 86% 30%, rgba(236, 211, 196, .55), rgba(236, 211, 196, 0) 100%),
+			radial-gradient(30% 40% at 12% 80%, rgba(255, 255, 255, .7), rgba(255, 255, 255, 0) 100%);
+		pointer-events: none;
+	}
+	&__inner {
+		position: relative;
+		z-index: 1;
+		width: vw($lb-wrap);
+		margin: 0 auto;
+	}
+	&__head {
+		display: flex;
+		align-items: flex-end;
+		justify-content: space-between;
+		gap: vw(60);
+		margin-bottom: vw(56);
+	}
+	& h2.lb-tzequip__title {
+		margin: 0;
+		@include lb-title;
+		@include lb-h(2);
+		line-height: 1.1;
+		text-align: left;
+		color: $lb-h-ink;
+		em {
+			@include lb-accent-h;
+			font-size: $lb-h-accent;
+		}
+	}
+	&__sub {
+		flex: none;
+		width: vw(520);
+		font-size: vw(17);
+		line-height: 1.65;
+		color: #6b5e57;
+		p {
+			margin: 0;
+		}
+	}
+	&__grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) vw(520);
+		gap: vw(28);
+		align-items: stretch;
+	}
+	&__list {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: vw(28);
+	}
+	&__item {
+		position: relative;
+		padding: vw(16) vw(16) vw(30);
+		border: 1px solid rgba(255, 255, 255, .8);
+		border-radius: vw(30);
+		background: linear-gradient(170deg, rgba(255, 250, 246, .94) 0%, rgba(250, 242, 237, .9) 100%);
+		box-shadow: 0 vw(30) vw(70) rgba(130, 90, 66, .12), 0 vw(4) vw(14) rgba(130, 90, 66, .05);
+	}
+	&__photo {
+		position: relative;
+		aspect-ratio: 4 / 3;
+		overflow: hidden;
+		border-radius: vw(22);
+		// подложка, пока фото грузится / если файла нет
+		background:
+			radial-gradient(60% 60% at 50% 40%, rgba(255, 255, 255, .8), rgba(255, 255, 255, 0) 100%),
+			linear-gradient(160deg, #f1e2d8 0%, #e6cfc0 100%);
+		img {
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: scale 1.2s $ease-expo;
+		}
+	}
+	&__item:hover &__photo img {
+		scale: 1.04;
+	}
+	&__num {
+		display: block;
+		margin: vw(24) vw(14) 0;
+		@include lb-accent;
+		font-size: vw(30);
+		line-height: 1;
+	}
+	& h4.lb-tzequip__name {
+		margin: vw(10) vw(14) 0;
+		@include lb-title;
+		@include lb-h(4);
+		line-height: 1.25;
+		text-align: left;
+		color: $lb-h-ink;
+	}
+	// примечание — карточка той же высоты, что и карточки оборудования: иконка и текст по центру по вертикали
+	&__note {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: vw(26);
+		padding: vw(44) vw(40);
+		border: 1px solid rgba(203, 170, 148, .45);
+		border-radius: vw(30);
+		background: rgba(255, 255, 255, .55);
+		-webkit-backdrop-filter: blur(10px);
+		backdrop-filter: blur(10px);
+	}
+	&__ic {
+		flex: none;
+		display: grid;
+		place-items: center;
+		width: vw(58);
+		height: vw(58);
+		border: 1px solid rgba(168, 120, 86, .4);
+		border-radius: 50%;
+		color: #a87856;
+		svg {
+			width: vw(28);
+			height: vw(28);
+		}
+	}
+	&__text {
+		font-size: vw(16.5);
+		line-height: 1.7;
+		color: #4a3a33;
+		p {
+			margin: 0;
+		}
+		p + p {
+			margin-top: vw(12);
+		}
+		b,
+		strong {
+			font-weight: 600;
+			color: #24130f;
+		}
+		span {
+			font: inherit !important;
+			color: inherit !important;
+			background: none !important;
+		}
+	}
+}
+
+// ---------- специалисты (тёмный блок, как «Мастер») ----------
+.lb-tzteam {
+	position: relative;
+	overflow: hidden;
+	padding: vw(180) 0 vw(110);
+	font-family: $f-text;
+	color: #d6d2cf;
+	background: $ms-bg;
+	-webkit-font-smoothing: antialiased;
+	:where(*, *::before, *::after) {
+		box-sizing: border-box;
+	}
+	:where(ul, li, p, h2) {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	// фон — как у «Мастера»: master-bg на всю высоту блока; нижняя строка картинки та же, поэтому волна «Галереи»
+	// (master-bg, отражённый) продолжает фон без шва
+	&__bg {
+		position: absolute;
+		inset: 0;
+		background:
+			radial-gradient(26% 34% at 18% 26%, rgba(196, 146, 118, .16), rgba(196, 146, 118, 0) 100%),
+			url("/assets/templates/redesign/img/master-bg.webp") 0 0 / 100% calc(100% + 2px) no-repeat,
+			$ms-bg;
+	}
+	&__inner {
+		position: relative;
+		z-index: 2;
+		width: vw($lb-wrap);
+		margin: 0 auto;
+	}
+	& h2.lb-tzteam__title {
+		max-width: vw(1200);
+		margin: 0;
+		@include lb-title;
+		@include lb-h(2);
+		line-height: 1.15;
+		text-align: left;
+		color: #f8f6f4;
+		em {
+			@include lb-accent-h;
+			display: block;
+			font-size: $lb-h-accent;
+		}
+	}
+	&__list {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: vw(28);
+		margin-top: vw(64);
+	}
+	&__item {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: vw(44) vw(32) vw(46);
+		border: 1px solid rgba(214, 180, 158, .2);
+		border-radius: vw(30);
+		background: linear-gradient(170deg, rgba(255, 255, 255, .075) 0%, rgba(255, 255, 255, .025) 100%);
+		-webkit-backdrop-filter: blur(6px);
+		backdrop-filter: blur(6px);
+		text-align: center;
+	}
+	&__photo {
+		width: vw(190);
+		height: vw(190);
+		overflow: hidden;
+		border-radius: 50%;
+		background: radial-gradient(70% 70% at 40% 30%, #6b5348 0%, #43332d 100%);
+		box-shadow: 0 0 0 vw(8) rgba(214, 180, 158, .08), 0 vw(24) vw(50) rgba(0, 0, 0, .35);
+		img {
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: 50% 20%;
+		}
+	}
+	&__name {
+		margin-top: vw(28) !important;
+		@include lb-title;
+		font-size: vw(30);
+		line-height: 1.2;
+		color: #f8f6f4;
+	}
+	&__text {
+		margin-top: vw(12) !important;
+		font-size: vw(16.5);
+		line-height: 1.6;
+		color: #cbbfb8;
+	}
+}
+
+// ================= мобильный =================
+@include mobile {
+	.lb-shero__feats--4 {
+		grid-template-columns: 1fr;
+		row-gap: 14px;
+		width: auto;
+		.lb-shero__feat:nth-child(n) {
+			padding: 0;
+			border-left: 0;
+		}
+	}
+
+	.lb-tzequip {
+		padding: 56px 0 80px;
+		&__inner {
+			width: auto;
+			padding: 0 $lb-gut-m;
+		}
+		&__head {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 14px;
+			margin-bottom: 26px;
+		}
+		&__sub {
+			width: auto;
+			font-size: 15px;
+		}
+		&__grid {
+			grid-template-columns: 1fr;
+			gap: 14px;
+		}
+		&__list {
+			grid-template-columns: 1fr;
+			gap: 12px;
+		}
+		// карточка — строкой: фото слева, номер и название справа
+		&__item {
+			display: grid;
+			grid-template-columns: 112px minmax(0, 1fr);
+			grid-template-rows: auto 1fr;
+			column-gap: 16px;
+			align-items: start;
+			padding: 10px 16px 10px 10px;
+			border-radius: 18px;
+		}
+		&__photo {
+			grid-row: 1 / 3;
+			border-radius: 12px;
+		}
+		&__num {
+			margin: 8px 0 0;
+			font-size: 20px;
+		}
+		& h4.lb-tzequip__name {
+			margin: 6px 0 0;
+		}
+		&__note {
+			flex-direction: row;
+			align-items: flex-start;
+			gap: 14px;
+			padding: 22px 18px;
+			border-radius: 18px;
+		}
+		&__ic {
+			width: 42px;
+			height: 42px;
+			svg {
+				width: 20px;
+				height: 20px;
+			}
+		}
+		&__text {
+			font-size: 14.5px;
+		}
+	}
+
+	.lb-tzteam {
+		padding: 70px 0 84px;
+		&__bg {
+			background:
+				radial-gradient(70% 40% at 30% 18%, rgba(196, 146, 118, .22), rgba(196, 146, 118, 0) 100%),
+				radial-gradient(80% 50% at 90% 100%, rgba(170, 120, 95, .2), rgba(170, 120, 95, 0) 100%),
+				$ms-bg;
+		}
+		&__inner {
+			width: auto;
+			padding: 0 $lb-gut-m;
+		}
+		&__list {
+			grid-template-columns: 1fr;
+			gap: 12px;
+			margin-top: 28px;
+		}
+		&__item {
+			flex-direction: row;
+			align-items: center;
+			gap: 16px;
+			padding: 16px;
+			border-radius: 18px;
+			text-align: left;
+		}
+		&__photo {
+			flex: none;
+			width: 84px;
+			height: 84px;
+			box-shadow: 0 0 0 5px rgba(214, 180, 158, .08);
+		}
+		&__name {
+			margin-top: 0 !important;
+			font-size: 20px;
+		}
+		&__text {
+			margin-top: 4px !important;
+			font-size: 14px;
+		}
+	}
+}

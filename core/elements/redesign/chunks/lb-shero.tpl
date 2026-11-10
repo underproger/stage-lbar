@@ -14,10 +14,15 @@
    хлебные крошки — без exclude (как в banner-interial). Кнопок нет (в banner-interial их не было, шаг 45);
    фото — только своё, без фото — простой баннер: фон, H1, текст, крошки, без графики справа (lb-shero--simple, шаг 45).
    Статья блога (5) баннера не имеет — H1, крошки и сведения выводит lb-article (шаг 45).
+   Удаление тату (шаблон «Удаление тату», шаг 54, вызов с &tz=`1`): как у услуги, но TV старого баннера banner-interial-category-new —
+   H1 title-banner-study, подзаголовок sub-title-2-banner-study, 4 преимущества text-1…4-banner-study (колонки с иконками, 2 × 2);
+   надзаголовок sub-title-1-banner-study не выводится (без eyebrow, как везде).
    Внимание: в выражениях Fenom не писать «*» + «/» подряд (закрывает служебный комментарий в скомпилированном шаблоне). *}
 {set $r = $_modx->resource}
-{set $hub = $r.template != 8}
-{set $t = ($hub ? $r.pagetitle : $r['title-banner']) | trim}
+{* параметр &tz из вызова чанка в шаблоне: MODX-плейсхолдер подставляется до Fenom (без параметра остаётся «[[+tz]]» → не 1) *}
+{set $tz = ('[[+tz]]' == '1')}
+{set $hub = $r.template != 8 && !$tz}
+{set $t = ($hub ? $r.pagetitle : ($tz ? $r['title-banner-study'] : $r['title-banner'])) | trim}
 {set $first = $t | ereplace : '~\s.*$~s' : ''}
 {set $rest = $t | ereplace : '~^\S+\s*~' : ''}
 
@@ -31,8 +36,12 @@
 {if $it}{set $items[] = $it}{if ($it | length) > $max}{set $max = $it | length}{/if}{/if}
 {/foreach}
 {/if}
+{if $tz}
+{set $items = []}
+{foreach [1, 2, 3, 4] as $k}{set $it = $r['text-' ~ $k ~ '-banner-study'] | striptags | trim}{if $it}{set $items[] = $it}{/if}{/foreach}
+{/if}
 {set $n = $items | length}
-{set $mode = ($n >= 2 && $n <= 3) ? ($max <= 40 ? 'cols' : ($max <= 80 ? 'list' : 'html')) : ($desc ? 'html' : '')}
+{set $mode = $tz ? ($n ? 'cols' : '') : (($n >= 2 && $n <= 3) ? ($max <= 40 ? 'cols' : ($max <= 80 ? 'list' : 'html')) : ($desc ? 'html' : ''))}
 
 {* фото: своё → родителя → нет *}
 {set $own = $_modx->getResource($r.id, ['includeTVs' => 'img_banner_main', 'processTVs' => 1, 'tvPrefix' => '', 'select' => 'id,parent'])}
@@ -50,6 +59,15 @@
     '<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 4 33 9v9c0 9-5.6 15.4-13 18-7.4-2.6-13-9-13-18V9z"/><path d="m14 20 4.5 4.5L27 16"/></svg>',
     '<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="9" width="28" height="25" rx="3"/><path d="M6 16h28M13 5v7M27 5v7"/><path d="M13 22h.01M20 22h.01M27 22h.01M13 28h.01M20 28h.01M27 28h.01" stroke-width="2.6"/></svg>'
 ]}
+{* удаление тату: безопасность, время сеанса, кожа без следов, любой тип тату *}
+{if $tz}
+{set $ico = [
+    $ico[1],
+    '<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="20" cy="21" r="14"/><path d="M20 12v9l6 4"/><path d="M16 4h8"/></svg>',
+    $ico[0],
+    '<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 4v8M20 28v8M4 20h8M28 20h8M8.7 8.7l5.6 5.6M25.7 25.7l5.6 5.6M31.3 8.7l-5.6 5.6M14.3 25.7l-5.6 5.6"/><circle cx="20" cy="20" r="3"/></svg>'
+]}
+{/if}
 {set $arr = '<svg class="lb-btn__arr" viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg>'}
 <section class="lb-shero{if !$photo} lb-shero--art{/if}{if $hub} lb-shero--hub{/if}{if $simple} lb-shero--simple{/if}" id="lb-shero">
     <div class="lb-shero__bg" aria-hidden="true"></div>
@@ -86,12 +104,14 @@
             {* длинный текст (у мастеров — биография, 1–2 тыс. знаков) в баннер не помещается — его выводит блок под баннером (lb-pgallery) *}
             {set $hdesc = $r['description-banner-inerial'] | trim}
             {if $hdesc && ($hdesc | striptags | trim | length) <= 300}<div class="lb-shero__desc">{$hdesc}</div>{/if}
+            {elseif $tz}{if $r['sub-title-2-banner-study'] | trim}<p class="lb-shero__sub">{$r['sub-title-2-banner-study']}</p>{/if}
             {elseif $r['sub-title-banner'] | trim}<p class="lb-shero__sub">{$r['sub-title-banner']}</p>{/if}
 
             {if $mode == 'cols'}
-            <ul class="lb-shero__feats">
+            {set $nic = $ico | length}
+            <ul class="lb-shero__feats{($n > 3) ? ' lb-shero__feats--4' : ''}">
                 {foreach $items as $i => $it}
-                <li class="lb-shero__feat"><span class="lb-shero__ico">{$ico[$i % 3]}</span><span class="lb-shero__feat-t">{$it}</span></li>
+                <li class="lb-shero__feat"><span class="lb-shero__ico">{$ico[$i % $nic]}</span><span class="lb-shero__feat-t">{$it}</span></li>
                 {/foreach}
             </ul>
             {elseif $mode == 'list'}

@@ -4,7 +4,8 @@
    mode — вид: notop (длительность col-2 + цена col-4, пусто — col-3), full (длительность + TOP Master col-3 + TOP Trainer col-4),
    three (цена col-2 «за сеанс» + col-3 «8 сеансов»), two (цена col-3), dur3 (длительность + цена col-3), two2 (цена col-2);
    label — подпись таблицы (aria-label); uid — суффикс id градиента иконки (несколько таблиц на странице).
-   Подписи колонок — прежние ключи lbar.price.table.title*. Иконки — по ключевым словам названия. *}
+   Подписи колонок — прежние ключи lbar.price.table.title*; hl1 / hl2 / hl3 — свои подписи колонок «процедура» / 1-я / 2-я цена
+   (удаление тату, шаг 54: из шапки HTML-таблицы TV). Иконки — по ключевым словам названия. *}
 {$_modx->lexicon->load('babel:translate')}
 {set $rows = ($rows ?: '[]') | fromJSON}
 {set $uid = $uid ?: '1'}
@@ -13,7 +14,7 @@
 {elseif $mode == 'two2'}
     {set $pcols = [['col-2', 'lbar.price.table.title5']]}{set $hasDur = false}{set $lay = 'two'}
 {elseif $mode == 'three'}
-    {set $pcols = [['col-2', 'lbar.price.table.title6'], ['col-3', 'lbar.price.table.title7']]}{set $hasDur = false}{set $lay = 'three'}
+    {set $pcols = [['col-2', $hl2 ?: 'lbar.price.table.title6'], ['col-3', $hl3 ?: 'lbar.price.table.title7']]}{set $hasDur = false}{set $lay = 'three'}
 {elseif $mode == 'full'}
     {set $pcols = [['col-3', 'lbar.price.table.title3'], ['col-4', 'lbar.price.table.title4']]}{set $hasDur = true}{set $lay = 'full'}
 {elseif $mode == 'dur3'}
@@ -43,7 +44,7 @@
 {if $rows}
 <div class="lb-ptable lb-ptable--{$lay}" role="table" aria-label="{$label | striptags | escape}">
     <div class="lb-ptable__head" role="row">
-        <div class="lb-ptable__h lb-ptable__h--name" role="columnheader"><span>{'lbar.price.table.title1' | lexicon}</span><i class="lb-ptable__orn" aria-hidden="true"><svg viewBox="0 0 20 20"><path fill="currentColor" d="M10 0c.5 5.3 4.2 9.3 10 10-5.8.7-9.5 4.7-10 10-.5-5.3-4.2-9.3-10-10C5.8 9.3 9.5 5.3 10 0z"/></svg></i></div>
+        <div class="lb-ptable__h lb-ptable__h--name" role="columnheader"><span>{($hl1 ?: 'lbar.price.table.title1') | lexicon}</span><i class="lb-ptable__orn" aria-hidden="true"><svg viewBox="0 0 20 20"><path fill="currentColor" d="M10 0c.5 5.3 4.2 9.3 10 10-5.8.7-9.5 4.7-10 10-.5-5.3-4.2-9.3-10-10C5.8 9.3 9.5 5.3 10 0z"/></svg></i></div>
         {if $hasDur}<div class="lb-ptable__h lb-ptable__h--dur" role="columnheader">{'lbar.price.table.title2' | lexicon}</div>{/if}
         {foreach $pcols as $pc}
         <div class="lb-ptable__h lb-ptable__h--price" role="columnheader">{$pc[1] | lexicon}</div>
