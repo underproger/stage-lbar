@@ -22,7 +22,7 @@
 <header class="lb-header" id="lb-header">
     <div class="lb-header__bar"></div>
     <div class="lb-header__inner">
-        <a class="lb-header__logo" href="[[++site_url]]" aria-label="[[++site_name]]"><img src="/assets/templates/redesign/img/logo.svg?v=2" width="216" height="119" alt="LBar" loading="eager"></a>
+        <a class="lb-header__logo" href="[[++site_url]]" aria-label="[[++site_name]]"><img src="/assets/templates/redesign/img/logo.svg?v=3" width="242" height="119" alt="LBar" loading="eager"></a>
 
         <div class="lb-mnav" id="lb-mnav">
             <nav class="lb-nav" aria-label="{'lbar.rd.aria.nav' | lexicon}">
@@ -31,8 +31,8 @@
             <div class="lb-mnav__foot">
                 <a class="lb-mnav__phone" href="tel:[[++phone-1:replace=` ==`]]">[[++phone-1]]</a>
                 <p class="lb-mnav__addr">
-                    <a href="{'lbar.rd.contacts.mapurl' | lexicon}" target="_blank" rel="nofollow noopener">{'lbar.rd.header.city' | lexicon}<br>
-                    {'lbar.rd.header.street' | lexicon}</a><br>
+                    <a href="{'lbar.rd.contacts.mapurl' | lexicon}" target="_blank" rel="nofollow noopener">{'lbar.rd.contacts.city' | lexicon}<br>
+                    {'lbar.rd.contacts.street' | lexicon}</a><br>
                     {'lbar.rd.header.days' | lexicon}: [[++schedule]]
                 </p>
                 <a class="lb-btn lb-btn--solid lb-mnav__cta js-lb-book" href="#bl8-form">{'lbar.buttons.banner.book' | lexicon}<svg class="lb-btn__arr" viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg></a>

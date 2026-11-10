@@ -1,5 +1,5 @@
 {* Карточка статьи в списке блога (tpl pdoPage в lb-bloglist). Данные — как в старом tpl.subcat.blog: превью TV img-blog-prew
-   (нет — настройка img-blog-prew-default), рубрика — родитель, название — menutitle или pagetitle, просмотры — TV HitsPage,
+   (нет — настройка img-blog-prew-default), название — menutitle или pagetitle, просмотры — TV HitsPage (рубрики в карточке нет — шаг 45),
    число комментариев — EasyComm ветки статьи (как было), анонс — introtext. Значки «видео» / «галерея» — TV video-icon / gallery-icon. *}
 {$_modx->lexicon->load('babel:translate')}
 {set $img = ($_pls['tv.img-blog-prew'] | trim) ?: ('[[++img-blog-prew-default]]' | trim)}
@@ -17,7 +17,6 @@
     </a>
     <div class="lb-bcard__body">
         <div class="lb-bcard__meta">
-            <a class="lb-bcard__cat" href="{$parent | url}">{$_modx->runSnippet('pdoField', ['id' => $parent, 'field' => 'pagetitle'])}</a>
             <span class="lb-bcard__stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>{$_pls['tv.HitsPage'] ?: 0}</span>
         </div>
         <div class="lb-bcard__title"><a href="{$uri}">{$title}</a></div>

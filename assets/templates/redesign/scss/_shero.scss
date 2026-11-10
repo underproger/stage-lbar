@@ -246,10 +246,14 @@ $sh-text: #4a3a33;
 }
 
 // ----- хлебные крошки -----
+// в баннере — внизу слева; lb-crumbs--flow — в потоке (статья блога, шаг 45)
 .lb-crumbs {
 	position: absolute;
 	left: vw($lb-gut);
 	bottom: vw(48);
+	&--flow {
+		position: static;
+	}
 	&__list {
 		display: flex;
 		flex-wrap: wrap;
@@ -417,6 +421,9 @@ $sh-text: #4a3a33;
 	.lb-crumbs {
 		position: static;
 		margin: 28px 20px 0;
+		&--flow {
+			margin: 0;
+		}
 		&__item {
 			font-size: 13px;
 			& + &::before {
@@ -436,8 +443,8 @@ $sh-text: #4a3a33;
 	}
 }
 
-// ---------- общие страницы (режим hub: «Услуги», «Обучение», «Портфолио» и его разделы) — баннер ниже ----------
-// высота по содержимому (H1 + кнопки), без запаса под фото услуги; графика справа тянется по высоте баннера
+// ---------- общие страницы (режим hub: «Услуги», «Обучение», «Портфолио» и его разделы, блог) — баннер ниже ----------
+// высота по содержимому (H1 + текст), без запаса под фото услуги; своё фото (если есть) тянется по высоте баннера
 .lb-shero--hub {
 	height: auto;
 	min-height: vw(640);
@@ -456,13 +463,19 @@ $sh-text: #4a3a33;
 		min-height: 0;
 	}
 }
-// на телефоне у общих страниц без своего фото декоративный блок графики не показываем — сразу заголовок
-@include mobile {
-	.lb-shero--hub.lb-shero--art {
-		padding-top: 72px;
-		.lb-shero__media {
-			display: none;
+// ---------- простой баннер (общие страницы без своего фото, шаг 45): фон, H1, текст, крошки — без графики справа и без кнопок ----------
+.lb-shero--simple {
+	min-height: 0;
+	@include desktop {
+		.lb-shero__inner {
+			padding: vw(186) 0 vw(132);
 		}
+		.lb-shero__content {
+			width: vw(1240);
+		}
+	}
+	@include mobile {
+		padding-top: 72px;
 		.lb-shero__content {
 			padding-top: 8px;
 		}

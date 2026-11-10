@@ -45,12 +45,12 @@
 .lb-scard__img,
 .lb-footer__dev a { @include lb-visited(inherit); }
 
-// блог: рубрика в баннере статьи, соцсети автора, соседние статьи, боковая колонка
-.lb-shero__cat { @include lb-visited(#94593a); }
+// блог: рубрика и комментарии в сведениях статьи, соцсети автора, соседние статьи, боковая колонка
+.lb-article__info-i > a { @include lb-visited(#6d5d55); }
+.lb-article__info-i--cat > a { @include lb-visited(#94593a); } // после общего правила — та же специфичность
 .lb-article__soc-a { @include lb-visited(#8a5d44); }
 .lb-nb,
 .lb-side__item { @include lb-visited(inherit); }
 .lb-bcard__img,
 .lb-bcard__title a { @include lb-visited(inherit); }
-.lb-bcard__cat { @include lb-visited(#a5795c); }
 .lb-bcard__comments { @include lb-visited(#7a6a61); }

@@ -1,6 +1,9 @@
-{* Статья блога (шаблон «Блог - статья», id 5) — вместо content-blog (H1, крошки, рубрика, просмотры — в баннере lb-shero).
-   Страница обёрнута в itemscope schema.org/Article (в шаблоне); здесь — те же скрытые свойства, что в старом чанке
-   (mainEntityOfPage, inLanguage, publisher, author, datePublished/dateModified, image) и itemprop="articleBody" с текстом —
+{* Статья блога (шаблон «Блог - статья», id 5) — вместо content-blog. Баннера нет (шаг 45) — структура как у старой статьи:
+   хлебные крошки (pdoCrumbs, как в баннере общих страниц) и H1 (pagetitle, itemprop="headline") во всю ширину; в колонке текста —
+   строка сведений, как была (рубрика — itemprop="genre", автор — itemprop="author" Person, просмотры — HitsPage, комментарии — #review;
+   дата — только в meta datePublished),
+   затем текст. Страница обёрнута в itemscope schema.org/Article (в шаблоне); здесь — те же скрытые свойства, что в старом чанке
+   (mainEntityOfPage, inLanguage, publisher, datePublished/dateModified, image) и itemprop="articleBody" с текстом —
    [[*content]] с прежней заменой путей картинок (галереи в тексте — чанки gallery_tagN, как раньше).
    Под текстом: блок-призыв (TV title-action / sub-title-action / link-action, как было), автор, соседние статьи (pdoNeighbors).
    Справа: популярные (5, по просмотрам) и новые (3) статьи — как blog-popular-page / blog-new-page. *}
@@ -21,10 +24,6 @@
         </div>
         <meta itemprop="name" content="[[++site_name]]">
     </div>
-    <div itemprop="author" itemscope itemtype="https://schema.org/Person" hidden>
-        <span itemprop="name">[[++autor]]</span>
-        <span itemprop="url">[[ThisPageURL? &id=`[[*id]]`]]</span>
-    </div>
     <meta itemprop="datePublished dateModified" content="[[*publishedon:strtotime:date=`%d/%m/%Y`]]">
     <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject" hidden>
         <img itemprop="image url" alt="" src="[[pthumb? &input=`[[*img-blog-prew]]` &options=`w=180&h=180`]]" loading="lazy">
@@ -32,8 +31,30 @@
         <meta itemprop="height" content="180">
     </div>
 
+    {set $si = ' viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"'}
     <div class="lb-article__inner">
+        <header class="lb-article__head">
+            <nav class="lb-crumbs lb-crumbs--flow" aria-label="{'lbar.rd.aria.crumbs' | lexicon}">
+                {$_modx->runSnippet('!pdoCrumbs', [
+                    'showHome' => 1,
+                    'showAtHome' => 0,
+                    'tplWrapper' => '@INLINE <ol class="lb-crumbs__list" itemscope itemtype="http://schema.org/BreadcrumbList">[[+output]]</ol>',
+                    'tplHome' => '@INLINE <li class="lb-crumbs__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a class="lb-crumbs__link lb-crumbs__link--home" href="[[+link]]" itemprop="item"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.2 10 3l7 6.2"/><path d="M5 8v9h4v-5h2v5h4V8"/></svg><span itemprop="name">[[+menutitle]]</span><meta itemprop="position" content="[[+idx]]" /></a></li>',
+                    'tpl' => '@INLINE <li class="lb-crumbs__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a class="lb-crumbs__link" href="[[+link]]" itemprop="item"><span itemprop="name">[[+menutitle]]</span><meta itemprop="position" content="[[+idx]]" /></a></li>',
+                    'tplCurrent' => '@INLINE <li class="lb-crumbs__item lb-crumbs__item--current" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span itemprop="name">[[+menutitle]]</span><div itemprop="item" content="[[++site_url]][[+link]]"></div><meta itemprop="position" content="[[+idx]]" /></li>',
+                ])}
+            </nav>
+            <h1 class="lb-article__title" itemprop="headline">{$r.pagetitle}</h1>
+        </header>
+
         <article class="lb-article__main">
+            <ul class="lb-article__info">
+                <li class="lb-article__info-i lb-article__info-i--cat"><a href="{$r.parent | url}" itemprop="genre"><svg{$si}><path d="M3 12.2V4.5A1.5 1.5 0 0 1 4.5 3h7.7l8.8 8.8a1.5 1.5 0 0 1 0 2.1l-7.1 7.1a1.5 1.5 0 0 1-2.1 0z"/><circle cx="8" cy="8" r="1.6"/></svg>{$_modx->runSnippet('pdoField', ['id' => $r.parent, 'field' => 'pagetitle'])}</a></li>
+                <li class="lb-article__info-i" itemprop="author" itemscope itemtype="https://schema.org/Person"><svg{$si}><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c.9-3.9 3.9-6 7.5-6s6.6 2.1 7.5 6"/></svg><span itemprop="name">[[++autor]]</span><span itemprop="url" hidden>[[ThisPageURL? &id=`[[*id]]`]]</span></li>
+                <li class="lb-article__info-i" title="{'lbar.rd.blog.views' | lexicon}"><svg{$si}><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><span class="lb-article__info-v">[[!HitsPage? &saveTv=`true`]]</span><span class="lb-article__info-l">{'lbar.rd.blog.views' | lexicon}</span></li>
+                <li class="lb-article__info-i"><a href="#review"><svg{$si}><path d="M20.5 14.5a2 2 0 0 1-2 2H8l-4.5 4V5.5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"/></svg><span class="lb-article__info-v">[[!ecMessagesCount]]</span><span class="lb-article__info-l">{'lbar.rd.blog.ncomments' | lexicon}</span></a></li>
+            </ul>
+
             <div class="lb-article__body" itemprop="articleBody">[[*content:replace=`<img src="==<img src="/`]]</div>
 
             {if $r['title-action'] | trim}

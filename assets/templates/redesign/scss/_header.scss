@@ -28,8 +28,8 @@
 		pointer-events: auto;
 	}
 
-	// логотип студии (img/logo.svg — новый логотип «LBar by Ksenia Kobilianskaia», 216×119: рукописная часть — трассировка PNG,
-	// подпись — контуры шрифтов Cinzel / Cormorant Garamond Italic, _dev/hero2/build_logo.py; штрихи в круге — просветы на фон)
+	// логотип студии (img/logo.svg — «LBar by Ksenia Kobilianskaia», 242×119, файл пользователя (шаг 45); светлый для подвала —
+	// img/logo-light.svg, тот же файл с заливкой #d9b49e; штрихи в круге — просветы на фон). Размер задаётся высотой.
 	&__logo {
 		flex: none;
 		display: block;

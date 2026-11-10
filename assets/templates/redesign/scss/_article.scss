@@ -16,7 +16,7 @@ $ar-copper: #a87856;
 	:where(*, *::before, *::after) {
 		box-sizing: border-box;
 	}
-	:where(a:not(.lb-btn)) {
+	:where(a:not(.lb-btn, .lb-crumbs__link)) { // крошки статьи (шаг 45) — свой цвет из _shero
 		text-decoration: none;
 		color: inherit;
 	}
@@ -30,115 +30,6 @@ $ar-copper: #a87856;
 		radial-gradient(34% 20% at 92% 14%, rgba(236, 214, 200, .5), rgba(236, 214, 200, 0) 100%),
 		radial-gradient(30% 18% at 4% 56%, rgba(255, 255, 255, .7), rgba(255, 255, 255, 0) 100%);
 	pointer-events: none;
-}
-
-// ---------- баннер статьи: под H1 — рубрика плашкой, под ней карточка: дата, время чтения, просмотры, комментарии (кнопки нет) ----------
-.lb-shero__cat {
-	display: inline-flex;
-	align-items: center;
-	gap: vw(12);
-	min-height: vw(48);
-	margin-top: vw(30);
-	padding: vw(8) vw(26) vw(8) vw(22);
-	border-radius: 999px;
-	font-family: $f-text;
-	font-size: vw(16);
-	font-weight: 600;
-	line-height: 1.3;
-	letter-spacing: .1em;
-	text-transform: uppercase;
-	text-decoration: none;
-	color: #94593a;
-	background: rgba(236, 212, 197, .5);
-	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .55);
-	transition: background-color .3s, color .3s;
-	svg {
-		flex: none;
-		width: vw(22);
-		height: vw(22);
-	}
-	@include hover {
-		color: #7b4c32;
-		background: rgba(228, 196, 177, .6);
-	}
-}
-.lb-shero__stats {
-	display: inline-flex;
-	align-items: center;
-	margin: vw(24) 0 0;
-	padding: vw(20) vw(34) vw(20) vw(18);
-	list-style: none;
-	border-radius: vw(34);
-	background: rgba(255, 252, 250, .72);
-	-webkit-backdrop-filter: blur(10px);
-	backdrop-filter: blur(10px);
-	box-shadow: 0 vw(22) vw(50) rgba(140, 100, 76, .1), inset 0 0 0 1px rgba(255, 255, 255, .85);
-}
-.lb-shero__stat {
-	position: relative;
-	display: flex;
-	align-items: center;
-	gap: vw(16);
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	& + & {
-		margin-left: vw(26);
-		padding-left: vw(26);
-		&::before {
-			content: "";
-			position: absolute;
-			left: 0;
-			top: 50%;
-			width: 1px;
-			height: vw(48);
-			margin-top: vw(-24);
-			background: rgba(196, 160, 136, .45);
-		}
-	}
-	a {
-		display: flex;
-		align-items: center;
-		gap: vw(16);
-		color: inherit;
-		text-decoration: none;
-	}
-}
-.lb-shero__sic {
-	flex: none;
-	display: grid;
-	place-items: center;
-	width: vw(54);
-	height: vw(54);
-	border-radius: vw(16);
-	color: #a46a4b;
-	background: linear-gradient(160deg, #f9eee7, #f2e3d8);
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, .85);
-	svg {
-		width: vw(28);
-		height: vw(28);
-	}
-}
-.lb-shero__st {
-	display: flex;
-	flex-direction: column;
-	gap: vw(2);
-}
-.lb-shero__sv {
-	font-family: $f-text;
-	font-size: vw(19);
-	font-weight: 700 !important; // старый CSS: span{font-weight:400}
-	line-height: 1.2;
-	white-space: nowrap;
-	color: $ar-ink;
-}
-.lb-shero__sl {
-	font-family: $f-text;
-	font-size: vw(16);
-	font-weight: 400;
-	line-height: 1.25;
-	white-space: nowrap;
-	color: #6d5d55;
 }
 
 // ---------- список статей ----------
@@ -222,18 +113,7 @@ $ar-copper: #a87856;
 	&__meta {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
 		gap: vw(12);
-	}
-	&__cat {
-		overflow: hidden;
-		font-size: vw(12.5);
-		font-weight: 600;
-		letter-spacing: .12em;
-		text-transform: uppercase;
-		white-space: nowrap;
-		text-overflow: ellipsis;
-		color: #a5795c;
 	}
 	&__stat {
 		flex: none;
@@ -325,8 +205,89 @@ $ar-copper: #a87856;
 }
 
 // ---------- статья ----------
+// баннера нет (шаг 45): сверху — крошки и H1 во всю ширину, в колонке текста — строка сведений (как у старой статьи)
 .lb-article {
-	padding: vw(120) 0 vw(140);
+	padding: vw(178) 0 vw(140);
+	&__head {
+		grid-column: 1 / -1;
+		margin-bottom: vw(44);
+	}
+	// h1: старый CSS (.wrapper h1, .blog-page h1) — поднимаем специфичность
+	& &__head h1#{&}__title {
+		max-width: vw(1420);
+		margin: vw(26) 0 0;
+		padding: 0;
+		@include lb-title;
+		@include lb-h(1);
+		line-height: 1.12;
+		text-align: left;
+		color: $ar-ink;
+	}
+	&__info {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: vw(14) vw(30);
+		margin: 0 0 vw(44);
+		padding: 0 0 vw(30);
+		list-style: none;
+		border-bottom: 1px solid rgba(196, 160, 136, .35);
+	}
+	&__info-i {
+		display: inline-flex;
+		align-items: center;
+		gap: vw(10);
+		margin: 0;
+		font-size: vw(16);
+		line-height: 1.3;
+		color: #6d5d55;
+		svg {
+			flex: none;
+			width: vw(21);
+			height: vw(21);
+			color: #a46a4b;
+		}
+		> a {
+			display: inline-flex;
+			align-items: center;
+			gap: vw(10);
+			color: inherit;
+			transition: color .3s;
+			@include hover {
+				color: $c-btn-dark;
+			}
+		}
+	}
+	// рубрика — плашкой
+	&__info-i--cat > a {
+		min-height: vw(40);
+		padding: vw(6) vw(20) vw(6) vw(16);
+		border-radius: 999px;
+		font-size: vw(13.5);
+		font-weight: 600;
+		letter-spacing: .1em;
+		text-transform: uppercase;
+		color: #94593a;
+		background: rgba(236, 212, 197, .5);
+		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .55);
+		transition: background-color .3s, color .3s;
+		svg {
+			width: vw(18);
+			height: vw(18);
+			color: inherit;
+		}
+		@include hover {
+			color: #7b4c32;
+			background: rgba(228, 196, 177, .6);
+		}
+	}
+	&__info-v {
+		font-weight: 700 !important; // старый CSS: span{font-weight:400}
+		color: $ar-ink;
+	}
+	&__info-l {
+		margin-left: vw(-4);
+	}
 	&__inner {
 		position: relative;
 		z-index: 1;
@@ -866,56 +827,6 @@ $ar-copper: #a87856;
 }
 
 @include mobile {
-	.lb-shero__cat {
-		gap: 8px;
-		min-height: 34px;
-		margin-top: 18px;
-		padding: 6px 16px 6px 14px;
-		border-radius: 18px;
-		font-size: 11.5px;
-		letter-spacing: .08em;
-		svg {
-			width: 16px;
-			height: 16px;
-		}
-	}
-	.lb-shero__stats {
-		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 14px 10px;
-		width: 100%;
-		margin-top: 16px;
-		padding: 14px;
-		border-radius: 20px;
-	}
-	.lb-shero__stat {
-		gap: 10px;
-		& + & {
-			margin-left: 0;
-			padding-left: 0;
-			&::before {
-				content: none;
-			}
-		}
-		a {
-			gap: 10px;
-		}
-	}
-	.lb-shero__sic {
-		width: 40px;
-		height: 40px;
-		border-radius: 12px;
-		svg {
-			width: 20px;
-			height: 20px;
-		}
-	}
-	.lb-shero__sv {
-		font-size: 15px;
-	}
-	.lb-shero__sl {
-		font-size: 12.5px;
-	}
 	.lb-bloglist {
 		padding: 48px 0 60px;
 		&__inner {
@@ -949,9 +860,6 @@ $ar-copper: #a87856;
 		}
 		&__body {
 			padding: 18px 20px 22px;
-		}
-		&__cat {
-			font-size: 11px;
 		}
 		&__stat {
 			gap: 5px;
@@ -990,7 +898,44 @@ $ar-copper: #a87856;
 		}
 	}
 	.lb-article {
-		padding: 44px 0 56px;
+		padding: 92px 0 56px;
+		&__head {
+			margin-bottom: -16px;
+		}
+		& &__head h1#{&}__title {
+			max-width: none;
+			margin-top: 18px;
+			line-height: 1.15;
+		}
+		&__info {
+			gap: 10px 18px;
+			margin-bottom: 26px;
+			padding-bottom: 18px;
+		}
+		&__info-i {
+			gap: 7px;
+			font-size: 13.5px;
+			svg {
+				width: 17px;
+				height: 17px;
+			}
+			> a {
+				gap: 7px;
+			}
+		}
+		&__info-i--cat > a {
+			min-height: 32px;
+			padding: 5px 14px 5px 12px;
+			font-size: 11.5px;
+			letter-spacing: .08em;
+			svg {
+				width: 15px;
+				height: 15px;
+			}
+		}
+		&__info-l {
+			margin-left: -2px;
+		}
 		&__inner {
 			grid-template-columns: 1fr;
 			gap: 40px;

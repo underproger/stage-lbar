@@ -591,9 +591,8 @@ $seam-contact: #f8f2ee;  // «Статьи» → «Контакты»
 	}
 }
 
-// ---------- блог: баннер → список статей → подвал; баннер → статья → (FAQ) → комментарии → подвал ----------
-.lb-bloglist,
-.lb-article {
+// ---------- блог: баннер → список статей → подвал; статья (без баннера, шаг 45) → (FAQ) → комментарии → подвал ----------
+.lb-bloglist {
 	background: linear-gradient(180deg, $seam-hero 0, #f8f2ee vw(200));
 	@include lb-seam(top, "seam-hero.svg");
 	@include mobile {
@@ -622,10 +621,10 @@ $seam-contact: #f8f2ee;  // «Статьи» → «Контакты»
 	}
 }
 .lb-article {
-	background: linear-gradient(180deg, $seam-hero 0, #f8f2ee vw(200), #f8f2ee calc(100% - #{vw(200)}), $seam-faq 100%);
+	background: linear-gradient(180deg, #f9f4f0 0, #f8f2ee vw(200), #f8f2ee calc(100% - #{vw(200)}), $seam-faq 100%);
 	@include lb-seam(bottom, "seam-faq.svg", before);
 	@include mobile {
-		background: linear-gradient(180deg, $seam-hero 0, #f8f2ee 100px, #f8f2ee calc(100% - 80px), $seam-faq 100%);
+		background: linear-gradient(180deg, #f9f4f0 0, #f8f2ee 100px, #f8f2ee calc(100% - 80px), $seam-faq 100%);
 	}
 }
 .lb-article + .lb-comments {
