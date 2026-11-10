@@ -215,6 +215,22 @@ $ct-tile: #f2e4d9;
 			font-size: vw(32);
 			font-weight: 600;
 			color: $ct-ink;
+			transition: color .3s;
+		}
+	}
+	&__addr {
+		font-style: normal;
+		a {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: inherit;
+			color: inherit;
+			@include hover {
+				b {
+					color: $ct-copper;
+				}
+			}
 		}
 	}
 	// разделитель со звездой

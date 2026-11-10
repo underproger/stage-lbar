@@ -9,7 +9,7 @@
     'parents' => $_modx->resource.id,
     'depth' => 0,
     'limit' => 0,
-    'where' => ['template:IN' => [8, 19]],
+    'where' => ['template:IN' => [8, 19], 'class_key:!=' => 'modWebLink'],
     'tpl' => 'lb.hubCard',
     'sortby' => 'menuindex',
     'sortdir' => 'ASC',
@@ -20,6 +20,7 @@
 {set $list = $_modx->runSnippet('pdoResources', [
     'parents' => $_modx->resource.id,
     'limit' => 12,
+    'where' => ['class_key:!=' => 'modWebLink'],
     'tpl' => 'lb.subserviceCard',
     'sortby' => 'menuindex',
     'sortdir' => 'ASC',

@@ -669,34 +669,17 @@
 			font-size: 14px;
 			line-height: 1.5;
 			color: $c-muted;
+			a {
+				color: inherit;
+				text-decoration: underline;
+				text-decoration-color: rgba(201, 139, 121, .45);
+				text-underline-offset: 3px;
+			}
 		}
 		&__cta {
 			width: 100%;
 			margin-top: 22px;
 		}
-		&__social {
-			display: flex;
-			gap: 10px;
-			margin-top: 20px;
-			a {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				width: 44px;
-				height: 44px;
-				border-radius: 50%;
-				border: 1px solid rgba(201, 139, 121, .45);
-				color: $c-rose-dark;
-			}
-			svg {
-				width: 18px;
-				height: 18px;
-			}
-			path {
-				fill: currentColor;
-			}
-		}
-
 		.is-menu-open & {
 			.lb-nav__list > .lb-nav__item {
 				opacity: 1;

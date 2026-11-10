@@ -114,6 +114,13 @@
 			}
 		}
 	}, true);
+	// пришли по ссылке вида /#lb-master с другой страницы — доводим до блока с учётом фиксированной шапки
+	var hashId = location.hash.slice(1);
+	if (/^lb-[\w-]+$/.test(hashId) && document.getElementById(hashId)) {
+		window.addEventListener('load', function () {
+			setTimeout(function () { scrollToEl(document.getElementById(hashId)); }, 60);
+		});
+	}
 
 	/* ---------- «Читать далее» (текст свёрнут до 3 строк): блоки «О микропигментации» и «Цены» ---------- */
 	var initClamp = function (wrapSel, textSel, btnSel) {

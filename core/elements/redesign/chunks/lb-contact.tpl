@@ -59,7 +59,7 @@
                 </li>
                 <li class="lb-contact__row">
                     <span class="lb-contact__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.5s-7-6.1-7-11.7a7 7 0 0 1 14 0c0 5.6-7 11.7-7 11.7z"/><circle cx="12" cy="9.8" r="2.6"/></svg></span>
-                    <address class="lb-contact__addr"><b>{'lbar.rd.contacts.city' | lexicon}</b><span>{'lbar.rd.contacts.street' | lexicon}</span></address>
+                    <address class="lb-contact__addr"><a href="{'lbar.rd.contacts.mapurl' | lexicon}" target="_blank" rel="nofollow noopener"><b>{'lbar.rd.contacts.city' | lexicon}</b><span>{'lbar.rd.contacts.street' | lexicon}</span></a></address>
                 </li>
             </ul>
 

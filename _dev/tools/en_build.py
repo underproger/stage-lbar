@@ -15,12 +15,13 @@ OFF = 1000
 BABEL_TV = 304
 SLUG = {1: 'permanent-makeup-bucharest', 80: 'services', 2: 'eyebrow-micropigmentation', 51: 'powder-brows', 53: 'hair-stroke-brows',
         52: 'microblading', 54: '3d-6d-eyebrow-tattoo', 162: 'eyeliner-micropigmentation', 163: 'lash-line-enhancement',
-        167: 'lip-micropigmentation', 119: 'micropigmentation-touch-up', 168: 'beauty-mark-tattoo', 626: 'classic-eyelash-extensions',
-        627: 'laser-hair-removal', 629: 'manicure', 631: 'pedicure', 177: 'gift-voucher', 100: 'portfolio',
+        167: 'lip-micropigmentation', 119: 'micropigmentation-touch-up', 168: 'beauty-mark-tattoo',
+        627: 'laser-hair-removal', 177: 'gift-voucher', 100: 'portfolio',
         120: 'ksenia-kobilianskaia', 121: 'aliona-subcinskaia', 123: 'eyebrow-portfolio-before-after',
         124: 'eye-portfolio-before-after', 125: 'lip-portfolio-before-after', 126: 'training-moments', 44: 'prices',
         102: 'about-us', 171: 'reviews', 105: 'careers', 3: 'contact', 40: 'thank-you', 20: 'page-not-found', 23: 'sitemap'}
 IDS = sorted(SLUG)
+# 626 / 629 / 631 (ресницы, маникюр, педикюр; EN 1626 / 1629 / 1631) с шага 44 — веб-ссылки на главную, из генерации убраны
 CYR = re.compile(r'[Ѐ-ӿ]')
 # TV главной про блог (в EN блога нет) — не создаются
 BLOG_TV = re.compile(r'^(title-blog-bl12|title-st-\d|text-st-\d|link-st-\d|img-st-\d|alt-st-\d)$')

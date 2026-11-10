@@ -3,8 +3,8 @@
    Раскладка по колонкам (как в макете):
      «Micropigmentare» — брови, глаза, губы, коррекция, удаление (id ниже, RO / RU / EN), «Sprâncene» — подразделы бровей (дети id 2 / 303 / 1002),
      «Alte servicii» — все остальные дети раздела (новые услуги попадут сюда автоматически), «Acces rapid» — Gift Voucher (177 / 323 / 1177) +
-     консультация (якорь блока «Консультация»), портфолио (100 / 198 / 1100), цены (44 / 270 / 1044). EN-id = RO-id + 1000.
-   Слева — карточка «Рекомендуем» (бровь, фото img/service-brows.webp). Подписи колонок и карточки — лексикон lbar.rd.mega.*.
+     «Despre mine» (блок «Мастер» главной, #lb-master), портфолио (100 / 198 / 1100), цены (44 / 270 / 1044). EN-id = RO-id + 1000.
+   Карточки «Рекомендуем» слева больше нет (убрана по просьбе пользователя). Подписи колонок — лексикон lbar.rd.mega.*.
    Десктоп — панель под шапкой (наведение / фокус), мобильный — раскрывается кнопкой +, как прежние подменю. *}
 {$_modx->lexicon->load('babel:translate')}
 {set $L = ($id == 302) ? 'ru' : (($id == 1080) ? 'en' : 'ro')}
@@ -23,9 +23,8 @@
 {set $byId = []}
 {foreach $items as $r}{set $byId[$r.id] = $r}{/foreach}
 {set $icons = [
-    626 => 'lash', 163 => 'eye', 318 => 'eye', 627 => 'laser', 628 => 'laser',
-    629 => 'nail', 630 => 'nail', 631 => 'foot', 632 => 'foot', 168 => 'dots', 320 => 'dots',
-    1626 => 'lash', 1163 => 'eye', 1627 => 'laser', 1629 => 'nail', 1631 => 'foot', 1168 => 'dots'
+    163 => 'eye', 318 => 'eye', 627 => 'laser', 628 => 'laser', 168 => 'dots', 320 => 'dots',
+    1163 => 'eye', 1627 => 'laser', 1168 => 'dots'
 ]}
 {set $svg = [
     'lash'  => '<path d="M3 13c3.5-3 14.5-3 18 0"/><path d="M6 11.2 5 8.5M9.5 10.3 9 7.3M14.5 10.3l.5-3M18 11.2l1-2.7"/>',
@@ -37,11 +36,11 @@
     'spark' => '<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/>'
 ]}
 {set $chev = '<svg class="lb-mega__chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 6.5 5.5 5.5-5.5 5.5"/></svg>'}
-{set $brow = $byId[$browsId]}
 {set $pages = $_modx->getResources(['id:IN' => $cfg.pages, 'published' => 1, 'deleted' => 0], $opts)}
 {set $qicons = [100 => 'photo', 198 => 'photo', 1100 => 'photo', 44 => 'coins', 270 => 'coins', 1044 => 'coins']}
 {set $qsvg = [
     'gift'  => '<rect x="3.5" y="8.5" width="17" height="4" rx="1"/><path d="M5 12.5v8h14v-8M12 8.5v12M12 8.5S10.5 4 8 4.5 7 8.5 12 8.5zM12 8.5S13.5 4 16 4.5 17 8.5 12 8.5z"/>',
+    'user'  => '<circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c.8-4 3.8-6.5 7.5-6.5s6.7 2.5 7.5 6.5"/>',
     'cal'   => '<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4M8 14h2M14 14h2M8 17h2"/>',
     'photo' => '<rect x="3" y="4.5" width="18" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.8"/><path d="m3.5 17.5 5-4.5 3.5 3 3-2.5 5.5 4.5"/>',
     'coins' => '<ellipse cx="9" cy="6.5" rx="5.5" ry="2.5"/><path d="M3.5 6.5v4c0 1.4 2.5 2.5 5.5 2.5s5.5-1.1 5.5-2.5v-4"/><path d="M9.5 15.5c.6 1.2 2.9 2 5.5 2 3 0 5.5-1.1 5.5-2.5v-4c0-1.2-1.8-2.2-4.3-2.4"/><path d="M20.5 15v4c0 1.4-2.5 2.5-5.5 2.5s-5.5-1.1-5.5-2.5v-3.5"/>'
@@ -49,18 +48,6 @@
 <li{$classes | replace : 'class="' : 'class="lb-nav__item--mega '}><a class="lb-nav__link" href="{$link}" {$attributes}>{$menutitle}</a><button class="lb-nav__toggle" type="button" aria-label="{$menutitle}" aria-expanded="false"></button>
     <div class="lb-mega">
         <div class="lb-mega__panel">
-            {if $brow}
-            <div class="lb-mega__promo">
-                <a class="lb-mega__promo-img" href="{$_modx->makeUrl($browsId)}" tabindex="-1" aria-hidden="true">
-                    <img src="/assets/templates/redesign/img/service-brows.webp" alt="" width="498" height="483" loading="lazy" decoding="async">
-                    <span class="lb-mega__badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>{'lbar.rd.mega.badge' | lexicon}</span>
-                </a>
-                <div class="lb-mega__promo-t">{$brow.menutitle ?: $brow.pagetitle}</div>
-                <p class="lb-mega__promo-p">{'lbar.rd.mega.promo' | lexicon}</p>
-                <a class="lb-btn lb-btn--solid lb-mega__promo-btn js-lb-book" href="#bl8-form">{'lbar.buttons.banner.book' | lexicon}<svg class="lb-btn__arr" viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg></a>
-            </div>
-            {/if}
-
             <div class="lb-mega__col">
                 <div class="lb-mega__h"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 14c4-5 11-6.5 19-2.5"/><path d="M3.5 15.5c4-3.5 10-4.5 16-2"/></svg>{'lbar.rd.mega.micro' | lexicon}</div>
                 <ul class="lb-mega__list">
@@ -102,7 +89,9 @@
                     <li><a class="lb-mega__pill" href="{$_modx->makeUrl($qid)}"><svg class="lb-mega__ic" viewBox="0 0 24 24" aria-hidden="true">{$qsvg['gift']}</svg><span>{$byId[$qid].menutitle ?: $byId[$qid].pagetitle}</span>{$chev}</a></li>
                     {/if}
                     {/foreach}
-                    <li><a class="lb-mega__pill" href="#lb-consult"><svg class="lb-mega__ic" viewBox="0 0 24 24" aria-hidden="true">{$qsvg['cal']}</svg><span>{'lbar.rd.faq.cta' | lexicon}</span>{$chev}</a></li>
+                    {* «Despre mine» — к блоку «Мастер» главной: на главной — скролл к #lb-master, с других страниц — переход на главную с якорем *}
+                    {set $start = $_modx->config.site_start}
+                    <li><a class="lb-mega__pill" href="{($_modx->resource.id == $start) ? '' : $_modx->makeUrl($start)}#lb-master"><svg class="lb-mega__ic" viewBox="0 0 24 24" aria-hidden="true">{$qsvg['user']}</svg><span>{'lbar.rd.mega.aboutme' | lexicon}</span>{$chev}</a></li>
                     {foreach $pages as $r}
                     <li><a class="lb-mega__pill" href="{$_modx->makeUrl($r.id)}"><svg class="lb-mega__ic" viewBox="0 0 24 24" aria-hidden="true">{$qsvg[$qicons[$r.id]]}</svg><span>{$r.menutitle ?: $r.pagetitle}</span>{$chev}</a></li>
                     {/foreach}

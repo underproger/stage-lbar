@@ -164,10 +164,15 @@ $ft-copper: #d4a184;
 		}
 	}
 	&__addr {
+		display: block;
 		margin-top: vw(10);
 		font-size: vw(17);
 		line-height: 1.5;
 		color: $ft-muted;
+		transition: color .3s;
+		@include hover {
+			color: $ft-copper;
+		}
 	}
 	&__time {
 		display: flex;

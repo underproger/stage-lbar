@@ -36,10 +36,12 @@
 .lb-footer__soc { @include lb-visited(#e8cdb9); }
 .lb-footer__phone { @include lb-visited(#fff4ec); }
 .lb-footer__mail { @include lb-visited(#e6d6cc); }
+.lb-footer__addr { @include lb-visited(rgba(230, 214, 204, .62)); }
 
 // ссылки, которые наследуют цвет родителя (картинки, ссылка в подписи подвала)
 .lb-blog__link,
-.lb-mega__promo-img,
+.lb-contact__addr a,
+.lb-mnav__addr a,
 .lb-scard__img,
 .lb-footer__dev a { @include lb-visited(inherit); }
 

@@ -163,6 +163,7 @@ $_lang['lbar.rd.contacts.phone'] = "Telefon";
 $_lang['lbar.rd.contacts.email'] = "E-mail";
 $_lang['lbar.rd.contacts.address'] = "Adresă";
 $_lang['lbar.rd.contacts.map'] = "Harta: LBar Studio pe Google Maps";
+$_lang['lbar.rd.contacts.mapurl'] = "https://maps.app.goo.gl/DG8P3LiAujaybQLd9"; // адрес студии — ссылка на Google Maps (в новом окне)
 // --- редизайн: мега-меню «Servicii» в шапке ---
 $_lang['lbar.rd.mega.badge'] = "Recomandat";
 $_lang['lbar.rd.mega.promo'] = "Definire naturală și armonioasă, adaptată trăsăturilor tale.";
@@ -170,6 +171,7 @@ $_lang['lbar.rd.mega.micro'] = "Micropigmentare";
 $_lang['lbar.rd.mega.brows'] = "Sprâncene";
 $_lang['lbar.rd.mega.other'] = "Alte servicii";
 $_lang['lbar.rd.mega.quick'] = "Acces rapid";
+$_lang['lbar.rd.mega.aboutme'] = "Despre mine"; // «Быстрый доступ» — к блоку «Мастер» главной
 $_lang['lbar.rd.msg.oops'] = "Hopa!";
 $_lang['lbar.rd.thanks.studio'] = "Studiou micropigmentare";
 $_lang['lbar.rd.thanks.by'] = "by Ksenia Kobilianskaia";
