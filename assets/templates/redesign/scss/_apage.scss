@@ -732,40 +732,67 @@ $ap-line: rgba(165, 102, 90, .24);
 	}
 }
 
-// ---------- за кулисами ----------
+// ---------- за кулисами: ролики с канала YouTube (шаг 49) ----------
 .lb-aculise {
 	padding: vw(90) 0;
 	&__inner {
 		width: vw($lb-wrap);
 		margin: 0 auto;
 	}
+	// справа в шапке: короткий текст и ссылка на канал
+	&__aside {
+		flex: none;
+		width: vw(400);
+	}
+	&__all {
+		display: inline-flex;
+		align-items: center;
+		gap: vw(10);
+		margin-top: vw(22);
+		font-size: vw(12.5);
+		font-weight: 700;
+		letter-spacing: .18em;
+		text-transform: uppercase;
+		text-decoration: none;
+		color: #9a6a52;
+		transition: color .3s;
+		@include hover {
+			color: #1f1612;
+			.lb-aculise__arr {
+				translate: vw(5) 0;
+			}
+		}
+	}
+	&__arr {
+		width: vw(20);
+		height: vw(11);
+		transition: translate .5s $ease-expo;
+	}
+	// 2 ролика в первом ряду, 3 во втором; все превью 16:9
 	&__grid {
 		display: grid;
-		grid-template-columns: repeat(10, minmax(0, 1fr));
-		grid-auto-rows: vw(400);
+		grid-template-columns: repeat(6, minmax(0, 1fr));
 		gap: vw(16);
 	}
+	&__item {
+		grid-column: span 2;
+		&:nth-child(-n + 2) {
+			grid-column: span 3;
+		}
+	}
+	// подложка — пока грузится превью (или если оно недоступно)
 	&__tile {
 		position: relative;
 		display: block;
+		aspect-ratio: 16 / 9;
 		overflow: hidden;
 		color: inherit;
+		text-decoration: none;
 		border-radius: vw(26);
-		background: #eadcd3;
+		background:
+			radial-gradient(60% 60% at 70% 20%, rgba(196, 146, 118, .35), rgba(196, 146, 118, 0) 100%),
+			linear-gradient(160deg, #3a2c26, #241a16);
 		box-shadow: 0 vw(30) vw(60) vw(-40) rgba(110, 60, 45, .5);
-		&:nth-child(1) {
-			grid-column: span 6;
-		}
-		&:nth-child(2) {
-			grid-column: span 4;
-		}
-		&:nth-child(3),
-		&:nth-child(5) {
-			grid-column: span 3;
-		}
-		&:nth-child(4) {
-			grid-column: span 4;
-		}
 		img {
 			display: block;
 			width: 100%;
@@ -773,27 +800,63 @@ $ap-line: rgba(165, 102, 90, .24);
 			object-fit: cover;
 			transition: scale 1.2s $ease-expo;
 		}
+		// лёгкое затемнение снизу — под подпись
+		&::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(180deg, rgba(36, 19, 15, 0) 50%, rgba(36, 19, 15, .3) 100%);
+			pointer-events: none;
+		}
 		@include hover {
 			img {
 				scale: 1.05;
 			}
+			.lb-aculise__play {
+				scale: 1.1;
+				background-color: #fff;
+			}
 		}
 	}
-	// вырезка без фона (мастер с кубком) — на тёплой подложке, по нижнему краю
-	&__tile--cut {
-		background:
-			radial-gradient(55% 50% at 50% 35%, rgba(255, 250, 246, .9), rgba(255, 250, 246, 0) 100%),
-			linear-gradient(165deg, #f1e1d6 0%, #e2c6b4 100%);
-		img {
-			object-fit: contain;
-			object-position: 50% 100%;
-			padding-top: vw(18);
+	// треугольник в svg отцентрован по центру масс — без сдвигов
+	&__play {
+		position: absolute;
+		z-index: 1;
+		top: 50%;
+		left: 50%;
+		display: grid;
+		place-items: center;
+		width: vw(76);
+		height: vw(76);
+		margin: vw(-38) 0 0 vw(-38);
+		border-radius: 50%;
+		background: rgba(255, 255, 255, .88);
+		-webkit-backdrop-filter: blur(6px);
+		backdrop-filter: blur(6px);
+		box-shadow: 0 vw(10) vw(24) rgba(36, 19, 15, .3);
+		transition: scale .5s $ease-expo, background-color .3s;
+		svg {
+			display: block;
+			width: vw(28);
+			height: vw(28);
+			fill: $ap-copper;
+		}
+	}
+	&__item:nth-child(n + 3) &__play {
+		width: vw(60);
+		height: vw(60);
+		margin: vw(-30) 0 0 vw(-30);
+		svg {
+			width: vw(22);
+			height: vw(22);
 		}
 	}
 	&__cap {
 		position: absolute;
+		z-index: 1;
 		left: vw(16);
 		bottom: vw(16);
+		max-width: calc(100% - #{vw(32)});
 		padding: vw(8) vw(15);
 		border-radius: 999px;
 		background: rgba(255, 255, 255, .88);
@@ -804,124 +867,6 @@ $ap-line: rgba(165, 102, 90, .24);
 		line-height: 1.3;
 		color: #1f1612;
 		pointer-events: none;
-	}
-}
-
-// видео с канала YouTube (в «За кулисами», под фото)
-.lb-avideo {
-	margin-top: vw(80);
-	&__head {
-		display: flex;
-		align-items: flex-end;
-		justify-content: space-between;
-		gap: vw(40);
-		margin-bottom: vw(28);
-	}
-	& h3.lb-avideo__title {
-		margin: 0;
-		@include lb-title;
-		@include lb-h(3);
-		line-height: 1.15;
-		text-align: left;
-		color: $ap-ink;
-	}
-	&__all {
-		display: inline-flex;
-		flex: none;
-		align-items: center;
-		gap: vw(10);
-		font-size: vw(12.5);
-		font-weight: 700;
-		letter-spacing: .18em;
-		text-transform: uppercase;
-		text-decoration: none;
-		color: #9a6a52;
-		transition: color .3s;
-		@include hover {
-			color: #1f1612;
-		}
-	}
-	&__arr {
-		width: vw(20);
-		height: vw(11);
-	}
-	&__list {
-		display: grid;
-		grid-template-columns: repeat(5, minmax(0, 1fr));
-		gap: vw(16);
-	}
-	&__link {
-		display: block;
-		color: inherit;
-		text-decoration: none;
-	}
-	// подложка — пока грузится превью (или если оно недоступно)
-	&__thumb {
-		position: relative;
-		display: block;
-		aspect-ratio: 16 / 9;
-		overflow: hidden;
-		border-radius: vw(20);
-		background:
-			radial-gradient(60% 60% at 70% 20%, rgba(196, 146, 118, .35), rgba(196, 146, 118, 0) 100%),
-			linear-gradient(160deg, #3a2c26, #241a16);
-		box-shadow: 0 vw(26) vw(50) vw(-34) rgba(110, 60, 45, .55);
-		img {
-			display: block;
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-			transition: scale 1.2s $ease-expo;
-		}
-		&::after {
-			content: "";
-			position: absolute;
-			inset: 0;
-			background: linear-gradient(180deg, rgba(36, 19, 15, 0) 45%, rgba(36, 19, 15, .35) 100%);
-			pointer-events: none;
-		}
-	}
-	&__play {
-		position: absolute;
-		z-index: 1;
-		top: 50%;
-		left: 50%;
-		display: grid;
-		place-items: center;
-		width: vw(58);
-		height: vw(58);
-		margin: vw(-29) 0 0 vw(-29);
-		border-radius: 50%;
-		background: rgba(255, 255, 255, .88);
-		-webkit-backdrop-filter: blur(6px);
-		backdrop-filter: blur(6px);
-		box-shadow: 0 vw(10) vw(24) rgba(36, 19, 15, .3);
-		transition: scale .5s $ease-expo, background-color .3s;
-		svg {
-			width: vw(22);
-			height: vw(22);
-			margin-left: vw(3);
-			fill: $ap-copper;
-		}
-	}
-	&__link {
-		@include hover {
-			img {
-				scale: 1.06;
-			}
-			.lb-avideo__play {
-				scale: 1.1;
-				background-color: #fff;
-			}
-		}
-	}
-	&__cap {
-		display: block;
-		margin-top: vw(14);
-		font-size: vw(15);
-		font-weight: 600;
-		line-height: 1.4;
-		color: #1f1612;
 	}
 }
 
@@ -1323,43 +1268,12 @@ $ap-line: rgba(165, 102, 90, .24);
 			width: auto;
 			padding: 0 $lb-gut-m;
 		}
-		&__grid {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-			grid-auto-rows: 190px;
-			gap: 10px;
-		}
-		&__tile {
-			border-radius: 18px;
-			&:nth-child(n) {
-				grid-column: span 1;
-			}
-			&:nth-child(1) {
-				grid-column: span 2;
-			}
-		}
-		&__tile--cut img {
-			padding-top: 10px;
-		}
-		&__cap {
-			left: 10px;
-			bottom: 10px;
-			max-width: calc(100% - 20px);
-			padding: 6px 11px;
-			border-radius: 12px;
-			font-size: 11.5px;
-		}
-	}
-
-	.lb-avideo {
-		margin-top: 44px;
-		&__head {
-			flex-direction: column;
-			align-items: flex-start;
-			gap: 10px;
-			margin-bottom: 18px;
+		&__aside {
+			width: auto;
 		}
 		&__all {
 			gap: 8px;
+			margin-top: 14px;
 			font-size: 11.5px;
 		}
 		&__arr {
@@ -1367,11 +1281,11 @@ $ap-line: rgba(165, 102, 90, .24);
 			height: 10px;
 		}
 		// лента с прокруткой пальцем
-		&__list {
+		&__grid {
 			display: flex;
 			gap: 12px;
-			margin: 0 (-$lb-gut-m);
-			padding: 0 $lb-gut-m 8px;
+			margin: 0 (-$lb-gut-m) -14px;
+			padding: 0 $lb-gut-m 14px;
 			overflow-x: auto;
 			scroll-snap-type: x mandatory;
 			scroll-padding: 0 $lb-gut-m;
@@ -1380,26 +1294,32 @@ $ap-line: rgba(165, 102, 90, .24);
 				display: none;
 			}
 		}
-		&__item {
-			flex: 0 0 76%;
+		&__item,
+		&__item:nth-child(n) {
+			flex: 0 0 84%;
 			scroll-snap-align: start;
 		}
-		&__thumb {
-			border-radius: 16px;
+		&__tile {
+			border-radius: 18px;
+			box-shadow: 0 10px 20px -14px rgba(110, 60, 45, .6);
 		}
-		&__play {
-			width: 48px;
-			height: 48px;
-			margin: -24px 0 0 -24px;
+		&__play,
+		&__item:nth-child(n + 3) &__play {
+			width: 52px;
+			height: 52px;
+			margin: -26px 0 0 -26px;
 			svg {
-				width: 18px;
-				height: 18px;
-				margin-left: 2px;
+				width: 20px;
+				height: 20px;
 			}
 		}
 		&__cap {
-			margin-top: 10px;
-			font-size: 13.5px;
+			left: 10px;
+			bottom: 10px;
+			max-width: calc(100% - 20px);
+			padding: 6px 11px;
+			border-radius: 12px;
+			font-size: 11.5px;
 		}
 	}
 

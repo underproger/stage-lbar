@@ -686,6 +686,14 @@
      появление блоков при прокрутке). Лексикон: `_dev/about/lex_write.py` переписывает блок `lbar.rd.ab.*` из `ab.py`.
      RO-тексты: в присланных HTML только RU-версия (второй файл — оболочка Claude Design без содержимого) — RO из PDF + перевод,
      нужен файл «LBAR Despre noi.dc.html».
+   - v1.36.0 (шаг 49): **RO-тексты — дословно из румынского макета** пользователя (LBAR_Despre_noi.html: текст шаблона из
+     `<script type="__bundler/template">`): «Обо мне», техники, цифра 2016, шаги 3–6, причины 3 / 4 / 6, **вопросы и ответы RO**
+     (TV migx_questions ресурса 102 — SQL `_dev/patches/step49-about.sql`; заголовок блока — прежний сайтовый «Răspunsuri la întrebări
+     frecvente», в макете «Întrebări frecvente»). В «За кулисами» **5 роликов YouTube вместо фото** (сетка 2 + 3, превью 16:9 с play и
+     подписью, на мобильном — лента с прокруткой; отдельного ряда видео и H3 «Video din studio» больше нет, ссылка на канал — в шапке
+     блока под текстом). Превью: hqdefault, redesign.js подменяет на maxresdefault, если он есть. Подписи `lbar.rd.ab.vid.1–5` —
+     по названиям на превью (скрин пользователя); ключи `cul.1–5` и `vid.title` удалены. Кнопка play: треугольник без сдвига
+     (центр масс по центру круга). Картинка `img/about-procedure.webp` больше не используется — удалена.
 
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
@@ -731,10 +739,11 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `stage-lbar-45-blog.sql` (все чанки Redesign, **шаблон 5** без баннера; версия 1.33.0; файлы — `logo.svg`, `logo-light.svg`, лексиконы, CSS).
 `stage-lbar-46-seams.sql` (только версия 1.33.1 в lb-head/lb-scripts; файл — CSS).
 `stage-lbar-48-about-anim.sql` (чанк lb-aculise с видео, версия 1.35.0; файлы — лексиконы, CSS / JS) — после 47.
+`stage-lbar-49-about-video.sql` (чанк lb-aculise — ролики вместо фото, версия 1.36.0, **UPDATE TV migx_questions у 102**; файлы — лексиконы, CSS / JS) — после 48.
 `stage-lbar-47-about.sql` (новые чанки lb-ahero / lb-astory / lb-asteps / lb-avalues / lb-aculise / lb-areasons, **новый шаблон «О нас»**
 + доступ к TV, **template у 102 / 298 / 1102**, **TV migx_questions / title-bl-faq у 102 / 298 / 1102**; версия 1.34.0;
 файлы — `about-me-v2.webp`, `about-procedure.webp`, `about-avatar.webp`, лексиконы, CSS / JS).
-Патчи проверены импортом. После 48 БД **не менялась** (кроме локальной настройки phpThumb выше).
+Патчи проверены импортом. После 49 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — по решению пользователя
 

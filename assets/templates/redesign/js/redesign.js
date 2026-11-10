@@ -873,19 +873,15 @@
 					['.lb-avalues__n', { yPercent: 60, opacity: 0, duration: 1.2, stagger: 0.11, clearProps: 'transform' }, 0.35]
 				]);
 			}
-			// «За кулисами»: фото по очереди (кадр «въезжает» из увеличения), затем видео
+			// «За кулисами»: ролики по очереди (кадр «въезжает» из увеличения), затем кнопки play и подписи
 			var aculise = document.querySelector('.lb-aculise');
 			if (aculise) {
-				aHead(aculise.querySelector('.lb-aculise__head'), '.lb-aculise__t1', '.lb-aculise__t2', '.lb-aculise__side');
+				aHead(aculise.querySelector('.lb-aculise__head'), '.lb-aculise__t1', '.lb-aculise__t2', '.lb-aculise__side, .lb-aculise__all');
 				revealBlock(aculise.querySelector('.lb-aculise__grid'), 'top 82%', [
 					['.lb-aculise__tile', { y: 70, opacity: 0, duration: 1.5, stagger: 0.09, clearProps: 'transform' }, 0],
 					['.lb-aculise__tile img', { scale: 1.16, duration: 2.2, stagger: 0.09, ease: 'power3.out', clearProps: 'transform' }, 0],
+					['.lb-aculise__play', { scale: 0, duration: 1, stagger: 0.09, ease: 'back.out(2)', clearProps: 'transform' }, 0.5],
 					['.lb-aculise__cap', { y: 14, opacity: 0, duration: 1, stagger: 0.09, clearProps: 'transform' }, 0.6]
-				]);
-				revealBlock(aculise.querySelector('.lb-avideo'), 'top 85%', [
-					['.lb-avideo__title, .lb-avideo__all', { y: 24, opacity: 0, duration: 1.2, stagger: 0.1, clearProps: 'transform' }, 0],
-					['.lb-avideo__item', { y: 60, opacity: 0, duration: 1.4, stagger: 0.08, clearProps: 'transform' }, 0.15],
-					['.lb-avideo__play', { scale: 0, duration: 1, stagger: 0.08, ease: 'back.out(2)', clearProps: 'transform' }, 0.6]
 				]);
 			}
 			// «Шесть причин» и «О студии»
@@ -907,6 +903,24 @@
 		}
 	};
 	initReveal();
+
+	/* ---------- «За кулисами» (О нас): превью YouTube в высоком разрешении ----------
+	   В разметке — hqdefault (есть у любого ролика); когда он загрузился (картинки lazy — значит, блок рядом),
+	   пробуем maxresdefault из data-yt-hd: если у ролика его нет, YouTube отдаёт заглушку 120×90 — тогда оставляем hqdefault. */
+	Array.prototype.forEach.call(document.querySelectorAll('img[data-yt-hd]'), function (img) {
+		var upgrade = function () {
+			var url = img.getAttribute('data-yt-hd');
+			if (!url) return;
+			img.removeAttribute('data-yt-hd');
+			var hd = new Image();
+			hd.onload = function () {
+				if (hd.naturalWidth > 120) img.src = url;
+			};
+			hd.src = url;
+		};
+		if (img.complete && img.naturalWidth) upgrade();
+		else img.addEventListener('load', upgrade, { once: true });
+	});
 
 	/* ---------- Баннер статьи: просмотры с разрядами (9 300) — HitsPage отдаёт число без пробелов ---------- */
 	Array.prototype.forEach.call(document.querySelectorAll('.lb-shero__sv--num'), function (el) {
