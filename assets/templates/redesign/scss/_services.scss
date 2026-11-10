@@ -218,31 +218,23 @@
 			font-size: 15px;
 			line-height: 1.55;
 		}
+		// карточки — столбиком во всю ширину (без горизонтального слайдера)
 		&__list {
-			gap: 14px;
+			flex-direction: column;
+			gap: 18px;
 			margin: 28px 0 0;
-			padding: 4px $lb-gut-m 24px;
-			overflow-x: auto;
-			scroll-snap-type: x mandatory;
-			scroll-padding: 0 $lb-gut-m;
-			-webkit-overflow-scrolling: touch;
-			scrollbar-width: none;
-			&::-webkit-scrollbar {
-				display: none;
-			}
+			padding: 0 $lb-gut-m;
 		}
 	}
 	.lb-scard {
 		flex: none;
-		width: 82vw;
-		max-width: 340px;
+		width: auto;
 		min-height: 0;
 		border-radius: 24px;
-		scroll-snap-align: start;
 		box-shadow: 0 14px 30px rgba(150, 105, 80, .12);
 		&__img {
 			height: auto;
-			aspect-ratio: 442 / 428;
+			aspect-ratio: 442 / 330;
 			border-radius: 24px 24px 24px 0;
 		}
 		&__body {
@@ -360,11 +352,11 @@
 		}
 		.lb-services__list {
 			margin-top: 28px;
-			gap: 14px;
+			gap: 18px;
 		}
 		.lb-scard {
 			flex: none;
-			width: 82vw;
+			width: auto;
 		}
 		.lb-scard__body {
 			padding: 14px $lb-gut-m 24px;
@@ -400,7 +392,7 @@
 			display: flex;
 		}
 		.lb-scard__img {
-			aspect-ratio: 442 / 380;
+			aspect-ratio: 442 / 330;
 		}
 	}
 }

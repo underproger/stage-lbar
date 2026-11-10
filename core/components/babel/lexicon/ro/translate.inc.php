@@ -101,6 +101,7 @@ $_lang['lbar.rd.implica.eyebrow'] = "Lbar Studio"; // «LBAR STUDIO» — тол
 $_lang['lbar.rd.implica.title'] = "Micropigmentarea|în salonul nostru din|*București*, implică:";
 $_lang['lbar.rd.implica.cta'] = "Programează-te";
 $_lang['lbar.rd.implica.portfolio'] = "Vezi portofoliul";
+$_lang['lbar.rd.implica.video'] = "Vezi videoclipul"; // кнопка с «плеем» — видео студии (YouTube) в окне
 
 // --- редизайн: блок «Консультация» (форма) ---
 $_lang['lbar.rd.consult.eyebrow'] = "Programare online";

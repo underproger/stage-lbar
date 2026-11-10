@@ -96,12 +96,14 @@ $pr-bg: #f8efea;
 		display: block;
 		font-weight: 500;
 	}
+	// кнопка не шире колонки (RU «Записаться на процедуру» длиннее — раньше заходила на таблицу)
 	&__cta.lb-btn {
+		max-width: 100%;
 		margin-top: vw(48);
-		height: vw(64);
-		padding: 0 vw(54) 0 vw(62);
-		gap: vw(34);
-		font-size: vw(21);
+		height: vw(60);
+		padding: 0 vw(36) 0 vw(42);
+		gap: vw(24);
+		font-size: vw(17.5);
 		font-weight: 500;
 		letter-spacing: .05em;
 	}

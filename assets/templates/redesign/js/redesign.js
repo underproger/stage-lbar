@@ -472,31 +472,7 @@
 		});
 	})();
 
-	/* ---------- Галерея: «Смотреть все работы» раскрывает остальные фото ---------- */
-	document.querySelectorAll('.lb-portfolio').forEach(function (sec) {
-		var grid = sec.querySelector('.lb-gallery');
-		var btn = sec.querySelector('.lb-portfolio__more');
-		var foot = sec.querySelector('.lb-portfolio__foot');
-		if (!grid || !btn) return;
-		var more = grid.querySelectorAll('.lb-gallery__item--more');
-		// фото не больше 8 — кнопка не нужна; ссылка на портфолио (страницы услуг) остаётся
-		if (!more.length) { btn.classList.add('is-hidden'); if (foot && !foot.querySelector('.lb-portfolio__all')) foot.classList.add('is-hidden'); return; }
-		btn.addEventListener('click', function () {
-			var open = !grid.classList.contains('is-open');
-			var shown = [].filter.call(grid.children, function (el) { return getComputedStyle(el).display === 'none'; });
-			grid.classList.toggle('is-open', open);
-			sec.classList.toggle('is-open', open);
-			btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-			if (open && !reduce && window.gsap) {
-				window.gsap.from(shown, { y: 40, opacity: 0, duration: 1, stagger: 0.035, ease: 'expo.out', clearProps: 'transform,opacity' });
-			}
-			if (!open) {
-				var top = grid.getBoundingClientRect().top;
-				if (top < 0) window.scrollBy({ top: top - 140, behavior: reduce ? 'auto' : 'smooth' });
-			}
-			if (window.ScrollTrigger) window.ScrollTrigger.refresh();
-		});
-	});
+	/* Галерея: «Vezi toate lucrările» — ссылка на страницу портфолио (раньше раскрывала остальные фото) */
 
 	/* ---------- Галерея внутренней страницы портфолио: «Показать ещё» — по 16 фото ---------- */
 	document.querySelectorAll('.lb-pgallery').forEach(function (sec) {
@@ -628,17 +604,7 @@
 			ptl.from(pq('.lb-price__card'), { y: 70, opacity: 0, duration: 1.6, clearProps: 'transform' }, 0.3)
 				.from(pq('.lb-ptable__row'), { x: pdesk ? 60 : 0, y: pdesk ? 0 : 20, opacity: 0, duration: 1.2, stagger: 0.08, clearProps: 'transform' }, 0.55)
 				.from(pq('.lb-ptable__ic svg'), { scale: 0.4, opacity: 0, duration: 1, stagger: 0.08, ease: 'back.out(2)', clearProps: 'transform' }, 0.75);
-			// цены «набегают» от нуля (в HTML — итоговые значения)
-			pq('.lb-ptable__price').forEach(function (cell, n) {
-				var txt = cell.textContent;
-				var m = txt.match(/^(\D*)(\d[\d\s\u202f\u00a0]*\d|\d)(.*)$/);
-				if (!m) return;
-				var val = parseInt(m[2].replace(/\D/g, ''), 10);
-				if (!val) return;
-				var fmt = function (v) { return m[1] + String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0') + m[3]; };
-				var o = { v: 0 };
-				ptl.to(o, { v: val, duration: 1.4, ease: 'power3.out', onStart: function () { cell.textContent = fmt(0); }, onUpdate: function () { cell.textContent = fmt(o.v); }, onComplete: function () { cell.textContent = txt; } }, 0.7 + n * 0.08);
-			});
+			// цены — без «набегания» от нуля (убрано по просьбе пользователя): видны сразу, как в HTML
 		}
 		// блоки с формой: «Консультация» (.lb-consult) и «Запись на процедуру» (.lb-book) — одинаковая анимация
 		formBlocks.forEach(function (sec) {

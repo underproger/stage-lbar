@@ -102,6 +102,7 @@ $_lang['lbar.rd.implica.eyebrow'] = "Lbar Studio"; // «LBAR STUDIO» — тол
 $_lang['lbar.rd.implica.title'] = "Перманентный|татуаж в *Бухаресте*|от LBar — это:";
 $_lang['lbar.rd.implica.cta'] = "Записаться";
 $_lang['lbar.rd.implica.portfolio'] = "Смотреть портфолио";
+$_lang['lbar.rd.implica.video'] = "Смотреть видео"; // кнопка с «плеем» — видео студии (YouTube) в окне
 
 // --- редизайн: блок «Консультация» (форма) ---
 $_lang['lbar.rd.consult.eyebrow'] = "Онлайн-запись";

@@ -4,12 +4,12 @@
    Если TV заголовка изменят и он перестанет совпадать с лексиконом, заголовок выводится как есть (без разбивки и курсива).
    Страницы услуг (вместо bl3-text, модификатор --svc): заголовок — курсив после тире / двоеточия (lb.accent), надзаголовков нет
    (на главной «LBAR STUDIO» тоже убран), вместо иконок — номера 01–03 (как в старом блоке); фото — TV im-1-bl3 (alt — alt-im-1-bl3)
-   в круге на месте фото главной (--photo), фон — тон блока; нет фото — фон главной. *}
+   в круге на месте фото главной (--photo), фон — тон блока; нет фото — фон главной (implica-bg-v2 — кадр пользователя).
+   Кнопка с «плеем» — видео студии на YouTube в окне fancybox (подключён в старом main.js), текст — lbar.rd.implica.video. *}
 {set $title = $_modx->resource['title-main-bl3'] | trim}
 {set $fmt = 'lbar.rd.implica.title' | lexicon}
 {set $plain = $fmt | replace : '|' : ' ' | replace : '*' : ''}
-{set $pfIds = ['ro' => 100, 'ru' => 198, 'en' => 1100]}
-{set $pfId = $pfIds[$_modx->config.cultureKey] ?: 100}
+{set $video = 'https://www.youtube.com/watch?v=2xwQU_Vt1ys'}
 {set $img = '/assets/templates/redesign/img/'}
 {set $svc = $_modx->resource.id != $_modx->config.site_start}
 {set $photo = $svc ? ('[[*im-1-bl3]]' | trim) : ''}
@@ -24,8 +24,8 @@
         <img class="lb-implica__photo" src="/{$photo | replace : ' ' : '%20'}" alt="{('[[*alt-im-1-bl3]]' | trim) | escape}" width="850" height="850" loading="lazy" decoding="async">
         {else}
         <picture>
-            <source media="(max-width: 1024px)" srcset="{$img}implica-mobile.webp" width="840" height="861">
-            <img src="{$img}implica-bg.webp" srcset="{$img}implica-bg-1440.webp 1440w, {$img}implica-bg.webp 2166w" sizes="100vw" width="2166" height="1218" alt="{'lbar.rd.implica.alt' | lexicon}" loading="lazy" decoding="async">
+            <source media="(max-width: 1024px)" srcset="{$img}implica-mobile-v2.webp" width="840" height="861">
+            <img src="{$img}implica-bg-v2.webp" srcset="{$img}implica-bg-v2-1440.webp 1440w, {$img}implica-bg-v2.webp 2166w" sizes="100vw" width="2166" height="1218" alt="{'lbar.rd.implica.alt' | lexicon}" loading="lazy" decoding="async">
         </picture>
         {/if}
     </div>
@@ -75,9 +75,9 @@
 
         <div class="lb-implica__btns">
             <a class="lb-btn lb-btn--solid lb-implica__cta js-lb-book" href="#bl8-form">{'lbar.rd.implica.cta' | lexicon}<svg class="lb-btn__arr" viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg></a>
-            <a class="lb-implica__play" href="{$_modx->makeUrl($pfId)}">
+            <a class="lb-implica__play" href="{$video}" data-fancybox="lb-video">
                 <span class="lb-implica__playic" aria-hidden="true"><svg viewBox="0 0 12 14"><path fill="currentColor" d="M1.5 1.6v10.8c0 .5.5.8.9.5l8.6-5.4c.4-.2.4-.8 0-1L2.4 1.1c-.4-.3-.9 0-.9.5z"/></svg></span>
-                <span class="lb-implica__playtxt">{'lbar.rd.implica.portfolio' | lexicon}</span>
+                <span class="lb-implica__playtxt">{'lbar.rd.implica.video' | lexicon}</span>
             </a>
         </div>
     </div>

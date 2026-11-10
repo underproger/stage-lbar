@@ -50,15 +50,12 @@
     {/if}
     {$gallery}
 
+    {* «Vezi toate lucrările» — ссылка на портфолио: на страницах услуг — из TV link-bl6 (как кнопка старого bl6-portfolio),
+       иначе — общая страница портфолио контекста (RO 100 / RU 198 / EN 1100). В блоке — первые 8 фото, остальные — в окне просмотра. *}
+    {set $pfIds = ['ro' => 100, 'ru' => 198, 'en' => 1100]}
+    {set $link = ($_modx->resource.id != $_modx->config.site_start) ? ($_modx->resource['link-bl6'] | trim) : ''}
+    {set $link = $link ?: $_modx->makeUrl($pfIds[$_modx->config.cultureKey] ?: 100)}
     <div class="lb-portfolio__foot">
-        <button class="lb-btn lb-btn--solid lb-portfolio__more" type="button" aria-controls="lb-gallery" aria-expanded="false">
-            <span class="lb-portfolio__moretxt">{'lbar.portfolio.button.more' | lexicon}</span><span class="lb-portfolio__lesstxt">{'lbar.rd.portfolio.less' | lexicon}</span>
-            <svg class="lb-btn__arr" viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg>
-        </button>
-        {* страницы услуг: ссылка на портфолио из TV link-bl6 (как кнопка старого bl6-portfolio) *}
-        {set $link = ($_modx->resource.id != $_modx->config.site_start) ? ($_modx->resource['link-bl6'] | trim) : ''}
-        {if $link}
-        <a class="lb-btn lb-btn--ghost lb-portfolio__all" href="{$link}">{'lbar.rd.implica.portfolio' | lexicon}<svg class="lb-btn__arr" viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg></a>
-        {/if}
+        <a class="lb-btn lb-btn--solid lb-portfolio__more" href="{$link}">{'lbar.portfolio.button.more' | lexicon}<svg class="lb-btn__arr" viewBox="0 0 27 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 7h24.5M19.5 1.2 25.5 7l-6 5.8"/></svg></a>
     </div>
 </section>

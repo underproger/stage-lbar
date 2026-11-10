@@ -93,45 +93,6 @@ $pf-bg: #f8f1ec;
 		justify-content: center;
 		margin-top: vw(56);
 	}
-	&__lesstxt {
-		display: none;
-	}
-	&.is-open &__moretxt {
-		display: none;
-	}
-	&.is-open &__lesstxt {
-		display: inline;
-	}
-	&.is-open &__more .lb-btn__arr {
-		rotate: -90deg;
-	}
-	&__more .lb-btn__arr {
-		rotate: 90deg;
-		transition: translate .5s $ease-expo, rotate .5s $ease-expo;
-	}
-	// стрелка смотрит вниз/вверх — на hover сдвигается по направлению, а не вбок (как у остальных кнопок)
-	&__more {
-		@include hover {
-			.lb-btn__arr {
-				translate: 0 vw(4);
-			}
-		}
-	}
-	&.is-open &__more {
-		@include hover {
-			.lb-btn__arr {
-				translate: 0 vw(-4);
-			}
-		}
-	}
-	&__foot.is-hidden,
-	&__more.is-hidden {
-		display: none;
-	}
-	// страницы услуг: рядом — ссылка на портфолио (TV link-bl6)
-	&__foot {
-		gap: vw(24);
-	}
 
 	@include mobile {
 		padding: 56px 0 48px;
