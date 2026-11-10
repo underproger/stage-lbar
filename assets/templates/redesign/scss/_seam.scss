@@ -511,6 +511,36 @@ $seam-contact: #f8f2ee;  // «Статьи» → «Контакты»
 	}
 }
 
+// ---------- простой баннер общих страниц (lb-shero--simple, шаг 45) → следующий блок ----------
+// как у главной: фон баннера уходит в цвет стыка, верхняя половина ленты seam-hero — в баннере, нижняя — в следующем блоке
+// (у всех блоков после баннера она уже есть: lb-pfhub, lb-pgallery, lb-prices, lb-reviews, lb-bloglist; «Услуги» — ниже)
+.lb-shero--simple {
+	background: linear-gradient(180deg, #fbf7f4 0, #f9f4f0 45%, $seam-hero 100%);
+	@include lb-seam(bottom, "seam-hero.svg");
+	// баннер ниже ленты: её верх (линии слева уходят вверх) растворяется, чтобы не пересекать H1; на стыке (50%) — без маски
+	&::after {
+		-webkit-mask-image: linear-gradient(180deg, transparent 0, transparent 25%, #000 50%);
+		mask-image: linear-gradient(180deg, transparent 0, transparent 25%, #000 50%);
+	}
+	// без волны и линии shero-bg.svg у нижнего края (они обрывались на стыке) — только мягкий свет слева сверху
+	.lb-shero__bg {
+		background: radial-gradient(42% 70% at 18% 30%, rgba(255, 255, 255, .75), rgba(255, 255, 255, 0) 100%);
+	}
+	.lb-shero__inner {
+		z-index: 1;
+	}
+}
+// «Услуги» на общей странице «Услуги»: сверху — из баннера (на главной — из «О микропигментации», seam.svg)
+.lb-shero + .lb-services {
+	background: linear-gradient(180deg, $seam-hero 0%, #faf0e8 vw(320), #faf0e8 calc(100% - #{vw(200)}), $seam-implica 100%);
+	&::after {
+		@include lb-seam-bg("seam-hero.svg");
+	}
+	@include mobile {
+		background: linear-gradient(180deg, $seam-hero 0%, #faf0e8 160px, #faf0e8 calc(100% - 80px), $seam-implica 100%);
+	}
+}
+
 // ---------- общие страницы «Услуги» и «Обучение» ----------
 // «Услуги» (все карточки) → «Запись»
 .lb-services + #bl8-form + .lb-book {
