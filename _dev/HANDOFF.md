@@ -678,6 +678,14 @@
    «Причины» → FAQ — seam-faq, FAQ → «Запись» — seam-seo. Стили — `scss/_apage.scss`.
    SEO-сверка 106 адресов с шагом 46: меняются только заголовки 102 / 298 (H1 и новые H2 / H3), title / description / canonical /
    hreflang / крошки — прежние, прежний текст страницы на месте.
+   - v1.35.0 (шаг 48): подпись первого фото — снова «Studioul Lbar, București / Студия Lbar, Бухарест»; в «За кулисами» под фото —
+     **видео с канала YouTube** @kseniyalbarstudio (5 роликов по ссылкам пользователя, порядок — массив `$videos` в `lb-aculise`;
+     превью i.ytimg.com hqdefault, окно fancybox; H3 «Video din studio» и ссылка на канал; подписи `lbar.rd.ab.vid.1–5` — по темам
+     статей сайта, где стоят эти ролики: точные названия из YouTube получить не удалось — YouTube из среды недоступен);
+     **анимации** всех блоков страницы (GSAP, redesign.js: интро первого экрана со шапкой и бегущей строкой, сдвиг фото при прокрутке,
+     появление блоков при прокрутке). Лексикон: `_dev/about/lex_write.py` переписывает блок `lbar.rd.ab.*` из `ab.py`.
+     RO-тексты: в присланных HTML только RU-версия (второй файл — оболочка Claude Design без содержимого) — RO из PDF + перевод,
+     нужен файл «LBAR Despre noi.dc.html».
 
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
@@ -722,10 +730,11 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 файлы — лексиконы, CSS/JS).
 `stage-lbar-45-blog.sql` (все чанки Redesign, **шаблон 5** без баннера; версия 1.33.0; файлы — `logo.svg`, `logo-light.svg`, лексиконы, CSS).
 `stage-lbar-46-seams.sql` (только версия 1.33.1 в lb-head/lb-scripts; файл — CSS).
+`stage-lbar-48-about-anim.sql` (чанк lb-aculise с видео, версия 1.35.0; файлы — лексиконы, CSS / JS) — после 47.
 `stage-lbar-47-about.sql` (новые чанки lb-ahero / lb-astory / lb-asteps / lb-avalues / lb-aculise / lb-areasons, **новый шаблон «О нас»**
 + доступ к TV, **template у 102 / 298 / 1102**, **TV migx_questions / title-bl-faq у 102 / 298 / 1102**; версия 1.34.0;
 файлы — `about-me-v2.webp`, `about-procedure.webp`, `about-avatar.webp`, лексиконы, CSS / JS).
-Патчи проверены импортом. После 47 БД **не менялась** (кроме локальной настройки phpThumb выше).
+Патчи проверены импортом. После 48 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — по решению пользователя
 

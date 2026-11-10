@@ -813,6 +813,98 @@
 			['.lb-footer__contacts > :not(.lb-footer__call)', { y: 22, opacity: 0, duration: 1.1, stagger: 0.07, clearProps: 'transform' }, 0.3],
 			['.lb-footer__call > .btn-mobal', { y: 22, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.8]
 		]);
+
+		// ---------- страница «О нас» (шаг 48) ----------
+		if (document.querySelector('.lb-astory')) {
+			var adesk = isDesktop();
+			// шапка блока: H2 (две части) и короткий текст справа
+			var aHead = function (el, t1, t2, side) {
+				revealBlock(el, 'top 82%', [
+					[t1 + ', ' + t2, { yPercent: 45, opacity: 0, duration: 1.4, stagger: 0.12, clearProps: 'transform' }, 0],
+					[side, { y: 24, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.3]
+				]);
+			};
+			var aEl = function (el, vars, start) {
+				if (!el) return;
+				vars.scrollTrigger = { trigger: el, start: start || 'top 85%' };
+				gsap.from(el, vars);
+			};
+			// «Обо мне»
+			var astory = document.querySelector('.lb-astory');
+			revealBlock(astory, 'top 72%', [
+				['.lb-astory__t1, .lb-astory__t2', { yPercent: 45, opacity: 0, duration: 1.4, stagger: 0.12, clearProps: 'transform' }, 0],
+				['.lb-astory__photo', { y: 70, opacity: 0, duration: 1.7, ease: 'power3.out', clearProps: 'transform' }, 0.15],
+				['.lb-astory__frame', { x: -26, y: 26, opacity: 0, duration: 1.9, ease: 'power3.out', clearProps: 'transform' }, 0.45],
+				['.lb-astory__text > p', { y: 30, opacity: 0, duration: 1.2, stagger: 0.09, clearProps: 'transform' }, 0.3],
+				['.lb-astory__quote', { x: -34, opacity: 0, duration: 1.3, clearProps: 'transform' }, 0.55]
+			]);
+			revealBlock(astory.querySelector('.lb-astory__chips'), 'top 88%', [
+				['.lb-astory__chip', { y: 14, scale: 0.9, opacity: 0, duration: 0.9, stagger: 0.05, ease: 'back.out(2)', clearProps: 'transform' }, 0]
+			]);
+			revealBlock(astory.querySelector('.lb-astory__sign'), 'top 90%', [
+				['.lb-astory__sname', { clipPath: 'inset(0% 100% 0% 0%)' }, 0, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.8, ease: 'power2.inOut', clearProps: 'clipPath' }],
+				['.lb-astory__srole', { y: 14, opacity: 0, duration: 1.1, clearProps: 'transform' }, 0.7]
+			]);
+			revealBlock(astory.querySelector('.lb-astory__nums'), 'top 85%', [
+				['.lb-astory__num', { y: 50, opacity: 0, duration: 1.3, stagger: 0.1, clearProps: 'transform' }, 0],
+				['.lb-astory__nv', { yPercent: 40, duration: 1.4, stagger: 0.1, clearProps: 'transform' }, 0.05]
+			]);
+			// «Шесть шагов»: шапка, номер, пункты (анимируются заголовок и текст пункта — у самого пункта прозрачность ведёт CSS)
+			var asteps = document.querySelector('.lb-asteps');
+			if (asteps) {
+				aHead(asteps.querySelector('.lb-asteps__head'), '.lb-asteps__t1', '.lb-asteps__t2', '.lb-asteps__side');
+				revealBlock(asteps.querySelector('.lb-asteps__body'), 'top 78%', [
+					['.lb-asteps__nums', { y: 60, opacity: 0, duration: 1.6, ease: 'power3.out', clearProps: 'transform' }, 0],
+					['.lb-asteps__of, .lb-asteps__bar', { y: 16, opacity: 0, duration: 1.1, stagger: 0.08, clearProps: 'transform' }, 0.4],
+					['.lb-asteps__in, .lb-asteps__it, .lb-asteps__id', { y: 30, opacity: 0, duration: 1.2, stagger: 0.05, clearProps: 'transform' }, 0.1]
+				]);
+			}
+			// «Принцип» и «Ценности»
+			var avalues = document.querySelector('.lb-avalues');
+			if (avalues) {
+				revealBlock(avalues.querySelector('.lb-avalues__man'), 'top 80%', [
+					['.lb-avalues__quote p', { y: 50, opacity: 0, duration: 1.7, ease: 'power3.out', clearProps: 'transform' }, 0],
+					['.lb-avalues__ava', { scale: 0.6, opacity: 0, duration: 1.1, ease: 'back.out(2)', clearProps: 'transform' }, 0.55],
+					['.lb-avalues__who', { x: -20, opacity: 0, duration: 1.1, clearProps: 'transform' }, 0.65]
+				]);
+				aHead(avalues.querySelector('.lb-avalues__head'), '.lb-avalues__t1', '.lb-avalues__t2', '.lb-avalues__side');
+				revealBlock(avalues.querySelector('.lb-avalues__list'), 'top 85%', [
+					['.lb-avalues__card', { y: 80, opacity: 0, duration: 1.5, stagger: 0.11, clearProps: 'transform' }, 0],
+					['.lb-avalues__n', { yPercent: 60, opacity: 0, duration: 1.2, stagger: 0.11, clearProps: 'transform' }, 0.35]
+				]);
+			}
+			// «За кулисами»: фото по очереди (кадр «въезжает» из увеличения), затем видео
+			var aculise = document.querySelector('.lb-aculise');
+			if (aculise) {
+				aHead(aculise.querySelector('.lb-aculise__head'), '.lb-aculise__t1', '.lb-aculise__t2', '.lb-aculise__side');
+				revealBlock(aculise.querySelector('.lb-aculise__grid'), 'top 82%', [
+					['.lb-aculise__tile', { y: 70, opacity: 0, duration: 1.5, stagger: 0.09, clearProps: 'transform' }, 0],
+					['.lb-aculise__tile img', { scale: 1.16, duration: 2.2, stagger: 0.09, ease: 'power3.out', clearProps: 'transform' }, 0],
+					['.lb-aculise__cap', { y: 14, opacity: 0, duration: 1, stagger: 0.09, clearProps: 'transform' }, 0.6]
+				]);
+				revealBlock(aculise.querySelector('.lb-avideo'), 'top 85%', [
+					['.lb-avideo__title, .lb-avideo__all', { y: 24, opacity: 0, duration: 1.2, stagger: 0.1, clearProps: 'transform' }, 0],
+					['.lb-avideo__item', { y: 60, opacity: 0, duration: 1.4, stagger: 0.08, clearProps: 'transform' }, 0.15],
+					['.lb-avideo__play', { scale: 0, duration: 1, stagger: 0.08, ease: 'back.out(2)', clearProps: 'transform' }, 0.6]
+				]);
+			}
+			// «Шесть причин» и «О студии»
+			var areasons = document.querySelector('.lb-areasons');
+			if (areasons) {
+				revealBlock(areasons, 'top 80%', [
+					['.lb-areasons__t1, .lb-areasons__t2', { yPercent: 45, opacity: 0, duration: 1.4, stagger: 0.12, clearProps: 'transform' }, 0]
+				]);
+				revealBlock(areasons.querySelector('.lb-areasons__list'), 'top 85%', [
+					['.lb-areasons__row', { y: 34, opacity: 0, duration: 1.2, stagger: 0.08, clearProps: 'transform' }, 0],
+					['.lb-areasons__v', { x: adesk ? -24 : 0, opacity: 0, duration: 1.2, stagger: 0.08, clearProps: 'transform' }, 0.25]
+				]);
+				aEl(areasons.querySelector('.lb-astudio'), { y: 80, opacity: 0, duration: 1.6, ease: 'expo.out', clearProps: 'transform' }, 'top 88%');
+				revealBlock(areasons.querySelector('.lb-astudio'), 'top 80%', [
+					['.lb-astudio__title', { y: 30, opacity: 0, duration: 1.3, clearProps: 'transform' }, 0.25],
+					['.lb-astudio__text', { y: 24, opacity: 0, duration: 1.3, clearProps: 'transform' }, 0.45]
+				]);
+			}
+		}
 	};
 	initReveal();
 
@@ -842,6 +934,35 @@
 		sAdd('.lb-shero__stat', { x: 24, opacity: 0, duration: 1.1, stagger: 0.08, clearProps: 'transform' }, 1.05);
 		sAdd('.lb-shero__badge', { y: 40, opacity: 0, duration: 1.3, stagger: 0.12, clearProps: 'transform' }, 1.0);
 		sAdd('.lb-crumbs__item', { x: -16, opacity: 0, duration: 1, stagger: 0.06, clearProps: 'transform' }, 1.25);
+	}
+
+	/* ---------- «О нас» (lb-ahero): интро первого экрана и бегущей строки ---------- */
+	var ahero = document.querySelector('.lb-ahero');
+	if (ahero && !reduce && typeof window.gsap !== 'undefined') {
+		var aq = function (s) { return ahero.querySelectorAll(s); };
+		var atl = window.gsap.timeline({ defaults: { ease: 'expo.out' } });
+		var aAdd = function (sel, vars, pos, to) { var els = typeof sel === 'string' ? aq(sel) : sel; if (!els.length) return; if (to) atl.fromTo(els, vars, to, pos); else atl.from(els, vars, pos); };
+		aAdd('.lb-ahero__photo', { y: 50, opacity: 0, duration: 1.7, ease: 'power3.out', clearProps: 'transform' }, 0);
+		aAdd('.lb-ahero__photo img', { scale: 1.12, duration: 2.4, ease: 'power3.out', clearProps: 'transform' }, 0);
+		aAdd('.lb-ahero__frame', { x: -30, y: 30, opacity: 0, duration: 2, ease: 'power3.out', clearProps: 'transform' }, 0.35);
+		aAdd('.lb-ahero__arch', { clipPath: 'inset(100% 0% 0% 0%)' }, 0.4, { clipPath: 'inset(0% 0% 0% 0%)', duration: 2.2, stagger: 0.25, ease: 'power2.inOut', clearProps: 'clipPath' });
+		aAdd('.lb-ahero__year', { y: 80, opacity: 0, duration: 2.4, ease: 'power3.out', clearProps: 'transform' }, 0.5);
+		atl.from(isDesktop() ? '.lb-header__logo, .lb-nav__list > li > .lb-nav__link, .lb-header__right' : '.lb-header__logo, .lb-header__right', { y: -24, opacity: 0, duration: 1.2, stagger: isDesktop() ? 0.035 : 0.08, clearProps: 'transform' }, 0.3);
+		aAdd('.lb-crumbs__item', { x: -16, opacity: 0, duration: 1, stagger: 0.06, clearProps: 'transform' }, 0.45);
+		aAdd('.lb-ahero__t1, .lb-ahero__t2', { yPercent: 45, opacity: 0, duration: 1.5, stagger: 0.14, clearProps: 'transform' }, 0.5);
+		aAdd('.lb-ahero__lead', { y: 22, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.8);
+		aAdd('.lb-ahero__stat', { y: 26, opacity: 0, duration: 1.1, stagger: 0.09, clearProps: 'transform' }, 0.95);
+		aAdd('.lb-ahero__btns > *', { y: 24, opacity: 0, duration: 1.2, stagger: 0.1, clearProps: 'transform' }, 1.1);
+		aAdd('.lb-ahero__card', { y: 34, opacity: 0, duration: 1.4, clearProps: 'transform' }, 1.0);
+		aAdd('.lb-ahero__spark', { scale: 0, rotation: -120, transformOrigin: '50% 50%', duration: 1.3, ease: 'back.out(2)', clearProps: 'transform' }, 1.3);
+		var ticker = document.querySelector('.lb-ticker');
+		if (ticker) atl.from(ticker, { opacity: 0, y: 20, duration: 1.4, clearProps: 'transform' }, 1.1);
+		// фото и контур года чуть смещаются при прокрутке
+		if (isDesktop() && window.ScrollTrigger) {
+			window.gsap.registerPlugin(window.ScrollTrigger);
+			window.gsap.to(ahero.querySelector('.lb-ahero__photo img'), { yPercent: 6, ease: 'none', scrollTrigger: { trigger: ahero, start: 'top top', end: 'bottom top', scrub: true } });
+			window.gsap.to(ahero.querySelector('.lb-ahero__year'), { xPercent: 6, ease: 'none', scrollTrigger: { trigger: ahero, start: 'top top', end: 'bottom top', scrub: true } });
+		}
 	}
 
 	/* ---------- 404 и «Спасибо» (lb-msg): интро ---------- */
