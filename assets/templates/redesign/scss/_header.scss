@@ -754,9 +754,10 @@
 		padding-top: 64px;
 	}
 }
-// там же — контраст текста старых блоков курса не ниже 4.5:1 (PageSpeed, шаг 58; цвета study.css): плашка «Baza / Premium» над тарифом,
-// подпись «Pret» тарифа (была прозрачность .5), активная вкладка блока преимуществ, «By appointment Only» в контактах
-.lb-legacy {
+// там же — контраст текста старых блоков курса и удаления тату не ниже 4.5:1 (PageSpeed, шаги 58, 60; цвета study.css): плашка
+// «Baza / Premium» над тарифом, подпись «Pret» тарифа (была прозрачность .5), активная вкладка блока преимуществ, «By appointment Only»
+.lb-legacy,
+.lb-oldpage {
 	.prices .prices-base {
 		background: #9a5e47;
 	}
@@ -769,6 +770,28 @@
 	.schedule-notification span,
 	.col-bl-contact li.schedule-notification span {
 		color: #7d665d;
+	}
+}
+// удаление тату (шаблон «Категория NEW», шаг 60): мобильная копия таблицы цен — шапка строк была белым по бежевому (1.7:1);
+// названия оборудования стали H3 (было H4 — пропуск уровня) — вид как у прежнего H4 (старый CSS задаёт h3 другой шрифт и размер)
+.lb-oldpage {
+	// tbody — специфичнее правила study.css (.category-inner table.restables-clone tr:first-child td), которое подключено позже
+	table.restables-clone tbody tr:first-child td {
+		background: #946140;
+	}
+	.inner-eq__name h3 {
+		margin: 0 0 20px;
+		font-family: inherit;
+		font-size: 25px;
+		font-weight: 400;
+		line-height: inherit;
+		letter-spacing: normal;
+		text-transform: none;
+	}
+	&.main-ro .inner-eq__name h3,
+	&.main-en .inner-eq__name h3 {
+		font-family: "Montserrat", sans-serif;
+		font-weight: 600;
 	}
 }
 // там же — единый цвет H2–H3 (шаг 50): тёмные заголовки старых блоков — $lb-h-ink, «золотые» слова (.gold-word) — цветом заголовка;
