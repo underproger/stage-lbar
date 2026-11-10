@@ -763,3 +763,120 @@ $seam-contact: #f8f2ee;  // «Статьи» → «Контакты»
 		}
 	}
 }
+
+// ---------- страница «О нас» (шаг 47) ----------
+// первый экран → бегущая строка → «Обо мне»: общий тон $seam-blog (#f8f1ec), строка — с тонкими линиями сверху и снизу (как в макете)
+.lb-ahero {
+	background:
+		radial-gradient(50% 60% at 18% 25%, rgba(251, 247, 244, .95), rgba(251, 247, 244, 0) 70%),
+		radial-gradient(40% 55% at 92% 78%, rgba(234, 214, 202, .7), rgba(234, 214, 202, 0) 70%),
+		linear-gradient(180deg, #f7eee9 0%, $seam-blog 100%);
+}
+.lb-astory {
+	isolation: isolate;
+	background: linear-gradient(180deg, $seam-blog 0, #f8f2ee vw(300));
+	// низ — волна тёмного тона «Шести шагов» (как «Консультация» → «Мастер»)
+	&::before {
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: -1px;
+		width: 100%;
+		height: vw(160);
+		z-index: 0;
+		pointer-events: none;
+		background: url("/assets/templates/redesign/img/seam-master.svg") center bottom / 100% 100% no-repeat;
+		@include mobile {
+			height: mvw(70);
+		}
+	}
+	&__bg {
+		z-index: -1;
+	}
+}
+// верх «Шести шагов» продолжает тон волны (как у «Мастера»)
+.lb-asteps::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: vw(170);
+	z-index: 1;
+	pointer-events: none;
+	background: linear-gradient(90deg, #3c2f2a 0%, #453630 10%, #453630 20%, #322724 30%, #2c231f 40%, #2d2420 50%, #302824 60%, #2c231f 70%, #2c231f 80%, #312623 90%, #322722 100%);
+	-webkit-mask-image: linear-gradient(180deg, #000 0, rgba(0, 0, 0, .6) 35%, transparent 100%);
+	mask-image: linear-gradient(180deg, #000 0, rgba(0, 0, 0, .6) 35%, transparent 100%);
+	@include mobile {
+		height: mvw(80);
+	}
+}
+// «Шесть шагов» → «Принцип»: тёмный фон опускается волной (как «Мастер» → «Галерея»: форма — маска seam-portfolio-mask.svg,
+// заливка — ровный тон низа «Шести шагов», медная линия — seam-portfolio.svg)
+.lb-avalues {
+	&__bg {
+		background:
+			radial-gradient(40% 26% at 80% 14%, rgba(255, 255, 255, .8), rgba(255, 255, 255, 0) 100%),
+			radial-gradient(40% 30% at 6% 60%, rgba(236, 214, 200, .4), rgba(236, 214, 200, 0) 100%),
+			linear-gradient(180deg, #faf4f0 0%, #f8f2ee vw(500));
+		&::after {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: vw(160);
+			transform: scaleY(-1);
+			background: $ms-bg; // низ «Шести шагов» — ровный тон
+			-webkit-mask: url("/assets/templates/redesign/img/seam-portfolio-mask.svg") 0 0 / 100% 100% no-repeat;
+			mask: url("/assets/templates/redesign/img/seam-portfolio-mask.svg") 0 0 / 100% 100% no-repeat;
+			@include mobile {
+				height: mvw(70);
+			}
+		}
+	}
+	&::before {
+		content: "";
+		position: absolute;
+		top: -1px;
+		left: 0;
+		width: 100%;
+		height: vw(160);
+		z-index: 0;
+		pointer-events: none;
+		background: url("/assets/templates/redesign/img/seam-portfolio.svg") center top / 100% 100% no-repeat;
+		@include mobile {
+			height: mvw(70);
+		}
+	}
+}
+.lb-aculise {
+	background: #f8f2ee;
+}
+// «Причины» + «О студии» → «Вопросы и ответы» (лента seam-faq, как «Отзывы» → FAQ)
+.lb-areasons {
+	background: linear-gradient(180deg, #f8f2ee 0, #f8f2ee calc(100% - #{vw(260)}), $seam-faq 100%);
+	@include lb-seam(bottom, "seam-faq.svg");
+	@include mobile {
+		background: linear-gradient(180deg, #f8f2ee 0, #f8f2ee calc(100% - 100px), $seam-faq 100%);
+	}
+}
+// FAQ → «Запись» (у FAQ снизу лента seam-seo); без FAQ — «О студии» → «Запись» (лента seam-faq)
+.lb-faq + #bl8-form + .lb-book {
+	background: linear-gradient(180deg, $seam-seo 0, $cs-bg vw(170), $cs-bg calc(100% - #{vw(200)}), $seam-reviews 100%);
+	&::after {
+		@include lb-seam-bg("seam-seo.svg");
+	}
+	@include mobile {
+		background: linear-gradient(180deg, $seam-seo 0, $cs-bg 100px, $cs-bg calc(100% - 100px), $seam-reviews 100%);
+	}
+}
+.lb-areasons + #bl8-form + .lb-book {
+	background: linear-gradient(180deg, $seam-faq 0, $cs-bg vw(170), $cs-bg calc(100% - #{vw(200)}), $seam-reviews 100%);
+	&::after {
+		@include lb-seam-bg("seam-faq.svg");
+	}
+	@include mobile {
+		background: linear-gradient(180deg, $seam-faq 0, $cs-bg 100px, $cs-bg calc(100% - 100px), $seam-reviews 100%);
+	}
+}

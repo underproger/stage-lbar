@@ -122,6 +122,32 @@
 		});
 	}
 
+	/* ---------- «О нас»: шесть шагов — текущий шаг по прокрутке (крупный номер, «01 / 06», полоса — CSS по data-step) ---------- */
+	var stepsEl = document.querySelector('.lb-asteps');
+	if (stepsEl) {
+		var stepItems = stepsEl.querySelectorAll('.lb-asteps__item');
+		var stepCur = -1;
+		var stepTick = false;
+		var stepUpdate = function () {
+			stepTick = false;
+			var line = window.innerHeight * 0.55;
+			var a = 0;
+			stepItems.forEach(function (el, i) {
+				if (el.getBoundingClientRect().top < line) a = i;
+			});
+			if (a === stepCur) return;
+			stepCur = a;
+			stepsEl.setAttribute('data-step', a);
+			stepItems.forEach(function (el, i) { el.classList.toggle('is-active', i === a); });
+		};
+		stepsEl.classList.add('is-js');
+		window.addEventListener('scroll', function () {
+			if (!stepTick) { stepTick = true; requestAnimationFrame(stepUpdate); }
+		}, { passive: true });
+		window.addEventListener('resize', stepUpdate);
+		stepUpdate();
+	}
+
 	/* ---------- «Читать далее» (текст свёрнут до 3 строк): блоки «О микропигментации» и «Цены» ---------- */
 	var initClamp = function (wrapSel, textSel, btnSel) {
 		document.querySelectorAll(wrapSel).forEach(function (wrap) {
