@@ -190,9 +190,14 @@
 		top: vw(680);
 		left: vw(1031);
 		display: flex;
-		gap: vw(28);
+		gap: vw(20);
+		// кнопки компактнее общих .lb-btn (исходные тексты длиннее: «Primește o consultație»)
 		.lb-btn {
-			height: vw(64);
+			gap: vw(16);
+			height: vw(54);
+			padding: 0 vw(32);
+			font-size: vw(14.5);
+			letter-spacing: .16em;
 		}
 	}
 
@@ -279,7 +284,11 @@
 			margin-top: 22px;
 			.lb-btn {
 				flex: 1 1 100%;
-				height: 52px;
+				gap: 14px;
+				height: 46px;
+				padding: 0 20px;
+				font-size: 12px;
+				letter-spacing: .14em;
 			}
 		}
 		&__cards {
