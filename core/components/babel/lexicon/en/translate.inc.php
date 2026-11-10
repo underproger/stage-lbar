@@ -62,14 +62,16 @@ $_lang['lbar-study-banner-form-title'] = "GET A CONSULTATION";
 $_lang['lbar-study-banner-form-subtitle'] = "We will explain in detail how you can take the training at a favorable price";
 $_lang['lbar-study-banner-form-btn'] = "GET A CONSULTATION";
 
-// --- редизайн: баннер главной ---
+// --- редизайн: баннер главной (карточки-преимущества: число / подпись) ---
 $_lang['lbar.rd.hero.alt'] = "Premium micropigmentation in Bucharest — LBar Studio";
 $_lang['lbar.rd.hero.consult'] = "Consultation";
 $_lang['lbar.rd.hero.portfolio'] = "Portfolio";
-$_lang['lbar.rd.hero.card1.num'] = "4000+";
-$_lang['lbar.rd.hero.card1.txt'] = "procedures";
-$_lang['lbar.rd.hero.card2.txt'] = "Natural<br>results";
-$_lang['lbar.rd.hero.card3.txt'] = "Premium<br>studio";
+$_lang['lbar.rd.hero.card1.num'] = "6,000+";
+$_lang['lbar.rd.hero.card1.txt'] = "procedures performed";
+$_lang['lbar.rd.hero.card2.num'] = "10+ years";
+$_lang['lbar.rd.hero.card2.txt'] = "of experience";
+$_lang['lbar.rd.hero.card3.num'] = "Laureate";
+$_lang['lbar.rd.hero.card3.txt'] = "World Championship semi-final, Bucharest";
 
 // --- редизайн: блок «О микропигментации» ---
 $_lang['lbar.rd.about.alt'] = "LBar Studio — micropigmentation in Bucharest";
@@ -77,9 +79,9 @@ $_lang['lbar.rd.about.eyebrow'] = "About micropigmentation";
 $_lang['lbar.rd.about.eyebrow.svc'] = "About the procedure";
 $_lang['lbar.rd.about.more'] = "Read more";
 $_lang['lbar.rd.about.less'] = "Hide";
-$_lang['lbar.rd.about.f1'] = "A natural, harmonious look";
-$_lang['lbar.rd.about.f2'] = "Long-lasting results";
-$_lang['lbar.rd.about.f3'] = "Subtle correction of features";
+$_lang['lbar.rd.about.f1'] = "You approve the sketch before the procedure";
+$_lang['lbar.rd.about.f2'] = "Results last up to 2–3 years";
+$_lang['lbar.rd.about.f3'] = "Corrects asymmetry and conceals scars";
 $_lang['lbar.rd.about.quote'] = "At LBar Studio, every procedure is performed with precision, care and attention to the proportions of the face.";
 $_lang['lbar.rd.about.cta'] = "Book a consultation";
 

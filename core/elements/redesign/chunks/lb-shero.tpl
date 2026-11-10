@@ -1,6 +1,6 @@
 {* Баннер страниц услуг (шаблон «Категория», id 8) — вместо banner-interial-category(-with-img) и breadcrumb-wrap. По макету.
    Тексты — прежние TV ресурса, без правок:
-   - надзаголовок — suptitle-banner главной (как в старом баннере);
+   - надзаголовка нет (был suptitle-banner главной — убран вместе со всеми eyebrow);
    - H1 — title-banner: первое слово прямо, остальное курсивом (только разметка, текст H1 тот же);
    - подзаголовок — sub-title-banner;
    - description-banner: 2–3 строки (по <br> / <p>) до 40 символов — колонки с иконками (как в макете), до 80 — список с отметками,
@@ -25,7 +25,6 @@
 {set $t = ($hub ? $r.pagetitle : $r['title-banner']) | trim}
 {set $first = $t | ereplace : '~\s.*$~s' : ''}
 {set $rest = $t | ereplace : '~^\S+\s*~' : ''}
-{set $eyebrow = $_modx->runSnippet('pdoField', ['id' => $_modx->config.site_start, 'field' => 'suptitle-banner']) | trim}
 
 {* преимущества *}
 {set $desc = $hub ? '' : ($r['description-banner'] | trim)}
@@ -85,7 +84,6 @@
 
     <div class="lb-shero__inner">
         <div class="lb-shero__content">
-            {if $eyebrow}<p class="lb-shero__eyebrow">{$eyebrow}</p>{/if}
             <h1 class="lb-shero__title"{if $art} itemprop="headline"{/if}><span class="lb-shero__t1">{$first}</span>{if $rest} <span class="lb-shero__t2">{$rest}</span>{/if}</h1>
             {if $hub}
             {* длинный текст (у мастеров — биография, 1–2 тыс. знаков) в баннер не помещается — его выводит блок под баннером (lb-pgallery) *}

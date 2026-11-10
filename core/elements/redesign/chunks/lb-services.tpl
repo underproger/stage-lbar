@@ -7,7 +7,6 @@
     </div>
 
     <div class="lb-services__intro">
-        <div class="lb-services__eyebrow">{'lbar.rd.services.eyebrow' | lexicon}</div>
         {if $_modx->resource['main-title-bl2']}
         <h2 class="lb-services__title">{$_modx->resource['main-title-bl2']}</h2>
         {/if}

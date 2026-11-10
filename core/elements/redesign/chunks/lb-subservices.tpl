@@ -34,7 +34,6 @@
     </div>
 
     <div class="lb-services__intro">
-        <div class="lb-services__eyebrow">{($hub ? 'lbar.rd.services.eyebrow' : 'lbar.rd.subservices.eyebrow') | lexicon}</div>
         {if $title}
         <h2 class="lb-services__title">{$_modx->getChunk('lb.accent', ['t' => $title])}</h2>
         {/if}

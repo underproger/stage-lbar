@@ -62,14 +62,16 @@ $_lang['lbar-study-banner-form-title'] = "Получить консультац�
 $_lang['lbar-study-banner-form-subtitle'] = "Узнайте все детали обучения и получите ответы на оставшиеся вопросы от вашего преподавателя";
 $_lang['lbar-study-banner-form-btn'] = "Получить консультацию";
 
-// --- редизайн: баннер главной ---
+// --- редизайн: баннер главной (карточки-преимущества: число / подпись) ---
 $_lang['lbar.rd.hero.alt'] = "Перманентный макияж premium в Бухаресте — студия LBar";
 $_lang['lbar.rd.hero.consult'] = "Консультация";
 $_lang['lbar.rd.hero.portfolio'] = "Портфолио";
-$_lang['lbar.rd.hero.card1.num'] = "4000+";
-$_lang['lbar.rd.hero.card1.txt'] = "процедур";
-$_lang['lbar.rd.hero.card2.txt'] = "Натуральный<br>результат";
-$_lang['lbar.rd.hero.card3.txt'] = "Премиум<br>студия";
+$_lang['lbar.rd.hero.card1.num'] = "6&nbsp;000+";
+$_lang['lbar.rd.hero.card1.txt'] = "выполненных процедур";
+$_lang['lbar.rd.hero.card2.num'] = "10+ лет";
+$_lang['lbar.rd.hero.card2.txt'] = "опыта";
+$_lang['lbar.rd.hero.card3.num'] = "Призёр";
+$_lang['lbar.rd.hero.card3.txt'] = "полуфинала чемпионата мира в Бухаресте";
 
 // --- редизайн: блок «О микропигментации» ---
 $_lang['lbar.rd.about.alt'] = "Студия LBar — перманентный макияж в Бухаресте";
@@ -77,9 +79,9 @@ $_lang['lbar.rd.about.eyebrow'] = "О перманентном макияже";
 $_lang['lbar.rd.about.eyebrow.svc'] = "О процедуре";
 $_lang['lbar.rd.about.more'] = "Читать далее";
 $_lang['lbar.rd.about.less'] = "Свернуть";
-$_lang['lbar.rd.about.f1'] = "Естественный и гармоничный вид";
-$_lang['lbar.rd.about.f2'] = "Долговременный результат";
-$_lang['lbar.rd.about.f3'] = "Деликатная коррекция черт лица";
+$_lang['lbar.rd.about.f1'] = "Эскиз утверждаете вы до начала процедуры";
+$_lang['lbar.rd.about.f2'] = "Эффект держится до 2–3 лет";
+$_lang['lbar.rd.about.f3'] = "Исправляет асимметрию и скрывает рубцы";
 $_lang['lbar.rd.about.quote'] = "В Studio Lbar каждая процедура выполняется с точностью, заботой и вниманием к пропорциям лица.";
 $_lang['lbar.rd.about.cta'] = "Записаться на консультацию";
 

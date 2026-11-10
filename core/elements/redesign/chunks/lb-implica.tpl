@@ -2,8 +2,8 @@
    Тексты — прежние TV: title-main-bl3 (H2), title-1..3-bl3, text-1..3-bl3.
    Разбивка H2 на строки и курсив — из лексикона lbar.rd.implica.title: «|» — перенос строки, *слово* — курсив.
    Если TV заголовка изменят и он перестанет совпадать с лексиконом, заголовок выводится как есть (без разбивки и курсива).
-   Страницы услуг (вместо bl3-text, модификатор --svc): заголовок — курсив после тире / двоеточия (lb.accent), без надзаголовка
-   «LBAR STUDIO» (он только на главной), вместо иконок — номера 01–03 (как в старом блоке); фото — TV im-1-bl3 (alt — alt-im-1-bl3)
+   Страницы услуг (вместо bl3-text, модификатор --svc): заголовок — курсив после тире / двоеточия (lb.accent), надзаголовков нет
+   (на главной «LBAR STUDIO» тоже убран), вместо иконок — номера 01–03 (как в старом блоке); фото — TV im-1-bl3 (alt — alt-im-1-bl3)
    в круге на месте фото главной (--photo), фон — тон блока; нет фото — фон главной. *}
 {set $title = $_modx->resource['title-main-bl3'] | trim}
 {set $fmt = 'lbar.rd.implica.title' | lexicon}
@@ -44,10 +44,6 @@
     </svg>
 
     <div class="lb-implica__col">
-        {set $eyebrow = $svc ? '' : ('lbar.rd.implica.eyebrow' | lexicon)}
-        {if $eyebrow}
-        <div class="lb-implica__eyebrow">{$eyebrow}</div>
-        {/if}
 
         {if $title}
         <h2 class="lb-implica__title">

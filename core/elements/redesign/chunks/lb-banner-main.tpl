@@ -55,17 +55,20 @@
     </div>
 
     <ul class="lb-hero__cards">
+        {* преимущества: число / подпись — лексикон lbar.rd.hero.cardN.num / .txt; иконки — бриллиант, песочные часы, корона *}
         <li class="lb-card">
             <span class="lb-card__ic" aria-hidden="true"><svg viewBox="0 0 56 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 2h32l10 12-26 28L2 14 12 2z"/><path d="M2 14h52M12 2l8 12 8-12 8 12 8-12M20 14l8 28 8-28"/></svg></span>
             <span class="lb-card__num">{'lbar.rd.hero.card1.num' | lexicon}</span>
             <span class="lb-card__txt">{'lbar.rd.hero.card1.txt' | lexicon}</span>
         </li>
         <li class="lb-card">
-            <span class="lb-card__ic" aria-hidden="true"><svg viewBox="0 0 60 46" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12c6-7 22-10 36-4 3 1 5 2 7 3-9-3-25-4-41 3"/><path d="M4 30c7-8 16-12 26-12s19 4 26 12c-7 7-16 10-26 10S11 37 4 30z"/><circle cx="30" cy="29" r="7.5"/><circle cx="30" cy="29" r="2.6" fill="currentColor"/><path d="M8 34l-3 4M14 38l-2 4M50 34l3 4"/></svg></span>
+            <span class="lb-card__ic" aria-hidden="true"><svg viewBox="0 0 36 46" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2h26M5 44h26"/><path d="M8 2c0 8.5 3.6 13.5 10 21 6.4-7.5 10-12.5 10-21"/><path d="M8 44c0-8.5 3.6-13.5 10-21 6.4 7.5 10 12.5 10 21"/><path d="M12.5 9.5h11M18 23v6M11.5 40.5c1.6-3.6 3.8-6 6.5-7.8 2.7 1.8 4.9 4.2 6.5 7.8z"/></svg></span>
+            <span class="lb-card__num">{'lbar.rd.hero.card2.num' | lexicon}</span>
             <span class="lb-card__txt">{'lbar.rd.hero.card2.txt' | lexicon}</span>
         </li>
         <li class="lb-card">
             <span class="lb-card__ic" aria-hidden="true"><svg viewBox="0 0 54 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M6 14l10 12 11-20 11 20 10-12-4 22H10L6 14z"/><path d="M10 41h34"/><circle cx="27" cy="4.5" r="2.6"/><circle cx="5" cy="12" r="2.4"/><circle cx="49" cy="12" r="2.4"/></svg></span>
+            <span class="lb-card__num">{'lbar.rd.hero.card3.num' | lexicon}</span>
             <span class="lb-card__txt">{'lbar.rd.hero.card3.txt' | lexicon}</span>
         </li>
     </ul>

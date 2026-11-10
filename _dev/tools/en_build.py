@@ -31,7 +31,7 @@ EN_FOOT_L = ('<p><a href="/en/">Home</a></p>\r\n<p><a href="/en/eyebrow-micropig
              '<p><a href="/en/laser-hair-removal">Laser hair removal</a></p>')
 EN_FOOT_R = ('<p><a href="/en/reviews">Reviews</a></p>\r\n<p><a href="/en/prices">Prices</a></p>\r\n'
              '<p><a href="/en/portfolio">Portfolio</a></p>\r\n<p><a href="/en/about-us">About us</a></p>\r\n'
-             '<p><a href="/en/contact">Contact</a></p>\r\n<p><a href="/en/gift-voucher">Gift Voucher</a></p>')
+             '<p><a href="/en/contact">Contact</a></p>\r\n<p><a href="/en/gift-voucher">Gift Voucher</a></p>\n<p><a href="/en/careers">Careers</a></p>')
 
 db = pymysql.connect(unix_socket='/run/mysqld/mysqld.sock', user='root', database='lbar', charset='utf8mb4')
 c = db.cursor(pymysql.cursors.DictCursor)

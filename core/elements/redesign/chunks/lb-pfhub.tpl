@@ -1,7 +1,7 @@
 {* Страница «Портфолио» (шаблон «Портфолио», id 10) — карточки мастеров и разделов (вместо сеток в banner-interial-portfolio).
    Данные — прежние TV ресурса: мастера — img-master-N / alt-master-N / master-N / link-master-N (N = 1…3),
    разделы — img-p-N / alt-p-N / title-p-N / link-p-N (N = 1…5). Карточка без ссылки не выводится (в старом блоке 5-я была пустой).
-   Заголовков H2 у старого блока не было — здесь тоже (надзаголовки из лексикона). Фото — исходные файлы
+   Заголовков H2 у старого блока не было — здесь тоже (надзаголовки «Maeștrii noștri» / «Lucrări pe tehnici» убраны вместе со всеми eyebrow). Фото — исходные файлы
    (они 390×390, как и резал старый pthumb; карточки — квадратные фото, без лишнего пережатия). *}
 {set $r = $_modx->resource}
 {set $tvs = $_modx->getResource($r.id, ['includeTVs' => 'img-master-1,img-master-2,img-master-3,img-p-1,img-p-2,img-p-3,img-p-4,img-p-5', 'processTVs' => 1, 'tvPrefix' => '', 'select' => 'id'])}
@@ -9,7 +9,6 @@
 <section class="lb-pfhub" id="lb-pfhub">
     <div class="lb-pfhub__bg" aria-hidden="true"></div>
     <div class="lb-pfhub__inner">
-        <div class="lb-pfhub__eyebrow">{'lbar.rd.pf.masters' | lexicon}</div>
         <div class="lb-pfhub__masters">
             {foreach 1..3 as $i}
             {set $link = $r['link-master-' ~ $i] | trim}
@@ -27,7 +26,6 @@
             {/foreach}
         </div>
 
-        <div class="lb-pfhub__eyebrow lb-pfhub__eyebrow--cats">{'lbar.rd.pf.cats' | lexicon}</div>
         <div class="lb-pfhub__cats">
             {foreach 1..5 as $i}
             {set $link = $r['link-p-' ~ $i] | trim}

@@ -1,6 +1,6 @@
 {* Блок «Курсы» на общей странице «Обучение» (шаблон «Внутренняя - Обучение», id 21) — вместо bl2-category-study.
    Список — как было: pdoResources, parents = текущий, resources = TV id-bl2, по menuindex. Карточка — lb.courseCard.
-   Заголовка H2 у старого блока не было — и здесь нет (только надзаголовок из лексикона), структура заголовков страницы та же. *}
+   Заголовка H2 у старого блока не было — и здесь нет (надзаголовок убран вместе со всеми eyebrow), структура заголовков страницы та же. *}
 {set $list = $_modx->runSnippet('pdoResources', [
     'parents' => $_modx->resource.id,
     'resources' => $_modx->resource['id-bl2'] | trim,
@@ -15,7 +15,6 @@
 <section class="lb-courses" id="lb-courses">
     <div class="lb-courses__bg" aria-hidden="true"></div>
     <div class="lb-courses__inner">
-        <div class="lb-courses__eyebrow">{'lbar.rd.courses.eyebrow' | lexicon}</div>
         <div class="lb-courses__list">
             {$list}
         </div>

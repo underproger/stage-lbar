@@ -10,15 +10,11 @@
 {set $sub = $_modx->resource['sub-title-bl4'] ?: $_modx->runSnippet('pdoField', ['id' => $start, 'field' => 'sub-title-bl4'])}
 {set $fmt = 'lbar.rd.consult.title' | lexicon}
 {set $plain = $fmt | replace : '|' : ' ' | replace : '*' : ''}
-{set $eyebrow = 'lbar.rd.consult.eyebrow' | lexicon}
 <div id="conract"></div>
 <section class="lb-consult" id="lb-consult">
     <div class="lb-consult__bg" aria-hidden="true"></div>
 
     <div class="lb-consult__intro">
-        {if $eyebrow}
-        <div class="lb-consult__eyebrow">{$eyebrow}</div>
-        {/if}
 
         {if $title}
         <div class="lb-consult__title">

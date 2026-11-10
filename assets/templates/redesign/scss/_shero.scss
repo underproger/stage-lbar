@@ -117,22 +117,6 @@ $sh-text: #4a3a33;
 		left: vw($lb-gut); // поле контейнера
 		width: vw(740);
 	}
-	&__eyebrow {
-		display: flex;
-		align-items: center;
-		gap: vw(20);
-		margin: 0;
-		@include lb-eyebrow;
-		font-size: vw(15);
-		line-height: 1.3;
-		&::after {
-			content: "";
-			flex: none;
-			width: vw(56);
-			height: 1px;
-			background: #b48b6e;
-		}
-	}
 	// h1: старый CSS (.wrapper h1, .category-page h1 и т.п.) — поднимаем специфичность
 	& &__content h1#{&}__title {
 		margin: vw(30) 0 0;
@@ -371,13 +355,6 @@ $sh-text: #4a3a33;
 			position: static;
 			width: auto;
 			padding: 26px 20px 0;
-		}
-		&__eyebrow {
-			gap: 14px;
-			font-size: 11.5px;
-			&::after {
-				width: 34px;
-			}
 		}
 		& &__content h1#{&}__title {
 			margin-top: 16px;

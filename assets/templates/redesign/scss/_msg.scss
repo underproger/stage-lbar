@@ -146,13 +146,6 @@ $msg-copper: linear-gradient(180deg, #dcae93 0%, #ab7152 58%, #875840 100%);
 			overflow: visible;
 		}
 	}
-	& &__inner p#{&}__eyebrow {
-		margin-top: vw(36);
-		@include lb-eyebrow;
-		font-size: vw(17);
-		line-height: 1.4;
-		text-align: center;
-	}
 	&__by {
 		display: inline-block;
 		margin-left: .35em;
@@ -223,11 +216,6 @@ $msg-copper: linear-gradient(180deg, #dcae93 0%, #ab7152 58%, #875840 100%);
 			width: 128px;
 			height: 128px;
 			filter: drop-shadow(0 12px 20px rgba(135, 88, 64, .14));
-		}
-		& &__inner p#{&}__eyebrow {
-			margin-top: 22px;
-			font-size: 11.5px;
-			letter-spacing: .16em;
 		}
 		&__by {
 			display: block;

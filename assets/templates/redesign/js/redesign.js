@@ -612,7 +612,7 @@
 		if (about) {
 			var tl = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: about, start: 'top 72%' } });
 			tl.from(about.querySelector('.lb-about__bg'), { opacity: 0, y: 40, duration: 1.6, ease: 'power3.out', clearProps: 'transform' }, 0)
-				.from(about.querySelectorAll('.lb-about__eyebrow, .lb-about__t1, .lb-about__t2, .lb-about__textwrap'), { y: 40, opacity: 0, duration: 1.3, stagger: 0.1, clearProps: 'transform' }, 0.15)
+				.from(about.querySelectorAll('.lb-about__t1, .lb-about__t2, .lb-about__textwrap'), { y: 40, opacity: 0, duration: 1.3, stagger: 0.1, clearProps: 'transform' }, 0.15)
 				.from(about.querySelectorAll('.lb-about__item'), { x: -30, opacity: 0, duration: 1.2, stagger: 0.1, clearProps: 'transform' }, 0.5)
 				.from(about.querySelectorAll('.lb-about__quote, .lb-about__cta'), { y: 30, opacity: 0, duration: 1.2, stagger: 0.1, clearProps: 'transform' }, 0.8);
 		}
@@ -650,7 +650,6 @@
 				if (to) ctl.fromTo(els, from, to, at); else ctl.from(els, from, at);
 			};
 			add('.' + b + '__bg', { opacity: 0, scale: 1.04, duration: 2, ease: 'power3.out', clearProps: 'transform' }, 0);
-			add('.' + b + '__eyebrow', { x: -30, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.15);
 			add('.' + b + '__lin', { yPercent: 105, duration: 1.5, stagger: 0.12 }, 0.2);
 			add('.' + b + '__flourish', { clipPath: 'inset(0% 100% 0% 0%)' }, 0.75, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.6, ease: 'power2.inOut', clearProps: 'clipPath' });
 			add('.' + b + '__text', { y: 30, opacity: 0, duration: 1.3, clearProps: 'transform' }, 0.6);
@@ -664,7 +663,6 @@
 			var itl = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: implica, start: 'top 70%' } });
 			itl.from(implica.querySelector('.lb-implica__bg'), { opacity: 0, duration: 1.6, ease: 'power2.out' }, 0)
 				.from(implica.querySelector('.lb-implica__bg img'), { scale: 1.06, duration: 2.4, ease: 'power3.out', clearProps: 'transform' }, 0)
-				.from(iq('.lb-implica__eyebrow'), { x: -30, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.2)
 				.from(iq('.lb-implica__lin'), { yPercent: 105, duration: 1.5, stagger: 0.12 }, 0.25)
 				.from(iq('.lb-implica__item'), { x: desk ? 120 : 0, y: desk ? 0 : 30, opacity: 0, duration: 1.4, stagger: 0.16, clearProps: 'transform' }, 0.55)
 				.from(iq('.lb-implica__ic svg'), { scale: 0.4, rotation: -25, opacity: 0, duration: 1.2, stagger: 0.16, ease: 'back.out(2)', clearProps: 'transform' }, 0.85)
@@ -792,7 +790,6 @@
 		]);
 		// портфолио (общая страница и галереи), курсы
 		revealBlock(document.querySelector('.lb-pfhub'), 'top 75%', [
-			['.lb-pfhub__eyebrow', { x: -30, opacity: 0, duration: 1.2, stagger: 0.3, clearProps: 'transform' }, 0],
 			['.lb-pfcard', { y: 70, opacity: 0, duration: 1.4, stagger: 0.1, clearProps: 'transform' }, 0.15]
 		]);
 		revealBlock(document.querySelector('.lb-pgallery'), 'top 80%', [
@@ -804,7 +801,6 @@
 			['.lb-prices__group', { y: 70, opacity: 0, duration: 1.4, stagger: 0.12, clearProps: 'transform' }, 0.15]
 		]);
 		revealBlock(document.querySelector('.lb-courses'), 'top 75%', [
-			['.lb-courses__eyebrow', { x: -30, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0],
 			['.lb-course', { y: 70, opacity: 0, duration: 1.5, stagger: 0.12, clearProps: 'transform' }, 0.15],
 			['.lb-course__li', { x: 30, opacity: 0, duration: 1.1, stagger: 0.08, clearProps: 'transform' }, 0.6]
 		]);
@@ -838,7 +834,6 @@
 		sAdd('.lb-shero__photo img', { scale: 1.12, duration: 2.4, ease: 'power3.out', clearProps: 'transform' }, 0.1);
 		/* шапка — как на главной: ссылки меню по отдельности (transform на .lb-nav ломает позицию мега-панели) */
 		stl.from(isDesktop() ? '.lb-header__logo, .lb-nav__list > li > .lb-nav__link, .lb-header__right' : '.lb-header__logo, .lb-header__right', { y: -24, opacity: 0, duration: 1.2, stagger: isDesktop() ? 0.035 : 0.08, clearProps: 'transform' }, 0.3);
-		sAdd('.lb-shero__eyebrow', { x: -30, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.4);
 		sAdd('.lb-shero__t1, .lb-shero__t2', { yPercent: 40, opacity: 0, duration: 1.5, stagger: 0.12, clearProps: 'transform' }, 0.5);
 		sAdd('.lb-shero__sub', { y: 20, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.8);
 		sAdd('.lb-shero__feat, .lb-shero__li, .lb-shero__desc', { y: 20, opacity: 0, duration: 1.1, stagger: 0.08, clearProps: 'transform' }, 0.95);
@@ -862,7 +857,6 @@
 		mAdd('.lb-msg__ring', { strokeDashoffset: 1, strokeDasharray: 1 }, 0.7, { strokeDashoffset: 0, strokeDasharray: 1, duration: 1.8, stagger: 0.15, ease: 'power2.inOut', clearProps: 'strokeDashoffset,strokeDasharray' });
 		mAdd('.lb-msg__check', { strokeDashoffset: 1, strokeDasharray: 1 }, 1.0, { strokeDashoffset: 0, strokeDasharray: 1, duration: 1.1, ease: 'power2.inOut', clearProps: 'strokeDashoffset,strokeDasharray' });
 		mAdd('.lb-msg__spark', { scale: 0, rotation: -90, transformOrigin: '50% 50%', duration: 1, stagger: 0.15, ease: 'back.out(2)', clearProps: 'transform' }, 1.2);
-		mAdd('.lb-msg__eyebrow', { y: 20, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.6);
 		mAdd('.lb-msg__title, .lb-msg__big', { yPercent: 30, opacity: 0, duration: 1.5, clearProps: 'transform' }, 0.7);
 		mAdd('.lb-msg__flourish', { clipPath: 'inset(0% 50% 0% 50%)' }, 1.0, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.4, ease: 'power2.inOut', clearProps: 'clipPath' });
 		mAdd('.lb-msg__text', { y: 20, opacity: 0, duration: 1.2, clearProps: 'transform' }, 0.95);

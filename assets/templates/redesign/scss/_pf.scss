@@ -38,24 +38,6 @@
 		width: vw($lb-wrap); // контейнер
 		margin: 0 auto;
 	}
-	&__eyebrow {
-		display: flex;
-		align-items: center;
-		gap: vw(20);
-		@include lb-eyebrow;
-		font-size: vw(17);
-		line-height: 1;
-		&::before {
-			content: "";
-			flex: none;
-			width: vw(48);
-			height: 2px;
-			background: #b08c74;
-		}
-		&--cats {
-			margin-top: vw(90);
-		}
-	}
 	&__masters {
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -200,17 +182,6 @@
 		&__inner {
 			width: auto;
 			padding: 0 $lb-gut-m;
-		}
-		&__eyebrow {
-			gap: 14px;
-			padding: 0;
-			font-size: 12px;
-			&::before {
-				width: 36px;
-			}
-			&--cats {
-				margin-top: 44px;
-			}
 		}
 		&__masters {
 			grid-template-columns: 1fr;

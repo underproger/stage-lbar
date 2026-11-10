@@ -48,21 +48,6 @@
 		left: vw($lb-gut); // поле контейнера
 		width: vw(330);
 	}
-	&__eyebrow {
-		display: flex;
-		align-items: center;
-		gap: vw(20);
-		@include lb-eyebrow;
-		font-size: vw(17);
-		line-height: 1;
-		&::before {
-			content: "";
-			flex: none;
-			width: vw(48);
-			height: 2px;
-			background: #b08c74;
-		}
-	}
 	// h2 перебивается старым CSS (.wrapper.main-ro h2) — поднимаем специфичность
 	& &__intro h2#{&}__title {
 		margin-top: vw(54);
@@ -223,13 +208,6 @@
 			width: auto;
 			padding: 0 $lb-gut-m;
 		}
-		&__eyebrow {
-			gap: 14px;
-			font-size: 12px;
-			&::before {
-				width: 36px;
-			}
-		}
 		& &__intro h2#{&}__title {
 			margin-top: 18px;
 			line-height: 1.12;
@@ -318,9 +296,6 @@
 		column-gap: vw(120);
 		align-items: end;
 		width: auto;
-	}
-	.lb-services__eyebrow {
-		grid-column: 1;
 	}
 	& .lb-services__intro h2.lb-services__title {
 		grid-column: 1;

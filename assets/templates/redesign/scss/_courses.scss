@@ -40,21 +40,6 @@
 		width: vw($lb-wrap); // контейнер
 		margin: 0 auto;
 	}
-	&__eyebrow {
-		display: flex;
-		align-items: center;
-		gap: vw(20);
-		@include lb-eyebrow;
-		font-size: vw(17);
-		line-height: 1;
-		&::before {
-			content: "";
-			flex: none;
-			width: vw(48);
-			height: 2px;
-			background: #b08c74;
-		}
-	}
 	&__list {
 		display: grid;
 		gap: vw(48);
@@ -168,14 +153,6 @@
 		&__inner {
 			width: auto;
 			padding: 0 $lb-gut-m;
-		}
-		&__eyebrow {
-			gap: 14px;
-			padding: 0;
-			font-size: 12px;
-			&::before {
-				width: 36px;
-			}
 		}
 		&__list {
 			gap: 24px;

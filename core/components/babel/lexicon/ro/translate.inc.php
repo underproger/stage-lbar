@@ -61,14 +61,16 @@ $_lang['lbar-study-banner-form-title'] = "PRIMEȘTE O CONSULTAȚIE";
 $_lang['lbar-study-banner-form-subtitle'] = "Vă vom prezenta în detaliu modul în care puteți beneficia de instruire la preț avantajos";
 $_lang['lbar-study-banner-form-btn'] = "PRIMEȘTE O CONSULTAȚIE";
 
-// --- редизайн: баннер главной ---
+// --- редизайн: баннер главной (карточки-преимущества: число / подпись) ---
 $_lang['lbar.rd.hero.alt'] = "Micropigmentare premium în București — Studio LBar";
 $_lang['lbar.rd.hero.consult'] = "Consultație";
 $_lang['lbar.rd.hero.portfolio'] = "Portofoliu";
-$_lang['lbar.rd.hero.card1.num'] = "4000+";
-$_lang['lbar.rd.hero.card1.txt'] = "proceduri";
-$_lang['lbar.rd.hero.card2.txt'] = "Rezultate<br>naturale";
-$_lang['lbar.rd.hero.card3.txt'] = "Studio<br>premium";
+$_lang['lbar.rd.hero.card1.num'] = "6&nbsp;000+";
+$_lang['lbar.rd.hero.card1.txt'] = "proceduri realizate";
+$_lang['lbar.rd.hero.card2.num'] = "10+ ani";
+$_lang['lbar.rd.hero.card2.txt'] = "de experiență";
+$_lang['lbar.rd.hero.card3.num'] = "Laureată";
+$_lang['lbar.rd.hero.card3.txt'] = "semifinala mondială, București";
 
 // --- редизайн: блок «О микропигментации» ---
 $_lang['lbar.rd.about.alt'] = "Studio LBar — micropigmentare în București";
@@ -76,9 +78,9 @@ $_lang['lbar.rd.about.eyebrow'] = "Despre micropigmentare";
 $_lang['lbar.rd.about.eyebrow.svc'] = "Despre procedură";
 $_lang['lbar.rd.about.more'] = "Citește mai mult";
 $_lang['lbar.rd.about.less'] = "Ascunde";
-$_lang['lbar.rd.about.f1'] = "Aspect natural și armonios";
-$_lang['lbar.rd.about.f2'] = "Rezistență îndelungată";
-$_lang['lbar.rd.about.f3'] = "Corectarea delicată a trăsăturilor";
+$_lang['lbar.rd.about.f1'] = "Schița aprobată de dvs. înainte de procedură";
+$_lang['lbar.rd.about.f2'] = "Efect până la 2–3 ani";
+$_lang['lbar.rd.about.f3'] = "Corectează asimetria și ascunde cicatricile";
 $_lang['lbar.rd.about.quote'] = "La Studio Lbar, fiecare procedură este realizată cu precizie, grijă și atenție la proporțiile feței.";
 $_lang['lbar.rd.about.cta'] = "Programează o consultație";
 
@@ -155,7 +157,7 @@ $_lang['lbar.rd.contacts.tram'] = "Stația de tramvai Ștefan cel Mare";
 $_lang['lbar.rd.contacts.walk'] = "pe jos";
 $_lang['lbar.rd.contacts.schedule.title'] = "Program:";
 $_lang['lbar.rd.contacts.schedule'] = "Luni – Duminică: 9:00 – 20:00";
-$_lang['lbar.rd.contacts.appointment'] = "By appointment only";
+$_lang['lbar.rd.contacts.appointment'] = "Doar cu programare";
 $_lang['lbar.rd.contacts.phone'] = "Telefon";
 $_lang['lbar.rd.contacts.email'] = "E-mail";
 $_lang['lbar.rd.contacts.address'] = "Adresă";

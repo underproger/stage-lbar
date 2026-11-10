@@ -31,7 +31,7 @@
 		display: block;
 	}
 
-	// фон: фото, подложка, дуга, печать, водяной знак — одним слоем, как в макете
+	// фон: фото в рамке, подложка, дуга, водяной знак — одним слоем (кадр пользователя, about-bg-v2 / about-mobile-v2)
 	&__bg {
 		position: absolute;
 		top: 0;
@@ -54,27 +54,6 @@
 		padding: vw(89) 0 vw(96);
 	}
 
-	// — надзаголовок —
-	&__eyebrow {
-		display: flex;
-		align-items: center;
-		gap: vw(32);
-		margin-left: vw(3);
-		font-size: vw(20.7);
-		font-weight: 500;
-		line-height: 1;
-		letter-spacing: .2em;
-		text-transform: uppercase;
-		color: #8f6b58;
-		&::after {
-			content: "";
-			width: vw(124);
-			height: 2px;
-			margin-top: vw(-4);
-			background: linear-gradient(90deg, #b08c74, rgba(176, 140, 116, .55));
-			transform-origin: left center;
-		}
-	}
 
 	// — заголовок (текст из TV title_bl1_about; часть после тире — курсивом) —
 	// не h2 (структура заголовков не менялась), но визуально — заголовок блока: размер h2 из общей шкалы
@@ -132,20 +111,17 @@
 			color: inherit !important;
 		}
 	}
+	// «Citește mai mult / Ascunde» — отдельной строкой под текстом (не поверх последней строки)
 	&__more {
-		position: absolute;
-		right: 0;
-		bottom: 0;
 		display: flex;
 		align-items: center;
 		gap: vw(8);
 		height: vw(38);
-		padding-left: vw(120);
+		margin-top: vw(10);
 		font-size: vw(20);
 		font-weight: 600;
 		letter-spacing: .04em;
 		color: #8f6b58;
-		background: linear-gradient(90deg, rgba(248, 242, 238, 0) 0%, #f8f2ee 42%);
 		transition: color .3s;
 		svg {
 			width: vw(12);
@@ -163,10 +139,6 @@
 		}
 	}
 	&__textwrap.is-open &__more {
-		position: static;
-		margin-top: vw(10);
-		padding-left: 0;
-		background: none;
 		svg {
 			transform: rotate(180deg);
 		}
@@ -303,15 +275,6 @@
 			margin: 0;
 			padding: 24px $lb-gut-m 0;
 		}
-		&__eyebrow {
-			margin: 0;
-			gap: 16px;
-			font-size: 12px;
-			&::after {
-				width: 56px;
-				margin-top: -2px;
-			}
-		}
 		&__title {
 			margin-top: 16px;
 		}
@@ -330,15 +293,12 @@
 		&__more {
 			height: 24px;
 			gap: 6px;
-			padding-left: 70px;
+			margin-top: 8px;
 			font-size: 13px;
 			svg {
 				width: 10px;
 				height: 10px;
 			}
-		}
-		&__textwrap.is-open &__more {
-			margin-top: 8px;
 		}
 		&__list {
 			margin-top: 26px;
@@ -402,7 +362,7 @@
 }
 
 // ---------- страницы услуг (lb-about--svc) ----------
-// фото услуги (TV img_bl1_about) — поверх фото фона в его рамке; печать — отдельным слоем поверх фото.
+// фото услуги (TV img_bl1_about) — поверх фото фона в его рамке.
 // Координаты — доли кадра фона (about-bg 2166×1218, about-mobile 840×1090), радиус — доли самого фото.
 .lb-about--svc {
 	.lb-about__photo {
@@ -413,16 +373,6 @@
 		height: 78.571%;
 		border-radius: 17.52% / 11.08%;
 		object-fit: cover;
-	}
-	.lb-about__stamp {
-		position: absolute;
-		left: 3.693%;
-		top: 66.749%;
-		width: 10.342%;
-		img {
-			width: 100%;
-			height: auto;
-		}
 	}
 	// без преимуществ и цитаты колонка короче — по центру высоты фона
 	.lb-about__col {
@@ -453,11 +403,6 @@
 			width: 71.905%;
 			height: 87.615%;
 			border-radius: 17.22% / 10.89%;
-		}
-		.lb-about__stamp {
-			left: 4.881%;
-			top: 70.275%;
-			width: 26.19%;
 		}
 		.lb-about__col {
 			display: block;

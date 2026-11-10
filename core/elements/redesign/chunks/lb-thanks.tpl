@@ -21,7 +21,6 @@
             <path class="lb-msg__spark" fill="#b07455" d="M188 22c.7 7.4 5.8 12.9 13.8 13.8-8 .9-13.1 6.4-13.8 13.8-.7-7.4-5.8-12.9-13.8-13.8 8-.9 13.1-6.4 13.8-13.8z"/>
             <path class="lb-msg__spark" fill="#c99278" d="M26 168c.5 4.6 3.6 8 8.6 8.6-5 .6-8.1 4-8.6 8.6-.5-4.6-3.6-8-8.6-8.6 5-.6 8.1-4 8.6-8.6z"/>
         </svg></div>
-        <p class="lb-msg__eyebrow">{'lbar.rd.thanks.studio' | lexicon} <span class="lb-msg__by">{'lbar.rd.thanks.by' | lexicon}</span></p>
         <div class="lb-msg__big">{'lbar.rd.thanks.title' | lexicon}</div>
         <svg class="lb-msg__flourish" viewBox="0 0 440 50" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M8 34c60-14 128-20 196-18 52 1 98 8 126 14M330 30c22 5 52 4 102-18"/><path fill="currentColor" d="M214 4c.6 6 4.6 10.4 11 11-6.4.6-10.4 5-11 11-.6-6-4.6-10.4-11-11 6.4-.6 10.4-5 11-11z"/></svg>
         <div class="lb-msg__text">{'lbar.rd.thanks.text' | lexicon}</div>

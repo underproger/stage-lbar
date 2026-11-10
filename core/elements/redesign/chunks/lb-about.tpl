@@ -1,9 +1,10 @@
 {* Блок «О микропигментации» (редизайн, 2-й экран главной; на страницах услуг — вместо bl1-about-us).
    Заголовок и текст — прежние TV: title_bl1_about, text_bl1_about.
    Часть заголовка после тире выводится курсивом. Текст свёрнут до 3 строк (на услугах — до 7).
-   Страницы услуг (модификатор --svc): свой надзаголовок, без преимуществ и цитаты главной; фото — TV img_bl1_about
-   (если задано — поверх фото фона в той же рамке + печать отдельным слоем; если нет — фото фона, это то же
-   img-about.jpg, что показывал старый блок). *}
+   Надзаголовков (eyebrow) нет — убраны по просьбе пользователя, как во всех блоках.
+   Страницы услуг (модификатор --svc): без преимуществ и цитаты главной; фото — TV img_bl1_about
+   (если задано — поверх фото фона в той же рамке; если нет — фото фона). Фон с фото в рамке — кадр пользователя (about-bg-v2 / about-mobile-v2,
+   _dev/hero2/make_about.py), печати «Studio LBar» нет. «Citește mai mult» — под текстом. *}
 {set $title = $_modx->resource['title_bl1_about'] | trim}
 {set $dash = ''}
 {if ' — ' in $title}{set $dash = '—'}{elseif ' – ' in $title}{set $dash = '–'}{/if}
@@ -16,21 +17,15 @@
 <section class="lb-about{$svc ? ' lb-about--svc' : ''}" id="lb-about">
     <div class="lb-about__bg">
         <picture>
-            <source media="(max-width: 1024px)" srcset="{$img}about-mobile.webp" width="840" height="1090">
-            <img src="{$img}about-bg.webp" srcset="{$img}about-bg-1440.webp 1440w, {$img}about-bg.webp 2166w" sizes="100vw" width="2166" height="1218" alt="{$photo ? '' : ('lbar.rd.about.alt' | lexicon)}" loading="lazy" decoding="async">
+            <source media="(max-width: 1024px)" srcset="{$img}about-mobile-v2.webp" width="840" height="1090">
+            <img src="{$img}about-bg-v2.webp" srcset="{$img}about-bg-v2-1440.webp 1440w, {$img}about-bg-v2.webp 2166w" sizes="100vw" width="2166" height="1218" alt="{$photo ? '' : ('lbar.rd.about.alt' | lexicon)}" loading="lazy" decoding="async">
         </picture>
         {if $photo}
         <img class="lb-about__photo" src="/{$photo | replace : ' ' : '%20'}" alt="{$title | escape}" width="540" height="850" loading="lazy" decoding="async">
-        <picture class="lb-about__stamp" aria-hidden="true">
-            <source media="(max-width: 1024px)" srcset="{$img}about-stamp-m.webp" width="220" height="220">
-            <img src="{$img}about-stamp.webp" width="224" height="224" alt="" loading="lazy" decoding="async">
-        </picture>
         {/if}
     </div>
 
     <div class="lb-about__col">
-        <div class="lb-about__eyebrow">{($svc ? 'lbar.rd.about.eyebrow.svc' : 'lbar.rd.about.eyebrow') | lexicon}</div>
-
         {if $title}
         <div class="lb-about__title{($svc && ($title | length) > 40) ? ' lb-about__title--long' : ''}">
             {if $tp | length > 1}

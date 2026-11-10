@@ -70,24 +70,6 @@ $im-bg: #f4ebe7;
 		padding: vw(40) 0 vw(70) vw(927);
 	}
 
-	// — надзаголовок —
-	&__eyebrow {
-		display: flex;
-		align-items: center;
-		gap: vw(26);
-		height: vw(28);
-		margin-left: vw(3);
-		@include lb-eyebrow;
-		font-size: vw(20.7);
-		line-height: 1;
-		&::after {
-			content: "";
-			width: vw(56);
-			height: 1px;
-			background: #c9a491;
-			transform-origin: left center;
-		}
-	}
 
 	// — заголовок (TV title-main-bl3; строки и курсив — из лексикона) —
 	// h2 перебивается старым CSS (.wrapper.main-ro h2) — поднимаем специфичность
@@ -395,16 +377,6 @@ $im-bg: #f4ebe7;
 		&__col {
 			margin-top: -24px;
 			padding: 0 $lb-gut-m;
-		}
-		&__eyebrow {
-			gap: 16px;
-			height: auto;
-			margin: 0;
-			font-size: 12px;
-			letter-spacing: .26em;
-			&::after {
-				width: 40px;
-			}
 		}
 		& &__col h2#{&}__title {
 			margin-top: 14px;

@@ -41,22 +41,6 @@ $cs-bg: #f9f2ed;
 		left: vw($lb-gut);
 		width: vw(640);
 	}
-	&__eyebrow {
-		display: flex;
-		align-items: center;
-		gap: vw(22);
-		height: vw(22);
-		@include lb-eyebrow;
-		font-size: vw(20.7);
-		line-height: 1;
-		&::after {
-			content: "";
-			width: vw(64);
-			height: 1.5px;
-			background: #b48b6e;
-			transform-origin: left center;
-		}
-	}
 	// не h2 (структура заголовков не менялась), но визуально — заголовок блока: размер h2 из общей шкалы
 	&__title {
 		margin-top: vw(54);
@@ -369,14 +353,6 @@ $cs-bg: #f9f2ed;
 			left: auto;
 			width: auto;
 			padding: 0 $lb-gut-m;
-		}
-		&__eyebrow {
-			gap: 14px;
-			height: auto;
-			font-size: 12px;
-			&::after {
-				width: 40px;
-			}
 		}
 		&__title {
 			margin-top: 16px;
