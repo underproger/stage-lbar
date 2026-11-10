@@ -469,10 +469,15 @@ $sh-text: #4a3a33;
 	// шаг 53: отступы меньше (было vw(186) / vw(132)) — от шапки до H1 и от крошек до следующего блока
 	@include desktop {
 		.lb-shero__inner {
-			padding: vw(134) 0 vw(64);
+			padding: vw(134) 0 vw(56);
 		}
 		.lb-shero__content {
 			width: vw(1240);
+		}
+		// крошки — в потоке под текстом (абсолютные у нижнего края налезали на H1 при меньшем отступе снизу)
+		.lb-crumbs {
+			position: static;
+			margin: vw(44) 0 0 vw($lb-gut);
 		}
 	}
 	@include mobile {
