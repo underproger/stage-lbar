@@ -79,6 +79,10 @@ for t in tvs:
                 for kk, vv in tt.items():
                     assert kk in it, (n, kk)
                     it[kk] = vv
+            # картинки MIGX — от корня: у EN base href = /en/, относительный путь (images/…) давал 404 (шаг 62)
+            for it in items:
+                if it.get('image') and not re.match(r'^(/|https?:)', it['image']):
+                    it['image'] = '/' + it['image']
             v = php_json(items)
         elif CYR.search(json.dumps(items, ensure_ascii=False)) or any(re.search(r'[A-Za-zăâîșț]{3}', str(x)) for it in items for k2, x in it.items() if k2 not in ('MIGX_id', 'image')):
             skipped.append(n)

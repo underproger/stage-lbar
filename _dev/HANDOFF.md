@@ -555,7 +555,7 @@
    переводы — `_dev/en/tr/<RO_ID>.json`, правила и глоссарий — `_dev/en/GUIDE.md`) 32 страницы: главная, «Услуги» и все услуги шаблона 8
    (брови + 4 техники, глаза, веки, губы, коррекция, родинка, ресницы, лазерная эпиляция, маникюр, педикюр), Gift Voucher, портфолио (хаб,
    2 мастера, 4 раздела), «Цены», «О нас», «Отзывы», вакансии, «Контакты», «Спасибо», 404, sitemap.xml. **Не переводились**: блог (4/5),
-   курс 182 и «Категория NEW» 625/321 (старый дизайн; 625 → EN 1625 переведён в шаге 61), «Обучение» 60 (без курса), служебные 22, 196. Блок «Статьи» на EN-главной скрыт.
+   курс 182 и «Категория NEW» 625/321 (старый дизайн; 625 → EN 1625 переведён в шаге 61, 182 → EN 1182 — в шаге 62), «Обучение» 60 (без курса), служебные 22, 196. Блок «Статьи» на EN-главной скрыт.
    - **id EN = id RO + 1000** (1001 — главная, 1020 — 404, 1040 — «Спасибо», 1023 — sitemap), английские слаги — `SLUG` в
      `_dev/tools/en_build.py`. Контекст: base_url `/en/`, cultureKey `en`, site_url = site_url web + `en/` (в SQL — от web, годится и для
      прода), site_start 1001, error_page 1020; доступы — как у ru; источники файлов TV (`media_sources_elements`) — как у web (без них пути
@@ -829,6 +829,29 @@
      в ряд по 3 (`_header.scss`, .lb-oldpage). Проверка: axe — 0 нарушений (RO / RU / EN, телефон и десктоп); SEO против шага 60 — у 625 / 321
      только hreflang en, новые H2 / H3 и ссылка на EN. Замечено (не трогали): в подвале RO-главной пункт «Îndepărtare tatuaje remover» ведёт на
      эпиляцию (epilare-definitiva-cu-laser); описание в JSON-LD (lb-script) на всех языках — по-румынски.
+   - v1.43.0 (шаг 62, по просьбе пользователя): (1) EN 1625 — фото третьего аппарата в «Оборудовании» не выводилось (относительный путь
+     `images/inner/eq3.jpg` при base `/en/` → 404): в MIGX bl3_service_equipment-list у 625 / 1625 путь от корня, в `en_tz.py` — так же для всех
+     картинок MIGX. (2) **Удаление тату — блок «Цена на примерах»** под таблицей цен (`.restables-origin`) у 625 / 321 / 1625: новые TV
+     `tz_price_examples-title` (**новый H3** «Cât costă îndepărtarea: exemple / Сколько стоит удаление: примеры / How much removal costs: examples»)
+     и MIGX `tz_price_examples` (фото / название / цена / примечание; 6 примеров: тату до 5 см², 5–15, 15–20, от 20 см², татуаж бровей, губ —
+     цены из таблицы цен своего языка; у RU таблица другая — татуаж 250 RON), категория — как у TV таблицы цен, шаблоны «Категория NEW» и
+     «Удаление тату»; заводит `_dev/tools/modx_apply62.php`, в патч — `_dev/tools/step62_tz.py` (по имени TV). Вывод — новый статичный чанк
+     `lb-tzexamples` (Redesign), подключён в старом чанке bl5-service-prices через `[[*tz_price_examples:notempty=…]]`; стили — `_tzex.scss`
+     (карточки в ряд, на телефоне — горизонтальная прокрутка). **Фото примеров не загружены** — до загрузки (менеджер: TV «Примеры цен — фото
+     и цена») карточки с заглушкой-иконкой. ⚠ В Fenom-комментариях статичных чанков не писать MODX-теги: `[[$lb-tzexamples]]` в комментарии
+     самого чанка дал бесконечную рекурсию (500, нехватка памяти). (3) **Курс — EN-версия 1182 `/en/complete-micropigmentation-course`**
+     (шаблон 15, родитель 0, меню «Course» — как RO; перевод — `_dev/en/tr/182.json`, генератор — `_dev/tools/en_course.py` →
+     `_dev/patches/step62-en-course.sql`; фото migx_plan_study — пути как у RO: чанк migx_plan_study_tpl сам ставит «/» не-RO языкам).
+     Babel 182 / 295 / 1182 (RU 295 снят с публикации — hreflang ru нет, как было), подвал EN-главной + «Training». Старые чанки шаблона 15 под
+     EN: banner-study / bl2-study-trener — alt фото тренера, bl10-study-info — alt картинки (у RO / RU — как было, по-русски), сообщения
+     AjaxForm (validationErrorMessage / successMessage) — на EN по-английски, bl7-study-portfolio — фото `resources` = lb.roId; lb-scripts —
+     переход на EN «Thank you» и для форм курса bl6 / bl8 / bl11 / bl12 / bl14. Ошибки, исправленные для всех языков: в окне тарифа курса
+     подзаголовок выводил ключ `lbar-study-prices-form=subtitle` (опечатка, bl8-study-price), кнопка — ключ `lbar.study.prices.btn` (нет в
+     словаре; tpl.Form.Study.Modal.BL8 → общий ключ lbar-study-prices-btn «Fă o programare / Записаться / Book now»). lb-footer: title кнопки
+     WhatsApp и логотипа разработчика были по-русски на всех языках — теперь на языке страницы (RU — как было). Замечено (не трогали): у RO
+     в программе курса текст «Ziua 3» (брови powder) — копия «Ziua 4» (губы aquarelle), переведено как есть. Проверка: axe — 0 нарушений
+     (курс и удаление тату RO / EN, телефон и десктоп); SEO против шага 61 — у 625 / 321 только новый H3, у 182 — hreflang en, ссылка на EN и
+     исчезнувший выводившийся ключ словаря; патч — импорт в копию базы с откатом шага, совпадение MD5 и повторный импорт.
 
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
@@ -887,10 +910,11 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `stage-lbar-58-a11y.sql` (все чанки Redesign — версия 1.41.0, **UPDATE старых чанков tpl.ms2GalleryBlog, tpl.ms2GalleryStudy, bl-contact**; файлы — CSS / JS) — после 57.
 `stage-lbar-60-tz-old.sql` (все чанки Redesign — версия 1.41.1, **template 19 у 625 / 321**, **UPDATE старых чанков bl1-about-service, tpl.ms2GalleryBlog.New и сниппета getEquipmentList**; файл — CSS) — после 58 (59 — без патча).
 `stage-lbar-61-en-tz.sql` (все чанки Redesign — версия 1.42.0, **новый ресурс EN 1625** + TV, **Babel 625 / 321**, **TV bl2 / bl3 у 625 / 321**, **foot-link-l у 1001**, **UPDATE старых чанков banner-interial-category-new, bl6-portfolio-new, bl9-reviews-new, bl-contact**; файлы — CSS, `images/inner/eq-face-lift.webp`) — после 60.
+`stage-lbar-62-tz-course.sql` (все чанки Redesign — версия 1.43.0, новый `lb-tzexamples`, **новые TV tz_price_examples-title / tz_price_examples** + доступ шаблонам «Категория NEW» / «Удаление тату» и значения у 625 / 321 / 1625, **TV bl3 у 625 / 1625**, **новый ресурс EN 1182** + TV, **Babel 182 / 295**, **foot-link-l у 1001**, **UPDATE старых чанков bl5-service-prices, banner-study, bl2-study-trener, bl7-study-portfolio, bl8-study-price, bl10-study-info, bl11-study-calculator, bl12-study-form, bl18-study-succsess, tpl.Form.Study.Modal.BL8**; файл — CSS) — после 61.
 `stage-lbar-47-about.sql` (новые чанки lb-ahero / lb-astory / lb-asteps / lb-avalues / lb-aculise / lb-areasons, **новый шаблон «О нас»**
 + доступ к TV, **template у 102 / 298 / 1102**, **TV migx_questions / title-bl-faq у 102 / 298 / 1102**; версия 1.34.0;
 файлы — `about-me-v2.webp`, `about-procedure.webp`, `about-avatar.webp`, лексиконы, CSS / JS).
-Патчи проверены импортом. После 61 БД **не менялась** (кроме локальной настройки phpThumb выше).
+Патчи проверены импортом. После 62 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — по решению пользователя
 
