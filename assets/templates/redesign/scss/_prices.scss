@@ -53,8 +53,8 @@
 	}
 	&__group {
 		display: grid;
-		grid-template-columns: vw(420) vw(1161);
-		justify-content: space-between;
+		grid-template-columns: minmax(0, 1fr) vw(1161);
+		column-gap: vw(40);
 		align-items: start;
 		& + & {
 			margin-top: vw(100);
@@ -93,8 +93,15 @@
 		line-height: 1.65;
 		color: #5f524b;
 	}
-	&__cta {
+	// кнопка не шире колонки: RU «Записаться на процедуру» заходила на таблицу — плотнее, как в блоке «Цены» главной
+	&__cta.lb-btn {
+		max-width: 100%;
 		margin-top: vw(36);
+		@include desktop {
+			padding: 0 vw(32) 0 vw(36);
+			gap: vw(18);
+			letter-spacing: .1em;
+		}
 	}
 	.lb-price__card {
 		margin-top: 0;

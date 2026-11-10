@@ -530,6 +530,29 @@ $seam-contact: #f8f2ee;  // «Статьи» → «Контакты»
 		z-index: 1;
 	}
 }
+// шаг 53: блок после простого баннера начинается ближе (было vw(98)–vw(180) от конца баннера до текста блока)
+@include desktop {
+	.lb-shero--simple + .lb-prices,
+	.lb-shero--simple + .lb-reviews,
+	.lb-shero--simple + .lb-bloglist,
+	.lb-shero--simple + .lb-pgallery,
+	.lb-shero--simple + .lb-services {
+		padding-top: vw(84);
+	}
+	.lb-shero--simple + .lb-pfhub {
+		padding-top: vw(44);
+	}
+}
+@include mobile {
+	.lb-shero--simple + .lb-prices,
+	.lb-shero--simple + .lb-reviews,
+	.lb-shero--simple + .lb-bloglist,
+	.lb-shero--simple + .lb-pgallery,
+	.lb-shero--simple + .lb-services,
+	.lb-shero--simple + .lb-pfhub {
+		padding-top: 36px;
+	}
+}
 // «Услуги» на общей странице «Услуги»: сверху — из баннера (на главной — из «О микропигментации», seam.svg)
 .lb-shero + .lb-services {
 	background: linear-gradient(180deg, $seam-hero 0%, #faf0e8 vw(320), #faf0e8 calc(100% - #{vw(200)}), $seam-implica 100%);

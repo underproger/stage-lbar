@@ -466,9 +466,10 @@ $sh-text: #4a3a33;
 // ---------- простой баннер (общие страницы без своего фото, шаг 45): фон, H1, текст, крошки — без графики справа и без кнопок ----------
 .lb-shero--simple {
 	min-height: 0;
+	// шаг 53: отступы меньше (было vw(186) / vw(132)) — от шапки до H1 и от крошек до следующего блока
 	@include desktop {
 		.lb-shero__inner {
-			padding: vw(186) 0 vw(132);
+			padding: vw(134) 0 vw(64);
 		}
 		.lb-shero__content {
 			width: vw(1240);
@@ -476,6 +477,7 @@ $sh-text: #4a3a33;
 	}
 	@include mobile {
 		padding-top: 72px;
+		padding-bottom: 6px;
 		.lb-shero__content {
 			padding-top: 8px;
 		}
