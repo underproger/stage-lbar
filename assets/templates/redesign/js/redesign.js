@@ -1099,3 +1099,35 @@
 		});
 	}
 })();
+
+/* ---------- Доступность сторонних виджетов (шаг 58, PageSpeed) ----------
+   Owl Carousel (старые блоки страницы курса) рисует стрелки и точки пустыми кнопками (стрелки — ещё и с role="presentation"):
+   у кнопок нет имени. Подписываем после каждой перерисовки карусели. */
+(function () {
+	'use strict';
+	if (!document.querySelector('.owl-carousel')) return;
+	var lang = (document.documentElement.lang || 'ro').slice(0, 2);
+	var t = {
+		ro: ['Slide-ul anterior', 'Slide-ul următor', 'Slide-ul '],
+		ru: ['Предыдущий слайд', 'Следующий слайд', 'Слайд '],
+		en: ['Previous slide', 'Next slide', 'Slide ']
+	}[lang] || ['Previous slide', 'Next slide', 'Slide '];
+	var label = function () {
+		Array.prototype.forEach.call(document.querySelectorAll('.owl-carousel'), function (c) {
+			Array.prototype.forEach.call(c.querySelectorAll('.owl-prev, .owl-next'), function (b) {
+				if (b.getAttribute('role') === 'presentation') b.removeAttribute('role');
+				b.setAttribute('aria-label', b.classList.contains('owl-prev') ? t[0] : t[1]);
+			});
+			Array.prototype.forEach.call(c.querySelectorAll('.owl-dot'), function (d, i) {
+				d.setAttribute('aria-label', t[2] + (i + 1));
+			});
+		});
+	};
+	label();
+	window.addEventListener('load', label);
+	if (window.jQuery) {
+		window.jQuery(document).on('initialized.owl.carousel refreshed.owl.carousel resized.owl.carousel', function () {
+			setTimeout(label, 0);
+		});
+	}
+})();

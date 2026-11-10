@@ -1,6 +1,6 @@
 {* Удаление тату (шаблон «Удаление тату», шаг 54): «Какое оборудование используем» — вместо bl3-service-equipment.
    Тексты — прежние TV, без правок: H2 — bl3_service_equipment-title (span.gold-word → курсив, текст тот же), подзаголовок —
-   bl3_service_equipment-subtitle, карточки — MIGX bl3_service_equipment-list (фото + название; название — H4, как было),
+   bl3_service_equipment-subtitle, карточки — MIGX bl3_service_equipment-list (фото + название; название — H3 (было H4; шаг 58: без пропуска уровня после H2), фото — alt="" (как было; название рядом)),
    примечание — bl3_service_equipment-notification (strong → b, как в старом блоке). Стоит на месте «implică» услуг: сверху — из
    «О процедуре», снизу — в «Консультацию» (стыки — _seam.scss). Стили — scss/_tz.scss. *}
 {set $r = $_modx->resource}
@@ -23,10 +23,10 @@
                 {if $src && !($src | ematch : '~^(/|https?:)~')}{set $src = '/' ~ $src}{/if}
                 <li class="lb-tzequip__item">
                     <div class="lb-tzequip__photo">
-                        {if $src}<img src="{$src}" alt="{$it.title | striptags | escape}" loading="lazy" decoding="async">{/if}
+                        {if $src}<img src="{$src}" alt="" loading="lazy" decoding="async">{/if}
                     </div>
                     <span class="lb-tzequip__num" aria-hidden="true">{($i + 1) | ereplace : '~^(\d)$~' : '0$1'}</span>
-                    <h4 class="lb-tzequip__name">{$it.title}</h4>
+                    <h3 class="lb-tzequip__name">{$it.title}</h3>
                 </li>
                 {/foreach}
             </ul>

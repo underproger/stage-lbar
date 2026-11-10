@@ -5,6 +5,7 @@
    соседний .form-modal-overlay; вид окна переопределён в _footer.scss). Контакты и график — как в блоке «Контакты» (лексикон lbar.rd.contacts.*).
    Иконки соцсетей — набор Simple Icons (CC0). Кнопка «наверх» (.cd-top, старый main.js) и кнопка WhatsApp — прежняя разметка. *}
 {* настройки ClientConfig — MODX-тегами (++ключ) (как в старом подвале): в $_modx->config Fenom их может не оказаться — в кэш попало бы пусто *}
+</main>{* открыт в конце lb-header *}
 <footer class="lb-footer" id="lb-footer">
     <div class="lb-footer__bg" aria-hidden="true"></div>
     <div class="lb-footer__inner">

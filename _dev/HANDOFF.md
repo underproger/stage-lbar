@@ -775,6 +775,20 @@
      остальных услуг (раньше до 40 знаков — колонки с иконками lb-shero__feats: 3D/6D, коррекция, мушка, pleoape). Колонки с иконками
      остались только у удаления тату (4 пункта 2 × 2). SEO: заголовки / title / description / JSON-LD без изменений; со страниц
      с плашками ушёл их текст (≈ 10 слов: «folosim exclusiv materiale profesionale, pigmenți hipoalergenici testați…»).
+   - v1.41.0 (шаг 58, по просьбе пользователя — PageSpeed «Доступность агента» / доступность): проверка axe-core 4.14 по правилам
+     Lighthouse на всех страницах эталона + EN, телефон 390 и десктоп 1350 (`_dev/tools/axe_scan.py`, сводка `_dev/tools/axe_sum.py`). Исправлено:
+     **landmark `<main>`** — открывается в конце lb-header, закрывается в начале lb-footer (на всех шаблонах шапка и подвал — соседи,
+     проверено DOM: один main, шапка и подвал вне его, все блоки внутри); **номер телефона в шапке на телефоне** — не display: none,
+     а визуально скрыт (`@mixin lb-sr` / `.lb-sr` в _base.scss) — у ссылки tel: было пустое имя; **кнопка языка** — без aria-label
+     (не совпадал с видимым «ro»), подпись «Limba site-ului» — скрытым текстом; **контраст**: активный пункт меню, язык и активный
+     пункт выпадающего меню — `$c-rose-text` #935843 (было #b87765, 3.25:1), старые блоки курса (`.lb-legacy` в _header.scss: плашка
+     тарифа, «Pret», вкладка преимуществ, «By appointment Only»); **удаление тату**: названия оборудования H4 → **H3** (пропуск уровня
+     после H2; текст тот же), фото — alt="" (как было до шага 54: название рядом); **«О нас»**: превью роликов — alt="" (подпись —
+     текст той же ссылки); **Owl Carousel курса** — подписи стрелок и точек из redesign.js (конец файла); **старые чанки** (SQL
+     `_dev/patches/step58-a11y.sql`): tpl.ms2GalleryBlog / tpl.ms2GalleryStudy — alt фото = описание, иначе «pagetitle — rank + 1»
+     (у ссылок галерей статей и курса не было имени), bl-contact — без aria-label="email", у карты title="Google Maps".
+     Повторная проверка: нарушений нет, кроме служебных «Доступ запрещён» 22 / 196 (ресурсы без шаблона — нет <html>, title, lang;
+     не трогали). SEO: title / description / JSON-LD без изменений; заголовки 625 / 321 — H4 → H3; alt — см. выше.
 
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
@@ -830,10 +844,11 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `stage-lbar-55-curs-header.sql` (все чанки Redesign — версия 1.39.1; файл — CSS) — после 54.
 `stage-lbar-56-data.sql` (все чанки Redesign без изменений, **UPDATE TV 64 у 119 / 316 / 1119 / 163 / 1163, TV 262 у 182**; файлов нет) — после 55.
 `stage-lbar-57-banner-list.sql` (все чанки Redesign — lb-shero, версия 1.40.0; файл — CSS) — после 56.
+`stage-lbar-58-a11y.sql` (все чанки Redesign — версия 1.41.0, **UPDATE старых чанков tpl.ms2GalleryBlog, tpl.ms2GalleryStudy, bl-contact**; файлы — CSS / JS) — после 57.
 `stage-lbar-47-about.sql` (новые чанки lb-ahero / lb-astory / lb-asteps / lb-avalues / lb-aculise / lb-areasons, **новый шаблон «О нас»**
 + доступ к TV, **template у 102 / 298 / 1102**, **TV migx_questions / title-bl-faq у 102 / 298 / 1102**; версия 1.34.0;
 файлы — `about-me-v2.webp`, `about-procedure.webp`, `about-avatar.webp`, лексиконы, CSS / JS).
-Патчи проверены импортом. После 57 БД **не менялась** (кроме локальной настройки phpThumb выше).
+Патчи проверены импортом. После 58 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — по решению пользователя
 

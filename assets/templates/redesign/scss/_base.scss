@@ -38,6 +38,7 @@ $c-muted: #6f5f58;      // подзаголовок
 $c-rose: #c98b79;       // кнопки
 $c-rose-2: #d6998a;
 $c-rose-dark: #b87765;
+$c-rose-text: #935843;  // мелкий текст-акцент на светлом (активный пункт меню, язык): контраст ≥ 4.5:1 (PageSpeed, шаг 58)
 $c-line: #d8b2a2;       // тонкие линии
 $c-bg: #f3e9e3;
 
@@ -125,6 +126,23 @@ $lb-h-accent: 1.08em;
 	@include mobile {
 		font-size: #{map.get($lb-h-m, $n)}px;
 	}
+}
+
+// ---------- Текст только для экранных чтецов и ассистентов (не display: none — иначе у ссылки / кнопки нет имени: PageSpeed, шаг 58) ----------
+@mixin lb-sr {
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	margin: -1px !important;
+	padding: 0 !important;
+	overflow: hidden !important;
+	clip: rect(0 0 0 0) !important;
+	clip-path: inset(50%) !important;
+	white-space: nowrap !important;
+	border: 0 !important;
+}
+.lb-sr {
+	@include lb-sr;
 }
 
 @mixin lb-eyebrow {

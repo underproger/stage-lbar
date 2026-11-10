@@ -57,7 +57,7 @@
 	:where(*, *::before, *::after) {
 		box-sizing: border-box;
 	}
-	:where(ul, li, p, h2, h4) {
+	:where(ul, li, p, h2, h3) {
 		margin: 0;
 		padding: 0;
 		list-style: none;
@@ -151,10 +151,10 @@
 		font-size: vw(30);
 		line-height: 1;
 	}
-	& h4.lb-tzequip__name {
+	& h3.lb-tzequip__name {
 		margin: vw(10) vw(14) 0;
 		@include lb-title;
-		@include lb-h(4);
+		@include lb-h(3);
 		line-height: 1.25;
 		text-align: left;
 		color: $lb-h-ink;
@@ -358,7 +358,7 @@
 			margin: 8px 0 0;
 			font-size: 20px;
 		}
-		& h4.lb-tzequip__name {
+		& h3.lb-tzequip__name {
 			margin: 6px 0 0;
 		}
 		&__note {

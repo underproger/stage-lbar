@@ -20,7 +20,7 @@
             {set $cap = ('lbar.rd.ab.vid.' ~ ($i + 1)) | lexicon}
             <li class="lb-aculise__item">
                 <a class="lb-aculise__tile" href="https://www.youtube.com/watch?v={$v}" data-fancybox="lb-aculise" data-caption="{$cap}">
-                    <img src="https://i.ytimg.com/vi/{$v}/hqdefault.jpg" data-yt-hd="https://i.ytimg.com/vi/{$v}/maxresdefault.jpg" width="480" height="360" alt="{$cap}" loading="lazy" decoding="async">
+                    <img src="https://i.ytimg.com/vi/{$v}/hqdefault.jpg" data-yt-hd="https://i.ytimg.com/vi/{$v}/maxresdefault.jpg" width="480" height="360" alt="" loading="lazy" decoding="async">
                     <span class="lb-aculise__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.6v12.8c0 .7.8 1.1 1.4.7l10-6.4c.5-.3.5-1.1 0-1.4l-10-6.4C8.8 4.5 8 4.9 8 5.6z"/></svg></span>
                     <span class="lb-aculise__cap">{$cap}</span>
                 </a>

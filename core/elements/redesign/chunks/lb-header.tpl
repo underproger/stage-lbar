@@ -41,7 +41,7 @@
 
         <div class="lb-header__right">
             <div class="lb-lang">
-                <button class="lb-lang__btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="lb-lang-list" aria-label="{'lbar.rd.aria.lang' | lexicon}"><span>{$_modx->config.cultureKey}</span><svg class="lb-lang__chev" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></button>
+                <button class="lb-lang__btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="lb-lang-list"><span>{$_modx->config.cultureKey}</span><span class="lb-sr"> – {'lbar.rd.aria.lang' | lexicon}</span><svg class="lb-lang__chev" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></button>
                 <ul class="lb-lang__list" id="lb-lang-list">
                     [[!BabelLinks? &showCurrent=`1` &tpl=`lb.babelLink`]]
                 </ul>
@@ -55,3 +55,5 @@
         </div>
     </div>
 </header>
+{* основное содержимое страницы — landmark <main> (PageSpeed: «Document has a main landmark»); закрывается в начале lb-footer *}
+<main class="lb-main" id="lb-main">
