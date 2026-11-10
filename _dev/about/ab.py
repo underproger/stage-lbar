@@ -112,19 +112,19 @@ T = {
 }
 FAQ = {
 'ro': ("Răspunsuri la întrebări frecvente", [
-  ("Cine efectuează procedurile în studioul Lbar?", "Procedurile sunt realizate de masteri din două categorii: TOP-Master, cu peste 5 ani de experiență și certificate internaționale, și TOP-Trainer, master acreditat cu peste 8 ani de experiență. Studioul a fost fondat de Ksenia Kobilianskaia, Master Trainer internațional."),
+  ("Cine efectuează procedurile în studioul Lbar?", "Procedurile sunt efectuate de Ksenia Kobilianskaia, fondatoarea studioului — master internațional și Master Trainer, cu peste 10 ani de experiență și peste 6 000 de proceduri realizate."),
   ("Cât durează o procedură?", "Între o oră și o oră și jumătate, în funcție de zonă. Retușul durează aproximativ o oră."),
   ("Pot învăța micropigmentarea la Lbar?", "Da. Școala Lbar a pregătit peste 400 de masteri, care lucrează astăzi în mai multe țări. Cursurile se bazează pe metoda proprie PM Control, creată de Ksenia Kobilianskaia."),
   ("Unde se află studioul din București?", "Strada Polonă 92, Sector 1, la 4 minute de metroul Ștefan cel Mare. Program: luni–duminică, 9:00–20:00, doar cu programare."),
  ]),
 'ru': ("Ответы на <br/>часто задаваемые вопросы", [
-  ("Кто выполняет процедуры в студии Lbar?", "Процедуры выполняют мастера двух категорий: TOP-Master с опытом более 5 лет и международными сертификатами и TOP-Trainer, аккредитованный мастер с опытом более 8 лет. Основательница студии — Ксения Кобылянская, международный Master Trainer."),
+  ("Кто выполняет процедуры в студии Lbar?", "Процедуры выполняет основательница студии Ксения Кобылянская — международный мастер и Master Trainer с опытом более 10 лет и более 6 000 выполненных процедур."),
   ("Сколько длится процедура?", "От одного до полутора часов, в зависимости от зоны. Коррекция занимает около часа."),
   ("Можно ли научиться перманентному макияжу в Lbar?", "Да. Школа Lbar подготовила более 400 мастеров, которые сегодня работают в разных странах. Обучение построено на авторской методике PM Control Ксении Кобылянской."),
   ("Где находится студия в Бухаресте?", "Strada Polonă 92, Sector 1, в 4 минутах от метро Ștefan cel Mare. Работаем ежедневно с 9:00 до 20:00, только по записи."),
  ]),
 'en': ("Answers to frequently asked questions", [
-  ("Who performs the procedures at Lbar studio?", "Procedures are performed by masters of two categories: TOP-Master, with more than 5 years of experience and international certificates, and TOP-Trainer, an accredited master with more than 8 years of experience. The studio's founder is Ksenia Kobilianskaia, an international Master Trainer."),
+  ("Who performs the procedures at Lbar studio?", "Procedures are performed by the studio's founder, Ksenia Kobilianskaia — an international master and Master Trainer with more than 10 years of experience and over 6,000 procedures performed."),
   ("How long does a procedure take?", "From one to one and a half hours, depending on the area. A touch-up takes about an hour."),
   ("Can I learn permanent makeup at Lbar?", "Yes. The Lbar school has trained more than 400 masters who now work in different countries. The training is based on Ksenia Kobilianskaia's own PM Control method."),
   ("Where is the studio in Bucharest?", "Strada Polonă 92, Sector 1, 4 minutes from Ștefan cel Mare metro station. We work daily from 9:00 to 20:00, by appointment only."),
