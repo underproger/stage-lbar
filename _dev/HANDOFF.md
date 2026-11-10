@@ -555,7 +555,7 @@
    переводы — `_dev/en/tr/<RO_ID>.json`, правила и глоссарий — `_dev/en/GUIDE.md`) 32 страницы: главная, «Услуги» и все услуги шаблона 8
    (брови + 4 техники, глаза, веки, губы, коррекция, родинка, ресницы, лазерная эпиляция, маникюр, педикюр), Gift Voucher, портфолио (хаб,
    2 мастера, 4 раздела), «Цены», «О нас», «Отзывы», вакансии, «Контакты», «Спасибо», 404, sitemap.xml. **Не переводились**: блог (4/5),
-   курс 182 и «Категория NEW» 625/321 (старый дизайн), «Обучение» 60 (без курса), служебные 22, 196. Блок «Статьи» на EN-главной скрыт.
+   курс 182 и «Категория NEW» 625/321 (старый дизайн; 625 → EN 1625 переведён в шаге 61), «Обучение» 60 (без курса), служебные 22, 196. Блок «Статьи» на EN-главной скрыт.
    - **id EN = id RO + 1000** (1001 — главная, 1020 — 404, 1040 — «Спасибо», 1023 — sitemap), английские слаги — `SLUG` в
      `_dev/tools/en_build.py`. Контекст: base_url `/en/`, cultureKey `en`, site_url = site_url web + `en/` (в SQL — от web, годится и для
      прода), site_start 1001, error_page 1020; доступы — как у ru; источники файлов TV (`media_sources_elements`) — как у web (без них пути
@@ -816,6 +816,19 @@
      Only». SEO против исходной базы: title / description / canonical / крошки / FAQ — без изменений; заголовки — как в оригинале, кроме
      убранного пустого H3 и H4 → H3. Локально: при параллельных запросах сразу после очистки кэша RU FAQ один раз отдал «1» вместо вопросов
      (гонка кэша MODX; после повторной очистки — норма, повторить не удалось).
+   - v1.42.0 (шаг 61, по просьбе пользователя): **удаление тату — EN-версия 1625 `/en/laser-tattoo-removal`** (шаблон 19, как RO / RU;
+     родитель — EN «Services» 1080; перевод — `_dev/en/tr/625.json`, генератор SQL — `_dev/tools/en_tz.py` → `_dev/patches/step61-en-tz.sql`;
+     TV с кириллицей, которые шаблон 19 не выводит, у EN не создаются). Связи Babel 625 / 321 / 1625; hreflang, переключатель языка, sitemap EN,
+     мега-меню и хаб «Services» — сами; подвал EN-главной (TV foot-link-l у 1001) + «Laser tattoo removal». Старые чанки под EN:
+     banner-interial-category-new — текст окна «Консультация» на трёх языках (было ro → RO, иначе RU), bl6-portfolio-new — фото
+     `resources` = lb.roId, bl9-reviews-new — ветка отзывов `resource-<lb.roId>` (у EN — RO-двойника, у RO / RU — своя, как было), bl-contact —
+     на EN адрес / трамвай / график по-английски (RO / RU и курс — без изменений). **Блок «Преимущества»** (bl2-service-advantages; тексты —
+     со скриншота lbar.com.ua, сайт отсюда недоступен; RU — как там, RO и EN — перевод) у 625 / 321 / 1625: TV bl2_service_advantages-title /
+     -list — **новый H2** «Avantajele … / Преимущества … / Benefits …». **Третье оборудование** «Face Lift 3 in 1» (картинка пользователя —
+     `/images/inner/eq-face-lift.webp`, в git её нет — папка images на хостинге) — MIGX bl3_service_equipment-list, H3; при 3 аппаратах —
+     в ряд по 3 (`_header.scss`, .lb-oldpage). Проверка: axe — 0 нарушений (RO / RU / EN, телефон и десктоп); SEO против шага 60 — у 625 / 321
+     только hreflang en, новые H2 / H3 и ссылка на EN. Замечено (не трогали): в подвале RO-главной пункт «Îndepărtare tatuaje remover» ведёт на
+     эпиляцию (epilare-definitiva-cu-laser); описание в JSON-LD (lb-script) на всех языках — по-румынски.
 
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
@@ -873,10 +886,11 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `stage-lbar-57-banner-list.sql` (все чанки Redesign — lb-shero, версия 1.40.0; файл — CSS) — после 56.
 `stage-lbar-58-a11y.sql` (все чанки Redesign — версия 1.41.0, **UPDATE старых чанков tpl.ms2GalleryBlog, tpl.ms2GalleryStudy, bl-contact**; файлы — CSS / JS) — после 57.
 `stage-lbar-60-tz-old.sql` (все чанки Redesign — версия 1.41.1, **template 19 у 625 / 321**, **UPDATE старых чанков bl1-about-service, tpl.ms2GalleryBlog.New и сниппета getEquipmentList**; файл — CSS) — после 58 (59 — без патча).
+`stage-lbar-61-en-tz.sql` (все чанки Redesign — версия 1.42.0, **новый ресурс EN 1625** + TV, **Babel 625 / 321**, **TV bl2 / bl3 у 625 / 321**, **foot-link-l у 1001**, **UPDATE старых чанков banner-interial-category-new, bl6-portfolio-new, bl9-reviews-new, bl-contact**; файлы — CSS, `images/inner/eq-face-lift.webp`) — после 60.
 `stage-lbar-47-about.sql` (новые чанки lb-ahero / lb-astory / lb-asteps / lb-avalues / lb-aculise / lb-areasons, **новый шаблон «О нас»**
 + доступ к TV, **template у 102 / 298 / 1102**, **TV migx_questions / title-bl-faq у 102 / 298 / 1102**; версия 1.34.0;
 файлы — `about-me-v2.webp`, `about-procedure.webp`, `about-avatar.webp`, лексиконы, CSS / JS).
-Патчи проверены импортом. После 60 БД **не менялась** (кроме локальной настройки phpThumb выше).
+Патчи проверены импортом. После 61 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — по решению пользователя
 

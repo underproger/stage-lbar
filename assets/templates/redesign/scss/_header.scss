@@ -793,6 +793,12 @@
 		font-family: "Montserrat", sans-serif;
 		font-weight: 600;
 	}
+	// оборудование: 3 аппарата (шаг 61) — в ряд по 3, как на lbar.com.ua (старый CSS рассчитан на 2: width 48%)
+	@media (min-width: 769px) {
+		.inner-eq__wrap:has(> .inner-eq__item:nth-child(3)) > .inner-eq__item {
+			width: 32%;
+		}
+	}
 }
 // там же — единый цвет H2–H3 (шаг 50): тёмные заголовки старых блоков — $lb-h-ink, «золотые» слова (.gold-word) — цветом заголовка;
 // белые заголовки (.title-white) на тёмных блоках остаются белыми
