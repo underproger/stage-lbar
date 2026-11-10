@@ -788,8 +788,8 @@
 		letter-spacing: normal;
 		text-transform: none;
 	}
-	&.main-ro .inner-eq__name h3,
-	&.main-en .inner-eq__name h3 {
+	// RO — как старый CSS для h4 (.wrapper.main-ro h4: Montserrat 600); RU и EN — шрифт блока (FuturaDemiC), как у h4 там
+	&.main-ro .inner-eq__name h3 {
 		font-family: "Montserrat", sans-serif;
 		font-weight: 600;
 	}
