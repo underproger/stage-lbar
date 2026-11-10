@@ -47,9 +47,9 @@ $cs-bg: #f9f2ed;
 		@include lb-title;
 		@include lb-h(2);
 		line-height: 1.15;
-		color: #24130f;
+		color: $lb-h-ink;
 		em {
-			@include lb-accent;
+			@include lb-accent-h;
 			margin-left: -.04em;
 			font-size: $lb-h-accent;
 			line-height: 0;

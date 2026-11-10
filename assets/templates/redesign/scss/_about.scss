@@ -63,7 +63,7 @@
 		@include lb-h(2);
 		font-weight: 500;
 		line-height: 1;
-		color: #24130f;
+		color: $lb-h-ink;
 	}
 	&__t1 {
 		display: block;
@@ -83,11 +83,8 @@
 		font-stretch: 80%;
 		line-height: 1.08;
 		letter-spacing: -.01em;
-		color: transparent;
-		background: linear-gradient(95deg, #93705c 0%, #7d5a47 45%, #8f6c58 75%, #7a5845 100%);
-		-webkit-background-clip: text;
-		background-clip: text;
-		padding-bottom: .08em; // хвосты букв при background-clip
+		color: inherit; // шаг 50: акцент заголовка — тем же цветом, что и заголовок
+		padding-bottom: .08em;
 	}
 
 	// — текст: 3 строки + «Читать далее» —

@@ -73,10 +73,10 @@ $fq-copper: #a87856;
 		@include lb-title;
 		@include lb-h(2);
 		line-height: 1.12;
-		color: $fq-ink;
+		color: $lb-h-ink;
 		text-align: left;
 		em {
-			@include lb-accent;
+			@include lb-accent-h;
 			display: inline-block;
 			font-size: $lb-h-accent;
 			line-height: 1;

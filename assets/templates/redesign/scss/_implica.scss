@@ -78,9 +78,9 @@ $im-bg: #f4ebe7;
 		@include lb-title;
 		@include lb-h(2);
 		line-height: 1.12;
-		color: #24130f;
+		color: $lb-h-ink;
 		em {
-			@include lb-accent;
+			@include lb-accent-h;
 			font-size: $lb-h-accent;
 			line-height: 0;
 			padding-right: .04em;

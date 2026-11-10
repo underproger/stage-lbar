@@ -57,14 +57,14 @@ $ap-line: rgba(165, 102, 90, .24);
 	@include lb-h(2);
 	line-height: 1.08;
 	text-align: left;
-	color: $ap-ink;
+	color: $lb-h-ink;
 }
 .lb-astory__t2,
 .lb-avalues__t2,
 .lb-aculise__t2,
 .lb-areasons__t2,
 .lb-astudio__t2 {
-	@include lb-accent;
+	@include lb-accent-h;
 	font-size: $lb-h-accent;
 	padding-right: .06em;
 }
@@ -520,7 +520,7 @@ $ap-line: rgba(165, 102, 90, .24);
 	}
 	&__t2 {
 		display: block;
-		@include lb-accent(true);
+		@include lb-accent-h;
 		font-size: $lb-h-accent;
 		padding: 0 .06em .06em 0;
 	}

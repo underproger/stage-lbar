@@ -67,10 +67,10 @@ $rv-gold: #d29a3e;
 		@include lb-title;
 		@include lb-h(2);
 		line-height: 1.18;
-		color: $rv-ink;
+		color: $lb-h-ink;
 		text-align: center;
 		em {
-			@include lb-accent;
+			@include lb-accent-h;
 			display: inline-block;
 			font-size: $lb-h-accent;
 			line-height: 1;

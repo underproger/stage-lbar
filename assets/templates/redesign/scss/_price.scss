@@ -76,9 +76,9 @@ $pr-bg: #f8efea;
 		@include lb-title;
 		@include lb-h(2);
 		line-height: 1.1;
-		color: #2b2521;
+		color: $lb-h-ink;
 		em {
-			@include lb-accent;
+			@include lb-accent-h;
 			display: inline-block;
 			font-size: $lb-h-accent;
 			line-height: 1;
@@ -161,20 +161,17 @@ $pr-bg: #f8efea;
 			color: inherit !important;
 		}
 	}
+	// «Читать далее» — под текстом (как в «О микропигментации»), не поверх строки
 	&__more {
-		position: absolute;
-		right: 0;
-		bottom: 0;
 		display: flex;
 		align-items: center;
 		gap: vw(8);
 		height: vw(34);
-		padding-left: vw(120);
+		margin-top: vw(10);
 		font-size: vw(18);
 		font-weight: 600;
 		letter-spacing: .04em;
 		color: #8f6b58;
-		background: linear-gradient(90deg, rgba(248, 239, 234, 0) 0%, $pr-bg 42%);
 		transition: color .3s;
 		svg {
 			width: vw(12);
@@ -192,10 +189,6 @@ $pr-bg: #f8efea;
 		display: none;
 	}
 	&__textwrap.is-open &__more {
-		position: static;
-		margin-top: vw(10);
-		padding-left: 0;
-		background: none;
 		svg {
 			transform: rotate(180deg);
 		}
@@ -501,15 +494,12 @@ $pt-cols: minmax(0, 1fr) vw(282) vw(225); // первая колонка — п�
 		&__more {
 			height: 22px;
 			gap: 6px;
-			padding-left: 70px;
+			margin-top: 8px;
 			font-size: 13px;
 			svg {
 				width: 10px;
 				height: 10px;
 			}
-		}
-		&__textwrap.is-open &__more {
-			margin-top: 8px;
 		}
 		&__card {
 			margin-top: 24px;
@@ -571,11 +561,12 @@ $pt-cols: minmax(0, 1fr) vw(282) vw(225); // первая колонка — п�
 }
 
 // ---------- страницы услуг: другие виды таблицы (TV table_select) ----------
-// ширина карточки та же (1161 @1920); выделенная полоса (__card::before) — под последней колонкой цены
+// первая колонка — остаток ширины карточки (как в основной таблице): сумма фиксированных колонок была 1161 @1920 — шире карточки
+// (1097 после единого контейнера), таблица вылезала за правый край; выделенная полоса (__card::before) — под последней колонкой цены
 .lb-ptable--full {
 	.lb-ptable__head,
 	.lb-ptable__row {
-		grid-template-columns: vw(560) vw(200) vw(196) vw(205);
+		grid-template-columns: minmax(0, 1fr) vw(200) vw(196) vw(205);
 	}
 	@include desktop {
 		.lb-ptable__name {
@@ -598,13 +589,13 @@ $pt-cols: minmax(0, 1fr) vw(282) vw(225); // первая колонка — п�
 .lb-ptable--three {
 	.lb-ptable__head,
 	.lb-ptable__row {
-		grid-template-columns: vw(661) vw(250) vw(250);
+		grid-template-columns: minmax(0, 1fr) vw(250) vw(250);
 	}
 }
 .lb-ptable--two {
 	.lb-ptable__head,
 	.lb-ptable__row {
-		grid-template-columns: vw(881) vw(280);
+		grid-template-columns: minmax(0, 1fr) vw(280);
 	}
 }
 .lb-ptable--full,

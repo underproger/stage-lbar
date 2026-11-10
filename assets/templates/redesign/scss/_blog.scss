@@ -49,9 +49,9 @@ $bl-ink: #2f1f18;
 		@include lb-title;
 		@include lb-h(2);
 		line-height: 1.15;
-		color: $bl-ink;
+		color: $lb-h-ink;
 		em {
-			@include lb-accent;
+			@include lb-accent-h;
 			display: inline-block;
 			font-size: $lb-h-accent;
 			line-height: 1;

@@ -122,6 +122,21 @@
 }
 
 // ---------- Desktop nav ----------
+// старый lightbox2 (study.css — страницы курса и «Категория NEW») тоже называет свою навигацию по фото .lb-nav:
+// его правила (absolute на всю ширину, прозрачный gif у ссылок) — не для нашего меню, наши — не для окна просмотра фото
+.lb-header .lb-nav {
+	position: static;
+	width: auto;
+	height: auto;
+	z-index: auto;
+	a {
+		background-image: none;
+	}
+}
+.lightbox .lb-nav {
+	display: block;
+	padding: 0;
+}
 .lb-nav {
 	flex: 1;
 	display: flex;
@@ -707,4 +722,25 @@
 		visibility: hidden !important;
 		pointer-events: none !important;
 	}
+}
+
+// старые шаблоны с новой шапкой (курс — «Обучение», удаление тату лазером — «Категория NEW»; класс lb-oldpage у .wrapper / body):
+// старая шапка стояла в потоке — новая фиксированная, поэтому контент опускаем на её высоту; подложка шапки видна сразу
+// (под ней — тёмные старые баннеры)
+.lb-oldpage {
+	padding-top: vw(39 + 65);
+	.lb-header__bar {
+		opacity: 1;
+	}
+	@include mobile {
+		padding-top: 64px;
+	}
+}
+// там же — единый цвет H2–H3 (шаг 50): тёмные заголовки старых блоков — $lb-h-ink, «золотые» слова (.gold-word) — цветом заголовка;
+// белые заголовки (.title-white) на тёмных блоках остаются белыми
+.lb-oldpage :is(h2, h3):not(.title-white) {
+	color: $lb-h-ink;
+}
+.lb-oldpage :is(h2, h3) .gold-word {
+	color: inherit;
 }

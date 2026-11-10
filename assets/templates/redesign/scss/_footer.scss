@@ -354,6 +354,37 @@ $ft-copper: #d4a184;
 	}
 }
 
+// страница без template.css и custom.js (курс — шаблон «Обучение», body.lb-legacy): основа окна «Заказать звонок» — как в template.css,
+// открывает redesign.js (класс is-open)
+.lb-legacy .lb-footer {
+	.form-modal-overlay {
+		display: none;
+		position: fixed;
+		inset: 0;
+		overflow-x: hidden;
+		overflow-y: auto;
+		&.is-open {
+			display: block;
+		}
+	}
+	.form-modal-body {
+		position: relative;
+		top: 50%;
+		width: 90%;
+		margin: 20px auto 50px;
+		text-align: center;
+		translate: 0 -50%;
+	}
+	.form-modal-content input {
+		display: block;
+		width: 100%;
+	}
+	.ic-close {
+		position: absolute;
+		z-index: 999;
+	}
+}
+
 // кнопка «наверх» (старый main.js: .cd-top / .cd-is-visible) — в стиле сайта; только на главной (redesign.css)
 .cd-top {
 	width: 52px !important;

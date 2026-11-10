@@ -81,9 +81,9 @@
 		@include lb-h(2);
 		line-height: 1.12;
 		text-align: left;
-		color: #24130f;
+		color: $lb-h-ink;
 		em {
-			@include lb-accent;
+			@include lb-accent-h;
 			font-size: $lb-h-accent;
 		}
 	}

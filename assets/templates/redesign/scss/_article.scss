@@ -742,7 +742,7 @@ $ar-copper: #a87856;
 		color: $ar-ink;
 	}
 	&__count {
-		@include lb-accent;
+		@include lb-accent-h;
 		font-size: .9em;
 	}
 	&__grid {

@@ -293,7 +293,7 @@
 		grid-column: 1;
 		margin-top: vw(36);
 		em {
-			@include lb-accent;
+			@include lb-accent-h;
 			font-size: $lb-h-accent;
 		}
 	}

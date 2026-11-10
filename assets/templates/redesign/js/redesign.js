@@ -161,7 +161,13 @@
 			};
 			check();
 			window.addEventListener('resize', check);
-			if (document.fonts && document.fonts.ready) document.fonts.ready.then(check);
+			// пересчёт после загрузки шрифтов: fonts.ready может сработать раньше, чем шрифты начнут грузиться
+			// (тогда короткий текст считался длинным и «Читать далее» оставалось под двумя строками) — ещё по load и loadingdone
+			window.addEventListener('load', check);
+			if (document.fonts) {
+				if (document.fonts.ready) document.fonts.ready.then(check);
+				if (document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', check);
+			}
 			btn.addEventListener('click', function () {
 				var open = !wrap.classList.contains('is-open');
 				if (open) {
@@ -903,6 +909,25 @@
 		}
 	};
 	initReveal();
+
+	/* ---------- Подвал: окно «Заказать звонок» там, где нет старого custom.js (курс — шаблон «Обучение», body.lb-legacy) ----------
+	   Кнопка «Записаться» в шапке без формы на странице тоже открывает это окно (см. выше: клик по .btn-mobal). */
+	if (document.body.classList.contains('lb-legacy')) {
+		Array.prototype.forEach.call(document.querySelectorAll('.lb-footer .btn-mobal'), function (btn) {
+			var ov = btn.nextElementSibling;
+			if (!ov || !ov.classList.contains('form-modal-overlay')) return;
+			btn.addEventListener('click', function (e) {
+				e.preventDefault();
+				ov.classList.add('is-open');
+			});
+			ov.addEventListener('click', function (e) {
+				if (e.target.closest('.modal-close') || !e.target.closest('.form-modal-body')) ov.classList.remove('is-open');
+			});
+			document.addEventListener('keydown', function (e) {
+				if (e.key === 'Escape') ov.classList.remove('is-open');
+			});
+		});
+	}
 
 	/* ---------- «За кулисами» (О нас): превью YouTube в высоком разрешении ----------
 	   В разметке — hqdefault (есть у любого ролика); когда он загрузился (картинки lazy — значит, блок рядом),

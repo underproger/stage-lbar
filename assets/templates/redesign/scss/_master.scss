@@ -100,7 +100,7 @@ $ms-bg: #2f2521;
 			background: linear-gradient(90deg, rgba(200, 176, 156, .9), rgba(200, 176, 156, 0));
 		}
 		.gold-word {
-			@include lb-accent(true);
+			@include lb-accent-h;
 			font-size: $lb-h-accent;
 			line-height: 1;
 			padding-right: .06em; // хвост курсива при background-clip
@@ -296,5 +296,5 @@ html[lang="ru"] .lb-master .lb-master__col h2.lb-master__title::after {
 	@include lb-title;
 	@include lb-h(2);
 	line-height: 1.15;
-	color: #24130f;
+	color: $lb-h-ink;
 }

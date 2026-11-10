@@ -85,7 +85,7 @@ $seo-d: 54;
 		@include lb-h(2);
 		line-height: 1.15;
 		text-align: left;
-		color: $seo-ink;
+		color: $lb-h-ink;
 	}
 	&__lead {
 		position: relative;
@@ -149,7 +149,7 @@ $seo-d: 54;
 		@include lb-h(2);
 		line-height: 1.15;
 		text-align: left;
-		color: $seo-ink;
+		color: $lb-h-ink;
 		&:not(:first-child) {
 			margin-top: vw(66);
 			padding-top: vw(66);
@@ -207,7 +207,7 @@ $seo-d: 54;
 		@include lb-h(3);
 		line-height: vw(40);
 		text-align: left;
-		color: $seo-ink;
+		color: $lb-h-ink;
 		// кружок
 		&::before {
 			content: "";

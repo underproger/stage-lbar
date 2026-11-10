@@ -1,0 +1,12 @@
+-- Шаг 50: тексты по правкам пользователя.
+-- 1) Текст над таблицей цен на главной (TV table-bl7, id 33) RO (1) / EN (1001): вместо «2 категории мастеров (TOP-Master / TOP-Trainer)» —
+--    процедуры выполняет Ксения Кобылянская, международный мастер 10+ лет, призёр полуфинала ЧМ в Бухаресте; второй абзац — прежний,
+--    без «услуги оказывают TOP-мастера». У RU-главной (193) этого текста нет.
+-- 2) Главная RO (1): короткое описание 2-й статьи (TV text-st-2, id 82) повторяло 1-ю — теперь вводный текст самой статьи
+--    «Cât timp durează efectul machiajului semipermanent» (ресурс 598, introtext).
+-- Откат: прежние значения — в базе до шага 50 (патч stage-lbar-49-about-video.sql и раньше не меняли эти TV).
+UPDATE Impulse_Digital_X_site_tmplvar_contentvalues SET value = '<p>Procedurile sunt efectuate de Ksenia Kobilianskaia — master internațional cu peste 10 ani de experiență, cu loc premiat în semifinala Campionatului Mondial de la București. Deține certificate internaționale în domeniul tatuajului cosmetic (make-up) și participă constant la cursuri de perfecționare și concursuri.</p>
+<p>Costul unei ședințe de machiaj semipermanent este determinat de o serie de factori: profesionalismul, gradul de pregătire al masterului și calitatea materialelor folosite. Studioul nostru de micropigmentare utilizează exclusiv materiale de calitate superioară.<br />Oferim o reducere de 10% la programările plătite în avans</p>' WHERE tmplvarid = 33 AND contentid = 1;
+UPDATE Impulse_Digital_X_site_tmplvar_contentvalues SET value = '<p>Procedures are performed by Ksenia Kobilianskaia, an international master with more than 10 years of experience and a prize place in the World Championship semi-final in Bucharest. She holds international certificates in cosmetic tattooing (make-up) and regularly takes part in advanced training courses and competitions.</p>
+<p>The cost of a semi-permanent makeup session depends on a number of factors: the artist\'s professionalism and level of training, and the quality of the materials used. Our micropigmentation studio uses only top-quality materials.<br />We offer a 10% discount on appointments paid in advance</p>' WHERE tmplvarid = 33 AND contentid = 1001;
+UPDATE Impulse_Digital_X_site_tmplvar_contentvalues SET value = 'Care este perioada de vizibilitate a efectului tatuajului, cum se poate prelungi și ce factori afectează durata și calitatea efectului – citiți informații detaliate în articolul nostru' WHERE tmplvarid = 82 AND contentid = 1;
