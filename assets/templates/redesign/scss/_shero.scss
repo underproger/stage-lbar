@@ -63,45 +63,6 @@ $sh-text: #4a3a33;
 			linear-gradient(160deg, #f1ddd0 0%, #e4c4b0 50%, #d2a98f 100%);
 	}
 
-	// плашки (title/description-banner-categoty) — на страницах без своего фото
-	&__badges {
-		position: absolute;
-		right: vw(64);
-		bottom: vw(64);
-		display: flex;
-		gap: vw(16);
-		margin: 0;
-		padding: 0;
-		list-style: none;
-	}
-	&__badge {
-		display: flex;
-		flex-direction: column;
-		gap: vw(6);
-		width: vw(330);
-		padding: vw(20) vw(24);
-		border: 1px solid rgba(255, 255, 255, .55);
-		border-radius: vw(22);
-		background: rgba(255, 250, 246, .72);
-		box-shadow: 0 vw(18) vw(40) rgba(92, 58, 40, .14), inset 0 1px 0 rgba(255, 255, 255, .8);
-		-webkit-backdrop-filter: blur(12px);
-		backdrop-filter: blur(12px);
-	}
-	&__badge-t {
-		@include lb-title;
-		font-size: vw(22);
-		line-height: 1.2;
-		color: $sh-ink;
-		br {
-			display: none;
-		}
-	}
-	&__badge-d {
-		font-size: vw(14.5);
-		line-height: 1.5;
-		color: #5a4d46;
-	}
-
 	// ----- текст слева -----
 	&__inner {
 		position: absolute;
@@ -148,7 +109,7 @@ $sh-text: #4a3a33;
 		color: $sh-text;
 	}
 
-	// преимущества — колонки с иконками (короткие строки, как в макете)
+	// преимущества — колонки с иконками (удаление тату: 4 пункта, 2 × 2 — _tz.scss; у услуг с шага 57 — список __list)
 	&__feats {
 		display: flex;
 		margin: vw(48) 0 0;
@@ -328,27 +289,6 @@ $sh-text: #4a3a33;
 			margin-left: mvw(34);
 			-webkit-mask-image: url("/assets/templates/redesign/img/shero-photo-m.svg");
 			mask-image: url("/assets/templates/redesign/img/shero-photo-m.svg");
-		}
-		&__badges {
-			position: static;
-			right: auto;
-			bottom: auto;
-			flex-direction: row;
-			gap: 10px;
-			margin: 18px 20px 0;
-		}
-		&__badge {
-			flex: 1 1 0;
-			width: auto;
-			padding: 14px 14px;
-			border-radius: 16px;
-			gap: 4px;
-		}
-		&__badge-t {
-			font-size: 16px;
-		}
-		&__badge-d {
-			font-size: 12.5px;
 		}
 		// relative — иначе абсолютный фон (__bg) рисуется поверх текста
 		&__inner {

@@ -769,6 +769,12 @@
      (строка Retuș / Touch-up; у RU 318 уже было 400); скрытая col-3 (бывший TOP Master, 200) не менялась; **школа Lbar — с 2018 года**:
      курс 182, TV 262 migx_advantages_study, п. 3 «există de peste 5 ani» → «există din 2018» (без числа лет, чтобы не устаревало;
      других упоминаний возраста школы в базе, лексиконах и чанках нет).
+   - v1.40.0 (шаг 57, по просьбе пользователя): **баннер услуг — обычный вид**: плашки на фото (lb-shero__badges: TV
+     title/description-banner-categoty-1/2, выводились у страниц без своего фото — подразделы бровей 52 / 53 / 54 и RU / EN, коррекция,
+     мушка) **убраны** (чанк и CSS); преимущества description-banner из 2–3 коротких строк — теперь **списком lb-shero__list**, как у
+     остальных услуг (раньше до 40 знаков — колонки с иконками lb-shero__feats: 3D/6D, коррекция, мушка, pleoape). Колонки с иконками
+     остались только у удаления тату (4 пункта 2 × 2). SEO: заголовки / title / description / JSON-LD без изменений; со страниц
+     с плашками ушёл их текст (≈ 10 слов: «folosim exclusiv materiale profesionale, pigmenți hipoalergenici testați…»).
 
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
@@ -823,10 +829,11 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 к TV, **template у 625 / 321**; версия 1.39.0; файлы — CSS / JS) — после 53.
 `stage-lbar-55-curs-header.sql` (все чанки Redesign — версия 1.39.1; файл — CSS) — после 54.
 `stage-lbar-56-data.sql` (все чанки Redesign без изменений, **UPDATE TV 64 у 119 / 316 / 1119 / 163 / 1163, TV 262 у 182**; файлов нет) — после 55.
+`stage-lbar-57-banner-list.sql` (все чанки Redesign — lb-shero, версия 1.40.0; файл — CSS) — после 56.
 `stage-lbar-47-about.sql` (новые чанки lb-ahero / lb-astory / lb-asteps / lb-avalues / lb-aculise / lb-areasons, **новый шаблон «О нас»**
 + доступ к TV, **template у 102 / 298 / 1102**, **TV migx_questions / title-bl-faq у 102 / 298 / 1102**; версия 1.34.0;
 файлы — `about-me-v2.webp`, `about-procedure.webp`, `about-avatar.webp`, лексиконы, CSS / JS).
-Патчи проверены импортом. После 56 БД **не менялась** (кроме локальной настройки phpThumb выше).
+Патчи проверены импортом. После 57 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — по решению пользователя
 

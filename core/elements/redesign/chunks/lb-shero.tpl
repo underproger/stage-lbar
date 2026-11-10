@@ -3,10 +3,11 @@
    - надзаголовка нет (был suptitle-banner главной — убран вместе со всеми eyebrow);
    - H1 — title-banner: первое слово прямо, остальное курсивом (только разметка, текст H1 тот же);
    - подзаголовок — sub-title-banner;
-   - description-banner: 2–3 строки (по <br> / <p>) до 40 символов — колонки с иконками (как в макете), до 80 — список с отметками,
-     иначе (длинный текст, 4+ строк) — выводится как было, HTML из TV.
-   Фото — TV img_banner_main. Если его нет — фото родителя (подразделы бровей), а на фото — две плашки
-   title/description-banner-categoty-1/2 (в старом баннере без фото выводились они); если фото нет и у родителя — графическая подложка.
+   - description-banner: 2–3 строки (по <br> / <p>) до 80 символов — список с отметками (шаг 57: и короткие строки — тоже списком,
+     как у остальных услуг; колонки с иконками lb-shero__feats — только у удаления тату), иначе (длинный текст, 4+ строк) — выводится
+     как было, HTML из TV.
+   Фото — TV img_banner_main. Если его нет — фото родителя (подразделы бровей); если фото нет и у родителя — графическая подложка.
+   Плашки title/description-banner-categoty-1/2 на фото (были у страниц без своего фото) — убраны по просьбе пользователя (шаг 57).
    Кнопки — прежние: запись (#bl8-form), консультация (#conract). Хлебные крошки — pdoCrumbs с прежними параметрами и микроразметкой.
    Общие страницы (режим hub): «Услуги» / «Обучение» (шаблоны «Услуги — общая» и «Внутренняя - Обучение»), «Внутренняя» (3),
    портфолио (10, 13), «Цены» (14), «Отзывы» (16), список статей блога (4) — вместо banner-interial:
@@ -41,12 +42,11 @@
 {foreach [1, 2, 3, 4] as $k}{set $it = $r['text-' ~ $k ~ '-banner-study'] | striptags | trim}{if $it}{set $items[] = $it}{/if}{/foreach}
 {/if}
 {set $n = $items | length}
-{set $mode = $tz ? ($n ? 'cols' : '') : (($n >= 2 && $n <= 3) ? ($max <= 40 ? 'cols' : ($max <= 80 ? 'list' : 'html')) : ($desc ? 'html' : ''))}
+{set $mode = $tz ? ($n ? 'cols' : '') : (($n >= 2 && $n <= 3) ? ($max <= 80 ? 'list' : 'html') : ($desc ? 'html' : ''))}
 
 {* фото: своё → родителя → нет *}
 {set $own = $_modx->getResource($r.id, ['includeTVs' => 'img_banner_main', 'processTVs' => 1, 'tvPrefix' => '', 'select' => 'id,parent'])}
 {set $photo = $own.img_banner_main | trim}
-{set $badges = !$photo && !$hub}
 {if !$photo && $r.parent && !$hub}
 {set $par = $_modx->getResource($r.parent, ['includeTVs' => 'img_banner_main', 'processTVs' => 1, 'tvPrefix' => '', 'select' => 'id'])}
 {set $photo = $par.img_banner_main | trim}
@@ -80,20 +80,6 @@
             <img src="/{$photo}" alt="{$alt}" loading="eager" fetchpriority="high" decoding="async">
             {/if}
         </div>
-        {if $badges && ($r['title-banner-categoty-1'] | trim)}
-        <ul class="lb-shero__badges">
-            <li class="lb-shero__badge">
-                <span class="lb-shero__badge-t">{$r['title-banner-categoty-1']}</span>
-                {if $r['description-banner-categoty-1'] | trim}<span class="lb-shero__badge-d">{$r['description-banner-categoty-1'] | striptags}</span>{/if}
-            </li>
-            {if $r['title-banner-categoty-2'] | trim}
-            <li class="lb-shero__badge">
-                <span class="lb-shero__badge-t">{$r['title-banner-categoty-2']}</span>
-                {if $r['description-banner-categoty-2'] | trim}<span class="lb-shero__badge-d">{$r['description-banner-categoty-2'] | striptags}</span>{/if}
-            </li>
-            {/if}
-        </ul>
-        {/if}
     </div>
     {/if}
 
