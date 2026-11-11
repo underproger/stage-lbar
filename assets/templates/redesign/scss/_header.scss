@@ -793,6 +793,18 @@
 		font-family: "Montserrat", sans-serif;
 		font-weight: 600;
 	}
+	// специалисты (шаг 64): рамка фото 4:5 с подложкой — блок не схлопывается, пока фото грузится (loading="lazy") или если файла нет
+	// (до шага 64 высоту давала только сама картинка: без неё оставались одни имена)
+	.inner-specialist__photo {
+		aspect-ratio: 4 / 5;
+		overflow: hidden;
+		border-radius: 15px;
+		background: linear-gradient(160deg, #f6ece4 0%, #ead8cb 100%);
+		img {
+			display: block;
+			height: 100%;
+		}
+	}
 	// специалисты (шаг 63): двое — по центру (старый CSS — 3 в ряд по 32% с space-between, двое расходились по краям)
 	@media (min-width: 769px) {
 		.inner-specialist__wrap:not(:has(> .inner-specialist__item:nth-child(3))) {

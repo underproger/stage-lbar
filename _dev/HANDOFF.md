@@ -865,6 +865,11 @@
      блок vw(20) (было vw(56)), на телефоне крошки — 18px от текста (было 28px). Проверка: axe — 0 нарушений (удаление тату RO / RU / EN,
      «О нас» RO / RU / EN, портфолио, курс EN); SEO против шага 62 — заголовки без изменений; на всех страницах ушла ссылка меню
      `/#lb-master` (теперь — на «О нас»); у «О нас» — 1 ролик вместо 5; у 625 / 321 — нет «Igor», другие фото специалистов.
+   - v1.45.0 (шаг 64): «Портфолио» (100 / 198 / 1100) — новые фото мастеров в карточках: TV img-master-1 / -2 → `master-ksenia.webp` /
+     `master-aliona.webp` (источник TV — `images/design/`; фото пользователя, квадрат 780×780; было master-kseniya-min.jpg / master-alena-min.jpg),
+     `_dev/patches/step64-data.sql`. Удаление тату — «Специалисты»: рамка фото 4:5 с подложкой (`_header.scss`, .lb-oldpage) — без файла фото
+     (не загружен на хостинг) или до ленивой загрузки блок больше не схлопывается до одних имён (пользователь после шага 63 написал, что блок
+     «пропал»: в копии базы с патчем блок на месте — вероятно, на хостинге не было файлов images/inner/spec-*.webp).
 
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
@@ -925,10 +930,11 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `stage-lbar-61-en-tz.sql` (все чанки Redesign — версия 1.42.0, **новый ресурс EN 1625** + TV, **Babel 625 / 321**, **TV bl2 / bl3 у 625 / 321**, **foot-link-l у 1001**, **UPDATE старых чанков banner-interial-category-new, bl6-portfolio-new, bl9-reviews-new, bl-contact**; файлы — CSS, `images/inner/eq-face-lift.webp`) — после 60.
 `stage-lbar-62-tz-course.sql` (все чанки Redesign — версия 1.43.0, новый `lb-tzexamples`, **новые TV tz_price_examples-title / tz_price_examples** + доступ шаблонам «Категория NEW» / «Удаление тату» и значения у 625 / 321 / 1625, **TV bl3 у 625 / 1625**, **новый ресурс EN 1182** + TV, **Babel 182 / 295**, **foot-link-l у 1001**, **UPDATE старых чанков bl5-service-prices, banner-study, bl2-study-trener, bl7-study-portfolio, bl8-study-price, bl10-study-info, bl11-study-calculator, bl12-study-form, bl18-study-succsess, tpl.Form.Study.Modal.BL8**; файл — CSS) — после 61.
 `stage-lbar-63-fixes.sql` (все чанки Redesign — версия 1.44.0, **TV bl7_service_specialists-list у 625 / 321 / 1625**; файлы — CSS / JS, лексиконы ro / ru / en, `images/inner/spec-aliona.webp`, `images/inner/spec-ksenia.webp`) — после 62.
+`stage-lbar-64-photos.sql` (все чанки Redesign — версия 1.45.0, **TV img-master-1 / -2 у 100 / 198 / 1100**; файлы — CSS, `images/design/master-ksenia.webp`, `images/design/master-aliona.webp`) — после 63.
 `stage-lbar-47-about.sql` (новые чанки lb-ahero / lb-astory / lb-asteps / lb-avalues / lb-aculise / lb-areasons, **новый шаблон «О нас»**
 + доступ к TV, **template у 102 / 298 / 1102**, **TV migx_questions / title-bl-faq у 102 / 298 / 1102**; версия 1.34.0;
 файлы — `about-me-v2.webp`, `about-procedure.webp`, `about-avatar.webp`, лексиконы, CSS / JS).
-Патчи проверены импортом. После 63 БД **не менялась** (кроме локальной настройки phpThumb выше).
+Патчи проверены импортом. После 64 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — по решению пользователя
 
