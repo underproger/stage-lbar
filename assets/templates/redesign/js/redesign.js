@@ -975,7 +975,7 @@
 		var stl = window.gsap.timeline({ defaults: { ease: 'expo.out' } });
 		var sAdd = function (sel, vars, pos) { var els = sq(sel); if (els.length) stl.from(els, vars, pos); };
 		sAdd('.lb-shero__frame', { xPercent: 6, opacity: 0, duration: 1.8, ease: 'power3.out', clearProps: 'transform' }, 0);
-		sAdd('.lb-shero__photo', { opacity: 0, duration: 1.4, ease: 'power2.out' }, 0.1);
+		// фото — главный элемент первого экрана (LCP): без затухания (opacity 0 откладывала LCP до анимации, PageSpeed, шаг 67), только приближение
 		sAdd('.lb-shero__photo img', { scale: 1.12, duration: 2.4, ease: 'power3.out', clearProps: 'transform' }, 0.1);
 		/* шапка — как на главной: ссылки меню по отдельности (transform на .lb-nav ломает позицию мега-панели) */
 		stl.from(isDesktop() ? '.lb-header__logo, .lb-nav__list > li > .lb-nav__link, .lb-header__right' : '.lb-header__logo, .lb-header__right', { y: -24, opacity: 0, duration: 1.2, stagger: isDesktop() ? 0.035 : 0.08, clearProps: 'transform' }, 0.3);
@@ -996,7 +996,7 @@
 		var aq = function (s) { return ahero.querySelectorAll(s); };
 		var atl = window.gsap.timeline({ defaults: { ease: 'expo.out' } });
 		var aAdd = function (sel, vars, pos, to) { var els = typeof sel === 'string' ? aq(sel) : sel; if (!els.length) return; if (to) atl.fromTo(els, vars, to, pos); else atl.from(els, vars, pos); };
-		aAdd('.lb-ahero__photo', { y: 50, opacity: 0, duration: 1.7, ease: 'power3.out', clearProps: 'transform' }, 0);
+		aAdd('.lb-ahero__photo', { y: 50, duration: 1.7, ease: 'power3.out', clearProps: 'transform' }, 0); // LCP — без затухания (шаг 67)
 		aAdd('.lb-ahero__photo img', { scale: 1.12, duration: 2.4, ease: 'power3.out', clearProps: 'transform' }, 0);
 		aAdd('.lb-ahero__frame', { x: -30, y: 30, opacity: 0, duration: 2, ease: 'power3.out', clearProps: 'transform' }, 0.35);
 		aAdd('.lb-ahero__arch', { clipPath: 'inset(100% 0% 0% 0%)' }, 0.4, { clipPath: 'inset(0% 0% 0% 0%)', duration: 2.2, stagger: 0.25, ease: 'power2.inOut', clearProps: 'clipPath' });
@@ -1050,7 +1050,8 @@
 	var bg = hero.querySelector('.lb-hero__bg');
 
 	var tl = gsap.timeline({ defaults: { ease: 'expo.out' }, onComplete: function () { doc.classList.add('lb-anim-done'); } });
-	tl.from(bg, { scale: 1.06, opacity: 0, duration: 2.2, ease: 'power3.out', clearProps: 'transform' }, 0)
+	// фон с фото — главный элемент первого экрана (LCP): без затухания, только приближение (шаг 67)
+	tl.from(bg, { scale: 1.06, duration: 2.2, ease: 'power3.out', clearProps: 'transform' }, 0)
 		.from(q('.lb-hero__master'), { y: 50, opacity: 0, duration: 1.8, ease: 'power3.out', clearProps: 'transform' }, 0.25)
 		.from(q('.lb-hero__letters'), { y: 80, opacity: 0, duration: 2.2, ease: 'power3.out', clearProps: 'transform' }, 0.6)
 		.from(q('.lb-hero__vline'), { clipPath: 'inset(0% 0% 100% 0%)', duration: 1.8, ease: 'power2.inOut', clearProps: 'clipPath' }, 0.55)

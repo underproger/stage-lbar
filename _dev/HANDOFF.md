@@ -901,6 +901,14 @@
      --comments false -o js/redesign.min.js`, **пересобирать после каждой правки redesign.js**), lb-scripts подключает .min.js; первая проверка
      прокрутки шапки — в requestAnimationFrame (принудительная компоновка). Не трогали: размер redesign.css (общий для всех страниц, ~47 КБ gzip),
      шрифт Noto Serif Display Italic (91 КБ, акценты в заголовках).
+   - **Шаг 67 (v1.47.0) — PageSpeed страниц услуг** (скрин пользователя: /micropigmentare-ochi-eyeliner, мобильный: LCP 4,2 с, LCP — фото
+     баннера strelkabanner1.jpg 317 КБ, «задержка отрисовки» 1 080 мс). (1) lb-shero: фото баннера (TV img_banner_main) — WebP 480 / 720 / 1080 /
+     1440 px через **pthumb** (`w=…&h=3w&far=0&f=webp&q=80`; h и far=0 — иначе системная phpthumb_far = C дорисует поля до w × h; без h на
+     PHP 8 phpThumb падает на round(''), на хостинге PHP 7 — не важно), srcset + `sizes="(max-width: 1024px) 92vw, 54vw"`; кэш —
+     assets/image-cache (создаётся при первом показе); при ошибке pthumb отдаёт исходный путь — как было. Локально pthumb работает только через
+     ImageMagick (GD-путь phpThumb 1.7.15 на PHP 8 не работает). (2) Интро баннеров (redesign.js): главное фото больше не появляется из
+     opacity 0 (lb-shero__photo, фон lb-hero, фото lb-ahero) — только приближение / сдвиг: затухание откладывало LCP до запуска GSAP.
+     (3) Фото мастера (lb-master, на услугах и главной) — srcset master-v2 430 / 680 / 860w (`img/master-v2-430.webp`, `-680.webp`, альфа q70).
 
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
@@ -964,10 +972,11 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `stage-lbar-64-photos.sql` (все чанки Redesign — версия 1.45.0, **TV img-master-1 / -2 у 100 / 198 / 1100**; файлы — CSS, `images/design/master-ksenia.webp`, `images/design/master-aliona.webp`) — после 63.
 `lbar-prod-65.sql` = `_dev/prod/lbar-prod-65.sql` — **на прод**, после импорта базы стейджа (чанки Redesign, шаблоны, адреса lbar.ro, чистка; файлы — `.htaccess`, `lb-services.tpl`, `lb-subservices.tpl`, `lb-courses.tpl`), перед ним — `lbar-prod-check.sql` на базе прода.
 `lbar-66-pagespeed.sql` (все чанки Redesign — версия 1.46.0, шаблоны (вкл. 2 и 6 без старых ссылок), **UPDATE старых чанков head, head-blog-list**; файлы — `css/legacy.css`, `js/redesign.min.js`, `js/redesign.js`, 4 фото `img/hero-mobile-v2-480/-800.webp`, `img/about-mobile-v2-420/-780.webp`) — на прод после 65.
+`lbar-67-lcp.sql` (все чанки Redesign — версия 1.47.0, шаблоны; файлы — `lb-shero.tpl`, `lb-master.tpl`, `lb-head.tpl`, `lb-scripts.tpl`, `js/redesign.js`, `js/redesign.min.js`, `img/master-v2-430.webp`, `img/master-v2-680.webp`) — после 66.
 `stage-lbar-47-about.sql` (новые чанки lb-ahero / lb-astory / lb-asteps / lb-avalues / lb-aculise / lb-areasons, **новый шаблон «О нас»**
 + доступ к TV, **template у 102 / 298 / 1102**, **TV migx_questions / title-bl-faq у 102 / 298 / 1102**; версия 1.34.0;
 файлы — `about-me-v2.webp`, `about-procedure.webp`, `about-avatar.webp`, лексиконы, CSS / JS).
-Патчи проверены импортом. После 66 БД **не менялась** (кроме локальной настройки phpThumb выше).
+Патчи проверены импортом. После 67 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — по решению пользователя
 

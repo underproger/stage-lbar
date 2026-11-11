@@ -43,7 +43,7 @@
     </div>
 
     <div class="lb-master__photo">
-        <img src="/assets/templates/redesign/img/master-v2.webp" alt="{'lbar.rd.master.alt' | lexicon}" width="860" height="1106" loading="lazy" decoding="async">
+        <img src="/assets/templates/redesign/img/master-v2.webp" srcset="/assets/templates/redesign/img/master-v2-430.webp 430w, /assets/templates/redesign/img/master-v2-680.webp 680w, /assets/templates/redesign/img/master-v2.webp 860w" sizes="(max-width: 600px) 90vw, (max-width: 1024px) 420px, 36vw" alt="{'lbar.rd.master.alt' | lexicon}" width="860" height="1106" loading="lazy" decoding="async">
     </div>
 
     <div class="lb-master__col">
