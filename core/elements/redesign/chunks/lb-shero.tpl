@@ -77,15 +77,16 @@
         <div class="lb-shero__frame" aria-hidden="true"></div>
         <div class="lb-shero__photo">
             {if $photo}
-            {* фото баннера (TV img_banner_main, обычно JPEG 300+ КБ) — главный элемент первого экрана (LCP): WebP 480 / 720 / 1080 / 1440 px
-               через pthumb (шаг 67; кэш — assets/image-cache, создаётся при первом показе; меньше исходника не растягивается; h = 3w и far=0 —
+            {* фото баннера (TV img_banner_main, обычно JPEG 300+ КБ) — главный элемент первого экрана (LCP): JPEG q72 шириной 480 / 720 / 1080 / 1440 px
+               через pthumb (шаг 67; шаг 68: JPEG вместо WebP — на хостинге phpThumb делает WebP через ImageMagick без учёта качества, и файл
+               выходил больше исходника; кэш — assets/image-cache, создаётся при первом показе; меньше исходника не растягивается; h = 3w и far=0 —
                вписать по ширине без полей: системная настройка phpthumb_far = C иначе дорисовала бы поля до w × h). Если pthumb
                не смог — он отдаёт исходный путь, картинка та же, что раньше. В RU / EN pthumb добавляет к пути /ru/ / /en/ — убираем. *}
             {set $src = $photo | ereplace : '~^/+~' : ''}
             {set $ws = [480, 720, 1080, 1440]}
             {set $set = []}
             {foreach $ws as $w}
-            {set $u = $_modx->runSnippet('pthumb', ['input' => $src, 'options' => 'w=' ~ $w ~ '&h=' ~ ($w * 3) ~ '&far=0&f=webp&q=80']) | trim | ereplace : '~^/(ru|en)/assets/~' : '/assets/'}
+            {set $u = $_modx->runSnippet('pthumb', ['input' => $src, 'options' => 'w=' ~ $w ~ '&h=' ~ ($w * 3) ~ '&far=0&f=jpg&q=72']) | trim | ereplace : '~^/(ru|en)/assets/~' : '/assets/'}
             {if !($u | ematch : '~^(/|https?:)~')}{set $u = '/' ~ $u}{/if}
             {set $set[$w] = $u}
             {/foreach}

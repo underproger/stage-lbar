@@ -909,6 +909,12 @@
      ImageMagick (GD-путь phpThumb 1.7.15 на PHP 8 не работает). (2) Интро баннеров (redesign.js): главное фото больше не появляется из
      opacity 0 (lb-shero__photo, фон lb-hero, фото lb-ahero) — только приближение / сдвиг: затухание откладывало LCP до запуска GSAP.
      (3) Фото мастера (lb-master, на услугах и главной) — srcset master-v2 430 / 680 / 860w (`img/master-v2-430.webp`, `-680.webp`, альфа q70).
+   - v1.47.1 (шаг 68): на проде WebP из pthumb вышел **тяжелее исходника** (strelkabanner1: 368 КБ против 317 КБ JPEG) — phpThumb отдаёт WebP
+     через ImageMagick без `-quality` (качество задаётся только для JPEG). Баннер — **JPEG q72** (`f=jpg&q=72`), те же ширины. WebP — штатным
+     плагином сайта modx_plugin_webp_converter: «WEBP Конвертер» в меню пользователя менеджера создаёт /webp/…jpg.webp (cwebp -q 85) для всех
+     JPEG / PNG сайта, включая assets/image-cache, плагин подменяет src / srcset сам (новые миниатюры — после следующего запуска конвертера).
+     PSI-замеры одной страницы скачут (TBT 80 → 420 мс между прогонами без изменений скриптов). В консоли PSI на проде — «AjaxForm is not
+     defined» (было и до шагов 66–67; локально не воспроизводится: AjaxForm объявлен в custom.js выше по странице).
 
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
@@ -973,10 +979,11 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `lbar-prod-65.sql` = `_dev/prod/lbar-prod-65.sql` — **на прод**, после импорта базы стейджа (чанки Redesign, шаблоны, адреса lbar.ro, чистка; файлы — `.htaccess`, `lb-services.tpl`, `lb-subservices.tpl`, `lb-courses.tpl`), перед ним — `lbar-prod-check.sql` на базе прода.
 `lbar-66-pagespeed.sql` (все чанки Redesign — версия 1.46.0, шаблоны (вкл. 2 и 6 без старых ссылок), **UPDATE старых чанков head, head-blog-list**; файлы — `css/legacy.css`, `js/redesign.min.js`, `js/redesign.js`, 4 фото `img/hero-mobile-v2-480/-800.webp`, `img/about-mobile-v2-420/-780.webp`) — на прод после 65.
 `lbar-67-lcp.sql` (все чанки Redesign — версия 1.47.0, шаблоны; файлы — `lb-shero.tpl`, `lb-master.tpl`, `lb-head.tpl`, `lb-scripts.tpl`, `js/redesign.js`, `js/redesign.min.js`, `img/master-v2-430.webp`, `img/master-v2-680.webp`) — после 66.
+`lbar-68-banner-jpg.sql` (все чанки Redesign — версия 1.47.1; файлы — `lb-shero.tpl`, `lb-head.tpl`, `lb-scripts.tpl`) — после 67.
 `stage-lbar-47-about.sql` (новые чанки lb-ahero / lb-astory / lb-asteps / lb-avalues / lb-aculise / lb-areasons, **новый шаблон «О нас»**
 + доступ к TV, **template у 102 / 298 / 1102**, **TV migx_questions / title-bl-faq у 102 / 298 / 1102**; версия 1.34.0;
 файлы — `about-me-v2.webp`, `about-procedure.webp`, `about-avatar.webp`, лексиконы, CSS / JS).
-Патчи проверены импортом. После 67 БД **не менялась** (кроме локальной настройки phpThumb выше).
+Патчи проверены импортом. После 68 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — по решению пользователя
 
