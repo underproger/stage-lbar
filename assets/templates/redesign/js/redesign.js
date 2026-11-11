@@ -12,7 +12,8 @@
 		var onScroll = function () {
 			header.classList.toggle('is-scrolled', window.pageYOffset > 20);
 		};
-		onScroll();
+		// первый раз — в следующем кадре: чтение pageYOffset сразу после старых скриптов заставляло браузер пересчитать раскладку (PageSpeed, шаг 66)
+		(window.requestAnimationFrame || setTimeout)(onScroll);
 		window.addEventListener('scroll', onScroll, { passive: true });
 	}
 

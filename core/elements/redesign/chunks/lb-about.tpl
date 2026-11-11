@@ -28,7 +28,7 @@
 <section class="lb-about{$svc ? ' lb-about--svc' : ''}" id="lb-about">
     <div class="lb-about__bg">
         <picture>
-            <source media="(max-width: 1024px)" srcset="{$img}about-mobile-v2.webp" width="840" height="1090">
+            <source media="(max-width: 1024px)" srcset="{$img}about-mobile-v2-420.webp 420w, {$img}about-mobile-v2-780.webp 780w, {$img}about-mobile-v2.webp 840w" sizes="(max-width: 599px) 100vw, 420px" width="840" height="1090">
             <img src="{$img}about-bg-v2.webp" srcset="{$img}about-bg-v2-1440.webp 1440w, {$img}about-bg-v2.webp 2166w" sizes="100vw" width="2166" height="1218" alt="{$photo ? '' : ('lbar.rd.about.alt' | lexicon)}" loading="lazy" decoding="async">
         </picture>
         {if $photo}

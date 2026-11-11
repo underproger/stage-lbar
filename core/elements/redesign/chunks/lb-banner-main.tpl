@@ -11,12 +11,13 @@
 {set $img = '/assets/templates/redesign/img/'}
 <section class="lb-hero" id="lb-hero">
     {* Сцена (десктоп): фон без декора + буквы «BAR», линия и арки (SVG, чёткие на любом экране) + мастер (вырезка, отдельный слой).
-       На мобильном — одна картинка hero-mobile-v2.webp (фон + мастер, _dev/hero2/make_hero.py), слои скрыты; мастер на мобильном не скачивается (пустой source). *}
+       На мобильном — одна картинка hero-mobile-v2.webp (фон + мастер, _dev/hero2/make_hero.py; шаг 66: + уменьшенные -480 / -800 для srcset — браузер берёт
+       по ширине экрана и плотности), слои скрыты; мастер на мобильном не скачивается (пустой source). *}
     {set $px = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'}
     <div class="lb-hero__bg">
         <div class="lb-hero__scene">
             <picture class="lb-hero__pic">
-                <source media="(max-width: 1024px)" srcset="{$img}hero-mobile-v2.webp" width="1060" height="1107">
+                <source media="(max-width: 1024px)" srcset="{$img}hero-mobile-v2-480.webp 480w, {$img}hero-mobile-v2-800.webp 800w, {$img}hero-mobile-v2.webp 1060w" sizes="100vw" width="1060" height="1107">
                 <img src="{$img}hero-bg.webp" srcset="{$img}hero-bg-1440.webp 1440w, {$img}hero-bg.webp 2166w, {$img}hero-bg-2880.webp 2880w" sizes="100vw" width="2166" height="1218" alt="{'lbar.rd.hero.alt' | lexicon}" loading="eager" fetchpriority="high" decoding="async">
             </picture>
             <div class="lb-hero__art" aria-hidden="true">

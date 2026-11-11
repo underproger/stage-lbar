@@ -7,7 +7,7 @@ OPTS="--no-create-info --skip-triggers --replace --skip-extended-insert --compac
 CAT=$(mysql -N lbar -e "SELECT id FROM ${P}categories WHERE category='Redesign'")
 {
 echo "-- stage-lbar: $DESC"
-echo "-- Накатывать на базу стейджа поверх предыдущих патчей. Затем очистить core/cache/."
+echo "-- Накатывать на базу сайта (с шага 65 — прод lbar.ro) поверх предыдущих патчей. Затем очистить core/cache/."
 echo "SET NAMES utf8mb4;"
 echo "-- все статичные чанки редизайна (содержимое — файлы core/elements/redesign/chunks/*.tpl из git)"
 mysqldump $OPTS lbar ${P}site_htmlsnippets --where="category=$CAT"

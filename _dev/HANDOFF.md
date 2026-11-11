@@ -885,6 +885,22 @@
      от 05.11.2026 11:27 UTC). Порядок карточек при равном menuindex — по id (lb-services / lb-subservices / lb-courses; на EN «Услуги» и
      «Брови» порядок был не как у RO / RU и зависел от базы). `.htaccess`: noindex и robots-stage.txt — только для `*.touchit.vinnica.ua`
      (раньше — для любого домена кроме lbar.ro: при Host с портом или через прокси прод получил бы noindex).
+   - **Шаг 66 (v1.46.0) — PageSpeed (по скринам пользователя, мобильный, главная).** (1) **Старые стили**: на страницах нового дизайна вместо
+     6 блокирующих файлов (reset / template / blog / fonts / media / slimmenu, ~41 КБ gzip) — один `css/legacy.css` (~8 КБ gzip): только правила,
+     которые встречаются на этих страницах (PurgeCSS + csso, `_dev/tools/legacy_css.js`; источники — HTML всех страниц, чанки редизайна,
+     чанки форм / easyComm (`_dev/legacy-css/chunks.tpl`), классы, которые добавляет старый main.js / custom.js (`_dev/legacy-css/jstokens.tpl`),
+     safelist fancybox / jGrowl / iti / ec- / af-). Подключает lb-head (до redesign.css) на всех шаблонах, **кроме 15 и 19** — там полные старые
+     файлы: чанк head выводит их только для шаблона 19 (`{if $_modx->resource.template == 19}`), у 15 — свой head-study; у шаблонов 404 (2),
+     «Спасибо» (6) и чанка head-blog-list 6 ссылок убраны. Проверка: вычисленные стили всех элементов (вкл. скрытые окна и ::before/::after)
+     на 32 страницах (все шаблоны, RO / RU / EN) × 1440 / 390 до и после — совпадают (`_dev/tools/style_snap.py` + `style_cmp.py`); открытые
+     окна записи / консультации, мобильное меню, fancybox — то же (legacy.css против склейки 6 исходных файлов). Отличие одно: `0%` → `0px`
+     в градиенте кнопки (csso), вид тот же. ⚠ **Если новый блок или страница нового дизайна выводит старые классы, которых нет в legacy.css, —
+     пересобрать** legacy.css (`node _dev/tools/legacy_css.js <папка с HTML обхода crawl_all.py> _dev/legacy-css` + csso) и проверить style_snap.
+     (2) Мобильные фото баннера главной и «О микропигментации» — srcset: hero-mobile-v2 480 / 800 / 1060w (`sizes="100vw"`), about-mobile-v2
+     420 / 780 / 840w (`sizes="(max-width: 599px) 100vw, 420px"`). (3) JS — `js/redesign.min.js` (terser: `terser js/redesign.js -c -m
+     --comments false -o js/redesign.min.js`, **пересобирать после каждой правки redesign.js**), lb-scripts подключает .min.js; первая проверка
+     прокрутки шапки — в requestAnimationFrame (принудительная компоновка). Не трогали: размер redesign.css (общий для всех страниц, ~47 КБ gzip),
+     шрифт Noto Serif Display Italic (91 КБ, акценты в заголовках).
 
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
@@ -947,10 +963,11 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `stage-lbar-63-fixes.sql` (все чанки Redesign — версия 1.44.0, **TV bl7_service_specialists-list у 625 / 321 / 1625**; файлы — CSS / JS, лексиконы ro / ru / en, `images/inner/spec-aliona.webp`, `images/inner/spec-ksenia.webp`) — после 62.
 `stage-lbar-64-photos.sql` (все чанки Redesign — версия 1.45.0, **TV img-master-1 / -2 у 100 / 198 / 1100**; файлы — CSS, `images/design/master-ksenia.webp`, `images/design/master-aliona.webp`) — после 63.
 `lbar-prod-65.sql` = `_dev/prod/lbar-prod-65.sql` — **на прод**, после импорта базы стейджа (чанки Redesign, шаблоны, адреса lbar.ro, чистка; файлы — `.htaccess`, `lb-services.tpl`, `lb-subservices.tpl`, `lb-courses.tpl`), перед ним — `lbar-prod-check.sql` на базе прода.
+`lbar-66-pagespeed.sql` (все чанки Redesign — версия 1.46.0, шаблоны (вкл. 2 и 6 без старых ссылок), **UPDATE старых чанков head, head-blog-list**; файлы — `css/legacy.css`, `js/redesign.min.js`, `js/redesign.js`, 4 фото `img/hero-mobile-v2-480/-800.webp`, `img/about-mobile-v2-420/-780.webp`) — на прод после 65.
 `stage-lbar-47-about.sql` (новые чанки lb-ahero / lb-astory / lb-asteps / lb-avalues / lb-aculise / lb-areasons, **новый шаблон «О нас»**
 + доступ к TV, **template у 102 / 298 / 1102**, **TV migx_questions / title-bl-faq у 102 / 298 / 1102**; версия 1.34.0;
 файлы — `about-me-v2.webp`, `about-procedure.webp`, `about-avatar.webp`, лексиконы, CSS / JS).
-Патчи проверены импортом. После 65 (перенос на прод) БД **не менялась** (кроме локальной настройки phpThumb выше).
+Патчи проверены импортом. После 66 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — по решению пользователя
 
