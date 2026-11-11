@@ -7,8 +7,8 @@
 
 - Сайт **lbar.ro** — студия перманентного макияжа (Бухарест). MODX Revolution **2.8.1**, Babel: контекст `web` = RO (корень), `ru` = RU (`/ru/`).
   Менеджер: `/impulsemanager/`. Префикс таблиц `Impulse_Digital_X_`. pdoTools + Fenom включены, ClientConfig (телефон, соцсети и т.п.).
-- **Стейдж:** https://stage-lbar.touchit.vinnica.ua/ — закрыт от индексации правилами в `.htaccess` (любой домен ≠ `lbar.ro` получает
-  `X-Robots-Tag: noindex, nofollow` и `robots-stage.txt` с `Disallow: /`). На проде правила не срабатывают — откатывать не нужно.
+- **Стейдж:** https://stage-lbar.touchit.vinnica.ua/ — закрыт от индексации правилами в `.htaccess` (домен `*.touchit.vinnica.ua` получает
+  `X-Robots-Tag: noindex, nofollow` и `robots-stage.txt` с `Disallow: /`; до шага 65 — любой домен ≠ lbar.ro). На проде правила не срабатывают.
 - **Репо:** `underproger/stage-lbar` (GitHub), ветка `main`, сайт лежит в корне репо. Пользователь сам забирает из git и деплоит на хостинг.
 - **Задача:** редизайн главной (потом остальные страницы) по скринам-макетам пользователя **1 в 1**, анимированно («wow»), **не сломав SEO**.
 
@@ -30,8 +30,8 @@
   Шаблоны 19 и «Обучение» (15) **не трогаем** без просьбы. `_dev/tools/modx_apply54.php` больше не запускать (вернёт 625 / 321 на
   «Удаление тату»); чанки Redesign пересохраняет `_dev/tools/modx_chunks.php`. Общая страница обучения (шаблон 21, только ресурс 60) — переделана по просьбе
   пользователя (п. 27). «Услуги» переведены на свой шаблон «Услуги - общая»; шаблон «Внутренняя» (3: «О нас», вакансии, сертификат) переделан в п. 29.
-- **Мусор удаляем в конце:** старые чанки (`header`, `banner-main`, `bl1-about-us`, `bl2-category`, …), таблицы статистики
-  `stat_online_users` / `stat_page_statistics` (~670 МБ из 700), `_dev/`, `.DS_Store` и т.п.
+- **Мусор удалён в шаге 65** (`_dev/prod/lbar-prod-65.sql`): старые чанки, шаблоны без страниц, корзина, статистика, сессии.
+  На прод не переносить папку `_dev/` (в git остаётся — рабочая).
 - **Без инлайн-стилей** в HTML, стили — в SCSS (BEM, vw-система), скрипты — отдельным файлом.
 - Нумерация (01/02/03) — автоматически из индекса цикла, без ручных полей.
 - **Кнопки по всему сайту** — как на `mockups/block3-services-v2-buttons-style.png`: коричневая пилюля с градиентом (`.lb-btn--solid`)
@@ -870,6 +870,21 @@
      `_dev/patches/step64-data.sql`. Удаление тату — «Специалисты»: рамка фото 4:5 с подложкой (`_header.scss`, .lb-oldpage) — без файла фото
      (не загружен на хостинг) или до ленивой загрузки блок больше не схлопывается до одних имён (пользователь после шага 63 написал, что блок
      «пропал»: в копии базы с патчем блок на месте — вероятно, на хостинге не было файлов images/inner/spec-*.webp).
+   - **Шаг 65 — перенос стейджа на прод.** SQL для прода — `_dev/prod/lbar-prod-65.sql` (= make_patch: чанки Redesign и шаблоны, как в git,
+     + `_dev/prod/lbar-prod.sql`; генератор — `_dev/tools/prod_sql.py`, списки — `_dev/tools/unused_elements.py`). Накатывается на базу прода
+     сразу после импорта дампа базы стейджа: адреса контекстов `site_url` → https://lbar.ro/ (/ru/, /en/), `phpthumb_allow_src_above_docroot` → пусто;
+     **чистка**: тестовая страница «Тест» (/test, 191) и шаблоны без страниц («Блог - Результаты поиска», «Тестовый шаблон», «Удаление тату»);
+     корзина (deleted = 1, 194 ресурса — кроме RU-курса 295: на него ссылается Babel RO-курса) вместе с TV / группами / галереей / индексом поиска;
+     **91 чанк, который сайт не выводит** (старые блоки до редизайна, примеры пакетов, поиск по блогу, lb-tzequip / lb-tzteam / lb-tzprice —
+     их файлы перенесены в `_dev/archive/tz-new-design/`, чтобы modx_chunks.php не создавал их снова); TRUNCATE статистики siteStatistics
+     (~670 МБ), сессий, журнала менеджера; TV bl2_service_advantages-title / -list привязаны к «Категория NEW» (раньше — ни к одному шаблону:
+     блок выводился, но в менеджере полей не было). Проверка: обход всех 129 страниц RO / RU / EN до и после чистки — HTML совпадает
+     (кроме счётчиков просмотров); копия базы стейджа + этот SQL = локальная база (MD5), на хосте lbar.ro — canonical / sitemap на lbar.ro,
+     без noindex и без адресов стейджа. **Локальная база почищена тем же** (`_dev/prod/lbar-cleanup-local.sql`, адреса — стейджа).
+     Перед переносом — `_dev/prod/lbar-prod-check.sql` на базе прода (только чтение: новые отзывы / заявки / правки страниц после копии
+     от 05.11.2026 11:27 UTC). Порядок карточек при равном menuindex — по id (lb-services / lb-subservices / lb-courses; на EN «Услуги» и
+     «Брови» порядок был не как у RO / RU и зависел от базы). `.htaccess`: noindex и robots-stage.txt — только для `*.touchit.vinnica.ua`
+     (раньше — для любого домена кроме lbar.ro: при Host с портом или через прокси прод получил бы noindex).
 
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
@@ -931,10 +946,11 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `stage-lbar-62-tz-course.sql` (все чанки Redesign — версия 1.43.0, новый `lb-tzexamples`, **новые TV tz_price_examples-title / tz_price_examples** + доступ шаблонам «Категория NEW» / «Удаление тату» и значения у 625 / 321 / 1625, **TV bl3 у 625 / 1625**, **новый ресурс EN 1182** + TV, **Babel 182 / 295**, **foot-link-l у 1001**, **UPDATE старых чанков bl5-service-prices, banner-study, bl2-study-trener, bl7-study-portfolio, bl8-study-price, bl10-study-info, bl11-study-calculator, bl12-study-form, bl18-study-succsess, tpl.Form.Study.Modal.BL8**; файл — CSS) — после 61.
 `stage-lbar-63-fixes.sql` (все чанки Redesign — версия 1.44.0, **TV bl7_service_specialists-list у 625 / 321 / 1625**; файлы — CSS / JS, лексиконы ro / ru / en, `images/inner/spec-aliona.webp`, `images/inner/spec-ksenia.webp`) — после 62.
 `stage-lbar-64-photos.sql` (все чанки Redesign — версия 1.45.0, **TV img-master-1 / -2 у 100 / 198 / 1100**; файлы — CSS, `images/design/master-ksenia.webp`, `images/design/master-aliona.webp`) — после 63.
+`lbar-prod-65.sql` = `_dev/prod/lbar-prod-65.sql` — **на прод**, после импорта базы стейджа (чанки Redesign, шаблоны, адреса lbar.ro, чистка; файлы — `.htaccess`, `lb-services.tpl`, `lb-subservices.tpl`, `lb-courses.tpl`), перед ним — `lbar-prod-check.sql` на базе прода.
 `stage-lbar-47-about.sql` (новые чанки lb-ahero / lb-astory / lb-asteps / lb-avalues / lb-aculise / lb-areasons, **новый шаблон «О нас»**
 + доступ к TV, **template у 102 / 298 / 1102**, **TV migx_questions / title-bl-faq у 102 / 298 / 1102**; версия 1.34.0;
 файлы — `about-me-v2.webp`, `about-procedure.webp`, `about-avatar.webp`, лексиконы, CSS / JS).
-Патчи проверены импортом. После 64 БД **не менялась** (кроме локальной настройки phpThumb выше).
+Патчи проверены импортом. После 65 (перенос на прод) БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — по решению пользователя
 

@@ -11,15 +11,15 @@
 RewriteEngine On
 RewriteBase /
 
-# --- STAGE: любой домен, кроме боевого lbar.ro, закрыт от индексации ---
-# На проде (lbar.ro / www.lbar.ro) правила не срабатывают — ничего откатывать не нужно.
+# --- STAGE: стейдж (*.touchit.vinnica.ua) закрыт от индексации: заголовок noindex и robots-stage.txt (Disallow: /) ---
+# Срабатывает только на домене стейджа; на проде (lbar.ro) — никогда, как бы ни пришёл Host (с портом, через прокси) — ничего откатывать не нужно.
 <IfModule mod_setenvif.c>
-SetEnvIfNoCase Host "^(www\.)?lbar\.ro$" LBAR_PROD
+SetEnvIfNoCase Host "touchit\.vinnica\.ua" LBAR_STAGE
 </IfModule>
 <IfModule mod_headers.c>
-Header always set X-Robots-Tag "noindex, nofollow" env=!LBAR_PROD
+Header always set X-Robots-Tag "noindex, nofollow" env=LBAR_STAGE
 </IfModule>
-RewriteCond %{HTTP_HOST} !^(www\.)?lbar\.ro$ [NC]
+RewriteCond %{HTTP_HOST} touchit\.vinnica\.ua [NC]
 RewriteRule ^robots\.txt$ robots-stage.txt [L]
 
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php

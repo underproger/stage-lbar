@@ -1,6 +1,6 @@
 {* Блок «Услуги» (редизайн, 3-й экран главной).
    Заголовок, подзаголовок и список услуг — прежние TV: main-title-bl2, sub-title-bl2, id-bl2.
-   Карточка — чанк lb.serviceCard. *}
+   Карточка — чанк lb.serviceCard. Порядок — menuindex, при равном — id (шаг 65); в sortby после «{» пробел — иначе это тег Fenom. *}
 <section class="lb-services" id="lb-services">
     <div class="lb-services__bg" aria-hidden="true">
         <img src="/assets/templates/redesign/img/services-bg.webp?v=2" srcset="/assets/templates/redesign/img/services-bg-1440.webp?v=2 1440w, /assets/templates/redesign/img/services-bg.webp?v=2 2166w" sizes="100vw" width="2166" height="1218" alt="" loading="lazy" decoding="async">
@@ -21,8 +21,7 @@
             &resources=`[[*id-bl2]]`
             &limit=`12`
             &tpl=`lb.serviceCard`
-            &sortby=`menuindex`
-            &sortdir=`ASC`
+            &sortby=`{ "menuindex": "ASC", "id": "ASC" }`
             &includeTVs=`im-category,alt-im-category,intro-text-bl2,title-bl2`
         ]]
     </div>

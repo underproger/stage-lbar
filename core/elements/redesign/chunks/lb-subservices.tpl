@@ -1,5 +1,5 @@
 {* Блок «Подуслуги» на странице услуги (шаблон «Категория») — вместо bl2-category-inerial: дочерние ресурсы (как было:
-   pdoResources, parents = текущий, до 12, по menuindex). Выводится, только если дети есть. H2 — TV main-title-bl2,
+   pdoResources, parents = текущий, до 12, по menuindex; при равном menuindex — по id, шаг 65). Выводится, только если дети есть. H2 — TV main-title-bl2,
    подзаголовок — TV sub-title-bl2 (как в tpl.moreWrap-category.main). Вид — блок «Услуги» главной (lb-scard).
    Общая страница «Услуги» (шаблон «Услуги — общая», вместо bl2-category-inerial-2; режим hub): все опубликованные услуги-потомки
    (шаблоны «Категория» 8 и «Категория NEW» 19, по menuindex), карточка lb.hubCard; H2 и подзаголовок — те же TV.
@@ -13,8 +13,7 @@
     'leftJoin' => ['Tpl' => ['class' => 'modTemplate', 'on' => 'Tpl.id = modResource.template']],
     'where' => '[{"template:IN":[8,19],"OR:Tpl.templatename:=":"Удаление тату"},{"class_key:!=":"modWebLink"}]',
     'tpl' => 'lb.hubCard',
-    'sortby' => 'menuindex',
-    'sortdir' => 'ASC',
+    'sortby' => ['menuindex' => 'ASC', 'id' => 'ASC'],
     'includeTVs' => 'img_banner_main,im-category,intro-text-bl2,sub-title-banner',
     'processTVs' => 'img_banner_main,im-category'
 ])}
@@ -24,8 +23,7 @@
     'limit' => 12,
     'where' => ['class_key:!=' => 'modWebLink'],
     'tpl' => 'lb.subserviceCard',
-    'sortby' => 'menuindex',
-    'sortdir' => 'ASC',
+    'sortby' => ['menuindex' => 'ASC', 'id' => 'ASC'],
     'includeTVs' => 'im-category,alt-im-category,intro-text-bl2,title-bl2'
 ])}
 {/if}
