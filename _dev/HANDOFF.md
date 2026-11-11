@@ -852,6 +852,19 @@
      в программе курса текст «Ziua 3» (брови powder) — копия «Ziua 4» (губы aquarelle), переведено как есть. Проверка: axe — 0 нарушений
      (курс и удаление тату RO / EN, телефон и десктоп); SEO против шага 61 — у 625 / 321 только новый H3, у 182 — hreflang en, ссылка на EN и
      исчезнувший выводившийся ключ словаря; патч — импорт в копию базы с откатом шага, совпадение MD5 и повторный импорт.
+   - v1.44.0 (шаг 63, по просьбе пользователя): удаление тату — «Цена на примерах»: отступ H3 → лента больше (vw(48) / 28px), под лентой
+     подсказка «листайте» (стрелка и палец с анимацией, только ≤ 1024px, где лента прокручивается; после первой прокрутки гаснет —
+     redesign.js; при prefers-reduced-motion — без анимации), «5 cm²» не рвётся. **Специалисты** (MIGX bl7_service_specialists-list у
+     625 / 321 / 1625): **без Игоря**, новые фото Алёны и Ксении (фото пользователя → `/images/inner/spec-aliona.webp`, `spec-ksenia.webp`,
+     800×1000; у Ксении фон — подложка в тон фото Алёны), двое — по центру (`_header.scss`, .lb-oldpage); `_dev/tools/step63_data.py` →
+     `_dev/patches/step63-data.sql`, `_dev/en/tr/625.json` — без Игоря. Мега-меню (lb.navMega): EN 1625 — в колонке «Micropigmentation» (как
+     RO 625 / RU 321), «Despre mine / Обо мне / About me» → страница «О нас» (102 / 298 / 1102; было — блок «Мастер» главной `#lb-master`).
+     «О нас» — «За кулисами»: **один ролик** (промо студии `2xwQU_Vt1ys`, подпись — lbar.rd.ab.vid.promo) на всю ширину (десктоп — превью 2:1,
+     телефон — 16:9, без ленты) вместо пяти (класс lb-aculise__grid--one, `_apage.scss`; ключи vid.1–5 в лексиконе остались, не выводятся).
+     Простой баннер (lb-shero--simple: портфолио, отзывы, цены, блог, «Услуги» и др.): H1 → крошки vw(24) (было vw(44)), крошки → следующий
+     блок vw(20) (было vw(56)), на телефоне крошки — 18px от текста (было 28px). Проверка: axe — 0 нарушений (удаление тату RO / RU / EN,
+     «О нас» RO / RU / EN, портфолио, курс EN); SEO против шага 62 — заголовки без изменений; на всех страницах ушла ссылка меню
+     `/#lb-master` (теперь — на «О нас»); у «О нас» — 1 ролик вместо 5; у 625 / 321 — нет «Igor», другие фото специалистов.
 
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
@@ -911,10 +924,11 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `stage-lbar-60-tz-old.sql` (все чанки Redesign — версия 1.41.1, **template 19 у 625 / 321**, **UPDATE старых чанков bl1-about-service, tpl.ms2GalleryBlog.New и сниппета getEquipmentList**; файл — CSS) — после 58 (59 — без патча).
 `stage-lbar-61-en-tz.sql` (все чанки Redesign — версия 1.42.0, **новый ресурс EN 1625** + TV, **Babel 625 / 321**, **TV bl2 / bl3 у 625 / 321**, **foot-link-l у 1001**, **UPDATE старых чанков banner-interial-category-new, bl6-portfolio-new, bl9-reviews-new, bl-contact**; файлы — CSS, `images/inner/eq-face-lift.webp`) — после 60.
 `stage-lbar-62-tz-course.sql` (все чанки Redesign — версия 1.43.0, новый `lb-tzexamples`, **новые TV tz_price_examples-title / tz_price_examples** + доступ шаблонам «Категория NEW» / «Удаление тату» и значения у 625 / 321 / 1625, **TV bl3 у 625 / 1625**, **новый ресурс EN 1182** + TV, **Babel 182 / 295**, **foot-link-l у 1001**, **UPDATE старых чанков bl5-service-prices, banner-study, bl2-study-trener, bl7-study-portfolio, bl8-study-price, bl10-study-info, bl11-study-calculator, bl12-study-form, bl18-study-succsess, tpl.Form.Study.Modal.BL8**; файл — CSS) — после 61.
+`stage-lbar-63-fixes.sql` (все чанки Redesign — версия 1.44.0, **TV bl7_service_specialists-list у 625 / 321 / 1625**; файлы — CSS / JS, лексиконы ro / ru / en, `images/inner/spec-aliona.webp`, `images/inner/spec-ksenia.webp`) — после 62.
 `stage-lbar-47-about.sql` (новые чанки lb-ahero / lb-astory / lb-asteps / lb-avalues / lb-aculise / lb-areasons, **новый шаблон «О нас»**
 + доступ к TV, **template у 102 / 298 / 1102**, **TV migx_questions / title-bl-faq у 102 / 298 / 1102**; версия 1.34.0;
 файлы — `about-me-v2.webp`, `about-procedure.webp`, `about-avatar.webp`, лексиконы, CSS / JS).
-Патчи проверены импортом. После 62 БД **не менялась** (кроме локальной настройки phpThumb выше).
+Патчи проверены импортом. После 63 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — по решению пользователя
 

@@ -1131,3 +1131,20 @@
 		});
 	}
 })();
+
+/* ================= Удаление тату: «Цена на примерах» (шаг 63) =================
+   Подсказка «листайте» под лентой (телефон / планшет) гаснет, как только ленту прокрутили. */
+(function () {
+	'use strict';
+	Array.prototype.forEach.call(document.querySelectorAll('.lb-tzex'), function (box) {
+		var list = box.querySelector('.lb-tzex__list');
+		if (!list) return;
+		var onScroll = function () {
+			if (list.scrollLeft > 8) {
+				box.classList.add('lb-tzex--swiped');
+				list.removeEventListener('scroll', onScroll);
+			}
+		};
+		list.addEventListener('scroll', onScroll, { passive: true });
+	});
+})();

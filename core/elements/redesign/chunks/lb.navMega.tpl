@@ -3,15 +3,16 @@
    Раскладка по колонкам (как в макете):
      «Micropigmentare» — брови, глаза, губы, коррекция, удаление (id ниже, RO / RU / EN), «Sprâncene» — подразделы бровей (дети id 2 / 303 / 1002),
      «Alte servicii» — все остальные дети раздела (новые услуги попадут сюда автоматически), «Acces rapid» — Gift Voucher (177 / 323 / 1177) +
-     «Despre mine» (блок «Мастер» главной, #lb-master), портфолио (100 / 198 / 1100), цены (44 / 270 / 1044). EN-id = RO-id + 1000.
+     «Despre mine» → страница «О нас» (102 / 298 / 1102; до шага 63 — блок «Мастер» главной, #lb-master), портфолио (100 / 198 / 1100),
+     цены (44 / 270 / 1044). EN-id = RO-id + 1000 (удаление тату EN 1625 — в «Micropigmentare» с шага 63, как RO 625 / RU 321).
    Карточки «Рекомендуем» слева больше нет (убрана по просьбе пользователя). Подписи колонок — лексикон lbar.rd.mega.*.
    Десктоп — панель под шапкой (наведение / фокус), мобильный — раскрывается кнопкой +, как прежние подменю. *}
 {$_modx->lexicon->load('babel:translate')}
 {set $L = ($id == 302) ? 'ru' : (($id == 1080) ? 'en' : 'ro')}
 {set $cfgs = [
-    'ro' => ['brows' => 2, 'micro' => [2, 162, 167, 119, 625], 'quick' => [177], 'pages' => [100, 44]],
-    'ru' => ['brows' => 303, 'micro' => [303, 317, 319, 316, 321], 'quick' => [323], 'pages' => [198, 270]],
-    'en' => ['brows' => 1002, 'micro' => [1002, 1162, 1167, 1119], 'quick' => [1177], 'pages' => [1100, 1044]]
+    'ro' => ['brows' => 2, 'micro' => [2, 162, 167, 119, 625], 'quick' => [177], 'about' => 102, 'pages' => [100, 44]],
+    'ru' => ['brows' => 303, 'micro' => [303, 317, 319, 316, 321], 'quick' => [323], 'about' => 298, 'pages' => [198, 270]],
+    'en' => ['brows' => 1002, 'micro' => [1002, 1162, 1167, 1119, 1625], 'quick' => [1177], 'about' => 1102, 'pages' => [1100, 1044]]
 ]}
 {set $cfg = $cfgs[$L]}
 {set $opts = ['sortby' => ['menuindex' => 'ASC', 'id' => 'ASC'], 'select' => 'id,pagetitle,menutitle', 'limit' => 0]}
@@ -89,9 +90,8 @@
                     <li><a class="lb-mega__pill" href="{$_modx->makeUrl($qid)}"><svg class="lb-mega__ic" viewBox="0 0 24 24" aria-hidden="true">{$qsvg['gift']}</svg><span>{$byId[$qid].menutitle ?: $byId[$qid].pagetitle}</span>{$chev}</a></li>
                     {/if}
                     {/foreach}
-                    {* «Despre mine» — к блоку «Мастер» главной: на главной — скролл к #lb-master, с других страниц — переход на главную с якорем *}
-                    {set $start = $_modx->config.site_start}
-                    <li><a class="lb-mega__pill" href="{($_modx->resource.id == $start) ? '' : $_modx->makeUrl($start)}#lb-master"><svg class="lb-mega__ic" viewBox="0 0 24 24" aria-hidden="true">{$qsvg['user']}</svg><span>{'lbar.rd.mega.aboutme' | lexicon}</span>{$chev}</a></li>
+                    {* «Despre mine» — страница «О нас» (Despre noi / О нас / About us) *}
+                    <li><a class="lb-mega__pill" href="{$_modx->makeUrl($cfg.about)}"><svg class="lb-mega__ic" viewBox="0 0 24 24" aria-hidden="true">{$qsvg['user']}</svg><span>{'lbar.rd.mega.aboutme' | lexicon}</span>{$chev}</a></li>
                     {foreach $pages as $r}
                     <li><a class="lb-mega__pill" href="{$_modx->makeUrl($r.id)}"><svg class="lb-mega__ic" viewBox="0 0 24 24" aria-hidden="true">{$qsvg[$qicons[$r.id]]}</svg><span>{$r.menutitle ?: $r.pagetitle}</span>{$chev}</a></li>
                     {/foreach}

@@ -868,6 +868,33 @@ $ap-line: rgba(165, 102, 90, .24);
 		color: #1f1612;
 		pointer-events: none;
 	}
+	// шаг 63: один ролик (промо студии) — на всю ширину, превью 2:1 (ниже 16:9, чтобы не занимать весь экран), кнопка и подпись крупнее
+	&__grid--one {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	&__grid--one &__item,
+	&__grid--one &__item:nth-child(n) {
+		grid-column: auto;
+	}
+	&__grid--one &__tile {
+		aspect-ratio: 2 / 1;
+		border-radius: vw(32);
+	}
+	&__grid--one &__play {
+		width: vw(104);
+		height: vw(104);
+		margin: vw(-52) 0 0 vw(-52);
+		svg {
+			width: vw(38);
+			height: vw(38);
+		}
+	}
+	&__grid--one &__cap {
+		left: vw(26);
+		bottom: vw(26);
+		padding: vw(10) vw(20);
+		font-size: vw(15.5);
+	}
 }
 
 // ---------- шесть причин + «О студии» ----------
@@ -1298,6 +1325,31 @@ $ap-line: rgba(165, 102, 90, .24);
 		&__item:nth-child(n) {
 			flex: 0 0 84%;
 			scroll-snap-align: start;
+		}
+		&__grid--one {
+			display: block;
+			margin: 0;
+			padding: 0;
+			overflow: visible;
+		}
+		&__grid--one &__tile {
+			aspect-ratio: 16 / 9;
+			border-radius: 18px;
+		}
+		&__grid--one &__play {
+			width: 58px;
+			height: 58px;
+			margin: -29px 0 0 -29px;
+			svg {
+				width: 22px;
+				height: 22px;
+			}
+		}
+		&__grid--one &__cap {
+			left: 10px;
+			bottom: 10px;
+			padding: 6px 12px;
+			font-size: 12px;
 		}
 		&__tile {
 			border-radius: 18px;
