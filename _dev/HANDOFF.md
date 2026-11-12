@@ -915,6 +915,16 @@
      JPEG / PNG сайта, включая assets/image-cache, плагин подменяет src / srcset сам (новые миниатюры — после следующего запуска конвертера).
      PSI-замеры одной страницы скачут (TBT 80 → 420 мс между прогонами без изменений скриптов). В консоли PSI на проде — «AjaxForm is not
      defined» (было и до шагов 66–67; локально не воспроизводится: AjaxForm объявлен в custom.js выше по странице).
+   - Шаг 69 (по просьбе пользователя, БД — `_dev/patches/step69-reviews.sql`): **число отзывов в микроразметке** (aggregateRating
+     ProfessionalService / LocalBusiness): курс (RO / EN, свой JSON-LD в шаблоне «Обучение» 15) — **90** вместо 13; статьи блога
+     («Блог - статья» 5, `[[$lb-script? &reviews=`25`]]`) — **25** у всех (раньше разметка была только у статьи с оценками, 7);
+     услуги — 135 (как было); остальное — ветка EasyComm страницы, а у **EN — ветка RO-двойника** (`lb.roId`): главная EN 7, отзывы EN 25,
+     мастера EN 8 (раньше у EN разметки не было); RU — свои (главная 4, отзывы 14). Старый чанк `script` заменён на `lb-script` во всех
+     шаблонах (1, 2, 3, 4, 6, 9, 10, 13, 14, 16, 21, 22, 23) — `script` больше нигде не стоит. `lb-script` без &reviews ведёт себя как
+     старый script (нет оценок — нет aggregateRating), с &reviews — разметка всегда (оценка ветки или 5). **Важно:** параметр чанка
+     (`&reviews`) — не Fenom-переменная, а MODX-плейсхолдер, подставляется до Fenom (`'[[+reviews]]'`, как &tz в lb-consult); до шага 69
+     `{$reviews ?: 135}` всегда брал запасное 135. Сверка всех 129 адресов с шагом 68: кроме JSON-LD и счётчиков просмотров HTML тот же,
+     JSON-LD валиден везде.
 
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
@@ -980,10 +990,11 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `lbar-66-pagespeed.sql` (все чанки Redesign — версия 1.46.0, шаблоны (вкл. 2 и 6 без старых ссылок), **UPDATE старых чанков head, head-blog-list**; файлы — `css/legacy.css`, `js/redesign.min.js`, `js/redesign.js`, 4 фото `img/hero-mobile-v2-480/-800.webp`, `img/about-mobile-v2-420/-780.webp`) — на прод после 65.
 `lbar-67-lcp.sql` (все чанки Redesign — версия 1.47.0, шаблоны; файлы — `lb-shero.tpl`, `lb-master.tpl`, `lb-head.tpl`, `lb-scripts.tpl`, `js/redesign.js`, `js/redesign.min.js`, `img/master-v2-430.webp`, `img/master-v2-680.webp`) — после 66.
 `lbar-68-banner-jpg.sql` (все чанки Redesign — версия 1.47.1; файлы — `lb-shero.tpl`, `lb-head.tpl`, `lb-scripts.tpl`) — после 67.
+`lbar-69-reviews.sql` (чанки Redesign + шаблоны: lb-script вместо script, статьи &reviews=25, курс 90) — после 68.
 `stage-lbar-47-about.sql` (новые чанки lb-ahero / lb-astory / lb-asteps / lb-avalues / lb-aculise / lb-areasons, **новый шаблон «О нас»**
 + доступ к TV, **template у 102 / 298 / 1102**, **TV migx_questions / title-bl-faq у 102 / 298 / 1102**; версия 1.34.0;
 файлы — `about-me-v2.webp`, `about-procedure.webp`, `about-avatar.webp`, лексиконы, CSS / JS).
-Патчи проверены импортом. После 68 БД **не менялась** (кроме локальной настройки phpThumb выше).
+Патчи проверены импортом. После 69 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — по решению пользователя
 

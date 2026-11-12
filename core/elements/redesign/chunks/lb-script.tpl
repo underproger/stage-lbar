@@ -1,10 +1,21 @@
-{* Скрипты и микроразметка страниц услуг (шаг 50) — копия старого чанка script (он сам не меняется: стоит на остальных шаблонах).
-   Отличия: число отзывов в aggregateRating (ProfessionalService / LocalBusiness) — параметр &reviews из шаблона («Категория» 8 и
-   «Категория NEW» 19 передают 135), а не ecMessagesCount (отзывы easyComm этой страницы); оценка — ecThreadRatingMicro, а если у страницы
-   своих оценок нет (EN-версии) — 5, поэтому aggregateRating есть на каждой странице услуги; убран лишний «]]» после JSON WebSite
-   (в старом чанке из-за него JSON невалиден). *}
-{set $rate = $_modx->runSnippet('ecThreadRatingMicro') | trim}
-{if !$rate || $rate == '0'}{set $rate = 5}{/if}
+{* Скрипты и микроразметка ProfessionalService / LocalBusiness / WebSite (шаг 50 — страницы услуг; шаг 69 — все шаблоны со старым чанком
+   script: он больше нигде не стоит). Копия старого script, отличия — aggregateRating и убранный лишний «]]» после JSON WebSite.
+   С параметром &reviews — число отзывов из него, оценка — ветка EasyComm, а если оценок нет — 5; aggregateRating есть всегда:
+   «Категория» (8) и «Категория NEW» (19) — 135, «Блог - статья» (5) — 25 (курс, шаблон «Обучение» 15, — свой блок в шаблоне: 90).
+   Без параметра (остальные шаблоны) — как в старом script: оценка и число — ветка EasyComm страницы (ecThreadRatingMicro /
+   ecMessagesCount), нет оценок — нет aggregateRating. У EN-страницы ветка — RO-двойника (lb.roId, у переводов EN своих отзывов нет),
+   поэтому число отзывов на EN — как в румынской версии; RO и RU — свои. Параметр &reviews — MODX-плейсхолдер, подставляется до Fenom
+   (как &tz в lb-consult; Fenom-переменной $reviews нет); без параметра плейсхолдер остаётся как есть → цифр нет → пусто. *}
+{set $reviews = '[[+reviews]]' | ereplace : '~\D+~' : ''}
+{set $tid = $_modx->getChunk('lb.roId') | trim}
+{set $rate = $_modx->runSnippet('ecThreadRatingMicro', ['thread' => 'resource-' ~ $tid]) | trim}
+{if !$rate || $rate == '0'}{set $rate = ''}{/if}
+{if $reviews}
+{set $cnt = $reviews}
+{if !$rate}{set $rate = 5}{/if}
+{elseif $rate}
+{set $cnt = $_modx->runSnippet('ecMessagesCount', ['thread' => 'resource-' ~ $tid]) | trim}
+{/if}
 {disableSource}
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -68,11 +79,11 @@ $(document).on('af_complete', function(event, response) {
 		},
 		"url": "[[!++site_url]]",
 		"telephone": "[[++phone-1]]",
-		"aggregateRating": {
+		{if $rate}"aggregateRating": {
           "@type": "AggregateRating",
           "ratingValue": {$rate},
-          "reviewCount": {$reviews ?: 135}
-        },
+          "reviewCount": {$cnt}
+        },{/if}
 		"openingHoursSpecification": [
 			{
 			"@type": "OpeningHoursSpecification",
@@ -117,11 +128,11 @@ $(document).on('af_complete', function(event, response) {
 		},
 		"url": "[[!++site_url]]",
 		"telephone": "[[++phone-1]]",
-		"aggregateRating": {
+		{if $rate}"aggregateRating": {
           "@type": "AggregateRating",
           "ratingValue": {$rate},
-          "reviewCount": {$reviews ?: 135}
-        },
+          "reviewCount": {$cnt}
+        },{/if}
 		"openingHoursSpecification": [
 			{
 			"@type": "OpeningHoursSpecification",
