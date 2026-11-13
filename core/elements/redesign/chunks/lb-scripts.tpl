@@ -1,7 +1,7 @@
 {* Скрипты редизайна (перед </body>). *}
 <script src="/assets/templates/redesign/js/vendor/gsap.min.js" defer></script>
 <script src="/assets/templates/redesign/js/vendor/ScrollTrigger.min.js" defer></script>
-<script src="/assets/templates/redesign/js/redesign.min.js?v=1.50.0" defer></script>
+<script src="/assets/templates/redesign/js/redesign.min.js?v=1.51.0" defer></script>
 {if $_modx->config.cultureKey == 'en'}
 {* EN: после отправки формы — своя страница «Thank you» (1040). Старый обработчик af_complete в чанке script и в шаблоне «Обучение» (15) ведёт на RO 40 / RU 269 (RU для всех,
    кроме RO); этот обработчик зарегистрирован после него и переназначает адрес (последнее присваивание location выигрывает). *}

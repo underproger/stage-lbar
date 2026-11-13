@@ -469,10 +469,17 @@ $ft-copper: #d4a184;
 			margin-top: 12px;
 			font-size: 24px;
 		}
+		// зоны нажатия не меньше 24 px по высоте (PageSpeed: «области прикосновения недостаточно большие», шаг 75)
 		&__mail {
+			display: flex;
+			align-items: center;
+			min-height: 24px;
+			margin-top: 4px;
 			font-size: 16px;
 		}
 		&__addr {
+			margin-top: 4px;
+			padding: 2px 0;
 			font-size: 14.5px;
 		}
 		&__time {

@@ -979,6 +979,22 @@
      вероятная причина на проде — подмена шрифта Montserrat (Google, swap) после отрисовки; теперь шрифт свой и предзагружен.
      Если CLS останется — у иконок merit.svg (loading="lazy" от плагина, без размеров) задать width / height (нужен файл).
      На остальных страницах Google Fonts Montserrat всё ещё грузится (lb-script, конец body; ~120 КБ) — можно так же перевести на свои файлы.
+   - v1.51.0 (шаг 75, курс после шага 74: мобильная 70–78, LCP 5,4 с — «задержка отрисовки» 1,97 с, CLS 0,129 на `.banner-merit__item`;
+     пользователь попросил смотреть и остальные пункты PageSpeed, `_dev/patches/step75-psi-other.sql`):
+     (1) иконки `/images/design/merit.svg` в баннерах курса (banner-study) и удаления тату (banner-interial-category-new) —
+     `width="34" height="32"`: раньше (loading="lazy" от плагина, без размеров) иконка догружалась и сдвигала пункты (локально с
+     замедлением сети и CPU ×4 — сдвиг `.banner-merit__item` 684→700 px; после — нет), баннер рос, LCP засчитывался заново. Сам
+     merit.svg пережат svgo (точность 2): 26 → 6,9 КБ, при ×8 не отличается — файл в /images (не в git), отдан в архиве шага.
+     (2) Шаблон «Обучение»: убран Google Maps (`initMap` из lightbox.js искал #map, которого на курсе нет → ошибка в консоли
+     «Expected mapDiv… null», «Рекомендации» 96; ~250 КБ JS впустую); lightbox.js?v=2. (3) lightbox.js: у `a.lb-close` —
+     role="button" aria-label="Close" (SEO: «ссылки невозможно просканировать»; файл в ISO-8859, правка байтов). (4) Чанк inttelinput
+     (телефон на всех формах): `itiAria()` — на телефонах intlTelInput 17 кладёт список стран в документ только при открытии, а
+     aria-owns / aria-controls / aria-activedescendant на него стоят всегда («недействительные значения aria-*» в «Специальных
+     возможностях» и «Агентном просмотре»); пока списка нет — ссылки снимаются (MutationObserver + close), при открытии owns / controls
+     возвращаются. Обновление 17.0.13 → 17.0.21 не помогает (то же поведение). (5) Подвал на мобильном: `lb-footer__mail` — min-height
+     24px, `__addr` — padding 2px, отступы 4px (зоны нажатия ≥ 24 px; почта / телефон / адрес — 188×24 / 196×24 / 261×25,8).
+     Не делали: «изображения без width / height» у остальных картинок старых блоков курса (ниже первого экрана, сдвигов не дают),
+     «неиспользуемый CSS» redesign.css на старых шаблонах (~40 КБ), предупреждения о кэше сторонних (extreme-ip-lookup).
 
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
@@ -1050,10 +1066,11 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `lbar-72-tz-banner-img.sql` (чанк banner-interial-category-new; файлы — 4 картинки assets/templates/redesign/img/tz-banner-in-*) — после 71.
 `lbar-73-tz-bg.sql` (чанки Redesign — версия 1.49.1; файлы — tz-bg-banner.webp, tz-study.css, lb-head, lb-scripts) — после 72.
 `lbar-74-course-css.sql` (чанки Redesign — версия 1.50.0, чанк head-study; файлы — course.css, lb-head, lb-scripts) — после 73.
+`lbar-75-psi-other.sql` (чанки Redesign — версия 1.51.0, banner-study, banner-interial-category-new, inttelinput, шаблон 15; файлы — redesign.css, _footer.scss, lb-head, lb-scripts, lightbox.js, images/design/merit.svg) — после 74.
 `stage-lbar-47-about.sql` (новые чанки lb-ahero / lb-astory / lb-asteps / lb-avalues / lb-aculise / lb-areasons, **новый шаблон «О нас»**
 + доступ к TV, **template у 102 / 298 / 1102**, **TV migx_questions / title-bl-faq у 102 / 298 / 1102**; версия 1.34.0;
 файлы — `about-me-v2.webp`, `about-procedure.webp`, `about-avatar.webp`, лексиконы, CSS / JS).
-Патчи проверены импортом. После 74 БД **не менялась** (кроме локальной настройки phpThumb выше).
+Патчи проверены импортом. После 75 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — по решению пользователя
 
