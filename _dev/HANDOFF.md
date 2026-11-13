@@ -959,6 +959,12 @@
      26 КБ (своя перекодировка не меньше), а уменьшать 554 px нельзя — на телефонах (292 px × DPR 2–3) станет мутным; PageSpeed считает
      размер без учёта плотности экрана, картинка ниже первого экрана и на оценку не влияет. Фон баннера `/images/design/bg-banner.png`
      (LCP на мобильном) — исходника в репозитории нет, ждём файл от пользователя.
+   - v1.49.1 (шаг 73): фон баннера «Удаление тату» (`.banner`, LCP на мобильном; исходник `/images/design/bg-banner.png` — PNG 1920×940
+     с палитрой и дизерингом, 199 КБ, прислал пользователь) → `assets/templates/redesign/img/tz-bg-banner.webp` (q85, 9 КБ; при ×4 яркости
+     даже ровнее исходника). Адрес меняет `_dev/tools/tz_css.js` при сборке tz-study.css; предзагрузка в lb-head (шаблон 19) — тот же
+     WebP (type="image/webp"). Запросы: и на 390, и на 1440 px — только WebP, один раз. Локально (Lighthouse mobile, медленная сеть
+     симуляции): LCP — фон баннера, загрузка 0,4 с, остальное — ожидание блокирующих стилей и всего, что запрошено до отрисовки
+     (~600 КБ: main.js 79 КБ, шрифты — themify 55 КБ, Yeseva / Playfair / Montserrat по ~38 КБ, merit.svg 31 КБ и т. д.).
 
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
@@ -1028,10 +1034,11 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `lbar-70-tbt.sql` (чанки Redesign — версия 1.48.0; файлы — redesign.js / .min.js, lb-head, lb-scripts, lb-services, lb-subservices) — после 69.
 `lbar-71-tz-css.sql` (чанки Redesign — версия 1.49.0, чанк head и шаблон 19; файлы — tz-legacy.css, tz-study.css, lb-head, lb-scripts) — после 70.
 `lbar-72-tz-banner-img.sql` (чанк banner-interial-category-new; файлы — 4 картинки assets/templates/redesign/img/tz-banner-in-*) — после 71.
+`lbar-73-tz-bg.sql` (чанки Redesign — версия 1.49.1; файлы — tz-bg-banner.webp, tz-study.css, lb-head, lb-scripts) — после 72.
 `stage-lbar-47-about.sql` (новые чанки lb-ahero / lb-astory / lb-asteps / lb-avalues / lb-aculise / lb-areasons, **новый шаблон «О нас»**
 + доступ к TV, **template у 102 / 298 / 1102**, **TV migx_questions / title-bl-faq у 102 / 298 / 1102**; версия 1.34.0;
 файлы — `about-me-v2.webp`, `about-procedure.webp`, `about-avatar.webp`, лексиконы, CSS / JS).
-Патчи проверены импортом. После 72 БД **не менялась** (кроме локальной настройки phpThumb выше).
+Патчи проверены импортом. После 73 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — по решению пользователя
 

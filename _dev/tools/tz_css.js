@@ -1,7 +1,8 @@
 // tz_css.js — шаг 71: то же, что legacy_css.js (шаг 66), для «Категория NEW» (19: удаление тату RO / RU / EN — 625 / 321 / 1625).
 // Старые стили (reset / template / blog / fonts / media / slimmenu — до redesign.css, и study.css — после него; 7 блокирующих
 // запросов, ~112 КБ) → два файла с правилами, которые встречаются на этих страницах: tz-legacy.css (до redesign.css) и tz-study.css
-// (после). Относительные адреса шрифтов study.css (../fonts/) → абсолютные; у текстовых @font-face — font-display: swap.
+// (после). Относительные адреса шрифтов study.css (../fonts/) → абсолютные; у текстовых @font-face — font-display: swap;
+// фон баннера bg-banner.png → assets/templates/redesign/img/tz-bg-banner.webp (шаг 73).
 // Подключает lb-head (шаблон 19). Источники: HTML трёх страниц (обход — _dev/tools/crawl_all.py), чанки редизайна,
 // чанки форм / easyComm из базы (chunks.tpl), классы, которые добавляет старый main.js / custom.js (jstokens.tpl), JS редизайна,
 // AjaxForm, easyComm. Порядок правил и файлов — как был (вырезаются только неиспользуемые правила).
@@ -43,6 +44,8 @@ const tpl = fs.readdirSync(S + 'core/elements/redesign/chunks').map(f => S + 'co
                   greedy: [] }
     });
     let c = r[0].css.replace(/url\((['"]?)\.\.\/fonts\//g, 'url($1/assets/templates/fonts/');
+    // шаг 73: фон баннера (.banner, главная картинка первого экрана на мобильном) — WebP 9 КБ вместо PNG 199 КБ
+    c = c.replace(/\/images\/design\/bg-banner\.png/g, '/assets/templates/redesign/img/tz-bg-banner.webp');
     // текстовые шрифты — font-display: swap (текст виден сразу системным шрифтом); иконочный themify — как был
     c = c.replace(/@font-face\s*\{([^}]*)\}/g, (m, body) => /font-display/.test(body) || /themify/i.test(body) ? m : '@font-face{' + body.replace(/;?\s*$/, ';') + 'font-display:swap}');
     (css === STUDY ? study : out).push('/* ' + css.split('/').pop() + ' */\n' + c);
