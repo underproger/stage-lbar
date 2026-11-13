@@ -965,6 +965,20 @@
      WebP (type="image/webp"). Запросы: и на 390, и на 1440 px — только WebP, один раз. Локально (Lighthouse mobile, медленная сеть
      симуляции): LCP — фон баннера, загрузка 0,4 с, остальное — ожидание блокирующих стилей и всего, что запрошено до отрисовки
      (~600 КБ: main.js 79 КБ, шрифты — themify 55 КБ, Yeseva / Playfair / Montserrat по ~38 КБ, merit.svg 31 КБ и т. д.).
+   - v1.50.0 (шаг 74, PageSpeed курса — шаблон «Обучение» 15, страницы 182 / 1182; RU 295 удалена; мобильная была 74: LCP 5,1 с,
+     CLS 0,136 — `.banner-merit__item`): чанк head-study подключал study.css (27 КБ gzip) + slimmenu.css + Google Fonts Montserrat
+     (блокирующий CSS с fonts.googleapis.com ~750 мс + ~120 КБ шрифтов с fonts.gstatic.com). Теперь один `course.css` (~15 КБ gzip) до
+     redesign.css — собирает `_dev/tools/course_css.js` (как tz_css.js: PurgeCSS по HTML курса + JS страницы: редизайн, script.js,
+     lightbox.js, owl.carousel; csso). В начале course.css — @font-face «Montserrat» на файлы «LB Text» редизайна (тот же вариативный
+     Montserrat 100–900, latin / ro / cyrillic, swap; montserrat-latin уже с предзагрузкой) — старые блоки пишут font-family: Montserrat.
+     Фон баннера — tz-bg-banner.webp (предзагрузка в lb-head для шаблонов 15 и 19). Из head-study убраны study.css, slimmenu.css,
+     preconnect и Google Fonts (`_dev/patches/step74-course-css.sql`). Проверка: стили всех элементов 182 / 1182 × 390 / 768 / 1024 /
+     1440 до / после — отличий нет, кроме фона (WebP) и записи градиентов (для сравнения course.css собирался с другим именем семейства —
+     третий параметр course_css.js, — т. к. в проверке «до» Google Fonts заблокирован). Локально (Lighthouse mobile, 3 прогона):
+     84–86 → 88–93, LCP 3,9–4,2 → 3,1–3,7 с. CLS локально не воспроизводится (0 до и после: нет merit.svg, Google Fonts недоступен);
+     вероятная причина на проде — подмена шрифта Montserrat (Google, swap) после отрисовки; теперь шрифт свой и предзагружен.
+     Если CLS останется — у иконок merit.svg (loading="lazy" от плагина, без размеров) задать width / height (нужен файл).
+     На остальных страницах Google Fonts Montserrat всё ещё грузится (lb-script, конец body; ~120 КБ) — можно так же перевести на свои файлы.
 
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
@@ -1035,10 +1049,11 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `lbar-71-tz-css.sql` (чанки Redesign — версия 1.49.0, чанк head и шаблон 19; файлы — tz-legacy.css, tz-study.css, lb-head, lb-scripts) — после 70.
 `lbar-72-tz-banner-img.sql` (чанк banner-interial-category-new; файлы — 4 картинки assets/templates/redesign/img/tz-banner-in-*) — после 71.
 `lbar-73-tz-bg.sql` (чанки Redesign — версия 1.49.1; файлы — tz-bg-banner.webp, tz-study.css, lb-head, lb-scripts) — после 72.
+`lbar-74-course-css.sql` (чанки Redesign — версия 1.50.0, чанк head-study; файлы — course.css, lb-head, lb-scripts) — после 73.
 `stage-lbar-47-about.sql` (новые чанки lb-ahero / lb-astory / lb-asteps / lb-avalues / lb-aculise / lb-areasons, **новый шаблон «О нас»**
 + доступ к TV, **template у 102 / 298 / 1102**, **TV migx_questions / title-bl-faq у 102 / 298 / 1102**; версия 1.34.0;
 файлы — `about-me-v2.webp`, `about-procedure.webp`, `about-avatar.webp`, лексиконы, CSS / JS).
-Патчи проверены импортом. После 73 БД **не менялась** (кроме локальной настройки phpThumb выше).
+Патчи проверены импортом. После 74 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — по решению пользователя
 
