@@ -951,6 +951,14 @@
      элементов 3 страниц × 390 / 768 / 1024 / 1440 до / после — отличий нет (кроме записи градиента 0% / 0px — то же самое), окно
      «Получить консультацию» открытое — то же. Локально (Lighthouse mobile, 3 прогона): 74–78 → 88–93, FCP 2,1–2,8 → 1,9 с; десктоп 99.
      Фото справа в баннере (banner-in.png) на мобильном не грузится и так — у всех картинок без loading плагин ставит loading="lazy".
+   - Шаг 72 (без смены версии, `_dev/patches/step72-tz-banner-img.sql`): фото справа в баннере «Удаление тату» (чанк
+     banner-interial-category-new, видно только шире 1024 px; `/images/inner/banner-in.png` — PNG 1038×940 с прозрачностью, ~1 МБ) —
+     `<picture>`: ≤ 1024 px — пустая 1×1 (не скачивается), иначе AVIF / WebP 720 и 1038 px (`assets/templates/redesign/img/tz-banner-in-*`,
+     AVIF 27 / 48 КБ, WebP 79 / 146 КБ; sizes 49vw), запасной — исходный PNG; loading="eager" + fetchpriority="high" (на десктопе это LCP;
+     без loading плагин ставит lazy). ph1.png (фото «О процедуре», TV bl1_about_service-img) не трогали: на проде плагин уже отдаёт WebP
+     26 КБ (своя перекодировка не меньше), а уменьшать 554 px нельзя — на телефонах (292 px × DPR 2–3) станет мутным; PageSpeed считает
+     размер без учёта плотности экрана, картинка ниже первого экрана и на оценку не влияет. Фон баннера `/images/design/bg-banner.png`
+     (LCP на мобильном) — исходника в репозитории нет, ждём файл от пользователя.
 
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
@@ -1019,10 +1027,11 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `lbar-69-reviews.sql` (чанки Redesign + шаблоны: lb-script вместо script, статьи &reviews=25, курс 90) — после 68.
 `lbar-70-tbt.sql` (чанки Redesign — версия 1.48.0; файлы — redesign.js / .min.js, lb-head, lb-scripts, lb-services, lb-subservices) — после 69.
 `lbar-71-tz-css.sql` (чанки Redesign — версия 1.49.0, чанк head и шаблон 19; файлы — tz-legacy.css, tz-study.css, lb-head, lb-scripts) — после 70.
+`lbar-72-tz-banner-img.sql` (чанк banner-interial-category-new; файлы — 4 картинки assets/templates/redesign/img/tz-banner-in-*) — после 71.
 `stage-lbar-47-about.sql` (новые чанки lb-ahero / lb-astory / lb-asteps / lb-avalues / lb-aculise / lb-areasons, **новый шаблон «О нас»**
 + доступ к TV, **template у 102 / 298 / 1102**, **TV migx_questions / title-bl-faq у 102 / 298 / 1102**; версия 1.34.0;
 файлы — `about-me-v2.webp`, `about-procedure.webp`, `about-avatar.webp`, лексиконы, CSS / JS).
-Патчи проверены импортом. После 71 БД **не менялась** (кроме локальной настройки phpThumb выше).
+Патчи проверены импортом. После 72 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — по решению пользователя
 
