@@ -11,11 +11,11 @@
 <link rel="preload" as="image" href="/assets/templates/redesign/img/tz-bg-banner.webp" type="image/webp" fetchpriority="high">
 {/if}
 {if $_modx->resource.template == 19}
-<link rel="stylesheet" href="/assets/templates/redesign/css/tz-legacy.css?v=1.51.0">
+<link rel="stylesheet" href="/assets/templates/redesign/css/tz-legacy.css?v=1.52.0">
 {elseif $_modx->resource.template == 15}
-<link rel="stylesheet" href="/assets/templates/redesign/css/course.css?v=1.51.0">
+<link rel="stylesheet" href="/assets/templates/redesign/css/course.css?v=1.52.0">
 {else}
-<link rel="stylesheet" href="/assets/templates/redesign/css/legacy.css?v=1.51.0">
+<link rel="stylesheet" href="/assets/templates/redesign/css/legacy.css?v=1.52.0">
 {/if}
-<link rel="stylesheet" href="/assets/templates/redesign/css/redesign.css?v=1.51.0">
-{if $_modx->resource.template == 19}<link rel="stylesheet" href="/assets/templates/redesign/css/tz-study.css?v=1.51.0">{/if}
+<link rel="stylesheet" href="/assets/templates/redesign/css/redesign.css?v=1.52.0">
+{if $_modx->resource.template == 19}<link rel="stylesheet" href="/assets/templates/redesign/css/tz-study.css?v=1.52.0">{/if}

@@ -995,6 +995,18 @@
      24px, `__addr` — padding 2px, отступы 4px (зоны нажатия ≥ 24 px; почта / телефон / адрес — 188×24 / 196×24 / 261×25,8).
      Не делали: «изображения без width / height» у остальных картинок старых блоков курса (ниже первого экрана, сдвигов не дают),
      «неиспользуемый CSS» redesign.css на старых шаблонах (~40 КБ), предупреждения о кэше сторонних (extreme-ip-lookup).
+   - v1.52.0 (шаг 76; после шага 75 курс: мобильная 77 — FCP 1,4, LCP 5,0, TBT 100, CLS 0,017, SI 4,9; остальные категории 100,
+     агентный 2/2; десктоп 92, но CLS 0,174 → агентный просмотр 1/2): на десктопе фото тренера в баннере курса (kseniya.png 598×844,
+     loading="lazy" от плагина, study.css: width: auto) до загрузки было 0×0, а оно задаёт высоту баннера → догрузившись, сдвигало всё
+     ниже (локально с задержкой фото 1,5 с — CLS 0,161, `div.banner-person` h16→706). Теперь в чанке banner-study `width="598"
+     height="844"` (`_dev/patches/step76-course-photo.sql`) и в _header.scss `.lb-legacy .banner .banner-wrap .banner-person img`
+     { width: min(100%, 598px); height: auto } — размеры фото на 390 / 768 / 1024 / 1350 / 1920 те же, что у загруженного раньше;
+     CLS с задержкой фото — 0. Одних атрибутов мало: width: auto из study.css при незагруженной картинке даёт 0.
+     Мобильная оценка курса (LCP 5,0 / SI 4,9 в лабораторном замере) локально не воспроизводится (тут 82–91); LCP-элемент — фон
+     баннера, «задержка отрисовки» ~2 с — так симуляция Lighthouse учитывает всё, что старая страница запрашивает до первой отрисовки
+     (старые скрипты, шрифты, фоновые картинки старых блоков). Полевые данные (CrUX) курса при этом в норме: LCP 1,6 с, CLS 0, FCP 1,6 с.
+     Дальше — либо перевод курса на новый дизайн, либо частичные меры (content-visibility блоков ниже экрана, отложенные старые
+     скрипты, WebP для фонов из study.css) — ждём решения пользователя.
 
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
@@ -1067,10 +1079,11 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `lbar-73-tz-bg.sql` (чанки Redesign — версия 1.49.1; файлы — tz-bg-banner.webp, tz-study.css, lb-head, lb-scripts) — после 72.
 `lbar-74-course-css.sql` (чанки Redesign — версия 1.50.0, чанк head-study; файлы — course.css, lb-head, lb-scripts) — после 73.
 `lbar-75-psi-other.sql` (чанки Redesign — версия 1.51.0, banner-study, banner-interial-category-new, inttelinput, шаблон 15; файлы — redesign.css, _footer.scss, lb-head, lb-scripts, lightbox.js, images/design/merit.svg) — после 74.
+`lbar-76-course-photo.sql` (чанки Redesign — версия 1.52.0, banner-study; файлы — redesign.css, _header.scss, lb-head, lb-scripts) — после 75.
 `stage-lbar-47-about.sql` (новые чанки lb-ahero / lb-astory / lb-asteps / lb-avalues / lb-aculise / lb-areasons, **новый шаблон «О нас»**
 + доступ к TV, **template у 102 / 298 / 1102**, **TV migx_questions / title-bl-faq у 102 / 298 / 1102**; версия 1.34.0;
 файлы — `about-me-v2.webp`, `about-procedure.webp`, `about-avatar.webp`, лексиконы, CSS / JS).
-Патчи проверены импортом. После 75 БД **не менялась** (кроме локальной настройки phpThumb выше).
+Патчи проверены импортом. После 76 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — по решению пользователя
 
