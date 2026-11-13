@@ -938,6 +938,19 @@
      прячутся GSAP после первой отрисовки и появляются заново (~3 с) — не трогали (дизайн; вариант — интро короче или без прозрачности).
      Свежий дамп прода 13.11: всё как в локальной базе, кроме чанков lb-services / lb-subservices — в базе прода версия до шага 65
      (сортировка без id); вероятно, файлы этих чанков на проде старые и чанки пересохранялись в менеджере — файлы отданы заново с шагом 70.
+   - v1.49.0 (шаг 71, PageSpeed «Удаление тату» — шаблон «Категория NEW» 19, страницы 625 / 321 / 1625; мобильная была 84: FCP 1,7 с,
+     LCP 3,9 с, SI 4,9 с): 7 старых файлов стилей, блокирующих отрисовку (reset / template / blog / fonts / media / slimmenu до redesign.css
+     и study.css после, ~68 КБ gzip), заменены двумя сокращёнными — `tz-legacy.css` (до redesign.css, ~15 КБ gzip) и `tz-study.css`
+     (после, ~11 КБ gzip). Собирает `_dev/tools/tz_css.js` (как legacy_css.js шага 66: PurgeCSS по HTML трёх страниц + JS редизайна,
+     **старые main.js / custom.js целиком** — их плагины добавляют классы, напр. restables-origin / -clone у таблицы цен, — AjaxForm,
+     easyComm, chunks.tpl / jstokens.tpl; затем csso). Относительные адреса шрифтов study.css (../fonts/) → абсолютные; у текстовых
+     @font-face — font-display: swap (иконочный themify — как был). Подключает lb-head: шаблон 19 — tz-legacy → redesign → tz-study,
+     остальные (кроме 15) — legacy.css. Из чанка head убран блок со старыми файлами для шаблона 19, из шаблона 19 — study.css
+     (`_dev/patches/step71-tz-css.sql`). Фон баннера (`/images/design/bg-banner.png`, study.css `.banner` — главная картинка первого экрана
+     на мобильном) — `<link rel="preload" as="image" fetchpriority="high">` в lb-head (шаблон 19). Проверка: вычисленные стили всех
+     элементов 3 страниц × 390 / 768 / 1024 / 1440 до / после — отличий нет (кроме записи градиента 0% / 0px — то же самое), окно
+     «Получить консультацию» открытое — то же. Локально (Lighthouse mobile, 3 прогона): 74–78 → 88–93, FCP 2,1–2,8 → 1,9 с; десктоп 99.
+     Фото справа в баннере (banner-in.png) на мобильном не грузится и так — у всех картинок без loading плагин ставит loading="lazy".
 
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
@@ -1005,10 +1018,11 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `lbar-68-banner-jpg.sql` (все чанки Redesign — версия 1.47.1; файлы — `lb-shero.tpl`, `lb-head.tpl`, `lb-scripts.tpl`) — после 67.
 `lbar-69-reviews.sql` (чанки Redesign + шаблоны: lb-script вместо script, статьи &reviews=25, курс 90) — после 68.
 `lbar-70-tbt.sql` (чанки Redesign — версия 1.48.0; файлы — redesign.js / .min.js, lb-head, lb-scripts, lb-services, lb-subservices) — после 69.
+`lbar-71-tz-css.sql` (чанки Redesign — версия 1.49.0, чанк head и шаблон 19; файлы — tz-legacy.css, tz-study.css, lb-head, lb-scripts) — после 70.
 `stage-lbar-47-about.sql` (новые чанки lb-ahero / lb-astory / lb-asteps / lb-avalues / lb-aculise / lb-areasons, **новый шаблон «О нас»**
 + доступ к TV, **template у 102 / 298 / 1102**, **TV migx_questions / title-bl-faq у 102 / 298 / 1102**; версия 1.34.0;
 файлы — `about-me-v2.webp`, `about-procedure.webp`, `about-avatar.webp`, лексиконы, CSS / JS).
-Патчи проверены импортом. После 70 БД **не менялась** (кроме локальной настройки phpThumb выше).
+Патчи проверены импортом. После 71 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — по решению пользователя
 
