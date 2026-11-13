@@ -6,6 +6,20 @@
 	var header = document.querySelector('.lb-header');
 	var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 	var isDesktop = function () { return window.matchMedia('(min-width: 1025px)').matches; };
+	/* Шаг 70 (PageSpeed, десктоп): анимации блоков ниже первого экрана создаются не при загрузке, а когда блок подходит к экрану
+	   (запас — полвысоты экрана снизу). Раньше все timeline / ScrollTrigger / from() создавались сразу — одна задача ~0,5 с при 4×
+	   замедлении CPU с принудительными пересчётами стилей (основной вклад в TBT). Теперь каждый блок — отдельная короткая задача
+	   (колбэк IntersectionObserver). Блок, оставшийся выше экрана (страницу открыли прокрученной), не анимируется — виден сразу. */
+	var lazy = function (el, fn) {
+		if (!el) return;
+		if (!('IntersectionObserver' in window)) { fn(); return; }
+		var io = new IntersectionObserver(function (entries) {
+			if (!entries.some(function (e) { return e.isIntersecting; })) return;
+			io.disconnect();
+			fn();
+		}, { rootMargin: '0px 0px 50% 0px' });
+		io.observe(el);
+	};
 
 	/* ---------- Шапка: состояние после прокрутки ---------- */
 	if (header) {
@@ -581,14 +595,15 @@
 
 	/* ---------- SEO-блок: кружки таймлайна и линии при прокрутке ----------
 	   В HTML текста ничего не меняем (даже классы): отмечаем только обёртки — .is-anim/.is-in на секции
-	   и data-seen (сколько h3 уже показано) на .lb-seo__body; кружки выбирает CSS через h3:nth-of-type. */
+	   и data-seen (сколько h3 уже показано) на .lb-seo__body; кружки выбирает CSS через h3:nth-of-type.
+	   Включается, когда блок подходит к экрану (lazy, шаг 70): первая проверка читает позиции (принудительная компоновка). */
 	var seo = document.querySelector('.lb-seo');
 	var seoBody = seo && seo.querySelector('.lb-seo__body');
 	// пустые абзацы из редактора (<p>&nbsp;</p>) не рисуем пустыми карточками — прячем (в HTML текст не меняется)
 	if (seoBody) [].forEach.call(seoBody.querySelectorAll('p'), function (p) {
 		if (!p.textContent.trim() && !p.querySelector('img, iframe, video')) p.classList.add('is-empty');
 	});
-	if (seo && seoBody && !reduce && window.requestAnimationFrame) {
+	if (seo && seoBody && !reduce && window.requestAnimationFrame) lazy(seo, function () {
 		var seoHead = seo.querySelector('.lb-seo__head');
 		var seoH3 = [].filter.call(seoBody.children, function (el) { return el.tagName === 'H3'; });
 		var seen = 0, seoTick = false;
@@ -615,7 +630,7 @@
 		window.addEventListener('scroll', seoOnScroll, { passive: true });
 		window.addEventListener('resize', seoOnScroll);
 		seoCheck();
-	}
+	});
 
 	/* ---------- Появление блоков при прокрутке ---------- */
 	var initReveal = function () {
@@ -624,16 +639,17 @@
 		gsap.registerPlugin(window.ScrollTrigger);
 		// на страницах услуг части блоков нет (преимуществ и цитаты в «О процедуре», иконок в «implică» и т. п.) — пустые цели не ошибка
 		gsap.config({ nullTargetWarn: false });
+		// анимации блоков создаются лениво — см. lazy() в начале файла (шаг 70)
 		var about = document.querySelector('.lb-about');
-		if (about) {
+		lazy(about, function () {
 			var tl = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: about, start: 'top 72%' } });
 			tl.from(about.querySelector('.lb-about__bg'), { opacity: 0, y: 40, duration: 1.6, ease: 'power3.out', clearProps: 'transform' }, 0)
 				.from(about.querySelectorAll('.lb-about__t1, .lb-about__t2, .lb-about__textwrap'), { y: 40, opacity: 0, duration: 1.3, stagger: 0.1, clearProps: 'transform' }, 0.15)
 				.from(about.querySelectorAll('.lb-about__item'), { x: -30, opacity: 0, duration: 1.2, stagger: 0.1, clearProps: 'transform' }, 0.5)
 				.from(about.querySelectorAll('.lb-about__quote, .lb-about__cta'), { y: 30, opacity: 0, duration: 1.2, stagger: 0.1, clearProps: 'transform' }, 0.8);
-		}
+		});
 		var price = document.querySelector('.lb-price');
-		if (price) {
+		lazy(price, function () {
 			var pq = function (s) { return price.querySelectorAll(s); };
 			var pdesk = isDesktop();
 			var ptl = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: price, start: 'top 70%' } });
@@ -645,9 +661,9 @@
 				.from(pq('.lb-ptable__row'), { x: pdesk ? 60 : 0, y: pdesk ? 0 : 20, opacity: 0, duration: 1.2, stagger: 0.08, clearProps: 'transform' }, 0.55)
 				.from(pq('.lb-ptable__ic svg'), { scale: 0.4, opacity: 0, duration: 1, stagger: 0.08, ease: 'back.out(2)', clearProps: 'transform' }, 0.75);
 			// цены — без «набегания» от нуля (убрано по просьбе пользователя): видны сразу, как в HTML
-		}
+		});
 		// блоки с формой: «Консультация» (.lb-consult) и «Запись на процедуру» (.lb-book) — одинаковая анимация
-		formBlocks.forEach(function (sec) {
+		formBlocks.forEach(function (sec) { lazy(sec, function () {
 			var b = sec.classList.contains('lb-book') ? 'lb-book' : 'lb-consult';
 			var ctl = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: sec, start: 'top 72%' } });
 			var add = function (sel, from, at, to) {
@@ -661,8 +677,8 @@
 			add('.' + b + '__text', { y: 30, opacity: 0, duration: 1.3, clearProps: 'transform' }, 0.6);
 			add('.' + b + '__card', { y: 70, opacity: 0, duration: 1.6, clearProps: 'transform' }, 0.3);
 			add('.lb-cform__field, .lb-cform__btn, .lb-cform__policy', { y: 26, opacity: 0, duration: 1.2, stagger: 0.09, clearProps: 'transform' }, 0.6);
-		});
-		if (implica) {
+		}); });
+		lazy(implica, function () {
 			var iq = function (s) { return implica.querySelectorAll(s); };
 			var arc = implica.querySelector('.lb-implica__arcline');
 			var desk = isDesktop();
@@ -679,10 +695,10 @@
 				itl.to(arc, { strokeDashoffset: 0, duration: 2, ease: 'power2.inOut' }, 0.3)
 					.from(iq('.lb-implica__dot'), { scale: 0, duration: 0.9, stagger: 0.32, ease: 'back.out(3)', clearProps: 'transform' }, 0.75);
 			}
-		}
+		});
 
 		var master = document.querySelector('.lb-master');
-		if (master) {
+		lazy(master, function () {
 			var mq = function (s) { return master.querySelectorAll(s); };
 			var mdesk = isDesktop();
 			var mtl = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: master, start: 'top 70%' } });
@@ -705,10 +721,10 @@
 			if (mdesk) {
 				gsap.to(master.querySelector('.lb-master__photo img'), { yPercent: -4, ease: 'none', scrollTrigger: { trigger: master, start: 'top bottom', end: 'bottom top', scrub: true } });
 			}
-		}
+		});
 
 		var portfolio = document.querySelector('.lb-portfolio');
-		if (portfolio) {
+		lazy(portfolio, function () {
 			var pq = function (s) { return portfolio.querySelectorAll(s); };
 			var ptl = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: portfolio, start: 'top 72%' } });
 			ptl.from(pq('.lb-portfolio__lin'), { yPercent: 105, duration: 1.5, stagger: 0.12 }, 0)
@@ -724,8 +740,8 @@
 					ptl.to(path, { strokeDashoffset: 0, duration: 2, ease: 'power2.inOut' }, 0.1 + k * 0.3);
 				});
 			}
-		}
-		if (reviews) {
+		});
+		lazy(reviews, function () {
 			var rq = function (s) { return reviews.querySelectorAll(s); };
 			var rtl = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: reviews, start: 'top 68%' } });
 			var radd = function (sel, from, at) { var els = typeof sel === 'string' ? rq(sel) : sel; if (els.length) rtl.from(els, from, at); };
@@ -747,8 +763,8 @@
 				var o = { v: 0 };
 				rtl.to(o, { v: val, duration: 1.4, ease: 'power3.out', onUpdate: function () { num.textContent = o.v.toFixed(1); }, onComplete: function () { num.textContent = val.toFixed(1); } }, 0.6);
 			}
-		}
-		if (faq) {
+		});
+		lazy(faq, function () {
 			var fq = function (s) { return faq.querySelectorAll(s); };
 			var ftl = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: faq, start: 'top 70%' } });
 			var fadd = function (sel, from, at, to) {
@@ -763,15 +779,16 @@
 			fadd('.lb-faq__ctas > *', { y: 26, opacity: 0, duration: 1.2, stagger: 0.09, clearProps: 'transform' }, 0.75);
 			fadd('.lb-faq__item', { y: 60, opacity: 0, duration: 1.4, stagger: 0.1, clearProps: 'transform' }, 0.3);
 			fadd('.lb-faq__num', { yPercent: 60, opacity: 0, duration: 1.1, stagger: 0.1, clearProps: 'transform' }, 0.6);
-		}
+		});
 		// «Статьи» и «Контакты»: одинаковая схема — заголовок, затем карточки / строки по очереди
 		var revealBlock = function (sec, start, steps) {
-			if (!sec) return;
-			var tl = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: sec, start: start } });
-			steps.forEach(function (st) {
-				var els = sec.querySelectorAll(st[0]);
-				if (!els.length) return;
-				if (st[3]) tl.fromTo(els, st[1], st[3], st[2]); else tl.from(els, st[1], st[2]);
+			lazy(sec, function () {
+				var tl = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: sec, start: start } });
+				steps.forEach(function (st) {
+					var els = sec.querySelectorAll(st[0]);
+					if (!els.length) return;
+					if (st[3]) tl.fromTo(els, st[1], st[3], st[2]); else tl.from(els, st[1], st[2]);
+				});
 			});
 		};
 		revealBlock(document.querySelector('.lb-blog'), 'top 70%', [
@@ -846,9 +863,10 @@
 				]);
 			};
 			var aEl = function (el, vars, start) {
-				if (!el) return;
-				vars.scrollTrigger = { trigger: el, start: start || 'top 85%' };
-				gsap.from(el, vars);
+				lazy(el, function () {
+					vars.scrollTrigger = { trigger: el, start: start || 'top 85%' };
+					gsap.from(el, vars);
+				});
 			};
 			// «Обо мне»
 			var astory = document.querySelector('.lb-astory');
@@ -1066,40 +1084,43 @@
 		.from(q('.lb-card'), { y: 60, opacity: 0, duration: 1.4, stagger: 0.12, clearProps: 'transform' }, 1.0)
 		.from(q('.lb-hero__deco'), { opacity: 0, duration: 1.6, ease: 'power2.out' }, 1.4);
 
-	if (isDesktop()) {
-		// лёгкий параллакс за курсором: мастер и карточки (фон, линии и искры на них не двигаем — они совпадают с фоном)
-		var master = hero.querySelector('.lb-hero__master');
-		var qx = gsap.quickTo(master, 'x', { duration: 1.8, ease: 'power3.out' });
-		var qy = gsap.quickTo(master, 'y', { duration: 1.8, ease: 'power3.out' });
-		var cards = hero.querySelector('.lb-hero__cards');
-		var cx = cards && gsap.quickTo(cards, 'x', { duration: 1.4, ease: 'power3.out' });
-		var cy = cards && gsap.quickTo(cards, 'y', { duration: 1.4, ease: 'power3.out' });
-		hero.addEventListener('mousemove', function (e) {
-			var r = hero.getBoundingClientRect();
-			var dx = (e.clientX - r.left) / r.width - 0.5;
-			var dy = (e.clientY - r.top) / r.height - 0.5;
-			qx(dx * 10); qy(dy * 6);
-			if (cards) { cx(dx * 16); cy(dy * 12); }
-		});
-		hero.addEventListener('mouseleave', function () {
-			qx(0); qy(0);
-			if (cards) { cx(0); cy(0); }
-		});
-	}
+	// параллакс (курсор, прокрутка) — следующей задачей, не в одной с интро (шаг 70: короче задача при загрузке)
+	setTimeout(function () {
+		if (isDesktop()) {
+			// лёгкий параллакс за курсором: мастер и карточки (фон, линии и искры на них не двигаем — они совпадают с фоном)
+			var master = hero.querySelector('.lb-hero__master');
+			var qx = gsap.quickTo(master, 'x', { duration: 1.8, ease: 'power3.out' });
+			var qy = gsap.quickTo(master, 'y', { duration: 1.8, ease: 'power3.out' });
+			var cards = hero.querySelector('.lb-hero__cards');
+			var cx = cards && gsap.quickTo(cards, 'x', { duration: 1.4, ease: 'power3.out' });
+			var cy = cards && gsap.quickTo(cards, 'y', { duration: 1.4, ease: 'power3.out' });
+			hero.addEventListener('mousemove', function (e) {
+				var r = hero.getBoundingClientRect();
+				var dx = (e.clientX - r.left) / r.width - 0.5;
+				var dy = (e.clientY - r.top) / r.height - 0.5;
+				qx(dx * 10); qy(dy * 6);
+				if (cards) { cx(dx * 16); cy(dy * 12); }
+			});
+			hero.addEventListener('mouseleave', function () {
+				qx(0); qy(0);
+				if (cards) { cx(0); cy(0); }
+			});
+		}
 
-	// фон уезжает медленнее при прокрутке
-	if (window.ScrollTrigger) {
-		gsap.to(hero.querySelector('.lb-hero__scene'), {
-			yPercent: 12,
-			ease: 'none',
-			scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true }
-		});
-		gsap.to(hero.querySelector('.lb-hero__content'), {
-			yPercent: -6,
-			ease: 'none',
-			scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true }
-		});
-	}
+		// фон уезжает медленнее при прокрутке
+		if (window.ScrollTrigger) {
+			gsap.to(hero.querySelector('.lb-hero__scene'), {
+				yPercent: 12,
+				ease: 'none',
+				scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true }
+			});
+			gsap.to(hero.querySelector('.lb-hero__content'), {
+				yPercent: -6,
+				ease: 'none',
+				scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true }
+			});
+		}
+	}, 0);
 })();
 
 /* ---------- Доступность сторонних виджетов (шаг 58, PageSpeed) ----------
