@@ -287,3 +287,10 @@ $_lang['lbar.rd.ab.why.5t'] = "All Lbar studios work to the same standards of qu
 $_lang['lbar.rd.ab.why.6l'] = "Love for the profession";
 $_lang['lbar.rd.ab.why.6v'] = "since 2016";
 $_lang['lbar.rd.ab.why.6t'] = "We do this because we love our work. And it shows in every detail.";
+// удаление тату — «Цена на примерах»: слайдер фото в карточке и «пришлите фото в WhatsApp» (шаг 77)
+$_lang['lbar.rd.tzex.photo'] = "Photo";
+$_lang['lbar.rd.tzex.prev'] = "Previous photo";
+$_lang['lbar.rd.tzex.next'] = "Next photo";
+$_lang['lbar.rd.tzex.cta.text'] = "For an exact quote on tattoo removal, send us a photo of the tattoo on WhatsApp.";
+$_lang['lbar.rd.tzex.cta.btn'] = "Message us on WhatsApp";
+$_lang['lbar.rd.tzex.cta.msg'] = "Hello! I would like a quote for tattoo removal. I am sending a photo.";

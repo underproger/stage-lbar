@@ -1,5 +1,6 @@
 // ================= Удаление тату (старый дизайн, шаблон «Категория NEW») — «Цена на примерах» под таблицей цен (шаг 62) =================
-// Чанк lb-tzexamples внутри старого блока bl5-service-prices: заголовок H3 и 5–6 карточек «фото — что удаляем — цена».
+// Чанк lb-tzexamples внутри старого блока bl5-service-prices: заголовок H3 и 5–6 карточек «фото — что удаляем — цена» (шаг 77: в карточке —
+// слайдер до 6 фото; под лентой — «пришлите фото в WhatsApp» с кнопкой).
 // Десктоп — в один ряд, телефон / планшет — лента с прокруткой. Вид карточек — как у карточек оборудования этой страницы (белые, радиус 15px).
 .lb-tzex {
 	margin-top: vw(64);
@@ -39,12 +40,38 @@
 		background: #fff;
 		box-shadow: 0 vw(14) vw(34) rgba(120, 80, 60, .08);
 	}
-	&__photo {
+	// фото — квадрат; шаг 77: в карточке слайдер — лента .lb-tzex__track сдвигается (translate), стрелки и точки поверх фото
+	// (свайп пальцем листает ленту карточек, а не фото: на телефоне лента сама прокручивается — фото листают стрелками и точками)
+	&__media {
 		position: relative;
-		display: block;
 		aspect-ratio: 1 / 1;
 		overflow: hidden;
 		background: linear-gradient(160deg, #f6ece4 0%, #ead8cb 100%);
+		&--empty {
+			display: grid;
+			place-items: center;
+			color: #b99682;
+			svg {
+				width: 26%;
+				height: auto;
+			}
+		}
+	}
+	&__track {
+		display: flex;
+		height: 100%;
+		translate: calc(var(--lb-i, 0) * -100%) 0; // номер фото — redesign.js
+		transition: translate .6s $ease-expo;
+		@media (prefers-reduced-motion: reduce) {
+			transition: none;
+		}
+	}
+	&__photo {
+		position: relative;
+		display: block;
+		flex: 0 0 100%;
+		height: 100%;
+		overflow: hidden;
 		img {
 			display: block;
 			width: 100%;
@@ -57,14 +84,90 @@
 				scale: 1.05;
 			}
 		}
-		&--empty {
-			display: grid;
-			place-items: center;
-			color: #b99682;
-			svg {
-				width: 26%;
-				height: auto;
-			}
+	}
+	// стрелки — круглые кнопки по бокам фото: на компьютере видны при наведении на фото (и при фокусе с клавиатуры), на сенсорных — всегда
+	&__nav {
+		position: absolute;
+		top: 50%;
+		z-index: 2;
+		display: grid;
+		place-items: center;
+		width: max(30px, #{vw(38)});
+		height: max(30px, #{vw(38)});
+		padding: 0;
+		border: 0;
+		border-radius: 50%;
+		color: #3a2a24;
+		background: rgba(255, 250, 246, .85);
+		box-shadow: 0 4px 12px rgba(60, 35, 25, .18);
+		cursor: pointer;
+		translate: 0 -50%;
+		transition: opacity .3s, background-color .3s;
+		svg {
+			width: 58%;
+			height: 58%;
+		}
+		&--prev {
+			left: max(8px, #{vw(10)});
+		}
+		&--next {
+			right: max(8px, #{vw(10)});
+		}
+		@include hover {
+			background: #fff;
+		}
+		&:focus-visible {
+			opacity: 1;
+			outline: 2px solid $c-btn-dark;
+			outline-offset: 2px;
+		}
+	}
+	@media (hover: hover) and (pointer: fine) {
+		&__nav {
+			opacity: 0;
+		}
+		&__media:hover &__nav {
+			opacity: 1;
+		}
+	}
+	// точки: кнопка 24×24 (зона нажатия), видимая точка — ::before; активная — вытянутая
+	&__dots {
+		position: absolute;
+		right: 0;
+		bottom: max(4px, #{vw(6)});
+		left: 0;
+		z-index: 2;
+		display: flex;
+		justify-content: center;
+		pointer-events: none;
+	}
+	&__dot {
+		display: grid;
+		place-items: center;
+		width: 24px;
+		height: 24px;
+		padding: 0;
+		border: 0;
+		background: none;
+		cursor: pointer;
+		pointer-events: auto;
+		&::before {
+			content: "";
+			width: 7px;
+			height: 7px;
+			border-radius: 4px;
+			background: rgba(255, 255, 255, .62);
+			box-shadow: 0 0 0 1px rgba(60, 35, 25, .16);
+			transition: width .35s $ease-expo, background-color .3s;
+		}
+		&.is-active::before {
+			width: 18px;
+			background: #fff;
+		}
+		&:focus-visible {
+			outline: 2px solid #fff;
+			outline-offset: -4px;
+			border-radius: 6px;
 		}
 	}
 	&__body {
@@ -93,6 +196,26 @@
 		font-size: max(12.5px, #{vw(13.5)});
 		line-height: 1.35;
 		color: #6f5f58;
+	}
+	// под лентой (шаг 77): «для точной оценки пришлите фото в WhatsApp» и кнопка
+	&__cta {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: vw(24);
+		margin-top: vw(52);
+		text-align: center;
+	}
+	& p.lb-tzex__cta-text {
+		max-width: vw(980);
+		font-size: max(15px, #{vw(19)});
+		line-height: 1.5;
+		color: #4b3a33;
+	}
+	&__wa-ico {
+		flex: none;
+		width: vw(22);
+		height: vw(22);
 	}
 
 	@include mobile {
@@ -132,6 +255,18 @@
 		}
 		& p.lb-tzex__note {
 			font-size: 12.5px;
+		}
+		&__cta {
+			gap: 16px;
+			margin-top: 26px;
+		}
+		& p.lb-tzex__cta-text {
+			max-width: none;
+			font-size: 15px;
+		}
+		&__wa-ico {
+			width: 18px;
+			height: 18px;
 		}
 	}
 	@media (min-width: 600px) and (max-width: 1024px) {

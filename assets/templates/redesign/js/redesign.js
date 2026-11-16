@@ -1155,11 +1155,46 @@
 	}
 })();
 
-/* ================= Удаление тату: «Цена на примерах» (шаг 63) =================
-   Подсказка «листайте» под лентой (телефон / планшет) гаснет, как только ленту прокрутили. */
+/* ================= Удаление тату: «Цена на примерах» (шаги 63, 77) =================
+   Подсказка «листайте» под лентой (телефон / планшет) гаснет, как только ленту прокрутили.
+   Шаг 77: слайдер фото в карточке — стрелки и точки, по кругу; лента фото сдвигается через --lb-i (translate в _tzex.scss);
+   невидимые фото — aria-hidden и вне порядка табуляции; ленивые фото карточки начинают грузиться при первом листании
+   (иначе следующее фото появлялось бы пустым). Свайп пальцем — у ленты карточек, фото листают кнопками. */
 (function () {
 	'use strict';
-	Array.prototype.forEach.call(document.querySelectorAll('.lb-tzex'), function (box) {
+	var each = function (list, fn) { Array.prototype.forEach.call(list, fn); };
+	each(document.querySelectorAll('.lb-tzex'), function (box) {
+		each(box.querySelectorAll('.lb-tzex__media--slider'), function (media) {
+			var track = media.querySelector('.lb-tzex__track');
+			var slides = track.children;
+			var dots = media.querySelectorAll('.lb-tzex__dot');
+			var n = slides.length;
+			var cur = 0;
+			var warm = false;
+			var mark = function () {
+				each(slides, function (el, k) {
+					el.tabIndex = k === cur ? 0 : -1;
+					if (k === cur) el.removeAttribute('aria-hidden'); else el.setAttribute('aria-hidden', 'true');
+				});
+				each(dots, function (d, k) {
+					d.classList.toggle('is-active', k === cur);
+					if (k === cur) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current');
+				});
+			};
+			var go = function (i) {
+				if (!warm) {
+					warm = true;
+					each(track.querySelectorAll('img'), function (img) { img.loading = 'eager'; });
+				}
+				cur = (i + n) % n;
+				track.style.setProperty('--lb-i', cur);
+				mark();
+			};
+			media.querySelector('.lb-tzex__nav--prev').addEventListener('click', function () { go(cur - 1); });
+			media.querySelector('.lb-tzex__nav--next').addEventListener('click', function () { go(cur + 1); });
+			each(dots, function (d, k) { d.addEventListener('click', function () { go(k); }); });
+			mark();
+		});
 		var list = box.querySelector('.lb-tzex__list');
 		if (!list) return;
 		var onScroll = function () {

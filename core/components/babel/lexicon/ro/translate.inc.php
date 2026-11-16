@@ -286,3 +286,10 @@ $_lang['lbar.rd.ab.why.5t'] = "Toate studiourile Lbar lucrează după aceleași 
 $_lang['lbar.rd.ab.why.6l'] = "Iubire pentru meserie";
 $_lang['lbar.rd.ab.why.6v'] = "din 2016";
 $_lang['lbar.rd.ab.why.6t'] = "Facem această meserie pentru că o iubim. Iar asta se vede în fiecare detaliu.";
+// удаление тату — «Цена на примерах»: слайдер фото в карточке и «пришлите фото в WhatsApp» (шаг 77)
+$_lang['lbar.rd.tzex.photo'] = "Foto";
+$_lang['lbar.rd.tzex.prev'] = "Fotografia anterioară";
+$_lang['lbar.rd.tzex.next'] = "Fotografia următoare";
+$_lang['lbar.rd.tzex.cta.text'] = "Pentru o estimare exactă a costului îndepărtării tatuajului, trimiteți-ne o fotografie pe WhatsApp.";
+$_lang['lbar.rd.tzex.cta.btn'] = "Scrie pe WhatsApp";
+$_lang['lbar.rd.tzex.cta.msg'] = "Bună ziua! Aș dori o estimare pentru îndepărtarea tatuajului. Vă trimit fotografia.";

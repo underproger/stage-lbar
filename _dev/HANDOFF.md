@@ -1007,6 +1007,19 @@
      (старые скрипты, шрифты, фоновые картинки старых блоков). Полевые данные (CrUX) курса при этом в норме: LCP 1,6 с, CLS 0, FCP 1,6 с.
      Дальше — либо перевод курса на новый дизайн, либо частичные меры (content-visibility блоков ниже экрана, отложенные старые
      скрипты, WebP для фонов из study.css) — ждём решения пользователя.
+   - v1.53.0 (шаг 77, по просьбе пользователя; свежий дамп прода 16.11 = локальная база): удаление тату — «Cât costă îndepărtarea: exemple»
+     (чанк lb-tzexamples, MIGX tz_price_examples у 625 / 321 / 1625). Карточки: цены по макету пользователя — 150–250 / 300–400 / 450–600 /
+     600–900 RON (названия по размеру — прежние), брови и губы — 300 RON (у губ примечание «с Remover — 400» оставлено, как в таблице цен);
+     RU — те же цены (таблица цен RU выше — старые 150 / 250 / 400 / от 450, брови / губы 250 — расходится, спросили пользователя).
+     У карточки — слайдер фото: MIGX — поля image, image2…image6 (до 6 фото); фото — `/images/tz-examples/tz-150-250-1…5.webp`,
+     `tz-300-400-*`, `tz-450-600-*`, `tz-600-900-*`, `tz-pmu-brows.webp` (обрезана прозрачная полоса снизу), `tz-pmu-lips.webp` —
+     WebP q80 600×600 из PNG пользователя (9–45 КБ; копия — `_dev/tz-examples/`, /images не в git). Слайдер — свой (redesign.js, IIFE «Удаление
+     тату»): лента `.lb-tzex__track` сдвигается через `--lb-i`, стрелки (на компьютере — при наведении) и точки (кнопки 24×24), по кругу,
+     невидимые фото — aria-hidden / tabindex -1, ленивые фото карточки — eager при первом листании; свайп остаётся у ленты карточек
+     (телефон). Клик по фото — fancybox, галерея карточки (`data-fancybox="lb-tzex-N"`). Под лентой — текст и кнопка «Scrie pe WhatsApp»
+     (`lb-btn lb-btn--solid` с иконкой; ссылка `https://wa.me/<цифры из настройки ClientConfig whatsapp>?text=<lbar.rd.tzex.cta.msg>`).
+     Лексикон: lbar.rd.tzex.photo / prev / next / cta.text / cta.btn / cta.msg (RO / RU / EN). Lighthouse (локально, мобильный):
+     специальные возможности 100.
 
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
@@ -1080,10 +1093,11 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `lbar-74-course-css.sql` (чанки Redesign — версия 1.50.0, чанк head-study; файлы — course.css, lb-head, lb-scripts) — после 73.
 `lbar-75-psi-other.sql` (чанки Redesign — версия 1.51.0, banner-study, banner-interial-category-new, inttelinput, шаблон 15; файлы — redesign.css, _footer.scss, lb-head, lb-scripts, lightbox.js, images/design/merit.svg) — после 74.
 `lbar-76-course-photo.sql` (чанки Redesign — версия 1.52.0, banner-study; файлы — redesign.css, _header.scss, lb-head, lb-scripts) — после 75.
+`lbar-77-tz-examples.sql` (чанки Redesign — версия 1.53.0, TV tz_price_examples и его значения у 625 / 321 / 1625; файлы — см. шаг 77, картинки /images/tz-examples/) — после 76.
 `stage-lbar-47-about.sql` (новые чанки lb-ahero / lb-astory / lb-asteps / lb-avalues / lb-aculise / lb-areasons, **новый шаблон «О нас»**
 + доступ к TV, **template у 102 / 298 / 1102**, **TV migx_questions / title-bl-faq у 102 / 298 / 1102**; версия 1.34.0;
 файлы — `about-me-v2.webp`, `about-procedure.webp`, `about-avatar.webp`, лексиконы, CSS / JS).
-Патчи проверены импортом. После 76 БД **не менялась** (кроме локальной настройки phpThumb выше).
+Патчи проверены импортом. После 77 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — по решению пользователя
 
