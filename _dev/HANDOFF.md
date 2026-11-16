@@ -1020,6 +1020,11 @@
      (`lb-btn lb-btn--solid` с иконкой; ссылка `https://wa.me/<цифры из настройки ClientConfig whatsapp>?text=<lbar.rd.tzex.cta.msg>`).
      Лексикон: lbar.rd.tzex.photo / prev / next / cta.text / cta.btn / cta.msg (RO / RU / EN). Lighthouse (локально, мобильный):
      специальные возможности 100.
+   - Шаг 78 (только БД, файлы не менялись): карточки «примеры цен» — названия категорий по таблице пользователя: RO Mini tatuaje /
+     Tatuaje mici / Tatuaje medii / Tatuaje mari / Micropigmentare (RU Мини-тату / Маленькие / Средние / Большие тату / Микропигментация,
+     EN Mini / Small / Medium / Large tattoos / Micropigmentation), цены в LEI (150–250 / 300–400 / 450–600 / 600–900 / 300 LEI),
+     брови и губы — одна карточка «Micropigmentare» (2 фото: tz-pmu-brows, tz-pmu-lips), примечание «с Remover — 400» убрано; карточек 5.
+     Подписи полей MIGX: «Название», «Цена (напр. «150–250 LEI»)». Таблица цен выше (RON, «de la 150 / 250 / 400 / 450») не тронута.
 
 SQL-патчи, отданные пользователю: `lbar-full-stage-2026-11-06.sql.gz` (исходный дамп + адреса стейджа + шапка/баннер), `stage-lbar-02-about.sql`,
 `stage-lbar-03-services.sql`, `stage-lbar-04-implica.sql` (новый чанк `lb-implica` id 274 + шаблон «Главная»),
@@ -1094,10 +1099,11 @@ SQL-патчи, отданные пользователю: `lbar-full-stage-2026
 `lbar-75-psi-other.sql` (чанки Redesign — версия 1.51.0, banner-study, banner-interial-category-new, inttelinput, шаблон 15; файлы — redesign.css, _footer.scss, lb-head, lb-scripts, lightbox.js, images/design/merit.svg) — после 74.
 `lbar-76-course-photo.sql` (чанки Redesign — версия 1.52.0, banner-study; файлы — redesign.css, _header.scss, lb-head, lb-scripts) — после 75.
 `lbar-77-tz-examples.sql` (чанки Redesign — версия 1.53.0, TV tz_price_examples и его значения у 625 / 321 / 1625; файлы — см. шаг 77, картинки /images/tz-examples/) — после 76.
+`lbar-78-tz-names.sql` (чанки Redesign — версия 1.53.0, TV tz_price_examples — подписи полей и значения у 625 / 321 / 1625) — после 77.
 `stage-lbar-47-about.sql` (новые чанки lb-ahero / lb-astory / lb-asteps / lb-avalues / lb-aculise / lb-areasons, **новый шаблон «О нас»**
 + доступ к TV, **template у 102 / 298 / 1102**, **TV migx_questions / title-bl-faq у 102 / 298 / 1102**; версия 1.34.0;
 файлы — `about-me-v2.webp`, `about-procedure.webp`, `about-avatar.webp`, лексиконы, CSS / JS).
-Патчи проверены импортом. После 77 БД **не менялась** (кроме локальной настройки phpThumb выше).
+Патчи проверены импортом. После 78 БД **не менялась** (кроме локальной настройки phpThumb выше).
 
 ## 5. Следующий шаг — по решению пользователя
 
